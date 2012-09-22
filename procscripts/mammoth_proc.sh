@@ -45,7 +45,7 @@ BREAK_SEARCH="Frenos"
 
 pages="$(seq 1 13)"
 
-test -f ${ALL_BIKEURLS_FILE}  && rm ${ALL_BIKEURLS_FILE}
+test -f ${ALL_BIKEURLS_FILE} && rm ${ALL_BIKEURLS_FILE}
 test -f ${ALL_BIKENAMES_FILE} && rm ${ALL_BIKENAMES_FILE}
 
 # Params
@@ -77,19 +77,25 @@ do
   cat ${PAGE_BASE}${page} | grep -i "field-content" | grep -i "a href" | sed 's/<a href=/\n/g' | awk -F ">" {'print $2'} | awk -F "<" {'print $1'} | while read NAME;
   do
     test -z "${NAME}" || echo "$NAME" 
-  done | uniq >> ${ALL_BIKENAMES_FILE}
+  done >> ${ALL_BIKENAMES_FILE}
  
   # LINK 
-  cat ${PAGE_BASE}${page} | grep -i "field-content" | grep -i "a href" | sed 's/<a href=/\n/g' | awk -F ">" {'print $1'} | grep -v " " | tr -d '"' | while read SUBURL;
+  cat ${PAGE_BASE}${page} | grep -i "field-content" | grep -i "a href" | sed 's/<a href=/\n/g' | awk -F ">" {'print $1'} | grep -v " " | grep -v "src\=" | tr -d '"' | while read SUBURL;
   do
     echo ${SUBURL} | grep -v ^\< 2>&1 >/dev/null &&
       echo "${SUBURL_KEY}=\"${URL}${SUBURL}\""
   done | uniq >> ${ALL_URLS_FILE}
-  test -f ${PAGE_BASE}${page} && rm ${PAGE_BASE}${page}
 done
 
-
 NUM_ENTRIES=$(cat ${ALL_BIKENAMES_FILE} | wc -l)
+NUM_URLS=$(cat ${ALL_URLS_FILE} | wc -l)
+if [ ${NUM_ENTRIES} -ne ${NUM_URLS} ];
+then
+  printf "Files not correctly parsed (BIKES:%d) (URLS:%d)!!!!", \
+    ${NUM_ENTRIES} ${NUM_URLS} 
+  exit 1
+fi
+
 let counter=0
 while [ ${counter} -ne ${NUM_ENTRIES} ];
 do
