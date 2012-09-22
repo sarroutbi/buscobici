@@ -99,7 +99,7 @@ do
           PSCRIPT_FILE=$(cat ${TMP_PSCRIPT_FILE})
           SCRIPT_FILE=$(cat ${TMP_SCRIPT_FILE})
           SCRIPT_DIR=$(cat ${TMP_DIR_FILE})
-          echo "SCRIPT_PROCESSOR=${SCRIPT_PROCESSOR}"
+          echo "PSCRIPT_FILE=${PSCRIPT_FILE}"
           echo "SCRIPT_FILE=${SCRIPT_FILE}"
           echo "SCRIPT_DIR=${SCRIPT_DIR}"
           echo "====================================="
@@ -107,8 +107,8 @@ do
           cp ${SCRIPT_FILE} ${SCRIPT_DIR}
           cp ${PSCRIPT_FILE} ${SCRIPT_DIR}
           pushd ${SCRIPT_DIR} > /dev/null 
-          #./$(basename ${SCRIPT_FILE})
-          #./$(basename ${PSCRIPT_FILE})
+          ./$(basename ${SCRIPT_FILE})
+          ./$(basename ${PSCRIPT_FILE})
           popd > /dev/null 
           > ${TMP_SCRIPT_FILE}
           > ${TMP_PSCRIPT_FILE}
