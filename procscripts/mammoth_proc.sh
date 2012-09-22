@@ -15,15 +15,32 @@ ALL_BIKENAMES_FILE="./output.bikes"
 ALL_URLS_FILE="./output.url"
 ALL_BIKEURLS_FILE="./output"
 
+#### KEYS GENERATED
+SUBURL_KEY="SUBURL"
+PRIZE_KEY="PRICE"
+
+#### Per Bike Field
+PRIZE_SEARCH="Precio:"
+
 pages="$(seq 1 13)"
 
 test -f ${ALL_BIKEURLS_FILE}  && rm ${ALL_BIKEURLS_FILE}
 test -f ${ALL_BIKENAMES_FILE} && rm ${ALL_BIKENAMES_FILE}
-test -f ${ALL_BIKENAMES_FILE} && rm ${ALL_URLS_FILE}
 
+# Params
+# 1 - The URL of one single bike to parse
 function parseMammothBike()
 {
-  URL=$1
+  URL=$(echo $1 | tr -d '"')
+  THE_FILE=$(echo ${URL} | awk -F "/" {'print $NF'})
+  test ! -z ${URL} && test ! -z ${THE_FILE} 
+  if [ $? -eq 0 ];
+  then
+    wget -o /tmp/log ${URL} 2>&1 >/dev/null
+    echo "${PRIZE_KEY}=$(cat ${THE_FILE} | grep "${PRIZE_SEARCH}" | awk -F " " {'print $2'} \
+      | awk -F " " {'print $1'})"
+    # rm ${THE_FILE}
+  fi
 }
 
 function getNLine()
@@ -43,7 +60,7 @@ do
   cat ${PAGE_BASE}${page} | grep -i "field-content" | grep -i "a href" | sed 's/<a href=/\n/g' | awk -F ">" {'print $1'} | grep -v " " | tr -d '"' | while read SUBURL;
   do
     echo ${SUBURL} | grep -v ^\< 2>&1 >/dev/null &&
-      echo "SUBURL=\"${URL}${SUBURL}\""
+      echo "${SUBURL_KEY}=\"${URL}${SUBURL}\""
   done | uniq >> ${ALL_URLS_FILE}
 done
 
@@ -51,14 +68,22 @@ NUM_ENTRIES=$(cat ${ALL_BIKENAMES_FILE} | wc -l)
 let counter=0
 while [ ${counter} -ne ${NUM_ENTRIES} ];
 do
-  echo -n "[" 
-  echo -n "$(getNLine ${counter} ${ALL_BIKENAMES_FILE})"
-  echo "]" 
-  getNLine ${counter} ${ALL_URLS_FILE}
-  echo 
+  NAME=$(getNLine ${counter} ${ALL_BIKENAMES_FILE})
+  test -z "${NAME}"
+  if [ $? -ne 0 ];
+  then
+    echo -n "[" 
+    echo -n "${NAME}"
+    echo "]" 
+    URL2=$(getNLine ${counter} ${ALL_URLS_FILE} | grep ${SUBURL_KEY} | awk -F "=" {'print $NF'})
+    getNLine ${counter} ${ALL_URLS_FILE}
+    parseMammothBike ${URL2}
+    echo
+  fi
   let counter=${counter}+1
-done >> ${ALL_BIKEURLS_FILE}
+done
+#done >> ${ALL_BIKEURLS_FILE}
 
 #rm ${ALL_BIKEURLS}
-rm ${ALL_BIKENAMES_FILE}
-rm ${ALL_URLS_FILE}
+test -f ${ALL_BIKENAMES_FILE} && rm ${ALL_BIKENAMES_FILE}
+test -f ${ALL_URLS_FILE} && rm ${ALL_URLS_FILE}
