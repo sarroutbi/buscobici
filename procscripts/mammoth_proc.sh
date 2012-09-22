@@ -2,8 +2,7 @@
 #
 # This script gets all the bicycles from
 # Mammoth store !
-
-OUTPUT_FILE=bicimania.txt
+THIS_STORE="Mammoth"
 URL="www.mammoth.es"
 URL_BASE=http://www.mammoth.es/catalogo/bicicletas?page=
 EXCLUDE="-Rgif -Rpng -Rjpg -Rcss"
@@ -16,9 +15,10 @@ ALL_URLS_FILE="./output.url"
 ALL_BIKEURLS_FILE="./output"
 
 #### KEYS GENERATED
-SUBURL_KEY="SUBURL"
-PRIZE_KEY="PRICE"
 TRADEMARK_KEY="TRADEMARK"
+SUBURL_KEY="SUBURL"
+STORE_KEY="STORE"
+PRIZE_KEY="PRICE"
 
 #### Per Bike Field
 PRIZE_SEARCH="Precio:"
@@ -58,10 +58,11 @@ function parseMammothBike()
   if [ $? -eq 0 ];
   then
     wget -o /tmp/log ${URL} 2>&1 >/dev/null
-    echo "${PRIZE_KEY}=$(cat ${THE_FILE} | grep "${PRIZE_SEARCH}" | awk -F " " {'print $2'} \
-      | awk -F " " {'print $1'})"
     echo "${TRADEMARK_KEY}=$(cat ${THE_FILE} | grep "${TRADEMARK_SEARCH}" -A1 \
       | sed -e 's/<[^>]*>//g' | tr -d " " | tr -d '\n')"
+    echo "${PRIZE_KEY}=$(cat ${THE_FILE} | grep "${PRIZE_SEARCH}" | awk -F " " {'print $2'} \
+      | awk -F " " {'print $1'})"
+    echo "${STORE_KEY}=${THIS_STORE}"
     rm ${THE_FILE}
   fi
 }
