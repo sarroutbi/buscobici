@@ -39,7 +39,7 @@ function parseMammothBike()
     wget -o /tmp/log ${URL} 2>&1 >/dev/null
     echo "${PRIZE_KEY}=$(cat ${THE_FILE} | grep "${PRIZE_SEARCH}" | awk -F " " {'print $2'} \
       | awk -F " " {'print $1'})"
-    # rm ${THE_FILE}
+    rm ${THE_FILE}
   fi
 }
 
