@@ -18,9 +18,30 @@ ALL_BIKEURLS_FILE="./output"
 #### KEYS GENERATED
 SUBURL_KEY="SUBURL"
 PRIZE_KEY="PRICE"
+TRADEMARK_KEY="TRADEMARK"
 
 #### Per Bike Field
 PRIZE_SEARCH="Precio:"
+TRADEMARK_SEARCH="cabeceraProducto"
+FRAME_SEARCH="Cuadro"
+SUSP_SEARCH="Suspensión"
+WHEELS_SEARCH="Ruedas"
+CUB_SEARCH="Cubiertas"
+TR_SEARCH="Transmisión"
+HCH_SEARCH="Manetas de cambio"
+SCH_SEARCH="Desviador Shimano"
+CH_SEARCH="Cambio Shimano TX35"
+CRANK_SEARCH="Bielas"
+CRANKBOX_SEARCH="Caja de pedalier"
+CAS_SEARCH="Cassette"
+PEDAL_SEARCH="Pedales"
+SADDLE_SEARCH="Sillín"
+SADDLE2_SEARCH="Tija de sillín"
+HANDLEBAR_SEARCH="Manillar"
+POWER_SEARCH="Potencia"
+CUFFS_SEARCH="Puños"
+DIR_SEARCH="Dirección"
+BREAK_SEARCH="Frenos"
 
 pages="$(seq 1 13)"
 
@@ -39,6 +60,8 @@ function parseMammothBike()
     wget -o /tmp/log ${URL} 2>&1 >/dev/null
     echo "${PRIZE_KEY}=$(cat ${THE_FILE} | grep "${PRIZE_SEARCH}" | awk -F " " {'print $2'} \
       | awk -F " " {'print $1'})"
+    echo "${TRADEMARK_KEY}=$(cat ${THE_FILE} | grep "${TRADEMARK_SEARCH}" -A1 \
+      | sed -e 's/<[^>]*>//g' | tr -d " " | tr -d '\n')"
     rm ${THE_FILE}
   fi
 }
