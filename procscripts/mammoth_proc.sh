@@ -85,7 +85,9 @@ do
     echo ${SUBURL} | grep -v ^\< 2>&1 >/dev/null &&
       echo "${SUBURL_KEY}=\"${URL}${SUBURL}\""
   done | uniq >> ${ALL_URLS_FILE}
+  test -f ${PAGE_BASE}${page} && rm ${PAGE_BASE}${page}
 done
+
 
 NUM_ENTRIES=$(cat ${ALL_BIKENAMES_FILE} | wc -l)
 let counter=0
@@ -104,8 +106,7 @@ do
     echo
   fi
   let counter=${counter}+1
-done
-#done >> ${ALL_BIKEURLS_FILE}
+done >> ${ALL_BIKEURLS_FILE}
 
 #rm ${ALL_BIKEURLS}
 test -f ${ALL_BIKENAMES_FILE} && rm ${ALL_BIKENAMES_FILE}
