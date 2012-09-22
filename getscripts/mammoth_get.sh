@@ -7,11 +7,12 @@ OUTPUT_FILE=bicimania.txt
 URL="www.mammoth.es"
 URL_BASE=http://www.mammoth.es/catalogo/bicicletas?page=
 EXCLUDE="-Rgif -Rpng -Rjpg -Rcss"
+PAGE_BASE="bicicletas?page="
 #EXCLUDE="-Ahtml"
 #ONLY_DOMAIN="bicimania.com"
 #HOST_ONLY="-D${ONLY_DOMAIN}"
 
-pages="$(seq 1 100)"
+pages="$(seq 1 1)"
 for page in ${pages}
 do
   echo
