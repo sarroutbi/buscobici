@@ -14,7 +14,7 @@ PAGE_BASE="bicicletas?page="
 ALL_BIKENAMES_FILE="./output.bikes"
 ALL_URLS_FILE="./output.url"
 
-pages="$(seq 1 1)"
+pages="$(seq 1 13)"
 
 for page in ${pages};
 do

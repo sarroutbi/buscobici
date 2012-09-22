@@ -12,7 +12,7 @@ PAGE_BASE="bicicletas?page="
 #ONLY_DOMAIN="bicimania.com"
 #HOST_ONLY="-D${ONLY_DOMAIN}"
 
-pages="$(seq 1 1)"
+pages="$(seq 1 13)"
 for page in ${pages}
 do
   echo
