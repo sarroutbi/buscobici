@@ -34,12 +34,12 @@ padding-bottom: 22px;
 
 /* Es importante notar que el ancho del cuerpo ha sido definido como 940px y que fue centrado. Nuestra barra de navegacinnn necesita hacer span en todo el ancho de la ventana, por lo que tendremos que aplicar algunos estilos adicionales: */
 
-    nav {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    background: nav_);
-    }
+nav {
+position: absolute;
+left: 0;
+width: 100%;
+background: nav_);
+}
 
 /* Posicionamos el elemento nav de forma absoluta, lo alineamos a la izquierda de la ventana y hacemos que haga span en todo el ancho. Centraremos la lista anidada para mostrarla dentro de los lBackgroundurlites del disenio: */
 
@@ -81,10 +81,25 @@ background: rss.) left center no-repeat;
 }
 
 #search {
-margin-top: 60px;
+position: absolute;
+top:45%;
+left:40%;
+margin-top: -ypx;
+margin-left: -xpx;
+}
+
+#submit {
+position: absolute;
+top:100%;
+left:30%;
+margin-top: -ypx;
+margin-left: -xpx;
+}
+
+#search_results {
+margin-top: 0px;
 padding: 0px;
 background: #467612 intro_background.) repeat-x;
 background-size: 100%;
 border-radius: 22px;
 }
-
