@@ -88,12 +88,46 @@ margin-top: -ypx;
 margin-left: -xpx;
 }
 
-#submit {
+#searchPrize {
 position: absolute;
-top:100%;
-left:30%;
+top:45%;
+left:40%;
 margin-top: -ypx;
 margin-left: -xpx;
+}
+
+#submit {
+position: absolute;
+top:0%;
+left:100%;
+margin-top: -ypx;
+margin-left: -xpx;
+}
+
+#submitPrize {
+position: absolute;
+top:0%;
+left:100%;
+margin-top: -ypx;
+margin-left: -xpx;
+}
+
+#prize {
+position: absolute;
+top:50%;
+left:40%;
+margin-top: -ypx;
+margin-left: -xpx;
+}
+
+#prizeFrom {
+background: #467612 intro_background.) repeat-x;
+background-size: 100%;
+}
+
+#prizeTo{
+background: #467612 intro_background.) repeat-x;
+background-size: 100%;
 }
 
 #search_results {
