@@ -19,8 +19,11 @@ INSERT INTO BIKES VALUES
 # Erase table:
 # DROP TABLE; 
 
-# Modify table:
+# Modify user:
 # ALTER USER davide WITH PASSWORD 'hu8jmn3'; # ADD PASSWORD
+
+# Modify table:
+# UPDATE bikes SET  url='http://www.kkstore.com' WHERE model ~ 'KK';
 
 # Search:
 #

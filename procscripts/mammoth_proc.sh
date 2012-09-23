@@ -3,7 +3,7 @@
 # This script gets all the bicycles from
 # Mammoth store !
 THIS_STORE="Mammoth"
-URL="www.mammoth.es"
+URL="http://www.mammoth.es"
 URL_BASE=http://www.mammoth.es/catalogo/bicicletas?page=
 EXCLUDE="-Rgif -Rpng -Rjpg -Rcss"
 PAGE_BASE="bicicletas?page="
