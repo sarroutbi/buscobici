@@ -1,0 +1,90 @@
+/* Reseteamos los estilos de margin y padding */
+{
+margin: 0;
+padding: 0;
+}
+
+/* Le dice al navegador que dibuje los elementos de HTML 5 como block */
+header, footer, aside, nav, article {
+display: block;
+}
+
+body {
+margin: 0 auto;
+width: 940px;
+font: 13px/22px Helvetica, Arial, sans-serif;
+background: #f0f0f0;
+}
+
+h2 {
+font-size: 28px;
+line-height: 44px;
+padding: 22px 0;
+}
+
+h3 {
+font-size: 18px;
+line-height: 22px;
+padding: 11px 0;
+}
+
+p {
+padding-bottom: 22px;
+}
+
+/* Es importante notar que el ancho del cuerpo ha sido definido como 940px y que fue centrado. Nuestra barra de navegacinnn necesita hacer span en todo el ancho de la ventana, por lo que tendremos que aplicar algunos estilos adicionales: */
+
+    nav {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: nav_);
+    }
+
+/* Posicionamos el elemento nav de forma absoluta, lo alineamos a la izquierda de la ventana y hacemos que haga span en todo el ancho. Centraremos la lista anidada para mostrarla dentro de los lBackgroundurlites del disenio: */
+
+nav ul {
+margin: 0 auto;
+width: 940px;
+list-style: none;
+}
+
+/* Ahora definiremos algunos estilos adicionales para hacer que los ems de navegacion luzcan */
+Nav ul li {
+float: left;
+}
+
+nav ul li a {
+display: block;
+margin-right: 20px;
+width: 140px;
+font-size: 14px;
+line-height: 44px;
+text-align: center;
+text-decoration: none;
+color: #777;
+}
+
+nav ul li a:hover {
+color: #fff;
+}
+
+nav ul li.selected a {
+color: #fff;
+}
+
+nav ul li.subscribe a {
+margin-left: 22px;
+padding-left: 33px;
+text-align: left;
+background: rss.) left center no-repeat;
+}
+
+#search {
+margin-top: 60px;
+padding: 0px;
+background: #467612 intro_background.) repeat-x;
+background-size: 100%;
+border-radius: 22px;
+}
+
