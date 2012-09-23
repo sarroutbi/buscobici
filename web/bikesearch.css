@@ -66,11 +66,11 @@ color: #777;
 }
 
 nav ul li a:hover {
-color: #fff;
+color: #963ad6;
 }
 
 nav ul li.selected a {
-color: #fff;
+color: #963ad6;
 }
 
 nav ul li.subscribe a {
@@ -102,6 +102,13 @@ top:0%;
 left:100%;
 margin-top: -ypx;
 margin-left: -xpx;
+width: 100px;
+color: #fff;
+text-transform: uppercase;
+text-shadow: #000 1px 1px;
+/*** Adding CSS3 Gradients ***/
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#963AD6), to(#781bb9));
+background: -moz-linear-gradient(19% 75% 90deg,#781bb9, #963AD6);
 }
 
 #submitPrize {
@@ -110,6 +117,13 @@ top:0%;
 left:100%;
 margin-top: -ypx;
 margin-left: -xpx;
+width: 100px;
+color: #fff;
+text-transform: uppercase;
+text-shadow: #000 1px 1px;
+/*** Adding CSS3 Gradients ***/
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#963AD6), to(#781bb9));
+background:  -moz-linear-gradient(19% 75% 90deg,#781bb9, #963AD6);
 }
 
 #prize {
