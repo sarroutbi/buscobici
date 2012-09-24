@@ -50,6 +50,7 @@ function getSectionLength()
 { 
   let len=0
   let issection=1
+  let onefound=0
   grep "${2}" "${1}" -A${G_MAX_SECTION} | while read line;
   do
    echo $line | grep "\[*\]" > /dev/null
@@ -58,7 +59,13 @@ function getSectionLength()
      echo "${line}" | grep "${2}" > /dev/null
      if [ $? -eq 0 ];
      then 
-       let issection=1
+       if [ ${onefound} -eq 0 ]; 
+       then
+         let issection=1
+         let onefound=1
+       else
+         let issection=0
+       fi 
      else
        let issection=0
      fi
@@ -104,19 +111,19 @@ function parseSectionContent()
     fi
   fi
 
-  grep "${2}" "${1}" -A${LENGTH} | grep "${2}"               2>&1 > /dev/null && G_MODEL="$(echo ${2} | tr -d "[" | tr -d "]" | tr -d '\')"
+  grep "${2}" "${1}" -A${LENGTH} | grep "${2}" | head -1 2>&1 > /dev/null && G_MODEL="$(echo ${2} | tail -1 | tr -d "[" | tr -d "]" | tr -d '\')"
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_TRADEMARK_KEY} 2>&1 >/dev/null && \
-    G_TRADEMARK=$(grep "${2}" "${1}" -A${LENGTH} | grep ${G_TRADEMARK_KEY} | awk -F "=" {'print $2'}); 
+    G_TRADEMARK=$(grep "${2}" "${1}" -A${LENGTH} | grep ${G_TRADEMARK_KEY} | head -1 | awk -F "=" {'print $2'}); 
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_STORE_KEY}       2>&1 > /dev/null && \
-    G_STORE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_STORE_KEY}" | awk -F "=" {'print $2'});
+    G_STORE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_STORE_KEY}" | head -1 | awk -F "=" {'print $2'});
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_SUBURL_KEY}         2>&1 > /dev/null && \
-    G_URL=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_SUBURL_KEY}" | awk -F "=" {'print $2'});
+    G_URL=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_SUBURL_KEY}" | head -1 | awk -F "=" {'print $2'});
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_TYPE_KEY}       2>&1 > /dev/null && \
-    G_TYPE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_TYPE_KEY}" | awk -F "=" {'print $2'});
+    G_TYPE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_TYPE_KEY}" | head -1 | awk -F "=" {'print $2'});
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_PRICE_KEY}       2>&1 > /dev/null && \
-    G_PRICE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_PRICE_KEY}" | awk -F "=" {'print $2'} | tr "," "." | grep -o "[0-9]*\.\{0,\},\{0,\}[0-9]*");
+    G_PRICE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_PRICE_KEY}" | head -1 | awk -F "=" {'print $2'} | tr "," "." | grep -o "[0-9]*\.\{0,\},\{0,\}[0-9]*");
 
-  printf "${G_QUERY_STR}\n" "${G_MODEL}" "${G_TRADEMARK}" "${G_STORE}" "${G_URL}" "${G_TYPE}" "${G_PRICE}"
+  printf "${G_QUERY_STR}\n" "${G_MODEL}" "${G_TRADEMARK}" "${G_STORE}" "${G_URL}" "${G_TYPE}" "${G_PRICE}" | uniq
 }
 
 ###########
