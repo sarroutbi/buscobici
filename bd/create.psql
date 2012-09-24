@@ -5,7 +5,7 @@ CREATE TABLE BIKES(
     store       varchar(20) NOT NULL,
     url         varchar(100) NOT NULL,
     kind        varchar(10),
-    prize       real NOT NULL
+    price       real NOT NULL
 );
 INSERT INTO BIKES VALUES
     ('0000-KK -0000', 'KK-TRADEMARK', 'KK-STORE', 'www.kkstore.com', 'MTB', '999.99');
@@ -28,12 +28,12 @@ INSERT INTO BIKES VALUES
 # Search:
 #
 # bikesearch=# select * from bikes WHERE model ~ 'KK';
-#        model         |      trademark       |  store   |       url       | kind | prize  
+#        model         |      trademark       |  store   |       url       | kind | prcze  
 #----------------------+----------------------+----------+-----------------+------+--------
 # 0000-KK -0000        | KK-TRADEMARK         | KK-STORE | www.kkstore.com | MTB  | 999.99
 
 # bikesearch=# select * from bikes WHERE model ~ '00000' OR trademark ~ 'KK';
-#         model         |      trademark       |  store   |       url       | kind | prize  
+#         model         |      trademark       |  store   |       url       | kind | price  
 # ----------------------+----------------------+----------+-----------------+------+--------
 #  0000-KK -0000        | KK-TRADEMARK         | KK-STORE | www.kkstore.com | MTB  | 999.99
 

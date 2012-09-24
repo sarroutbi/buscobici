@@ -10,7 +10,7 @@ $dbconn = pg_connect("host=localhost dbname=bikesearch user=postgres password=po
 
 $search = $_POST['search'];
 
-$query = "SELECT trademark, model, prize, url FROM bikes WHERE model ~ '$search' OR trademark ~ '$search'";
+$query = "SELECT trademark, model, price, url FROM bikes WHERE model ~ '$search' OR trademark ~ '$search'";
 
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
 
@@ -35,7 +35,7 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     {
 	echo "\t<td><b>Trademark</b></td>";
         echo "\t<td><b>Model</b></td>";
-        echo "\t<td><b>Prize</b></td>";
+        echo "\t<td><b>Price</b></td>";
         echo "\t<td><b>URL</b></td>\n";
         echo "\t</tr>\n";
     }

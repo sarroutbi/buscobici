@@ -18,10 +18,10 @@ ALL_BIKEURLS_FILE="./output"
 TRADEMARK_KEY="TRADEMARK"
 SUBURL_KEY="SUBURL"
 STORE_KEY="STORE"
-PRIZE_KEY="PRICE"
+PRICE_KEY="PRICE"
 
 #### Per Bike Field
-PRIZE_SEARCH="Precio:"
+PRICE_SEARCH="Precio:"
 TRADEMARK_SEARCH="cabeceraProducto"
 FRAME_SEARCH="Cuadro"
 SUSP_SEARCH="Suspensión"
@@ -60,7 +60,7 @@ function parseMammothBike()
     wget -o /tmp/log ${URL} 2>&1 >/dev/null
     echo "${TRADEMARK_KEY}=$(cat ${THE_FILE} | grep "${TRADEMARK_SEARCH}" -A1 \
       | sed -e 's/<[^>]*>//g' | tr -d " " | tr -d '\n')"
-    echo "${PRIZE_KEY}=$(cat ${THE_FILE} | grep "${PRIZE_SEARCH}" | awk -F " " {'print $2'} \
+    echo "${PRICE_KEY}=$(cat ${THE_FILE} | grep "${PRICE_SEARCH}" | awk -F " " {'print $2'} \
       | awk -F " " {'print $1'})"
     echo "${STORE_KEY}=${THIS_STORE}"
     rm ${THE_FILE}

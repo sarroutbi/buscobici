@@ -88,7 +88,7 @@ margin-top: -ypx;
 margin-left: -xpx;
 }
 
-#searchPrize {
+#searchPrice {
 position: absolute;
 top:45%;
 left:40%;
@@ -111,7 +111,7 @@ background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#963AD6), to(#781bb9))
 background: -moz-linear-gradient(19% 75% 90deg,#781bb9, #963AD6);
 }
 
-#submitPrize {
+#submitPrice {
 position: absolute;
 top:0%;
 left:100%;
@@ -126,7 +126,7 @@ background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#963AD6), to(#781bb9))
 background:  -moz-linear-gradient(19% 75% 90deg,#781bb9, #963AD6);
 }
 
-#prize {
+#price {
 position: absolute;
 top:50%;
 left:40%;
@@ -134,12 +134,12 @@ margin-top: -ypx;
 margin-left: -xpx;
 }
 
-#prizeFrom {
+#priceFrom {
 background: #467612 intro_background.) repeat-x;
 background-size: 100%;
 }
 
-#prizeTo{
+#priceTo{
 background: #467612 intro_background.) repeat-x;
 background-size: 100%;
 }
