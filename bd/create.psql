@@ -23,12 +23,15 @@ INSERT INTO BIKES VALUES
 # ALTER USER davide WITH PASSWORD 'hu8jmn3'; # ADD PASSWORD
 
 # Modify table:
+# ALTER TABLE bikes RENAME prize TO price;
+
+# Modify table content:
 # UPDATE bikes SET  url='http://www.kkstore.com' WHERE model ~ 'KK';
 
 # Search:
 #
 # bikesearch=# select * from bikes WHERE model ~ 'KK';
-#        model         |      trademark       |  store   |       url       | kind | prcze  
+#        model         |      trademark       |  store   |       url       | kind | price  
 #----------------------+----------------------+----------+-----------------+------+--------
 # 0000-KK -0000        | KK-TRADEMARK         | KK-STORE | www.kkstore.com | MTB  | 999.99
 
