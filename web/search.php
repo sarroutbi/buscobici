@@ -38,10 +38,10 @@ if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
 }
 
 if (($priceFrom < $priceTo)) {
-  $query = "SELECT trademark, model, price, trademark, url FROM bikes WHERE (model ~ '$search' OR trademark ~ '$search') AND (price < '$priceTo' AND price > '$priceFrom') ORDER BY price;";
+  $query = "SELECT trademark, model, price, store, url FROM bikes WHERE (model ~ '$search' OR trademark ~ '$search') AND (price < '$priceTo' AND price > '$priceFrom') ORDER BY price;";
 }
 else {
-  $query = "SELECT trademark, model, price, trademark, url FROM bikes WHERE model ~ '$search' OR trademark ~ '$search' ORDER BY price";
+  $query = "SELECT trademark, model, price, store, url FROM bikes WHERE model ~ '$search' OR trademark ~ '$search' ORDER BY price";
 }
 
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
@@ -60,6 +60,7 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
 	echo "\t<td><b>Trademark</b></td>\n";
         echo "\t<td><b>Model</b></td>\n";
         echo "\t<td><b>Price</b></td>\n";
+        echo "\t<td><b>Store</b></td>\n";
         echo "\t<td><b>URL</b></td>\n";
         echo "\t</tr>\n";
     }
