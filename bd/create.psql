@@ -4,7 +4,7 @@ CREATE TABLE BIKES(
     trademark   char(20) NOT NULL,
     store       varchar(20) NOT NULL,
     url         varchar(100) NOT NULL,
-    kind        varchar(10),
+    kind        varchar(20),
     price       real NOT NULL
 );
 INSERT INTO BIKES VALUES

@@ -111,13 +111,13 @@ function parseSectionContent()
     fi
   fi
 
-  grep "${2}" "${1}" -A${LENGTH} | grep "${2}" | head -1 2>&1 > /dev/null && G_MODEL="$(echo ${2} | tail -1 | tr -d "[" | tr -d "]" | tr -d '\')"
+  grep "${2}" "${1}" -A${LENGTH} | grep "${2}" | head -1 2>&1 > /dev/null && G_MODEL="$(echo ${2} | tail -1 | tr -d "\[" | tr -d "\]" | tr -d '\\')"
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_TRADEMARK_KEY} 2>&1 >/dev/null && \
     G_TRADEMARK=$(grep "${2}" "${1}" -A${LENGTH} | grep ${G_TRADEMARK_KEY} | head -1 | awk -F "=" {'print $2'}); 
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_STORE_KEY}       2>&1 > /dev/null && \
     G_STORE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_STORE_KEY}" | head -1 | awk -F "=" {'print $2'});
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_SUBURL_KEY}         2>&1 > /dev/null && \
-    G_URL=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_SUBURL_KEY}" | head -1 | awk -F "=" {'print $2'});
+    G_URL=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_SUBURL_KEY}" | head -1 | sed s-\"--g | awk -F "=" {'print $2'} );
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_TYPE_KEY}       2>&1 > /dev/null && \
     G_TYPE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_TYPE_KEY}" | head -1 | awk -F "=" {'print $2'});
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_PRICE_KEY}       2>&1 > /dev/null && \
