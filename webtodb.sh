@@ -114,7 +114,7 @@ function parseSectionContent()
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_TYPE_KEY}       2>&1 > /dev/null && \
     G_TYPE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_TYPE_KEY}" | awk -F "=" {'print $2'});
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_PRICE_KEY}       2>&1 > /dev/null && \
-    G_PRICE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_PRICE_KEY}" | awk -F "=" {'print $2'} | tr "," ".");
+    G_PRICE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_PRICE_KEY}" | awk -F "=" {'print $2'} | tr "," "." | grep -o "[0-9]*\.\{0,\},\{0,\}[0-9]*");
 
   printf "${G_QUERY_STR}\n" "${G_MODEL}" "${G_TRADEMARK}" "${G_STORE}" "${G_URL}" "${G_TYPE}" "${G_PRICE}"
 }
