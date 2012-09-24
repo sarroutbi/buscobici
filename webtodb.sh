@@ -20,5 +20,5 @@
 
 DATABASE=bikesearch
 TABLE=bikes
-QUERY_STR="INSERT INTO bikes VALUES ('%s', '%s', '%s', '%s', '%s', '%s');
+QUERY_STR="INSERT INTO bikes VALUES ('%s', '%s', '%s', '%s', '%s', '%s');"
 
