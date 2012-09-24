@@ -59,7 +59,7 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     {
 	echo "\t<td><b>Trademark</b></td>\n";
         echo "\t<td><b>Model</b></td>\n";
-        echo "\t<td><b>Prize</b></td>\n";
+        echo "\t<td><b>Price</b></td>\n";
         echo "\t<td><b>URL</b></td>\n";
         echo "\t</tr>\n";
     }
