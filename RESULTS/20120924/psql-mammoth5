@@ -1,0 +1,5 @@
+INSERT INTO bikes VALUES ('8.1 DS', 'Trek', 'Mammoth', '"http://www.mammoth.es/producto/bicicletas/trek/81-ds"', '-', '489.00');
+INSERT INTO bikes VALUES ('8.2 DS', 'Trek', 'Mammoth', '"http://www.mammoth.es/producto/bicicletas/trek/82-ds"', '-', '539.00');
+INSERT INTO bikes VALUES ('8.3 DS', 'Trek', 'Mammoth', '"http://www.mammoth.es/producto/bicicletas/trek/83-ds"', '-', '659.00');
+INSERT INTO bikes VALUES ('8.4 DS', 'Trek', 'Mammoth', '"http://www.mammoth.es/producto/bicicletas/trek/84-ds"', '-', '799.00');
+INSERT INTO bikes VALUES ('8.5 DS', 'Trek', 'Mammoth', '"http://www.mammoth.es/producto/bicicletas/trek/85-ds"', '-', '999.00');
