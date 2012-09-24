@@ -7,12 +7,9 @@ $dbconn = pg_connect("host=localhost dbname=bikesearch user=postgres password=po
     or die('Could not connect: ' . pg_last_error());
 
 // SQL Query
-
-$search = $_POST['search'];
-
-$query = "SELECT trademark, model, price, url FROM bikes WHERE model ~ '$search' OR trademark ~ '$search'";
-
-$result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
+$search    = $_POST['search'];
+$priceFrom = $_POST['priceFrom'];
+$priceTo   = $_POST['priceTo'];
 
 // HTML Results Print
 
@@ -24,6 +21,33 @@ echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
 echo "<title>Contact Form</title>\n";
 echo "<link rel=\"stylesheet\" href=\"bikesearch.css\" type=\"text/css\">\n";
 echo "</head>\n";
+if (!($search)) {
+  echo "<section id=\"search_error\">\n";
+  echo "<p>Empty search</p>\n";
+  echo "</section>\n";
+  echo "</html>\n";
+  exit();
+}
+
+if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
+  echo "<section id=\"search_error\">\n";
+  echo "<p>Wrong search. Please specify valid values on prices</p>\n";
+  echo "</section>\n";
+  echo "</html>\n";
+  exit();
+}
+
+if (($priceFrom < $priceTo)) {
+  $query = "SELECT trademark, model, price, url FROM bikes WHERE (model ~ '$search' OR trademark ~ '$search') AND (price < '$priceTo' AND price > '$priceFrom');";
+}
+else {
+  $query = "SELECT trademark, model, price, url FROM bikes WHERE model ~ '$search' OR trademark ~ '$search'";
+}
+
+$result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
+
+// echo "<p>QUERY:$query</p>\n";
+
 echo "<section id=\"search_results\">\n";
 echo "<table>\n";
 
@@ -33,9 +57,9 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     echo "\t<tr>\n";
     if ($pass == 0)
     {
-	echo "\t<td><b>Trademark</b></td>";
-        echo "\t<td><b>Model</b></td>";
-        echo "\t<td><b>Price</b></td>";
+	echo "\t<td><b>Trademark</b></td>\n";
+        echo "\t<td><b>Model</b></td>\n";
+        echo "\t<td><b>Prize</b></td>\n";
         echo "\t<td><b>URL</b></td>\n";
         echo "\t</tr>\n";
     }

@@ -58,7 +58,7 @@ nav ul li a {
 display: block;
 margin-right: 20px;
 width: 140px;
-font-size: 14px;
+font-size: 16px;
 line-height: 44px;
 text-align: center;
 text-decoration: none;
@@ -88,7 +88,7 @@ margin-top: -ypx;
 margin-left: -xpx;
 }
 
-#searchPrice {
+#searchPrize {
 position: absolute;
 top:45%;
 left:40%;
@@ -111,7 +111,7 @@ background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#963AD6), to(#781bb9))
 background: -moz-linear-gradient(19% 75% 90deg,#781bb9, #963AD6);
 }
 
-#submitPrice {
+#submitPrize {
 position: absolute;
 top:0%;
 left:100%;
@@ -135,12 +135,22 @@ margin-left: -xpx;
 }
 
 #priceFrom {
-background: #467612 intro_background.) repeat-x;
+color: #963AD6;
+text-transform: uppercase;
+text-shadow: #000 1px 1px;
+/*** Adding CSS3 Gradients ***/
+/*** background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#963AD6), to(#781bb9)); ***/
+/*** background:  -moz-linear-gradient(19% 75% 90deg,#781bb9, #963AD6); ***/
 background-size: 100%;
 }
 
 #priceTo{
-background: #467612 intro_background.) repeat-x;
+color: #963AD6;
+text-transform: uppercase;
+text-shadow: #000 1px 1px;
+/*** Adding CSS3 Gradients ***/
+/*** background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#963AD6), to(#781bb9)); ***/
+/*** background:  -moz-linear-gradient(19% 75% 90deg,#781bb9, #963AD6); ***/
 background-size: 100%;
 }
 
@@ -150,4 +160,17 @@ padding: 0px;
 background: #467612 intro_background.) repeat-x;
 background-size: 100%;
 border-radius: 22px;
+}
+
+#search_error {
+margin-top: 0px;
+padding: 0px;
+font-size: 16px;
+background: #467612 intro_background.) repeat-x;
+background-size: 100%;
+border-radius: 22px;
+}
+
+#input_search {
+width:200px;
 }

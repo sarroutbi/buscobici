@@ -19,34 +19,33 @@
     <nav>
     <ul>
     <li><a href="index.html">Search</a></li>
-    <li><a href="byprice.html">By Price</a></li>
+    <li><a href="byprice.html">By Prize</a></li>
     <!--li><a href="asearch">Advanced Search</a></li-->
     <!--/ul-->
     </nav>
 
     <div id="search">
       <form method="post" action="search.php">
-          <!--label>Search</label-->
-          <input name="search" placeholder="Type here your search"><br>
+          <input id="input_search" name="search" placeholder="Type here your search"><br>
           <label>From</label>
           <select name="priceFrom" id="priceFrom">
-            <option value="0">0</option>
-            <option value="200">200</option>
-            <option value="500">500</option>
-            <option value="1000">1000</option>
-            <option value="2000">2000</option>
-            <option value="5000">5000</option>
+            <option value="0">0&euro;</option>
+            <option value="200">200&euro;</option>
+            <option value="500">500&euro;</option>
+            <option value="1000">1000&euro;</option>
+            <option value="2000">2000&euro;</option>
+            <option value="5000">5000&euro;</option>
           </select>
           <label>To</label>
           <select name="priceTo" id="priceTo">
-            <option value="0">0</option>
-            <option value="200">200</option>
-            <option value="500">500</option>
-            <option value="1000">1000</option>
-            <option value="2000">2000</option>
-            <option value="5000">5000</option>
+            <option value="200">200&euro;</option>
+            <option value="500">500&euro;</option>
+            <option value="1000">1000&euro;</option>
+            <option value="2000">2000&euro;</option>
+            <option value="5000">5000&euro;</option>
+            <option value="noMax">10000&euro;</option>
           </select>
-          <input id="submitPrice" name="submit" type="submit" value="Search">              
+          <input id="submitPrize" name="submit" type="submit" value="Search">              
       </form>
     </div>
 
