@@ -18,7 +18,139 @@
 #     INSERT INTO bikes VALUES ('7.6 FX WSD', 'Trek', 'Mammoth', 'http://www.mammoth.es/producto/bicicletas/trek/76-fx-wsd', 'MTB', '1099.00');
 #
 
-DATABASE=bikesearch
-TABLE=bikes
-QUERY_STR="INSERT INTO bikes VALUES ('%s', '%s', '%s', '%s', '%s', '%s');"
+########### GLOBAL CONFIG
+G_DATABASE=bikesearch
+G_TABLE=bikes
+G_QUERY_STR="INSERT INTO bikes VALUES ('%s', '%s', '%s', '%s', '%s', '%s');"
+G_SUBURL_KEY="SUBURL"
+G_TRADEMARK_KEY="TRADEMARK"
+G_PRICE_KEY="PRICE"
+G_STORE_KEY="STORE"
+G_TYPE_KEY="KIND"
+G_MAX_SECTION=10
 
+########### GLOBAL VARIABLES:
+G_MODEL="-"
+G_TRADEMARK="-"
+G_STORE="-"
+G_URL="-"
+G_TYPE="-"
+G_PRICE="0.00"
+
+########### ADDITIONAL FUNCTIONS:
+
+###########
+# Function getSectionLength
+# - Parse the file, gets the section
+#   and returns the length of the section (including white lines)
+#   Params:
+#   1 : The file to parse
+#   2 : The section to parse
+function getSectionLength()
+{ 
+  let len=0
+  let issection=1
+  grep "${2}" "${1}" -A${G_MAX_SECTION} | while read line;
+  do
+   echo $line | grep "\[*\]" > /dev/null
+   if [ $? -eq 0 ];
+   then 
+     echo "${line}" | grep "${2}" > /dev/null
+     if [ $? -eq 0 ];
+     then 
+       let issection=1
+     else
+       let issection=0
+     fi
+   elif [ $issection -eq 1 ];
+   then
+     let len=$len+1 
+   else
+     echo $len
+     return 0
+   fi
+  done
+}
+
+###########
+# Function parseSectionContent
+# - Parse the file, gets the section specified
+#   and inserts it to DataBase
+#   Params:
+#   1 : The file to parse
+#   2 : The section to parse
+#   3 : The length of the section
+function parseSectionContent()
+{
+  G_MODEL="-"
+  G_TRADEMARK="-"
+  G_STORE="-"
+  G_URL="-"
+  G_TYPE="-"
+  G_PRICE="0.00"
+  grep "${2}" "${1}" -A${3} | grep "${2}"               2>&1 > /dev/null && G_MODEL="$(echo ${2} | tr -d "[" | tr -d "]" | tr -d '\')"
+  grep "${2}" "${1}" -A${3} | grep ${G_TRADEMARK_KEY} 2>&1 >/dev/null && \
+    G_TRADEMARK=$(grep "${2}" "${1}" -A${3} | grep ${G_TRADEMARK_KEY} | awk -F "=" {'print $2'}); 
+  grep "${2}" "${1}" -A${3} | grep ${G_STORE_KEY}       2>&1 > /dev/null && \
+    G_STORE=$(grep "${2}" "${1}" -A${3} | grep "${G_STORE_KEY}" | awk -F "=" {'print $2'});
+  grep "${2}" "${1}" -A${3} | grep ${G_SUBURL_KEY}         2>&1 > /dev/null && \
+    G_URL=$(grep "${2}" "${1}" -A${3} | grep "${G_SUBURL_KEY}" | awk -F "=" {'print $2'});
+  grep "${2}" "${1}" -A${3} | grep ${G_TYPE_KEY}       2>&1 > /dev/null && \
+    G_TYPE=$(grep "${2}" "${1}" -A${3} | grep "${G_TYPE_KEY}" | awk -F "=" {'print $2'});
+  grep "${2}" "${1}" -A${3} | grep ${G_PRICE_KEY}       2>&1 > /dev/null && \
+    G_PRICE=$(grep "${2}" "${1}" -A${3} | grep "${G_PRICE_KEY}" | awk -F "=" {'print $2'} | tr "," ".");
+
+  printf "${G_QUERY_STR}\n" "${G_MODEL}" "${G_TRADEMARK}" "${G_STORE}" "${G_URL}" "${G_TYPE}" "${G_PRICE}"
+}
+
+###########
+# Function usage
+function error()
+{
+  echo ""
+  echo "$1:"  
+  printNSpaces "${#1}"
+  echo ": $2"
+  echo ""
+  exit $3
+}
+
+###########
+# Function printNSpaces
+function printNSpaces()
+{
+  let counter=0
+  let nu=${1}
+  while [ $counter -ne $nu ];
+  do 
+    echo -n " " 
+    let counter=$counter+1 
+  done 
+}
+
+###########
+# Function usage
+function usage()
+{
+  echo ""  
+  echo "$0:"
+  printNSpaces "${#0}"
+  echo ": $0 \"file_to_parse\""  
+  echo ""  
+  exit 1
+}
+
+########### MAIN FUNCTIONS:
+FILE=$1
+
+test -z ${FILE} && usage $0
+test -f ${FILE} || error $0 "Unable to open file $FILE" 1
+
+# 1 - Is a Section ?
+cat ${FILE} | while read line;
+do
+  let len=0;
+  echo $line | grep "\[*\]" > /dev/null && \
+     ( len=$(getSectionLength ${FILE} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)"); \
+      parseSectionContent ${FILE} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)" ${len} )
+done
