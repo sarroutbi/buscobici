@@ -21,7 +21,7 @@ echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
 echo "<title>Contact Form</title>\n";
 echo "<link rel=\"stylesheet\" href=\"bikesearch.css\" type=\"text/css\">\n";
 echo "</head>\n";
-if (!($search)) {
+if (!($search) && (!priceFrom) && (!priceTo)) {
   echo "<section id=\"search_error\">\n";
   echo "<p>Empty search</p>\n";
   echo "</section>\n";
@@ -38,10 +38,10 @@ if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
 }
 
 if (($priceFrom < $priceTo)) {
-  $query = "SELECT trademark, model, price, store, url FROM bikes WHERE (model ~ '$search' OR trademark ~ '$search') AND (price < '$priceTo' AND price > '$priceFrom') ORDER BY price;";
+  $query = "SELECT trademark, model, price, store, url FROM bikes WHERE (lower(model) ~ LOWER('$search') OR lower(trademark) ~ '$search') AND (price < '$priceTo' AND price > '$priceFrom') ORDER BY price;";
 }
 else {
-  $query = "SELECT trademark, model, price, store, url FROM bikes WHERE model ~ '$search' OR trademark ~ '$search' ORDER BY price";
+  $query = "SELECT trademark, model, price, store, url FROM bikes WHERE LOWER(model) ~ LOWER('$search') OR lower(trademark) ~ LOWER('$search') ORDER BY price";
 }
 
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
