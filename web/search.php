@@ -67,12 +67,19 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
         echo "\t</tr>\n";
     }
     echo "\t<tr>\n";
+    $pass=0;
     foreach ($line as $col_value) {
         $compare_len = strlen($http_line);
         $islink = substr($col_value, 0, $compare_len);
+        if($pass == 0) {
+          $trademark = $col_value;
+        }
+        if($pass == 1) {
+          $model = $col_value;
+        }
 
         if ( strcmp($islink, $http_line) == 0 ) {
-          echo "\t\t<td><a href=\"$col_value\">$col_value</a></td>\n";
+          echo "\t\t<td><a href=\"$col_value\">$trademark - $model</a></td>\n";
         }
         else {
           echo "\t\t<td>$col_value</td>\n";
