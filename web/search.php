@@ -38,7 +38,7 @@ if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
 }
 
 if (($priceFrom < $priceTo)) {
-  $query = "SELECT trademark, model, price, store, url FROM bikes WHERE (lower(model) ~ LOWER('$search') OR lower(trademark) ~ '$search') AND (price < '$priceTo' AND price > '$priceFrom') ORDER BY price;";
+  $query = "SELECT trademark, model, price, store, url FROM bikes WHERE (lower(model) ~ LOWER('$search') OR lower(trademark) ~ LOWER('$search')) AND (price <= '$priceTo' AND price >= '$priceFrom') ORDER BY price;";
 }
 else {
   $query = "SELECT trademark, model, price, store, url FROM bikes WHERE LOWER(model) ~ LOWER('$search') OR lower(trademark) ~ LOWER('$search') ORDER BY price";
