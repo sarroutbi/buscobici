@@ -54,7 +54,12 @@ foreach ($search_array as $subsearch) {
 } 
 
 if (($priceFrom < $priceTo)) {
-  $query .= "AND (price <= '$priceTo' AND price >= '$priceFrom') ORDER BY price;";
+  if($search) {
+    $query .= "AND (price <= '$priceTo' AND price >= '$priceFrom') ORDER BY price;";
+  }
+  else {
+    $query .= "WHERE (price <= '$priceTo' AND price >= '$priceFrom') ORDER BY price;";
+  }
 }
 else {
   $query .= "ORDER BY price;";
