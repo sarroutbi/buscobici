@@ -39,25 +39,38 @@ if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
   exit();
 }
 
+$search_array=str_word_count($search, 1, '0123456789-/.');
+$query = "SELECT trademark, model, CAST(price AS decimal(10,2)), store, url FROM bikes ";
+$round = 0;
+foreach ($search_array as $subsearch) {
+    if ($round == 0) {
+      $query .= "WHERE ";
+    }
+    else {
+      $query .= "AND ";
+    }
+    $query .= "(LOWER(model) ~ LOWER('$subsearch') OR LOWER(trademark) ~ LOWER('$subsearch')) ";
+    $round = $round + 1;
+} 
+
 if (($priceFrom < $priceTo)) {
-  $query = "SELECT trademark, model, CAST(price AS decimal(10,2)), store, url FROM bikes WHERE (lower(model) ~ LOWER('$search') OR lower(trademark) ~ LOWER('$search')) AND (price <= '$priceTo' AND price >= '$priceFrom') ORDER BY price;";
+  $query .= "AND (price <= '$priceTo' AND price >= '$priceFrom') ORDER BY price;";
 }
 else {
-  $query = "SELECT trademark, model, CAST(price AS decimal(10,2)), store, url FROM bikes WHERE LOWER(model) ~ LOWER('$search') OR lower(trademark) ~ LOWER('$search') ORDER BY price";
+  $query .= "ORDER BY price;";
 }
 
+// echo "<p>QUERY:=>$query<=</p>\n";
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
-
-// echo "<p>QUERY:$query</p>\n";
 
 echo "<section id=\"search_results\">\n";
 echo "<table>\n";
 
-$pass = 0;
+$round = 0;
 
 while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     echo "\t<tr>\n";
-    if ($pass == 0)
+    if ($round== 0)
     {
 	echo "\t<td><b>Trademark</b></td>\n";
         echo "\t<td><b>Model</b></td>\n";
@@ -67,14 +80,14 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
         echo "\t</tr>\n";
     }
     echo "\t<tr>\n";
-    $pass=0;
+    $round = 0;
     foreach ($line as $col_value) {
         $compare_len = strlen($http_line);
         $islink = substr($col_value, 0, $compare_len);
-        if($pass == 0) {
+        if($round == 0) {
           $trademark = $col_value;
         }
-        if($pass == 1) {
+        if($round == 1) {
           $model = $col_value;
         }
 
@@ -84,7 +97,7 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
         else {
           echo "\t\t<td>$col_value</td>\n";
         }
-	$pass = $pass+1;
+	$round = $round+1;
     }
     echo "\t</tr>\n";
 }
