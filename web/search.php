@@ -67,6 +67,7 @@ else {
 
 // echo "<p>QUERY:=>$query<=</p>\n";
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
+// echo "<p>RESULT:=>$result<=</p>\n";
 
 // echo "<section id=\"search_results\">\n";
 echo "<section>\n";
@@ -109,6 +110,13 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
 	$round = $round+1;
     }
     echo "\t</tr>\n";
+}
+if ($round==0) {
+          echo "<section id=\"search_error\">\n";
+          echo "<p>No results</p>\n";
+          echo "</section>\n";
+          echo "</html>\n";
+          exit();
 }
 echo "\t</tbody>\n";
 echo "</table>\n";    
