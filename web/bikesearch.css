@@ -155,8 +155,8 @@ background-size: 100%;
 }
 
 #search_results {
-margin-top: 0px;
-padding: 0px;
+#margin-top: 0px;
+#padding: 0px;
 background: #467612 intro_background.) repeat-x;
 background-size: 100%;
 border-radius: 22px;
@@ -173,4 +173,96 @@ border-radius: 22px;
 
 #input_search {
 width:200px;
+}
+
+table.tableSearch{
+#    font-family: Georgia, serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: -1px;
+    line-height: 1.2em;
+    border-collapse:collapse;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.tableSearch thead th, .tableSearch tfoot td{
+    color:#fff;
+    font-size: 26px;
+    background-color:#222;
+    font-weight:normal;
+}
+
+.tableSearch thead tr{
+    color:#963AD6;
+    padding:30px;
+    text-transform:uppercase;
+    box-shadow:0px -1px 4px #000;
+    text-shadow:0px 0px 1px #fff;
+    text-shadow:1px 1px 1px #000;
+}
+
+.tableSearch thead td{
+    padding:10px;
+}
+
+.tableSearch tfoot th{
+    padding:10px;
+    font-size:20px;
+    text-transform:uppercase;
+    color:#888;
+}
+
+.tableSearch tfoot td{
+    font-size:36px;
+    color:#EF870E;
+    border-top:none;
+    border-bottom:3px solid #666;
+    -moz-box-shadow:0px 1px 4px #000;
+    -webkit-box-shadow:0px 1px 4px #000;
+    box-shadow:0px 1px 4px #000;
+}
+
+.tableSearch thead th:empty{
+    background:transparent;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+}
+
+.tableSearch thead :nth-last-child(1){
+    border-right:none;
+}
+
+.tableSearch thead :first-child,
+.tableSearch tbody :nth-last-child(1){
+    border:none;
+}
+
+.tableSearch tbody th{
+    text-align:right;
+    padding:10px;
+    color:#333;
+#    text-shadow:1px 1px 1px #ccc;
+#    background-color:#f9f9f9;
+#    background-color:#000;
+}
+
+.tableSearch tbody td{
+#    background-color:#f0f0f0;
+#    border: 2px solid #E7EFE0;
+#    -moz-border-radius:2px;
+#    -webkit-border-radius:2px;
+#    border-radius:2px;
+#    border-right:1px dotted #999;
+#    text-shadow:-1px 1px 1px #fff;
+    text-align:center;
+    color:#444;
+    padding:10px;
+}
+
+.tableSearch tbody span.check::before{
+    content : url(../images/check1.png)
 }

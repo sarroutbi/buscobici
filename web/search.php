@@ -68,21 +68,25 @@ else {
 // echo "<p>QUERY:=>$query<=</p>\n";
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
 
-echo "<section id=\"search_results\">\n";
-echo "<table>\n";
+// echo "<section id=\"search_results\">\n";
+echo "<section>\n";
+echo "<table class=\"tableSearch\">\n";
 
 $round = 0;
 
 while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-    echo "\t<tr>\n";
     if ($round== 0)
     {
+        echo "\t<thead>\n";
+        echo "\t<tr>\n";
 	echo "\t<td><b>Trademark</b></td>\n";
         echo "\t<td><b>Model</b></td>\n";
         echo "\t<td><b>Price</b></td>\n";
         echo "\t<td><b>Store</b></td>\n";
         echo "\t<td><b>URL</b></td>\n";
         echo "\t</tr>\n";
+        echo "\t</thead>\n";
+        echo "\t<tbody>\n";
     }
     echo "\t<tr>\n";
     $round = 0;
@@ -106,6 +110,7 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     }
     echo "\t</tr>\n";
 }
+echo "\t</tbody>\n";
 echo "</table>\n";    
 echo "</section>\n";
 
@@ -115,4 +120,3 @@ pg_free_result($result);
 // Closing connection
 pg_close($dbconn);
 ?>
-
