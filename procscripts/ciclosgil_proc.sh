@@ -37,7 +37,7 @@ proc_file()
     echo "TRADEMARK=${TRADEMARK}"
     echo "PRICE=${PRICE}"
     echo "STORE=${2}"
-    echo "TYPE=${3}"
+    echo "KIND=${3}"
     echo ""
   done >> ${OUTPUT_FILE}
 }
