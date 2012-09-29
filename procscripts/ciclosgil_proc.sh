@@ -1,3 +1,53 @@
-#!/bin/sh
+#!/bin/bash
 #
-echo "Processing ..."
+# This script processes entries from 
+# Gil Bicicletas !
+# URL: www.bicicletasgil.com
+# It outputs site common structure:
+# 
+# [7.6 FX WSD]
+# SUBURL="http://www.mammoth.es/producto/bicicletas/trek/76-fx-wsd"
+# TRADEMARK=Trek
+# PRICE=1099,00€
+# STORE=Mammoth
+# TYPE=MTB
+
+OUTPUT_FILE=output
+MTB_FIX_FILE='mtb rigida'
+MTB_DOUBLE_FILE='mtb dobles'
+MTB_TWENTYNINE_FILE='mtb 29'
+URBAN_FILE='urbanas'
+WOMAN_FILE='mujer'
+KID_FILE='infantil'
+ROAD_FILE='carretera'
+
+MAX_TO_PRICE=20
+
+# 1 - The file to be processed
+# 2 - The Store
+# 3 - The Type (as there is a classifcation via files)
+proc_file()
+{
+  cat "$1" |  grep "<a id" | grep "href=" | grep "Listado" | while read line;
+  do
+    MODEL=$(echo "${line}" | grep "<a id" | grep "href=" | grep "Listado" | sed -e 's/<[^>]*>//g' | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+    TRADEMARK=$(echo "${line}" | grep "<a id" | grep "href=" | grep "Listado" | sed -e 's/<[^>]*>//g' | awk {'print $1'})
+    PRICE=$(grep "${MODEL}" "${1}" -A${MAX_TO_PRICE} | grep -o "[0-9]*,[0-9]*" | sed -e 's/<[^>]*>//g' | tr -d ' ' | tr -d '\n' | awk {'print $1'})
+    echo "[${MODEL}]"
+    echo "TRADEMARK=${TRADEMARK}"
+    echo "PRICE=${PRICE}"
+    echo "STORE=${2}"
+    echo "TYPE=${3}"
+    echo ""
+  done >> ${OUTPUT_FILE}
+}
+
+> ${OUTPUT_FILE}
+
+proc_file "${ROAD_FILE}" "Biciletas Gil" "Road"
+proc_file "${MTB_FIX_FILE}" "Biciletas Gil" "MTB Fix"
+proc_file "${MTB_DOUBLE_FILE}" "Biciletas Gil" "MTB Double"
+proc_file "${MTB_TWENTYNINE_FILE}" "Biciletas Gil" "MTB 29"
+proc_file "${URBAN_FILE}" "Biciletas Gil" "Urban"
+proc_file "${WOMAN_FILE}" "Biciletas Gil" "Woman"
+proc_file "${KID_FILE}" "Biciletas Gil" "Kids"
