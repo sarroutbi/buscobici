@@ -10,7 +10,7 @@
 # TRADEMARK=Trek
 # PRICE=1099,00€
 # STORE=Mammoth
-# TYPE=MTB
+# KIND=MTB
 
 OUTPUT_FILE=output
 MTB_FIX_FILE='mtb rigida'
@@ -22,6 +22,7 @@ KID_FILE='infantil'
 ROAD_FILE='carretera'
 
 MAX_TO_PRICE=20
+URL_ROOT="http://www.bicicletasgil.com/"
 
 # 1 - The file to be processed
 # 2 - The Store
@@ -33,7 +34,9 @@ proc_file()
     MODEL=$(echo "${line}" | grep "<a id" | grep "href=" | grep "Listado" | sed -e 's/<[^>]*>//g' | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     TRADEMARK=$(echo "${line}" | grep "<a id" | grep "href=" | grep "Listado" | sed -e 's/<[^>]*>//g' | awk {'print $1'})
     PRICE=$(grep "${MODEL}" "${1}" -A${MAX_TO_PRICE} | grep -o "[0-9]*,[0-9]*" | sed -e 's/<[^>]*>//g' | tr -d ' ' | tr -d '\n' | awk {'print $1'})
+    SUBURL=$(echo ${line} |  grep "<a id" | grep "href=" | grep "Listado" | awk -F "href=" {'print $2'} | awk -F ">" {'print $1'} | sed s-"../../"-${URL_ROOT}-g)
     echo "[${MODEL}]"
+    echo "SUBURL=${SUBURL}"
     echo "TRADEMARK=${TRADEMARK}"
     echo "PRICE=${PRICE}"
     echo "STORE=${2}"

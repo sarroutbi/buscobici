@@ -1,520 +1,607 @@
 [Onix Master 2011]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Master-Onix-2011"
 TRADEMARK=Orbea
 PRICE=199,00
 STORE=Biciletas Gil
 KIND=Road
 
 [Elite Rival Compact]
+SUBURL="http://www.bicicletasgil.com/producto/Roubaix-Elite-Rival-Compact"
 TRADEMARK=Roubaix
 PRICE=299,00
 STORE=Biciletas Gil
 KIND=Road
 
 [Aqua T23]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Aqua-T23"
 TRADEMARK=Orbea
 PRICE=629,00
 STORE=Biciletas Gil
 KIND=Road
 
 [Aqua TTG]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Aqua-TTG"
 TRADEMARK=Orbea
 PRICE=999,00
 STORE=Biciletas Gil
 KIND=Road
 
 [TCR Aadvanced sl Rabobank]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-TCR-Aadvanced-sl-Rabobank"
 TRADEMARK=Giant
 PRICE=999,00
 STORE=Biciletas Gil
 KIND=Road
 
 [TCR composite 1]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-TCR-composite-1"
 TRADEMARK=Giant
 PRICE=199,00
 STORE=Biciletas Gil
 KIND=Road
 
 [TCR composite 3]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-TCR-composite-3"
 TRADEMARK=Giant
 PRICE=499,00
 STORE=Biciletas Gil
 KIND=Road
 
 [Defy composite 1]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Defy-composite-1"
 TRADEMARK=Giant
 PRICE=199,00
 STORE=Biciletas Gil
 KIND=Road
 
 [Orca BLI2]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Orca-BLI2"
 TRADEMARK=Orbea
 PRICE=199,00
 STORE=Biciletas Gil
 KIND=Road
 
 [Orca GRC]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Orca-GRC"
 TRADEMARK=Orbea
 PRICE=399,00
 STORE=Biciletas Gil
 KIND=Road
 
 [Orca SLT]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Orca-SLT"
 TRADEMARK=Orbea
 PRICE=700,00
 STORE=Biciletas Gil
 KIND=Road
 
 [Dogma 2 record shamal]
+SUBURL="http://www.bicicletasgil.com/producto/Pinarello-Dogma-2-record-shamal"
 TRADEMARK=Pinarello
 PRICE=115,00
 STORE=Biciletas Gil
 KIND=Road
 
 [FP quattro athena]
+SUBURL="http://www.bicicletasgil.com/producto/Pinarello-FP-quattro-athena"
 TRADEMARK=Pinarello
 PRICE=900,00
 STORE=Biciletas Gil
 KIND=Road
 
 [FP due veloce]
+SUBURL="http://www.bicicletasgil.com/producto/Pinarello-FP-due-veloce"
 TRADEMARK=Pinarello
 PRICE=900,00
 STORE=Biciletas Gil
 KIND=Road
 
 [Orca S 105 Team]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Orca-S-105-Team"
 TRADEMARK=Orbea
 PRICE=399,00
 STORE=Biciletas Gil
 KIND=Road
 
 [3700 disc]
+SUBURL="http://www.bicicletasgil.com/producto/Trek-3700-disc"
 TRADEMARK=Trek
 PRICE=339,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Elite 9.6]
+SUBURL="http://www.bicicletasgil.com/producto/Trek-Elite-9-6"
 TRADEMARK=Trek
 PRICE=399,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Alma g 10]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Alma-g-10"
 TRADEMARK=Orbea
 PRICE=099,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Alma h 10]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Alma-h-10"
 TRADEMARK=Orbea
 PRICE=949,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Alma h 30]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Alma-h-30"
 TRADEMARK=Orbea
 PRICE=649,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Alma h 50]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Alma-h-50"
 TRADEMARK=Orbea
 PRICE=349,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [H World]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-H-World"
 TRADEMARK=Orbea
 PRICE=399,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Alma s 10]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Alma-s-10"
 TRADEMARK=Orbea
 PRICE=999,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Alma s 30]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Alma-s-30"
 TRADEMARK=Orbea
 PRICE=599,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Alma s 50]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Alma-s-50"
 TRADEMARK=Orbea
 PRICE=759,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Compair]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Compair"
 TRADEMARK=Orbea
 PRICE=819,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Dakar]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Dakar"
 TRADEMARK=Orbea
 PRICE=399,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Revel 3 disc]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Revel-3-disc"
 TRADEMARK=Giant
 PRICE=449,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Revel ltd 1]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Revel-ltd-1"
 TRADEMARK=Giant
 PRICE=699,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Talon 0]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Talon-0"
 TRADEMARK=Giant
 PRICE=999,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [xtc 2]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-xtc-2"
 TRADEMARK=Giant
 PRICE=199,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [xtc 1]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-xtc-1"
 TRADEMARK=Giant
 PRICE=349,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [xtc composite 3]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-xtc-composite-3"
 TRADEMARK=Giant
 PRICE=499,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [xtc composite 2]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-xtc-composite-2"
 TRADEMARK=Giant
 PRICE=799,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [xtc composite 1]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-xtc-composite-1"
 TRADEMARK=Giant
 PRICE=199,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Master Hydro]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Master-Hydro"
 TRADEMARK=Orbea
 PRICE=799,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Master sport]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Master-sport"
 TRADEMARK=Orbea
 PRICE=499,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [dakar disc. Color rojo]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-dakar-disc-Color-rojo"
 TRADEMARK=Orbea
 PRICE=349,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Sate]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Sate"
 TRADEMARK=Orbea
 PRICE=499,00719,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Satellite]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Satellite"
 TRADEMARK=Orbea
 PRICE=719,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Sherpa]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Sherpa"
 TRADEMARK=Orbea
 PRICE=599,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Toubkal]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Toubkal"
 TRADEMARK=Orbea
 PRICE=349,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Tuareg]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Tuareg"
 TRADEMARK=Orbea
 PRICE=279,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [Zenit]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Zenit"
 TRADEMARK=Orbea
 PRICE=999,00
 STORE=Biciletas Gil
 KIND=MTB Fix
 
 [FSR Comp]
+SUBURL="http://www.bicicletasgil.com/producto/STUMPJUMPER-FSR-COMP"
 TRADEMARK=Stumpjumper
 PRICE=599,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Comp 29]
+SUBURL="http://www.bicicletasgil.com/producto/CAMBER-COMP-29"
 TRADEMARK=Camber
 PRICE=399,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Trance x4]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Trance-x4"
 TRADEMARK=Giant
 PRICE=195,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Trance x2]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Trance-x2"
 TRADEMARK=Giant
 PRICE=299,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Trance x advanced 2]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Trance-x-advanced-2"
 TRADEMARK=Giant
 PRICE=999,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Anthem x4]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Anthem-x4"
 TRADEMARK=Giant
 PRICE=599,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Anthem x2 ]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Anthem-x2"
 TRADEMARK=Giant
 PRICE=299,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Anthem x advanced 1]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Anthem-x-advanced-1"
 TRADEMARK=Giant
 PRICE=799,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Occam h 10]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Occam-h-10"
 TRADEMARK=Orbea
 PRICE=899,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Occam h 30]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Occam-h-30"
 TRADEMARK=Orbea
 PRICE=999,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Occam h 50]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Occam-h-50"
 TRADEMARK=Orbea
 PRICE=699,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Occam s 30]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Occam-s-30"
 TRADEMARK=Orbea
 PRICE=599,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Occam s 50]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Occam-s-50"
 TRADEMARK=Orbea
 PRICE=999,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Oiz carbon 3]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Oiz-carbon-3"
 TRADEMARK=Orbea
 PRICE=269,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Rallon 10]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Rallon-10"
 TRADEMARK=Orbea
 PRICE=199,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Rallon 50]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Rallon-50"
 TRADEMARK=Orbea
 PRICE=599,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Rallon 70]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Rallon-70"
 TRADEMARK=Orbea
 PRICE=999,00
 STORE=Biciletas Gil
 KIND=MTB Double
 
 [Alma 29 h 30]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Alma-29-h-30"
 TRADEMARK=Orbea
 PRICE=999,00
 STORE=Biciletas Gil
 KIND=MTB 29
 
 [Alma 29 h 50]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Alma-29-h-50"
 TRADEMARK=Orbea
 PRICE=349,00
 STORE=Biciletas Gil
 KIND=MTB 29
 
 [Alma 29 h 70]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Alma-29-h-70"
 TRADEMARK=Orbea
 PRICE=149,00
 STORE=Biciletas Gil
 KIND=MTB 29
 
 [Alma s 30]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Alma-s-30"
 TRADEMARK=Orbea
 PRICE=799,00
 STORE=Biciletas Gil
 KIND=MTB 29
 
 [Talon 29 1]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Talon-29-1"
 TRADEMARK=Giant
 PRICE=749,00
 STORE=Biciletas Gil
 KIND=MTB 29
 
 [Xtc 29 0]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Xtc-29-0"
 TRADEMARK=Giant
 PRICE=199,00
 STORE=Biciletas Gil
 KIND=MTB 29
 
 [Xtc composite 29 1]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Xtc-composite-29-1"
 TRADEMARK=Giant
 PRICE=199,00
 STORE=Biciletas Gil
 KIND=MTB 29
 
 [Xtc composite 29 0]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Xtc-composite-29-0"
 TRADEMARK=Giant
 PRICE=999,00
 STORE=Biciletas Gil
 KIND=MTB 29
 
 [Boulebar uni H50]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Boulebar-uni-H50"
 TRADEMARK=Orbea
 PRICE=399,00
 STORE=Biciletas Gil
 KIND=Urban
 
 [Carpe H60]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Carpe-H60"
 TRADEMARK=Orbea
 PRICE=399,00
 STORE=Biciletas Gil
 KIND=Urban
 
 [Roam 1 disc]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Roam-1-disc"
 TRADEMARK=Giant
 PRICE=649,00
 STORE=Biciletas Gil
 KIND=Urban
 
 [Roam 3]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Roam-3"
 TRADEMARK=Giant
 PRICE=449,00
 STORE=Biciletas Gil
 KIND=Urban
 
 [Ravel H50 700]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Ravel-H50-700"
 TRADEMARK=Orbea
 PRICE=359,00
 STORE=Biciletas Gil
 KIND=Urban
 
 [Ravel sport A40]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Ravel-sport-A40"
 TRADEMARK=Orbea
 PRICE=369,00
 STORE=Biciletas Gil
 KIND=Urban
 
 [Revel 3 disc w]
+SUBURL="http://www.bicicletasgil.com/producto/Giant-Revel-3-disc-w"
 TRADEMARK=Giant
 PRICE=449,00
 STORE=Biciletas Gil
 KIND=Woman
 
 [Irati]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Irati"
 TRADEMARK=Orbea
 PRICE=829,00
 STORE=Biciletas Gil
 KIND=Woman
 
 [Lokit]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Lokit"
 TRADEMARK=Orbea
 PRICE=669,00
 STORE=Biciletas Gil
 KIND=Woman
 
 [Paradise ]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Paradise"
 TRADEMARK=Orbea
 PRICE=279,00
 STORE=Biciletas Gil
 KIND=Woman
 
 [Sua]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Sua"
 TRADEMARK=Orbea
 PRICE=559,00
 STORE=Biciletas Gil
 KIND=Woman
 
 [Grow 0]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Grow-0"
 TRADEMARK=Orbea
 PRICE=179,00
 STORE=Biciletas Gil
 KIND=Kids
 
 [Grow 1]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Grow-1"
 TRADEMARK=Orbea
 PRICE=239,00
 STORE=Biciletas Gil
 KIND=Kids
 
 [Mx 20 dirt]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Mx-20-dirt"
 TRADEMARK=Orbea
 PRICE=249,00
 STORE=Biciletas Gil
 KIND=Kids
 
 [Mx 20 xc]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Mx-20-xc"
 TRADEMARK=Orbea
 PRICE=269,00
 STORE=Biciletas Gil
 KIND=Kids
 
 [Mx 24 dirt]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Mx-24-dirt"
 TRADEMARK=Orbea
 PRICE=259,00
 STORE=Biciletas Gil
 KIND=Kids
 
 [Mx 24 xc]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Mx-24-xc"
 TRADEMARK=Orbea
 PRICE=279,00
 STORE=Biciletas Gil
 KIND=Kids
 
 [Grow 2]
+SUBURL="http://www.bicicletasgil.com/producto/Orbea-Grow-2"
 TRADEMARK=Orbea
 PRICE=249,00
 STORE=Biciletas Gil
