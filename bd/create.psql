@@ -1,10 +1,10 @@
 CREATE DATABASE;
 CREATE TABLE BIKES(
-    model       char(20) CONSTRAINT firstkey PRIMARY KEY,
-    trademark   char(20) NOT NULL,
-    store       varchar(20) NOT NULL,
+    model       char(30) NOT NULL,
+    trademark   char(30) NOT NULL,
+    store       varchar(30) NOT NULL,
     url         varchar(100) NOT NULL,
-    kind        varchar(20),
+    kind        varchar(30),
     price       real NOT NULL
 );
 INSERT INTO BIKES VALUES
