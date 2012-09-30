@@ -25,13 +25,17 @@ KIND_KEY="KIND"
 # 6 - Kind:      KIND=MTB
 function dump_bike()
 {
-  echo "[$1]"
-  echo "${SUBURL_KEY}=$2"
-  echo "${TRADEMARK_KEY}=$3"
-  echo "${PRICE_KEY}=$4"
-  echo "${STORE_KEY}=$5"
-  echo "${KIND_KEY}=$6"
-  echo 
+  #if [[ "$1" != "" ]] && [[ "$2" != "" ]] && [[ "$3" != ""]]; 
+  if [[ "$1" != "" ]];
+  then
+    echo "[$1]"
+    echo "${SUBURL_KEY}=$2"
+    echo "${TRADEMARK_KEY}=$3"
+    echo "${PRICE_KEY}=$4"
+    echo "${STORE_KEY}=$5"
+    echo "${KIND_KEY}=$6"
+    echo 
+  fi
 }
 
 function process_pages()
@@ -42,8 +46,7 @@ function process_pages()
   if [ "${PAGES}" = "" ];
   then
     MODELS=$(cat "${BASE_URL}" | grep href | grep "productListing-data" | awk -F "<b>" {'print $2'} | awk -F "</b>" {'print $1'})
-
-    for model in "${MODELS}";
+    echo "${MODELS}" | while read model;
     do
       MODEL=$(echo "${model}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
       TRADEMARK=$(echo "${model}" | awk {'print $1'})
