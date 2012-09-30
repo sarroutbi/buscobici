@@ -9,6 +9,9 @@
 # STORE=Biciletas Gil
 # KIND=MTB-FIX
 
+MAX_PRICE=2
+OUTPUT_FILE=./output
+
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
 SUBURL_KEY="SUBURL"
@@ -38,11 +41,24 @@ function dump_bike()
   fi
 }
 
+# Params:
+# 1 - The URL of bike
+function print_price()
+{
+  PRICES=$(wget "$1" -O - 2>&1 | grep "IVA" | grep '&euro' | grep -o "[0-9,\.]*[0-9],[0-9]*" | tr -d '.' | tail -1)
+  for price in ${PRICES};
+  do
+    PRICE=${price} 
+    echo ${PRICE}
+  done
+}
+
 function process_pages()
 {
   BASE_URL="$1"
   PAGES="$2"
-  TYPE="$3"
+  STORE="$3"
+  TYPE="$4"
   if [ "${PAGES}" = "" ];
   then
     MODELS=$(cat "${BASE_URL}" | grep href | grep "productListing-data" | awk -F "<b>" {'print $2'} | awk -F "</b>" {'print $1'})
@@ -50,7 +66,9 @@ function process_pages()
     do
       MODEL=$(echo "${model}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
       TRADEMARK=$(echo "${model}" | awk {'print $1'})
-      dump_bike "${MODEL}" "" "${TRADEMARK}"
+      URL=$(grep "${model}" "${BASE_URL}" | grep -o "<a href=[^>]*>" | sed -e 's/<a href=//g' | tr -d '>' | awk -F "?" {'print $1'} | head -1 | uniq)
+      PRICE=$(print_price "${URL}")
+      dump_bike "${MODEL}" "${URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
     done
   else
     for page in ${PAGES};
@@ -60,7 +78,9 @@ function process_pages()
       do
         MODEL=$(echo "${model}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
         TRADEMARK=$(echo "${model}" | awk {'print $1'})
-        dump_bike "${MODEL}" "" "${TRADEMARK}"
+        URL=$(grep "${model}" "${BASE_URL}${page}" | grep -o "<a href=[^>]*>" | sed -e 's/<a href=//g' | tr -d '>' | awk -F "?" {'print $1'} | head -1 | uniq)
+        PRICE=$(print_price $(echo "${URL}" | tr -d '"'))
+        dump_bike "${MODEL}" "${URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
       done
     done 
   fi
@@ -85,10 +105,12 @@ FOLDING_BIKES_PAGES=$(seq 1 3)
 
 CHILDREN_BIKES_BASE="bicis-nino-c-21_98.html"
 
-process_pages "${FIX_BIKES_BASE}" "${FIX_BIKES_PAGES}"
-process_pages "${DOUBLE_BIKES_BASE}" "${DOUBLE_BIKES_PAGES}"
-process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}"
-process_pages "${BMX_BIKES_BASE}" ""
-process_pages "${CONFORT_BIKES_BASE}" "${CONFORT_BIKES_PAGES}"
-process_pages "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}"
-process_pages "${CHILDREN_BIKES_BASE}" ""
+> ${OUTPUT_FILE}
+
+process_pages "${FIX_BIKES_BASE}" "${FIX_BIKES_PAGES}" "Bicimania" "MTB-FIX" >> ${OUTPUT_FILE}
+process_pages "${DOUBLE_BIKES_BASE}" "${DOUBLE_BIKES_PAGES}" "Bicimania" "MTB-Double" >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Bicimania" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${BMX_BIKES_BASE}" "" "Bicimania" "BMX" >> ${OUTPUT_FILE}
+process_pages "${CONFORT_BIKES_BASE}" "${CONFORT_BIKES_PAGES}" "Bicimania" "CONFORT" >> ${OUTPUT_FILE}
+process_pages "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}" "Bicimania" "FOLDING" >> ${OUTPUT_FILE}
+process_pages "${CHILDREN_BIKES_BASE}" "" "Bicimania" "KIDS" >> ${OUTPUT_FILE}
