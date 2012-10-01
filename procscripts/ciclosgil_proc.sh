@@ -47,10 +47,10 @@ proc_file()
 
 > ${OUTPUT_FILE}
 
-proc_file "${ROAD_FILE}" "Biciletas Gil" "Road"
-proc_file "${MTB_FIX_FILE}" "Biciletas Gil" "MTB Fix"
-proc_file "${MTB_DOUBLE_FILE}" "Biciletas Gil" "MTB Double"
-proc_file "${MTB_TWENTYNINE_FILE}" "Biciletas Gil" "MTB 29"
-proc_file "${URBAN_FILE}" "Biciletas Gil" "Urban"
-proc_file "${WOMAN_FILE}" "Biciletas Gil" "Woman"
-proc_file "${KID_FILE}" "Biciletas Gil" "Kids"
+proc_file "${ROAD_FILE}" "Biciletas Gil" "ROAD"
+proc_file "${MTB_FIX_FILE}" "Biciletas Gil" "MTB-FIX"
+proc_file "${MTB_DOUBLE_FILE}" "Biciletas Gil" "MTB-DOUBLE"
+proc_file "${MTB_TWENTYNINE_FILE}" "Biciletas Gil" "MTB-29"
+proc_file "${URBAN_FILE}" "Biciletas Gil" "URBAN-CONFORT-FOLDING"
+proc_file "${WOMAN_FILE}" "Biciletas Gil" "WOMAN"
+proc_file "${KID_FILE}" "Biciletas Gil" "KIDS"

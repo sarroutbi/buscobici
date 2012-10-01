@@ -49,6 +49,28 @@ pages="$(seq 1 13)"
 test -f ${ALL_BIKEURLS_FILE} && rm ${ALL_BIKEURLS_FILE}
 test -f ${ALL_BIKENAMES_FILE} && rm ${ALL_BIKENAMES_FILE}
 
+function translateType()
+{
+  if [ "$1" = "CARRETERA" ]; 
+  then
+    echo "ROAD";
+  elif [ "$1" = "MTB" ];  
+  then
+    echo "MTB";
+  elif [ "$1" = "NIÒOS" ];  
+  then
+    echo "KIDS"; 
+  elif [ "$1" = "URBANAS" ];  
+  then
+    echo "URBAN-CONFORT-FOLDING" ;
+  elif [ "$1" = "BMX" ];  
+  then
+    echo "BMX";
+  else
+    echo "$1";
+  fi 
+}
+
 # Params
 # 1 - The URL of one single bike to parse
 function parseMammothBike()
@@ -64,8 +86,10 @@ function parseMammothBike()
     echo "${PRICE_KEY}=$(cat ${THE_FILE} | grep "${PRICE_SEARCH}" | awk -F " " {'print $2'} \
       | awk -F " " {'print $1'})"
     echo "${STORE_KEY}=${THIS_STORE}"
-    echo "${TYPE_KEY}=$(cat ${THE_FILE} | grep Productos | grep Bicicletas | awk -F "<a href=" {'print $4'} | awk -F ">" {'print $2'} | awk -F "<" {'print $1'})"
-    rm ${THE_FILE}
+    TYPE=$(cat ${THE_FILE} | grep Catalogo | grep "catalogo/bicicleta" | awk -F "<a href=" {'print $4'} | awk -F ">" {'print $2'} | awk -F "<" {'print $1'} | tr "[a-z]" "[A-Z]" | awk -F "/" {'print $1'} | tr -d ' ')
+    TYPE_TRANSLATED=$(translateType "${TYPE}")
+    echo "${TYPE_KEY}=${TYPE_TRANSLATED}"
+    #rm ${THE_FILE}
   fi
 }
 

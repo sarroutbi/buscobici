@@ -181,9 +181,9 @@ CHILDREN_BIKES_BASE="bicis-nino-c-21_98.html"
 ######process_pages "${CHILDREN_BIKES_BASE}" "" "Bicimania" "KIDS" >> ${OUTPUT_FILE}
 
 process_pages2 "${FIX_BIKES_BASE}" "${FIX_BIKES_PAGES}" "Bicimania" "MTB-FIX" >> ${OUTPUT_FILE}
-process_pages2 "${DOUBLE_BIKES_BASE}" "${DOUBLE_BIKES_PAGES}" "Bicimania" "MTB-Double" >> ${OUTPUT_FILE}
+process_pages2 "${DOUBLE_BIKES_BASE}" "${DOUBLE_BIKES_PAGES}" "Bicimania" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages2 "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Bicimania" "ROAD"  >> ${OUTPUT_FILE}
 process_pages2 "${BMX_BIKES_BASE}" "" "Bicimania" "BMX"  >> ${OUTPUT_FILE}
-process_pages2 "${CONFORT_BIKES_BASE}" "${CONFORT_BIKES_PAGES}" "Bicimania" "CONFORT"  >> ${OUTPUT_FILE}
-process_pages2 "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}" "Bicimania" "FOLDING" >> ${OUTPUT_FILE}
+process_pages2 "${CONFORT_BIKES_BASE}" "${CONFORT_BIKES_PAGES}" "Bicimania" "URBAN-CONFORT-FOLDING"  >> ${OUTPUT_FILE}
+process_pages2 "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}" "Bicimania" "URBAN-CONFORT-FOLDING" >> ${OUTPUT_FILE}
 process_pages2 "${CHILDREN_BIKES_BASE}" "" "Bicimania" "KIDS"  >> ${OUTPUT_FILE}
