@@ -171,8 +171,14 @@ background-size: 100%;
 border-radius: 22px;
 }
 
-#input_search {
+#input_search_en {
 width:200px;
+margin-left:auto;
+margin-right:auto;
+}
+
+#input_search {
+width:225px;
 }
 
 table.tableSearch{
