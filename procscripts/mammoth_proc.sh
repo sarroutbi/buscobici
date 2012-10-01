@@ -19,6 +19,7 @@ TRADEMARK_KEY="TRADEMARK"
 SUBURL_KEY="SUBURL"
 STORE_KEY="STORE"
 PRICE_KEY="PRICE"
+TYPE_KEY="KIND"
 
 #### Per Bike Field
 PRICE_SEARCH="Precio:"
@@ -63,6 +64,7 @@ function parseMammothBike()
     echo "${PRICE_KEY}=$(cat ${THE_FILE} | grep "${PRICE_SEARCH}" | awk -F " " {'print $2'} \
       | awk -F " " {'print $1'})"
     echo "${STORE_KEY}=${THIS_STORE}"
+    echo "${TYPE_KEY}=$(cat ${THE_FILE} | grep Productos | grep Bicicletas | awk -F "<a href=" {'print $4'} | awk -F ">" {'print $2'} | awk -F "<" {'print $1'})"
     rm ${THE_FILE}
   fi
 }
@@ -115,6 +117,5 @@ do
   let counter=${counter}+1
 done >> ${ALL_BIKEURLS_FILE}
 
-#rm ${ALL_BIKEURLS}
 test -f ${ALL_BIKENAMES_FILE} && rm ${ALL_BIKENAMES_FILE}
 test -f ${ALL_URLS_FILE} && rm ${ALL_URLS_FILE}
