@@ -33,7 +33,7 @@ if (   ((!$search)    || (strlen($search)==0))
 
 if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
   echo "<section id=\"search_error\">\n";
-  echo "<p>Búsqueda errónea. Por favor, especfique un rango de precios válidos</p>\n";
+  echo "<p>Wrong search. Please specify valid values on prices</p>\n";
   echo "</section>\n";
   echo "</html>\n";
   exit();
@@ -80,11 +80,11 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     {
         echo "\t<thead>\n";
         echo "\t<tr>\n";
-	echo "\t<td><b>Marca</b></td>\n";
-        echo "\t<td><b>Modelo</b></td>\n";
-        echo "\t<td><b>Precio</b></td>\n";
-        echo "\t<td><b>Tienda</b></td>\n";
-        echo "\t<td><b>Enlace</b></td>\n";
+	echo "\t<td><b>Trademark</b></td>\n";
+        echo "\t<td><b>Model</b></td>\n";
+        echo "\t<td><b>Price</b></td>\n";
+        echo "\t<td><b>Store</b></td>\n";
+        echo "\t<td><b>URL</b></td>\n";
         echo "\t</tr>\n";
         echo "\t</thead>\n";
         echo "\t<tbody>\n";
@@ -113,7 +113,7 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
 }
 if ($round==0) {
           echo "<section id=\"search_error\">\n";
-          echo "<p>Sin resultados</p>\n";
+          echo "<p>No results</p>\n";
           echo "</section>\n";
           echo "</html>\n";
           exit();

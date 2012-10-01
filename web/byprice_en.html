@@ -3,7 +3,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Buscador de Bicicletas</title>
+<title>Contact Form</title>
 <link rel="stylesheet" href="bikesearch.css" type="text/css">
 </head>
 
@@ -18,16 +18,16 @@
     </header>
     <nav>
     <ul>
-    <li><a href="index.html">Buscar</a></li>
-    <li><a href="byprice.html">Por Precio</a></li>
-    <!--li><a href="asearch">Búsqueda Avanzada</a></li-->
+    <li><a href="index.html">Search</a></li>
+    <li><a href="byprice.html">By Price</a></li>
+    <!--li><a href="asearch">Advanced Search</a></li-->
     <!--/ul-->
     </nav>
 
     <div id="search">
       <form method="post" action="search.php">
-          <input id="input_search" name="search" placeholder="Escriba aquí su búsqueda"><br>
-          <label>Desde</label>
+          <input id="input_search" name="search" placeholder="Type here your search"><br>
+          <label>From</label>
           <select name="priceFrom" id="priceFrom">
             <option value="0">0&euro;</option>
             <option value="100">100&euro;</option>
@@ -45,7 +45,7 @@
             <option value="4000">4000&euro;</option>
             <option value="5000">5000&euro;</option>
           </select>
-          <label>Hasta</label>
+          <label>To</label>
           <select name="priceTo" id="priceTo">
             <option value="100">100&euro;</option>
             <option value="200">200&euro;</option>
@@ -67,7 +67,7 @@
             <option value="9000">9000&euro;</option>
             <option value="10000">10000&euro;</option>
           </select>
-          <input id="submitPrice" name="submit" type="submit" value="Buscar">
+          <input id="submitPrice" name="submit" type="submit" value="Search">              
       </form>
     </div>
 
