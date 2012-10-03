@@ -82,10 +82,10 @@ background: rss.) left center no-repeat;
 
 #search {
 position: absolute;
-top:45%;
-left:40%;
-margin-top: -ypx;
-margin-left: -xpx;
+top:45%; 
+left:40%; 
+margin-left:auto;
+margin-right:auto;
 }
 
 #searchPrice {
@@ -173,8 +173,6 @@ border-radius: 22px;
 
 #input_search_en {
 width:200px;
-margin-left:auto;
-margin-right:auto;
 }
 
 #input_search {
