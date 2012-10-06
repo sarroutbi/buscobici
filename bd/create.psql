@@ -25,6 +25,9 @@ INSERT INTO BIKES VALUES
 # Modify table:
 # ALTER TABLE bikes RENAME prize TO price;
 
+# Delete table:
+# DELETE FROM bikes WHERE store ~ 'Mammoth';
+
 # Modify table content:
 # UPDATE bikes SET  url='http://www.kkstore.com' WHERE model ~ 'KK';
 

@@ -12,6 +12,7 @@
 
 #### Some global configs
 URL_BASE="http://www.sanferbike.com"
+OUTPUT_FILE="output"
 
 #### The keys
 KEY_URL="SUBURL"
@@ -31,6 +32,31 @@ FILE_ORBEA="orbea.asp"
 FILE_TRIATLON="triatlon.asp"
 
 MAX_REV_SEARCH=10000
+TRADEMARK_SEP="&nbsp;"
+PRICE_KEY="Precio"
+
+#
+# 1 - The URL
+#
+function get_price()
+{
+  TMP_FILE=$(mktemp)
+  TMP_FILE2=$(mktemp)
+  URL=$(echo "${1}" | tr -d '"')
+  wget "${URL}" -o ${TMP_FILE2} -O ${TMP_FILE} 2>&1 > /dev/null 
+  cat ${TMP_FILE} | grep "${PRICE_KEY}" | awk -F "&nbsp;" {'print $2'} 
+  rm ${TMP_FILE}
+  rm ${TMP_FILE2}
+}
+
+#
+# 1 - The model
+# Prints the trademark
+function get_trademark()
+{
+  TRADEMARK=$(echo "$1" | tr -d '"' | awk -F "${TRADEMARK_SEP}" {'print $1'})
+  echo "${TRADEMARK}"
+}
 
 #
 # 1 - The file
@@ -38,7 +64,7 @@ MAX_REV_SEARCH=10000
 # Prints the url
 function get_url()
 {
-  SUBURL=$(grep "$2" "$1" -A10 | grep "a href" | awk -F "a href=" {'print $2'}| awk -F ">" {'print $1'})
+  SUBURL=$(grep "$2" "$1" -A10 | grep "a href" | head -1 | awk -F "a href=" {'print $2'}| awk -F ">" {'print $1'})
   echo "\"${URL_BASE}/${SUBURL}\""
 }
 
@@ -71,7 +97,7 @@ function translate_type()
     echo "URBAN-CONFORT-FOLDING"
     return 0
   fi
-  echo "MTB"
+  echo ""
 }
 
 #
@@ -95,21 +121,27 @@ function process_file()
   do
      TYPE=$(get_type "$1" "${model}")
      URL=$(get_url "$1" "${model}")
-     echo "[${model}]"
-     echo "${KEY_URL}=${URL}"
-     echo "${KEY_TRADEMARK}="
-     echo "${KEY_PRICE}="
-     echo "${KEY_STORE}=${2}"
-     echo "${KEY_KIND}=${TYPE}"
-     echo 
+     TRADEMARK=$(get_trademark "${model}")
+     PRICE=$(get_price "${URL}")
+     if [ "${TYPE}" != "" ];
+     then 
+       echo "[${model}]"
+       echo "${KEY_URL}=${URL}"
+       echo "${KEY_TRADEMARK}=${TRADEMARK}"
+       echo "${KEY_PRICE}=${PRICE}"
+       echo "${KEY_STORE}=${2}"
+       echo "${KEY_KIND}=${TYPE}"
+       echo 
+     fi
   done
-}
+} 
 
-process_file "${FILE_29}" "Sanferbike"
-process_file "${FILE_BMC}" "Sanferbike"
-process_file "${FILE_CANNONDALE}" "Sanferbike"
-process_file "${FILE_ORBEA}" "Sanferbike"
-process_file "${FILE_WOMAN}" "Sanferbike"
-process_file "${FILE_GIANT}" "Sanferbike"
-process_file "${FILE_LAPIERRE}" "Sanferbike"
-process_file "${FILE_TRIATLON}" "Sanferbike"
+> ${OUTPUT_FILE}
+process_file "${FILE_29}" "Sanferbike"  >> ${OUTPUT_FILE}
+process_file "${FILE_BMC}" "Sanferbike" >> ${OUTPUT_FILE}
+process_file "${FILE_CANNONDALE}" "Sanferbike" >> ${OUTPUT_FILE}
+process_file "${FILE_ORBEA}" "Sanferbike" >> ${OUTPUT_FILE}
+process_file "${FILE_WOMAN}" "Sanferbike" >> ${OUTPUT_FILE}
+process_file "${FILE_GIANT}" "Sanferbike" >> ${OUTPUT_FILE}
+process_file "${FILE_LAPIERRE}" "Sanferbike" >> ${OUTPUT_FILE}
+process_file "${FILE_TRIATLON}" "Sanferbike" >> ${OUTPUT_FILE}
