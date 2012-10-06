@@ -118,7 +118,7 @@ function parseSectionContent()
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_STORE_KEY}       2>&1 > /dev/null && \
     G_STORE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_STORE_KEY}" | head -1 | awk -F "=" {'print $2'});
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_SUBURL_KEY}         2>&1 > /dev/null && \
-    G_URL=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_SUBURL_KEY}" | head -1 | sed s-\"--g | awk -F "=" {'print $2'} );
+    G_URL=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_SUBURL_KEY}" | head -1 | sed s-\"--g | awk -F "=" {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf "="}}'});
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_TYPE_KEY}       2>&1 > /dev/null && \
     G_TYPE=$(grep "${2}" "${1}" -A${LENGTH} | grep "${G_TYPE_KEY}" | head -1 | awk -F "=" {'print $2'});
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_PRICE_KEY}       2>&1 > /dev/null && \
