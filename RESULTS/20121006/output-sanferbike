@@ -1,3616 +1,3616 @@
-[BMC&nbsp;TE01 XX]
+[TE01 XX]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2324"
 TRADEMARK=BMC
 PRICE=6999
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TE01 XTR]
+[TE01 XTR]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2325"
 TRADEMARK=BMC
 PRICE=5799
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TE01 X0]
+[TE01 X0]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2326"
 TRADEMARK=BMC
 PRICE=4499
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TE01 XT]
+[TE01 XT]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2325"
 TRADEMARK=BMC
 PRICE=5799
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TE01 XT-SLX]
+[TE01 XT-SLX]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2328"
 TRADEMARK=BMC
 PRICE=2699
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TE02 XT]
+[TE02 XT]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2329"
 TRADEMARK=BMC
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TE02 SLX-XT]
+[TE02 SLX-XT]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2330"
 TRADEMARK=BMC
 PRICE=1599
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TE02 DEORE-SLX]
+[TE02 DEORE-SLX]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2331"
 TRADEMARK=BMC
 PRICE=1299
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;FS01 XX]
+[FS01 XX]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2332"
 TRADEMARK=BMC
 PRICE=7999
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;FS01 XTR]
+[FS01 XTR]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2333"
 TRADEMARK=BMC
 PRICE=6499
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;FS01 X0]
+[FS01 X0]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2334"
 TRADEMARK=BMC
 PRICE=5499
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;FS02 XT]
+[FS02 XT]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2335"
 TRADEMARK=BMC
 PRICE=3899
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;FS02 XT-SLX]
+[FS02 XT-SLX]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2336"
 TRADEMARK=BMC
 PRICE=2999
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;SF01 X0]
+[SF01 X0]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2337"
 TRADEMARK=BMC
 PRICE=3699
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;SF01 XT]
+[SF01 XT]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2338"
 TRADEMARK=BMC
 PRICE=2999
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;SF02 XT-SLX]
+[SF02 XT-SLX]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2339"
 TRADEMARK=BMC
 PRICE=2499
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;SF02 SLX-XT]
+[SF02 SLX-XT]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2340"
 TRADEMARK=BMC
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;SF02 DEORE-SLX]
+[SF02 DEORE-SLX]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2341"
 TRADEMARK=BMC
 PRICE=1599
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TF01 XTR]
+[TF01 XTR]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2342"
 TRADEMARK=BMC
 PRICE=7499
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TF01 X0]
+[TF01 X0]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2343"
 TRADEMARK=BMC
 PRICE=5599
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TF01 XT]
+[TF01 XT]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2342"
 TRADEMARK=BMC
 PRICE=7499
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TF02 X0]
+[TF02 X0]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2345"
 TRADEMARK=BMC
 PRICE=4499
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TF02 XT]
+[TF02 XT]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2346"
 TRADEMARK=BMC
 PRICE=3499
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TF02 SLX-XT]
+[TF02 SLX-XT]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2347"
 TRADEMARK=BMC
 PRICE=2999
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TE29 X0]
+[TE29 X0]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2348"
 TRADEMARK=BMC
 PRICE=2999
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;TE29 SLX]
+[TE29 SLX]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2349"
 TRADEMARK=BMC
 PRICE=1599
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;SF29 X0]
+[SF29 X0]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2350"
 TRADEMARK=BMC
 PRICE=3499
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;SF29 SLX]
+[SF29 SLX]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2351"
 TRADEMARK=BMC
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;SE01 DEORE-SLX]
+[SE01 DEORE-SLX]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2352"
 TRADEMARK=BMC
 PRICE=999
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;SE01 ALIVIO-DEORE]
+[SE01 ALIVIO-DEORE]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2353"
 TRADEMARK=BMC
 PRICE=699
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;SH 01 WOMEN]
+[SH 01 WOMEN]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2354"
 TRADEMARK=BMC
 PRICE=2199
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;VL 01 WOMEN]
+[VL 01 WOMEN]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2355"
 TRADEMARK=BMC
 PRICE=1399
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;VL 02 WOMEN]
+[VL 02 WOMEN]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2356"
 TRADEMARK=BMC
 PRICE=899
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;BL24]
+[BL24]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2357"
 TRADEMARK=BMC
 PRICE=349
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;BL20]
+[BL20]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2358"
 TRADEMARK=BMC
 PRICE=329
 STORE=Sanferbike
 KIND=MTB
 
-[BMC&nbsp;IMPEC DURA ACE DI2]
+[IMPEC DURA ACE DI2]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2292"
 TRADEMARK=BMC
 PRICE=10499
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;IMPEC ULTEGRA DI2]
+[IMPEC ULTEGRA DI2]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2293"
 TRADEMARK=BMC
 PRICE=8999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;IMPEC SRAM RED]
+[IMPEC SRAM RED]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2294"
 TRADEMARK=BMC
 PRICE=8499
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;IMPEC ULTEGRA]
+[IMPEC ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2293"
 TRADEMARK=BMC
 PRICE=8999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SLR01 DURA ACE DI2]
+[SLR01 DURA ACE DI2]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2296"
 TRADEMARK=BMC
 PRICE=7999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SLR01 DURA ACE]
+[SLR01 DURA ACE]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2296"
 TRADEMARK=BMC
 PRICE=7999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SLR01 ULTEGRA DI2]
+[SLR01 ULTEGRA DI2]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2298"
 TRADEMARK=BMC
 PRICE=5299
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SLR01 SRAM RED]
+[SLR01 SRAM RED]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2299"
 TRADEMARK=BMC
 PRICE=4999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SLR01 ULTEGRA]
+[SLR01 ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2298"
 TRADEMARK=BMC
 PRICE=5299
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;RM01 ULTEGRA DI2]
+[RM01 ULTEGRA DI2]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2301"
 TRADEMARK=BMC
 PRICE=4499
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;RM01 SRAM RED]
+[RM01 SRAM RED]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2302"
 TRADEMARK=BMC
 PRICE=3999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;RM01 ULTEGRA]
+[RM01 ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2301"
 TRADEMARK=BMC
 PRICE=4499
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SL01 ULTEGRA DI2]
+[SL01 ULTEGRA DI2]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2304"
 TRADEMARK=BMC
 PRICE=3999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SL01 ULTEGRA]
+[SL01 ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2304"
 TRADEMARK=BMC
 PRICE=3999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SL01 105]
+[SL01 105]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2306"
 TRADEMARK=BMC
 PRICE=2099
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SL01 TIAGRA]
+[SL01 TIAGRA]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2307"
 TRADEMARK=BMC
 PRICE=1799
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SR01 ULTEGRA]
+[SR01 ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2308"
 TRADEMARK=BMC
 PRICE=1799
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SR01 105]
+[SR01 105]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2309"
 TRADEMARK=BMC
 PRICE=1299
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;SR01 TIAGRA]
+[SR01 TIAGRA]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2310"
 TRADEMARK=BMC
 PRICE=1099
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;PR01 ULTEGRA]
+[PR01 ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2311"
 TRADEMARK=BMC
 PRICE=2899
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;PR02 105]
+[PR02 105]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2312"
 TRADEMARK=BMC
 PRICE=1449
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;TM01 DURA ACE DI2]
+[TM01 DURA ACE DI2]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2313"
 TRADEMARK=BMC
 PRICE=9999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;TM01 SRAM RED]
+[TM01 SRAM RED]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2314"
 TRADEMARK=BMC
 PRICE=4999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;TM01 ULTEGRA]
+[TM01 ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2315"
 TRADEMARK=BMC
 PRICE=3999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;TM02 ULTEGRA]
+[TM02 ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2316"
 TRADEMARK=BMC
 PRICE=2999
 STORE=Sanferbike
 KIND=ROAD
 
-[BMC&nbsp;TM02 105]
+[TM02 105]
 SUBURL="http://www.sanferbike.com/fichabmc.asp?producto=2317"
 TRADEMARK=BMC
 PRICE=2499
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;JEKYLL CARBON 1]
+[JEKYLL CARBON 1]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2216"
 TRADEMARK=CANNONDALE
 PRICE=5999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;JEKYLL CARBON 2]
+[JEKYLL CARBON 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2217"
 TRADEMARK=CANNONDALE
 PRICE=4499
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;RZ ONE TWENTY XLR 1]
+[RZ ONE TWENTY XLR 1]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2221"
 TRADEMARK=CANNONDALE
 PRICE=3499
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;RZ ONE TWENTY XLR 2]
+[RZ ONE TWENTY XLR 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2222"
 TRADEMARK=CANNONDALE
 PRICE=2799
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;RZ ONE TWENTY 1]
+[RZ ONE TWENTY 1]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2223"
 TRADEMARK=CANNONDALE
 PRICE=2199
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;RZ ONE TWENTY 2]
+[RZ ONE TWENTY 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2224"
 TRADEMARK=CANNONDALE
 PRICE=1899
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;RZ ONE TWENTY 3]
+[RZ ONE TWENTY 3]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2225"
 TRADEMARK=CANNONDALE
 PRICE=1699
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;SCALPEL ULTIMATE]
+[SCALPEL ULTIMATE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2228"
 TRADEMARK=CANNONDALE
 PRICE=7999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;SCALPEL 1]
+[SCALPEL 1]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2229"
 TRADEMARK=CANNONDALE
 PRICE=5999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;SCALPEL 2]
+[SCALPEL 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2230"
 TRADEMARK=CANNONDALE
 PRICE=4299
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;SCALPEL 3]
+[SCALPEL 3]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2231"
 TRADEMARK=CANNONDALE
 PRICE=3299
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;SCALPEL 29er carbon 1]
+[SCALPEL 29er carbon 1]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2232"
 TRADEMARK=CANNONDALE
 PRICE=5999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;SCALPEL 29er carbon 2]
+[SCALPEL 29er carbon 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2233"
 TRADEMARK=CANNONDALE
 PRICE=3999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;SCALPEL 29er 3]
+[SCALPEL 29er 3]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2234"
 TRADEMARK=CANNONDALE
 PRICE=2499
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;SCALPEL 29er 4]
+[SCALPEL 29er 4]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2235"
 TRADEMARK=CANNONDALE
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH HM CARBON ULTIMATE]
+[FLASH HM CARBON ULTIMATE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2236"
 TRADEMARK=CANNONDALE
 PRICE=7499
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH HM CARBON 1]
+[FLASH HM CARBON 1]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2237"
 TRADEMARK=CANNONDALE
 PRICE=5999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH HM CARBON 2]
+[FLASH HM CARBON 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2238"
 TRADEMARK=CANNONDALE
 PRICE=3999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH CARBON 4]
+[FLASH CARBON 4]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2239"
 TRADEMARK=CANNONDALE
 PRICE=2299
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH CARBON 4Z]
+[FLASH CARBON 4Z]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2240"
 TRADEMARK=CANNONDALE
 PRICE=2399
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH CARBON 29er ultimate]
+[FLASH CARBON 29er ultimate]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2241"
 TRADEMARK=CANNONDALE
 PRICE=7999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH CARBON 29er 1]
+[FLASH CARBON 29er 1]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2242"
 TRADEMARK=CANNONDALE
 PRICE=4699
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH CARBON 29er 2]
+[FLASH CARBON 29er 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2243"
 TRADEMARK=CANNONDALE
 PRICE=3699
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH CARBON 29er 3]
+[FLASH CARBON 29er 3]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2244"
 TRADEMARK=CANNONDALE
 PRICE=2699
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH ALLOY 29er 1]
+[FLASH ALLOY 29er 1]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2245"
 TRADEMARK=CANNONDALE
 PRICE=2199
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH ALLOY 29er 2]
+[FLASH ALLOY 29er 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2246"
 TRADEMARK=CANNONDALE
 PRICE=1899
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;FLASH ALLOY 29er 3]
+[FLASH ALLOY 29er 3]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2247"
 TRADEMARK=CANNONDALE
 PRICE=1499
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;TRAIL SL 1]
+[TRAIL SL 1]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2250"
 TRADEMARK=CANNONDALE
 PRICE=999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;TRAIL SL 2]
+[TRAIL SL 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2251"
 TRADEMARK=CANNONDALE
 PRICE=899
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;TRAIL SL 3]
+[TRAIL SL 3]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2252"
 TRADEMARK=CANNONDALE
 PRICE=799
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;TRAIL SL 4]
+[TRAIL SL 4]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2253"
 TRADEMARK=CANNONDALE
 PRICE=649
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;TRAIL SL 5]
+[TRAIL SL 5]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2254"
 TRADEMARK=CANNONDALE
 PRICE=549
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;TRAIL SL 2 W]
+[TRAIL SL 2 W]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2255"
 TRADEMARK=CANNONDALE
 PRICE=999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;TRAIL SL 3 W]
+[TRAIL SL 3 W]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2256"
 TRADEMARK=CANNONDALE
 PRICE=749
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;TRAIL SL 5 W]
+[TRAIL SL 5 W]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2257"
 TRADEMARK=CANNONDALE
 PRICE=549
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;TRAIL SL HS33]
+[TRAIL SL HS33]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2258"
 TRADEMARK=CANNONDALE
 PRICE=1299
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;TRAIL SL 29er 2]
+[TRAIL SL 29er 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2259"
 TRADEMARK=CANNONDALE
 PRICE=999
 STORE=Sanferbike
 KIND=MTB
 
-[CANNONDALE&nbsp;SUPERSIX EVO ULTIMATE]
+[SUPERSIX EVO ULTIMATE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=1926"
 TRADEMARK=CANNONDALE
 PRICE=
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPERSIX EVO ULTIMATE]
+[SUPERSIX EVO ULTIMATE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=1926"
 TRADEMARK=CANNONDALE
 PRICE=
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPERSIX EVO TEAM]
+[SUPERSIX EVO TEAM]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=1928"
 TRADEMARK=CANNONDALE
 PRICE=7999
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPERSIX EVO DI2]
+[SUPERSIX EVO DI2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=1929"
 TRADEMARK=CANNONDALE
 PRICE=8499
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPERSIX EVO DURA-ACE]
+[SUPERSIX EVO DURA-ACE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=1930"
 TRADEMARK=CANNONDALE
 PRICE=5699
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPERSIX EVO SRAM RED]
+[SUPERSIX EVO SRAM RED]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=1931"
 TRADEMARK=CANNONDALE
 PRICE=4699
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPER SIX ULTEGRA DI2]
+[SUPER SIX ULTEGRA DI2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2186"
 TRADEMARK=CANNONDALE
 PRICE=3899
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPER SIX ULTEGRA]
+[SUPER SIX ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2186"
 TRADEMARK=CANNONDALE
 PRICE=3899
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPER SIX 105]
+[SUPER SIX 105]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2188"
 TRADEMARK=CANNONDALE
 PRICE=2099
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPER SIX SRAM APEX]
+[SUPER SIX SRAM APEX]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2189"
 TRADEMARK=CANNONDALE
 PRICE=1899
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPER SIX ULTEGRA W C]
+[SUPER SIX ULTEGRA W C]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2190"
 TRADEMARK=CANNONDALE
 PRICE=2799
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;CAAD10 DURA-ACE]
+[CAAD10 DURA-ACE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2191"
 TRADEMARK=CANNONDALE
 PRICE=2799
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;CAAD10 ULTEGRA]
+[CAAD10 ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2192"
 TRADEMARK=CANNONDALE
 PRICE=1799
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;CAAD10 105]
+[CAAD10 105]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2194"
 TRADEMARK=CANNONDALE
 PRICE=1499
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;CAAD10 105 W C]
+[CAAD10 105 W C]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2194"
 TRADEMARK=CANNONDALE
 PRICE=1499
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;CAAD8 TIAGRA]
+[CAAD8 TIAGRA]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2196"
 TRADEMARK=CANNONDALE
 PRICE=999
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SYNAPSE HI-MOD DURA-ACE]
+[SYNAPSE HI-MOD DURA-ACE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2198"
 TRADEMARK=CANNONDALE
 PRICE=5199
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SYNAPSE HI-MOD SRAM RED]
+[SYNAPSE HI-MOD SRAM RED]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2199"
 TRADEMARK=CANNONDALE
 PRICE=3999
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SYNAPSE HI-MOD ULTEGRA]
+[SYNAPSE HI-MOD ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2200"
 TRADEMARK=CANNONDALE
 PRICE=3299
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SYNAPSE CARBON ULTEGRA]
+[SYNAPSE CARBON ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2201"
 TRADEMARK=CANNONDALE
 PRICE=2799
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SYNAPSE CARBON 105]
+[SYNAPSE CARBON 105]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2202"
 TRADEMARK=CANNONDALE
 PRICE=2099
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SYNAPSE CARBON 105 T W]
+[SYNAPSE CARBON 105 T W]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2203"
 TRADEMARK=CANNONDALE
 PRICE=2099
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SYNAPSE CARBON APEX]
+[SYNAPSE CARBON APEX]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2204"
 TRADEMARK=CANNONDALE
 PRICE=1899
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SYNAPSE ALLOY TIAGRA W]
+[SYNAPSE ALLOY TIAGRA W]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2205"
 TRADEMARK=CANNONDALE
 PRICE=1099
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SLICE 4 FORCE]
+[SLICE 4 FORCE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2206"
 TRADEMARK=CANNONDALE
 PRICE=2699
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPERX SRAM RED]
+[SUPERX SRAM RED]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2209"
 TRADEMARK=CANNONDALE
 PRICE=3999
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPERX ULTEGRA]
+[SUPERX ULTEGRA]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2210"
 TRADEMARK=CANNONDALE
 PRICE=2599
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;SUPERX RIVAL]
+[SUPERX RIVAL]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2211"
 TRADEMARK=CANNONDALE
 PRICE=2199
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;CAADX TIAGRA]
+[CAADX TIAGRA]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2213"
 TRADEMARK=CANNONDALE
 PRICE=1099
 STORE=Sanferbike
 KIND=ROAD
 
-[CANNONDALE&nbsp;E-SERIES 1 MENS]
+[E-SERIES 1 MENS]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2260"
 TRADEMARK=CANNONDALE
 PRICE=2899
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;E-SERIES 1 WOMEN]
+[E-SERIES 1 WOMEN]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2261"
 TRADEMARK=CANNONDALE
 PRICE=2899
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;BAD BOY 2]
+[BAD BOY 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2263"
 TRADEMARK=CANNONDALE
 PRICE=1599
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;BAD BOY 3]
+[BAD BOY 3]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2264"
 TRADEMARK=CANNONDALE
 PRICE=1199
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;BAD BOY 4]
+[BAD BOY 4]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2265"
 TRADEMARK=CANNONDALE
 PRICE=1099
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;BAD BOY 6]
+[BAD BOY 6]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2266"
 TRADEMARK=CANNONDALE
 PRICE=899
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;BAD BOY 7]
+[BAD BOY 7]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2267"
 TRADEMARK=CANNONDALE
 PRICE=699
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;BAD BOY 8]
+[BAD BOY 8]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2268"
 TRADEMARK=CANNONDALE
 PRICE=1399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;BAD GIRL 1]
+[BAD GIRL 1]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2269"
 TRADEMARK=CANNONDALE
 PRICE=1399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;BAD GIRL 2]
+[BAD GIRL 2]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2270"
 TRADEMARK=CANNONDALE
 PRICE=949
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;HOOLIGAN]
+[HOOLIGAN]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2271"
 TRADEMARK=CANNONDALE
 PRICE=899
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;QUICK CX SPEED 1]
+[QUICK CX SPEED 1]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2272"
 TRADEMARK=CANNONDALE
 PRICE=2399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;QUICK CX SPEED 2 / WOMEN]
+[QUICK CX SPEED 2 / WOMEN]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2273"
 TRADEMARK=CANNONDALE
 PRICE=1199
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;QUICK CX SPEED 3 / WOMEN]
+[QUICK CX SPEED 3 / WOMEN]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2274"
 TRADEMARK=CANNONDALE
 PRICE=799
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;QUICK CX SPEED 8 / WOMEN]
+[QUICK CX SPEED 8 / WOMEN]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2275"
 TRADEMARK=CANNONDALE
 PRICE=849
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;QUICK CX 1 / MIXTE]
+[QUICK CX 1 / MIXTE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2276"
 TRADEMARK=CANNONDALE
 PRICE=1299
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;QUICK CX 2 / MIXTE]
+[QUICK CX 2 / MIXTE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2277"
 TRADEMARK=CANNONDALE
 PRICE=999
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;QUICK CX 3 / MIXTE]
+[QUICK CX 3 / MIXTE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2278"
 TRADEMARK=CANNONDALE
 PRICE=699
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;TESORO 0 / MIXTE]
+[TESORO 0 / MIXTE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2279"
 TRADEMARK=CANNONDALE
 PRICE=1899
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;TESORO 1 / MIXTE]
+[TESORO 1 / MIXTE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2280"
 TRADEMARK=CANNONDALE
 PRICE=1499
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;TESORO 2 / MIXTE]
+[TESORO 2 / MIXTE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2281"
 TRADEMARK=CANNONDALE
 PRICE=1099
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[CANNONDALE&nbsp;TESORO 3 / MIXTE]
+[TESORO 3 / MIXTE]
 SUBURL="http://www.sanferbike.com/fichacannondale2.asp?producto=2282"
 TRADEMARK=CANNONDALE
 PRICE=899
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;ALMA G TEAM]
+[ALMA G TEAM]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1807"
 TRADEMARK=ORBEA
 PRICE=6199
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA G10]
+[ALMA G10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1808"
 TRADEMARK=ORBEA
 PRICE=4099
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA S10]
+[ALMA S10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1809"
 TRADEMARK=ORBEA
 PRICE=2999
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA S30]
+[ALMA S30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1810"
 TRADEMARK=ORBEA
 PRICE=2599
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA S50]
+[ALMA S50]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1811"
 TRADEMARK=ORBEA
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA H10]
+[ALMA H10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1812"
 TRADEMARK=ORBEA
 PRICE=1949
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA H30]
+[ALMA H30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1813"
 TRADEMARK=ORBEA
 PRICE=1649
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA H50]
+[ALMA H50]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1814"
 TRADEMARK=ORBEA
 PRICE=1349
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA 29 S TEAM]
+[ALMA 29 S TEAM]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1815"
 TRADEMARK=ORBEA
 PRICE=5599
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA 29 S10]
+[ALMA 29 S10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1816"
 TRADEMARK=ORBEA
 PRICE=5199
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA 29 S30]
+[ALMA 29 S30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1817"
 TRADEMARK=ORBEA
 PRICE=2799
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA 29 S50]
+[ALMA 29 S50]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1818"
 TRADEMARK=ORBEA
 PRICE=2699
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA 29 H10]
+[ALMA 29 H10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1819"
 TRADEMARK=ORBEA
 PRICE=2099
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA 29 H30]
+[ALMA 29 H30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1820"
 TRADEMARK=ORBEA
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA 29 H50]
+[ALMA 29 H50]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1821"
 TRADEMARK=ORBEA
 PRICE=1349
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA 29 H70]
+[ALMA 29 H70]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1822"
 TRADEMARK=ORBEA
 PRICE=1149
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ALMA H50 DAMA]
+[ALMA H50 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1823"
 TRADEMARK=ORBEA
 PRICE=1449
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ZENIT]
+[ZENIT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1824"
 TRADEMARK=ORBEA
 PRICE=999
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;COMPAIR]
+[COMPAIR]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1825"
 TRADEMARK=ORBEA
 PRICE=819
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;SATELLITE]
+[SATELLITE]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1826"
 TRADEMARK=ORBEA
 PRICE=719
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;SHERPA]
+[SHERPA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1827"
 TRADEMARK=ORBEA
 PRICE=599
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;SATE]
+[SATE]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1826"
 TRADEMARK=ORBEA
 PRICE=719
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;DAKAR]
+[DAKAR]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1829"
 TRADEMARK=ORBEA
 PRICE=399
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;TOUBKAL]
+[TOUBKAL]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1830"
 TRADEMARK=ORBEA
 PRICE=349
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;TUAREG]
+[TUAREG]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1831"
 TRADEMARK=ORBEA
 PRICE=289
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;IRATI DAMA]
+[IRATI DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1832"
 TRADEMARK=ORBEA
 PRICE=829
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;LOKIZ DAMA]
+[LOKIZ DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1833"
 TRADEMARK=ORBEA
 PRICE=669
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;SUA DAMA]
+[SUA DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1834"
 TRADEMARK=ORBEA
 PRICE=559
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;PELLEJO PEPPER]
+[PELLEJO PEPPER]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1835"
 TRADEMARK=ORBEA
 PRICE=999
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;PELLEJO CHILY]
+[PELLEJO CHILY]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1836"
 TRADEMARK=ORBEA
 PRICE=699
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;PELLEJO HOT]
+[PELLEJO HOT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1837"
 TRADEMARK=ORBEA
 PRICE=549
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;OIZ CARBON TEAM]
+[OIZ CARBON TEAM]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1838"
 TRADEMARK=ORBEA
 PRICE=5999
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;OIZ CARBON 2]
+[OIZ CARBON 2]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1839"
 TRADEMARK=ORBEA
 PRICE=3699
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;OIZ CARBON 3]
+[OIZ CARBON 3]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1840"
 TRADEMARK=ORBEA
 PRICE=2299
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;RALLON X10]
+[RALLON X10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1841"
 TRADEMARK=ORBEA
 PRICE=5099
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;RALLON X30]
+[RALLON X30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1842"
 TRADEMARK=ORBEA
 PRICE=2899
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;RALLON 10]
+[RALLON 10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1843"
 TRADEMARK=ORBEA
 PRICE=5199
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;RALLON 30]
+[RALLON 30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1844"
 TRADEMARK=ORBEA
 PRICE=3499
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;RALLON 50]
+[RALLON 50]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1845"
 TRADEMARK=ORBEA
 PRICE=2599
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;RALLON 70]
+[RALLON 70]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1846"
 TRADEMARK=ORBEA
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;OCCAM S10]
+[OCCAM S10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2284"
 TRADEMARK=ORBEA
 PRICE=5999
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;OCCAM S30]
+[OCCAM S30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2285"
 TRADEMARK=ORBEA
 PRICE=4499
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;OCCAM S30X]
+[OCCAM S30X]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2286"
 TRADEMARK=ORBEA
 PRICE=3499
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;OCCAM S50]
+[OCCAM S50]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2287"
 TRADEMARK=ORBEA
 PRICE=2999
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;OCCAM H10]
+[OCCAM H10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2288"
 TRADEMARK=ORBEA
 PRICE=2799
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;OCCAM H30X]
+[OCCAM H30X]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2289"
 TRADEMARK=ORBEA
 PRICE=2599
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;OCCAM H30]
+[OCCAM H30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2289"
 TRADEMARK=ORBEA
 PRICE=2599
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;OCCAM H50]
+[OCCAM H50]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2291"
 TRADEMARK=ORBEA
 PRICE=1699
 STORE=Sanferbike
 KIND=MTB
 
-[ORBEA&nbsp;ORCA GDI2]
+[ORCA GDI2]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1763"
 TRADEMARK=ORBEA
 PRICE=9299
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA GDR]
+[ORCA GDR]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1764"
 TRADEMARK=ORBEA
 PRICE=6799
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA GRC]
+[ORCA GRC]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1765"
 TRADEMARK=ORBEA
 PRICE=7399
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA GRD]
+[ORCA GRD]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1766"
 TRADEMARK=ORBEA
 PRICE=6399
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA GFR]
+[ORCA GFR]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1767"
 TRADEMARK=ORBEA
 PRICE=4699
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA GTH]
+[ORCA GTH]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1768"
 TRADEMARK=ORBEA
 PRICE=4499
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA GLI2]
+[ORCA GLI2]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1769"
 TRADEMARK=ORBEA
 PRICE=5249
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA GLT]
+[ORCA GLT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1770"
 TRADEMARK=ORBEA
 PRICE=4599
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA SDI2]
+[ORCA SDI2]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1771"
 TRADEMARK=ORBEA
 PRICE=6999
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA SRD]
+[ORCA SRD]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1772"
 TRADEMARK=ORBEA
 PRICE=4699
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA SRC]
+[ORCA SRC]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1773"
 TRADEMARK=ORBEA
 PRICE=6399
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA SDR]
+[ORCA SDR]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1774"
 TRADEMARK=ORBEA
 PRICE=5199
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA SFR]
+[ORCA SFR]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1775"
 TRADEMARK=ORBEA
 PRICE=3599
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA STH]
+[ORCA STH]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1776"
 TRADEMARK=ORBEA
 PRICE=3399
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA SLI2]
+[ORCA SLI2]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1777"
 TRADEMARK=ORBEA
 PRICE=4249
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA SLT]
+[ORCA SLT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1778"
 TRADEMARK=ORBEA
 PRICE=3449
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA BLI2]
+[ORCA BLI2]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1779"
 TRADEMARK=ORBEA
 PRICE=3199
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA BTH]
+[ORCA BTH]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1780"
 TRADEMARK=ORBEA
 PRICE=2399
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA BLT]
+[ORCA BLT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1781"
 TRADEMARK=ORBEA
 PRICE=2449
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA B105]
+[ORCA B105]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1782"
 TRADEMARK=ORBEA
 PRICE=1899
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA DAMA SFR]
+[ORCA DAMA SFR]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1783"
 TRADEMARK=ORBEA
 PRICE=3599
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA DAMA STH]
+[ORCA DAMA STH]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1784"
 TRADEMARK=ORBEA
 PRICE=3399
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA DAMA SLT]
+[ORCA DAMA SLT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1785"
 TRADEMARK=ORBEA
 PRICE=3449
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA DAMA BLI2]
+[ORCA DAMA BLI2]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1786"
 TRADEMARK=ORBEA
 PRICE=3199
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA DAMA BLT]
+[ORCA DAMA BLT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1787"
 TRADEMARK=ORBEA
 PRICE=2449
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA DAMA B105]
+[ORCA DAMA B105]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1788"
 TRADEMARK=ORBEA
 PRICE=1899
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;AQUA T105]
+[AQUA T105]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1789"
 TRADEMARK=ORBEA
 PRICE=1159
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;AQUA TTG]
+[AQUA TTG]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1790"
 TRADEMARK=ORBEA
 PRICE=999
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;AQUA TSR]
+[AQUA TSR]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1791"
 TRADEMARK=ORBEA
 PRICE=799
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;AQUA T23]
+[AQUA T23]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1792"
 TRADEMARK=ORBEA
 PRICE=699
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;AQUA DAMA TTG]
+[AQUA DAMA TTG]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1793"
 TRADEMARK=ORBEA
 PRICE=1059
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;AQUA DAMA T23]
+[AQUA DAMA T23]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1794"
 TRADEMARK=ORBEA
 PRICE=699
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORDU GDI2]
+[ORDU GDI2]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1795"
 TRADEMARK=ORBEA
 PRICE=10199
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORDU GDR]
+[ORDU GDR]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1796"
 TRADEMARK=ORBEA
 PRICE=7299
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORDU GLT]
+[ORDU GLT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1797"
 TRADEMARK=ORBEA
 PRICE=4699
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORDU SLT]
+[ORDU SLT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1798"
 TRADEMARK=ORBEA
 PRICE=3149
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORDU S105]
+[ORDU S105]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1799"
 TRADEMARK=ORBEA
 PRICE=2499
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;ORCA B105 FITNESS]
+[ORCA B105 FITNESS]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1800"
 TRADEMARK=ORBEA
 PRICE=1899
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;AQUA TTG FITNESS]
+[AQUA TTG FITNESS]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1801"
 TRADEMARK=ORBEA
 PRICE=999
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;AQUA TSR FITNESS]
+[AQUA TSR FITNESS]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1802"
 TRADEMARK=ORBEA
 PRICE=829
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;AQUA T23 FITNESS]
+[AQUA T23 FITNESS]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1803"
 TRADEMARK=ORBEA
 PRICE=629
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;TERRA TLT]
+[TERRA TLT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1804"
 TRADEMARK=ORBEA
 PRICE=2799
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;TERRA T105]
+[TERRA T105]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1805"
 TRADEMARK=ORBEA
 PRICE=2099
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;TERRA ALU TTG]
+[TERRA ALU TTG]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1806"
 TRADEMARK=ORBEA
 PRICE=1249
 STORE=Sanferbike
 KIND=ROAD
 
-[ORBEA&nbsp;SPORT H10]
+[SPORT H10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1847"
 TRADEMARK=ORBEA
 PRICE=1349
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT H10 DAMA]
+[SPORT H10 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1848"
 TRADEMARK=ORBEA
 PRICE=1349
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT H20]
+[SPORT H20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1849"
 TRADEMARK=ORBEA
 PRICE=1049
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT H20 DAMA]
+[SPORT H20 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1850"
 TRADEMARK=ORBEA
 PRICE=1049
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT H30]
+[SPORT H30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1851"
 TRADEMARK=ORBEA
 PRICE=799
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT H30 DAMA]
+[SPORT H30 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1852"
 TRADEMARK=ORBEA
 PRICE=799
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT H40]
+[SPORT H40]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1853"
 TRADEMARK=ORBEA
 PRICE=699
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT H40 DAMA]
+[SPORT H40 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1854"
 TRADEMARK=ORBEA
 PRICE=699
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT A10]
+[SPORT A10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1855"
 TRADEMARK=ORBEA
 PRICE=499
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT A10 DAMA]
+[SPORT A10 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1856"
 TRADEMARK=ORBEA
 PRICE=499
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT A20]
+[SPORT A20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1857"
 TRADEMARK=ORBEA
 PRICE=459
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT A20 DAMA]
+[SPORT A20 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1858"
 TRADEMARK=ORBEA
 PRICE=459
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT A30]
+[SPORT A30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1859"
 TRADEMARK=ORBEA
 PRICE=399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT A30 DAMA]
+[SPORT A30 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1860"
 TRADEMARK=ORBEA
 PRICE=399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT A40]
+[SPORT A40]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1861"
 TRADEMARK=ORBEA
 PRICE=369
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;SPORT A40 DAMA]
+[SPORT A40 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1862"
 TRADEMARK=ORBEA
 PRICE=369
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL H10]
+[RAVEL H10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1863"
 TRADEMARK=ORBEA
 PRICE=1029
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL H10 DAMA]
+[RAVEL H10 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1864"
 TRADEMARK=ORBEA
 PRICE=1029
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL H20]
+[RAVEL H20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1865"
 TRADEMARK=ORBEA
 PRICE=829
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL H20 DAMA]
+[RAVEL H20 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1866"
 TRADEMARK=ORBEA
 PRICE=829
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL H30]
+[RAVEL H30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1867"
 TRADEMARK=ORBEA
 PRICE=599
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL H30 DAMA]
+[RAVEL H30 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1868"
 TRADEMARK=ORBEA
 PRICE=599
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL H40]
+[RAVEL H40]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1869"
 TRADEMARK=ORBEA
 PRICE=499
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL H40 DAMA]
+[RAVEL H40 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1870"
 TRADEMARK=ORBEA
 PRICE=499
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL H50]
+[RAVEL H50]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1871"
 TRADEMARK=ORBEA
 PRICE=359
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL H50 DAMA]
+[RAVEL H50 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1872"
 TRADEMARK=ORBEA
 PRICE=359
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL 26 A10]
+[RAVEL 26 A10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1873"
 TRADEMARK=ORBEA
 PRICE=349
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;RAVEL 26 A10 DAMA]
+[RAVEL 26 A10 DAMA]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1874"
 TRADEMARK=ORBEA
 PRICE=349
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;DIEM S10]
+[DIEM S10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1875"
 TRADEMARK=ORBEA
 PRICE=2099
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;DIEM S20]
+[DIEM S20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1876"
 TRADEMARK=ORBEA
 PRICE=1699
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;CARPE H10]
+[CARPE H10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1877"
 TRADEMARK=ORBEA
 PRICE=929
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;CARPE H20]
+[CARPE H20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1878"
 TRADEMARK=ORBEA
 PRICE=829
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;CARPE H30]
+[CARPE H30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1879"
 TRADEMARK=ORBEA
 PRICE=699
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;CARPE H40]
+[CARPE H40]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1880"
 TRADEMARK=ORBEA
 PRICE=599
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;CARPE H50]
+[CARPE H50]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1881"
 TRADEMARK=ORBEA
 PRICE=499
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;CARPE H60]
+[CARPE H60]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1882"
 TRADEMARK=ORBEA
 PRICE=399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;DUDE A10]
+[DUDE A10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1883"
 TRADEMARK=ORBEA
 PRICE=899
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;DUDE A20]
+[DUDE A20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1884"
 TRADEMARK=ORBEA
 PRICE=699
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD UNI H10]
+[BOULEVARD UNI H10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1885"
 TRADEMARK=ORBEA
 PRICE=829
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD A10]
+[BOULEVARD A10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1886"
 TRADEMARK=ORBEA
 PRICE=829
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD UNI H20]
+[BOULEVARD UNI H20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1887"
 TRADEMARK=ORBEA
 PRICE=709
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD A20]
+[BOULEVARD A20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1888"
 TRADEMARK=ORBEA
 PRICE=709
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD UNI H30]
+[BOULEVARD UNI H30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1889"
 TRADEMARK=ORBEA
 PRICE=609
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD A30]
+[BOULEVARD A30]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1890"
 TRADEMARK=ORBEA
 PRICE=609
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD UNI H40]
+[BOULEVARD UNI H40]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1891"
 TRADEMARK=ORBEA
 PRICE=499
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD A40]
+[BOULEVARD A40]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1892"
 TRADEMARK=ORBEA
 PRICE=499
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD UNI H50]
+[BOULEVARD UNI H50]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1893"
 TRADEMARK=ORBEA
 PRICE=399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD A50]
+[BOULEVARD A50]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1894"
 TRADEMARK=ORBEA
 PRICE=399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD UNI A10]
+[BOULEVARD UNI A10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1895"
 TRADEMARK=ORBEA
 PRICE=319
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD UNI F10]
+[BOULEVARD UNI F10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1896"
 TRADEMARK=ORBEA
 PRICE=279
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;BOULEVARD UNI F20]
+[BOULEVARD UNI F20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1897"
 TRADEMARK=ORBEA
 PRICE=229
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;FOLDING A10]
+[FOLDING A10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1898"
 TRADEMARK=ORBEA
 PRICE=399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;FOLDING A20]
+[FOLDING A20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1899"
 TRADEMARK=ORBEA
 PRICE=349
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;FOLDING F10]
+[FOLDING F10]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1900"
 TRADEMARK=ORBEA
 PRICE=299
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[ORBEA&nbsp;&nbsp;MX 14"]
+[MX 14"]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1386"
 TRADEMARK=ORBEA
 PRICE=149
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;MX 16"]
+[MX 16"]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1387"
 TRADEMARK=ORBEA
 PRICE=155
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;MX 18"]
+[MX 18"]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1388"
 TRADEMARK=ORBEA
 PRICE=159
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;JASMINE 14"]
+[JASMINE 14"]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1389"
 TRADEMARK=ORBEA
 PRICE=159
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;JASMINE 16"]
+[JASMINE 16"]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1390"
 TRADEMARK=ORBEA
 PRICE=165
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;JASMINE 18"]
+[JASMINE 18"]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1391"
 TRADEMARK=ORBEA
 PRICE=169
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;ROCKER 1S]
+[ROCKER 1S]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1392"
 TRADEMARK=ORBEA
 PRICE=165
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;ROCKER 6S SUSP]
+[ROCKER 6S SUSP]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1393"
 TRADEMARK=ORBEA
 PRICE=179
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;LOOPY]
+[LOOPY]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1394"
 TRADEMARK=ORBEA
 PRICE=185
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;LOOPY 24 SUSP]
+[LOOPY 24 SUSP]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1395"
 TRADEMARK=ORBEA
 PRICE=195
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;MX 20]
+[MX 20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1396"
 TRADEMARK=ORBEA
 PRICE=195
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;MX 24]
+[MX 24]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1397"
 TRADEMARK=ORBEA
 PRICE=229
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;FSX 24]
+[FSX 24]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1398"
 TRADEMARK=ORBEA
 PRICE=245
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;TEAM 24]
+[TEAM 24]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1399"
 TRADEMARK=ORBEA
 PRICE=239
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;LADY BIRD 20]
+[LADY BIRD 20]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1400"
 TRADEMARK=ORBEA
 PRICE=179
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;LADY SWAN 24]
+[LADY SWAN 24]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1401"
 TRADEMARK=ORBEA
 PRICE=215
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;PARADISE 26]
+[PARADISE 26]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=1402"
 TRADEMARK=ORBEA
 PRICE=299
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;GROW 0]
+[GROW 0]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2363"
 TRADEMARK=ORBEA
 PRICE=179
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;GROW 1]
+[GROW 1]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2364"
 TRADEMARK=ORBEA
 PRICE=239
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;GROW 2 1V]
+[GROW 2 1V]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2365"
 TRADEMARK=ORBEA
 PRICE=249
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;GROW 2 7V]
+[GROW 2 7V]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2366"
 TRADEMARK=ORBEA
 PRICE=259
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;MX 20 DIRT]
+[MX 20 DIRT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2367"
 TRADEMARK=ORBEA
 PRICE=249
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;MX 20 XC]
+[MX 20 XC]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2368"
 TRADEMARK=ORBEA
 PRICE=269
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;MX 20 TEAM]
+[MX 20 TEAM]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2369"
 TRADEMARK=ORBEA
 PRICE=329
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;MX 24 DIRT]
+[MX 24 DIRT]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2370"
 TRADEMARK=ORBEA
 PRICE=259
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;MX 24 XC]
+[MX 24 XC]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2371"
 TRADEMARK=ORBEA
 PRICE=279
 STORE=Sanferbike
 KIND=KIDS
 
-[ORBEA&nbsp;&nbsp;MX 24 TEAM]
+[MX 24 TEAM]
 SUBURL="http://www.sanferbike.com/fichaorbea2.asp?producto=2372"
 TRADEMARK=ORBEA
 PRICE=399
 STORE=Sanferbike
 KIND=KIDS
 
-[GIANT&nbsp;REVEL 3 DISC]
+[REVEL 3 DISC]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=1635"
 TRADEMARK=GIANT
 PRICE=469
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X ADV SL 0]
+[ANTHEM X ADV SL 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2111"
 TRADEMARK=GIANT
 PRICE=7999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X ADV 1]
+[ANTHEM X ADV 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2112"
 TRADEMARK=GIANT
 PRICE=3799
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X ADV 2]
+[ANTHEM X ADV 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2113"
 TRADEMARK=GIANT
 PRICE=2999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X 0]
+[ANTHEM X 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2114"
 TRADEMARK=GIANT
 PRICE=3999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X 1]
+[ANTHEM X 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2115"
 TRADEMARK=GIANT
 PRICE=2799
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X 2 W]
+[ANTHEM X 2 W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2117"
 TRADEMARK=GIANT
 PRICE=1799
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X 2]
+[ANTHEM X 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2117"
 TRADEMARK=GIANT
 PRICE=1799
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X 3]
+[ANTHEM X 3]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2119"
 TRADEMARK=GIANT
 PRICE=1899
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X 4]
+[ANTHEM X 4]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2120"
 TRADEMARK=GIANT
 PRICE=1599
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X 29er 0]
+[ANTHEM X 29er 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2121"
 TRADEMARK=GIANT
 PRICE=3499
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X 29er 1]
+[ANTHEM X 29er 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2122"
 TRADEMARK=GIANT
 PRICE=2999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;ANTHEM X 29er 2]
+[ANTHEM X 29er 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2123"
 TRADEMARK=GIANT
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;XTC COMPOSITE 0]
+[XTC COMPOSITE 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2125"
 TRADEMARK=GIANT
 PRICE=2899
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;XTC COMPOSITE 1]
+[XTC COMPOSITE 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2126"
 TRADEMARK=GIANT
 PRICE=2199
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;XTC COMPOSITE 2]
+[XTC COMPOSITE 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2127"
 TRADEMARK=GIANT
 PRICE=1799
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;XTC COMPOSITE 3]
+[XTC COMPOSITE 3]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2128"
 TRADEMARK=GIANT
 PRICE=1499
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;XTC COMP 29er 0]
+[XTC COMP 29er 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2129"
 TRADEMARK=GIANT
 PRICE=2999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;XTC COMP 29er 1]
+[XTC COMP 29er 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2130"
 TRADEMARK=GIANT
 PRICE=2199
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;XTC 0]
+[XTC 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2131"
 TRADEMARK=GIANT
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;XTC 1]
+[XTC 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2132"
 TRADEMARK=GIANT
 PRICE=1349
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;XTC 2]
+[XTC 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2133"
 TRADEMARK=GIANT
 PRICE=1199
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;XTC 29er 0]
+[XTC 29er 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2134"
 TRADEMARK=GIANT
 PRICE=2199
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;GLORY 0]
+[GLORY 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2135"
 TRADEMARK=GIANT
 PRICE=4999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;GLORY 1]
+[GLORY 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2136"
 TRADEMARK=GIANT
 PRICE=3699
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;GLORY 2]
+[GLORY 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2137"
 TRADEMARK=GIANT
 PRICE=2899
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TRANCE X ADV SL 0]
+[TRANCE X ADV SL 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2138"
 TRADEMARK=GIANT
 PRICE=8399
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TRANCE X ADV 1]
+[TRANCE X ADV 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2139"
 TRADEMARK=GIANT
 PRICE=3799
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TRANCE X ADV 2]
+[TRANCE X ADV 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2140"
 TRADEMARK=GIANT
 PRICE=2999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TRANCE X 0]
+[TRANCE X 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2141"
 TRADEMARK=GIANT
 PRICE=3499
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TRANCE X 1]
+[TRANCE X 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2142"
 TRADEMARK=GIANT
 PRICE=2699
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TRANCE X 2 W]
+[TRANCE X 2 W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2144"
 TRADEMARK=GIANT
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TRANCE X 2]
+[TRANCE X 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2144"
 TRADEMARK=GIANT
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TRANCE X 3]
+[TRANCE X 3]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2146"
 TRADEMARK=GIANT
 PRICE=1899
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TRANCE X 4]
+[TRANCE X 4]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2147"
 TRADEMARK=GIANT
 PRICE=1299
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REIGN X 2]
+[REIGN X 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2148"
 TRADEMARK=GIANT
 PRICE=2599
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REIGN 0]
+[REIGN 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2149"
 TRADEMARK=GIANT
 PRICE=3499
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REIGN 1]
+[REIGN 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2150"
 TRADEMARK=GIANT
 PRICE=2599
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REIGN 2]
+[REIGN 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2151"
 TRADEMARK=GIANT
 PRICE=1999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;STP]
+[STP]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2152"
 TRADEMARK=GIANT
 PRICE=1299
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TALON 0]
+[TALON 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2153"
 TRADEMARK=GIANT
 PRICE=999
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TALON 2 W]
+[TALON 2 W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2154"
 TRADEMARK=GIANT
 PRICE=749
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TALON 29er 0]
+[TALON 29er 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2155"
 TRADEMARK=GIANT
 PRICE=949
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TALON 29er 1]
+[TALON 29er 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2156"
 TRADEMARK=GIANT
 PRICE=749
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;BRASS 1]
+[BRASS 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2157"
 TRADEMARK=GIANT
 PRICE=629
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;BRASS 2]
+[BRASS 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2158"
 TRADEMARK=GIANT
 PRICE=539
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL LTD 0]
+[REVEL LTD 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2159"
 TRADEMARK=GIANT
 PRICE=849
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL LTD 1]
+[REVEL LTD 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2160"
 TRADEMARK=GIANT
 PRICE=699
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL 0 DISC W]
+[REVEL 0 DISC W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2161"
 TRADEMARK=GIANT
 PRICE=659
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL 1 DISC W]
+[REVEL 1 DISC W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2162"
 TRADEMARK=GIANT
 PRICE=569
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL 1 DISC]
+[REVEL 1 DISC]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2162"
 TRADEMARK=GIANT
 PRICE=569
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL 2]
+[REVEL 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2164"
 TRADEMARK=GIANT
 PRICE=449
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL 2 STREET]
+[REVEL 2 STREET]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2165"
 TRADEMARK=GIANT
 PRICE=449
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL 2 W]
+[REVEL 2 W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2166"
 TRADEMARK=GIANT
 PRICE=449
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL 3  DISC W]
+[REVEL 3  DISC W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2167"
 TRADEMARK=GIANT
 PRICE=449
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL 3 DISC]
+[REVEL 3 DISC]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=1635"
 TRADEMARK=GIANT
 PRICE=469
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL 3]
+[REVEL 3]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=1635"
 TRADEMARK=GIANT
 PRICE=469
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL 4]
+[REVEL 4]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2170"
 TRADEMARK=GIANT
 PRICE=349
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;REVEL 4 STREET]
+[REVEL 4 STREET]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2171"
 TRADEMARK=GIANT
 PRICE=369
 STORE=Sanferbike
 KIND=MTB
 
-[GIANT&nbsp;TCR ADVANCED SL 0]
+[TCR ADVANCED SL 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2059"
 TRADEMARK=GIANT
 PRICE=11999
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TCR ADV SL RABO]
+[TCR ADV SL RABO]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2060"
 TRADEMARK=GIANT
 PRICE=6999
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TCR ADVANCED SL 1]
+[TCR ADVANCED SL 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2061"
 TRADEMARK=GIANT
 PRICE=7399
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TCR ADVANCED SL 3]
+[TCR ADVANCED SL 3]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2062"
 TRADEMARK=GIANT
 PRICE=3899
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TCR ADVANCED 0]
+[TCR ADVANCED 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2063"
 TRADEMARK=GIANT
 PRICE=3999
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TCR ADVANCED 2]
+[TCR ADVANCED 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2064"
 TRADEMARK=GIANT
 PRICE=2799
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TCR COMPOSITE 1]
+[TCR COMPOSITE 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2065"
 TRADEMARK=GIANT
 PRICE=2199
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TCR COMPOSITE 2]
+[TCR COMPOSITE 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2066"
 TRADEMARK=GIANT
 PRICE=1799
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TCR COMPOSITE 3]
+[TCR COMPOSITE 3]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2067"
 TRADEMARK=GIANT
 PRICE=1499
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TCR 1]
+[TCR 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2068"
 TRADEMARK=GIANT
 PRICE=1199
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TRINITY ADV SL 0]
+[TRINITY ADV SL 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2069"
 TRADEMARK=GIANT
 PRICE=11999
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TRINITY COMPOSITE 1]
+[TRINITY COMPOSITE 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2070"
 TRADEMARK=GIANT
 PRICE=2999
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TRINITY COMPOSITE 2]
+[TRINITY COMPOSITE 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2071"
 TRADEMARK=GIANT
 PRICE=2399
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;DEFY ADVANCED SL 0]
+[DEFY ADVANCED SL 0]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2072"
 TRADEMARK=GIANT
 PRICE=6999
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;DEFY COMPOSITE 1]
+[DEFY COMPOSITE 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2073"
 TRADEMARK=GIANT
 PRICE=2199
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;DEFY COMPOSITE 3]
+[DEFY COMPOSITE 3]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2074"
 TRADEMARK=GIANT
 PRICE=1499
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;DEFY 2]
+[DEFY 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2075"
 TRADEMARK=GIANT
 PRICE=999
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;DEFY 3]
+[DEFY 3]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2076"
 TRADEMARK=GIANT
 PRICE=849
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;AVAIL COMPOSITE 1]
+[AVAIL COMPOSITE 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2077"
 TRADEMARK=GIANT
 PRICE=3299
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;AVAIL 1]
+[AVAIL 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2078"
 TRADEMARK=GIANT
 PRICE=1199
 STORE=Sanferbike
 KIND=ROAD
 
-[GIANT&nbsp;TCX 1]
+[TCX 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2096"
 TRADEMARK=GIANT
 PRICE=1299
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;ROAM 1 DISC]
+[ROAM 1 DISC]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2097"
 TRADEMARK=GIANT
 PRICE=649
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;ROAM 2]
+[ROAM 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2098"
 TRADEMARK=GIANT
 PRICE=539
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;ROAM 3]
+[ROAM 3]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2099"
 TRADEMARK=GIANT
 PRICE=449
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;ROAM 3 W]
+[ROAM 3 W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2100"
 TRADEMARK=GIANT
 PRICE=449
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;SEDONA DX W]
+[SEDONA DX W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2101"
 TRADEMARK=GIANT
 PRICE=449
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;SEDONA DX]
+[SEDONA DX]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2101"
 TRADEMARK=GIANT
 PRICE=449
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;BOWERY]
+[BOWERY]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2079"
 TRADEMARK=GIANT
 PRICE=599
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;SEEK 1]
+[SEEK 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2080"
 TRADEMARK=GIANT
 PRICE=899
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;SEEK 2]
+[SEEK 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2081"
 TRADEMARK=GIANT
 PRICE=699
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;SEEK 3]
+[SEEK 3]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2082"
 TRADEMARK=GIANT
 PRICE=549
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;BLWD 2]
+[BLWD 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2083"
 TRADEMARK=GIANT
 PRICE=469
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;BLWD 2 W]
+[BLWD 2 W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2084"
 TRADEMARK=GIANT
 PRICE=469
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;HALFWAY 1]
+[HALFWAY 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2085"
 TRADEMARK=GIANT
 PRICE=799
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;EXPRESSION]
+[EXPRESSION]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2086"
 TRADEMARK=GIANT
 PRICE=399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;EXPRESSION DX W]
+[EXPRESSION DX W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2087"
 TRADEMARK=GIANT
 PRICE=399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;ASPIRO HYBRID 1]
+[ASPIRO HYBRID 1]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2089"
 TRADEMARK=GIANT
 PRICE=1799
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;ASPIRO HYBRID 1 W]
+[ASPIRO HYBRID 1 W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2090"
 TRADEMARK=GIANT
 PRICE=1799
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;ESCAPE HYBRID 2]
+[ESCAPE HYBRID 2]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2091"
 TRADEMARK=GIANT
 PRICE=1599
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;ESCAPE HYBRID 2 W]
+[ESCAPE HYBRID 2 W]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2092"
 TRADEMARK=GIANT
 PRICE=1599
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;METHOD 01]
+[METHOD 01]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2172"
 TRADEMARK=GIANT
 PRICE=469
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;METHOD 02]
+[METHOD 02]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2173"
 TRADEMARK=GIANT
 PRICE=399
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[GIANT&nbsp;MODEM]
+[MODEM]
 SUBURL="http://www.sanferbike.com/fichagiant2.asp?producto=2174"
 TRADEMARK=GIANT
 PRICE=439
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;TECNIC 100 LADY]
+[TECNIC 100 LADY]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1996"
 TRADEMARK=LAPIERRE
 PRICE=396
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;RAID 200]
+[RAID 200]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1997"
 TRADEMARK=LAPIERRE
 PRICE=508
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;RAID 300]
+[RAID 300]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1998"
 TRADEMARK=LAPIERRE
 PRICE=609
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;RAID 400]
+[RAID 400]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1999"
 TRADEMARK=LAPIERRE
 PRICE=711
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;RAID 400 L]
+[RAID 400 L]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2000"
 TRADEMARK=LAPIERRE
 PRICE=711
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;RAID 500]
+[RAID 500]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2001"
 TRADEMARK=LAPIERRE
 PRICE=864
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;RAID 700]
+[RAID 700]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2002"
 TRADEMARK=LAPIERRE
 PRICE=965
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;RAID 700 L]
+[RAID 700 L]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2003"
 TRADEMARK=LAPIERRE
 PRICE=965
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;PRO RACE 100]
+[PRO RACE 100]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2004"
 TRADEMARK=LAPIERRE
 PRICE=1016
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;PRO RACE 200]
+[PRO RACE 200]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2005"
 TRADEMARK=LAPIERRE
 PRICE=1271
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;PRO RACE 200 L]
+[PRO RACE 200 L]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2006"
 TRADEMARK=LAPIERRE
 PRICE=1271
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;PRO RACE 300]
+[PRO RACE 300]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2007"
 TRADEMARK=LAPIERRE
 PRICE=1728
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;PRO RACE 400]
+[PRO RACE 400]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2008"
 TRADEMARK=LAPIERRE
 PRICE=2237
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;PRO RACE 500]
+[PRO RACE 500]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2009"
 TRADEMARK=LAPIERRE
 PRICE=2237
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;PRO RACE 700]
+[PRO RACE 700]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2010"
 TRADEMARK=LAPIERRE
 PRICE=3254
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;PRO RACE TEAM]
+[PRO RACE TEAM]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2011"
 TRADEMARK=LAPIERRE
 PRICE=6102
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;PRO RACE 229]
+[PRO RACE 229]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2012"
 TRADEMARK=LAPIERRE
 PRICE=1016
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;PRO RACE 529]
+[PRO RACE 529]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2013"
 TRADEMARK=LAPIERRE
 PRICE=1627
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;PRO RACE 929]
+[PRO RACE 929]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2014"
 TRADEMARK=LAPIERRE
 PRICE=3254
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;X-CONTROL 110]
+[X-CONTROL 110]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2015"
 TRADEMARK=LAPIERRE
 PRICE=1220
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;X-CONTROL 210]
+[X-CONTROL 210]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2016"
 TRADEMARK=LAPIERRE
 PRICE=1423
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;X-CONTROL 310]
+[X-CONTROL 310]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2017"
 TRADEMARK=LAPIERRE
 PRICE=1627
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;X-CONTROL 310 L]
+[X-CONTROL 310 L]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2018"
 TRADEMARK=LAPIERRE
 PRICE=1627
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;X-FLOW 312]
+[X-FLOW 312]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2019"
 TRADEMARK=LAPIERRE
 PRICE=2033
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;X-FLOW 312 L]
+[X-FLOW 312 L]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2020"
 TRADEMARK=LAPIERRE
 PRICE=2033
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;X-FLOW 412]
+[X-FLOW 412]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2021"
 TRADEMARK=LAPIERRE
 PRICE=2746
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;X-FLOW 512]
+[X-FLOW 512]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2022"
 TRADEMARK=LAPIERRE
 PRICE=3254
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;X-FLOW 612]
+[X-FLOW 612]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2023"
 TRADEMARK=LAPIERRE
 PRICE=3966
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;X-FLOW 712]
+[X-FLOW 712]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2024"
 TRADEMARK=LAPIERRE
 PRICE=4983
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;X-FLOW 912]
+[X-FLOW 912]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2025"
 TRADEMARK=LAPIERRE
 PRICE=6102
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;ZESTY 214]
+[ZESTY 214]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2026"
 TRADEMARK=LAPIERRE
 PRICE=2033
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;ZESTY 314]
+[ZESTY 314]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2027"
 TRADEMARK=LAPIERRE
 PRICE=2542
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;ZESTY 314 L]
+[ZESTY 314 L]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2028"
 TRADEMARK=LAPIERRE
 PRICE=2542
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;ZESTY 514]
+[ZESTY 514]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2029"
 TRADEMARK=LAPIERRE
 PRICE=3254
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;ZESTY 714]
+[ZESTY 714]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2030"
 TRADEMARK=LAPIERRE
 PRICE=4068
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;ZESTY 914]
+[ZESTY 914]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2031"
 TRADEMARK=LAPIERRE
 PRICE=5085
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;SPICY 316]
+[SPICY 316]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2032"
 TRADEMARK=LAPIERRE
 PRICE=2339
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;SPICY 516]
+[SPICY 516]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2033"
 TRADEMARK=LAPIERRE
 PRICE=3254
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;SPICY 916]
+[SPICY 916]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2034"
 TRADEMARK=LAPIERRE
 PRICE=5696
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;FROGGY 218]
+[FROGGY 218]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2035"
 TRADEMARK=LAPIERRE
 PRICE=2033
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;FROGGY 318]
+[FROGGY 318]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2036"
 TRADEMARK=LAPIERRE
 PRICE=2339
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;FROGGY 518]
+[FROGGY 518]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2037"
 TRADEMARK=LAPIERRE
 PRICE=3559
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;DH 720]
+[DH 720]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2038"
 TRADEMARK=LAPIERRE
 PRICE=3966
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;RAPT 1.1]
+[RAPT 1.1]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2039"
 TRADEMARK=LAPIERRE
 PRICE=457
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;DH 920 TEAM]
+[DH 920 TEAM]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2040"
 TRADEMARK=LAPIERRE
 PRICE=6611
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;RAPT 1.2]
+[RAPT 1.2]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2041"
 TRADEMARK=LAPIERRE
 PRICE=558
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;RAPT 2.1]
+[RAPT 2.1]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2042"
 TRADEMARK=LAPIERRE
 PRICE=813
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;RAPT 2.2]
+[RAPT 2.2]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2043"
 TRADEMARK=LAPIERRE
 PRICE=965
 STORE=Sanferbike
 KIND=MTB
 
-[LAPIERRE&nbsp;SHAPER 100]
+[SHAPER 100]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1965"
 TRADEMARK=LAPIERRE
 PRICE=508
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;SHAPER 100 L]
+[SHAPER 100 L]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1966"
 TRADEMARK=LAPIERRE
 PRICE=508
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;SHAPER 300]
+[SHAPER 300]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1967"
 TRADEMARK=LAPIERRE
 PRICE=711
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;SHAPER 300 L]
+[SHAPER 300 L]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1968"
 TRADEMARK=LAPIERRE
 PRICE=711
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;SHAPER 500]
+[SHAPER 500]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1969"
 TRADEMARK=LAPIERRE
 PRICE=813
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;SHAPER 700]
+[SHAPER 700]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1970"
 TRADEMARK=LAPIERRE
 PRICE=1220
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;SHAPER 900]
+[SHAPER 900]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1971"
 TRADEMARK=LAPIERRE
 PRICE=2033
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;AUDACIO 200]
+[AUDACIO 200]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1972"
 TRADEMARK=LAPIERRE
 PRICE=711
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;AUDACIO 200 L]
+[AUDACIO 200 L]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1973"
 TRADEMARK=LAPIERRE
 PRICE=711
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;AUDACIO 300]
+[AUDACIO 300]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1974"
 TRADEMARK=LAPIERRE
 PRICE=915
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;AUDACIO 400 CP]
+[AUDACIO 400 CP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1975"
 TRADEMARK=LAPIERRE
 PRICE=1016
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;AUDACIO 400 TP]
+[AUDACIO 400 TP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1976"
 TRADEMARK=LAPIERRE
 PRICE=1016
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;AUDACIO 400 L]
+[AUDACIO 400 L]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1977"
 TRADEMARK=LAPIERRE
 PRICE=1016
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;AUDACIO 500 CP]
+[AUDACIO 500 CP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1978"
 TRADEMARK=LAPIERRE
 PRICE=1423
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;AUDACIO 500 TP]
+[AUDACIO 500 TP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1979"
 TRADEMARK=LAPIERRE
 PRICE=1423
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;AUDACIO 700]
+[AUDACIO 700]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1980"
 TRADEMARK=LAPIERRE
 PRICE=1728
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;SENSIUM 100 TP]
+[SENSIUM 100 TP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1982"
 TRADEMARK=LAPIERRE
 PRICE=1728
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;SENSIUM 100 L]
+[SENSIUM 100 L]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1983"
 TRADEMARK=LAPIERRE
 PRICE=1728
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;SENSIUM 300 CP]
+[SENSIUM 300 CP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1984"
 TRADEMARK=LAPIERRE
 PRICE=2542
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;SENSIUM 300 TP]
+[SENSIUM 300 TP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1985"
 TRADEMARK=LAPIERRE
 PRICE=2542
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;SENSIUM 400 CP]
+[SENSIUM 400 CP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1986"
 TRADEMARK=LAPIERRE
 PRICE=3051
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;XELIUS 200 DB]
+[XELIUS 200 DB]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1987"
 TRADEMARK=LAPIERRE
 PRICE=2644
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;XELIUS 200 CP]
+[XELIUS 200 CP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1988"
 TRADEMARK=LAPIERRE
 PRICE=2644
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;XELIUS 400 DB]
+[XELIUS 400 DB]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1989"
 TRADEMARK=LAPIERRE
 PRICE=3203
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;XELIUS 400 CP]
+[XELIUS 400 CP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1990"
 TRADEMARK=LAPIERRE
 PRICE=3203
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;XELIUS 700 DB]
+[XELIUS 700 DB]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1991"
 TRADEMARK=LAPIERRE
 PRICE=3559
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;XELIUS 700 CP]
+[XELIUS 700 CP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1992"
 TRADEMARK=LAPIERRE
 PRICE=3559
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;XELIUS 900 CP]
+[XELIUS 900 CP]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1993"
 TRADEMARK=LAPIERRE
 PRICE=5085
 STORE=Sanferbike
 KIND=ROAD
 
-[LAPIERRE&nbsp;ROCK]
+[ROCK]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2051"
 TRADEMARK=LAPIERRE
 PRICE=375
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;ROCK LADY]
+[ROCK LADY]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2052"
 TRADEMARK=LAPIERRE
 PRICE=375
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;ICE]
+[ICE]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2053"
 TRADEMARK=LAPIERRE
 PRICE=477
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;ICE LADY]
+[ICE LADY]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2054"
 TRADEMARK=LAPIERRE
 PRICE=477
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;ONIX]
+[ONIX]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2055"
 TRADEMARK=LAPIERRE
 PRICE=640
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;ONIX LADY]
+[ONIX LADY]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2056"
 TRADEMARK=LAPIERRE
 PRICE=640
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;IRON]
+[IRON]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2057"
 TRADEMARK=LAPIERRE
 PRICE=813
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;IRON LADY]
+[IRON LADY]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2058"
 TRADEMARK=LAPIERRE
 PRICE=813
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;BLACK 26"]
+[BLACK 26"]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2044"
 TRADEMARK=LAPIERRE
 PRICE=385
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;PEARL]
+[PEARL]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2045"
 TRADEMARK=LAPIERRE
 PRICE=406
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;BURGUNDY]
+[BURGUNDY]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2046"
 TRADEMARK=LAPIERRE
 PRICE=609
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;SPEED 100]
+[SPEED 100]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2047"
 TRADEMARK=LAPIERRE
 PRICE=457
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;SPEED 200]
+[SPEED 200]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2048"
 TRADEMARK=LAPIERRE
 PRICE=558
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;SPEED 300]
+[SPEED 300]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2049"
 TRADEMARK=LAPIERRE
 PRICE=915
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;SPEED 400]
+[SPEED 400]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=2050"
 TRADEMARK=LAPIERRE
 PRICE=1220
 STORE=Sanferbike
 KIND=URBAN-CONFORT-FOLDING
 
-[LAPIERRE&nbsp;TECNIC 20 LITE]
+[TECNIC 20 LITE]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1994"
 TRADEMARK=LAPIERRE
 PRICE=304
 STORE=Sanferbike
 KIND=KIDS
 
-[LAPIERRE&nbsp;TECNIC 24 LITE]
+[TECNIC 24 LITE]
 SUBURL="http://www.sanferbike.com/fichalp2.asp?producto=1995"
 TRADEMARK=LAPIERRE
 PRICE=406

@@ -54,7 +54,7 @@ function get_price()
 # Prints the trademark
 function get_trademark()
 {
-  TRADEMARK=$(echo "$1" | tr -d '"' | awk -F "${TRADEMARK_SEP}" {'print $1'})
+  TRADEMARK=$(echo "$1" | tr -d '"' | awk -F "${TRADEMARK_SEP}" {'print $1'} | awk -F "&nbsp;" {'print $1'})
   echo "${TRADEMARK}"
 }
 
@@ -123,9 +123,18 @@ function process_file()
      URL=$(get_url "$1" "${model}")
      TRADEMARK=$(get_trademark "${model}")
      PRICE=$(get_price "${URL}")
+     MODEL=$(echo "${model}" | awk -F "&nbsp;" {'print $2'})
+     if [ "${MODEL}" = "" ];
+     then
+       MODEL=$(echo "${model}" | awk -F "&nbsp;&nbsp;" {'print $2'})
+       if [ "${MODEL}" = "" ];
+       then
+         MODEL="${model}"
+       fi
+     fi
      if [ "${TYPE}" != "" ];
      then 
-       echo "[${model}]"
+       echo "[${MODEL}]"
        echo "${KEY_URL}=${URL}"
        echo "${KEY_TRADEMARK}=${TRADEMARK}"
        echo "${KEY_PRICE}=${PRICE}"
