@@ -13,6 +13,7 @@
 #### Some global configs
 URL_BASE="http://www.sanferbike.com"
 OUTPUT_FILE="output"
+NO_CAMEL_MIN=6
 
 #### The keys
 KEY_URL="SUBURL"
@@ -34,6 +35,43 @@ FILE_TRIATLON="triatlon.asp"
 MAX_REV_SEARCH=10000
 TRADEMARK_SEP="&nbsp;"
 PRICE_KEY="Precio"
+
+#
+# 1 - The sentence: THIS IS A SENTENCE => This Is A Sentence
+# 2 - The min length: 4 => THIS IS A SENTENCE => This IS A Sentence
+#
+function camel()
+{
+  let counter=0
+  for word in ${1};
+  do
+    let counter=${counter}+1
+  done
+  let counter2=0
+  for word in ${1};
+  do
+    let len=${#word}
+    let counter2=${counter2}+1
+    if [ ${len} -ge ${2} ]; then
+      firstLetter=$(echo "${word:0:1}")
+      rest=$(echo ${word:1} | tr "[A-Z]" "[a-z]") 
+      if [ ${counter2} -lt ${counter} ];
+      then
+        echo -n "${firstLetter}${rest} "
+      else
+        echo -n "${firstLetter}${rest}"
+      fi
+    else
+      if [ ${counter2} -lt ${counter} ];
+      then
+        echo -n "${word} "
+      else
+        echo -n "${word}"
+      fi
+    fi
+  done
+  echo
+}
 
 #
 # 1 - The URL
@@ -132,11 +170,13 @@ function process_file()
          MODEL="${model}"
        fi
      fi
+     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
+     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
      if [ "${TYPE}" != "" ];
      then 
-       echo "[${MODEL}]"
+       echo "[${MODEL_CAMEL}]"
        echo "${KEY_URL}=${URL}"
-       echo "${KEY_TRADEMARK}=${TRADEMARK}"
+       echo "${KEY_TRADEMARK}=${TRADEMARK_CAMEL}"
        echo "${KEY_PRICE}=${PRICE}"
        echo "${KEY_STORE}=${2}"
        echo "${KEY_KIND}=${TYPE}"
