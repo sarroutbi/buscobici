@@ -51,23 +51,51 @@ test -f ${ALL_BIKENAMES_FILE} && rm ${ALL_BIKENAMES_FILE}
 
 function translateType()
 {
-  if [ "$1" = "CARRETERA" ]; 
+  #echo "==========>TYPE=$1<============"
+  if [ "$1" = "Carretera" ]; 
   then
     echo "ROAD";
-  elif [ "$1" = "MTB" ];  
+  elif [ "$1" = "29&quot;" ];  
   then
-    echo "MTB";
-  elif [ "$1" = "NIñOS" ];  
+    echo "MTB-29";
+  elif [ "$1" = "XC" ];  
   then
-    echo "KIDS"; 
-  elif [ "$1" = "URBANAS" ];  
+    echo "MTB-DOUBLE" ;
+  elif [ "$1" = "Descenso" ];  
   then
-    echo "URBAN-CONFORT-FOLDING" ;
+    echo "MTB-DOUBLE";
+  elif [ "$1" = "Enduro" ];  
+  then
+    echo "MTB-DOUBLE";
   elif [ "$1" = "BMX" ];  
   then
     echo "BMX";
+  elif [ "$1" = "Street" ];  
+  then
+    echo "BMX";
+  elif [ "$1" = "Mujer" ];  
+  then
+    echo "WOMAN";
   else
-    echo "$1";
+    echo "${1}" | grep "R.gidas" 2>&1 > /dev/null
+    if [ $? -eq 0 ]; 
+    then
+      echo "MTB-FIX"
+      return
+    fi 
+    echo "${1}" | grep "H.bridas" 2>&1 > /dev/null
+    if [ $? -eq 0 ]; 
+    then
+      echo "URBAN-CONFORT-FOLDING"
+      return
+    fi 
+    echo "${1}" | grep "Ni.os" 2>&1 > /dev/null
+    if [ $? -eq 0 ]; 
+    then
+      echo "KIDS"
+      return
+    fi
+    echo "MTB" 
   fi 
 }
 
@@ -86,7 +114,7 @@ function parseMammothBike()
     echo "${PRICE_KEY}=$(cat ${THE_FILE} | grep "${PRICE_SEARCH}" | awk -F " " {'print $2'} \
       | awk -F " " {'print $1'})"
     echo "${STORE_KEY}=${THIS_STORE}"
-    TYPE=$(cat ${THE_FILE} | grep Catalogo | grep "catalogo/bicicleta" | awk -F "<a href=" {'print $4'} | awk -F ">" {'print $2'} | awk -F "<" {'print $1'} | tr "[a-z]" "[A-Z]" | awk -F "/" {'print $1'} | tr -d ' ')
+    TYPE=$(cat ${THE_FILE} | grep Catalogo | grep "catalogo/bicicleta" | sed -e 's/<h1[^\/]*\///g' | sed -e 's/h1>//g' | sed -e 's/<[^>]*>//g' | awk {'print $NF'})
     TYPE_TRANSLATED=$(translateType "${TYPE}")
     echo "${TYPE_KEY}=${TYPE_TRANSLATED}"
     #rm ${THE_FILE}
