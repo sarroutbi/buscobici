@@ -26,7 +26,7 @@ if (   ((!$search)    || (strlen($search)==0))
     && ((!$priceFrom) || (strlen($priceFrom)==0)) 
     && ((!$priceTo)   || (strlen($priceTo)==0))   ) {
   echo "<section id=\"search_error\">\n";
-  echo "<p>Empty search</p>\n";
+  echo "<p>B&uacute;squeda vac&iacute;a</p>\n";
   echo "</section>\n";
   echo "</html>\n";
   exit();
@@ -34,7 +34,7 @@ if (   ((!$search)    || (strlen($search)==0))
 
 if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
   echo "<section id=\"search_error\">\n";
-  echo "<p>Búsqueda errónea. Por favor, especfique un rango de precios válidos</p>\n";
+  echo "<p>B&uacute;squeda errónea. Por favor, especfique un rango de precios v&aacute;lidos.</p>\n";
   echo "</section>\n";
   echo "</html>\n";
   exit();
