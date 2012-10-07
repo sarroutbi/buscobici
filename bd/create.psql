@@ -1,4 +1,13 @@
-CREATE DATABASE;
+#############################################################################################
+# SQL REMAINDER:
+
+# Create database:
+CREATE DATABASE bikesearch;
+
+# Drop database:
+DROP DATABASE bikesearch;
+
+# Create table:
 CREATE TABLE BIKES(
     model       char(30) NOT NULL,
     trademark   char(30) NOT NULL,
@@ -7,11 +16,10 @@ CREATE TABLE BIKES(
     kind        varchar(30),
     price       real NOT NULL
 );
-INSERT INTO BIKES VALUES
-    ('0000-KK -0000', 'KK-TRADEMARK', 'KK-STORE', 'www.kkstore.com', 'MTB', '999.99');
 
-#####
-# SQL REMAINDER:
+# Insert value in table:
+INSERT INTO bikes VALUES
+    ('0000-KK -0000', 'KK-TRADEMARK', 'KK-STORE', 'www.kkstore.com', 'MTB', '999.99');
 
 # Empty table:
 # TRUNCATE TABLE; 
@@ -42,5 +50,4 @@ INSERT INTO BIKES VALUES
 #         model         |      trademark       |  store   |       url       | kind | price  
 # ----------------------+----------------------+----------+-----------------+------+--------
 #  0000-KK -0000        | KK-TRADEMARK         | KK-STORE | www.kkstore.com | MTB  | 999.99
-
-
+#############################################################################################

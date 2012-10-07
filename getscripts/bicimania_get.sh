@@ -42,7 +42,8 @@ CONFORT_BIKES_PAGES=$(seq 1 3)
 FOLDING_BIKES_BASE="http://bicimania.com/plegables-c-21_133.html?page="
 FOLDING_BIKES_PAGES=$(seq 1 3)
 
-CHILDREN_BIKES_BASE="http://bicimania.com/bicis-nino-c-21_98.html"
+CHILDREN_BIKES_BASE="http://bicimania.com/bicis-nino-c-21_98.html?page="
+CHILDREN_BIKES_PAGES=$(seq 1 3)
 
 get_page "${FIX_BIKES_BASE}" "${FIX_BIKES_PAGES}"
 get_page "${DOUBLE_BIKES_BASE}" "${DOUBLE_BIKES_PAGES}"
@@ -50,4 +51,4 @@ get_page "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}"
 get_page "${BMX_BIKES_BASE}" ""
 get_page "${CONFORT_BIKES_BASE}" "${CONFORT_BIKES_PAGES}"
 get_page "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}"
-get_page "${CHILDREN_BIKES_BASE}" ""
+get_page "${CHILDREN_BIKES_BASE}" "${CHILDREN_BIKES_PAGES}"

@@ -47,7 +47,7 @@ function print_model()
 {
   #echo "======================================"
   #  echo "======> URL:${1} <========="
-  MODELS=$(wget -O - "$1" 2>&1 | grep "<title>" -A 3 | sed -e 's/<[^>]*>//g' | awk -F " - " {'print $NF'} | grep "[a-z,A-Z]*" | tr -d "\n")
+  MODELS=$(wget -O - "$1" 2>&1 | grep "<title>" -A3 | sed -e 's/<[^>]*>//g' | grep "[A-Z,a-z,0-9]" | head -1 | awk -F " - " {'print $NF'} | tr -d "\n")
   echo "${MODELS}" | while read model;
   do
     MODEL="${model}"
@@ -79,6 +79,7 @@ function process_pages()
     MODELS=$(cat "${BASE_URL}" | grep href | grep "productListing-data" | awk -F "<b>" {'print $2'} | awk -F "</b>" {'print $1'})
     echo "${MODELS}" | while read model;
     do
+      #echo "============>${MODEL}<==========="
       MODEL=$(echo "${model}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
       TRADEMARK=$(echo "${model}" | awk {'print $1'})
       URL=$(grep "${model}" "${BASE_URL}" | grep -o "<a href=[^>]*>" | sed -e 's/<a href=//g' | tr -d '>' | awk -F "?" {'print $1'} | head -1 | uniq)
