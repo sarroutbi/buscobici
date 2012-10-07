@@ -10,6 +10,7 @@ $dbconn = pg_connect("host=localhost dbname=bikesearch user=postgres password=po
 $search    = $_POST['search'];
 $priceFrom = $_POST['priceFrom'];
 $priceTo   = $_POST['priceTo'];
+$type      = $_POST['type'];
 
 // HTML Results Print
 
@@ -33,14 +34,14 @@ if (   ((!$search)    || (strlen($search)==0))
 
 if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
   echo "<section id=\"search_error\">\n";
-  echo "<p>Wrong search. Please, specify valid range of prices.</p>\n";
+  echo "<p>Búsqueda errónea. Por favor, especfique un rango de precios válidos</p>\n";
   echo "</section>\n";
   echo "</html>\n";
   exit();
 }
 
 $search_array=str_word_count($search, 1, '0123456789-/.');
-$query = "SELECT trademark, model, CAST(price AS decimal(10,2)), store, url FROM bikes ";
+$query = "SELECT trademark, model, kind, CAST(price AS decimal(10,2)), store, url FROM bikes ";
 $round = 0;
 $num_results = 0;
 foreach ($search_array as $subsearch) {
@@ -56,10 +57,20 @@ foreach ($search_array as $subsearch) {
 
 if (($priceFrom < $priceTo)) {
   if($search) {
-    $query .= "AND (price <= '$priceTo' AND price >= '$priceFrom') ORDER BY price;";
+    if($type) {
+      $query .= "AND (price <= '$priceTo' AND price >= '$priceFrom') AND kind ~ '$type' ORDER BY price;";
+    }
+    else {
+      $query .= "AND (price <= '$priceTo' AND price >= '$priceFrom') ORDER BY price;";
+    }
   }
   else {
-    $query .= "WHERE (price <= '$priceTo' AND price >= '$priceFrom') ORDER BY price;";
+    if($type) {
+      $query .= "WHERE (price <= '$priceTo' AND price >= '$priceFrom') AND kind ~ '$type' ORDER BY price;";
+    }
+    else {
+      $query .= "WHERE (price <= '$priceTo' AND price >= '$priceFrom') ORDER BY price;";
+    }
   }
 }
 else {
@@ -84,6 +95,7 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
         echo "\t<tr>\n";
 	echo "\t<td><b>Trademark</b></td>\n";
         echo "\t<td><b>Model</b></td>\n";
+        echo "\t<td><b>Type</b></td>\n";
         echo "\t<td><b>Price</b></td>\n";
         echo "\t<td><b>Store</b></td>\n";
         echo "\t<td><b>Link</b></td>\n";
@@ -107,7 +119,12 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
           echo "\t\t<td><a href=\"$col_value\">$trademark - $model</a></td>\n";
         }
         else {
-          echo "\t\t<td>$col_value</td>\n";
+          if ( strcmp($col_value, "URBAN-CONFORT-FOLDING") == 0 ) {
+            echo "\t\t<td>URBAN</td>\n";
+          }
+          else { 
+            echo "\t\t<td>$col_value</td>\n";
+          }
         }
 	$round = $round+1;
     }
@@ -118,14 +135,14 @@ echo "</table>\n";
 echo "</section>\n";
 if ($round==0) {
           echo "<section id=\"search_error\">\n";
-          echo "<p>No results.</p>\n";
+          echo "<p>Sin resultados</p>\n";
           echo "</section>\n";
           echo "</html>\n";
           exit();
 }
 if ($num_results!=0) {
           echo "<section id=\"num_results\">\n";
-          echo "<p>Search results:$num_results</p>\n";
+          echo "<p>N&uacute;mero de resultados:$num_results</p>\n";
           echo "</section>\n";
           echo "</html>\n";
           exit();

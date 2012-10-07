@@ -57,7 +57,7 @@ float: left;
 nav ul li a {
 display: block;
 margin-right: 20px;
-width: 160px;
+width: 220px;
 font-size: 16px;
 line-height: 44px;
 text-align: center;
@@ -145,6 +145,16 @@ background-size: 100%;
 }
 
 #priceTo{
+color: #963AD6;
+text-transform: uppercase;
+text-shadow: #000 1px 1px;
+/*** Adding CSS3 Gradients ***/
+/*** background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#963AD6), to(#781bb9)); ***/
+/*** background:  -moz-linear-gradient(19% 75% 90deg,#781bb9, #963AD6); ***/
+background-size: 100%;
+}
+
+#byType{
 color: #963AD6;
 text-transform: uppercase;
 text-shadow: #000 1px 1px;

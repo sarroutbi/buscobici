@@ -19,7 +19,7 @@
     <nav>
     <ul>
     <li><a href="index.html">Búsqueda Simple</a></li>
-    <li><a href="byprice.html">Búsqueda por Precio</a></li>
+    <li><a href="byprice.html">Búsqueda por Precio y Tipo</a></li>
     <!--li><a href="asearch">Búsqueda Avanzada</a></li-->
     <!--/ul-->
     </nav>
@@ -68,6 +68,16 @@
             <option value="7500">7500&euro;</option>
             <option value="10000">10000&euro;</option>
             <option value="100000">Max</option>
+          </select>
+          <br>
+          <label>Tipo&nbsp;&nbsp;&nbsp;</label>
+          <select name="type" id="byType">
+            <option value="MTB">Mtb</option>
+            <option value="ROAD">Carretera</option>
+            <option value="URBAN">Urbanas</option>
+            <option value="BMX">Bmx</option>
+            <option value="KIDS">Infantil</option>
+            <option value="">Todas</option>
           </select>
           <input id="submitPrice" name="submit" type="submit" value="Buscar">
       </form>
