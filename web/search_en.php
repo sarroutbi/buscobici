@@ -33,7 +33,7 @@ if (   ((!$search)    || (strlen($search)==0))
 
 if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
   echo "<section id=\"search_error\">\n";
-  echo "<p>Wrong search. Please specify valid values on prices</p>\n";
+  echo "<p>Wrong search. Please, specify valid range of prices.</p>\n";
   echo "</section>\n";
   echo "</html>\n";
   exit();
@@ -42,6 +42,7 @@ if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
 $search_array=str_word_count($search, 1, '0123456789-/.');
 $query = "SELECT trademark, model, CAST(price AS decimal(10,2)), store, url FROM bikes ";
 $round = 0;
+$num_results = 0;
 foreach ($search_array as $subsearch) {
     if ($round == 0) {
       $query .= "WHERE ";
@@ -76,6 +77,7 @@ echo "<table class=\"tableSearch\">\n";
 $round = 0;
 
 while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+    $num_results += 1;
     if ($round== 0)
     {
         echo "\t<thead>\n";
@@ -84,7 +86,7 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
         echo "\t<td><b>Model</b></td>\n";
         echo "\t<td><b>Price</b></td>\n";
         echo "\t<td><b>Store</b></td>\n";
-        echo "\t<td><b>URL</b></td>\n";
+        echo "\t<td><b>Link</b></td>\n";
         echo "\t</tr>\n";
         echo "\t</thead>\n";
         echo "\t<tbody>\n";
@@ -111,16 +113,23 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     }
     echo "\t</tr>\n";
 }
+echo "\t</tbody>\n";
+echo "</table>\n";    
+echo "</section>\n";
 if ($round==0) {
           echo "<section id=\"search_error\">\n";
-          echo "<p>No results</p>\n";
+          echo "<p>No results.</p>\n";
           echo "</section>\n";
           echo "</html>\n";
           exit();
 }
-echo "\t</tbody>\n";
-echo "</table>\n";    
-echo "</section>\n";
+if ($num_results!=0) {
+          echo "<section id=\"num_results\">\n";
+          echo "<p>Search results:$num_results</p>\n";
+          echo "</section>\n";
+          echo "</html>\n";
+          exit();
+}
 
 // Freeing result
 pg_free_result($result);

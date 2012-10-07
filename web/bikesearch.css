@@ -171,6 +171,14 @@ background-size: 100%;
 border-radius: 22px;
 }
 
+#num_results {
+color: #777;
+font-size: 10px;
+margin-left:auto;
+margin-right:auto;
+}
+
+
 #input_search_en {
 width:200px;
 }
