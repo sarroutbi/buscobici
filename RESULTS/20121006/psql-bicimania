@@ -1,7 +1,7 @@
 INSERT INTO bikes VALUES ('1.1 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-2012-p-6439.html', 'ROAD', '665.50');
 INSERT INTO bikes VALUES ('1.2 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-2012-p-6440.html', 'ROAD', '819.31');
 INSERT INTO bikes VALUES ('1.5 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-2012-p-6441.html', 'ROAD', '921.86');
-INSERT INTO bikes VALUES ('180º 2012', 'Mondraker', 'Bicimania', 'http://bicimania.com/mondraker-180Âº-2012-p-6298.html', 'BMX', '281.99');
+INSERT INTO bikes VALUES ('180&deg; 2012', 'Mondraker', 'Bicimania', 'http://bicimania.com/mondraker-180Âº-2012-p-6298.html', 'BMX', '281.99');
 INSERT INTO bikes VALUES ('2.1 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-2012-p-6442.html', 'ROAD', '1126.94');
 INSERT INTO bikes VALUES ('2.1 Compact 2011', 'Trek', 'Bicimania', 'http://bicimania.com/trek-compact-2011-p-6040.html', 'ROAD', '959.99');
 INSERT INTO bikes VALUES ('2.1 Triple 2011', 'Trek', 'Bicimania', 'http://bicimania.com/trek-triple-2011-p-6039.html', 'ROAD', '959.99');
@@ -14,7 +14,7 @@ INSERT INTO bikes VALUES ('2.5 Triple 2011', 'Trek', 'Bicimania', 'http://bicima
 INSERT INTO bikes VALUES ('3500 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-3500-2012-p-6197.html', 'MTB-FIX', '297.49');
 INSERT INTO bikes VALUES ('3500 Disc 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-3500-disc-2012-p-6198.html', 'MTB-FIX', '388.64');
 INSERT INTO bikes VALUES ('3500 Equipada 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-3500-equipada-2012-p-6215.html', 'MTB-FIX', '460.42');
-INSERT INTO bikes VALUES ('360º 2012', 'Mondraker', 'Bicimania', 'http://bicimania.com/mondraker-360Âº-2012-p-6299.html', 'BMX', '358.90');
+INSERT INTO bikes VALUES ('360&deg; 2012', 'Mondraker', 'Bicimania', 'http://bicimania.com/mondraker-360Âº-2012-p-6299.html', 'BMX', '358.90');
 INSERT INTO bikes VALUES ('3700 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-3700-2012-p-6216.html', 'MTB-FIX', '322.99');
 INSERT INTO bikes VALUES ('3700 Disc 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-3700-disc-2012-p-6199.html', 'MTB-FIX', '339.99');
 INSERT INTO bikes VALUES ('3900 Disc 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-3900-disc-2012-p-6217.html', 'MTB-FIX', '382.49');
@@ -23,7 +23,7 @@ INSERT INTO bikes VALUES ('4300 2012', 'Trek', 'Bicimania', 'http://bicimania.co
 INSERT INTO bikes VALUES ('4300 Disc 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-4300-disc-2012-p-6220.html', 'MTB-FIX', '467.49');
 INSERT INTO bikes VALUES ('4500 Disc 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-4500-disc-2012-p-6221.html', 'MTB-FIX', '508.99');
 INSERT INTO bikes VALUES ('4900 Disc 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-4900-disc-2012-p-6222.html', 'MTB-FIX', '594.99');
-INSERT INTO bikes VALUES ('540º 2012', 'Mondraker', 'Bicimania', 'http://bicimania.com/mondraker-540Âº-2012-p-6300.html', 'BMX', '405.04');
+INSERT INTO bikes VALUES ('540&deg; 2012', 'Mondraker', 'Bicimania', 'http://bicimania.com/mondraker-540Âº-2012-p-6300.html', 'BMX', '405.04');
 INSERT INTO bikes VALUES ('6000 Disc 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-6000-disc-2012-p-6203.html', 'MTB-FIX', '679.99');
 INSERT INTO bikes VALUES ('6300 Disc 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-6300-disc-2012-p-6225.html', 'MTB-FIX', '849.99');
 INSERT INTO bikes VALUES ('6300 Disc WSD 2011', 'Trek', 'Bicimania', 'http://bicimania.com/trek-6300-disc-2011-p-5605.html', 'MTB-FIX', '1024.40');
@@ -320,8 +320,8 @@ INSERT INTO bikes VALUES ('Podium Carbon Pro SL LTD 2012', 'Mondraker', 'Biciman
 INSERT INTO bikes VALUES ('Podium Pro 2012', 'Mondraker', 'Bicimania', 'http://bicimania.com/mondraker-podium-2012-p-6314.html', 'MTB-FIX', '1732.97');
 INSERT INTO bikes VALUES ('Podium Pro 29er 2012', 'Mondraker', 'Bicimania', 'http://bicimania.com/mondraker-podium-29er-2012-p-6310.html', 'MTB-FIX', '1794.49');
 INSERT INTO bikes VALUES ('Prayer 2012', 'Mondraker', 'Bicimania', 'http://bicimania.com/mondraker-prayer-2012-p-6379.html', 'MTB-DOUBLE', '2040.59');
-INSERT INTO bikes VALUES ('q10 City eléctrica y plegable', 'Quipplan', 'Bicimania', 'http://bicimania.com/quipplan-city-electrica-plegable-p-6698.html', 'URBAN-CONFORT-FOLDING', '1495.00');
-INSERT INTO bikes VALUES ('q10 Sport eléctrica y plegable', 'Quipplan', 'Bicimania', 'http://bicimania.com/quipplan-sport-electrica-plegable-p-6699.html', 'URBAN-CONFORT-FOLDING', '1395.00');
+INSERT INTO bikes VALUES ('q10 City el&eacute;ctrica y plegable', 'Quipplan', 'Bicimania', 'http://bicimania.com/quipplan-city-electrica-plegable-p-6698.html', 'URBAN-CONFORT-FOLDING', '1495.00');
+INSERT INTO bikes VALUES ('q10 Sport el&eacute;ctrica y plegable', 'Quipplan', 'Bicimania', 'http://bicimania.com/quipplan-sport-electrica-plegable-p-6699.html', 'URBAN-CONFORT-FOLDING', '1395.00');
 INSERT INTO bikes VALUES ('Quarter I 2012', 'Mondraker', 'Bicimania', 'http://bicimania.com/mondraker-quarter-2012-p-6306.html', 'MTB-FIX', '973.13');
 INSERT INTO bikes VALUES ('Quarter II 2012', 'Mondraker', 'Bicimania', 'http://bicimania.com/mondraker-quarter-2012-p-6305.html', 'MTB-FIX', '573.21');
 INSERT INTO bikes VALUES ('Remedy 7 2012', 'Trek', 'Bicimania', 'http://bicimania.com/trek-remedy-2012-p-6253.html', 'MTB-DOUBLE', '2459.99');

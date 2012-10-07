@@ -9,7 +9,7 @@ DROP DATABASE bikesearch;
 
 # Create table:
 CREATE TABLE BIKES(
-    model       char(30) NOT NULL,
+    model       char(50) NOT NULL,
     trademark   char(30) NOT NULL,
     store       varchar(30) NOT NULL,
     url         varchar(100) NOT NULL,
@@ -32,6 +32,9 @@ INSERT INTO bikes VALUES
 
 # Modify table:
 # ALTER TABLE bikes RENAME prize TO price;
+
+# Modify table column type:
+# ALTER TABLE bikes ALTER COLUMN "model" TYPE varchar(50);
 
 # Delete table:
 # DELETE FROM bikes WHERE store ~ 'Mammoth';
