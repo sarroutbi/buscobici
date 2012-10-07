@@ -283,6 +283,7 @@ table.tableSearch{
     text-align:center;
     color:#444;
     padding:10px;
+    min-width:80px;
 }
 
 .tableSearch tbody span.check::before{
