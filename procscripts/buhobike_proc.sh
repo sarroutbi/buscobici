@@ -12,6 +12,7 @@
 MAX_PRICE=2
 OUTPUT_FILE=./output
 BASE_URL="http://www.buhobike.com"
+NO_CAMEL_MIN=6
 
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
@@ -68,6 +69,43 @@ function print_price()
   echo ${PRICE}
 }
 
+# Params:
+# 1 - The sentence
+# 2 - The min size to camelize
+function camel()
+{
+  let counter=0
+  for word in ${1};
+  do
+    let counter=${counter}+1
+  done
+  let counter2=0
+  for word in ${1};
+  do
+    let len=${#word}
+    let counter2=${counter2}+1
+    if [ ${len} -ge ${2} ]; then
+      firstLetter=$(echo "${word:0:1}")
+      rest=$(echo ${word:1} | tr "[A-Z]" "[a-z]") 
+      if [ ${counter2} -lt ${counter} ];
+      then
+        echo -n "${firstLetter}${rest} "
+      else
+        echo -n "${firstLetter}${rest}"
+      fi
+    else
+      if [ ${counter2} -lt ${counter} ];
+      then
+        echo -n "${word} "
+      else
+        echo -n "${word}"
+      fi
+    fi
+  done
+  echo
+}
+
+
 MTB_BIKES_BASE="rapida?op=188&_pagi_pg="
 MTB_BIKES_PAGES=$(seq 1 35)
 
@@ -104,7 +142,9 @@ function process_pages()
         # echo "=========>${bike}<==========="
         URL=$(echo "${bike}" | awk -F "<a href='" {'print $2'} | awk -F ">" {'print $1'} | tr -d "'")
         FINAL_URL="${BASE_URL}${URL}"
-        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
+        TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
+        MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+        dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
       done
   else
     for page in ${PAGES};
@@ -119,7 +159,9 @@ function process_pages()
         # echo "=========>${bike}<==========="
         URL=$(echo "${bike}" | awk -F "<a href='" {'print $2'} | awk -F ">" {'print $1'} | tr -d "'")
         FINAL_URL="${BASE_URL}${URL}"
-        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
+        TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
+        MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+        dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
       done
     done
   fi
