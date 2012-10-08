@@ -11,6 +11,7 @@
 
 MAX_PRICE=2
 OUTPUT_FILE=./output
+BASE_URL="http://www.buhobike.com"
 
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
@@ -67,56 +68,6 @@ function print_price()
   echo ${PRICE}
 }
 
-function process_pages()
-{
-  BASE_FILE="$1"
-  PAGES="$2"
-  STORE="$3"
-  TYPE="$4"
-  if [ "${PAGES}" = "" ];
-  then
-      URLS=$(cat ${BASE_FILE} | grep "productListing-data"| grep -o "<a href=[^>]*>" | sed -e 's/<a href=//g' | tr -d '>'| tr -d '"' | uniq)
-      echo "${URLS}" | while read URL;
-      do
-        TRADEMARK_MODEL=$(print_model ${URL})
-        TRADEMARK_MODEL=${TRADEMARK_MODEL}
-        TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
-        MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-        PRICE=$(print_price "${URL}")
-        FINAL_URL=$(echo "${URL}" | awk -F "?" {'print $1'})
-        ##echo "========================================================================"
-        ##echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
-        ##echo "TRADEMARK=${TRADEMARK}"
-        ##echo "MODEL=${MODEL}"
-        ##echo "URL=${FINAL_URL}"
-        ##echo "PRICE=${PRICE}"
-        ##echo "========================================================================"
-        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
-      done
-  else
-    for page in ${PAGES};
-    do 
-      URLS=$(cat ${BASE_FILE}${page} | grep "productListing-data"| grep -o "<a href=[^>]*>" | sed -e 's/<a href=//g' | tr -d '>'| tr -d '"' | uniq)
-      echo "${URLS}" | while read URL;
-      do
-        TRADEMARK_MODEL=$(print_model ${URL})
-        TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
-        MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-        PRICE=$(print_price "${URL}")
-        FINAL_URL=$(echo ${URL} | awk -F "?" {'print $1'})
-        ##echo "========================================================================"
-        ##echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
-        ##echo "TRADEMARK=${TRADEMARK}"
-        ##echo "MODEL=${MODEL}"
-        ##echo "URL=${FINAL_URL}"
-        ##echo "PRICE=${PRICE}"
-        ##echo "========================================================================"
-        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
-      done
-    done
-  fi
-}
-
 MTB_BIKES_BASE="rapida?op=188&_pagi_pg="
 MTB_BIKES_PAGES=$(seq 1 35)
 
@@ -135,6 +86,45 @@ BMX_BIKES_PAGES=$(seq 1 3)
 KIDS_BIKES_BASE="rapida?op=688&_pagi_pg="
 KIDS_BIKES_PAGES=$(seq 1 8)
 
+function process_pages()
+{
+  BASE_FILE="$1"
+  PAGES="$2"
+  STORE="$3"
+  TYPE="$4"
+  if [ "${PAGES}" = "" ];
+  then
+      cat ${BASE_FILE} | grep "resumenproducto" | awk -F "<div class='resumenproducto'>" {'for(i=1;i<=NF;++i){printf $i"\n";}'} | while read bike;
+      do
+        # NOTE: each bike should be more or less like:
+        # ORBEA<br>AQUA T23 2013<br><b>717 &euro;</b>
+        TRADEMARK=$(echo ${bike} | awk -F "</a><br>" {'print $2'} | awk -F "<br>" {'print $1'})
+        MODEL=$(echo ${bike} | awk -F "<br>" {'print $3'})
+        PRICE=$(echo ${bike} | awk -F "<br>" {'print $4'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o)
+        # echo "=========>${bike}<==========="
+        URL=$(echo "${bike}" | awk -F "<a href='" {'print $2'} | awk -F ">" {'print $1'} | tr -d "'")
+        FINAL_URL="${BASE_URL}${URL}"
+        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
+      done
+  else
+    for page in ${PAGES};
+    do 
+      cat ${BASE_FILE}${page} | grep "resumenproducto" | awk -F "<div class='resumenproducto'>" {'for(i=1;i<=NF;++i){printf $i"\n";}'} | while read bike;
+      do
+        # NOTE: each bike should be more or less like:
+        # ORBEA<br>AQUA T23 2013<br><b>717 &euro;</b>
+        TRADEMARK=$(echo ${bike} | awk -F "</a><br>" {'print $2'} | awk -F "<br>" {'print $1'})
+        MODEL=$(echo ${bike} | awk -F "<br>" {'print $3'})
+        PRICE=$(echo ${bike} | awk -F "<br>" {'print $4'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o)
+        # echo "=========>${bike}<==========="
+        URL=$(echo "${bike}" | awk -F "<a href='" {'print $2'} | awk -F ">" {'print $1'} | tr -d "'")
+        FINAL_URL="${BASE_URL}${URL}"
+        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
+      done
+    done
+  fi
+}
+
 > ${OUTPUT_FILE}
 
 process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "BuhoBike" "MTB" >> ${OUTPUT_FILE}
@@ -143,3 +133,10 @@ process_pages "${TREKKING_BIKES_BASE}" "${TREKKING_BIKES_PAGES}" "BuhoBike" "URB
 process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "BuhoBike" "URBAN-CONFORT-FOLDING"  >> ${OUTPUT_FILE}
 process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "BuhoBike" "BMX" >> ${OUTPUT_FILE}
 process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "BuhoBike" "KIDS"  >> ${OUTPUT_FILE}
+
+#process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "BuhoBike" "MTB"
+#process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "BuhoBike" "ROAD"
+#process_pages "${TREKKING_BIKES_BASE}" "${TREKKING_BIKES_PAGES}" "BuhoBike" "URBAN-CONFORT-FOLDING"  
+#process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "BuhoBike" "URBAN-CONFORT-FOLDING" 
+#process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "BuhoBike" "BMX" 
+#process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "BuhoBike" "KIDS"
