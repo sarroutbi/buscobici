@@ -64,6 +64,9 @@ JUNIOR_BIKES_PAGES=$(seq 1 5)
 TRIATLON_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=415&pagact="
 TRIATLON_BIKES_PAGES=$(seq 1 5)
 
+MTB_DOUBLE_OUTLET_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=Bicis-doble-suspension&md=1"
+MTB_FIX_OUTLET_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=Bicis-rigidas&md=1"
+
 get_page "${MTB_2013_BIKES_BASE}" "${MTB_2013_BIKES_PAGES}"
 get_page "${MTB_2012_BIKES_BASE}" "${MTB_2012_BIKES_PAGES}"
 
@@ -86,3 +89,8 @@ get_page "${BMX_2013_BIKES_BASE}" "${BMX_2013_BIKES_PAGES}"
 get_page "${JUNIOR_BIKES_BASE}" "${JUNIOR_BIKES_PAGES}"
 
 get_page "${TRIATLON_BIKES_BASE}" "${TRIATLON_BIKES_PAGES}"
+
+get_page "${MTB_DOUBLE_OUTLET_BIKES_BASE}" ""
+
+get_page "${MTB_FIX_OUTLET_BIKES_BASE}" ""
+
