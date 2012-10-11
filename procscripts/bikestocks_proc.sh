@@ -3,14 +3,15 @@
 # Parse results to common file with structure:
 #
 # [Grow 2]
-# SUBURL="http://www.bicicletasgil.com/producto/Orbea-Grow-2"
+# SUBURL="http://www.bikestocks.com/producto/Orbea-Grow-2"
 # TRADEMARK=Orbea
 # PRICE=249,00
-# STORE=Biciletas Gil
-# KIND=MTB-FIX
+# STORE=BikeStocks
+# KIND=MTB
 
 MAX_PRICE=2
 OUTPUT_FILE=./output
+URL_BASE="http://www.bikestocks.es/b2c"
 
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
@@ -42,29 +43,57 @@ function dump_bike()
 
 # Params:
 # 1 - The URL of bike
+# 2 - The file of the bike
 function print_model()
 {
+  URL_SEARCH=$(echo "${1}"  | tr -d '"')
+  FILE_SEARCH="${2}"
   #echo "======================================"
-  #  echo "======> URL:${1} <========="
-  MODELS=$(wget -O - "$1" 2>&1 | grep "<title>" -A3 | sed -e 's/<[^>]*>//g' | grep "[A-Z,a-z,0-9]" | head -1 | awk -F " - " {'print $NF'} | tr -d "\n")
-  echo "${MODELS}" | while read model;
-  do
-    MODEL="${model}"
-    echo ${MODEL}
-  done
+  #echo "======> URL:${URL_SEARCH} <========="
+  #echo "======> FILE:${FILE_SEARCH} <========="
+  MODEL=$(grep "${URL_SEARCH}" "${FILE_SEARCH}" | head -1 | sed -e 's/<[^>]*>//g')
+  echo "${MODEL}"
   #echo "======================================"
 }
 
 # Params:
 # 1 - The URL of bike
+# 2 - The file of the bike
 function print_price()
 {
-  PRICES=$(wget "$1" -O - 2>&1 | grep "IVA" | grep '&euro' | grep -o "[0-9,\.]*[0-9],[0-9]*" | tr -d '.' | tail -1)
-  for price in ${PRICES};
+  URL_SEARCH=$(echo "${1}"  | tr -d '"')
+  FILE_SEARCH="${2}"
+  #echo "======================================"
+  #echo "======> URL:${URL_SEARCH} <========="
+  #echo "======> FILE:${FILE_SEARCH} <========="
+  PRICE=$(grep "${URL_SEARCH}" "${FILE_SEARCH}" | grep precio | grep -o "[0-9]*[,].[0-9]*" | head -1)
+  echo "${PRICE}"
+  #echo "======================================"
+}
+
+function dump_bike_from_urls()
+{
+  URLS="$1"
+  FILE="$2"
+  #echo "URLS:=>${URLS}<="
+  echo "${URLS}" | while read URL;
   do
-    PRICE=${price} 
+    TRADEMARK_MODEL=$(print_model "${URL}" "${FILE}" | sed -e s/"BICICLETA "//g)
+    TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
+    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+    PRICE=$(print_price "${URL}" "${FILE}")
+    NOBASE_URL=$(echo ${URL} | tr -d '"')
+    FINAL_URL="${URL_BASE}/${NOBASE_URL}"
+    #echo "========================================================================"
+    #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
+    #echo "TRADEMARK=${TRADEMARK}"
+    #echo "MODEL=${MODEL}"
+    #echo "URL=${FINAL_URL}"
+    #echo "PRICE=${PRICE}"
+    #echo "FILE=${FILE}"
+    #echo "========================================================================"
+    dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
   done
-  echo ${PRICE}
 }
 
 function process_pages()
@@ -73,46 +102,21 @@ function process_pages()
   PAGES="$2"
   STORE="$3"
   TYPE="$4"
+  echo "BASE_FILE=$1"
+  echo "PAGES=$2"
+  echo "STORE=$3"
+  echo "TYPE=$4"
+
   if [ "${PAGES}" = "" ];
   then
-      URLS=$(cat ${BASE_FILE} | grep "productListing-data"| grep -o "<a href=[^>]*>" | sed -e 's/<a href=//g' | tr -d '>'| tr -d '"' | uniq)
-      echo "${URLS}" | while read URL;
-      do
-        TRADEMARK_MODEL=$(print_model ${URL})
-        TRADEMARK_MODEL=${TRADEMARK_MODEL}
-        TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
-        MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-        PRICE=$(print_price "${URL}")
-        FINAL_URL=$(echo "${URL}" | awk -F "?" {'print $1'})
-        ##echo "========================================================================"
-        ##echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
-        ##echo "TRADEMARK=${TRADEMARK}"
-        ##echo "MODEL=${MODEL}"
-        ##echo "URL=${FINAL_URL}"
-        ##echo "PRICE=${PRICE}"
-        ##echo "========================================================================"
-        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
-      done
+      #cat "${BASE_FILE}" | grep "tituloProdNombreListado"| grep -o "href=[^>]*>" | awk -F "href=" {'print $2'} | sed s/>//g
+      URLS=$(cat "${BASE_FILE}" | grep "tituloProdNombreListado"| grep -o "href=[^>]*> | awk -F "href=" {'print $2'} | sed s/>//g")
+      dump_bike_from_urls "${URLS}" 
   else
     for page in ${PAGES};
     do 
-      URLS=$(cat ${BASE_FILE}${page} | grep "productListing-data"| grep -o "<a href=[^>]*>" | sed -e 's/<a href=//g' | tr -d '>'| tr -d '"' | uniq)
-      echo "${URLS}" | while read URL;
-      do
-        TRADEMARK_MODEL=$(print_model ${URL})
-        TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
-        MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-        PRICE=$(print_price "${URL}")
-        FINAL_URL=$(echo ${URL} | awk -F "?" {'print $1'})
-        ##echo "========================================================================"
-        ##echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
-        ##echo "TRADEMARK=${TRADEMARK}"
-        ##echo "MODEL=${MODEL}"
-        ##echo "URL=${FINAL_URL}"
-        ##echo "PRICE=${PRICE}"
-        ##echo "========================================================================"
-        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
-      done
+      URLS=$(cat "${BASE_FILE}${page}" | grep "tituloProdNombreListado"| grep -o "href=[^>]*>" | awk -F "href=" {'print $2'} | tr -d '>' | tr "'" '"')
+      dump_bike_from_urls "${URLS}" "${BASE_FILE}${page}"
     done
   fi
 }
@@ -159,5 +163,19 @@ JUNIOR_BIKES_PAGES=$(seq 1 5)
 TRIATLON_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=415&pagact="
 TRIATLON_BIKES_PAGES=$(seq 1 5)
 
-process_pages "${MTB_2013_BIKES_BASE}" "${MTB_2013_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-#### AND SO ON, AND SO FORTH
+process_pages "${MTB_2013_BIKES_BASE}"  "${MTB_2013_BIKES_PAGES}"  "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_2012_BIKES_BASE}"  "${MTB_2012_BIKES_PAGES}"  "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${ROAD_2012_BIKES_BASE}" "${ROAD_2012_BIKES_PAGES}" "BikeStocks" "" >> ${OUTPUT_FILE}
+process_pages "${ROAD_2013_BIKES_BASE}" "${ROAD_2013_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${TREKKING_2012_BIKES_BASE}" "${TREKKING_2012_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${TREKKING_2013_BIKES_BASE}" "${TREKKING_2013_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_2012_BIKES_BASE}" "${URBAN_2012_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_2013_BIKES_BASE}" "${URBAN_2013_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${ELECTRIC_BIKES_BASE}" "${ELECTRIC_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${BMX_2012_BIKES_BASE}" "${BMX_2012_BIKES_PAGES}" "BikeStocks" "BMX" >> ${OUTPUT_FILE}
+process_pages "${BMX_2013_BIKES_BASE}" "${BMX_2013_BIKES_PAGES}" "BikeStocks" "BMX" >> ${OUTPUT_FILE}
+process_pages "${JUNIOR_BIKES_BASE}" "${JUNIOR_BIKES_PAGES}" "BikeStocks" "KIDS" >> ${OUTPUT_FILE}
+process_pages "${TRIATLON_BIKES_BASE}" "${TRIATLON_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
+
+
