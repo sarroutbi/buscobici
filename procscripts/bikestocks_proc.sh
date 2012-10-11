@@ -66,7 +66,8 @@ function print_price()
   #echo "======================================"
   #echo "======> URL:${URL_SEARCH} <========="
   #echo "======> FILE:${FILE_SEARCH} <========="
-  PRICE=$(grep "${URL_SEARCH}" "${FILE_SEARCH}" | grep precio | grep -o "[0-9]*[,].[0-9]*" | head -1)
+  #PRICE=$(grep "${URL_SEARCH}" "${FILE_SEARCH}" | grep precio | egrep -o "[0-9]{1,}\.{0,}\,{0,}[0-9]{0,}" | head -1)
+  PRICE=$(grep "${URL_SEARCH}" "${FILE_SEARCH}" | awk -F "<a class=precio>" {'print $2'} | awk -F "</a>" {'print $1'} | tr -d '\n')
   echo "${PRICE}"
   #echo "======================================"
 }
@@ -102,10 +103,10 @@ function process_pages()
   PAGES="$2"
   STORE="$3"
   TYPE="$4"
-  echo "BASE_FILE=$1"
-  echo "PAGES=$2"
-  echo "STORE=$3"
-  echo "TYPE=$4"
+  #echo "BASE_FILE=$1"
+  #echo "PAGES=$2"
+  #echo "STORE=$3"
+  #echo "TYPE=$4"
 
   if [ "${PAGES}" = "" ];
   then
@@ -163,10 +164,15 @@ JUNIOR_BIKES_PAGES=$(seq 1 5)
 TRIATLON_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=415&pagact="
 TRIATLON_BIKES_PAGES=$(seq 1 5)
 
+MTB_DOUBLE_OUTLET_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Bicis-doble-suspension&md=1"
+MTB_FIX_OUTLET_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Bicis-rigidas&md=1"
+
+> ${OUTPUT_FILE}
+
 process_pages "${MTB_2013_BIKES_BASE}"  "${MTB_2013_BIKES_PAGES}"  "BikeStocks" "MTB" >> ${OUTPUT_FILE}
 process_pages "${MTB_2012_BIKES_BASE}"  "${MTB_2012_BIKES_PAGES}"  "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${ROAD_2012_BIKES_BASE}" "${ROAD_2012_BIKES_PAGES}" "BikeStocks" "" >> ${OUTPUT_FILE}
-process_pages "${ROAD_2013_BIKES_BASE}" "${ROAD_2013_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${ROAD_2012_BIKES_BASE}" "${ROAD_2012_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${ROAD_2013_BIKES_BASE}" "${ROAD_2013_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${TREKKING_2012_BIKES_BASE}" "${TREKKING_2012_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${TREKKING_2013_BIKES_BASE}" "${TREKKING_2013_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${URBAN_2012_BIKES_BASE}" "${URBAN_2012_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
@@ -177,5 +183,5 @@ process_pages "${BMX_2012_BIKES_BASE}" "${BMX_2012_BIKES_PAGES}" "BikeStocks" "B
 process_pages "${BMX_2013_BIKES_BASE}" "${BMX_2013_BIKES_PAGES}" "BikeStocks" "BMX" >> ${OUTPUT_FILE}
 process_pages "${JUNIOR_BIKES_BASE}" "${JUNIOR_BIKES_PAGES}" "BikeStocks" "KIDS" >> ${OUTPUT_FILE}
 process_pages "${TRIATLON_BIKES_BASE}" "${TRIATLON_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
-
-
+process_pages "${MTB_DOUBLE_OUTLET_BIKES_BASE}" "${MTB_DOUBLE_OUTLET_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_FIX_OUTLET_BIKES_BASE}" "${MTB_FIX_OUTLET_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
