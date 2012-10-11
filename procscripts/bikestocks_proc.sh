@@ -66,8 +66,7 @@ function print_price()
   #echo "======================================"
   #echo "======> URL:${URL_SEARCH} <========="
   #echo "======> FILE:${FILE_SEARCH} <========="
-  #PRICE=$(grep "${URL_SEARCH}" "${FILE_SEARCH}" | grep precio | egrep -o "[0-9]{1,}\.{0,}\,{0,}[0-9]{0,}" | head -1)
-  PRICE=$(grep "${URL_SEARCH}" "${FILE_SEARCH}" | awk -F "<a class=precio>" {'print $2'} | awk -F "</a>" {'print $1'} | tr -d '\n')
+  PRICE=$(grep "${URL_SEARCH}" "${FILE_SEARCH}" | awk -F "<a class=precio>" {'print $2'} | awk -F "</a>" {'print $1'} | tr -d '\n' | awk {'print $1'})
   echo "${PRICE}"
   #echo "======================================"
 }
