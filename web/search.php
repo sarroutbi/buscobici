@@ -8,6 +8,7 @@ $dbconn = pg_connect("host=localhost dbname=bikesearch user=postgres password=po
 
 // SQL Query
 $search    = $_POST['search'];
+$searchGet = $_GET['search'];
 $priceFrom = $_POST['priceFrom'];
 $priceTo   = $_POST['priceTo'];
 $type      = $_POST['type'];
@@ -22,6 +23,11 @@ echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
 echo "<title>Contact Form</title>\n";
 echo "<link rel=\"stylesheet\" href=\"bikesearch.css\" type=\"text/css\">\n";
 echo "</head>\n";
+
+if ( !$search) {
+  $search=$searchGet;
+}
+
 if (   ((!$search)    || (strlen($search)==0))
     && ((!$priceFrom) || (strlen($priceFrom)==0)) 
     && ((!$priceTo)   || (strlen($priceTo)==0))   ) {
