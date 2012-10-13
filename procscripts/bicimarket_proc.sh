@@ -115,7 +115,7 @@ function process_pages()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  echo "catting:>${BASE_FILE}<"
+  #echo "catting:>${BASE_FILE}<"
   cat ${BASE_FILE} | grep "<h2><a href" | tr -d '\r' | while read model;
       do
         # NOTE: each bike should be more or less like:
