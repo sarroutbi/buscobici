@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Parse results to common file with structure:
 #
@@ -12,6 +12,7 @@
 MAX_PRICE=2
 OUTPUT_FILE=./output
 URL_BASE="http://www.bikestocks.es/b2c"
+NO_CAMEL_MIN=6
 
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
@@ -19,6 +20,43 @@ SUBURL_KEY="SUBURL"
 STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
+
+#
+# 1 - The sentence: THIS IS A SENTENCE => This Is A Sentence
+# 2 - The min length: 4 => THIS IS A SENTENCE => This IS A Sentence
+#
+function camel()
+{
+  let counter=0;
+  for word in ${1};
+  do
+    let counter=${counter}+1
+  done
+  let counter2=0
+  for word in ${1};
+  do
+    let len=${#word}
+    let counter2=${counter2}+1
+    if [ ${len} -ge ${2} ]; then
+      firstLetter=$(echo "${word:0:1}")
+      rest=$(echo ${word:1} | tr "[A-Z]" "[a-z]") 
+      if [ ${counter2} -lt ${counter} ];
+      then
+        echo -n "${firstLetter}${rest} "
+      else
+        echo -n "${firstLetter}${rest}"
+      fi
+    else
+      if [ ${counter2} -lt ${counter} ];
+      then
+        echo -n "${word} "
+      else
+        echo -n "${word}"
+      fi
+    fi
+  done
+  echo
+}
 
 # Params
 # 1 - Model:     [MODEL]
@@ -93,7 +131,9 @@ function dump_bike_from_urls()
     #echo "PRICE=${PRICE}"
     #echo "FILE=${FILE}"
     #echo "========================================================================"
-    dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
+    TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
+    MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+    dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 
