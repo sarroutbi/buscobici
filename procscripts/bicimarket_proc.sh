@@ -13,6 +13,8 @@ MAX_PRICE=2
 OUTPUT_FILE=./output
 BASE_URL="http://www.bicimarket.com"
 NO_CAMEL_MIN=6
+NO_CAMEL_TRADEMARK_MIN=0
+MAX_PRICE_SEARCH=7
 URL="www.bicimarket.com"
 ONLY_DOMAIN="bicimarket.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
@@ -61,14 +63,14 @@ function print_model()
 }
 
 # Params:
-# 1 - The URL of bike
+# 1 - The File of bike
+# 2 - The model of bike
 function print_price()
 {
-  PRICES=$(wget "$1" -O - 2>&1 | grep "IVA" | grep '&euro' | grep -o "[0-9,\.]*[0-9],[0-9]*" | tr -d '.' | tail -1)
-  for price in ${PRICES};
-  do
-    PRICE=${price} 
-  done
+  FILE="$1"
+  MODEL="$2"
+  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep "<p>" | egrep "[0-9]{1,}.{0,1}" | sed -e 's/<[^>]*>//g' | tr -d '\r' | tr -d '.' | egrep -o "[0-9]{1,}.{0,1},{1,}[0-9]{0,}" | tr -d '\n')
+  #PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep "<p>" | grep "</p>" | tr -d '\r')
   echo ${PRICE}
 }
 
@@ -121,21 +123,24 @@ function process_pages()
         TRADEMARK=$(echo ${model} | sed -e 's/<[^>]*>//g' | awk {'print $1'})
         MODEL=$(echo ${model} | sed -e 's/<[^>]*>//g' | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
         URL=$(echo "${model}" | awk -F '<h2><a href="' {'print $2'} | awk -F ">" {'print $1'} | tr -d "\r" | tr -d '"')
-        FINAL_URL=$(echo "\"${BASE_URL}/${URL}\"")
-        echo "*****>${model}<*****"
-        echo "=========>TRADEMARK:${TRADEMARK}<==========="
-        echo "=========>MODEL:${MODEL}<==========="
-        echo "=========>URL:${FINAL_URL}<==========="
-        #FINAL_URL="${BASE_URL}${URL}"
-        #TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
-        #MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
-        #dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+        FINAL_URL=$(echo "${BASE_URL}${URL}")
+        PRICE=$(print_price "${BASE_FILE}" "${MODEL}")
+        TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+        MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+        #echo
+        #echo "*****>${model}<*****"
+        #echo "=========>TRADEMARK:${TRADEMARK_CAMEL}<==========="
+        #echo "=========>MODEL:${MODEL_CAMEL}<==========="
+        #echo "=========>URL:${FINAL_URL}<==========="
+        #echo "=========>STORE:${STORE}<==========="
+        #echo "=========>TYPE:${TYPE}<==========="
+        #echo "=========>PRICE:${PRICE}<==========="
+        #echo
+        dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
      done
 }
 
 > ${OUTPUT_FILE}
-
-#process_pages "${MTB_BIKES_BASE}" "Bicimarket" "MTB" >> ${OUTPUT_FILE}
 
 MTB_29_BIKES_BASE="Bicicletas-29-pulgadas-c20380.html"
 ELECTRIC_BIKES_BASE="Bicicletas-Bicicleta-Electrica-c20130.html"
@@ -155,4 +160,20 @@ FOLDING_BIKES_BASE="Bicicletas-Plegable-c10070.html"
 TRIATLON_BIKES_BASE="Bicicletas-Triatlon-c20376.html"
 URBAN_BIKES_BASE="Bicicletas-Urbanas-c10030.html"
 
-process_pages "${MTB_29_BIKES_BASE}" "Bicimarket" "MTB"
+process_pages "${MTB_29_BIKES_BASE}" "Bicimarket" "MTB-29" >> ${OUTPUT_FILE}
+process_pages "${ELECTRIC_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${TRIAL_BIKES_BASE}" "Bicimarket" "BMX" >> ${OUTPUT_FILE}
+process_pages "${BMX_BIKES_BASE}" "Bicimarket" "BMX" >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}" "Bicimarket" "ROAD"  >> ${OUTPUT_FILE}
+process_pages "${CICLOCROSS_BIKES_BASE}" "Bicimarket" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${MTB_XC_BIKES_BASE}" "Bicimarket" "MTB-FIX" >> ${OUTPUT_FILE}
+process_pages "${DIRT_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${DOUBLE_FREERIDE_BIKES_BASE}" "Bicimarket" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_BIKES_BASE}" "Bicimarket" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${FIXIE_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${HYBRID_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${JUNIOR_BIKES_BASE}" "Bicimarket" "KIDS" >> ${OUTPUT_FILE}
+process_pages "${LADY_BIKES_BASE}" "Bicimarket" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages "${FOLDING_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${TRIATLON_BIKES_BASE}" "Bicimarket" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${URBAN_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
