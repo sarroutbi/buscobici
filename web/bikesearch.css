@@ -32,12 +32,10 @@ p {
 padding-bottom: 22px;
 }
 
-/* Es importante notar que el ancho del cuerpo ha sido definido como 940px y que fue centrado. Nuestra barra de navegacinnn necesita hacer span en todo el ancho de la ventana, por lo que tendremos que aplicar algunos estilos adicionales: */
-
 nav {
 position: absolute;
 left: 0;
-width: 100%;
+width: 83%;
 background: nav_);
 }
 
@@ -190,9 +188,33 @@ margin-right:auto;
 
 #search_examples {
 color: #777;
-font-size: 11px;
+font-size: 12px;
 margin-left:auto;
 margin-right:auto;
+}
+
+.social_links {
+position: absolute;
+top:90%; 
+left:38%;
+line-height:0;
+}
+
+#social_text {
+color: #777;
+font-size: 16px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.social_img {
+vertical-align:middle;
+margin:none;
+padding:none;
+border:0;
+/* float:right; */
+/* display:block; */
+line-height:0;
 }
 
 #input_search_en {
