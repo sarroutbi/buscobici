@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # PROCESSING INFORMATION FOR SANFERBIKE STORE
 #
