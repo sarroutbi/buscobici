@@ -12,7 +12,7 @@ CREATE TABLE BIKES(
     model       char(50) NOT NULL,
     trademark   char(30) NOT NULL,
     store       varchar(30) NOT NULL,
-    url         varchar(100) NOT NULL,
+    url         varchar(200) NOT NULL,
     kind        varchar(30),
     price       real NOT NULL
 );
@@ -41,6 +41,9 @@ INSERT INTO bikes VALUES
 
 # Modify table content:
 # UPDATE bikes SET  url='http://www.kkstore.com' WHERE model ~ 'KK';
+
+# Count entries:
+# SELECT count(*) from bikes ;
 
 # Search:
 #

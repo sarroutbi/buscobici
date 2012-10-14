@@ -188,7 +188,6 @@ do
      ( len=$(getSectionLength ${FILE} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)"); \
       parseSectionContent ${FILE} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)" ${len} ) >> ${G_OUTPUT}
 done
-
 cat ${G_OUTPUT} | sort | uniq
 
 rm ${G_OUTPUT}
