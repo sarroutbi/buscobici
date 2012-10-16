@@ -122,7 +122,7 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
         }
 
         if ( strcmp($islink, $http_line) == 0 ) {
-          echo "\t\t<td><a href=\"$col_value\">$trademark - $model</a></td>\n";
+          echo "\t\t<td><a href=\"$col_value\" target=\"_blank\">$trademark - $model</a></td>\n";
         }
         else {
           if ( strcmp($col_value, "URBAN-CONFORT-FOLDING") == 0 ) {
