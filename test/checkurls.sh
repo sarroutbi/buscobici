@@ -4,7 +4,7 @@
 # GLOBAL CONFIGURATION VALUES:
 GLOBAL_URL="http://localhost/bikesearch"
 SEARCH_PHP="search.php"
-ERROR_LOG_FILE="./errorUrl.txt"
+ERROR_LOG_FILE="./errorurl.txt"
 let COUNTER_URL=0
 let ERROR_COUNTER=0
 TMP_FILE=$(mktemp)
