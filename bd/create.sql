@@ -46,13 +46,27 @@ SELECT count(*) from bikes ;
 
 --- Search:
 ---
---- bikesearch=# select * from bikes WHERE model ~ 'KK';
----        model         |      trademark       |  store   |       url       | kind | price  
---- ----------------------+----------------------+----------+-----------------+------+--------
---- 0000-KK -0000        | KK-TRADEMARK         | KK-STORE | www.kkstore.com | MTB  | 999.99
+SELECT * from bikes WHERE model ~ 'KK';
+        model         |      trademark       |  store   |       url       | kind | price  
+ ----------------------+----------------------+----------+-----------------+------+--------
+ 0000-KK -0000        | KK-TRADEMARK         | KK-STORE | www.kkstore.com | MTB  | 999.99
 
---- bikesearch=# select * from bikes WHERE model ~ '00000' OR trademark ~ 'KK';
----         model         |      trademark       |  store   |       url       | kind | price  
---- ----------------------+----------------------+----------+-----------------+------+--------
----  0000-KK -0000        | KK-TRADEMARK         | KK-STORE | www.kkstore.com | MTB  | 999.99
+SELECT * from bikes WHERE model ~ '00000' OR trademark ~ 'KK';
+         model         |      trademark       |  store   |       url       | kind | price  
+ ----------------------+----------------------+----------+-----------------+------+--------
+  0000-KK -0000        | KK-TRADEMARK         | KK-STORE | www.kkstore.com | MTB  | 999.99
+
+
+--- Search, avoiding repeated values:
 ---
+SELECT DISTINCT store FROM bikes ORDER by store;
+     store      
+----------------
+ Bicicletas Gil
+ Bicimania
+ Bicimarket
+ BikeStocks
+ BuhoBike
+ Mammoth
+ Sanferbike
+ 
