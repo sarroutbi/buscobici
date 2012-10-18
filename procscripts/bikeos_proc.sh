@@ -55,7 +55,7 @@ function print_model()
   FILE="$2"
   #echo "================== MODEL ===================="
   grep "${URL}" "${FILE}" | sed -e 's/<[^>]*>//g' | sed -e 's/[Bb]icicleta //g' \
-| sed -e 's/[Cc]arretera //g' | sed -e 's/[Cc]iclocross //g'
+| sed -e 's/[Cc]arretera //g' | sed -e 's/[Cc]iclocross //g' | sed -e 's/[Mm]onta.a //g'
   #echo "================== MODEL ===================="
 }
 
@@ -66,7 +66,7 @@ function print_price()
 {
   FILE="$1"
   MODEL="$2"
-  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,}.{0,1}[0-9]{0,},{0,1}[0-9]" | tr -d '.')
+  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,}.{0,1}[0-9]{1,},{0,1}[0-9]" | tr -d '.' | tail -1)
   PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ' ')
   echo ${PRICE_NO_SPACE}
 }
