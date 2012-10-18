@@ -35,7 +35,7 @@ done < ${TMP_FILE}
 
 let counter=0;
 
-cat ${SEARCH_PHP} | egrep -E -o '<a href="[^>]*>' | sed -e 's/<a href="//g' | sed -e 's/">//g' | while read URL;
+cat ${SEARCH_PHP} | egrep -E -o '<a href="[^>]*>' | sed -e 's/<a href="//g' | awk -F "target" {'print $1'} | sed -e 's/">//g' | tr -d '"' | while read URL;
 do
   printf "%s/%s (%s errors)\r" "${counter}" "${COUNTER_URL}" "${ERROR_COUNTER}"
   urltest "${URL}";
