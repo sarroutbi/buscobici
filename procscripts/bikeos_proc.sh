@@ -66,7 +66,7 @@ function print_price()
 {
   FILE="$1"
   MODEL="$2"
-  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,}.{0,1}[0-9]{1,},{0,1}[0-9]" | tr -d '.' | tail -1)
+  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
   PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ' ')
   echo ${PRICE_NO_SPACE}
 }
@@ -114,17 +114,17 @@ function dump_bike_from_urls()
   #echo "URLS:=>${URLS}<="
   echo "${URLS}" | while read URL;
   do
-    TRADEMARK_MODEL=$(print_model "${URL}" "${FILE}" | sed -e s/"+ Vale regalo [0-9]*"//g | sed -e 's/^[ \t]*//' | sed -e 's/[ \t]*$//')
+    TRADEMARK_MODEL=$(print_model "${URL}" "${FILE}" | sed -e s/"+ Vale regalo [0-9]*"//g | sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g')
     TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
-    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.]*$//g')
     PRICE=$(print_price "${FILE}" "${MODEL}")
     ### SOME URLs, that contain %, are not well parsed by awk. We insert an additional % char
     NOBASE_URL=$(echo ${URL} | awk -F "a href=" {'print $2'} | awk {'print $1'})
     FINAL_URL="${NOBASE_URL}"
     #echo "========================================================================"
-    #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
+    #echo "TRADEMARK_MODEL=>${TRADEMARK_MODEL}<="
     #echo "TRADEMARK=${TRADEMARK}"
-    #echo "MODEL=${MODEL}"
+    #echo "MODEL=>${MODEL}<="
     #echo "URL=${FINAL_URL}"
     #echo "PRICE=${PRICE}"
     #echo "FILE=${FILE}"
@@ -186,22 +186,22 @@ ELECTRIC_BIKES_PAGES="$(seq 1 20)"
 KIDS_BIKES_BASE="infantil.html?p="
 KIDS_BIKES_PAGES="$(seq 1 10)"
 
-# process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}"  "BikeOS" "MTB" >> ${OUTPUT_FILE}
-# process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "BikeOS" "ROAD" >> ${OUTPUT_FILE}
-# process_pages "${BMX_BIKES_BASE}"  "${BMX_BIKES_PAGES}"  "BikeOS" "BMX" >> ${OUTPUT_FILE}
-# process_pages "${TREKKING_OUTLET_BIKES_BASE}" "${TREKKING_OUTLET_BIKES_PAGES}" "BikeOS" "URBAN" >> ${OUTPUT_FILE}
-# process_pages "${TREKKING_2012_BIKES_BASE}" "${TREKKING_2012_BIKES_PAGES}" "BikeOS" "URBAN" >> ${OUTPUT_FILE}
-# process_pages "${TREKKING_2013_BIKES_BASE}" "${TREKKING_2013_BIKES_PAGES}" "BikeOS" "URBAN" >> ${OUTPUT_FILE}
-# process_pages "${FOLDING_BIKES_BASE}"  "${FOLDING_BIKES_PAGES}" "BikeOS" "URBAN" >> ${OUTPUT_FILE}
-# process_pages "${ELECTRIC_BIKES_BASE}" "${ELECTRIC_BIKES_PAGES}" "BikeOS" "URBAN" >> ${OUTPUT_FILE}
-# process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "BikeOS" "KIDS" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}"  "BikeOS" "MTB" >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "BikeOS" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${BMX_BIKES_BASE}"  "${BMX_BIKES_PAGES}"  "BikeOS" "BMX" >> ${OUTPUT_FILE}
+process_pages "${TREKKING_OUTLET_BIKES_BASE}" "${TREKKING_OUTLET_BIKES_PAGES}" "BikeOS" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${TREKKING_2012_BIKES_BASE}" "${TREKKING_2012_BIKES_PAGES}" "BikeOS" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${TREKKING_2013_BIKES_BASE}" "${TREKKING_2013_BIKES_PAGES}" "BikeOS" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${FOLDING_BIKES_BASE}"  "${FOLDING_BIKES_PAGES}" "BikeOS" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${ELECTRIC_BIKES_BASE}" "${ELECTRIC_BIKES_PAGES}" "BikeOS" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "BikeOS" "KIDS" >> ${OUTPUT_FILE}
 
-process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}"  "BikeOS" "MTB" 
-process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "BikeOS" "ROAD" 
-process_pages "${BMX_BIKES_BASE}"  "${BMX_BIKES_PAGES}"  "BikeOS" "BMX" 
-process_pages "${TREKKING_OUTLET_BIKES_BASE}" "${TREKKING_OUTLET_BIKES_PAGES}" "BikeOS" "URBAN" 
-process_pages "${TREKKING_2012_BIKES_BASE}" "${TREKKING_2012_BIKES_PAGES}" "BikeOS" "URBAN" 
-process_pages "${TREKKING_2013_BIKES_BASE}" "${TREKKING_2013_BIKES_PAGES}" "BikeOS" "URBAN" 
-process_pages "${FOLDING_BIKES_BASE}"  "${FOLDING_BIKES_PAGES}" "BikeOS" "URBAN" 
-process_pages "${ELECTRIC_BIKES_BASE}" "${ELECTRIC_BIKES_PAGES}" "BikeOS" "URBAN" 
-process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "BikeOS" "KIDS" 
+# process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}"  "BikeOS" "MTB" 
+# process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "BikeOS" "ROAD" 
+# process_pages "${BMX_BIKES_BASE}"  "${BMX_BIKES_PAGES}"  "BikeOS" "BMX" 
+# process_pages "${TREKKING_OUTLET_BIKES_BASE}" "${TREKKING_OUTLET_BIKES_PAGES}" "BikeOS" "URBAN" 
+# process_pages "${TREKKING_2012_BIKES_BASE}" "${TREKKING_2012_BIKES_PAGES}" "BikeOS" "URBAN" 
+# process_pages "${TREKKING_2013_BIKES_BASE}" "${TREKKING_2013_BIKES_PAGES}" "BikeOS" "URBAN" 
+# process_pages "${FOLDING_BIKES_BASE}"  "${FOLDING_BIKES_PAGES}" "BikeOS" "URBAN" 
+# process_pages "${ELECTRIC_BIKES_BASE}" "${ELECTRIC_BIKES_PAGES}" "BikeOS" "URBAN" 
+# process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "BikeOS" "KIDS" 
