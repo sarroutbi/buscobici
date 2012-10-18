@@ -9,7 +9,9 @@ let COUNTER_URL=0
 let ERROR_COUNTER=0
 TMP_FILE=$(mktemp)
 
-> ${ERROR_LOG_FILE}
+> "${ERROR_LOG_FILE}"
+> "${TMP_FILE}"
+rm -f "${SEARCH_PHP}"
 
 function urltest()
 {
