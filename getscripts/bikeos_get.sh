@@ -47,7 +47,7 @@ FOLDING_BIKES_PAGES="$(seq 1 5)"
 ELECTRIC_BIKES_BASE="${URL}/index.php/bicicletas/electricas.html?p="
 ELECTRIC_BIKES_PAGES="$(seq 1 20)"
 
-KIDS_BIKES_BASE="${URL}/index.php/bicicletas/.html?p="
+KIDS_BIKES_BASE="${URL}/index.php/bicicletas/infantil.html?p="
 KIDS_BIKES_PAGES="$(seq 1 10)"
 
 get_page "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}"
