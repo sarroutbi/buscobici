@@ -14,7 +14,7 @@ OUTPUT_FILE=./output
 BASE_URL="http://www.bikeos.com"
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
-MAX_PRICE_SEARCH=40
+MAX_PRICE_SEARCH=35
 URL="www.bikeos.com"
 ONLY_DOMAIN="bikeos.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
@@ -66,7 +66,23 @@ function print_price()
 {
   FILE="$1"
   MODEL="$2"
-  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
+  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
+  if [ "${PRICE}" = "" ];
+  then
+    let MAX_PRICE_SEARCH=${MAX_PRICE_SEARCH}+5
+    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
+  fi
+  if [ "${PRICE}" = "" ];
+  then
+    let MAX_PRICE_SEARCH=${MAX_PRICE_SEARCH}+5
+    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
+  fi
+  if [ "${PRICE}" = "" ];
+  then
+    ### Last effort, go for first one
+    let MAX_PRICE_SEARCH=${MAX_PRICE_SEARCH}+90
+    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | head -1)
+  fi
   PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ' ')
   echo ${PRICE_NO_SPACE}
 }
@@ -117,16 +133,18 @@ function dump_bike_from_urls()
     TRADEMARK_MODEL=$(print_model "${URL}" "${FILE}" | sed -e s/"+ Vale regalo [0-9]*"//g | sed -e s/"+ vale regalo [0-9]*"//g | sed -e s/"+Vale regalo [0-9]*"//g | sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g')
     TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
-    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g')
-    MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+#    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g')
+    ### echo "MODEL=echo \"${TRADEMARK_MODEL}\" | sed -e 's/${TRADEMARK}//g' | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g'"
+    MODEL=$(echo "${TRADEMARK_MODEL}" | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g')
+    MODEL_NO_TRADE=$(echo "${MODEL}" | awk -F "${TRADEMARK}" {'print $2'} | sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g')
+    MODEL_CAMEL=$(camel "${MODEL_NO_TRADE}" ${NO_CAMEL_MIN})
     PRICE=$(print_price "${FILE}" "${MODEL}")
-    ### SOME URLs, that contain %, are not well parsed by awk. We insert an additional % char
     NOBASE_URL=$(echo ${URL} | awk -F "a href=" {'print $2'} | awk {'print $1'})
     FINAL_URL="${NOBASE_URL}"
     #echo "========================================================================"
     #echo "TRADEMARK_MODEL=>${TRADEMARK_MODEL}<="
     #echo "TRADEMARK=${TRADEMARK}"
-    #echo "MODEL=>${MODEL}<="
+    #echo "MODEL=>${MODEL_NO_TRADE}<="
     #echo "URL=${FINAL_URL}"
     #echo "PRICE=${PRICE}"
     #echo "FILE=${FILE}"
