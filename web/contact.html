@@ -31,8 +31,9 @@
     <li><a href="index.html">Búsqueda Simple</a></li>
     <li><a href="byprice.html">Búsqueda por Precio y Tipo</a></li>
     <li id="li_contact"><a href="contact.html">Contactar</a></li>
+
     <!--li><a href="asearch">Búsqueda Avanzada</a></li-->
-    </ul>
+    <!--/ul-->
     </nav>
 
     <div class="social_links"> 
@@ -45,18 +46,52 @@
         </p>
     </div>
 
-    <div id="search">
-      <form method="post" action="search.php">
-          <input id="input_search" name="search" placeholder="Escriba aquí su búsqueda">
-          <input id="submit" name="submit" type="submit" value="Buscar">              
-      </form>
-      <p id="search_examples">Ejemplo : <a href="search.php?search=Trek+6500">Trek 6500</a>, 
-<a href="search.php?search=Giant+Trinity">Giant Trinity</a>, 
-<a href="search.php?search=Cube+AMS">Cube AMS</a></p>
+    <div id="contact">
+      <form name="contactform" method="post" action="mail.php">
+      <table width="450px">
+      <tr>
+       <td valign="top">
+        <label for="first_name">Nombre</label>
+       </td>
+       <td valign="top">
+        <input  type="text" name="first_name" maxlength="50" size="30">
+       </td>
+      </tr>
+      <tr>
+       <td valign="top">
+        <label for="last_name">Apellidos</label>
+       </td>
+       <td valign="top">
+        <input  type="text" name="last_name" maxlength="50" size="30">
+       </td>
+      </tr>
+      <tr>
+       <td valign="top">
+        <label for="email">Email</label>
+       </td>
+       <td valign="top">
+        <input  type="text" name="email" maxlength="80" size="30">
+       </td>
+      </tr>
+      <tr>
+       <td valign="top">
+        <label for="comments">Comentarios</label>
+       </td>
+       <td valign="top">
+        <textarea id="contact_area" name="comments" maxlength="1000" cols="45" rows="6">
+        </textarea>
+       </td>
+      </tr>
+      <tr>
+       <td colspan="2" style="text-align:center">
+        <input id="submit_contact" type="submit" value="Enviar"> 
+       </td>
+      </tr>
+      </table>
+    </form>
+
     </div>
 
-    <footer class="body">
-    </footer>
 
 </body>
 

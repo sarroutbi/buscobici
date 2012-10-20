@@ -35,30 +35,35 @@ padding-bottom: 22px;
 nav {
 position: absolute;
 left: 0;
-width: 83%;
+width: 100%;
 background: nav_);
 }
 
-/* Posicionamos el elemento nav de forma absoluta, lo alineamos a la izquierda de la ventana y hacemos que haga span en todo el ancho. Centraremos la lista anidada para mostrarla dentro de los lBackgroundurlites del disenio: */
-
 nav ul {
 margin: 0 auto;
-width: 940px;
+width: 1024px;
 list-style: none;
 }
 
-/* Ahora definiremos algunos estilos adicionales para hacer que los ems de navegacion luzcan */
-Nav ul li {
+nav ul li {
 float: left;
+text-align: left;
+}
+
+#li_contact{
+position: absolute;
+left: 85%;
+float: right;
+text-align: right;
 }
 
 nav ul li a {
 display: block;
-margin-right: 20px;
-width: 220px;
+margin-right: 50px;
+/* width: 220px; */
 font-size: 16px;
 line-height: 44px;
-text-align: center;
+text-align: left;
 text-decoration: none;
 color: #777;
 }
@@ -86,6 +91,22 @@ margin-left:auto;
 margin-right:auto;
 }
 
+#contact {
+position: absolute;
+top:30%; 
+left:27%;
+margin-left:auto;
+margin-right:auto;
+font-size: 14px;
+background: #467612 intro_background.) repeat-x;
+background-size: 100%;
+border-radius: 22px;
+}
+
+#contact_area {
+resize: none;
+}
+
 #searchPrice {
 position: absolute;
 top:45%;
@@ -100,6 +121,21 @@ top:0%;
 left:100%;
 margin-top: -ypx;
 margin-left: -xpx;
+width: 100px;
+color: #fff;
+text-transform: uppercase;
+text-shadow: #000 1px 1px;
+/*** Adding CSS3 Gradients ***/
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#963AD6), to(#781bb9));
+background: -moz-linear-gradient(19% 75% 90deg,#781bb9, #963AD6);
+}
+
+#submit_contact {
+position: absolute;
+left:45%;
+/*** top:0%;
+/*** margin-top: -ypx;
+/*** margin-left: -xpx; ***/
 width: 100px;
 color: #fff;
 text-transform: uppercase;
@@ -178,6 +214,25 @@ background: #467612 intro_background.) repeat-x;
 background-size: 100%;
 border-radius: 22px;
 }
+
+#contact_error {
+margin-top: 0px;
+padding: 0px;
+font-size: 16px;
+background: #467612 intro_background.) repeat-x;
+background-size: 100%;
+border-radius: 22px;
+}
+
+#contact_result {
+margin-top: 0px;
+padding: 0px;
+font-size: 16px;
+background: #467612 intro_background.) repeat-x;
+background-size: 100%;
+border-radius: 22px;
+}
+
 
 #num_results {
 color: #777;
