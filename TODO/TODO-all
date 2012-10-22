@@ -1,2 +1,2 @@
 - Refactor code to eliminate things that are repeated between scripts
-- 
+- Add stats generator from Database parsing
