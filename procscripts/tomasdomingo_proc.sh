@@ -179,28 +179,28 @@ function process_pages()
 
 > ${OUTPUT_FILE}
 
-MTB_BIKES_BASE="${URL}/esp/fitxa.php?numpag="
+MTB_BIKES_BASE="fitxa.php?numpag="
 MTB_BIKES_PAGES="$(seq 1 10)"
 
-MTB_DOWNBIKES_BASE="${URL}/esp/fitxa_downhill.php?numpag="
+MTB_DOWNBIKES_BASE="fitxa_downhill.php?numpag="
 MTB_DOWNBIKES_PAGES="$(seq 1 1)"
 
-MTB_WOMAN_BIKES_BASE="${URL}/esp/fitxa_dona.php?numpag="
+MTB_WOMAN_BIKES_BASE="fitxa_dona.php?numpag="
 MTB_WOMAN_BIKES_PAGES="$(seq 1 2)"
 
-ROAD_BIKES_BASE="${URL}/esp/fitxa_carretera.php?numpag="
+ROAD_BIKES_BASE="fitxa_carretera.php?numpag="
 ROAD_BIKES_PAGES="$(seq 1 5)"
 
-DUAL_STREET_BIKES_BASE="${URL}/esp/fitxa_dual.php?numpag="
+DUAL_STREET_BIKES_BASE="fitxa_dual.php?numpag="
 DUAL_STREET_BIKES_PAGES="$(seq 1 1)"
 
-BMX_BIKES_BASE="${URL}/esp/fitxa_bmx.php?numpag="
+BMX_BIKES_BASE="fitxa_bmx.php?numpag="
 BMX_BIKES_PAGES="$(seq 1 1)"
 
-URBAN_BIKES_BASE="${URL}/esp/fitxa_urban.php?numpag="
+URBAN_BIKES_BASE="fitxa_urban.php?numpag="
 URBAN_BIKES_PAGES="$(seq 1 2)"
 
-KIDS_BIKES_BASE="${URL}/esp/fitxa_infantil.php?numpag="
+KIDS_BIKES_BASE="fitxa_infantil.php?numpag="
 KIDS_BIKES_PAGES="$(seq 1 2)"
 
 process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}"  "TomasDomingo" "MTB" >> ${OUTPUT_FILE}
