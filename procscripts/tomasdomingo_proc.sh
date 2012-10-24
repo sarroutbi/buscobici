@@ -11,7 +11,7 @@
 
 MAX_PRICE=2
 OUTPUT_FILE=./output
-BASE_URL="http://www.tomasdomingo.com"
+BASE_URL="http://www.tomasdomingo.com/esp"
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
 MAX_PRICE_SEARCH=35
@@ -127,26 +127,24 @@ function dump_bike_from_urls()
 {
   URLS="$1"
   FILE="$2"
+  STORE="$3"
+  TYPE="$4"
   #echo "URLS:=>${URLS}<="
   echo "${URLS}" | while read URL;
   do
-    TRADEMARK_MODEL=$(print_model "${URL}" "${FILE}" | sed -e s/"+ Vale regalo [0-9]*"//g | sed -e s/"+ vale regalo [0-9]*"//g | sed -e s/"+Vale regalo [0-9]*"//g | sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g')
-    TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
-    TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
-#    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g')
-    ### echo "MODEL=echo \"${TRADEMARK_MODEL}\" | sed -e 's/${TRADEMARK}//g' | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g'"
-    MODEL=$(echo "${TRADEMARK_MODEL}" | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g')
-    MODEL_NO_TRADE=$(echo "${MODEL}" | awk -F "${TRADEMARK}" {'print $2'} | sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g')
-    MODEL_CAMEL=$(camel "${MODEL_NO_TRADE}" ${NO_CAMEL_MIN})
-    PRICE=$(print_price "${FILE}" "${MODEL}")
-    NOBASE_URL=$(echo ${URL} | awk -F "a href=" {'print $2'} | awk {'print $1'})
-    FINAL_URL="${NOBASE_URL}"
+    TRADEMARK=$(grep ${URL} ${FILE} -B10 | grep Marca: | awk -F "Marca:" {'print $2'} | sed -e 's/<[^>]*>//g' | tr -d '\r')
+    TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+    MODEL=$(grep ${URL} ${FILE} -B10 | grep Modelo: | awk -F "Modelo:" {'print $2'} | sed -e 's/<[^>]*>//g' | sed -e 's-^ --g' | tr -d '\r')
+    MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+    PRICE=$(grep ${URL} ${FILE} -B10 | grep Precio | egrep -o -E "[0-9]{1,}.{0,}[0-9]{0,}"  | awk -F "&" {'print $1'} | tr "." "," | tail -1)
+    FINAL_URL=$(echo \""${BASE_URL}"/"${URL}"\")
     #echo "========================================================================"
-    #echo "TRADEMARK_MODEL=>${TRADEMARK_MODEL}<="
-    #echo "TRADEMARK=${TRADEMARK}"
-    #echo "MODEL=>${MODEL_NO_TRADE}<="
+    #echo "TRADEMARK=${TRADEMARK_CAMEL}"
+    #echo "MODEL=>${MODEL_CAMEL}<="
     #echo "URL=${FINAL_URL}"
     #echo "PRICE=${PRICE}"
+    #echo "STORE=${STORE}"
+    #echo "TYPE=${TYPE}"
     #echo "FILE=${FILE}"
     #echo "========================================================================"
     dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
@@ -166,13 +164,13 @@ function process_pages()
 
   if [ "${PAGES}" = "" ];
   then
-    URLS=$(cat "${BASE_FILE}" | grep h2)
-    dump_bike_from_urls "${URLS}" 
+    URLS=$(cat "${BASE_FILE}" | grep -i "+ info" | awk -F "a href=" '{print $2}' | awk {'print $1'} | tr -d '"')
+    dump_bike_from_urls "${URLS}" "${BASE_FILE}" "${STORE}" "${TYPE}"
   else
     for page in ${PAGES};
     do 
-      URLS=$(cat "${BASE_FILE}${page}" | grep h2)
-      dump_bike_from_urls "${URLS}" "${BASE_FILE}${page}"
+      URLS=$(cat "${BASE_FILE}${page}" | grep -i "+ info" | awk -F "a href=" '{print $2}' | awk {'print $1'} | tr -d '"')
+      dump_bike_from_urls "${URLS}" "${BASE_FILE}${page}" "${STORE}" "${TYPE}"
     done
   fi
 }
@@ -211,3 +209,12 @@ process_pages "${BMX_BIKES_BASE}"  "${BMX_BIKES_PAGES}"  "TomasDomingo" "BMX" >>
 process_pages "${DUAL_STREET_BIKES_BASE}"  "${DUAL_STREET_BIKES_PAGES}" "TomasDomingo" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "TomasDomingo" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "TomasDomingo" "KIDS" >> ${OUTPUT_FILE}
+
+# process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}"  "TomasDomingo" "MTB" 
+# process_pages "${MTB_DOWNBIKES_BASE}"  "${MTB_DOWNBIKES_PAGES}"  "TomasDomingo" "MTB-DOUBLE" 
+# process_pages "${MTB_WOMAN_BASE}"  "${MTB_WOMAN_PAGES}"  "TomasDomingo" "MTB-WOMAN"
+# process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "TomasDomingo" "ROAD"
+# process_pages "${BMX_BIKES_BASE}"  "${BMX_BIKES_PAGES}"  "TomasDomingo" "BMX"
+# process_pages "${DUAL_STREET_BIKES_BASE}"  "${DUAL_STREET_BIKES_PAGES}" "TomasDomingo" "URBAN"
+# process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "TomasDomingo" "URBAN"
+# process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "TomasDomingo" "KIDS"
