@@ -126,7 +126,7 @@ function camel()
 function clean_model()
 {
     MODEL="${1}"
-    echo "${MODEL}" | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo//g' | sed -e 's/"Bici sin pedales"//g'
+    echo "${MODEL}" | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo//g' | sed -e 's/Bici sin pedales//g'
 }
 
 function dump_bike_from_file()
@@ -146,8 +146,7 @@ function dump_bike_from_file()
     TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-    MODEL_CLEAN=$(echo "${MODEL}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-    MODEL_CAMEL=$(camel "${MODEL_CLEAN}" "${NO_CAMEL_MIN}")
+    MODEL_CAMEL=$(camel "${MODEL}" "${NO_CAMEL_MIN}")
     URL=$(grep "${trademark_model}" "${FILE}" | grep "<h3><a href" | awk -F "a href=" {'print $2'} | awk -F ">" {'print $1'} | tr -d '"')
     FINAL_URL=$(echo "\"${BASE_URL}${URL}\"")
     PRICE=$(grep "${trademark_model}" "${FILE}" -A${DOWN_SEARCH} | grep "product_price" -A${PRICE_SEARCH} | egrep -E "[0-9]{0,1}.{0,1}[0-9]{2,},{0,1}[0-9]{0,}" -o | head -1 | tr -d '.' | sed -e 's/^[ /t]*//g' | tr -d ' ' | tr -d '\r' | tr -d '\n' | tr -d '\302' | tr -d '\240')
@@ -208,16 +207,24 @@ KIDS02_BIKES_BASE="bicicletas-ninos-bicis-sin-pedales-c693.html"
 KIDS03_BIKES_BASE="bicicletas-ninos-cuatriciclos-c696.html"
 KIDS04_BIKES_BASE="bicicletas-ninos-triciclos-c697.html"
 
-# process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}" "ProbikeShop" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_BASE}"    "${MTB_BIKES_PAGES}"    "ProbikeShop" "MTB"       >> ${OUTPUT_FILE}
+process_pages "${MTB_WOMAN_BASE}"    "${MTB_WOMAN_PAGES}"    "ProbikeShop" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}"   "${ROAD_BIKES_PAGES}"   "ProbikeShop" "ROAD"      >> ${OUTPUT_FILE}
+process_pages "${BMX_BIKES_BASE}"    "${BMX_BIKES_PAGES}"    "ProbikeShop" "BMX"       >> ${OUTPUT_FILE}
+process_pages "${KIDS00_BIKES_BASE}" "${KIDS00_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
+process_pages "${KIDS01_BIKES_BASE}" "${KIDS01_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
+process_pages "${KIDS02_BIKES_BASE}" "${KIDS02_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
+process_pages "${KIDS03_BIKES_BASE}" "${KIDS03_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
+process_pages "${KIDS04_BIKES_BASE}" "${KIDS04_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE} 
 
-process_pages "${MTB_BIKES_BASE}"    "${MTB_BIKES_PAGES}"    "ProbikeShop" "MTB"
-process_pages "${MTB_WOMAN_BASE}"    "${MTB_WOMAN_PAGES}"    "ProbikeShop" "MTB-WOMAN"
-process_pages "${ROAD_BIKES_BASE}"   "${ROAD_BIKES_PAGES}"   "ProbikeShop" "ROAD"
-process_pages "${BMX_BIKES_BASE}"    "${BMX_BIKES_PAGES}"    "ProbikeShop" "BMX"
-process_pages "${KIDS00_BIKES_BASE}" "${KIDS00_BIKES_PAGES}" "ProbikeShop" "KIDS"
-process_pages "${KIDS01_BIKES_BASE}" "${KIDS01_BIKES_PAGES}" "ProbikeShop" "KIDS"
-process_pages "${KIDS02_BIKES_BASE}" "${KIDS02_BIKES_PAGES}" "ProbikeShop" "KIDS"
-process_pages "${KIDS03_BIKES_BASE}" "${KIDS03_BIKES_PAGES}" "ProbikeShop" "KIDS"
-process_pages "${KIDS04_BIKES_BASE}" "${KIDS04_BIKES_PAGES}" "ProbikeShop" "KIDS"
+#process_pages "${MTB_BIKES_BASE}"    "${MTB_BIKES_PAGES}"    "ProbikeShop" "MTB"
+#process_pages "${MTB_WOMAN_BASE}"    "${MTB_WOMAN_PAGES}"    "ProbikeShop" "MTB-WOMAN"
+#process_pages "${ROAD_BIKES_BASE}"   "${ROAD_BIKES_PAGES}"   "ProbikeShop" "ROAD"
+#process_pages "${BMX_BIKES_BASE}"    "${BMX_BIKES_PAGES}"    "ProbikeShop" "BMX"
+#process_pages "${KIDS00_BIKES_BASE}" "${KIDS00_BIKES_PAGES}" "ProbikeShop" "KIDS"
+#process_pages "${KIDS01_BIKES_BASE}" "${KIDS01_BIKES_PAGES}" "ProbikeShop" "KIDS"
+#process_pages "${KIDS02_BIKES_BASE}" "${KIDS02_BIKES_PAGES}" "ProbikeShop" "KIDS"
+#process_pages "${KIDS03_BIKES_BASE}" "${KIDS03_BIKES_PAGES}" "ProbikeShop" "KIDS"
+#process_pages "${KIDS04_BIKES_BASE}" "${KIDS04_BIKES_PAGES}" "ProbikeShop" "KIDS"
 
 
