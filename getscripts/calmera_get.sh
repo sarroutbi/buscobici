@@ -34,22 +34,22 @@ MTB_29_BIKES_PAGES="$(seq 1 3)"
 MTB_FREERIDE_BIKES_BASE="${URL}/productos2.asp?id=4"
 
 ROAD_BIKES_BASE="${URL}/productos2.asp?id=5&p="
-ROAD_BIKES_PAGES="$(seq 1 3)
+ROAD_BIKES_PAGES="$(seq 1 3)"
 
 ROAD_CARBON_BIKES_BASE="${URL}/productos2.asp?id=6&p="
-ROAD_CARBON_BIKES_PAGES="$(seq 1 10)
+ROAD_CARBON_BIKES_PAGES="$(seq 1 10)"
 
 ROAD_TRIATLON_BIKES_BASE="${URL}/productos2.asp?id=7&p="
-ROAD_TRIATLON_BIKES_PAGES="$(seq 1 10)
+ROAD_TRIATLON_BIKES_PAGES="$(seq 1 10)"
 
 URBAN_BIKES_BASE="${URL}/productos2.asp?id=29&p="
-URBAN_BIKES_PAGES="$(seq 1 10)
+URBAN_BIKES_PAGES="$(seq 1 10)"
 
 TREKKING_BIKES_BASE="${URL}/productos2.asp?id=27&p="
-TREKKING_BIKES_PAGES="$(seq 1 5)
+TREKKING_BIKES_PAGES="$(seq 1 5)"
 
 FOLDING_BIKES_BASE="${URL}/productos2.asp?id=13&p="
-FOLDING_BIKES_PAGES="$(seq 1 5)
+FOLDING_BIKES_PAGES="$(seq 1 5)"
 
 ELECTRIC_BIKES_BASE="${URL}/productos2.asp?id=57&p="
 
@@ -63,7 +63,7 @@ KIDS05_BIKES_BASE="${URL}/productos2.asp?id=30"
 TRICYCLE_BIKES_BASE="${URL}/productos2.asp?id=15"
 
 BMX_BIKES_BASE="${URL}/productos2.asp?id=22&p="
-BMX_BIKES_PAGES="$(seq 1 3)
+BMX_BIKES_PAGES="$(seq 1 3)"
 
 BMX_FREESTYLE_BIKES_BASE="${URL}/productos2.asp?id=31"
 
