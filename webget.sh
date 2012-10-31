@@ -10,9 +10,14 @@ TMP_DIR_FILE=$(mktemp)
 TMP_SCRIPT_FILE=$(mktemp)
 TMP_PSCRIPT_FILE=$(mktemp)
 TMP_CONFIGS_FILE=$(mktemp)
+TMP_SUFFIX_FILE=$(mktemp)
 SCRIPT_CONFIG_LINE=SiteScriptGetter
 PSCRIPT_CONFIG_LINE=SiteScriptProcessor
 DIR_CONFIG_LINE=OutputDir
+SUFFIX_CONFIG_LINE=Suffix
+OUTPUT_FILE=output
+PSQL_FILE_PREFIX=psql
+RESULTS_DIR=RESULTS
 
 # Param 1 - The Line
 # Param 2 - The Key
@@ -69,7 +74,7 @@ done
 # 2 - For each config
 for conf in $(cat "${TMP_CONFIGS_FILE}");
 do
-  echo "$(allSectionContent ${conf})" | while read sectionLine
+  allSectionContent ${conf} | while read sectionLine
   do
     VAR=$(getValueWithKey $sectionLine ${SCRIPT_CONFIG_LINE})
     if [ $? -eq 0 ];
@@ -89,30 +94,46 @@ do
       DIR=${VAR3}
       echo ${DIR} > ${TMP_PSCRIPT_FILE}
     fi
+    VAR4=$(getValueWithKey $sectionLine ${SUFFIX_CONFIG_LINE})
+    if [ $? -eq 0 ];
+    then
+      SUFFIX=${VAR4}
+      echo ${SUFFIX} > ${TMP_SUFFIX_FILE}
+    fi
     if [ -s ${TMP_SCRIPT_FILE}  ];
     then 
       if [ -s ${TMP_PSCRIPT_FILE} ];
       then
         if [ -s ${TMP_DIR_FILE} ];
         then
-          echo "====================================="
-          PSCRIPT_FILE=$(cat ${TMP_PSCRIPT_FILE})
-          SCRIPT_FILE=$(cat ${TMP_SCRIPT_FILE})
-          SCRIPT_DIR=$(cat ${TMP_DIR_FILE})
-          echo "PSCRIPT_FILE=${PSCRIPT_FILE}"
-          echo "SCRIPT_FILE=${SCRIPT_FILE}"
-          echo "SCRIPT_DIR=${SCRIPT_DIR}"
-          echo "====================================="
-          mkdir -p ${SCRIPT_DIR}
-          cp ${SCRIPT_FILE} ${SCRIPT_DIR}
-          cp ${PSCRIPT_FILE} ${SCRIPT_DIR}
-          pushd ${SCRIPT_DIR} > /dev/null 
-          ./$(basename ${SCRIPT_FILE})
-          ./$(basename ${PSCRIPT_FILE})
-          popd > /dev/null 
-          > ${TMP_SCRIPT_FILE}
-          > ${TMP_PSCRIPT_FILE}
-          > ${TMP_DIR_FILE}
+          if [ -s ${TMP_SUFFIX_FILE} ];
+          then
+            DATE=$(date +%Y%m%d)
+            echo "====================================="
+            PSCRIPT_FILE=$(cat ${TMP_PSCRIPT_FILE})
+            SCRIPT_FILE=$(cat ${TMP_SCRIPT_FILE})
+            SCRIPT_DIR=$(cat ${TMP_DIR_FILE})
+            SUFFIX=$(cat ${TMP_SUFFIX_FILE})
+            echo "PSCRIPT_FILE=${PSCRIPT_FILE}"
+            echo "SCRIPT_FILE=${SCRIPT_FILE}"
+            echo "SCRIPT_DIR=${SCRIPT_DIR}"
+            echo "SUFFIX_FILE=${SUFFIX}"
+            echo "====================================="
+            mkdir -p ${SCRIPT_DIR}
+            cp ${SCRIPT_FILE} ${SCRIPT_DIR}
+            cp ${PSCRIPT_FILE} ${SCRIPT_DIR}
+            pushd ${SCRIPT_DIR} > /dev/null 
+            ./$(basename ${SCRIPT_FILE})
+            ./$(basename ${PSCRIPT_FILE})
+            popd > /dev/null
+            mkdir -p ${RESULTS_DIR}/${DATE}
+            cp ${SCRIPT_DIR}/${OUTPUT_FILE} ${RESULTS_DIR}/${DATE}/${OUTPUT_FILE}-${SUFFIX}
+            ./webtodb.sh ${RESULTS_DIR}/${DATE}/${OUTPUT_FILE}-${SUFFIX} > ${RESULTS_DIR}/${DATE}/${PSQL_FILE_PREFIX}-${SUFFIX}
+            > ${TMP_SCRIPT_FILE}
+            > ${TMP_PSCRIPT_FILE}
+            > ${TMP_DIR_FILE}
+            > ${TMP_SUFFIX_FILE}
+          fi
         fi
       fi
     fi
@@ -123,3 +144,4 @@ rm ${TMP_CONFIGS_FILE}
 rm ${TMP_DIR_FILE}
 rm ${TMP_SCRIPT_FILE}
 rm ${TMP_PSCRIPT_FILE}
+rm ${TMP_SUFFIX_FILE}
