@@ -245,3 +245,4 @@ process_pages "${TRICYCLE_BIKES_BASE}"      "${TRICYCLE_BIKES_PAGES}"      "Calm
 process_pages "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"           "Calmera" "BMX"
 process_pages "${BMX_FREESTYLE_BIKES_BASE}" "${BMX_FREESTYLE_BIKES_PAGES}" "Calmera" "BMX"
 process_pages "${BMX_TRIAL_BIKES_BASE}"     "${BMX_TRIAL_BIKES_PAGES}"     "Calmera" "BMX"
+
