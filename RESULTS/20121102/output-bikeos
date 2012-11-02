@@ -372,14 +372,7 @@ KIND=MTB
 [Hunter 9.7 2011outlet]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/mountain-bike/bicicleta-monta-a-bh-trail-hunter-9-7-2011-liquidacion.html"
 TRADEMARK=Bh
-PRICE=
-STORE=BikeOS
-KIND=MTB
-
-[Sensor 3.0 2012]
-SUBURL="http://www.bikeos.com/index.php/bicicletas/mountain-bike/bicicleta-monta-a-gt-sensor-3-0-2012.html"
-TRADEMARK=Gt
-PRICE=1299
+PRICE=1059
 STORE=BikeOS
 KIND=MTB
 
@@ -862,7 +855,7 @@ KIND=MTB
 [RACER 9.3 2011 Outlet]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/mountain-bike/bicicleta-monta-a-bh-trail-racer-9-3-2011-outlet.html"
 TRADEMARK=Bh
-PRICE=
+PRICE=839
 STORE=BikeOS
 KIND=MTB
 
@@ -988,7 +981,7 @@ KIND=MTB
 [RACER 9.3 2011]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/mountain-bike/bicicleta-monta-a-trail-racer-9-3-2011.html"
 TRADEMARK=Bh
-PRICE=
+PRICE=1079
 STORE=BikeOS
 KIND=MTB
 
@@ -1016,7 +1009,7 @@ KIND=MTB
 [RACER ALU Carbon 9.4 2011 Outlet]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/mountain-bike/bicicleta-monta-a-bh-trail-racer-alu-carbon-9-4-2011-outlet.html"
 TRADEMARK=Bh
-PRICE=
+PRICE=1189
 STORE=BikeOS
 KIND=MTB
 
@@ -1066,6 +1059,13 @@ KIND=MTB
 SUBURL="http://www.bikeos.com/index.php/bicicletas/mountain-bike/bicicleta-monta-a-lapierre-pro-race-200-2012.html"
 TRADEMARK=Lapierre
 PRICE=1271
+STORE=BikeOS
+KIND=MTB
+
+[Sensor 3.0 2012]
+SUBURL="http://www.bikeos.com/index.php/bicicletas/mountain-bike/bicicleta-monta-a-gt-sensor-3-0-2012.html"
+TRADEMARK=Gt
+PRICE=1299
 STORE=BikeOS
 KIND=MTB
 
@@ -2399,13 +2399,6 @@ PRICE=469,90
 STORE=BikeOS
 KIND=ROAD
 
-[Zaphire Sport 2012 Outlet]
-SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-bh-zaphire-sport-2012-outlet.html"
-TRADEMARK=Bh
-PRICE=489
-STORE=BikeOS
-KIND=ROAD
-
 [OTG 10 2012]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-otg-10-2012.html"
 TRADEMARK=Scott
@@ -2465,7 +2458,7 @@ KIND=ROAD
 [Speedster 50 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-speedster-50-doble-2013.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=399
 STORE=BikeOS
 KIND=ROAD
 
@@ -2507,7 +2500,7 @@ KIND=ROAD
 [Speedster 40 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-speedster-40-doble-2013.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=399
 STORE=BikeOS
 KIND=ROAD
 
@@ -2696,7 +2689,7 @@ KIND=ROAD
 [Speedster 10 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-speedster-10-doble-2013.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=399
 STORE=BikeOS
 KIND=ROAD
 
@@ -2724,7 +2717,7 @@ KIND=ROAD
 [Foil 40 2012]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-40-doble.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=1719
 STORE=BikeOS
 KIND=ROAD
 
@@ -2829,7 +2822,7 @@ KIND=ROAD
 [Foil 30 2012]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-30-doble.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=2099
 STORE=BikeOS
 KIND=ROAD
 
@@ -2878,7 +2871,7 @@ KIND=ROAD
 [Foil 20 2012]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-20-doble.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=2249
 STORE=BikeOS
 KIND=ROAD
 
@@ -2892,7 +2885,7 @@ KIND=ROAD
 [Foil 40 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-40-doble-2013.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=399
 STORE=BikeOS
 KIND=ROAD
 
@@ -2983,7 +2976,7 @@ KIND=ROAD
 [Foil 15 2012]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-15-doble.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=2999
 STORE=BikeOS
 KIND=ROAD
 
@@ -3018,7 +3011,7 @@ KIND=ROAD
 [CR1 Pro 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-cr1-pro-doble-2013.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=399
 STORE=BikeOS
 KIND=ROAD
 
@@ -3032,7 +3025,7 @@ KIND=ROAD
 [Foil 30 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-30-doble-2013.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=399
 STORE=BikeOS
 KIND=ROAD
 
@@ -3060,7 +3053,7 @@ KIND=ROAD
 [Foil 20 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-20-doble-2013.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=399
 STORE=BikeOS
 KIND=ROAD
 
@@ -3228,7 +3221,7 @@ KIND=ROAD
 [CR1 Premium 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-cr1-premium-doble-2013.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=399
 STORE=BikeOS
 KIND=ROAD
 
@@ -3256,7 +3249,7 @@ KIND=ROAD
 [Foil 15 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-15-doble-2013.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=399
 STORE=BikeOS
 KIND=ROAD
 
@@ -3284,7 +3277,7 @@ KIND=ROAD
 [Foil 10 2012]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-10-doble.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=4909
 STORE=BikeOS
 KIND=ROAD
 
@@ -3396,14 +3389,14 @@ KIND=ROAD
 [Foil 10 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-10-doble-2013.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=399
 STORE=BikeOS
 KIND=ROAD
 
 [Foil Team Issue 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-team-issue-doble-2013.html"
 TRADEMARK=Scott
-PRICE=
+PRICE=399
 STORE=BikeOS
 KIND=ROAD
 
@@ -3481,13 +3474,6 @@ KIND=ROAD
 SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-foil-premium-compact-2013.html"
 TRADEMARK=Scott
 PRICE=11000
-STORE=BikeOS
-KIND=ROAD
-
-[Plasma Premium 2013]
-SUBURL="http://www.bikeos.com/index.php/bicicletas/carretera/bicicleta-carretera-scott-plasma-premium-2013.html"
-TRADEMARK=Scott
-PRICE=9999
 STORE=BikeOS
 KIND=ROAD
 
@@ -4254,13 +4240,6 @@ PRICE=305
 STORE=BikeOS
 KIND=URBAN
 
-[MEGA 2012]
-SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-liquidacion/bicicleta-trekking-bh-mega-2012.html"
-TRADEMARK=Bh
-PRICE=539
-STORE=BikeOS
-KIND=URBAN
-
 [Windsor LUX Mujer 2012]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-liquidacion/bicicleta-trekking-bh-windsor-lux-mujer-2012.html"
 TRADEMARK=Bh
@@ -4306,7 +4285,7 @@ KIND=URBAN
 [Renegamujer K11S]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-liquidacion/bicicleta-trekking-bh-renegade-mujer-k11s.html"
 TRADEMARK=Bh
-PRICE=
+PRICE=209
 STORE=BikeOS
 KIND=URBAN
 
@@ -4366,17 +4345,17 @@ PRICE=489
 STORE=BikeOS
 KIND=URBAN
 
+[MEGA 2012]
+SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-liquidacion/bicicleta-trekking-bh-mega-2012.html"
+TRADEMARK=Bh
+PRICE=539
+STORE=BikeOS
+KIND=URBAN
+
 [Dr. Lisa Mujer]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-liquidacion/bicicleta-trekking-kona-dr-lisa-mujer.html"
 TRADEMARK=Kona
 PRICE=562,53
-STORE=BikeOS
-KIND=URBAN
-
-[Sportster 40 Mujer 2011]
-SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-liquidacion/bicicleta-trekking-scott-sportster-40-mujer-2011.html"
-TRADEMARK=Scott
-PRICE=449
 STORE=BikeOS
 KIND=URBAN
 
@@ -4394,17 +4373,17 @@ PRICE=489
 STORE=BikeOS
 KIND=URBAN
 
+[MEGA 2012]
+SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-liquidacion/bicicleta-trekking-bh-mega-2012.html"
+TRADEMARK=Bh
+PRICE=539
+STORE=BikeOS
+KIND=URBAN
+
 [Dr. Lisa Mujer]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-liquidacion/bicicleta-trekking-kona-dr-lisa-mujer.html"
 TRADEMARK=Kona
 PRICE=562,53
-STORE=BikeOS
-KIND=URBAN
-
-[Sportster 40 Mujer 2011]
-SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-liquidacion/bicicleta-trekking-scott-sportster-40-mujer-2011.html"
-TRADEMARK=Scott
-PRICE=449
 STORE=BikeOS
 KIND=URBAN
 
@@ -4419,6 +4398,13 @@ KIND=URBAN
 SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-liquidacion/bicicleta-trekking-bh-cambridge-mujer-k76s.html"
 TRADEMARK=Bh
 PRICE=489
+STORE=BikeOS
+KIND=URBAN
+
+[MEGA 2012]
+SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-liquidacion/bicicleta-trekking-bh-mega-2012.html"
+TRADEMARK=Bh
+PRICE=539
 STORE=BikeOS
 KIND=URBAN
 
@@ -4684,14 +4670,14 @@ KIND=URBAN
 [5 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-2013/bicicleta-trekking-monty-trekking-5-2013.html"
 TRADEMARK=Monty
-PRICE=
+PRICE=332
 STORE=BikeOS
 KIND=URBAN
 
 [7 2013]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/trekking-2013/bicicleta-trekking-monty-trekking-7-2013.html"
 TRADEMARK=Monty
-PRICE=
+PRICE=359
 STORE=BikeOS
 KIND=URBAN
 
@@ -5041,7 +5027,7 @@ KIND=URBAN
 [GliP7]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/plegables/bicicleta-dahon-glide-p7-1.html"
 TRADEMARK=Dahon
-PRICE=
+PRICE=799
 STORE=BikeOS
 KIND=URBAN
 
@@ -5713,7 +5699,7 @@ KIND=URBAN
 [electric Kit 2013 para MONTY Trycicle]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/electricas/tricycle-electric-kit-2013-para-bicicleta-monty-trycicle.html"
 TRADEMARK=Tricycle
-PRICE=
+PRICE=449
 STORE=BikeOS
 KIND=URBAN
 
@@ -6686,14 +6672,14 @@ KIND=KIDS
 [SHARK AH ROTOR 2012]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/infantil/bicicleta-infantil-bh-bmx-shark-ah-rotor-2012.html"
 TRADEMARK=Bh
-PRICE=
+PRICE=179
 STORE=BikeOS
 KIND=KIDS
 
 [SHARK 2012]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/infantil/bicicleta-infantil-bh-bmx-shark-2012.html"
 TRADEMARK=Bh
-PRICE=
+PRICE=145
 STORE=BikeOS
 KIND=KIDS
 
@@ -6819,14 +6805,14 @@ KIND=KIDS
 [SHARK AH ROTOR Outlet]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/infantil/bicicleta-infantil-bh-bmx-shark-ah-rotor-outlet.html"
 TRADEMARK=Bh
-PRICE=
+PRICE=139
 STORE=BikeOS
 KIND=KIDS
 
 [SHARK AH ROTOR 2011 Outlet]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/infantil/bicicleta-infantil-bh-bmx-shark-ah-rotor-2011-outlet.html"
 TRADEMARK=Bh
-PRICE=
+PRICE=139
 STORE=BikeOS
 KIND=KIDS
 
@@ -6861,7 +6847,7 @@ KIND=KIDS
 [SHARK AH ROTOR 2012 Outlet]
 SUBURL="http://www.bikeos.com/index.php/bicicletas/infantil/bicicleta-infantil-bh-bmx-shark-ah-rotor-2012-outlet.html"
 TRADEMARK=Bh
-PRICE=
+PRICE=150
 STORE=BikeOS
 KIND=KIDS
 
