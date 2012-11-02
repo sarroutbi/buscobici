@@ -25,7 +25,7 @@ function get_page()
 MTB_BIKES_BASE="${URL}/productos2.asp?id=25&p="
 MTB_BIKES_PAGES="$(seq 1 5)"
 
-MTB_DOUBLE_BASE="${URL}/productos2.asp?id=1&p=2"
+MTB_DOUBLE_BASE="${URL}/productos2.asp?id=1&p="
 MTB_DOUBLE_PAGES="$(seq 1 1)"
 
 MTB_29_BIKES_BASE="${URL}/productos2.asp?id=60&p="

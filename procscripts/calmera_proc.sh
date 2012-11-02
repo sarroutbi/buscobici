@@ -177,44 +177,71 @@ function process_pages()
 
 > ${OUTPUT_FILE}
 
-MTB_BIKES_BASE="fitxa.php?numpag="
-MTB_BIKES_PAGES="$(seq 1 10)"
+MTB_BIKES_BASE="productos2.asp?id=25&p="
+MTB_BIKES_PAGES="$(seq 1 5)"
 
-MTB_DOWNBIKES_BASE="fitxa_downhill.php?numpag="
-MTB_DOWNBIKES_PAGES="$(seq 1 1)"
+MTB_DOUBLE_BASE="productos2.asp?id=1&p="
+MTB_DOUBLE_PAGES="$(seq 1 1)"
 
-MTB_WOMAN_BIKES_BASE="fitxa_dona.php?numpag="
-MTB_WOMAN_BIKES_PAGES="$(seq 1 2)"
+MTB_29_BIKES_BASE="productos2.asp?id=60&p="
+MTB_29_BIKES_PAGES="$(seq 1 3)"
 
-ROAD_BIKES_BASE="fitxa_carretera.php?numpag="
-ROAD_BIKES_PAGES="$(seq 1 5)"
+MTB_FREERIDE_BIKES_BASE="productos2.asp?id=4"
 
-DUAL_STREET_BIKES_BASE="fitxa_dual.php?numpag="
-DUAL_STREET_BIKES_PAGES="$(seq 1 1)"
+ROAD_BIKES_BASE="productos2.asp?id=5&p="
+ROAD_BIKES_PAGES="$(seq 1 3)"
 
-BMX_BIKES_BASE="fitxa_bmx.php?numpag="
-BMX_BIKES_PAGES="$(seq 1 1)"
+ROAD_CARBON_BIKES_BASE="productos2.asp?id=6&p="
+ROAD_CARBON_BIKES_PAGES="$(seq 1 10)"
 
-URBAN_BIKES_BASE="fitxa_urban.php?numpag="
-URBAN_BIKES_PAGES="$(seq 1 2)"
+ROAD_TRIATLON_BIKES_BASE="productos2.asp?id=7&p="
+ROAD_TRIATLON_BIKES_PAGES="$(seq 1 10)"
 
-KIDS_BIKES_BASE="fitxa_infantil.php?numpag="
-KIDS_BIKES_PAGES="$(seq 1 2)"
+URBAN_BIKES_BASE="productos2.asp?id=29&p="
+URBAN_BIKES_PAGES="$(seq 1 10)"
 
-process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}"  "TomasDomingo" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_DOWNBIKES_BASE}"  "${MTB_DOWNBIKES_PAGES}"  "TomasDomingo" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_WOMAN_BASE}"  "${MTB_WOMAN_PAGES}"  "TomasDomingo" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "TomasDomingo" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${BMX_BIKES_BASE}"  "${BMX_BIKES_PAGES}"  "TomasDomingo" "BMX" >> ${OUTPUT_FILE}
-process_pages "${DUAL_STREET_BIKES_BASE}"  "${DUAL_STREET_BIKES_PAGES}" "TomasDomingo" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "TomasDomingo" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "TomasDomingo" "KIDS" >> ${OUTPUT_FILE}
+TREKKING_BIKES_BASE="productos2.asp?id=27&p="
+TREKKING_BIKES_PAGES="$(seq 1 5)"
 
-# process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}"  "TomasDomingo" "MTB" 
-# process_pages "${MTB_DOWNBIKES_BASE}"  "${MTB_DOWNBIKES_PAGES}"  "TomasDomingo" "MTB-DOUBLE" 
-# process_pages "${MTB_WOMAN_BASE}"  "${MTB_WOMAN_PAGES}"  "TomasDomingo" "MTB-WOMAN"
-# process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "TomasDomingo" "ROAD"
-# process_pages "${BMX_BIKES_BASE}"  "${BMX_BIKES_PAGES}"  "TomasDomingo" "BMX"
-# process_pages "${DUAL_STREET_BIKES_BASE}"  "${DUAL_STREET_BIKES_PAGES}" "TomasDomingo" "URBAN"
-# process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "TomasDomingo" "URBAN"
-# process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "TomasDomingo" "KIDS"
+FOLDING_BIKES_BASE="productos2.asp?id=13&p="
+FOLDING_BIKES_PAGES="$(seq 1 5)"
+
+ELECTRIC_BIKES_BASE="productos2.asp?id=57&p="
+
+KIDS00_BIKES_BASE="productos2.asp?id=17"
+KIDS01_BIKES_BASE="productos2.asp?id=18"
+KIDS02_BIKES_BASE="productos2.asp?id=19"
+KIDS03_BIKES_BASE="productos2.asp?id=20"
+KIDS04_BIKES_BASE="productos2.asp?id=21"
+KIDS05_BIKES_BASE="productos2.asp?id=30"
+
+TRICYCLE_BIKES_BASE="productos2.asp?id=15"
+
+BMX_BIKES_BASE="productos2.asp?id=22&p="
+BMX_BIKES_PAGES="$(seq 1 3)"
+
+BMX_FREESTYLE_BIKES_BASE="productos2.asp?id=31"
+
+BMX_TRIAL_BIKES_BASE="productos2.asp?id=31"
+
+process_pages "${MTB_BIKES_BASE}"           "${MTB_BIKES_PAGES}"           "Calmera" "MTB"
+process_pages "${MTB_DOUBLE_BASE}"          "${MTB_DOUBLE_PAGES}"          "Calmera" "MTB-DOUBLE"
+process_pages "${MTB_29_BIKES_BASE}"        "${MTB_29_BIKES_PAGES}"        "Calmera" "MTB-29"
+process_pages "${MTB_FREERIDE_BIKES_BASE}"  "${MTB_FREERIDE_BIKES_PAGES}"  "Calmera" "MTB"
+process_pages "${ROAD_BIKES_BASE}"          "${ROAD_BIKES_PAGES}"          "Calmera" "ROAD"
+process_pages "${ROAD_CARBON_BIKES_BASE}"   "${ROAD_CARBON_BIKES_PAGES}"   "Calmera" "ROAD"
+process_pages "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}" "Calmera" "ROAD"
+process_pages "${URBAN_BIKES_BASE}"         "${URBAN_BIKES_PAGES}"         "Calmera" "URBAN"
+process_pages "${TREKKING_BIKES_BASE}"      "${TREKKING_BIKES_PAGES}"      "Calmera" "URBAN"
+process_pages "${FOLDING_BIKES_BASE}"       "${FOLDING_BIKES_PAGES}"       "Calmera" "URBAN"
+process_pages "${ELECTRIC_BIKES_BASE}"      "${ELECTRIC_BIKES_PAGES}"      "Calmera" "URBAN"
+process_pages "${KIDS00_BIKES_BASE}"        "${KIDS00_BIKES_PAGES}"        "Calmera" "KIDS"
+process_pages "${KIDS01_BIKES_BASE}"        "${KIDS01_BIKES_PAGES}"        "Calmera" "KIDS"
+process_pages "${KIDS02_BIKES_BASE}"        "${KIDS02_BIKES_PAGES}"        "Calmera" "KIDS"
+process_pages "${KIDS03_BIKES_BASE}"        "${KIDS03_BIKES_PAGES}"        "Calmera" "KIDS"
+process_pages "${KIDS04_BIKES_BASE}"        "${KIDS04_BIKES_PAGES}"        "Calmera" "KIDS"
+process_pages "${KIDS05_BIKES_BASE}"        "${KIDS05_BIKES_PAGES}"        "Calmera" "KIDS"
+process_pages "${TRICYCLE_BIKES_BASE}"      "${TRICYCLE_BIKES_PAGES}"      "Calmera" "KIDS"
+process_pages "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"           "Calmera" "BMX"
+process_pages "${BMX_FREESTYLE_BIKES_BASE}" "${BMX_FREESTYLE_BIKES_PAGES}" "Calmera" "BMX"
+process_pages "${BMX_TRIAL_BIKES_BASE}"     "${BMX_TRIAL_BIKES_PAGES}"     "Calmera" "BMX"
