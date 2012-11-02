@@ -74,7 +74,7 @@ function print_price()
   fi
   if [ "${PRICE}" = "" ];
   then
-    let MAX_PRICE_SEARCH=${MAX_PRICE_SEARCH}+5
+    let MAX_PRICE_SEARCH=${MAX_PRICE_SEARCH}+10
     PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
   fi
   if [ "${PRICE}" = "" ];
@@ -85,6 +85,30 @@ function print_price()
   fi
   PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ' ')
   echo ${PRICE_NO_SPACE}
+}
+
+# Params
+# 1 - The URL where to extract the file
+function log_print_price2()
+{
+  echo "Printing price from URL:${1}"
+  echo "Command: wget -o /dev/null ${1} -O - | grep '<span class=\"special-price\">' -A10 | sed -e 's/<[^>]*>//g' | egrep -o -E \"[0-9]{0,}.{0,}[0-9]{1,},{0,}[0-9]{0,}\" | head -1 | sed -e 's/[^0-9,\.,\,]*//g'"
+  OUTPUT=$(wget ${1} -o /dev/null -O - | grep '<span class="special-price">' -A10 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,}.{0,}[0-9]{1,},{0,}[0-9]{0,}" | head -1 | sed -e 's/[^0-9,\.,\,]*//g')
+  OUTPUT2=$(wget -o /dev/null ${1} -O - | grep '<span class="special-price">' -A10 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,}.{0,}[0-9]{1,},{0,}[0-9]{0,}" | head -1)
+  OUTPUT3=$(wget -o /dev/null ${1} -O - | grep '<span class="special-price">' -A10 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,}.{0,}[0-9]{1,},{0,}[0-9]{0,}")
+  OUTPUT4=$(wget -o /dev/null ${1} -O - | grep '<span class="special-price">' -A10 | sed -e 's/<[^>]*>//g')
+  echo "Output :=>${OUTPUT}<="
+  #echo "Output2:=>${OUTPUT2}<="
+  #echo "Output3:=>${OUTPUT3}<="
+  #echo "Output4:=>${OUTPUT4}<="
+}
+
+# Params
+# 1 - The URL where to extract the file
+function print_price2()
+{
+  PRICE=$(wget -o /dev/null ${1} -O - | grep '<span class="special-price">' -A10 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,}.{0,}[0-9]{1,},{0,}[0-9]{0,}" | head -1 | sed -e 's/[^0-9,\.,\,]*//g')
+  echo ${PRICE}
 }
 
 # Params:
@@ -141,6 +165,14 @@ function dump_bike_from_urls()
     PRICE=$(print_price "${FILE}" "${MODEL}")
     NOBASE_URL=$(echo ${URL} | awk -F "a href=" {'print $2'} | awk {'print $1'})
     FINAL_URL="${NOBASE_URL}"
+    echo "${PRICE}" | grep "[0-9]" 2>&1 >/dev/null
+    if [ $? -ne 0 ];
+    then
+      FINAL_URL_NO_QUOTED=$(echo ${FINAL_URL} | tr -d '"')
+      # echo "No PRICE!, printing price from =>${FINAL_URL_NO_QUOTED}<="
+      # log_print_price2 ${FINAL_URL_NO_QUOTED}
+      PRICE=$(print_price2 ${FINAL_URL_NO_QUOTED} | tr -d '.')
+    fi 
     #echo "========================================================================"
     #echo "TRADEMARK_MODEL=>${TRADEMARK_MODEL}<="
     #echo "TRADEMARK=${TRADEMARK}"
