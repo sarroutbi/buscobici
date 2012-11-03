@@ -226,25 +226,25 @@ BMX_FREESTYLE_BIKES_BASE="productos2.asp?id=31"
 
 BMX_TRIAL_BIKES_BASE="productos2.asp?id=32"
 
-process_pages "${MTB_BIKES_BASE}"           "${MTB_BIKES_PAGES}"           "Calmera" "MTB"
-process_pages "${MTB_DOUBLE_BASE}"          "${MTB_DOUBLE_PAGES}"          "Calmera" "MTB-DOUBLE"
-process_pages "${MTB_29_BIKES_BASE}"        "${MTB_29_BIKES_PAGES}"        "Calmera" "MTB-29"
-process_pages "${MTB_FREERIDE_BIKES_BASE}"  "${MTB_FREERIDE_BIKES_PAGES}"  "Calmera" "MTB"
-process_pages "${ROAD_BIKES_BASE}"          "${ROAD_BIKES_PAGES}"          "Calmera" "ROAD"
-process_pages "${ROAD_CARBON_BIKES_BASE}"   "${ROAD_CARBON_BIKES_PAGES}"   "Calmera" "ROAD"
-process_pages "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}" "Calmera" "ROAD"
-process_pages "${URBAN_BIKES_BASE}"         "${URBAN_BIKES_PAGES}"         "Calmera" "URBAN"
-process_pages "${TREKKING_BIKES_BASE}"      "${TREKKING_BIKES_PAGES}"      "Calmera" "URBAN"
-process_pages "${FOLDING_BIKES_BASE}"       "${FOLDING_BIKES_PAGES}"       "Calmera" "URBAN"
-process_pages "${ELECTRIC_BIKES_BASE}"      "${ELECTRIC_BIKES_PAGES}"      "Calmera" "URBAN"
-process_pages "${KIDS00_BIKES_BASE}"        "${KIDS00_BIKES_PAGES}"        "Calmera" "KIDS"
-process_pages "${KIDS01_BIKES_BASE}"        "${KIDS01_BIKES_PAGES}"        "Calmera" "KIDS"
-process_pages "${KIDS02_BIKES_BASE}"        "${KIDS02_BIKES_PAGES}"        "Calmera" "KIDS"
-process_pages "${KIDS03_BIKES_BASE}"        "${KIDS03_BIKES_PAGES}"        "Calmera" "KIDS"
-process_pages "${KIDS04_BIKES_BASE}"        "${KIDS04_BIKES_PAGES}"        "Calmera" "KIDS"
-process_pages "${KIDS05_BIKES_BASE}"        "${KIDS05_BIKES_PAGES}"        "Calmera" "KIDS"
-process_pages "${TRICYCLE_BIKES_BASE}"      "${TRICYCLE_BIKES_PAGES}"      "Calmera" "KIDS"
-process_pages "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"           "Calmera" "BMX"
-process_pages "${BMX_FREESTYLE_BIKES_BASE}" "${BMX_FREESTYLE_BIKES_PAGES}" "Calmera" "BMX"
-process_pages "${BMX_TRIAL_BIKES_BASE}"     "${BMX_TRIAL_BIKES_PAGES}"     "Calmera" "BMX"
+process_pages "${MTB_BIKES_BASE}"           "${MTB_BIKES_PAGES}"           "Calmera" "MTB"    >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_BASE}"          "${MTB_DOUBLE_PAGES}" "Calmera" "MTB-DOUBLE"      >> ${OUTPUT_FILE}
+process_pages "${MTB_29_BIKES_BASE}"        "${MTB_29_BIKES_PAGES}"        "Calmera" "MTB-29" >> ${OUTPUT_FILE}
+process_pages "${MTB_FREERIDE_BIKES_BASE}"  "${MTB_FREERIDE_BIKES_PAGES}"  "Calmera" "MTB"    >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}"          "${ROAD_BIKES_PAGES}"          "Calmera" "ROAD"   >> ${OUTPUT_FILE}
+process_pages "${ROAD_CARBON_BIKES_BASE}"   "${ROAD_CARBON_BIKES_PAGES}"   "Calmera" "ROAD"   >> ${OUTPUT_FILE}
+process_pages "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}" "Calmera" "ROAD"   >> ${OUTPUT_FILE}
+process_pages "${URBAN_BIKES_BASE}"         "${URBAN_BIKES_PAGES}"         "Calmera" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${TREKKING_BIKES_BASE}"      "${TREKKING_BIKES_PAGES}"      "Calmera" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${FOLDING_BIKES_BASE}"       "${FOLDING_BIKES_PAGES}"       "Calmera" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${ELECTRIC_BIKES_BASE}"      "${ELECTRIC_BIKES_PAGES}"      "Calmera" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${KIDS00_BIKES_BASE}"        "${KIDS00_BIKES_PAGES}"        "Calmera" "KIDS"   >> ${OUTPUT_FILE}
+process_pages "${KIDS01_BIKES_BASE}"        "${KIDS01_BIKES_PAGES}"        "Calmera" "KIDS"   >> ${OUTPUT_FILE}
+process_pages "${KIDS02_BIKES_BASE}"        "${KIDS02_BIKES_PAGES}"        "Calmera" "KIDS"   >> ${OUTPUT_FILE}
+process_pages "${KIDS03_BIKES_BASE}"        "${KIDS03_BIKES_PAGES}"        "Calmera" "KIDS"   >> ${OUTPUT_FILE}
+process_pages "${KIDS04_BIKES_BASE}"        "${KIDS04_BIKES_PAGES}"        "Calmera" "KIDS"   >> ${OUTPUT_FILE}
+process_pages "${KIDS05_BIKES_BASE}"        "${KIDS05_BIKES_PAGES}"        "Calmera" "KIDS"   >> ${OUTPUT_FILE}
+process_pages "${TRICYCLE_BIKES_BASE}"      "${TRICYCLE_BIKES_PAGES}"      "Calmera" "KIDS"   >> ${OUTPUT_FILE}
+process_pages "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"           "Calmera" "BMX"    >> ${OUTPUT_FILE}
+process_pages "${BMX_FREESTYLE_BIKES_BASE}" "${BMX_FREESTYLE_BIKES_PAGES}" "Calmera" "BMX"    >> ${OUTPUT_FILE}
+process_pages "${BMX_TRIAL_BIKES_BASE}"     "${BMX_TRIAL_BIKES_PAGES}"     "Calmera" "BMX"    >> ${OUTPUT_FILE} 
 
