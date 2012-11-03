@@ -136,9 +136,10 @@ function process_pages()
       do
         # NOTE: each bike should be more or less like:
         # ORBEA<br>AQUA T23 2013<br><b>717 &euro;</b>
-        TRADEMARK=$(echo ${bike} | awk -F "</a><br>" {'print $2'} | awk -F "<br>" {'print $1'})
-        MODEL=$(echo ${bike} | awk -F "<br>" {'print $3'})
-        PRICE=$(echo ${bike} | awk -F "<br>" {'print $4'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o)
+        # echo "BIKE:=>${bike}<="
+        TRADEMARK=$(echo ${bike} | awk -F "<br>" {'print $1'} | sed -e 's/<[^>]*>//g')
+        MODEL=$(echo ${bike} | awk -F "<br>" {'print $2'} | sed -e 's/<[^>]*>//g' | tr "'" '"')
+        PRICE=$(echo ${bike} | awk -F "<br>" {'print $3'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o)
         # echo "=========>${bike}<==========="
         URL=$(echo "${bike}" | awk -F "<a href='" {'print $2'} | awk -F ">" {'print $1'} | tr -d "'")
         FINAL_URL="${BASE_URL}${URL}"
@@ -152,10 +153,11 @@ function process_pages()
       cat ${BASE_FILE}${page} | grep "resumenproducto" | awk -F "<div class='resumenproducto'>" {'for(i=1;i<=NF;++i){printf $i"\n";}'} | while read bike;
       do
         # NOTE: each bike should be more or less like:
-        # ORBEA<br>AQUA T23 2013<br><b>717 &euro;</b>
-        TRADEMARK=$(echo ${bike} | awk -F "</a><br>" {'print $2'} | awk -F "<br>" {'print $1'})
-        MODEL=$(echo ${bike} | awk -F "<br>" {'print $3'})
-        PRICE=$(echo ${bike} | awk -F "<br>" {'print $4'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o)
+        # <a href=""...>ORBEA<br>AQUA T23 2013<br><b>717 &euro;</b>
+        # echo "BIKE:=>${bike}<="
+        TRADEMARK=$(echo ${bike} | awk -F "<br>" {'print $1'} | sed -e 's/<[^>]*>//g')
+        MODEL=$(echo ${bike} | awk -F "<br>" {'print $2'} | sed -e 's/<[^>]*>//g' | tr "'" '"')
+        PRICE=$(echo ${bike} | awk -F "<br>" {'print $3'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o)
         # echo "=========>${bike}<==========="
         URL=$(echo "${bike}" | awk -F "<a href='" {'print $2'} | awk -F ">" {'print $1'} | tr -d "'")
         FINAL_URL="${BASE_URL}${URL}"
