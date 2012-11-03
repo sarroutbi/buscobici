@@ -11,7 +11,7 @@
 
 MAX_PRICE=2
 OUTPUT_FILE=./output
-BASE_URL="http://www.calmera.es/esp"
+BASE_URL="http://www.calmera.es"
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
 MAX_PRICE_SEARCH=35
@@ -132,15 +132,17 @@ function dump_bike_from_urls()
   #echo "URLS:=>${URLS}<="
   echo "${URLS}" | while read URL;
   do
-    TRADEMARK=$(grep ${URL} ${FILE} -B10 | grep Marca: | awk -F "Marca:" {'print $2'} | sed -e 's/<[^>]*>//g' | tr -d '\r')
+    TRADEMARK_MODEL=$(grep "${URL}" "${FILE}" -B10 | grep '<p class="tituloprod">' | sed -e 's/<[^>]*>//g' | tail -1 | tr -d '\r' | sed -e 's/^[ /t]//g')
+    TRADEMARK=$(echo "${TRADEMARK_MODEL}" | awk {'print $1'})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
-    MODEL=$(grep ${URL} ${FILE} -B10 | grep Modelo: | awk -F "Modelo:" {'print $2'} | sed -e 's/<[^>]*>//g' | sed -e 's-^ --g' | tr -d '\r')
+    MODEL=$(echo "${TRADEMARK_MODEL}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
-    PRICE=$(grep ${URL} ${FILE} -B10 | grep Precio | egrep -o -E "[0-9]{1,}.{0,}[0-9]{0,}"  | awk -F "&" {'print $1'} | tr "." "," | tail -1)
+    PRICE=$(grep ${URL} ${FILE} -B10 | grep "precio.jpg" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,}[0-9]{1,},{0,}[0-9]{0,}"  | tr "." "," | tail -1)
     FINAL_URL=$(echo \""${BASE_URL}"/"${URL}"\")
     #echo "========================================================================"
+    #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
     #echo "TRADEMARK=${TRADEMARK_CAMEL}"
-    #echo "MODEL=>${MODEL_CAMEL}<="
+    #echo "MODEL=${MODEL_CAMEL}="
     #echo "URL=${FINAL_URL}"
     #echo "PRICE=${PRICE}"
     #echo "STORE=${STORE}"
@@ -164,12 +166,12 @@ function process_pages()
 
   if [ "${PAGES}" = "" ];
   then
-    URLS=$(cat "${BASE_FILE}" | grep -i "+ info" | awk -F "a href=" '{print $2}' | awk {'print $1'} | tr -d '"')
+    URLS=$(cat "${BASE_FILE}" | grep '<a href="producto' | awk -F '<a href=' {'print $2'} | awk -F '"' {'print $1'})
     dump_bike_from_urls "${URLS}" "${BASE_FILE}" "${STORE}" "${TYPE}"
   else
     for page in ${PAGES};
     do 
-      URLS=$(cat "${BASE_FILE}${page}" | grep -i "+ info" | awk -F "a href=" '{print $2}' | awk {'print $1'} | tr -d '"')
+      URLS=$(cat "${BASE_FILE}${page}" | grep '<a href="producto' | awk -F '<a href="' {'print $2'} | awk -F '"' {'print $1'})
       dump_bike_from_urls "${URLS}" "${BASE_FILE}${page}" "${STORE}" "${TYPE}"
     done
   fi
