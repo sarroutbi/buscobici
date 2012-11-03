@@ -2,7 +2,7 @@
 #
 # 
 # GLOBAL CONFIGURATION VALUES:
-GLOBAL_URL="http://localhost/bikesearch"
+GLOBAL_URL="http://www.buscobici.com/bikesearch"
 SEARCH_PHP="search.php"
 ERROR_LOG_FILE="./errorurl.txt"
 let COUNTER_URL=0
