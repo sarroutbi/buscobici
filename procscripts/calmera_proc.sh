@@ -222,7 +222,7 @@ BMX_BIKES_PAGES="$(seq 1 3)"
 
 BMX_FREESTYLE_BIKES_BASE="productos2.asp?id=31"
 
-BMX_TRIAL_BIKES_BASE="productos2.asp?id=31"
+BMX_TRIAL_BIKES_BASE="productos2.asp?id=32"
 
 process_pages "${MTB_BIKES_BASE}"           "${MTB_BIKES_PAGES}"           "Calmera" "MTB"
 process_pages "${MTB_DOUBLE_BASE}"          "${MTB_DOUBLE_PAGES}"          "Calmera" "MTB-DOUBLE"

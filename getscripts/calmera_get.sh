@@ -67,7 +67,7 @@ BMX_BIKES_PAGES="$(seq 1 3)"
 
 BMX_FREESTYLE_BIKES_BASE="${URL}/productos2.asp?id=31"
 
-BMX_TRIAL_BIKES_BASE="${URL}/productos2.asp?id=31"
+BMX_TRIAL_BIKES_BASE="${URL}/productos2.asp?id=32"
 
 get_page "${MTB_DOWNBIKES_BASE}"       "${MTB_DOWNBIKES_PAGES}"
 get_page "${MTB_BIKES_BASE}"           "${MTB_BIKES_PAGES}"            
