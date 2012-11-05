@@ -33,7 +33,7 @@ proc_file()
   do
     MODEL=$(echo "${line}" | grep "<a id" | grep "href=" | grep "Listado" | sed -e 's/<[^>]*>//g' | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     TRADEMARK=$(echo "${line}" | grep "<a id" | grep "href=" | grep "Listado" | sed -e 's/<[^>]*>//g' | awk {'print $1'})
-    PRICE=$(grep "${MODEL}" "${1}" -A${MAX_TO_PRICE} | grep -o "[0-9,\.]*,[0-9]*" | sed -e 's/<[^>]*>//g' | tr -d ' ' | tr -d '\n' | tr -d '\.' | awk {'print $1'})
+    PRICE=$(grep "${MODEL}" "${1}" -A${MAX_TO_PRICE} | grep -o "[0-9,\.]*,[0-9]*" | sed -e 's/<[^>]*>//g' | tr -d ' ' | tr -d '\.' | awk {'print $1'} | head -1)
     SUBURL=$(echo ${line} |  grep "<a id" | grep "href=" | grep "Listado" | awk -F "href=" {'print $2'} | awk -F ">" {'print $1'} | sed s-"../../"-${URL_ROOT}-g)
     echo "[${MODEL}]"
     echo "SUBURL=${SUBURL}"
