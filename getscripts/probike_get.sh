@@ -22,7 +22,7 @@ function get_page()
 }
 
 
-ROAD_BIKES_BASE="${URL}/bicicletas/carretera.html?p=1"
+ROAD_BIKES_BASE="${URL}/bicicletas/carretera.html?p="
 ROAD_BIKES_PAGES="$(seq 1 3)"
 
 BMX_BIKES_BASE="${URL}/bicicletas/free-dh.html"
@@ -35,8 +35,8 @@ MTB_BIKES_PAGES=$(seq 1 8)
 URBAN_BIKES_BASE="${URL}/bicicletas/urbana.html?p="
 URBAN_BIKES_PAGES=$(seq 1 3)
 
-get_pages "${ROAD_BIKES_BASE}"  "${ROAD_BIKES_PAGES}"
-get_pages "${BMX_BIKES_BASE}"   "${BMX_BIKES_PAGES}"
-get_pages "${KIDS_BIKES_BASE}"  "${KIDS_BIKES_PAGES}"
-get_pages "${MTB_BIKES_BASE}"   "${MTB_BIKES_PAGES}"
-get_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}"
+get_page "${ROAD_BIKES_BASE}"  "${ROAD_BIKES_PAGES}"
+get_page "${BMX_BIKES_BASE}"   "${BMX_BIKES_PAGES}"
+get_page "${KIDS_BIKES_BASE}"  "${KIDS_BIKES_PAGES}"
+get_page "${MTB_BIKES_BASE}"   "${MTB_BIKES_PAGES}"
+get_page "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}"
