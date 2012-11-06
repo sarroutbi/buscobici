@@ -20,7 +20,6 @@ function get_pages()
   fi
 }
 
-
 MTB_BIKES_ORBEA_26_MTB_BASE="${URL}/orbea-2013/orbea-mtb-26.html"
 MTB_BIKES_CUBE_26_MTB_BASE="${URL}/cube-2013/cube_mtb.html"
 MTB_BIKES_ORBEA_29_MTB_BASE="${URL}/orbea-2013/orbea-mtb-29.html"
