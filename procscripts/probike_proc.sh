@@ -89,7 +89,7 @@ function filter_model()
 {
   #echo "======================================"
   # MODEL=$(echo "$1" | sed -e 's/[Bb]icicleta//g' | tr "'" '"')
-  MODEL=$(echo "$1" | sed -e 's/[Bb]icicleta//g' | sed -e "s/'/\\\'/g")
+  MODEL=$(echo "$1" | sed -e 's/[Bb]icicleta//g' | sed -e "s/''/\\\"/g")
   # | sed -e 's!\'!\\\'!g')
   #  echo "======> MODEL:${1} <========="
   echo ${MODEL}
@@ -109,13 +109,13 @@ function print_url()
 {
   model="$1"
   BASE_FILE="$2"
-  echo "${model}" | grep '"'
+  echo "${model}" | grep '"' > /dev/null
   if [ $? -eq 0 ]; 
   then
     MODEL=$(echo "${model}" | sed -e 's-\"-\\\"-g')
-    URL=$(grep "${MODEL}" "${BASE_FILE}" | grep -o "<a href=[^>]*>" | awk -F "title" {'print $1'} | tail -1 | tr -d '"' | awk -F '<a href=' {'print $2'} | tr -d ' ')
+    URL=$(grep "${MODEL}" "${BASE_FILE}" -A2 -B2 | egrep -o -E "<a href[^>]*>" | grep -o "<a href=[^>]*>" | awk -F "title" {'print $1'} | tail -1 | tr -d '"' | awk -F '<a href=' {'print $2'} | tr -d ' ' | tail -1 | grep "http")
   else
-    URL=$(grep "${model}" "${BASE_FILE}" | grep -o "<a href=[^>]*>" | awk -F "title" {'print $1'} | tail -1 | tr -d '"' | awk -F '<a href=' {'print $2'} | tr -d ' ')
+    URL=$(grep "${model}" "${BASE_FILE}" -A2 -B2 | egrep -o -E "<a href[^>]*>" | grep -o "<a href=[^>]*>" | awk -F "title" {'print $1'} | tail -1 | tr -d '"' | awk -F '<a href=' {'print $2'} | tr -d ' ' | tail -1 | grep "http")
   fi
   echo "${URL}"
 }
@@ -129,9 +129,17 @@ function process_page_url()
   echo "${MODELS}" | while read model;
   do
     MODEL_FILTER=$(filter_model "${model}")
-    MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+    TRADEMARK_SPECIAL=$(echo "${MODEL_FILTER}" | grep -i -o ^"Like A Bike\|Like to Bike")
+    if [ $? -eq 0 ]; 
+    then
+      MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=4;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+      MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+      TRADEMARK=${TRADEMARK_SPECIAL}
+    else 
+      MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+      TRADEMARK=$(echo "${MODEL_FILTER}" | awk {'print $1'})
+    fi
     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
-    TRADEMARK=$(echo "${MODEL_FILTER}" | awk {'print $1'})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     URL=$(print_url "${model}" "${BASE_FILE}")
     #URL=$(grep "${model}" "${BASE_FILE}" | grep -o "<a href=[^>]*>" | awk -F "title" {'print $1'} | tail -1 | tr -d '"' | awk -F '<a href=' {'print $2'} | tr -d ' ')
@@ -182,14 +190,14 @@ URBAN_BIKES_PAGES=$(seq 1 3)
 
 > ${OUTPUT_FILE}
 
-#process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "Probike" "MTB" >> ${OUTPUT_FILE}
-#process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Probike" "ROAD"  >> ${OUTPUT_FILE}
-#process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "Probike" "URBAN"  >> ${OUTPUT_FILE}
-#process_pages "${BMX_BIKES_BASE}" "" "Probike" "BMX"  >> ${OUTPUT_FILE}
-#process_pages "${KIDS_BIKES_BASE}" "" "Probike" "KIDS"  >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "Probike" "MTB" >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Probike" "ROAD"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "Probike" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${BMX_BIKES_BASE}" "" "Probike" "BMX"  >> ${OUTPUT_FILE}
+process_pages "${KIDS_BIKES_BASE}" "" "Probike" "KIDS"  >> ${OUTPUT_FILE}
 
-process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "Probike" "MTB"
-process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Probike" "ROAD"
-process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "Probike" "URBAN"
-process_pages "${BMX_BIKES_BASE}" "" "Probike" "BMX"
-process_pages "${KIDS_BIKES_BASE}" "" "Probike" "KIDS"
+#process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "Probike" "MTB"
+#process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Probike" "ROAD"
+#process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "Probike" "URBAN"
+#process_pages "${BMX_BIKES_BASE}" "" "Probike" "BMX"
+#process_pages "${KIDS_BIKES_BASE}" "" "Probike" "KIDS"
