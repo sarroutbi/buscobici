@@ -9,7 +9,7 @@
 # STORE=Biciletas Gil
 # KIND=MTB-FIX
 
-MAX_PRICE=15
+MAX_PRICE=20
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
 OUTPUT_FILE=./output
@@ -102,7 +102,10 @@ function filter_model()
 function print_price()
 {
   PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | egrep -E -o '[0-9]{0,}.{0,}[0-9]{2,},{0,}[0-9]{0,}' | sed -e 's/<[^>]*>//g' | grep -v "[A-Za-z]" | tr -d '.')
-  echo ${PRICE}
+  for price in $(echo "${PRICE}");
+  do
+    echo "${price}"
+  done | tail -1
 }
 
 function print_url()

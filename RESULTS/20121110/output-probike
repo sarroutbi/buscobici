@@ -50,28 +50,28 @@ KIND=MTB
 [Hardrock SE 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-specialized-hardrock-se-2012.html"
 TRADEMARK=Specialized
-PRICE=359,90
+PRICE=299,00
 STORE=Probike
 KIND=MTB
 
 [Skye S Mujer 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-skye-s-mujer-2012.html"
 TRADEMARK=Trek
-PRICE=379,00
+PRICE=341,10
 STORE=Probike
 KIND=MTB
 
 [3700 Disc 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-3700-disc-2012.html"
 TRADEMARK=Trek
-PRICE=399,00
+PRICE=349,01
 STORE=Probike
 KIND=MTB
 
 [Myka Mujer 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-specialized-myka-mujer-2012.html"
 TRADEMARK=Specialized
-PRICE=419,90
+PRICE=349,02
 STORE=Probike
 KIND=MTB
 
@@ -113,28 +113,28 @@ KIND=MTB
 [Myka Sport Mujer 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-specialized-myka-sport-mujer-2012.html"
 TRADEMARK=Specialized
-PRICE=499,90
+PRICE=449,01
 STORE=Probike
 KIND=MTB
 
 [7200 WSD 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-7200-wsd-2012.html"
 TRADEMARK=Trek
-PRICE=499,00
+PRICE=449,10
 STORE=Probike
 KIND=MTB
 
 [Myka Sport Disc Mujer 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-specialized-myka-sport-disc-mujer-2012.html"
 TRADEMARK=Specialized
-PRICE=589,90
+PRICE=499,00
 STORE=Probike
 KIND=MTB
 
 [Hardrock Sport Disc 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-specialized-hardrock-sport-disc-2012.html"
 TRADEMARK=Specialized
-PRICE=569,90
+PRICE=499,00
 STORE=Probike
 KIND=MTB
 
@@ -148,14 +148,14 @@ KIND=MTB
 [4300 Disc 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-4300-disc-2012.html"
 TRADEMARK=Trek
-PRICE=549,00
+PRICE=499,04
 STORE=Probike
 KIND=MTB
 
 [4500 Disc 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-4500-disc-2012.html"
 TRADEMARK=Trek
-PRICE=599,00
+PRICE=539,10
 STORE=Probike
 KIND=MTB
 
@@ -211,21 +211,21 @@ KIND=MTB
 [Trail SL 4 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-trail-sl-4-2012.html"
 TRADEMARK=Cannondale
-PRICE=649,00
+PRICE=599,03
 STORE=Probike
 KIND=MTB
 
 [Rockhopper 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-specialized-rockhopper-2012.html"
 TRADEMARK=Specialized
-PRICE=699,90
+PRICE=629,00
 STORE=Probike
 KIND=MTB
 
 [4900 Disc 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-4900-disc-2012.html"
 TRADEMARK=Trek
-PRICE=699,00
+PRICE=649,16
 STORE=Probike
 KIND=MTB
 
@@ -253,14 +253,14 @@ KIND=MTB
 [Myka Elite Disc Mujer 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-specialized-elite-disc-mujer-2012.html"
 TRADEMARK=Specialized
-PRICE=799,90
+PRICE=699,03
 STORE=Probike
 KIND=MTB
 
 [Trail SL 3 Mujer 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-trail-sl-3-mujer-2012.html"
 TRADEMARK=Cannondale
-PRICE=749,00
+PRICE=699,04
 STORE=Probike
 KIND=MTB
 
@@ -274,7 +274,7 @@ KIND=MTB
 [Trail SL 3 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-trail-sl-3-2012.html"
 TRADEMARK=Cannondale
-PRICE=799,00
+PRICE=719,10
 STORE=Probike
 KIND=MTB
 
@@ -302,7 +302,7 @@ KIND=MTB
 [6300 Disc 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-6300-disc-2012.html"
 TRADEMARK=Trek
-PRICE=999,00
+PRICE=899,00
 STORE=Probike
 KIND=MTB
 
@@ -316,21 +316,21 @@ KIND=MTB
 [Trail SL 1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-trail-sl-1-2012.html"
 TRADEMARK=Cannondale
-PRICE=999,00
+PRICE=899,10
 STORE=Probike
 KIND=MTB
 
 [Trail SL 2 Mujer 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-trail-sl-2-mujer-2012.html"
 TRADEMARK=Cannondale
-PRICE=999,00
+PRICE=899,10
 STORE=Probike
 KIND=MTB
 
 [Carve Comp 29" 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-specialized-carve-comp-29-2012.html"
 TRADEMARK=Specialized
-PRICE=1099,90
+PRICE=979,02
 STORE=Probike
 KIND=MTB
 
@@ -372,35 +372,35 @@ KIND=MTB
 [Flash F3 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-flash-f3-2012.html"
 TRADEMARK=Cannondale
-PRICE=1399,00
+PRICE=1189,01
 STORE=Probike
 KIND=MTB
 
 [Lexi 3 Mujer 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-lexi-3-mujer-2012.html"
 TRADEMARK=Cannondale
-PRICE=1499,00
+PRICE=1299,03
 STORE=Probike
 KIND=MTB
 
 [Myka FSR Comp Mujer 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-specialized-myka-fsr-comp-mujer-2012.html"
 TRADEMARK=Specialized
-PRICE=1499,90
+PRICE=1349,01
 STORE=Probike
 KIND=MTB
 
 [Stumpjumper Comp 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-specialized-stumpjumper-comp-2014.html"
 TRADEMARK=Specialized
-PRICE=1749,00
+PRICE=1399,03
 STORE=Probike
 KIND=MTB
 
 [RZ One Twenty 3 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-rz-one-twenty-3-2012.html"
 TRADEMARK=Cannondale
-PRICE=1699,00
+PRICE=1479,15
 STORE=Probike
 KIND=MTB
 
@@ -442,14 +442,14 @@ KIND=MTB
 [Flash F1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-flash-f1-2012.html"
 TRADEMARK=Cannondale
-PRICE=2199,00
+PRICE=1899,06
 STORE=Probike
 KIND=MTB
 
 [Elite XC 9.7 2011]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-elite-xc-9-7-2011.html"
 TRADEMARK=Trek
-PRICE=2499,00
+PRICE=1899,24
 STORE=Probike
 KIND=MTB
 
@@ -470,7 +470,7 @@ KIND=MTB
 [RZ One Twenty 1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-rz-one-twenty-1-2012.html"
 TRADEMARK=Cannondale
-PRICE=2199,00
+PRICE=1979,10
 STORE=Probike
 KIND=MTB
 
@@ -484,7 +484,7 @@ KIND=MTB
 [Top Fuel 8 2011]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-top-fuel-8-2013.html"
 TRADEMARK=Trek
-PRICE=2699,00
+PRICE=1999,15
 STORE=Probike
 KIND=MTB
 
@@ -505,14 +505,14 @@ KIND=MTB
 [Epic FSR Comp 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-specialized-epic-fsr-comp-2013.html"
 TRADEMARK=Specialized
-PRICE=2699,00
+PRICE=2295,23
 STORE=Probike
 KIND=MTB
 
 [Fuel EX 8 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-fuel-ex-8-2012.html"
 TRADEMARK=Trek
-PRICE=2599,00
+PRICE=2299,08
 STORE=Probike
 KIND=MTB
 
@@ -526,14 +526,14 @@ KIND=MTB
 [Flash Carbon 3 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-flash-carbon-3-2012.html"
 TRADEMARK=Cannondale
-PRICE=2699,00
+PRICE=2399,14
 STORE=Probike
 KIND=MTB
 
 [Top Fuel 9 2011]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-top-fuel-8-2011.html"
 TRADEMARK=Trek
-PRICE=3199,00
+PRICE=2499,06
 STORE=Probike
 KIND=MTB
 
@@ -589,14 +589,14 @@ KIND=MTB
 [Fuel EX 9,7 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-fuel-ex-9-7-2012.html"
 TRADEMARK=Trek
-PRICE=3299,00
+PRICE=2799,20
 STORE=Probike
 KIND=MTB
 
 [Rip 9 2011]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-niner-rip-9-2011.html"
 TRADEMARK=Niner
-PRICE=3850,00
+PRICE=2890,20
 STORE=Probike
 KIND=MTB
 
@@ -610,14 +610,14 @@ KIND=MTB
 [Jet 9 2011]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-niner-jet-9-2011.html"
 TRADEMARK=Niner
-PRICE=3950,00
+PRICE=2950,26
 STORE=Probike
 KIND=MTB
 
 [Scalpel 3 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-scalpel-3-2012.html"
 TRADEMARK=Cannondale
-PRICE=3299,00
+PRICE=2979,33
 STORE=Probike
 KIND=MTB
 
@@ -631,7 +631,7 @@ KIND=MTB
 [RZ One Twenty XLR 1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-rz-one-twenty-xlr-1-2012.html"
 TRADEMARK=Cannondale
-PRICE=3499,00
+PRICE=3149,10
 STORE=Probike
 KIND=MTB
 
@@ -645,7 +645,7 @@ KIND=MTB
 [Flash Carbon 2 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-flash-carbon-2-2012.html"
 TRADEMARK=Cannondale
-PRICE=3999,00
+PRICE=3399,15
 STORE=Probike
 KIND=MTB
 
@@ -680,7 +680,7 @@ KIND=MTB
 [Flash Carbon 29" 1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-flash-carbon-29-1-2012.html"
 TRADEMARK=Cannondale
-PRICE=4699,00
+PRICE=3999,32
 STORE=Probike
 KIND=MTB
 
@@ -701,35 +701,35 @@ KIND=MTB
 [Top Fuel 9,9 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-top-fuel-9-9-2012.html"
 TRADEMARK=Trek
-PRICE=6999,00
+PRICE=4899,30
 STORE=Probike
 KIND=MTB
 
 [Scalpel 1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-scalpel-1-2012.html"
 TRADEMARK=Cannondale
-PRICE=5999,00
+PRICE=4995,37
 STORE=Probike
 KIND=MTB
 
 [Jekyll Carbon 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-jekyll-carbon-2012.html"
 TRADEMARK=Cannondale
-PRICE=5999,00
+PRICE=4995,37
 STORE=Probike
 KIND=MTB
 
 [9.9 SSL 2011]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-9-9-ssl-2011.html"
 TRADEMARK=Trek
-PRICE=6499,00
+PRICE=4999,03
 STORE=Probike
 KIND=MTB
 
 [Elite 9.9 SSL 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-elite-9-9-ssl-2012.html"
 TRADEMARK=Trek
-PRICE=6499,00
+PRICE=5499,45
 STORE=Probike
 KIND=MTB
 
@@ -743,7 +743,7 @@ KIND=MTB
 [RZ One Twenty XLR 1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-rz-one-twenty-xlr-1-2012.html"
 TRADEMARK=Cannondale
-PRICE=3499,00
+PRICE=3149,10
 STORE=Probike
 KIND=MTB
 
@@ -757,7 +757,7 @@ KIND=MTB
 [Flash Carbon 2 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-flash-carbon-2-2012.html"
 TRADEMARK=Cannondale
-PRICE=3999,00
+PRICE=3399,15
 STORE=Probike
 KIND=MTB
 
@@ -792,7 +792,7 @@ KIND=MTB
 [Flash Carbon 29" 1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-flash-carbon-29-1-2012.html"
 TRADEMARK=Cannondale
-PRICE=4699,00
+PRICE=3999,32
 STORE=Probike
 KIND=MTB
 
@@ -813,35 +813,35 @@ KIND=MTB
 [Top Fuel 9,9 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-top-fuel-9-9-2012.html"
 TRADEMARK=Trek
-PRICE=6999,00
+PRICE=4899,30
 STORE=Probike
 KIND=MTB
 
 [Scalpel 1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-scalpel-1-2012.html"
 TRADEMARK=Cannondale
-PRICE=5999,00
+PRICE=4995,37
 STORE=Probike
 KIND=MTB
 
 [Jekyll Carbon 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-jekyll-carbon-2012.html"
 TRADEMARK=Cannondale
-PRICE=5999,00
+PRICE=4995,37
 STORE=Probike
 KIND=MTB
 
 [9.9 SSL 2011]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-9-9-ssl-2011.html"
 TRADEMARK=Trek
-PRICE=6499,00
+PRICE=4999,03
 STORE=Probike
 KIND=MTB
 
 [Elite 9.9 SSL 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-elite-9-9-ssl-2012.html"
 TRADEMARK=Trek
-PRICE=6499,00
+PRICE=5499,45
 STORE=Probike
 KIND=MTB
 
@@ -855,7 +855,7 @@ KIND=MTB
 [RZ One Twenty XLR 1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-rz-one-twenty-xlr-1-2012.html"
 TRADEMARK=Cannondale
-PRICE=3499,00
+PRICE=3149,10
 STORE=Probike
 KIND=MTB
 
@@ -869,7 +869,7 @@ KIND=MTB
 [Flash Carbon 2 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-flash-carbon-2-2012.html"
 TRADEMARK=Cannondale
-PRICE=3999,00
+PRICE=3399,15
 STORE=Probike
 KIND=MTB
 
@@ -904,7 +904,7 @@ KIND=MTB
 [Flash Carbon 29" 1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-flash-carbon-29-1-2012.html"
 TRADEMARK=Cannondale
-PRICE=4699,00
+PRICE=3999,32
 STORE=Probike
 KIND=MTB
 
@@ -925,35 +925,35 @@ KIND=MTB
 [Top Fuel 9,9 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-top-fuel-9-9-2012.html"
 TRADEMARK=Trek
-PRICE=6999,00
+PRICE=4899,30
 STORE=Probike
 KIND=MTB
 
 [Scalpel 1 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-scalpel-1-2012.html"
 TRADEMARK=Cannondale
-PRICE=5999,00
+PRICE=4995,37
 STORE=Probike
 KIND=MTB
 
 [Jekyll Carbon 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-cannondale-jekyll-carbon-2012.html"
 TRADEMARK=Cannondale
-PRICE=5999,00
+PRICE=4995,37
 STORE=Probike
 KIND=MTB
 
 [9.9 SSL 2011]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-9-9-ssl-2011.html"
 TRADEMARK=Trek
-PRICE=6499,00
+PRICE=4999,03
 STORE=Probike
 KIND=MTB
 
 [Elite 9.9 SSL 2012]
 SUBURL="http://www.probike.com/bicicletas/mtb/bicicleta-trek-elite-9-9-ssl-2012.html"
 TRADEMARK=Trek
-PRICE=6499,00
+PRICE=5499,45
 STORE=Probike
 KIND=MTB
 
@@ -1037,7 +1037,7 @@ KIND=ROAD
 [Madone 3.1 C 2012]
 SUBURL="http://www.probike.com/bicicletas/carretera/bicicleta-trek-madone-3-1-c-2012.html"
 TRADEMARK=Trek
-PRICE=1699,00
+PRICE=1499,03
 STORE=Probike
 KIND=ROAD
 
@@ -1079,7 +1079,7 @@ KIND=ROAD
 [Roubaix Elite 2012]
 SUBURL="http://www.probike.com/bicicletas/carretera/bicicleta-specialized-roubaix-elite-2012.html"
 TRADEMARK=Specialized
-PRICE=2199,90
+PRICE=1979,03
 STORE=Probike
 KIND=ROAD
 
@@ -1128,7 +1128,7 @@ KIND=ROAD
 [Synapse Carbon 3 Compact 2012]
 SUBURL="http://www.probike.com/bicicletas/carretera/bicicleta-cannondale-synapse-carbon-3-compact-2012.html"
 TRADEMARK=Cannondale
-PRICE=2699,00
+PRICE=2295,23
 STORE=Probike
 KIND=ROAD
 
@@ -1142,21 +1142,21 @@ KIND=ROAD
 [Synapse Hi-mod Ultegra 2012]
 SUBURL="http://www.probike.com/bicicletas/carretera/bicicleta-cannondale-synapse-hi-mod-ultegra-2012.html"
 TRADEMARK=Cannondale
-PRICE=3299,00
+PRICE=2795,24
 STORE=Probike
 KIND=ROAD
 
 [Madone 5.2 C 2012]
 SUBURL="http://www.probike.com/bicicletas/carretera/bicicleta-trek-madone-5-2-c-2012.html"
 TRADEMARK=Trek
-PRICE=3299,00
+PRICE=2799,20
 STORE=Probike
 KIND=ROAD
 
 [Orca Silver Ultegra Di2 2012]
 SUBURL="http://www.probike.com/bicicletas/carretera/bicicleta-orbea-orca-silver-ultegra-di2-2012.html"
 TRADEMARK=Orbea
-PRICE=3399,00
+PRICE=2890,17
 STORE=Probike
 KIND=ROAD
 
@@ -1226,7 +1226,7 @@ KIND=ROAD
 [Synapse Carbon 3 Compact 2012]
 SUBURL="http://www.probike.com/bicicletas/carretera/bicicleta-cannondale-synapse-carbon-3-compact-2012.html"
 TRADEMARK=Cannondale
-PRICE=2699,00
+PRICE=2295,23
 STORE=Probike
 KIND=ROAD
 
@@ -1240,21 +1240,21 @@ KIND=ROAD
 [Synapse Hi-mod Ultegra 2012]
 SUBURL="http://www.probike.com/bicicletas/carretera/bicicleta-cannondale-synapse-hi-mod-ultegra-2012.html"
 TRADEMARK=Cannondale
-PRICE=3299,00
+PRICE=2795,24
 STORE=Probike
 KIND=ROAD
 
 [Madone 5.2 C 2012]
 SUBURL="http://www.probike.com/bicicletas/carretera/bicicleta-trek-madone-5-2-c-2012.html"
 TRADEMARK=Trek
-PRICE=3299,00
+PRICE=2799,20
 STORE=Probike
 KIND=ROAD
 
 [Orca Silver Ultegra Di2 2012]
 SUBURL="http://www.probike.com/bicicletas/carretera/bicicleta-orbea-orca-silver-ultegra-di2-2012.html"
 TRADEMARK=Orbea
-PRICE=3399,00
+PRICE=2890,17
 STORE=Probike
 KIND=ROAD
 
@@ -1296,21 +1296,21 @@ KIND=URBAN
 [Expedition Sport Mujer 2012]
 SUBURL="http://www.probike.com/bicicletas/urbana/bicicleta-expedition-sport-mujer-2012.html"
 TRADEMARK=Specialized
-PRICE=429,90
+PRICE=379,00
 STORE=Probike
 KIND=URBAN
 
 [Expedition Sport 2012]
 SUBURL="http://www.probike.com/bicicletas/urbana/bicicleta-specialized-expedition-sport-2012.html"
 TRADEMARK=Specialized
-PRICE=429,90
+PRICE=379,00
 STORE=Probike
 KIND=URBAN
 
 [Crossroad Sport 2012]
 SUBURL="http://www.probike.com/bicicletas/urbana/bicicleta-specialized-crossroad-sport-2012.html"
 TRADEMARK=Specialized
-PRICE=429,90
+PRICE=379,00
 STORE=Probike
 KIND=URBAN
 
@@ -1331,7 +1331,7 @@ KIND=URBAN
 [Crosstrail 2012]
 SUBURL="http://www.probike.com/bicicletas/urbana/bicicleta-specialized-crosstrail-2012.html"
 TRADEMARK=Specialized
-PRICE=499,90
+PRICE=449,01
 STORE=Probike
 KIND=URBAN
 
@@ -1429,14 +1429,14 @@ KIND=URBAN
 [Sirrus Elite 2012]
 SUBURL="http://www.probike.com/bicicletas/urbana/bicicleta-specialized-sirrus-elite-2012.html"
 TRADEMARK=Specialized
-PRICE=699,90
+PRICE=659,03
 STORE=Probike
 KIND=URBAN
 
 [7.6 FX 2012]
 SUBURL="http://www.probike.com/bicicletas/urbana/bicicleta-trek-7-6-fx-2012.html"
 TRADEMARK=Trek
-PRICE=999,00
+PRICE=899,00
 STORE=Probike
 KIND=URBAN
 
@@ -1534,14 +1534,14 @@ KIND=URBAN
 [Sirrus Elite 2012]
 SUBURL="http://www.probike.com/bicicletas/urbana/bicicleta-specialized-sirrus-elite-2012.html"
 TRADEMARK=Specialized
-PRICE=699,90
+PRICE=659,03
 STORE=Probike
 KIND=URBAN
 
 [7.6 FX 2012]
 SUBURL="http://www.probike.com/bicicletas/urbana/bicicleta-trek-7-6-fx-2012.html"
 TRADEMARK=Trek
-PRICE=999,00
+PRICE=899,00
 STORE=Probike
 KIND=URBAN
 
