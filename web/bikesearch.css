@@ -280,6 +280,10 @@ width:200px;
 width:240px;
 }
 
+#input_price{
+width:55px;
+}
+
 table.tableSearch{
 #    font-family: Georgia, serif;
     font-size: 16px;

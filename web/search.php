@@ -84,6 +84,8 @@ else {
 }
 
 // echo "<p>QUERY:=>$query<=</p>\n";
+// echo "<p>PriceFrom:=>$priceFrom<=</p>\n";
+// echo "<p>PriceTo:=>$priceTo<=</p>\n";
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
 // echo "<p>RESULT:=>$result<=</p>\n";
 

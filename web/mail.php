@@ -6,7 +6,7 @@ if(isset($_POST['email'])) {
     echo "\n";
     echo "<head>\n";
     echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
-    echo "<title>Contact Form</title>\n";
+    echo "<title>Buscador de Bicicletas - Comprar Bici - Contactar</title>\n";
     echo "<link rel=\"stylesheet\" href=\"bikesearch.css\" type=\"text/css\">\n";
     echo "</head>\n";
      

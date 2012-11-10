@@ -3,7 +3,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Buscador de Bicicletas - B&uacute;squeda por precio y tipo</title>
+<title>Buscador de Bicicletas - Comprar Bici - Por precio</title>
 <link rel="stylesheet" href="bikesearch.css" type="text/css">
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -20,7 +20,7 @@
 
 <body>
     <header class="body">
-      <title>Buscador de Bicicletas - Comprar Bici - Precio/Tipo</title>
+      <title>Buscador de Bicicletas - Comprar Bici - Por precio</title>
     </header>
 
     <nav>
@@ -34,49 +34,12 @@
 
     <div id="search">
       <form method="post" action="search.php">
-          <input id="input_search" name="search" placeholder="Escriba aquí su búsqueda"><br>
-          <label>Desde</label>
-          <select name="priceFrom" id="priceFrom">
-            <option value="0" selected="selected">0&euro;</option>
-            <option value="100">100&euro;</option>
-            <option value="200">200&euro;</option>
-            <option value="300">300&euro;</option>
-            <option value="400">400&euro;</option>
-            <option value="500">500&euro;</option>
-            <option value="750">750&euro;</option>
-            <option value="1000">1000&euro;</option>
-            <option value="1250">1250&euro;</option>
-            <option value="1500">1500&euro;</option>
-            <option value="1750">1750&euro;</option>
-            <option value="2000">2000&euro;</option>
-            <option value="2500">2500&euro;</option>
-            <option value="3000">3000&euro;</option>
-            <option value="3500">3500&euro;</option>
-            <option value="4000">4000&euro;</option>
-            <option value="5000">5000&euro;</option>
-          </select>
-          <label>Hasta</label>
-          <select name="priceTo" id="priceTo">
-            <option value="100">100&euro;</option>
-            <option value="200">200&euro;</option>
-            <option value="300">300&euro;</option>
-            <option value="400">400&euro;</option>
-            <option value="500">500&euro;</option>
-            <option value="750">750&euro;</option>
-            <option value="1000">1000&euro;</option>
-            <option value="1250">1250&euro;</option>
-            <option value="1500">1500&euro;</option>
-            <option value="1750">1750&euro;</option>
-            <option value="2000">2000&euro;</option>
-            <option value="2500">2500&euro;</option>
-            <option value="3000">3000&euro;</option>
-            <option value="3500">3500&euro;</option>
-            <option value="4000">4000&euro;</option>
-            <option value="5000">5000&euro;</option>
-            <option value="7500">7500&euro;</option>
-            <option value="10000">10000&euro;</option>
-            <option value="100000" selected="selected">Max</option>
-          </select>
+          <input id="input_search" name="search" placeholder="Búsqueda / Vacío para mostrar todo"><br>
+          <label>Desde:</label>
+          <input id="input_price" name="priceFrom" type="number" min="1" max="20000">
+          <label>&euro;&nbsp;&nbsp; Hasta:</label>
+          <input id="input_price" name="priceTo" type="number" min="2" max="20000">
+          <label>&euro;</label>
           <br>
           <label>Tipo&nbsp;&nbsp;&nbsp;</label>
           <select name="type" id="byType">
