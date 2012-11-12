@@ -7,14 +7,13 @@
 # The script receives the file generated with command "webtodb.sh"
 #
 
-OUTPUT_FILE=./checkpsql.txt
 TMP_FILE=$(mktemp)
 let COUNTER_ERRORS=0
 let COUNTER_LINES=0
 
-test -f ${OUTPUT_FILE} && rm ${OUTPUT_FILE}
-
 test -z "${1}" && echo && echo "Please, specify input file" && echo && exit 1
+
+OUTPUT_FILE=./checkpsql.$(basename ${1}).error
 
 let COUNTER_LINES=$(wc -l ${1} | awk {'print $1'})
 
