@@ -7,12 +7,12 @@
 # The script receives the file generated with command "webtodb.sh"
 #
 
-TMP_FILE=$(mktemp)
+test -z "${1}" && echo && echo "Please, specify input file" && echo && exit 1
+
 let COUNTER_ERRORS=0
 let COUNTER_LINES=0
 let ERR=0
-
-test -z "${1}" && echo && echo "Please, specify input file" && echo && exit 1
+TMP_FILE=$(mktemp)
 
 OUTPUT_FILE=./checkpsql.$(basename ${1}).error
 
