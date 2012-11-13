@@ -7,6 +7,8 @@ OUTPUT_FILE=bicimania.txt
 URL="www.bicimania.com"
 ONLY_DOMAIN="bicimania.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
+MAX_TRIES=10
+MAX_TIMEOUT=5
 #EXCLUDE="-Ahtml"
 #HOST_ONLY="-D${ONLY_DOMAIN}"
 
@@ -16,11 +18,11 @@ function get_page()
   PAGES="$2"
   if [ "${PAGES}" = "" ];
   then
-    wget "${BASE_URL}" 
+    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
   else
     for page in ${PAGES};
     do
-      wget "${BASE_URL}${page}" 
+      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
     done 
   fi
 }

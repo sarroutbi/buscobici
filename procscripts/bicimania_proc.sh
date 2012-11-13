@@ -11,6 +11,8 @@
 
 MAX_PRICE=2
 OUTPUT_FILE=./output
+MAX_TRIES=10
+MAX_TIMEOUT=5
 
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
@@ -47,7 +49,7 @@ function print_model()
 {
   #echo "======================================"
   #  echo "======> URL:${1} <========="
-  MODELS=$(wget -O - "$1" 2>&1 | grep "<title>" -A3 | sed -e 's/<[^>]*>//g' | grep "[A-Z,a-z,0-9]" | head -1 | awk -F " - " {'print $NF'} | tr -d "\n")
+  MODELS=$(wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} -O - "$1" 2>&1 | grep "<title>" -A3 | sed -e 's/<[^>]*>//g' | grep "[A-Z,a-z,0-9]" | head -1 | awk -F " - " {'print $NF'} | tr -d "\n")
   echo "${MODELS}" | while read model;
   do
     MODEL="${model}"
@@ -60,7 +62,7 @@ function print_model()
 # 1 - The URL of bike
 function print_price()
 {
-  PRICES=$(wget "$1" -O - 2>&1 | grep "IVA" | grep '&euro' | grep -o "[0-9,\.]*[0-9],[0-9]*" | tr -d '.' | tail -1)
+  PRICES=$(wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "$1" -O - 2>&1 | grep "IVA" | grep '&euro' | grep -o "[0-9,\.]*[0-9],[0-9]*" | tr -d '.' | tail -1)
   for price in ${PRICES};
   do
     PRICE=${price} 
