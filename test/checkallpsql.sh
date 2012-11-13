@@ -17,7 +17,15 @@ test -d "${DIR}" || error "Dir ${DIR} does not exist" 1
 echo "======================================="
 for file in $(ls ${DIR}/${PREFIX}*); 
 do
+  echo
   echo -n "File:$file"
   ./checkpsql.sh $file
+  ok=$?
+  echo -n "RESULT:" 
+  if [ $ok -eq 0 ]; then
+    echo "[OK]"
+  else
+    echo "[FAIL]"
+  fi 
 done
 echo "======================================="
