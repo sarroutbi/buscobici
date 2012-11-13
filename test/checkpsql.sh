@@ -39,4 +39,7 @@ printf "\nTotal errors : %d/%d\n" "${COUNTER_ERRORS}" "${COUNTER_LINES}"
 
 rm ${TMP_FILE}
 
+# If error file is sized 0, we delete it
+test -s ${OUTPUT_FILE} || rm ${OUTPUT_FILE}
+
 exit ${ERR}
