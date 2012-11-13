@@ -5,7 +5,7 @@
 # - The insert lines ends with ");"
 # - Check price has correct type
 # - Check URL has correct syntax (http://...)
-# - Check Model contains no forbidden characters
+# - Check none of the fields contains forbidden characters (', ñ, ...)
 # The script receives the file generated with command "webtodb.sh"
 #
 
