@@ -18,6 +18,8 @@ SUFFIX_CONFIG_LINE=Suffix
 OUTPUT_FILE=output
 PSQL_FILE_PREFIX=psql
 RESULTS_DIR=RESULTS
+TEST_DIR=test
+DDBB_UPDATE_FILE=dbupdate.txt
 
 # Param 1 - The Line
 # Param 2 - The Key
@@ -129,6 +131,15 @@ do
             mkdir -p ${RESULTS_DIR}/${DATE}
             cp ${SCRIPT_DIR}/${OUTPUT_FILE} ${RESULTS_DIR}/${DATE}/${OUTPUT_FILE}-${SUFFIX}
             ./webtodb.sh ${RESULTS_DIR}/${DATE}/${OUTPUT_FILE}-${SUFFIX} > ${RESULTS_DIR}/${DATE}/${PSQL_FILE_PREFIX}-${SUFFIX}
+            pushd ${TEST_DIR} > /dev/null
+            ./checkpsql.sh ../${RESULTS_DIR}/${DATE}/${PSQL_FILE_PREFIX}-${SUFFIX}
+            if [ $? -eq 0 ]; 
+            then
+              echo "DDBB should be updated with file:=>${RESULTS_DIR}/${DATE}/${PSQL_FILE_PREFIX}-${SUFFIX}<=" >> ../${DDBB_UPDATE_FILE}
+            else
+              echo "DDBB should NEVER, EVER, be updated with file:=>${RESULTS_DIR}/${DATE}/${PSQL_FILE_PREFIX}-${SUFFIX}<=" >> ../${DDBB_UPDATE_FILE}
+            fi
+            popd > /dev/null   
             > ${TMP_SCRIPT_FILE}
             > ${TMP_PSCRIPT_FILE}
             > ${TMP_DIR_FILE}
