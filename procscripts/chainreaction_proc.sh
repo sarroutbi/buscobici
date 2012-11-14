@@ -154,6 +154,16 @@ function process_page_url()
     MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     MODEL_NO_FILTER=$(echo "${model}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     TRADEMARK=$(echo "${MODEL_FILTER}" | awk {'print $1'})
+    TRADEMARK_SPECIAL=$(echo "${MODEL_FILTER}" | grep -i -o ^"De Rosa")
+    if [ $? -eq 0 ]; 
+    then
+      MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+      MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+      TRADEMARK=${TRADEMARK_SPECIAL}
+    else 
+      MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+      TRADEMARK=$(echo "${MODEL_FILTER}" | awk {'print $1'})
+    fi
     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     #log_url "${MODEL_NO_FILTER}" "${BASE_FILE}"
