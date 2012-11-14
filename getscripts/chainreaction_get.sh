@@ -3,7 +3,9 @@
 # This script gets all the bicycles from
 # Calmera store !
 URL="www.chainreactioncycles.com"
-ONLY_DOMAIN="www.chainreactioncycles.com"
+ONLY_DOMAIN="chainreactioncycles.com"
+MAX_TRIES=10
+MAX_TIMEOUT=5
 
 function get_page()
 {
@@ -11,11 +13,11 @@ function get_page()
   PAGES="$2"
   if [ "${PAGES}" = "" ];
   then
-    wget "${BASE_URL}" 
+    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
   else
     for page in ${PAGES};
     do
-      wget "${BASE_URL}${page}" 
+      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
     done 
   fi
 }
