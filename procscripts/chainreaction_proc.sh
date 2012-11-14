@@ -106,6 +106,26 @@ function print_price()
   echo ${PRICE}
 }
 
+function log_url()
+{
+  model="$1"
+  BASE_FILE="$2"
+  echo "Model:${model}"
+  echo "${model}" | grep '"' > /dev/null
+  if [ $? -eq 0 ]; 
+  then
+    echo "Here should go the link with quotes!!!"
+    echo "grep is:"
+    MODEL=$(echo "${model}" | sed -e 's-\"-\\\"-g')
+    echo "grep \"${MODEL}\" \"${BASE_FILE}\" | grep \"href\"  | awk -F \"href=\" {'print $2'} | awk -F \"class\" {'print \$1'} | awk -F \"title\" {'print \$1'} | head -1 | tr -d '\"' | sed -e 's/[ \t]$//g' | awk {'print \$1'})"
+    URL=$(grep "${MODEL}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
+  else
+    URL=$(grep "${model}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
+  fi
+  URL_COMPLETE="${URL_BASE}${URL}"
+  echo "${URL_COMPLETE}"
+}
+
 function print_url()
 {
   model="$1"
@@ -114,9 +134,9 @@ function print_url()
   if [ $? -eq 0 ]; 
   then
     MODEL=$(echo "${model}" | sed -e 's-\"-\\\"-g')
-    URL=$(grep "${MODEL}" "${BASE_FILE}" | grep "a href"  | awk -F "a href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
+    URL=$(grep "${MODEL}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
   else
-    URL=$(grep "${model}" "${BASE_FILE}" | grep "a href"  | awk -F "a href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
+    URL=$(grep "${model}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
   fi
   URL_COMPLETE="${URL_BASE}${URL}"
   echo "${URL_COMPLETE}"
@@ -132,10 +152,12 @@ function process_page_url()
   do
     MODEL_FILTER=$(filter_model "${model}")
     MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+    MODEL_NO_FILTER=$(echo "${model}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     TRADEMARK=$(echo "${MODEL_FILTER}" | awk {'print $1'})
     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
-    URL=$(print_url "${model}" "${BASE_FILE}")
+    #log_url "${MODEL_NO_FILTER}" "${BASE_FILE}"
+    URL=$(print_url "${MODEL_NO_FILTER}" "${BASE_FILE}")
     PRICE=$(print_price "${BASE_FILE}" "${MODEL}")
     #echo "========================================================================"
     #echo "TRADEMARK=${TRADEMARK_CAMEL}"
