@@ -6,7 +6,7 @@ INSERT INTO bikes VALUES ('Agree Gtc race', 'Cube', 'Bicicletas Pasaje', 'http:/
 INSERT INTO bikes VALUES ('Agree gtc sl', 'Cube', 'Bicicletas Pasaje', 'http://www.bicispasaje.es/cube-2013/cube-agree-gtc-sl.html', 'ROAD', '2199.90');
 INSERT INTO bikes VALUES ('Agree gtc slt', 'Cube', 'Bicicletas Pasaje', 'http://www.bicispasaje.es/cube-2013/cube-agree-gtc-slt.html', 'ROAD', '2524.90');
 INSERT INTO bikes VALUES ('Aim disc. 29er', 'Cube', 'Bicicletas Pasaje', 'http://www.bicispasaje.es/cube-2013/cube-aim-disc-2013.html', 'MTB', '639.90');
-INSERT INTO bikes VALUES ('alma 29er h10', 'Orbea', 'Bicicletas Pasaje', 'http://www.bicispasaje.es/orbea-2013/orbea-alma-29er-h10.html', 'MTB', '2.049');
+INSERT INTO bikes VALUES ('alma 29er h10', 'Orbea', 'Bicicletas Pasaje', 'http://www.bicispasaje.es/orbea-2013/orbea-alma-29er-h10.html', 'MTB', '2049.90');
 INSERT INTO bikes VALUES ('alma 29er h30', 'Orbea', 'Bicicletas Pasaje', 'http://www.bicispasaje.es/orbea-2013/orbea-alma-29er-h30.html', 'MTB', '1639.90');
 INSERT INTO bikes VALUES ('alma 29er h50', 'Orbea', 'Bicicletas Pasaje', 'http://www.bicispasaje.es/orbea-2013/orbea-alma-29er-h50.html', 'MTB', '1177.90');
 INSERT INTO bikes VALUES ('alma 29er h60', 'Orbea', 'Bicicletas Pasaje', 'http://www.bicispasaje.es/orbea-2013/orbea-alma-29er-h60.html', 'MTB', '1023.90');
