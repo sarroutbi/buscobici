@@ -9,10 +9,12 @@ TEMP=
 TMP_DIR_FILE=$(mktemp)
 TMP_SCRIPT_FILE=$(mktemp)
 TMP_PSCRIPT_FILE=$(mktemp)
+TMP_COOKIES_FILE=$(mktemp)
 TMP_CONFIGS_FILE=$(mktemp)
 TMP_SUFFIX_FILE=$(mktemp)
 SCRIPT_CONFIG_LINE=SiteScriptGetter
 PSCRIPT_CONFIG_LINE=SiteScriptProcessor
+COOKIES_CONFIG_LINE=SiteScriptCookies
 DIR_CONFIG_LINE=OutputDir
 SUFFIX_CONFIG_LINE=Suffix
 OUTPUT_FILE=output
@@ -102,6 +104,12 @@ do
       SUFFIX=${VAR4}
       echo ${SUFFIX} > ${TMP_SUFFIX_FILE}
     fi
+    VAR5=$(getValueWithKey $sectionLine ${COOKIES_CONFIG_LINE})
+    if [ $? -eq 0 ];
+    then
+      SUFFIX=${VAR5}
+      echo ${SUFFIX} > ${TMP_COOKIES_FILE}
+    fi
     if [ -s ${TMP_SCRIPT_FILE}  ];
     then 
       if [ -s ${TMP_PSCRIPT_FILE} ];
@@ -115,15 +123,18 @@ do
             PSCRIPT_FILE=$(cat ${TMP_PSCRIPT_FILE})
             SCRIPT_FILE=$(cat ${TMP_SCRIPT_FILE})
             SCRIPT_DIR=$(cat ${TMP_DIR_FILE})
+            COOKIES_FILE=$(cat ${TMP_COOKIES_FILE})
             SUFFIX=$(cat ${TMP_SUFFIX_FILE})
             echo "PSCRIPT_FILE=${PSCRIPT_FILE}"
             echo "SCRIPT_FILE=${SCRIPT_FILE}"
+            echo "COOKIES_FILE=${COOKIES_FILE}"
             echo "SCRIPT_DIR=${SCRIPT_DIR}"
             echo "SUFFIX_FILE=${SUFFIX}"
             echo "====================================="
             mkdir -p ${SCRIPT_DIR}
             cp ${SCRIPT_FILE} ${SCRIPT_DIR}
             cp ${PSCRIPT_FILE} ${SCRIPT_DIR}
+            cp ${COOKIES_FILE} ${SCRIPT_DIR}
             pushd ${SCRIPT_DIR} > /dev/null 
             ./$(basename ${SCRIPT_FILE})
             ./$(basename ${PSCRIPT_FILE})
@@ -155,4 +166,5 @@ rm ${TMP_CONFIGS_FILE}
 rm ${TMP_DIR_FILE}
 rm ${TMP_SCRIPT_FILE}
 rm ${TMP_PSCRIPT_FILE}
+rm ${TMP_COOKIES_FILE}
 rm ${TMP_SUFFIX_FILE}

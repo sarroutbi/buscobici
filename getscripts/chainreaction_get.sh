@@ -5,7 +5,8 @@
 URL="www.chainreactioncycles.com"
 ONLY_DOMAIN="chainreactioncycles.com"
 MAX_TRIES=10
-MAX_TIMEOUT=5
+MAX_TIMEOUT=10
+COOKIE_FILE="chainreactioncookies.txt"
 
 function get_page()
 {
@@ -13,11 +14,11 @@ function get_page()
   PAGES="$2"
   if [ "${PAGES}" = "" ];
   then
-    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
+    wget --load-cookies=${COOKIE_FILE} --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
   else
     for page in ${PAGES};
     do
-      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
+      wget --load-cookies=${COOKIE_FILE} --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
     done 
   fi
 }
