@@ -21,23 +21,39 @@ function get_page()
 }
 
 
-MTB_BIKES_BASE="${URL}/tienda/category.php?id_category=32&p="
+MTB_BIKES_BASE="${URL}/Categories.aspx?CategoryID=1890&Page="
 MTB_BIKES_PAGES="$(seq 1 5)"
 
-ROAD_BIKES_BASE="${URL}/tienda/category.php?id_category=31&p="
-ROAD_BIKES_PAGES="$(seq 1)"
+ROAD_BIKES_BASE="${URL}/Categories.aspx?CategoryID=2156&Page="
+ROAD_BIKES_PAGES="$(seq 1 5)"
 
-URBAN_BIKES_BASE="${URL}/tienda/category.php?id_category=33&p="
-URBAN_BIKES_PAGES="$(seq 1)"
+ELECTRIC_BIKES_BASE="${URL}/Categories.aspx?CategoryID=1452"
+ELECTRIC_BIKES_PAGES=""
 
-KIDS_BIKES_BASE="${URL}/tienda/category.php?id_category=34&p="
-KIDS_BIKES_PAGES="$(seq 1)"
+FOLDING_BIKES_BASE="${URL}/Categories.aspx?CategoryID=1134"
+FOLDING_BIKES_PAGES=""
 
-BMX_BIKES_BASE="${URL}/tienda/category.php?id_category=35&p="
-BMX_BIKES_PAGES="$(seq 1)"
+CRUISER_BIKES_BASE="${URL}/Categories.aspx?CategoryID=1991"
+CRUISER_BIKES_PAGES=""
 
-get_page "${ROAD_BIKES_BASE}"  "${ROAD_BIKES_PAGES}"
+BMX_BIKES_BASE="${URL}/Categories.aspx?CategoryID=162&Page="
+BMX_BIKES_PAGES="$(seq 1 3)"
+
+KIDS_BIKES_BASE="${URL}/Categories.aspx?CategoryID=467"
+KIDS_BIKES_PAGES=""
+ 
+URBAN_BIKES_BASE="${URL}/Categories.aspx?CategoryID=508&Page="
+URBAN_BIKES_PAGES="$(seq 1 3)"
+
+CICLOCROSS_BIKES_BASE="${URL}/Categories.aspx?CategoryID=1156"
+CICLOCROSS_BIKES_PAGES=""
+
 get_page "${MTB_BIKES_BASE}"   "${MTB_BIKES_PAGES}"
-get_page "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}"
-get_page "${KIDS_BIKES_BASE}"  "${KIDS_BIKES_PAGES}"
+get_page "${ROAD_BIKES_BASE}"  "${ROAD_BIKES_PAGES}"
+get_page "${ELECTRIC_BIKES_BASE}" "${ELECTRIC_BIKES_PAGES}"
+get_page "${FOLDING_BIKES_BASE}"  "${FOLDING_BIKES_PAGES}"
+get_page "${CRUISER_BIKES_BASE}"  "${CRUISER_BIKES_PAGES}"
 get_page "${BMX_BIKES_BASE}"   "${BMX_BIKES_PAGES}"
+get_page "${KIDS_BIKES_BASE}"  "${KIDS_BIKES_PAGES}"
+get_page "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}"
+get_page "${CICLOCROSS_BIKES_BASE}" "${CICLOCROSS_BIKES_PAGES}"
