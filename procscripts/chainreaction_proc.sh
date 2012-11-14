@@ -90,9 +90,10 @@ function filter_model()
   #echo "======================================"
   # MODEL=$(echo "$1" | sed -e 's/[Bb]icicleta//g' | tr "'" '"')
   MODEL=$(echo "$1" | sed -e 's/[Bb]icicleta//g' | sed -e "s/''/\\\"/g")
+  MODEL_FILTER=$(echo "${MODEL}" | sed -e 's/[Bb]icicleta//g' | sed -e "s/'/\\\"/g")
   # | sed -e 's!\'!\\\'!g')
   #  echo "======> MODEL:${1} <========="
-  echo ${MODEL}
+  echo ${MODEL_FILTER}
   #echo "======================================"
 }
 
