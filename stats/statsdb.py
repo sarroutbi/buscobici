@@ -1,0 +1,110 @@
+#!/usr/bin/python
+#
+#
+import psycopg2
+import sys
+import getopt
+
+default_db="bikesearch"
+default_dbuser="postgres"
+default_dbpasswd="postgres"
+default_dbtable="bikes"
+default_hostname="localhost"
+default_stat="all"
+
+def parse_args(opts, args):
+  database = default_db
+  hostname = default_hostname
+  dbuser   = default_dbuser
+  dbpasswd = default_dbpasswd
+  dbtable  = default_dbtable
+  store    = ""
+  stat     = default_stat
+  for opt, arg in opts:
+    if opt == '-h':
+      print_usage()
+      sys.exit(0)
+    elif opt in ("-d", "--database"):
+      database = arg
+    elif opt in ("-t", "--table"):
+      dbtable = arg
+    elif opt in ("-h", "--hostname"):
+      hostname = arg
+    elif opt in ("-u", "--dbuser"):
+      dbuser = arg
+    elif opt in ("-s", "--store"):
+      store = arg
+    elif opt in ("-p", "--password"):
+      dbpasswd = arg
+    elif opt in ("-S", "--stat"):
+      stat = arg
+
+  #print 'database is :', database
+  #print 'table    is :', dbtable
+  #print 'hostname is :', hostname
+  #print 'dbuser   is :', dbuser
+  #print 'store    is :', store
+  #print 'password is :', dbpasswd
+  #print 'stat     is :', stat
+ 
+  return database, dbtable, hostname, dbuser, store, dbpasswd, stat
+   
+def print_usage(command):
+  print command + ":" 
+  print '             ' + command + '[-d <database> -u <user> -h<dbhost> -S<stat>] -s<store> -p<password>'
+  print '             Valid stats: all, nummodels, ' 
+  print 
+
+def print_stat(cur, table, store, stat):
+  if stat == "all":
+    get_models(cur, table, store)
+  elif stat == "nummodels":
+    get_models(cur, table, store)
+
+def get_models(cur, table, store): 
+  #print 
+  #print 'Dumping models number of store:' + store
+  #print
+  if store == "all": 
+    cur.execute("SELECT DISTINCT store FROM " + table)
+    stores = cur.fetchall()
+    for store in stores:
+      get_models(cur, table, store[0])
+    return 0
+  elif store == "Total": 
+    cur.execute("SELECT COUNT(*) FROM " + table )
+  else:
+    cur.execute("SELECT COUNT(*) FROM " + table + " WHERE store LIKE '" + store + "'")
+
+  for record in cur:
+    num_models = record
+
+  #print 'Num models number of store is:%d' % num_models[0]
+  print '\"' + store + '\", %d ' % num_models[0]
+
+def main(argv):
+  try:
+    opts, args = getopt.getopt(argv[1:],"hd:h:u:s:p:S:",["database=","hostname=","user=","store=","password=","stat="])
+  except getopt.GetoptError:
+    print_usage(argv[0])
+    sys.exit(2)
+ 
+  db, table, hostname, dbuser, store, password, stat = parse_args(opts, args)
+
+  if store == "":
+    print ''
+    print 'Please, specify the store where to extract statistics (\'Total\' for all stores)!'
+    print ''
+    print_usage(argv[0])
+    sys.exit(3)
+
+  # Connect to an existing DB
+  conn = psycopg2.connect("dbname=" + db + " host=" + hostname + " user=" + dbuser + " password=" + password)
+
+  # Obtain the cursor to the Database
+  cur = conn.cursor()
+
+  print_stat(cur, table, store, stat)
+
+if __name__ == "__main__":
+   main(sys.argv[0:])
