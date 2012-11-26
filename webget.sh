@@ -76,6 +76,8 @@ function allSectionContent()
   #echo "============================================"
 }
 
+> ${DDBB_UPDATE_FILE}
+
 # 1 - Read all configs:
 cat ${GET_CONFIG} | while read line;
 do
