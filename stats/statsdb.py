@@ -66,15 +66,37 @@ def parse_args(opts, args):
    
 def print_usage(command):
   print command + ":" 
-  print '             ' + command + '[-d <database> -u <user> -h<dbhost> -S<stat>] -s<store> -p<password>'
-  print '             Valid stats: all, nummodels, ' 
+  print '             ' + command + ' [-d <database> -u <user> -h<dbhost> -S<stat>] -s<store> -p<password>'
+  print '             Valid stats: all, nummodels, meanprice' 
   print 
 
 def print_stat(cur, table, store, stat):
   if stat == "all":
     get_models(cur, table, store)
+    get_meanprice(cur, table, store)
   elif stat == "nummodels":
     get_models(cur, table, store)
+  elif stat == "meanprice":
+    get_meanprice(cur, table, store)
+
+def get_meanprice(cur, table, store): 
+  if store == "all": 
+    cur.execute("SELECT DISTINCT store FROM " + table)
+    stores = cur.fetchall()
+    for store in stores:
+      get_meanprice(cur, table, store[0])
+    return 0
+  elif store == "Total": 
+    cur.execute("SELECT AVG(price) FROM " + table )
+  else:
+    cur.execute("SELECT AVG(price) FROM " + table + " WHERE store LIKE '" + store + "'")
+
+  for record in cur:
+    price = record
+
+  #print 'Mean price of store is:%d' % price[0]
+  if price and price[0] and price[0] > 0:
+    print '\"' + store + '\", %d ' % price[0]
 
 def get_models(cur, table, store): 
   #print 
@@ -95,7 +117,8 @@ def get_models(cur, table, store):
     num_models = record
 
   #print 'Num models number of store is:%d' % num_models[0]
-  print '\"' + store + '\", %d ' % num_models[0]
+  if num_models:
+    print '\"' + store + '\", %d ' % num_models[0]
 
 def main(argv):
   try:
