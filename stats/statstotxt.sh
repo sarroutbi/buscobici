@@ -14,5 +14,5 @@
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
-./statsdb.py -p postgres123 -S 'num_models' -s 'all' | sort -t"," -n -k2 > stats_models.txt
-./statsdb.py -p postgres123 -S 'mean_price' -s 'all' | sort -t"," -n -k2 > stats_meanprice.txt
+./statsdb.py -p postgres123 -S 'nummodels' -s 'all' | sort -t"," -n -k2 > stats_models.txt
+./statsdb.py -p postgres123 -S 'meanprice' -s 'all' | sort -t"," -n -k2 > stats_meanprice.txt

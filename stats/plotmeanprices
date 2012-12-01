@@ -1,7 +1,7 @@
-#!/usr/bin/gnuplot
+#!/usr/local/bin/gnuplot
 
 set  title "Precio medio por tienda"
-set  ylabel "Precio medio"
+set  ylabel "Precio medio (euros)"
 set  boxwidth 1 relative
 set  style data histograms
 set  style fill solid 1.0 border -1
