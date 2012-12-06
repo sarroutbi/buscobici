@@ -106,7 +106,19 @@ $result = pg_query($query) or die('Query returned an error: ' . pg_last_error())
 // echo "<p>RESULT:=>$result<=</p>\n";
 
 // echo "<section id=\"search_results\">\n";
+
 echo "<section>\n";
+        echo "<nav>";
+        echo "<ul>";
+        echo "\t<li><a href=\"index.html\">Búsqueda Simple</a></li>";
+        echo "\t<li><a href=\"byprice.html\">Búsqueda por Precio y Tipo</a></li>";
+        echo "\t<li><a href=\"http://www.buscobici.com/forum\">Foros</a></li>";
+        echo "\t<li id=\"li_contact\"><a href=\"contact.html\">Contactar</a></li>";
+        echo "</ul>";
+        echo "</nav>";
+        echo "<br>";
+        echo "<br>";
+
 echo "<table class=\"tableSearch\">\n";
 
 $round = 0;
@@ -116,8 +128,8 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     if ($round== 0)
     {
         echo "\t<thead>\n";
-        echo "\t<tr>\n";
-	echo "\t<td><b>Marca</b></td>\n";
+        echo "\t<tr id=\"search_results\">\n";
+        echo "\t<td><b>Marca</b></td>\n";
         echo "\t<td><b>Modelo</b></td>\n";
         echo "\t<td><b>Tipo</b></td>\n";
         echo "\t<td><b>Precio</b></td>\n";
