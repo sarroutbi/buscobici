@@ -15,7 +15,8 @@
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
 # This script gets all the bicycles from
-# Calmera store !
+# Biciescapa store !
+#
 URL="www.biciescapa.com"
 ONLY_DOMAIN="biciescapa.com"
 MAX_TRIES=10
@@ -35,7 +36,6 @@ function get_page()
     done 
   fi
 }
-
 
 MTB_FIX_BIKES_BASE="${URL}/lang-es/12-bicicletas-rigidas?p="
 MTB_FIX_BIKES_PAGES="$(seq 1 5)"
