@@ -67,7 +67,7 @@ def parse_args(opts, args):
 def print_usage(command):
   print command + ":" 
   print '             ' + command + ' [-d <database> -u <user> -h<dbhost> -S<stat>] -s<store> -p<password>'
-  print '             Valid stats: all, nummodels, meanprice' 
+  print '             Valid stats: all, nummodels, meanprice, modelsbytype' 
   print 
 
 def print_stat(cur, table, store, stat):
@@ -78,6 +78,8 @@ def print_stat(cur, table, store, stat):
     get_models(cur, table, store)
   elif stat == "meanprice":
     get_meanprice(cur, table, store)
+  elif stat == "modelsbytype":
+    get_models_bytype(cur, table, store)
 
 def get_meanprice(cur, table, store): 
   if store == "all": 
@@ -97,6 +99,47 @@ def get_meanprice(cur, table, store):
   #print 'Mean price of store is:%d' % price[0]
   if price and price[0] and price[0] > 0:
     print '\"' + store + '\", %d ' % price[0]
+
+def dump_models_type(cur, table, type):
+  cur.execute("SELECT COUNT(*) FROM " + table + " WHERE kind ~ '" + kind + "'")
+  for record in cur:
+    num_models = record 
+
+  #print 'Num models number of type:%s is:%d' % (type, num_models[0])
+  if num_models:
+    print ",%d" % num_models[0],
+
+def dump_store_models_type(cur, table, store, type):
+  cur.execute("SELECT COUNT(*) FROM " + table + " WHERE kind ~ '" + type + "'"\
+    + " AND store LIKE '" + store +"'")
+  for record in cur:
+    num_models = record 
+
+  #print 'Num models number of type:%s,store:%s, is:%d' % (type, store, num_models[0])
+  if num_models:
+    print ",%d" % num_models[0],
+
+def get_models_bytype(cur, table, store): 
+  #print 
+  #print 'Dumping models by type of store:' + store
+  #print
+  types = ['MTB','ROAD','URBAN','BMX','KIDS'];
+
+  if store == "all": 
+    cur.execute("SELECT DISTINCT store FROM " + table)
+    stores = cur.fetchall()
+    for store in stores:
+      get_models_bytype(cur, table, store[0])
+    return 0
+  else:
+    if store != "Total" and store != "":
+          print '\"' + store + '\"',
+    for type in types:
+      if store == "Total":
+        dump_models_type(cur, table, type)
+      elif store != "":
+        dump_store_models_type(cur, table, store, type)
+  print 
 
 def get_models(cur, table, store): 
   #print 

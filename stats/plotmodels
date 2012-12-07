@@ -2,6 +2,7 @@
 
 reset
 
+set  datafile separator ","
 set  title "Oferta de modelos por tienda"
 set  ylabel "Número de modelos"
 set  xlabel "Tienda"
