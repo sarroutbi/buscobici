@@ -1,12 +1,14 @@
-#!/usr/local/bin/gnuplot
+#!/usr/bin/gnuplot
 
-set  title "Precio medio por tienda"
-set  ylabel "Precio medio (euros)"
-set  boxwidth 1 relative
-set  style data histograms
-set  style fill solid 1.0 border -1
-set  xtic rotate by -45 scale 0 font ",10"
-set  datafile separator "," 
-set  terminal png truecolor font 'Verdana,10' size 1800,1400
-set  output 'mean_price.png'
-plot './stats_meanprice.txt' using 2:xticlabels(1) notitle
+reset
+
+set  terminal png truecolor font 'Verdana,20' size 1800,1400
+set output  "stats_meanprice.png"
+set title   "Precio medio por tienda"
+set ylabel  "Precio medio (euros)"
+set xlabel  "Tienda"
+set grid
+set boxwidth 0.85 relative
+set style fill transparent solid 1 noborder
+set  xtic rotate by -45 scale 0 font ",20"
+plot './stats_meanprice.txt' using 2:xticlabels(1) notitle w boxes linecolor rgb "#0000ff"
