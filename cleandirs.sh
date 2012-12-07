@@ -24,7 +24,7 @@ test -z "${1}" || CONF_FILE="$1"
 
 test -f ${CONF_FILE} || echo "configuration file does not exist" 
 
-for dir in $(cat "${CONF_FILE}" | grep OutputDir | cut -d '=' -f2);
+for dir in $(cat "${CONF_FILE}" | grep -v ^# | grep OutputDir | cut -d '=' -f2);
 do
   echo -n "Erasing ${dir} ... "
   rm -r ${dir} 2>/dev/null 1>/dev/null && echo "[OK]" || echo "[FAIL]"

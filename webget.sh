@@ -57,7 +57,7 @@ function allSectionContent()
 {
   let show_content=0
   #echo "============================================"
-  cat ${GET_CONFIG} | while read line;
+  cat ${GET_CONFIG} | grep -v ^# | while read line;
   do
    echo $line | grep "\[*\]" > /dev/null
    if [ $? -eq 0 ];
@@ -81,7 +81,7 @@ function allSectionContent()
 mkdir -p ${RESULTS_DIR}/${DATE}
 
 # 1 - Read all configs:
-cat ${GET_CONFIG} | while read line;
+cat ${GET_CONFIG} | grep -v ^# | while read line;
 do
   echo $line | grep "\[*\]" > /dev/null
   if [ $? -eq 0 ]; then
