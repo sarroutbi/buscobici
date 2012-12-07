@@ -35,20 +35,20 @@ function get_page()
 }
 
 
-ROAD_BIKES_BASE="${URL}/tienda/category.php?id_category=31&p="
-ROAD_BIKES_PAGES="$(seq 1)"
+ROAD_BIKES_BASE="${URL}/tienda/31-carretera"
+ROAD_BIKES_PAGES=""
 
-MTB_BIKES_BASE="${URL}/tienda/category.php?id_category=32&p="
+MTB_BIKES_BASE="${URL}/tienda/32-montana?p="
 MTB_BIKES_PAGES="$(seq 1 5)"
 
-URBAN_BIKES_BASE="${URL}/tienda/category.php?id_category=33&p="
-URBAN_BIKES_PAGES="$(seq 1)"
+URBAN_BIKES_BASE="${URL}/tienda/33-urbanas"
+URBAN_BIKES_PAGES=""
 
-KIDS_BIKES_BASE="${URL}/tienda/category.php?id_category=34&p="
-KIDS_BIKES_PAGES="$(seq 1)"
+KIDS_BIKES_BASE="${URL}/tienda/34-infantiles"
+KIDS_BIKES_PAGES=""
 
-BMX_BIKES_BASE="${URL}/tienda/category.php?id_category=35&p="
-BMX_BIKES_PAGES="$(seq 1)"
+BMX_BIKES_BASE="${URL}/tienda/70-bmx"
+BMX_BIKES_PAGES=""
 
 get_page "${ROAD_BIKES_BASE}"  "${ROAD_BIKES_PAGES}"
 get_page "${MTB_BIKES_BASE}"   "${MTB_BIKES_PAGES}"

@@ -27,6 +27,7 @@ MAX_PRICE=5
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
 OUTPUT_FILE=./output
+#OUTPUT_FILE=/dev/stdout
 
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
@@ -111,26 +112,20 @@ function filter_model()
 }
 
 # Params:
-# 1 - The FILE  of bike
-# 2 - The MODEL of bike
+# 1 - The URL of bike
 function print_price()
 {
-  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | egrep -E -o '[0-9]{0,}.{0,}[0-9]{2,},{0,}[0-9]{0,}' | sed -e 's/<[^>]*>//g' | grep -v "[A-Za-z]" | tr -d '.' | tr -d ' ' | head -1)
-  echo ${PRICE}
+  URL=$(echo $1 | tr -d '"')
+  PRICE=$(wget -O - ${URL} -o /dev/null | grep IVA | egrep -E -o "[0-9]{3,},{1,}[0-9]{1,2}")
+  echo ${PRICE} | awk {'print $1'}
 }
 
 function print_url()
 {
   model="$1"
   BASE_FILE="$2"
-  echo "${model}" | grep '"' > /dev/null
-  if [ $? -eq 0 ]; 
-  then
-    MODEL=$(echo "${model}" | sed -e 's-\"-\\\"-g')
-    URL=$(grep "${MODEL}" "${BASE_FILE}" | grep "a href"  | awk -F "a href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g')
-  else
-    URL=$(grep "${model}" "${BASE_FILE}" | grep "a href"  | awk -F "a href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g')
-  fi
+  URL_LINE=$(egrep -E -o "<[^>]*>${model}" ${BASE_FILE})
+  URL=$(echo ${URL_LINE} | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
   echo "${URL}"
 }
 
@@ -139,16 +134,18 @@ function process_page_url()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  MODELS=$(cat "${BASE_FILE}" | grep "<h3>" | sed -e 's/^[ \t]//g' | sed -e 's/^[ \t]*//g' | grep product_link | sed -e 's/<[^>]*>//g' | sort | tr -d '\t' | uniq)
-  echo "${MODELS}" | while read model;
+  MODEL_LINES=$(cat "${BASE_FILE}" | awk -F "<h3>" {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf "\n"}}}') 
+  echo "${MODEL_LINES}" | while read model_line;
   do
+    #echo "ANALYZING MODEL_LINE=================>${model_line}<================="
+    model=$(echo ${model_line} | awk -F "</h3>" {'print $1'} | sed -e 's-<[^>]*>--g' | egrep -E "[A-Z]{2,}")
     MODEL_FILTER=$(filter_model "${model}")
     MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     TRADEMARK=$(echo "${MODEL_FILTER}" | awk {'print $1'})
     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     URL=$(print_url "${model}" "${BASE_FILE}")
-    PRICE=$(print_price "${BASE_FILE}" "${model}")
+    PRICE=$(print_price "${URL}")
     #echo "========================================================================"
     #echo "TRADEMARK=${TRADEMARK_CAMEL}"
     #echo "MODEL=>${MODEL_CAMEL}<="
@@ -180,31 +177,29 @@ function process_pages()
   fi
 }
 
-ROAD_BIKES_BASE="category.php?id_category=31&p="
-ROAD_BIKES_PAGES="$(seq 1)"
+ROAD_BIKES_BASE="31-carretera"
+ROAD_BIKES_PAGES=""
 
-MTB_BIKES_BASE="category.php?id_category=32&p="
+MTB0_BIKES_BASE="32-montana"
+MTB0_BIKES_PAGES=""
+
+MTB_BIKES_BASE="32-montana?p="
 MTB_BIKES_PAGES="$(seq 1 5)"
 
-URBAN_BIKES_BASE="category.php?id_category=33&p="
-URBAN_BIKES_PAGES="$(seq 1)"
+URBAN_BIKES_BASE="33-urbanas"
+URBAN_BIKES_PAGES=""
 
-KIDS_BIKES_BASE="category.php?id_category=34&p="
-KIDS_BIKES_PAGES="$(seq 1)"
+KIDS_BIKES_BASE="34-infantiles"
+KIDS_BIKES_PAGES=""
 
-BMX_BIKES_BASE="category.php?id_category=35&p="
-BMX_BIKES_PAGES="$(seq 1)"
+BMX_BIKES_BASE="70-bmx"
+BMX_BIKES_PAGES=""
 
 > ${OUTPUT_FILE}
 
-process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Ciclos Nico" "ROAD"  >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "Ciclos Nico" "MTB" >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}"  "${ROAD_BIKES_PAGES}"  "Ciclos Nico" "ROAD"  >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_BASE}"   "${MTB_BIKES_PAGES}"   "Ciclos Nico" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB0_BIKES_BASE}"  "${MTB0_BIKES_PAGES}"  "Ciclos Nico" "MTB" >> ${OUTPUT_FILE}
 process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "Ciclos Nico" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "Ciclos Nico" "BMX"  >> ${OUTPUT_FILE}
-process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "Ciclos Nico" "KIDS"  >> ${OUTPUT_FILE}
-
-#process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Ciclos Nico" "ROAD"
-#process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "Ciclos Nico" "MTB"
-#process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "Ciclos Nico" "URBAN"
-#process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "Ciclos Nico" "BMX"
-#process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "Ciclos Nico" "KIDS"
+process_pages "${BMX_BIKES_BASE}"   "${BMX_BIKES_PAGES}"   "Ciclos Nico" "BMX"  >> ${OUTPUT_FILE}
+process_pages "${KIDS_BIKES_BASE}"  "${KIDS_BIKES_PAGES}"  "Ciclos Nico" "KIDS"  >> ${OUTPUT_FILE}
