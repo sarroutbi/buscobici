@@ -2,7 +2,12 @@
 
 reset
 
+set  lmargin at screen 0.10
+set  rmargin at screen 0.87
+set  bmargin at screen 0.15
+set  tmargin at screen 0.95
 set  datafile separator ","
+set  key invert reverse Left outside
 set  terminal png truecolor font 'Verdana,20' size 1800,1400
 set  output "stats_models_type.png"
 set  title "Oferta de modelos por tienda y tipo"

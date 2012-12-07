@@ -107,7 +107,7 @@ def dump_models_type(cur, table, type):
 
   #print 'Num models number of type:%s is:%d' % (type, num_models[0])
   if num_models:
-    print ",%d" % num_models[0],
+    print ", %d" % num_models[0],
 
 def dump_store_models_type(cur, table, store, type):
   cur.execute("SELECT COUNT(*) FROM " + table + " WHERE kind ~ '" + type + "'"\
@@ -117,7 +117,17 @@ def dump_store_models_type(cur, table, store, type):
 
   #print 'Num models number of type:%s,store:%s, is:%d' % (type, store, num_models[0])
   if num_models:
-    print ",%d" % num_models[0],
+    print ", %d" % num_models[0],
+
+def dump_store_models(cur, table, store):
+  cur.execute("SELECT COUNT(*) FROM " + table + " WHERE store LIKE '" + store + "'")
+    
+  for record in cur:
+    num_models = record 
+
+  #print 'Num models number of store:%s, is:%d' % (store, num_models[0])
+  if num_models:
+    print ", %d" % num_models[0],
 
 def get_models_bytype(cur, table, store): 
   #print 
@@ -133,13 +143,14 @@ def get_models_bytype(cur, table, store):
     return 0
   else:
     if store != "Total" and store != "":
-          print '\"' + store + '\"',
-    for type in types:
-      if store == "Total":
-        dump_models_type(cur, table, type)
-      elif store != "":
-        dump_store_models_type(cur, table, store, type)
-  print 
+      print '\"' + store + '\"',
+      for type in types:
+        if store == "Total":
+          dump_models_type(cur, table, type)
+        elif store != "":
+          dump_store_models_type(cur, table, store, type)
+      dump_store_models(cur, table, store)
+      print 
 
 def get_models(cur, table, store): 
   #print 
