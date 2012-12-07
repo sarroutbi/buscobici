@@ -89,7 +89,7 @@ function translateType()
     echo "BMX";
   elif [ "$1" = "Mujer" ];  
   then
-    echo "WOMAN";
+    echo "MTB-WOMAN";
   else
     echo "${1}" | grep "R.gidas" 2>&1 > /dev/null
     if [ $? -eq 0 ]; 
