@@ -34,6 +34,7 @@ SUFFIX_CONFIG_LINE=Suffix
 OUTPUT_FILE=output
 PSQL_FILE_PREFIX=psql
 RESULTS_DIR=RESULTS
+DATE=$(date +%Y%m%d)
 TEST_DIR=test
 DDBB_UPDATE_FILE=dbupdate.txt
 
@@ -77,6 +78,7 @@ function allSectionContent()
 }
 
 > ${DDBB_UPDATE_FILE}
+mkdir -p ${RESULTS_DIR}/${DATE}
 
 # 1 - Read all configs:
 cat ${GET_CONFIG} | while read line;
@@ -134,7 +136,6 @@ do
         then
           if [ -s ${TMP_SUFFIX_FILE} ];
           then
-            DATE=$(date +%Y%m%d)
             echo "====================================="
             PSCRIPT_FILE=$(cat ${TMP_PSCRIPT_FILE})
             SCRIPT_FILE=$(cat ${TMP_SCRIPT_FILE})
@@ -155,7 +156,6 @@ do
             ./$(basename ${SCRIPT_FILE})
             ./$(basename ${PSCRIPT_FILE})
             popd > /dev/null
-            mkdir -p ${RESULTS_DIR}/${DATE}
             cp ${SCRIPT_DIR}/${OUTPUT_FILE} ${RESULTS_DIR}/${DATE}/${OUTPUT_FILE}-${SUFFIX}
             ./webtodb.sh ${RESULTS_DIR}/${DATE}/${OUTPUT_FILE}-${SUFFIX} > ${RESULTS_DIR}/${DATE}/${PSQL_FILE_PREFIX}-${SUFFIX}
             pushd ${TEST_DIR} > /dev/null
