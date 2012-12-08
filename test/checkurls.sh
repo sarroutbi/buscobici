@@ -43,7 +43,7 @@ wget --post-data "search=\*" "${GLOBAL_URL}/${SEARCH_PHP}" -o /dev/null 2>&1 > /
 #  let COUNTER_URL=${COUNTER_URL}+1 
 #done
 
-cat ${SEARCH_PHP} | egrep -E -o '<a href="[^>]*>' | sed -e 's/<a href="//g' | sed -e 's/">//g' >> ${TMP_FILE}
+cat ${SEARCH_PHP} | grep -v '<li>' | egrep -E -o '<a href="[^>]*>' | sed -e 's/<a href="//g' | sed -e 's/">//g' >> ${TMP_FILE}
 while read URL;
 do 
   let COUNTER_URL=${COUNTER_URL}+1 
@@ -51,7 +51,7 @@ done < ${TMP_FILE}
 
 let counter=0;
 
-cat ${SEARCH_PHP} | egrep -E -o '<a href="[^>]*>' | sed -e 's/<a href="//g' | awk -F "target" {'print $1'} | sed -e 's/">//g' | tr -d '"' | while read URL;
+cat ${SEARCH_PHP} | grep -v '<li>' | egrep -E -o '<a href="[^>]*>' | sed -e 's/<a href="//g' | awk -F "target" {'print $1'} | sed -e 's/">//g' | tr -d '"' | while read URL;
 do
   printf "%s/%s (%s errors)\r" "${counter}" "${COUNTER_URL}" "${ERROR_COUNTER}"
   urltest "${URL}";
