@@ -112,7 +112,7 @@ echo "<section>\n";
         echo "<ul>";
         echo "\t<li><a href=\"index.html\">Búsqueda Simple</a></li>";
         echo "\t<li><a href=\"byprice.html\">Búsqueda por Precio y Tipo</a></li>";
-        echo "\t<li><a href=\"http://www.buscobici.com/forum\">Foros</a></li>";
+        echo "\t<li><a href=\"http://buscobici.com/forum\">Foros</a></li>";
         echo "\t<li id=\"li_contact\"><a href=\"contact.html\">Contactar</a></li>";
         echo "</ul>";
         echo "</nav>";
