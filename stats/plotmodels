@@ -2,6 +2,10 @@
 
 reset
 
+#randcolor(r) = ((rand(0)*0xFF0000) + (rand(0)*0x00FF00) + (rand(0)*0x0000FF))
+#randcolor(r) = (((r/1000)*0xFF0000) + ((r/1000)*0x00FF00) + ((r/1000)*0x0000FF))
+randcolor(r) = (((r/1000)*0xFF0000) + (rand(0)*0x00FF00) + (rand(r)*0x0000FF))
+
 set  lmargin at screen 0.10
 set  rmargin at screen 0.95
 set  bmargin at screen 0.15
@@ -17,4 +21,4 @@ set  boxwidth 0.85 absolute
 set  style fill transparent solid 1 noborder
 set  xtic rotate by -45 scale 0 font ",20"
 
-plot './stats_models.txt' using ($0):2:($0):xticlabels(1) w boxes lc variable notitle
+plot './stats_models.txt' using ($0):2:(randcolor($2)):xticlabels(1) w boxes lc rgb variable notitle
