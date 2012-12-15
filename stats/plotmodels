@@ -13,7 +13,8 @@ set  xlabel "Tienda"
 set  output 'stats_models.png'
 set  terminal png truecolor font 'Verdana,20' size 1800,1400
 set  grid
-set  boxwidth 0.85 relative
+set  boxwidth 0.85 absolute
 set  style fill transparent solid 1 noborder
 set  xtic rotate by -45 scale 0 font ",20"
-plot './stats_models.txt' using 2:xticlabels(1) notitle w boxes linecolor rgb "#0000ff"
+
+plot './stats_models.txt' using ($0):2:($0):xticlabels(1) w boxes lc variable notitle
