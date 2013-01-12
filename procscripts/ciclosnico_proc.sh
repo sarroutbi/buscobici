@@ -116,7 +116,7 @@ function filter_model()
 function print_price()
 {
   URL=$(echo $1 | tr -d '"')
-  PRICE=$(wget -O - ${URL} -o /dev/null | grep IVA | egrep -E -o "[0-9]{3,},{1,}[0-9]{1,2}")
+  PRICE=$(wget -O - ${URL} -o /dev/null | grep IVA | egrep -E -o "[0-9]{0,1}[\ ]{0,1}[0-9]{3},{1}[0-9]{2}"| tr -d " ")
   echo ${PRICE} | awk {'print $1'}
 }
 
