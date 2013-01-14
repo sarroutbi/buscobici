@@ -3,7 +3,7 @@
 reset
 
 set  lmargin at screen 0.10
-set  rmargin at screen 0.87
+set  rmargin at screen 0.80
 set  bmargin at screen 0.15
 set  tmargin at screen 0.95
 set  datafile separator ","
