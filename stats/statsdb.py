@@ -74,6 +74,7 @@ def print_stat(cur, table, store, stat):
   if stat == "all":
     get_models(cur, table, store)
     get_meanprice(cur, table, store)
+    get_models_bytype(cur, table, store)
   elif stat == "nummodels":
     get_models(cur, table, store)
   elif stat == "meanprice":
