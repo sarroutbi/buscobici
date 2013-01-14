@@ -67,7 +67,7 @@ def parse_args(opts, args):
 def print_usage(command):
   print command + ":" 
   print '             ' + command + ' [-d <database> -u <user> -h<dbhost> -S<stat>] -s<store> -p<password>'
-  print '             Valid stats: all, nummodels, meanprice, modelsbytype' 
+  print '             Valid stats: all, nummodels, meanprice, modelsbytype, modelsbypricerange' 
   print 
 
 def print_stat(cur, table, store, stat):
@@ -81,6 +81,8 @@ def print_stat(cur, table, store, stat):
     get_meanprice(cur, table, store)
   elif stat == "modelsbytype":
     get_models_bytype(cur, table, store)
+  elif stat == "modelsbypricerange":
+    get_models_bypricerange(cur, table, store)
 
 def get_meanprice(cur, table, store): 
   if store == "all": 
@@ -130,6 +132,19 @@ def dump_store_models(cur, table, store):
   if num_models:
     print ", %d" % num_models[0],
 
+def dump_store_models_pricerange(cur, table, store, pricerange):
+  minprice, maxprice = pricerange.split("-", 1)
+  cur.execute("SELECT COUNT(*) FROM " + table + " WHERE price >= " + minprice \
+    + "AND price <= " + maxprice + " AND store LIKE '" + store +"'")
+  for record in cur:
+    num_models = record
+
+  #print 'Num models number of pricerange:%s,store:%s, is:%d' % (pricerange, store, num_models[0])
+  if num_models:
+    print ", %d" % num_models[0],
+  else:
+    print ", %0"
+
 def get_models_bytype(cur, table, store): 
   #print 
   #print 'Dumping models by type of store:' + store
@@ -152,6 +167,28 @@ def get_models_bytype(cur, table, store):
           dump_store_models_type(cur, table, store, type)
       dump_store_models(cur, table, store)
       print 
+
+def get_models_bypricerange(cur, table, store): 
+  #print 
+  #print 'Dumping models by type of store:' + store
+  #print
+  ranges = ['0-500','500-750','750-1000','1000-1500','1500-2000','2000-2500','2500-3000','3000-5000','5000-20000'];
+  if store == "all":
+    cur.execute("SELECT DISTINCT store FROM " + table)
+    stores = cur.fetchall()
+    for store in stores:
+      get_models_bypricerange(cur, table, store[0])
+    return 0
+  else:
+    if store != "Total" and store != "":
+      print '\"' + store + '\"',
+      for range in ranges:
+        if store == "Total":
+          dump_models_pricerange(cur, table, range)
+        elif store != "":
+          dump_store_models_pricerange(cur, table, store, range)
+      dump_store_models(cur, table, store)
+      print
 
 def get_models(cur, table, store): 
   #print 
