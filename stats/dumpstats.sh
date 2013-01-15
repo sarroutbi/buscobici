@@ -27,4 +27,4 @@ do
   ./${plotter}
 done
 echo
-rm *txt
+#rm *txt
