@@ -20,5 +20,4 @@ set  style data histograms
 set  xtic rotate by -45 scale 0 font ",20"
 set  grid
 
-#plot './stats_models_type.txt' using 2 t "MTB", '' using 3 t "ROAD", '' using 4 t "URBAN", '' using 5 t "BMX", '' using 6:xtic(1) t "KIDS"
 plot './stats_models_pricerange.txt' using 2 t "0-500", '' using 3 t "500-750", '' using 4 t "750-1000", '' using 5 t "1000-1500", '' using 6 t "1500-2000", '' using 7 t "2000-2500", '' using 8 t "2500-3000", '' using 9 t "3000-5000", '' using 10:xtic(1) t "5000-20000"
