@@ -170,9 +170,9 @@ def get_models_bytype(cur, table, store):
 
 def get_models_bypricerange(cur, table, store): 
   #print 
-  #print 'Dumping models by type of store:' + store
+  #print 'Dumping models by range of store:' + store
   #print
-  ranges = ['0-500','500-750','750-1000','1000-1500','1500-2000','2000-2500','2500-3000','3000-5000','5000-20000'];
+  ranges = ['0-500','500-750','750-1000','1000-1500','1500-2000','2000-2500','2500-3000','3000-5000','5000-30000'];
   if store == "all":
     cur.execute("SELECT DISTINCT store FROM " + table)
     stores = cur.fetchall()
