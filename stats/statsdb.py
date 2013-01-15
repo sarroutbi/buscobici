@@ -134,7 +134,7 @@ def dump_store_models(cur, table, store):
 
 def dump_store_models_pricerange(cur, table, store, pricerange):
   minprice, maxprice = pricerange.split("-", 1)
-  cur.execute("SELECT COUNT(*) FROM " + table + " WHERE price >= " + minprice \
+  cur.execute("SELECT COUNT(*) FROM " + table + " WHERE price > " + minprice \
     + "AND price <= " + maxprice + " AND store LIKE '" + store +"'")
   for record in cur:
     num_models = record
