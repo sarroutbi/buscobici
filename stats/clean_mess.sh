@@ -14,23 +14,6 @@
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
-echo -n "Generating statistics text files ... "
-./statstotxt.sh
-echo -n "[OK]"
-let counter=1
-let total=$(ls plot*|wc -w)
-echo
-for plotter in plot*;
-do
-  echo -n -e "Generating graphic : $counter/$total\r"
-  let counter=$counter+1
-  ./${plotter}
-done
-echo
-echo -n "Generating pdf from graphics ... "
-./generate_statspdf.sh 2>/dev/null 1>/dev/null
-echo -n "[OK]"
-echo
-#rm *txt
-rm *.log
-rm *.aux
+rm *.pdf
+rm *.png
+rm *.txt
