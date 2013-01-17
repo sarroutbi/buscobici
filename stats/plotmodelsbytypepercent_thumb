@@ -1,0 +1,23 @@
+#!/usr/bin/gnuplot
+
+reset
+
+set  key invert reverse Left outside
+set  lmargin at screen 0.10
+set  rmargin at screen 0.87
+set  bmargin at screen 0.25
+set  tmargin at screen 0.85
+set  datafile separator ","
+set  terminal png truecolor font 'Verdana,1' size 64,48
+set  output "stats_models_type_percent_thumb.png"
+set  title  "Distribución de modelos por tipos"
+set  ylabel "% del total"
+set  xlabel "Tienda"
+set  yrange [0:100]
+set  boxwidth 0.85 relative 
+set  style fill transparent solid 1 noborder
+set  style histogram rowstacked
+set  style data histograms
+set  xtic rotate by -45 scale 0 font ",1"
+set  grid
+plot './stats_models_type.txt' using (100.*$2/$7):xtic(1) t "MTB", '' using (100.*$3/$7) t "ROAD", '' using (100.*$4/$7) t "URBAN", '' using (100.*$5/$7) t "BMX", '' using (100.*$6/$7) t "KIDS"

@@ -1,0 +1,24 @@
+#!/usr/bin/gnuplot
+
+reset
+
+set  lmargin at screen 0.10
+set  rmargin at screen 0.80
+set  bmargin at screen 0.25
+set  tmargin at screen 0.85
+set  datafile separator ","
+set  key invert reverse Left outside
+set  terminal png truecolor font 'Verdana,1' size 64,48
+set  output "stats_models_pricerange_percent_thumb.png"
+set  title "Oferta de modelos por tienda y rango de precios"
+set  ylabel "Distribución de modelos por rango de precios"
+set  xlabel "Tienda"
+set  yrange [0:100]
+set  boxwidth 0.85 relative 
+set  style fill transparent solid 1 noborder
+set  style histogram rowstacked
+set  style data histograms
+set  xtic rotate by -45 scale 0 font ",1"
+set  grid
+
+plot './stats_models_pricerange.txt' using (100*$2/$11) t "0-500", '' using (100*$3/$11) t "500-750", '' using (100*$4/$11) t "750-1000", '' using (100.*$5/$11) t "1000-1500", '' using (100*$6/$11) t "1500-2000", '' using (100*$7/$11) t "2000-2500", '' using (100*$8/$11) t "2500-3000", '' using (100*$9/$11) t "3000-5000", '' using (100.*$10/$11):xtic(1) t "5000+"
