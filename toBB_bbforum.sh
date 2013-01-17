@@ -19,4 +19,7 @@
 # 
 test -z "${1}" && echo "Please, specify valid file" && exit 1
 
-cat $1 | egrep -E "<a href[^>]*>" | awk -F "<td>" {'print $2'} | awk -F "</td>" {'print $1'} | sed -e 's/<a href="/[URL]/g' | sed -e 's!</a>!!g' | tr -d '"' | sed -e 's!target=_blank![/URL]!g' | awk -F '\[/URL\]' {'print $1"[/URL]"'}
+#cat $1 | egrep -E "<a href[^>]*>" | awk -F "<td>" {'print $2'} | awk -F "</td>" {'print $1'} | sed -e 's/<a href="/[URL]/g' | sed -e 's!</a>!!g' | tr -d '"' | sed -e 's!target=_blank![/URL]!g' | awk -F '[URL]' {'print $1"[/URL]"'}
+#cat $1 | egrep -E "<a href[^>]*>" | awk -F "<td>" {'print $2'} | awk -F "</td>" {'print $1'} | sed -e 's/<a href="/[URL]/g' | sed -e 's!</a>!!g' | tr -d '"' | sed -e 's!target=_blank![/URL]!g' | awk -F '[/URL]' {'print $1"[/URL]"'}
+cat $1 | egrep -E "<a href[^>]*>" | awk -F "<td>" {'print $2'} | awk -F "</td>" {'print $1'} | sed -e 's/<a href="/[URL]/g' | sed -e 's!</a>!!g' | tr -d '"' | sed -e 's!target=_blank![/URL]!g' | awk -F '\\[/URL]' {'print $1"[/URL]"'}
+
