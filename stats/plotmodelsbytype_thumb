@@ -8,7 +8,7 @@ set  bmargin at screen 0.25
 set  tmargin at screen 0.85
 set  datafile separator ","
 set  key invert reverse Left outside
-set  terminal png truecolor font 'Verdana,1' size 64,48
+set  terminal png truecolor font 'Verdana,2' size 100,75
 set  output "stats_models_type_thumb.png"
 set  title "Oferta de modelos por tienda y tipo"
 set  ylabel "Número de modelos por tipo"
@@ -17,7 +17,7 @@ set  boxwidth 0.85 relative
 set  style fill transparent solid 1 noborder
 set  style histogram rowstacked
 set  style data histograms
-set  xtic rotate by -45 scale 0 font ",1"
+set  xtic rotate by -45 scale 0 font ",2"
 set  grid
 
 plot './stats_models_type.txt' using 2 t "MTB", '' using 3 t "ROAD", '' using 4 t "URBAN", '' using 5 t "BMX", '' using 6:xtic(1) t "KIDS"

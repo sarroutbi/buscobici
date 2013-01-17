@@ -15,10 +15,10 @@ set  title "Oferta de modelos por tienda"
 set  ylabel "Número de modelos"
 set  xlabel "Tienda"
 set  output 'stats_models_thumb.png'
-set  terminal png truecolor font 'Verdana,1' size 64,48
+set  terminal png truecolor font 'Verdana,2' size 100,75
 set  grid
 set  boxwidth 0.85 absolute
 set  style fill transparent solid 1 noborder
-set  xtic rotate by -45 scale 0 font ",1"
+set  xtic rotate by -45 scale 0 font ",2"
 
 plot './stats_models.txt' using ($0):2:(randcolor($2)):xticlabels(1) w boxes lc rgb variable notitle
