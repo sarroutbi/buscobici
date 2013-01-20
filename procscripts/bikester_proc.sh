@@ -28,10 +28,11 @@ OUTPUT_FILE=./output
 BASE_URL="http://www.bikester.es"
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
-DOWN_SEARCH=20
+MODEL_DOWN_SEARCH=10
+MAX_PRICE_SEARCH=4
 PRICE_SEARCH=4
-URL="www.probikeshop.es"
-ONLY_DOMAIN="probikeshop.es"
+URL="www.bikester.es"
+ONLY_DOMAIN="bikester.es"
 
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
@@ -49,7 +50,8 @@ KIND_KEY="KIND"
 # 6 - Kind:      KIND=MTB
 function dump_bike()
 {
-  if [[ "$1" != "" ]];
+  if [[ "$1" != "" ]] && [[ "$2" != "" ]] && [[ "$3" != "" ]] \
+      && [[ "$4" != "" ]]  && [[ "$5" != "" ]]  && [[ "$6" != "" ]];
   then
     echo "[$1]"
     echo "${SUBURL_KEY}=$2"
@@ -148,35 +150,35 @@ function dump_bike_from_file()
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  TRADEMARK_MODELS=$(cat "${FILE}" | grep "<td class='product_thumb'>" -A${DOWN_SEARCH} | grep "<h3><a href")
+  TRADEMARK_MODELS=$(cat "${FILE}" | grep "<div class" -A${MODEL_DOWN_SEARCH} | grep "<h4>" | sed -e 's/<[^>]*>//g')
   echo "${TRADEMARK_MODELS}" | while read trademark_model;
   do 
-    #echo "===== TRADEMARK MODEL ====="
-    #echo "=>${trademark_model}<="
-    #echo "===== /TRADEMARK MODEL ====="
+    echo "===== TRADEMARK MODEL ====="
+    echo "=>${trademark_model}<="
+    echo "===== /TRADEMARK MODEL ====="
     test -z "${trademark_model}" && continue;
-    TRADEMARK_MODEL=$(grep "${trademark_model}" "${FILE}" | grep "<h3><a href" | sed -e 's/<[^>]*>//g')
+    TRADEMARK_MODEL="${trademark_model}"
     TRADEMARK_MODEL_CLEAN=$(clean_model "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
     MODEL_CAMEL=$(camel "${MODEL}" "${NO_CAMEL_MIN}")
-    URL=$(grep "${trademark_model}" "${FILE}" | grep "<h3><a href" | awk -F "a href=" {'print $2'} | awk -F ">" {'print $1'} | tr -d '"')
-    FINAL_URL=$(echo "\"${BASE_URL}${URL}\"")
-    PRICE=$(grep "${trademark_model}" "${FILE}" -A${DOWN_SEARCH} | grep "product_price" -A${PRICE_SEARCH} | egrep -E "[0-9]{0,1}.{0,1}[0-9]{2,},{0,1}[0-9]{0,}" -o | head -1 | tr -d '.' | sed -e 's/^[ /t]*//g' | tr -d ' ' | tr -d '\r' | tr -d '\n' | tr -d '\302' | tr -d '\240')
-    #echo "========================================================================"
-    #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
-    #echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
-    #echo "TRADEMARK=${TRADEMARK}"
-    #echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
-    #echo "MODEL=${MODEL}="
-    #echo "MODEL_CLEAN=${MODEL_CLEAN}="
-    #echo "URL=${FINAL_URL}"
-    #echo "PRICE=${PRICE}"
-    #echo "STORE=${STORE}"
-    #echo "TYPE=${TYPE}"
-    #echo "FILE=${FILE}"
-    #echo "========================================================================"
+    URL=$(grep "${trademark_model}" "${FILE}" | grep "<a href" | awk -F "a href=" {'print $2'} | awk {'print $1'} | tr -d '"')
+    FINAL_URL=$(echo "\"${BASE_URL}/${URL}\"")
+    PRICE=$(grep "${trademark_model}" "${FILE}" -A${MODEL_DOWN_SEARCH} | grep "product_price" -A${PRICE_SEARCH} | egrep -E "[0-9]{0,1}.{0,1}[0-9]{2,},{0,1}[0-9]{0,}" -o | head -1 | tr -d '.' | sed -e 's/^[ /t]*//g' | tr -d ' ' | tr -d '\r' | tr -d '\n' | tr -d '\302' | tr -d '\240')
+    echo "========================================================================"
+    echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
+    echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
+    echo "TRADEMARK=${TRADEMARK}"
+    echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
+    echo "MODEL=${MODEL}="
+    echo "MODEL_CLEAN=${MODEL_CLEAN}="
+    echo "URL=${FINAL_URL}"
+    echo "PRICE=${PRICE}"
+    echo "STORE=${STORE}"
+    echo "TYPE=${TYPE}"
+    echo "FILE=${FILE}"
+    echo "========================================================================"
     dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
@@ -201,49 +203,49 @@ function process_pages()
 
 > ${OUTPUT_FILE}
 
-MTB_FIX_BIKES_BASE="${URL}/bicicletas/bicicletas-de-montana.html?page="
+MTB_FIX_BIKES_BASE="bicicletas-de-montana.html?page="
 MTB_FIX_BIKES_PAGES="$(seq 0 5)"
 
-MTB_DOUBLE_BIKES_BASE="${URL}/bicicletas/bicicletas-doble-suspension.html?page="
+MTB_DOUBLE_BIKES_BASE="bicicletas-doble-suspension.html?page="
 MTB_DOUBLE_BIKES_PAGES="$(seq 0 5)"
 
-MTB_29_BIKES_BASE="${URL}/bicicletas/bicicletas-29-pulgadas.html?page="
+MTB_29_BIKES_BASE="bicicletas-29-pulgadas.html?page="
 MTB_29_BIKES_PAGES="$(seq 0 3)"
 
-KIDS_BIKES_BASE="${URL}/bicicletas/bicicletas-para-ninos.html?page="
+KIDS_BIKES_BASE="bicicletas-para-ninos.html?page="
 KIDS_BIKES_PAGES="$(seq 0 7)"
 
-BTT_KIDS_BIKES_BASE="${URL}/bicicletas/bicicletas-juveniles-bicicletas-todo-terreno.html?page="
+BTT_KIDS_BIKES_BASE="bicicletas-juveniles-bicicletas-todo-terreno.html?page="
 BTT_KIDS_BIKES_PAGES="$(seq 0 1)"
 
-BMX_BIKES_BASE="${URL}/bicicletas/bmx.html?page="
+BMX_BIKES_BASE="bmx.html?page="
 BMX_BIKES_PAGES="$(seq 0 5)"
 
-ROAD_BIKES_BASE="${URL}/bicicletas/bicicletas-de-carretera.html?page="
+ROAD_BIKES_BASE="bicicletas-de-carretera.html?page="
 ROAD_BIKES_PAGES="$(seq 0 5)"
 
-ROAD_CICLOCROSS_BIKES_BASE="${URL}/bicicletas/bicicletas-fitness-bicicletas-ciclocross.html"
+ROAD_CICLOCROSS_BIKES_BASE="bicicletas-fitness-bicicletas-ciclocross.html"
 ROAD_CICLOCROSS_BIKES_PAGES=""
 
-URBAN_XC_BIKES_BASE="${URL}/bicicletas/bicicletas-xc-.html?page="
+URBAN_XC_BIKES_BASE="bicicletas-xc-.html?page="
 URBAN_XC_BIKES_PAGES="$(seq 0 3)"
 
-URBAN_SINGLE_BIKES_BASE="${URL}/bicicletas/bicicletas-single-speed.html"
+URBAN_SINGLE_BIKES_BASE="bicicletas-single-speed.html"
 URBAN_SINGLE_BIKES_PAGES=""
 
-URBAN_WALK_BIKES_BASE="${URL}/bicicletas/bicicleta-de-paseo.html?page="
+URBAN_WALK_BIKES_BASE="bicicleta-de-paseo.html?page="
 URBAN_WALK_BIKES_PAGES="$(seq 0 2)"
 
-URBAN_FOLDING_BIKES_BASE="${URL}/bicicletas/bicicletas-plegables-.html?page="
+URBAN_FOLDING_BIKES_BASE="bicicletas-plegables-.html?page="
 URBAN_FOLDING_BIKES_PAGES="$(seq 0 2)"
 
-URBAN_RETRO_BIKES_BASE="${URL}/bicicletas/cruiser-retro.html"
+URBAN_RETRO_BIKES_BASE="cruiser-retro.html"
 URBAN_RETRO_BIKES_PAGES=""
 
-URBAN_ELECT_BIKES_BASE="${URL}/bicicletas/bicicletas-electricas-pedelec.html?page="
+URBAN_ELECT_BIKES_BASE="bicicletas-electricas-pedelec.html?page="
 URBAN_ELECT_BIKES_PAGES="$(seq 0 2)"
 
-TREKKING_BIKES_BASE="${URL}/bicicletas/bicicletas-trekking.html?page="
+TREKKING_BIKES_BASE="bicicletas-trekking.html?page="
 TREKKING_BIKES_PAGES="$(seq 0 3)"
 
 process_pages "${MTB_FIX_BIKES_BASE}"       "${MTB_FIX_BIKES_PAGES}"       "Bikester" "MTB"
