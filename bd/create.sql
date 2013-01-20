@@ -8,7 +8,7 @@ DROP DATABASE bikesearch;
 
 --- Create table:
 CREATE TABLE BIKES(
-    model       char(50) NOT NULL,
+    model       char(70) NOT NULL,
     trademark   char(30) NOT NULL,
     store       varchar(30) NOT NULL,
     url         varchar(200) NOT NULL,
