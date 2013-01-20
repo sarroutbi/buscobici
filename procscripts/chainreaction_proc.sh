@@ -22,6 +22,7 @@
 # PRICE=249,00
 # STORE=Biciletas Gil
 # KIND=MTB-FIX
+#
 URL_BASE="http://www.chainreactioncycles.com"
 MAX_PRICE=15
 NO_CAMEL_MIN=6
@@ -116,7 +117,12 @@ function filter_model()
 # 2 - The MODEL of bike
 function print_price()
 {
-  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep "Label11" | sed -e 's/<[^>]*>//g' | egrep -E -o '[0-9]{2,}.{0,}[0-9]{2,}' | tr "." "," | tr -d '\r' | tr -d '\n')
+  if [ "$2" = "Kidz Rebel Kidz Wood" ];
+  then
+    PRICE=$(grep "title=\"Rebel $2\"" "$1" -A${MAX_PRICE} | grep "Label11" | sed -e 's/<[^>]*>//g' | egrep -E -o '[0-9]{2,}.{0,}[0-9]{2,}' | tr "." "," | tr -d '\r' | tr -d '\n')
+  else
+    PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep "Label11" | sed -e 's/<[^>]*>//g' | egrep -E -o '[0-9]{2,}.{0,}[0-9]{2,}' | tr "." "," | tr -d '\r' | tr -d '\n')
+  fi
   echo ${PRICE}
 }
 
