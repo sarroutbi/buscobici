@@ -123,6 +123,12 @@ function print_price()
   #echo "======================================"
 }
 
+function clean_model()
+{
+    MODEL="${1}"
+    echo "${MODEL}" | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo//g' | sed -e 's/Bici sin pedales//g' | tr "'" '"'
+}
+
 function dump_bike_from_urls()
 {
   URLS="$1"
@@ -131,7 +137,8 @@ function dump_bike_from_urls()
   echo "${URLS}" | while read URL;
   do
     TRADEMARK_MODEL=$(print_model "${URL}" "${FILE}" | sed -e s/"BICICLETA "//g)
-    TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
+    TRADEMARK_MODEL_CLEAN=$(clean_model "${TRADEMARK_MODEL}")
+    TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
     MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     PRICE=$(print_price "${URL}" "${FILE}")
     ### SOME URLs, that contain %, are not well parsed by awk. We insert an additional % char
