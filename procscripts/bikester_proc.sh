@@ -24,13 +24,14 @@
 # KIND=MTB-FIX
 
 MAX_PRICE=2
+#OUTPUT_FILE=/dev/stdout
 OUTPUT_FILE=./output
 BASE_URL="http://www.bikester.es"
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
 MODEL_DOWN_SEARCH=10
-MAX_PRICE_SEARCH=4
-PRICE_SEARCH=4
+MAX_PRICE_SEARCH=20
+MAX_PRICE_SEARCH2=25
 URL="www.bikester.es"
 ONLY_DOMAIN="bikester.es"
 
@@ -82,24 +83,12 @@ function print_price()
 {
   FILE="$1"
   MODEL="$2"
-  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
+  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep "wholeNumber" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,3},{0,1}[0-9]{0,}" | head -1)
   if [ "${PRICE}" = "" ];
   then
-    let MAX_PRICE_SEARCH=${MAX_PRICE_SEARCH}+5
-    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
+    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH2} | grep "wholeNumber" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,3},{0,1}[0-9]{0,}" | head -1) 
   fi
-  if [ "${PRICE}" = "" ];
-  then
-    let MAX_PRICE_SEARCH=${MAX_PRICE_SEARCH}+5
-    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
-  fi
-  if [ "${PRICE}" = "" ];
-  then
-    ### Last effort, go for first one
-    let MAX_PRICE_SEARCH=${MAX_PRICE_SEARCH}+90
-    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | head -1)
-  fi
-  PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ' ')
+  PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ' ' | tr -d '.')
   echo ${PRICE_NO_SPACE}
 }
 
@@ -153,32 +142,34 @@ function dump_bike_from_file()
   TRADEMARK_MODELS=$(cat "${FILE}" | grep "<div class" -A${MODEL_DOWN_SEARCH} | grep "<h4>" | sed -e 's/<[^>]*>//g')
   echo "${TRADEMARK_MODELS}" | while read trademark_model;
   do 
-    echo "===== TRADEMARK MODEL ====="
-    echo "=>${trademark_model}<="
-    echo "===== /TRADEMARK MODEL ====="
     test -z "${trademark_model}" && continue;
     TRADEMARK_MODEL="${trademark_model}"
     TRADEMARK_MODEL_CLEAN=$(clean_model "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
-    MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    if [ "${TRADEMARK_CAMEL}" = "Solid" ];
+    then
+      TRADEMARK_CAMEL="Solid Bikes"
+      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    else 
+      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    fi
     MODEL_CAMEL=$(camel "${MODEL}" "${NO_CAMEL_MIN}")
     URL=$(grep "${trademark_model}" "${FILE}" | grep "<a href" | awk -F "a href=" {'print $2'} | awk {'print $1'} | tr -d '"')
     FINAL_URL=$(echo "\"${BASE_URL}/${URL}\"")
-    PRICE=$(grep "${trademark_model}" "${FILE}" -A${MODEL_DOWN_SEARCH} | grep "product_price" -A${PRICE_SEARCH} | egrep -E "[0-9]{0,1}.{0,1}[0-9]{2,},{0,1}[0-9]{0,}" -o | head -1 | tr -d '.' | sed -e 's/^[ /t]*//g' | tr -d ' ' | tr -d '\r' | tr -d '\n' | tr -d '\302' | tr -d '\240')
-    echo "========================================================================"
-    echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
-    echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
-    echo "TRADEMARK=${TRADEMARK}"
-    echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
-    echo "MODEL=${MODEL}="
-    echo "MODEL_CLEAN=${MODEL_CLEAN}="
-    echo "URL=${FINAL_URL}"
-    echo "PRICE=${PRICE}"
-    echo "STORE=${STORE}"
-    echo "TYPE=${TYPE}"
-    echo "FILE=${FILE}"
-    echo "========================================================================"
+    PRICE=$(print_price "${FILE}" "${TRADEMARK_MODEL}")
+    #echo "========================================================================"
+    #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
+    #echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
+    #echo "TRADEMARK=${TRADEMARK}"
+    #echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
+    #echo "MODEL=${MODEL}="
+    #echo "URL=${FINAL_URL}"
+    #echo "PRICE=${PRICE}"
+    #echo "STORE=${STORE}"
+    #echo "TYPE=${TYPE}"
+    #echo "FILE=${FILE}"
+    #echo "========================================================================"
     dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
@@ -248,18 +239,18 @@ URBAN_ELECT_BIKES_PAGES="$(seq 0 2)"
 TREKKING_BIKES_BASE="bicicletas-trekking.html?page="
 TREKKING_BIKES_PAGES="$(seq 0 3)"
 
-process_pages "${MTB_FIX_BIKES_BASE}"       "${MTB_FIX_BIKES_PAGES}"       "Bikester" "MTB"
-process_pages "${MTB_DOUBLE_BIKES_BASE}"    "${MTB_DOUBLE_BIKES_PAGES}"    "Bikester" "MTB-DOUBLE"
-process_pages "${MTB_29_BIKES_BASE}"        "${MTB_29_BIKES_PAGES}"        "Bikester" "MTB-29"
-process_pages "${KIDS_BIKES_BASE}"          "${KIDS_BIKES_PAGES}"          "Bikester" "KIDS"
-process_pages "${BTT_KIDS_BIKES_BASE}"      "${BTT_KIDS_BIKES_PAGES}"      "Bikester" "KIDS"
-process_pages "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"           "Bikester" "BMX"
-process_pages "${ROAD_BIKES_BASE}"          "${ROAD_BIKES_PAGES}"          "Bikester" "ROAD"
-process_pages "${ROAD_CICLOCROSS_BASE}"     "${ROAD_CICLOCROSS_PAGES}"     "Bikester" "ROAD" 
-process_pages "${URBAN_XC_BIKES_BASE}"      "${URBAN_XC_BIKES_PAGES}"      "Bikester" "URBAN"
-process_pages "${URBAN_SINGLE_BIKES_BASE}"  "${URBAN_SINGLE_BIKES_PAGES}"  "Bikester" "URBAN" 
-process_pages "${URBAN_WALK_BIKES_BASE}"    "${URBAN_WALK_BIKES_PAGES}"    "Bikester" "URBAN"
-process_pages "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "Bikester" "URBAN"  
-process_pages "${URBAN_RETRO_BIKES_BASE}"   "${URBAN_RETRO_BIKES_PAGES}"   "Bikester" "URBAN" 
-process_pages "${URBAN_ELECT_BIKES_BASE}"   "${URBAN_ELECT_BIKES_PAGES}"   "Bikester" "URBAN" 
-process_pages "${TREKKING_BIKES_BASE}"      "${TREKKING_BIKES_PAGES}"      "Bikester" "URBAN" 
+process_pages "${MTB_FIX_BIKES_BASE}"       "${MTB_FIX_BIKES_PAGES}"       "Bikester" "MTB"    >> ${OUTPUT_FILE}   
+process_pages "${MTB_DOUBLE_BIKES_BASE}"    "${MTB_DOUBLE_BIKES_PAGES}"    "Bikester" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_29_BIKES_BASE}"        "${MTB_29_BIKES_PAGES}"        "Bikester" "MTB-29" >> ${OUTPUT_FILE}  
+process_pages "${KIDS_BIKES_BASE}"          "${KIDS_BIKES_PAGES}"          "Bikester" "KIDS"   >> ${OUTPUT_FILE} 
+process_pages "${BTT_KIDS_BIKES_BASE}"      "${BTT_KIDS_BIKES_PAGES}"      "Bikester" "KIDS"   >> ${OUTPUT_FILE}  
+process_pages "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"           "Bikester" "BMX"    >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}"          "${ROAD_BIKES_PAGES}"          "Bikester" "ROAD"   >> ${OUTPUT_FILE}
+process_pages "${ROAD_CICLOCROSS_BASE}"     "${ROAD_CICLOCROSS_PAGES}"     "Bikester" "ROAD"   >> ${OUTPUT_FILE}
+process_pages "${URBAN_XC_BIKES_BASE}"      "${URBAN_XC_BIKES_PAGES}"      "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_SINGLE_BIKES_BASE}"  "${URBAN_SINGLE_BIKES_PAGES}"  "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_WALK_BIKES_BASE}"    "${URBAN_WALK_BIKES_PAGES}"    "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_RETRO_BIKES_BASE}"   "${URBAN_RETRO_BIKES_PAGES}"   "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_ELECT_BIKES_BASE}"   "${URBAN_ELECT_BIKES_PAGES}"   "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${TREKKING_BIKES_BASE}"      "${TREKKING_BIKES_PAGES}"      "Bikester" "URBAN"  >> ${OUTPUT_FILE}
