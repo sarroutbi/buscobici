@@ -11,7 +11,7 @@ set  key invert reverse Left outside
 set  terminal png truecolor font 'Verdana,10' size 640,480
 set  output "stats_models_pricerange_percent_small.png"
 set  title "Oferta de modelos por tienda y rango de precios"
-set  ylabel "Distribución de modelos por rango de precios"
+set  ylabel "% del total"
 set  xlabel "Tienda"
 set  yrange [0:100]
 set  boxwidth 0.85 relative 
