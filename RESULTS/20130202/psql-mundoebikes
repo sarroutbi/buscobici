@@ -1,8 +1,11 @@
-INSERT INTO bikes VALUES ('16&quot;', 'Blossom', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-blossom-16', 'KIDS', '129.00');
+INSERT INTO bikes VALUES ('12&quot;', 'Prince', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-prince-12', 'KIDS', '99.00');
+INSERT INTO bikes VALUES ('14&quot;', 'Tommy', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-tommy-14', 'KIDS', '109.00');
+INSERT INTO bikes VALUES ('16&quot;', 'Pilot', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-pilot-16', 'KIDS', '119.00');
 INSERT INTO bikes VALUES ('16&quot; Torpado T640', 'Arakno', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-arakno-16-torpado-t640', 'KIDS', '182.00');
 INSERT INTO bikes VALUES ('1930 Unisex', 'Gitane', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/bicicleta-de-ciudad-gitane-1930-unisex', 'URBAN', '329.00');
 INSERT INTO bikes VALUES ('20 City Lady Neuzer', 'Bobby-cindy', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-junior/bobby-cindy-20-city-lady-neuzer', 'KIDS', '180.00');
 INSERT INTO bikes VALUES ('20 City Neuzer', 'Bobby-cindy', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-junior/bobby-cindy-20-city-neuzer', 'KIDS', '180.00');
+INSERT INTO bikes VALUES ('20&quot; 1V', 'Pilot', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-pilot-20-1v', 'KIDS', '124.90');
 INSERT INTO bikes VALUES ('24 City Lady Neuzer', 'Bobby-cindy', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-junior/bobby-cindy-24-city-lady-neuzer', 'KIDS', '195.00');
 INSERT INTO bikes VALUES ('24 City Neuzer', 'Bobby-cindy', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/bobby-cindy-24-city-neuzer', 'URBAN', '195.00');
 INSERT INTO bikes VALUES ('650 Pro 2013', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-de-carretera/bicicleta-de-carretera-fuji-650-pro-2013', 'ROAD', '1029.00');
@@ -10,7 +13,6 @@ INSERT INTO bikes VALUES ('Advanced', 'Yamimoto', 'MundoEbikes', 'http://www.mun
 INSERT INTO bikes VALUES ('Adventure', 'Ecobike', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/ecobike-adventure', 'URBAN', '1539.00');
 INSERT INTO bikes VALUES ('ALIZE', 'Neilpryde', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-de-carretera/cuadro-neilpryde-alize', 'ROAD', '1679.00');
 INSERT INTO bikes VALUES ('Aloha 1.1 2013', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-triatlon-contrarreloj/bicicleta-de-triathlon-fuji-aloha-1-1-2013', 'ROAD', '1489.00');
-INSERT INTO bikes VALUES ('Alpin 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-alpin-16', 'KIDS', '129.90');
 INSERT INTO bikes VALUES ('Alpin 20&quot; 1V', 'junior-infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-junior-infantil-alpin-20-1v', 'KIDS', '137.90');
 INSERT INTO bikes VALUES ('Altamira 1.0', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/todas-las-bicicletas-hombre/fuji-altamira-1-0', 'ROAD', '3349.00');
 INSERT INTO bikes VALUES ('Altamira 1.1 Di2 2013', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-de-carretera/bicicleta-de-carretera-fuji-altamira-1-1-di2-2013', 'ROAD', '8199.00');
@@ -35,9 +37,6 @@ INSERT INTO bikes VALUES ('Bike 20&#039;&#039; Full Suspension', 'K-ciber', 'Mun
 INSERT INTO bikes VALUES ('Bike 20&quot; Nexus 3s Neuzer', 'Folding', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-plegables/folding-bike-20-nexus-3s-neuzer', 'URBAN', '330.00');
 INSERT INTO bikes VALUES ('Bike 24&quot; Nexus 3s Neuzer', 'Folding', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-plegables/folding-bike-24-nexus-3s-neuzer', 'URBAN', '340.00');
 INSERT INTO bikes VALUES ('Black Hawk 20&quot;', 'junior-infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-junior-infantil-black-hawk-20', 'KIDS', '179.90');
-INSERT INTO bikes VALUES ('Blizzard 12&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-blizzard-12', 'KIDS', '109.00');
-INSERT INTO bikes VALUES ('Blizzard 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-blizzard-16', 'KIDS', '119.00');
-INSERT INTO bikes VALUES ('Blossom 12&quot;', 'Infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-blossom-12', 'KIDS', '119.00');
 INSERT INTO bikes VALUES ('Boop 16&quot;', 'Betty', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-betty-boop-16', 'KIDS', '139.00');
 INSERT INTO bikes VALUES ('Boost10', 'Weed', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-plegables/bicicleta-urbana-plegable-weed-boost10', 'URBAN', '259.00');
 INSERT INTO bikes VALUES ('Borealis', 'Vandor', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/vandor-borealis', 'URBAN', '1299.00');
@@ -46,8 +45,6 @@ INSERT INTO bikes VALUES ('Bunny 12&#039;&#039;', 'Bugs', 'MundoEbikes', 'http:/
 INSERT INTO bikes VALUES ('Bunny 16&#039;&#039;', 'Bugs', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bugs-bunny-16', 'KIDS', '129.00');
 INSERT INTO bikes VALUES ('California 3S Neuzer', 'Cruiser', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-cruisers/cruiser-california-3s-neuzer', 'URBAN', '290.00');
 INSERT INTO bikes VALUES ('California 3S Woman Neuzer', 'Cruiser', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/cruiser-california-3s-woman-neuzer', 'URBAN', '290.00');
-INSERT INTO bikes VALUES ('Chabel 12&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-chabel-12', 'KIDS', '107.00');
-INSERT INTO bikes VALUES ('Chabel 14&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-chabel-14', 'KIDS', '114.00');
 INSERT INTO bikes VALUES ('Cigne 26&quot; 3v Sturmey +luz,cesta y timbre', 'Amat', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/bicicleta-de-paseo-amat-cigne-26-3v-sturmey-luzcesta-y-timbre', 'URBAN', '306.00');
 INSERT INTO bikes VALUES ('Cigne 26&quot; 6v', 'Amat', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/bicicleta-de-paseo-amat-cigne-26-6v', 'URBAN', '236.00');
 INSERT INTO bikes VALUES ('Cigne 26&quot; 6v +luz,cesta y timbre', 'Amat', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/bicicleta-de-paseo-amat-cigne-26-6v-luzcesta-y-timbre', 'URBAN', '249.00');
@@ -70,7 +67,7 @@ INSERT INTO bikes VALUES ('Classic W', 'Ecobike', 'MundoEbikes', 'http://www.mun
 INSERT INTO bikes VALUES ('Cloud 9 Elite Carbon 29r', 'Breezer', 'MundoEbikes', 'http://www.mundoebikes.es/todas-las-bicicletas-hombre/breezer-cloud-9-elite-carbon-29r', 'MTB', '4799.00');
 INSERT INTO bikes VALUES ('Cloud 9 Pro 29r', 'Breezer', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-29r/breezer-cloud-9-pro-29r', 'MTB', '2299.00');
 INSERT INTO bikes VALUES ('Cloud 9 Team 29r', 'Breezer', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-29r/breezer-cloud-9-team-29r', 'MTB', '2899.00');
-INSERT INTO bikes VALUES ('Compact', 'Bymesa', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-plegables/bymesa-compact><img', 'URBAN', '1319.00');
+INSERT INTO bikes VALUES ('Compact', 'Bymesa', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-plegables/bymesa-compact', 'URBAN', '1319.00');
 INSERT INTO bikes VALUES ('Concorde Freestyle 20&quot; 2013', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-bmx/bicicleta-bmx-togano-concorde-freestyle-20-2013', 'BMX', '225.00');
 INSERT INTO bikes VALUES ('Concorde Freestyle 20&quot;', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-bmx/bicicleta-bmx-togano-concorde-freestyle-20-2013', 'BMX', '225.00');
 INSERT INTO bikes VALUES ('Crosstown 1.0', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/fuji-crosstown-1-0', 'URBAN', '589.00');
@@ -78,7 +75,6 @@ INSERT INTO bikes VALUES ('Crosstown 1.0 Lady', 'Fuji', 'MundoEbikes', 'http://w
 INSERT INTO bikes VALUES ('Crosstown 2.0', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/fuji-crosstown-2-0-lady', 'URBAN', '519.00');
 INSERT INTO bikes VALUES ('Crosstown 2.0 Lady', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/fuji-crosstown-2-0-lady', 'URBAN', '519.00');
 INSERT INTO bikes VALUES ('Cucciolo Ducati', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/tucano-cucciolo-ducati', 'URBAN', '2500.00');
-INSERT INTO bikes VALUES ('Cyclon 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-cyclon-16', 'KIDS', '135.90');
 INSERT INTO bikes VALUES ('D6 1.0 Triathlon', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-triatlon/fuji-d6-1-0-triathlon', 'ROAD', '7998.90');
 INSERT INTO bikes VALUES ('D6 1.1 Di2 2013', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-triatlon-contrarreloj/bicicleta-de-triathlon-fuji-d6-1-1-di2-2013', 'ROAD', '6399.00');
 INSERT INTO bikes VALUES ('D6 1.3 2013', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-triatlon-contrarreloj/bicicleta-de-triathlon-fuji-d6-1-3-2013', 'ROAD', '2849.00');
@@ -90,6 +86,7 @@ INSERT INTO bikes VALUES ('De Luxe', 'Tucano', 'MundoEbikes', 'http://www.mundoe
 INSERT INTO bikes VALUES ('de paseo Retro 700 3V Sturmey Luz y símil Cue', 'Amat', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/bicicleta-amat-de-paseo-retro-700-3v-sturmey-con-luz-y-simil-cue', 'URBAN', '356.00');
 INSERT INTO bikes VALUES ('de paseo Retro 700 6V', 'Amat', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/bicicleta-amat-de-paseo-retro-700-6v', 'URBAN', '279.00');
 INSERT INTO bikes VALUES ('Discovery', 'Bymesa', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-deportivas/bicicleta-electrica-bymesa-discovery', 'URBAN', '1699.00');
+INSERT INTO bikes VALUES ('Dolly 16&quot;', 'Miss', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-miss-dolly-16', 'KIDS', '124.90');
 INSERT INTO bikes VALUES ('Doo 16&quot;', 'Scooby', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-scooby-doo-16', 'KIDS', '129.00');
 INSERT INTO bikes VALUES ('Dora La Exploradora 12&quot;', 'infanitil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bici-dora-12', 'KIDS', '119.00');
 INSERT INTO bikes VALUES ('Dynamic Sport (cardan)', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-deportivas/tucano-dynamic-sport-cardan', 'URBAN', '1730.00');
@@ -99,7 +96,7 @@ INSERT INTO bikes VALUES ('Elegance', 'Ecobike', 'MundoEbikes', 'http://www.mund
 INSERT INTO bikes VALUES ('Elegance Plus', 'Ecobike', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/bicicleta-electrica-ecobike-elegance-plus', 'URBAN', '1639.00');
 INSERT INTO bikes VALUES ('Elite H', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/tucano-elite-h', 'URBAN', '1375.00');
 INSERT INTO bikes VALUES ('Elite', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/tucano-elite-h', 'URBAN', '1375.00');
-INSERT INTO bikes VALUES ('Emax', 'Bymesa', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-deportivas/bicicleta-electrica-bymesa-emax><img', 'URBAN', '1779.00');
+INSERT INTO bikes VALUES ('Emax', 'Bymesa', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-deportivas/bicicleta-electrica-bymesa-emax', 'URBAN', '1779.00');
 INSERT INTO bikes VALUES ('Emax Police', 'Bymesa', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-deportivas/bicicleta-electrica-bymesa-emax-police', 'URBAN', '1209.00');
 INSERT INTO bikes VALUES ('Eos (cardan)', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-plegables/tucano-eos-cardan', 'URBAN', '1650.00');
 INSERT INTO bikes VALUES ('Estilo NX', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/tucano-estilo-nx', 'URBAN', '1375.00');
@@ -110,8 +107,7 @@ INSERT INTO bikes VALUES ('Exploradora 16&quot;', 'Dora', 'MundoEbikes', 'http:/
 INSERT INTO bikes VALUES ('Explorer MTB', 'Ebici', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-deportivas/ebici-explorer-mtb', 'URBAN', '1350.00');
 INSERT INTO bikes VALUES ('Feather Single Speed', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-fixed-and-single-speed/fuji-feather-single-speed', 'URBAN', '669.00');
 INSERT INTO bikes VALUES ('Fifty', 'Veliac', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/veliac-fifty', 'URBAN', '1099.00');
-INSERT INTO bikes VALUES ('Fire 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-fire-16', 'KIDS', '129.90');
-INSERT INTO bikes VALUES ('Fire 20&quot; 1V', 'Infantil-junior', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-junior-fire-20-1v', 'KIDS', '135.90');
+INSERT INTO bikes VALUES ('Fire 20&quot; 1V', '-junior', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-junior-fire-20-1v', 'KIDS', '135.90');
 INSERT INTO bikes VALUES ('FITZ ROY 2.0 Homme', 'Gitane', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-gitane-fitz-roy-2-0-homme', 'MTB', '399.00');
 INSERT INTO bikes VALUES ('FITZ ROY 2.5 Dame', 'Gitane', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-gitane-fitz-roy-2-5-dame', 'MTB', '389.00');
 INSERT INTO bikes VALUES ('FITZ ROY 3.5 Disc', 'Gitane', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-gitane-fitz-roy-3-5-disc', 'MTB', '499.00');
@@ -132,6 +128,9 @@ INSERT INTO bikes VALUES ('FM (Free Man)', 'Tucano', 'MundoEbikes', 'http://www.
 INSERT INTO bikes VALUES ('FSP Acera XR disco 24V Doble susp.', 'Ferrini', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-ferrini-fsp-acera-xr-disco-24v-doble-susp', 'MTB', '585.00');
 INSERT INTO bikes VALUES ('FW (Free Woman)', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/tucano-fw-free-woman', 'URBAN', '1230.00');
 INSERT INTO bikes VALUES ('FW Vinta', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/bicicleta-electrica-tucano-fw-vinta', 'URBAN', '1290.00');
+INSERT INTO bikes VALUES ('Fx 12&quot;', 'Kawasaki', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-12', 'KIDS', '129.00');
+INSERT INTO bikes VALUES ('Fx 14&quot;', 'Kawasaki', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-fx-14', 'KIDS', '139.00');
+INSERT INTO bikes VALUES ('Fx 16&quot;', 'Kawasaki', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-fx-16', 'KIDS', '139.00');
 INSERT INTO bikes VALUES ('Gala 20&quot; 1V', 'junior-infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-junior-infantil-gala-20-1v', 'URBAN', '139.90');
 INSERT INTO bikes VALUES ('Gallop', 'Onda', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-electrica-onda-gallop', 'URBAN', '1569.00');
 INSERT INTO bikes VALUES ('Geko 12&quot; Torpado T690', 'niño', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-nino-geko-12-torpado-t690', 'KIDS', '155.00');
@@ -159,8 +158,6 @@ INSERT INTO bikes VALUES ('HEAP 3.0 Acera', 'Weed', 'MundoEbikes', 'http://www.m
 INSERT INTO bikes VALUES ('HEAP 4.0 Alivio', 'Weed', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/heap-4-0', 'MTB', '595.00');
 INSERT INTO bikes VALUES ('HEAP 5.0 Deore', 'Weed', 'MundoEbikes', 'http://www.mundoebikes.es/todas-las-bicicletas-hombre/heap-5-0', 'MTB', '809.00');
 INSERT INTO bikes VALUES ('HEAP 6.0 Deore-slx', 'Weed', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/heap-6-0', 'MTB', '849.00');
-INSERT INTO bikes VALUES ('Hello Kitty 16&quot; Black', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-hello-kitty-16-black', 'KIDS', '139.00');
-INSERT INTO bikes VALUES ('Hello Kitty 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-hello-kitty-16', 'KIDS', '139.00');
 INSERT INTO bikes VALUES ('Hero 14&quot; 2013', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-togano-hero-14-2013', 'KIDS', '129.00');
 INSERT INTO bikes VALUES ('Heroine 14&quot; 2013', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-togano-heroine-14-2012', 'KIDS', '97.90');
 INSERT INTO bikes VALUES ('Hide Bike MTB', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-deportivas/bicicleta-electrica-tucano-hide-bike-mtb', 'URBAN', '1590.00');
@@ -176,14 +173,10 @@ INSERT INTO bikes VALUES ('Jaguar Neuzer', 'Chopper', 'MundoEbikes', 'http://www
 INSERT INTO bikes VALUES ('Junior', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/tucano-junior', 'URBAN', '1230.00');
 INSERT INTO bikes VALUES ('Kansas Lady 16&quot; 2013', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-togano-kansas-lady-16-2013', 'KIDS', '139.00');
 INSERT INTO bikes VALUES ('Kansas Lady 16&quot;', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/togano-kansas-lady-16', 'KIDS', '155.00');
-INSERT INTO bikes VALUES ('Kawasaki Fx 12&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-12', 'KIDS', '129.00');
-INSERT INTO bikes VALUES ('Kawasaki Fx 14&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-fx-14', 'KIDS', '139.00');
-INSERT INTO bikes VALUES ('Kawasaki Fx 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-fx-16', 'KIDS', '139.00');
-INSERT INTO bikes VALUES ('Kawasaki Mx 12&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infatil-kawasaki-mx-12', 'KIDS', '129.00');
-INSERT INTO bikes VALUES ('Kawasaki Mx 14&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-mx-14', 'KIDS', '139.00');
-INSERT INTO bikes VALUES ('Kawasaki Mx 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-mx-16', 'KIDS', '139.00');
 INSERT INTO bikes VALUES ('Kitty 12&quot; Black', 'Hello', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-hello-kitty-12-black', 'KIDS', '129.00');
 INSERT INTO bikes VALUES ('Kitty 12&quot;', 'Hello', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-hello-kitty-12', 'KIDS', '129.00');
+INSERT INTO bikes VALUES ('Kitty 16&quot; Black', 'Hello', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-hello-kitty-16-black', 'KIDS', '139.00');
+INSERT INTO bikes VALUES ('Kitty 16&quot;', 'Hello', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-hello-kitty-16', 'KIDS', '139.00');
 INSERT INTO bikes VALUES ('KWAD 26&quot; Dame', 'Gitane', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-gitane-kwad-26-dame', 'MTB', '299.00');
 INSERT INTO bikes VALUES ('KWAD 26&quot; Homme', 'Gitane', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-gitane-kwad-26-homme', 'MTB', '299.00');
 INSERT INTO bikes VALUES ('Lejeko', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-deportivas/bicicleta-electrica-tucano-lejeko', 'URBAN', '1650.00');
@@ -198,13 +191,8 @@ INSERT INTO bikes VALUES ('Lightning Team 26', 'Breezer', 'MundoEbikes', 'http:/
 INSERT INTO bikes VALUES ('Lola 20&quot; 6V', 'junior-infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-junior-infantil-lola-20-6v', 'KIDS', '139.90');
 INSERT INTO bikes VALUES ('Luxury', 'Bymesa', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bymesa-luxury-oferta', 'URBAN', '890.00');
 INSERT INTO bikes VALUES ('Luxury Oferta', 'Bymesa', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bymesa-luxury-oferta', 'URBAN', '890.00');
-INSERT INTO bikes VALUES ('Lydia 12&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-lydia-12', 'KIDS', '109.00');
-INSERT INTO bikes VALUES ('Lydia 14&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-lydia-14', 'KIDS', '119.00');
-INSERT INTO bikes VALUES ('Lydia 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-lydia-16', 'KIDS', '129.90');
 INSERT INTO bikes VALUES ('Martina', 'Tucano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-urbanas/bicicleta-electrica-tucano-martina', 'URBAN', '1185.00');
-INSERT INTO bikes VALUES ('Matrix 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-matrix-16', 'KIDS', '129.90');
-INSERT INTO bikes VALUES ('Matrix 20&quot;', 'infantil-junior', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-junior-matrix-20', 'KIDS', '147.90');
-INSERT INTO bikes VALUES ('Miss Dolly 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-miss-dolly-16', 'KIDS', '124.90');
+INSERT INTO bikes VALUES ('Matrix 20&quot;', '-junior', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-junior-matrix-20', 'KIDS', '147.90');
 INSERT INTO bikes VALUES ('Mora Bike Sturmey 3V', 'Plegable', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-plegables/bicicleta-plegable-mora-bike-sturmey-3v', 'URBAN', '790.00');
 INSERT INTO bikes VALUES ('MTB Aluminio 26&quot; Nevada 1.0 2013', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-fuji-mtb-aluminio-26-nevada-1-0-2013', 'MTB', '1249.00');
 INSERT INTO bikes VALUES ('MTB Aluminio 26&quot; Nevada 1.1 2013', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-fuji-mtb-aluminio-26-nevada-1-1-2013', 'MTB', '899.00');
@@ -221,6 +209,9 @@ INSERT INTO bikes VALUES ('MTB Carbono 26&quot; SLM 1.3 2013', 'Fuji', 'MundoEbi
 INSERT INTO bikes VALUES ('MTB Carbono 26&quot; SLM 1.5 2013', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-carbono/bicicleta-fuji-mtb-carbono-26-slm-1-5-2013', 'MTB', '2249.00');
 INSERT INTO bikes VALUES ('MT Fuji 2.0', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-doble-susp/fuji-mt-fuji-2-0', 'MTB', '3799.00');
 INSERT INTO bikes VALUES ('MT Fuji 3.0', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-doble-susp/fuji-mt-fuji-3-0', 'MTB', '3299.00');
+INSERT INTO bikes VALUES ('Mx 12&quot;', 'Kawasaki', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infatil-kawasaki-mx-12', 'KIDS', '129.00');
+INSERT INTO bikes VALUES ('Mx 14&quot;', 'Kawasaki', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-mx-14', 'KIDS', '139.00');
+INSERT INTO bikes VALUES ('Mx 16&quot;', 'Kawasaki', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-mx-16', 'KIDS', '139.00');
 INSERT INTO bikes VALUES ('Nautic 1v plegable', 'Amat', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-plegables/bicicleta-urbana-plegable-amat-nautic-1v-plegable', 'URBAN', '199.00');
 INSERT INTO bikes VALUES ('Nautic 3v Sturmey', 'Amat', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-plegables/bicicleta-urbana-plegable-amat-nautic-3v-sturmey', 'URBAN', '349.00');
 INSERT INTO bikes VALUES ('Nautic 6v Acero', 'Amat', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-plegables/bicicleta-urbana-plegable-amat-nautic-6v-acero', 'URBAN', '224.00');
@@ -249,8 +240,6 @@ INSERT INTO bikes VALUES ('Outland 1.5 29&quot; Doble Susp. 2013', 'Fuji', 'Mund
 INSERT INTO bikes VALUES ('Outland 2.0', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-doble-susp/fuji-outland-2-0', 'MTB', '1999.00');
 INSERT INTO bikes VALUES ('Panther Lady 21V 24&quot; 2013', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-togano-panther-lady-21v-24-2013', 'KIDS', '189.00');
 INSERT INTO bikes VALUES ('Panther Lady 21v 24&quot;', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-junior/togano-panther-lady-21v-24', 'KIDS', '199.00');
-INSERT INTO bikes VALUES ('Pilot 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-pilot-16', 'KIDS', '119.00');
-INSERT INTO bikes VALUES ('Pilot 20&quot; 1V', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-pilot-20-1v', 'KIDS', '124.90');
 INSERT INTO bikes VALUES ('Pixel Dame', 'Gitane', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/bicicleta-de-ciudad-gitane-pixel-dame', 'URBAN', '359.00');
 INSERT INTO bikes VALUES ('Play 1000 Disc', 'Gitane', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-trekking/bicicleta-outdoor-gitane-play-1000-disc', 'URBAN', '869.00');
 INSERT INTO bikes VALUES ('Play 200 Dame', 'Gitane', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-outdoor-gitane-play-200-dame', 'URBAN', '359.00');
@@ -264,8 +253,6 @@ INSERT INTO bikes VALUES ('Play 800 Homme', 'Gitane', 'MundoEbikes', 'http://www
 INSERT INTO bikes VALUES ('Pony 16&quot; 2013', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-togano-pony-16-2013', 'KIDS', '139.00');
 INSERT INTO bikes VALUES ('Pony 16&quot;', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/togano-pony-16', 'KIDS', '155.00');
 INSERT INTO bikes VALUES ('Powerace', 'Bymesa', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-electricas-deportivas/bicicleta-electrica-bymesa-powerrace', 'URBAN', '1999.00');
-INSERT INTO bikes VALUES ('Prince 12&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-prince-12', 'KIDS', '99.00');
-INSERT INTO bikes VALUES ('Princesa 14&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-princesa-14', 'KIDS', '114.00');
 INSERT INTO bikes VALUES ('R1 21V', 'Ferrini', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-ferrini-r1-21v', 'MTB', '340.00');
 INSERT INTO bikes VALUES ('R2 Disco 21V', 'Ferrini', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-ferrini-r2-disco-21v', 'MTB', '339.00');
 INSERT INTO bikes VALUES ('R3 Alivio 24V disco mecánico', 'Ferrini', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/bicicleta-ferrini-r3-alivio-24v-disco-mecanico', 'MTB', '450.00');
@@ -370,10 +357,6 @@ INSERT INTO bikes VALUES ('Tahoe 2.0', 'Fuji', 'MundoEbikes', 'http://www.mundoe
 INSERT INTO bikes VALUES ('Tahoe 3.0 29r', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-29r/fuji-tahore-3-0-29r', 'MTB', '1199.00');
 INSERT INTO bikes VALUES ('Tahoe 3.0', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/fuji-tahore-3-0', 'MTB', '1099.00');
 INSERT INTO bikes VALUES ('Tahoe 4.0', 'Fuji', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/fuji-tahore-4-0', 'MTB', '999.00');
-INSERT INTO bikes VALUES ('Tato 12&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-tato-12', 'KIDS', '102.50');
-INSERT INTO bikes VALUES ('Tato 14&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-tato-14', 'KIDS', '109.00');
-INSERT INTO bikes VALUES ('Taz 12&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-taz-12', 'KIDS', '139.00');
-INSERT INTO bikes VALUES ('Taz 16&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-taz-16', 'KIDS', '139.00');
 INSERT INTO bikes VALUES ('Thunder 26', 'Breezer', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/breezer-thunder-26', 'MTB', '829.00');
 INSERT INTO bikes VALUES ('Thunder 29 Comp', 'Breezer', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/breezer-thunder-29-comp', 'MTB', '1249.00');
 INSERT INTO bikes VALUES ('Thunder 29 Pro', 'Breezer', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/breezer-thunder-29-pro', 'MTB', '1629.00');
@@ -387,8 +370,6 @@ INSERT INTO bikes VALUES ('Titty 12&quot; Torpado T691', 'niña', 'MundoEbikes',
 INSERT INTO bikes VALUES ('Tivoli 21V 24&quot; 2013', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-togano-tivoli-21v-24-2013', 'KIDS', '189.00');
 INSERT INTO bikes VALUES ('Tívoli 21v 24&quot;', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-junior/togano-tivoli-21v-24', 'KIDS', '204.00');
 INSERT INTO bikes VALUES ('Tívoli Sup 21v 24&quot;', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-junior/togano-tivoli-sup-21v-24', 'KIDS', '218.00');
-INSERT INTO bikes VALUES ('Tommy 12&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-tommy-12', 'KIDS', '105.00');
-INSERT INTO bikes VALUES ('Tommy 14&quot;', 'infantil', 'MundoEbikes', 'http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-tommy-14', 'KIDS', '109.00');
 INSERT INTO bikes VALUES ('Touch 26&quot;', 'Gitane', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-urbanas-ciudad/bicicleta-trekking-gitane-touch-26', 'URBAN', '499.00');
 INSERT INTO bikes VALUES ('Track 21v Altus V-brake (650)', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/togano-track-21v-altus-v-brake-650', 'MTB', '356.00');
 INSERT INTO bikes VALUES ('Track 24v Altus Disc (650)', 'Togano', 'MundoEbikes', 'http://www.mundoebikes.es/bicicletas-mtb-aluminio/togano-track-24v-altus-disc-650', 'MTB', '415.00');

@@ -573,7 +573,7 @@ STORE=MundoEbikes
 KIND=URBAN
 
 [Emax]
-SUBURL="http://www.mundoebikes.es/bicicletas-electricas-deportivas/bicicleta-electrica-bymesa-emax><img"
+SUBURL="http://www.mundoebikes.es/bicicletas-electricas-deportivas/bicicleta-electrica-bymesa-emax"
 TRADEMARK=Bymesa
 PRICE=1779,00
 STORE=MundoEbikes
@@ -748,7 +748,7 @@ STORE=MundoEbikes
 KIND=URBAN
 
 [Compact]
-SUBURL="http://www.mundoebikes.es/bicicletas-electricas-plegables/bymesa-compact><img"
+SUBURL="http://www.mundoebikes.es/bicicletas-electricas-plegables/bymesa-compact"
 TRADEMARK=Bymesa
 PRICE=1319,00
 STORE=MundoEbikes
@@ -3113,72 +3113,72 @@ PRICE=97,90
 STORE=MundoEbikes
 KIND=KIDS
 
-[Prince 12&quot;]
+[12&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-prince-12"
-TRADEMARK=infantil
+TRADEMARK=Prince
 PRICE=99,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Tato 12&quot;]
+[12&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-tato-12"
-TRADEMARK=infantil
+TRADEMARK=Tato
 PRICE=102,50
 STORE=MundoEbikes
 KIND=KIDS
 
-[Tommy 12&quot;]
+[12&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-tommy-12"
-TRADEMARK=infantil
+TRADEMARK=Tommy
 PRICE=105,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Chabel 12&quot;]
+[12&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-chabel-12"
-TRADEMARK=infantil
+TRADEMARK=Chabel
 PRICE=107,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Blizzard 12&quot;]
+[12&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-blizzard-12"
-TRADEMARK=infantil
+TRADEMARK=Blizzard
 PRICE=109,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Tommy 14&quot;]
+[14&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-tommy-14"
-TRADEMARK=infantil
+TRADEMARK=Tommy
 PRICE=109,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Lydia 12&quot;]
+[12&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-lydia-12"
-TRADEMARK=infantil
+TRADEMARK=Lydia
 PRICE=109,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Tato 14&quot;]
+[14&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-tato-14"
-TRADEMARK=infantil
+TRADEMARK=Tato
 PRICE=109,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Chabel 14&quot;]
+[14&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-chabel-14"
-TRADEMARK=infantil
+TRADEMARK=Chabel
 PRICE=114,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Princesa 14&quot;]
+[14&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-princesa-14"
-TRADEMARK=infantil
+TRADEMARK=Princesa
 PRICE=114,00
 STORE=MundoEbikes
 KIND=KIDS
@@ -3190,37 +3190,37 @@ PRICE=119,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Lydia 14&quot;]
+[14&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-lydia-14"
-TRADEMARK=infantil
+TRADEMARK=Lydia
 PRICE=119,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Blossom 12&quot;]
+[12&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-blossom-12"
-TRADEMARK=Infantil
+TRADEMARK=Blossom
 PRICE=119,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Pilot 16&quot;]
+[16&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-pilot-16"
-TRADEMARK=infantil
+TRADEMARK=Pilot
 PRICE=119,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Miss Dolly 16&quot;]
+[Dolly 16&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-miss-dolly-16"
-TRADEMARK=infantil
+TRADEMARK=Miss
 PRICE=124,90
 STORE=MundoEbikes
 KIND=KIDS
 
-[Pilot 20&quot; 1V]
+[20&quot; 1V]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-pilot-20-1v"
-TRADEMARK=infantil
+TRADEMARK=Pilot
 PRICE=124,90
 STORE=MundoEbikes
 KIND=KIDS
@@ -3232,9 +3232,9 @@ PRICE=129,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Kawasaki Fx 12&quot;]
+[Fx 12&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-12"
-TRADEMARK=infantil
+TRADEMARK=Kawasaki
 PRICE=129,00
 STORE=MundoEbikes
 KIND=KIDS
@@ -3260,9 +3260,9 @@ PRICE=129,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Kawasaki Mx 12&quot;]
+[Mx 12&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infatil-kawasaki-mx-12"
-TRADEMARK=infantil
+TRADEMARK=Kawasaki
 PRICE=129,00
 STORE=MundoEbikes
 KIND=KIDS
@@ -3274,44 +3274,44 @@ PRICE=129,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Alpin 16&quot;]
+[16&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-alpin-16"
-TRADEMARK=infantil
+TRADEMARK=Alpin
 PRICE=129,90
 STORE=MundoEbikes
 KIND=KIDS
 
-[Lydia 16&quot;]
+[16&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-lydia-16"
-TRADEMARK=infantil
+TRADEMARK=Lydia
 PRICE=129,90
 STORE=MundoEbikes
 KIND=KIDS
 
-[Fire 16&quot;]
+[16&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-fire-16"
-TRADEMARK=infantil
+TRADEMARK=Fire
 PRICE=129,90
 STORE=MundoEbikes
 KIND=KIDS
 
-[Matrix 16&quot;]
+[16&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-matrix-16"
-TRADEMARK=infantil
+TRADEMARK=Matrix
 PRICE=129,90
 STORE=MundoEbikes
 KIND=KIDS
 
-[Cyclon 16&quot;]
+[16&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-cyclon-16"
-TRADEMARK=infantil
+TRADEMARK=Cyclon
 PRICE=135,90
 STORE=MundoEbikes
 KIND=KIDS
 
 [Fire 20&quot; 1V]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-junior-fire-20-1v"
-TRADEMARK=Infantil-junior
+TRADEMARK=-junior
 PRICE=135,90
 STORE=MundoEbikes
 KIND=KIDS
@@ -3372,9 +3372,9 @@ PRICE=145,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Blizzard 16&quot;]
+[16&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-blizzard-16"
-TRADEMARK=infantil
+TRADEMARK=Blizzard
 PRICE=119,00
 STORE=MundoEbikes
 KIND=KIDS
@@ -3393,30 +3393,30 @@ PRICE=129,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Hello Kitty 16&quot;]
+[Kitty 16&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-hello-kitty-16"
-TRADEMARK=infantil
+TRADEMARK=Hello
 PRICE=139,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Taz 12&quot;]
+[12&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-taz-12"
-TRADEMARK=infantil
+TRADEMARK=Taz
 PRICE=139,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Hello Kitty 16&quot; Black]
+[Kitty 16&quot; Black]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-hello-kitty-16-black"
-TRADEMARK=infantil
+TRADEMARK=Hello
 PRICE=139,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Taz 16&quot;]
+[16&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-taz-16"
-TRADEMARK=infantil
+TRADEMARK=Taz
 PRICE=139,00
 STORE=MundoEbikes
 KIND=KIDS
@@ -3428,30 +3428,30 @@ PRICE=139,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Kawasaki Fx 14&quot;]
+[Fx 14&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-fx-14"
-TRADEMARK=infantil
+TRADEMARK=Kawasaki
 PRICE=139,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Kawasaki Fx 16&quot;]
+[Fx 16&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-fx-16"
-TRADEMARK=infantil
+TRADEMARK=Kawasaki
 PRICE=139,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Kawasaki Mx 16&quot;]
+[Mx 16&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-mx-16"
-TRADEMARK=infantil
+TRADEMARK=Kawasaki
 PRICE=139,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Kawasaki Mx 14&quot;]
+[Mx 14&quot;]
 SUBURL="http://www.mundoebikes.es/bicicletas-infantiles/bicicleta-infantil-kawasaki-mx-14"
-TRADEMARK=infantil
+TRADEMARK=Kawasaki
 PRICE=139,00
 STORE=MundoEbikes
 KIND=KIDS
@@ -3465,7 +3465,7 @@ KIND=KIDS
 
 [Matrix 20&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-junior-matrix-20"
-TRADEMARK=infantil-junior
+TRADEMARK=-junior
 PRICE=147,90
 STORE=MundoEbikes
 KIND=KIDS
@@ -3547,16 +3547,16 @@ PRICE=199,00
 STORE=MundoEbikes
 KIND=KIDS
 
-[Pilot 20&quot; 1V]
+[20&quot; 1V]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-pilot-20-1v"
-TRADEMARK=infantil
+TRADEMARK=Pilot
 PRICE=124,90
 STORE=MundoEbikes
 KIND=KIDS
 
 [Fire 20&quot; 1V]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-junior-fire-20-1v"
-TRADEMARK=Infantil-junior
+TRADEMARK=-junior
 PRICE=135,90
 STORE=MundoEbikes
 KIND=KIDS
@@ -3640,7 +3640,7 @@ KIND=KIDS
 
 [Matrix 20&quot;]
 SUBURL="http://www.mundoebikes.es/novedades-2013/bicicleta-infantil-junior-matrix-20"
-TRADEMARK=infantil-junior
+TRADEMARK=-junior
 PRICE=147,90
 STORE=MundoEbikes
 KIND=KIDS
