@@ -241,20 +241,20 @@ KIDS_BIKES_PAGES="0 20 40 60"
 KIDS_MTB_BIKES_BASE="bicicletas-mtb-junior?limit=20&limitstart="
 KIDS_MTB_BIKES_PAGES="0 20 40"
 
-process_pages "${BMX_BIKES_BASE}"            "${BMX_BIKES_PAGES}"            "MundoEbikes" "BMX"   ${OUTPUT_FILE}
-process_pages "${ROAD_BIKES_BASE}"           "${ROAD_BIKES_PAGES}"           "MundoEbikes" "ROAD"  ${OUTPUT_FILE}
-process_pages "${ROAD_TRIATLON_BASE}"        "${ROAD_TRIATLON_PAGES}"        "MundoEbikes" "ROAD"  ${OUTPUT_FILE}
-process_pages "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "MundoEbikes" "URBAN" ${OUTPUT_FILE}
-process_pages "${URBAN_FOLDING_BIKES_BASE}"  "${URBAN_FOLDING_BIKES_PAGES}"  "MundoEbikes" "URBAN" ${OUTPUT_FILE}
-process_pages "${URBAN_EFOLDING_BIKES_BASE}" "${URBAN_EFOLDING_BIKES_PAGES}" "MundoEbikes" "URBAN" ${OUTPUT_FILE}
-process_pages "${URBAN_EBIKES_BASE}"         "${URBAN_EBIKES_PAGES}"         "MundoEbikes" "URBAN" ${OUTPUT_FILE}
-process_pages "${URBAN_FIXIE_BASE}"          "${URBAN_FIXIE_PAGES}"          "MundoEbikes" "URBAN" ${OUTPUT_FILE}
-process_pages "${URBAN_CRUISER_BASE}"        "${URBAN_CRUISER_PAGES}"        "MundoEbikes" "URBAN" ${OUTPUT_FILE}
-process_pages "${URBAN_TREKKING_BASE}"       "${URBAN_TREKKING_PAGES=}"      "MundoEbikes" "URBAN" ${OUTPUT_FILE}
-process_pages "${URBAN_CITY_BASE}"           "${URBAN_CITY_PAGES}"           "MundoEbikes" "URBAN" ${OUTPUT_FILE}
-process_pages "${MTB29_BIKES_BASE}"          "${MTB29_BIKES_PAGES}"          "MundoEbikes" "MTB"   ${OUTPUT_FILE}
-process_pages "${MTB_ALU_BIKES_BASE}"        "${MTB_ALU_BIKES_PAGES}"        "MundoEbikes" "MTB"   ${OUTPUT_FILE}
-process_pages "${MTB_CAR_BIKES_BASE}"        "${MTB_CAR_BIKES_PAGES}"        "MundoEbikes" "MTB"   ${OUTPUT_FILE}
-process_pages "${MTB_DOUBLE_BIKES_BASE}"     "${MTB_DOUBLE_BIKES_PAGES}"     "MundoEbikes" "MTB"   ${OUTPUT_FILE}
-process_pages "${KIDS_BIKES_BASE}"           "${KIDS_BIKES_PAGES}"           "MundoEbikes" "KIDS"  ${OUTPUT_FILE}
-process_pages "${KIDS_MTB_BIKES_BASE}"       "${KIDS_MTB_BIKES_PAGES}"       "MundoEbikes" "KIDS"  ${OUTPUT_FILE} 
+process_pages "${BMX_BIKES_BASE}"            "${BMX_BIKES_PAGES}"            "MundoEbikes" "BMX"   >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}"           "${ROAD_BIKES_PAGES}"           "MundoEbikes" "ROAD"  >> ${OUTPUT_FILE}
+process_pages "${ROAD_TRIATLON_BASE}"        "${ROAD_TRIATLON_PAGES}"        "MundoEbikes" "ROAD"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_FOLDING_BIKES_BASE}"  "${URBAN_FOLDING_BIKES_PAGES}"  "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_EFOLDING_BIKES_BASE}" "${URBAN_EFOLDING_BIKES_PAGES}" "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_EBIKES_BASE}"         "${URBAN_EBIKES_PAGES}"         "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_FIXIE_BASE}"          "${URBAN_FIXIE_PAGES}"          "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_CRUISER_BASE}"        "${URBAN_CRUISER_PAGES}"        "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_TREKKING_BASE}"       "${URBAN_TREKKING_PAGES=}"      "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_CITY_BASE}"           "${URBAN_CITY_PAGES}"           "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${MTB29_BIKES_BASE}"          "${MTB29_BIKES_PAGES}"          "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
+process_pages "${MTB_ALU_BIKES_BASE}"        "${MTB_ALU_BIKES_PAGES}"        "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
+process_pages "${MTB_CAR_BIKES_BASE}"        "${MTB_CAR_BIKES_PAGES}"        "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_BIKES_BASE}"     "${MTB_DOUBLE_BIKES_PAGES}"     "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
+process_pages "${KIDS_BIKES_BASE}"           "${KIDS_BIKES_PAGES}"           "MundoEbikes" "KIDS"  >> ${OUTPUT_FILE}
+process_pages "${KIDS_MTB_BIKES_BASE}"       "${KIDS_MTB_BIKES_PAGES}"       "MundoEbikes" "KIDS"  >> ${OUTPUT_FILE} 
