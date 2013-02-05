@@ -119,9 +119,9 @@ function print_price()
 {
   if [ "$2" = "Kidz Rebel Kidz Wood" ];
   then
-    PRICE=$(grep "title=\"Rebel $2\"" "$1" -A${MAX_PRICE} | grep "Label11" | sed -e 's/<[^>]*>//g' | egrep -E -o '[0-9]{2,}.{0,}[0-9]{2,}' | tr "." "," | tr -d '\r' | tr -d '\n')
+    PRICE=$(grep "title=\"Rebel $2\"" "$1" -A${MAX_PRICE} | grep "Label11" | sed -e 's/<[^>]*>//g' | egrep -E -o '[0-9]{2,}.{0,}[0-9]{2,}' | head -1 | tr "." "," | tr -d '\r' | tr -d '\n' )
   else
-    PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep "Label11" | sed -e 's/<[^>]*>//g' | egrep -E -o '[0-9]{2,}.{0,}[0-9]{2,}' | tr "." "," | tr -d '\r' | tr -d '\n')
+    PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep "Label11" | sed -e 's/<[^>]*>//g' | egrep -E -o '[0-9]{2,}.{0,}[0-9]{2,}' | head -1 | tr "." "," | tr -d '\r' | tr -d '\n')
   fi
   echo ${PRICE}
 }
