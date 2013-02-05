@@ -24,10 +24,13 @@ $dbconn = pg_connect("host=localhost dbname=bikesearch user=postgres password=po
 
 // SQL Query
 $search    = $_POST['search'];
-$searchGet = $_GET['search'];
 $priceFrom = $_POST['priceFrom'];
 $priceTo   = $_POST['priceTo'];
 $type      = $_POST['type'];
+$searchGet    = $_GET['search'];
+$priceFromGet = $_GET['priceFrom'];
+$priceToGet   = $_GET['priceTo'];
+$typeGet      = $_GET['type'];
 
 // HTML Results Print
 
@@ -99,26 +102,39 @@ else {
   $query .= "ORDER BY price;";
 }
 
-// echo "<p>QUERY:=>$query<=</p>\n";
-// echo "<p>PriceFrom:=>$priceFrom<=</p>\n";
-// echo "<p>PriceTo:=>$priceTo<=</p>\n";
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
-// echo "<p>RESULT:=>$result<=</p>\n";
 
+#echo "<p>=============== POST =================</p>\n";
+#echo "<p>search:=>$search<=</p>\n";
+#echo "<p>PriceFrom:=>$priceFrom<=</p>\n";
+#echo "<p>PriceTo:=>$priceTo<=</p>\n";
+#echo "<p>Type:=>$type<=</p>\n";
+#echo "<p>QUERY:=>$query<=</p>\n";
+#echo "<p>RESULT:=>$result<=</p>\n";
+#echo "<p>=============== POST ==================</p>\n";
+#echo "<p>=============== GET  =================</p>\n";
+#echo "<p>searchGet:=>$searchGet<=</p>\n";
+#echo "<p>PriceFrom:=>$priceFromGet<=</p>\n";
+#echo "<p>PriceTo:=>$priceToGet<=</p>\n";
+#echo "<p>Type:=>$typeGet<=</p>\n";
+#echo "<p>QUERY:=>$queryGet<=</p>\n";
+#echo "<p>RESULT:=>$result<=</p>\n";
+#echo "<p>=============== GET ==================</p>\n";
+// echo "<section id=\"search_results\">\n";
 // echo "<section id=\"search_results\">\n";
 
 echo "<section>\n";
-        echo "<nav>";
-        echo "<ul>";
-        echo "\t<li><a href=\"index.html\">Búsqueda Simple</a></li>";
-        echo "\t<li><a href=\"byprice.html\">Búsqueda por Precio y Tipo</a></li>";
-        echo "\t<li><a href=\"http://buscobici.com/forum\">Foros</a></li>";
-        echo "\t<li><a href=\"stats_fullscreen.html\">Estadísticas</a></li>";
-        echo "\t<li id=\"li_contact\"><a href=\"contact.html\">Contactar</a></li>";
-        echo "</ul>";
-        echo "</nav>";
-        echo "<br>";
-        echo "<br>";
+        echo "<nav>\n";
+        echo "<ul>\n";
+        echo "\t<li><a href=\"index.html\">Búsqueda Simple</a></li>\n";
+        echo "\t<li><a href=\"byprice.html\">Búsqueda por Precio y Tipo</a></li>\n";
+        echo "\t<li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
+        echo "\t<li><a href=\"stats_fullscreen.html\">Estadísticas</a></li>\n";
+        echo "\t<li id=\"li_contact\"><a href=\"contact.html\">Contactar</a></li>\n";
+        echo "</ul>\n";
+        echo "</nav>\n";
+        echo "<br>\n";
+        echo "<br>\n";
 
 echo "<table class=\"tableSearch\">\n";
 
