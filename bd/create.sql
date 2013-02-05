@@ -69,4 +69,10 @@ SELECT DISTINCT store FROM bikes ORDER by store;
  BuhoBike
  Mammoth
  Sanferbike
- 
+
+--- How to update "encoding" :
+bikesearch=# UPDATE pg_database set encoding=8 WHERE datname='bikesearch'; 
+--- Where encoding could be:
+--- 0 : SQL_ASCII
+--- 6 : UNICODE_UTF8
+--- 8 : LATIN1 (accepts accents, ñ, etc.)
