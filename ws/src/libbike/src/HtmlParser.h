@@ -5,7 +5,7 @@
  * for any purpose with or without fee is hereby granted, provided that 
  * the above copyright notice and this permission notice appear in all copies.
  * 
- * THE SOFTWARE IS PROVIDED âAS ISâ AND THE AUTHOR DISCLAIMS ALL WARRANTIES 
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES 
  * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
  * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, 
  * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
@@ -19,8 +19,12 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <bsd/stdio.h>
 
 #include "Bike.h"
+
+const uint32_t MAX_HTML_PIECE = 1023;
+const uint32_t MAX_HTML_PIECE_LINE = 255;
 
 class HtmlParser
 {
@@ -37,9 +41,10 @@ public:
   uint8_t          dummyBikeFill (Bike* bike);
 
 private:
-  uint8_t parseABike (const char* htmlPiece, uint32_t htmlPieceSize, Bike* bike);
-
-  char _file[FILENAME_MAX];
+  uint8_t  parseABike   (const char* htmlPiece, uint32_t htmlPieceSize, 
+                         Bike* bike);
+  uint16_t getHtmlPiece (FILE* f, char* htmlPiece, const uint16_t htmlMax);
+  char     _file[FILENAME_MAX];
   BikeList _bikeList;
 };
 #endif // __HTML_PARSER_H__

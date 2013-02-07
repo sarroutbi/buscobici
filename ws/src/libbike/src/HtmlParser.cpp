@@ -1,5 +1,5 @@
 /**
- * Copyright Â© 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+ * Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
  * 
  * Permission to use, copy, modify, and/or distribute this software 
  * for any purpose with or without fee is hereby granted, provided that 
@@ -22,6 +22,15 @@
 #include "HtmlParser.h"
 
 using namespace std;
+
+inline void trim(const char* cstr, char* trimmed, 
+                 uint32_t trim_length)
+{
+  std::string str(cstr);
+  str.erase(0, str.find_first_not_of(' '));
+  str.erase(str.find_last_not_of(' ')+1);
+  strncpy(trimmed, str.c_str(), trim_length);
+}
 
 HtmlParser::HtmlParser ()
 {
@@ -47,32 +56,108 @@ HtmlParser::~HtmlParser ()
 uint8_t HtmlParser::dummyBikeFill (Bike* bike)
 {
   if(bike)
-    bike->set("Specialized", "2013", "http://test.com/test-url", "Specialized 2013", 999.12345, BIKE_TYPE_MTB);
+    bike->set("Specialized", "2013", "http://test.com/test-url", "TheStore",
+              "Specialized 2013", (rand()*999), BIKE_TYPE_MTB);
 }
 
 uint8_t HtmlParser::parseABike (const char* htmlPiece, uint32_t htmlPieceSize, Bike* bike)
 {
   uint8_t err = 0;
-  /* Each html piece of each bike is of the type: */
-  /* <tr>
+  char trademark[MAX_TRADEMARK] = "";
+  char model    [MAX_MODEL]     = "";
+  char c_type   [MAX_URL]       = "";
+  char store    [MAX_STORE]     = "";
+  char url      [MAX_URL]       = "";
+  char url_text [MAX_URL_TEXT]  = "";
+  char url_all  [MAX_HTML_PIECE_LINE] = "";
+  float       price = 0;
+  bike_type_t type  = BIKE_TYPE_UNDEFINED;
+  /* Each html piece of each bike is of the type:
    *   <td> Trademark </td>
    *   <td> Model </td>
    *   <td> Type  </td>
    *   <td> Price  </td>
    *   <td><a href="http://url.com/the_url">URL TEXT</a></td>
-   * </tr>
    */
+  char piece[MAX_HTML_PIECE];
+  strncpy(piece, htmlPiece, MAX_HTML_PIECE);
 
   if(bike)
   {
-    dummyBikeFill(bike);
+    char* now = piece;
+    while(now = strstr(now, "<td>"))
+    {
+      now += strlen("<td>");
+      if(!strlen(trademark))
+      {
+        sscanf(now, "%[^<]</td>", trademark);
+        now += strlen(trademark);
+      }
+      else if(!strlen(model))
+      {
+        sscanf(now, "%[^<]</td>", model);
+        now += strlen(model);
+      }
+      else if(!strlen(c_type))
+      {
+        sscanf(now, "%[^<]</td>", c_type);
+        now += strlen(model);
+      }
+      else if(!strlen(url_all))
+      {
+        sscanf(now, "%[^<]</td>", url_all);
+        now += strlen(model);
+      }
+      else
+      {
+        break;
+      }
+      now += strlen("</td>");
+    }
+    bike->set(trademark, model, store, url, url_text, 0, type);
   }
   else
   {
-    err = 1;         
+    err = 1;
   }
   return err;
 }
+
+uint16_t 
+HtmlParser::getHtmlPiece (FILE* f, char* htmlPiece, const uint16_t maxHtml)
+{
+  uint16_t read = 0;
+  bool pieceStart = false;
+  bool finish = false;
+  if(f && htmlPiece)
+  {
+    char line[MAX_HTML_PIECE_LINE];
+    char trimmedLine[MAX_HTML_PIECE_LINE];
+    uint16_t piecePending = MAX_HTML_PIECE_LINE;
+
+    while((fgets(line, MAX_HTML_PIECE, f)) && (!finish) 
+          && (read <= maxHtml))
+    {
+      if (strstr(line, "<tr>"))
+      {
+         pieceStart = true;
+      }
+      else if(pieceStart && strstr(line, "</tr>"))
+      {
+         pieceStart = false;
+        finish = true;
+      }
+      else if(pieceStart)
+      {
+        piecePending -= strlen(line);
+        read += strlen(line);
+        strncat(htmlPiece, line, piecePending);
+      }
+    }
+  }
+  return read;
+}
+
 
 void HtmlParser:: logList ()
 {  
@@ -84,13 +169,30 @@ void HtmlParser:: logList ()
 
 uint8_t HtmlParser::parse ()
 {
-  uint8_t err = 0;
-  Bike b;
-  Bike b2;
-  parseABike(NULL, 0, &b);
-  parseABike(NULL, 0, &b2);
-  _bikeList.push_front(b);
-  _bikeList.push_front(b2);
+  uint8_t  err = 0;
+  uint16_t pieceLength = 0;
+  FILE*    f = fopen(_file, "r");
+  char     htmlPiece[MAX_HTML_PIECE];
+
+  memset(htmlPiece, 0, MAX_HTML_PIECE);
+
+  if(!f)
+  {
+    err = 1;
+  }
+  else 
+  { 
+    while((pieceLength = getHtmlPiece(f, htmlPiece, MAX_HTML_PIECE))>0)
+    {
+      fprintf(stderr, "Read html piece of [%d] bytes, =>%s<=\n", 
+              pieceLength, htmlPiece);
+      Bike bike;
+      parseABike(htmlPiece, pieceLength, &bike);
+      memset(htmlPiece, 0, MAX_HTML_PIECE);
+      _bikeList.push_front(bike);
+    }
+    fclose(f);
+  }
   return err;
 }
 

@@ -22,6 +22,7 @@
 
 const uint16_t MAX_TRADEMARK = 255;
 const uint16_t MAX_MODEL     = 255;
+const uint16_t MAX_STORE     = 255;
 const uint16_t MAX_URL       = 255;
 const uint16_t MAX_URL_TEXT  = 255;
 
@@ -40,16 +41,19 @@ class Bike
 public:
 
        Bike ();
-       Bike (char* trademark, char* model, char* url, char* url_tex,
-             float price, bike_type_t type);
+       Bike (const char* trademark, const char* model, const char* store,
+             const char* url, const char* url_tex, float price, 
+             bike_type_t type);
       ~Bike ();
-  void set  (char* trademark, char* model, char* url, char* url_text,
-             float price, bike_type_t type);
+  void set  (const char* trademark, const char* model, const char* store,
+             const char* url, const char* url_text, float price, 
+             bike_type_t type);
   void log  ();
 
 private:
   char  _trademark [MAX_TRADEMARK];
   char  _model     [MAX_MODEL];
+  char  _store     [MAX_MODEL];
   char  _url       [MAX_URL];
   char  _url_text  [MAX_URL_TEXT];
   float _price; 

@@ -19,7 +19,7 @@
 #include "HtmlGetter.h"
 #include "HtmlParser.h"
 
-#define DEFAULT_FILE "/tmp/file.html"
+const char* DEFAULT_FILE = "/tmp/file.html";
 
 int main(int argc, char* argv[])
 {
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     if ((argc > 3) && argv[3]) 
       dumpFile = argv[3];
     else 
-      dumpFile = DEFAULT_FILE;
+      dumpFile = const_cast<char*>(DEFAULT_FILE);
 
     if(hg.DumpHtml(dumpFile))
     {
