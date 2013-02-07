@@ -25,6 +25,8 @@ const uint16_t MAX_MODEL     = 255;
 const uint16_t MAX_STORE     = 255;
 const uint16_t MAX_URL       = 255;
 const uint16_t MAX_URL_TEXT  = 255;
+const uint16_t MAX_TYPE      = 255;
+const uint16_t MAX_PRICE     = 255;
 
 enum bike_type_t
 {

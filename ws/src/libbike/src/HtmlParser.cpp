@@ -15,6 +15,7 @@
  **/
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <list>
 #include <iostream>
@@ -65,8 +66,9 @@ uint8_t HtmlParser::parseABike (const char* htmlPiece, uint32_t htmlPieceSize, B
   uint8_t err = 0;
   char trademark[MAX_TRADEMARK] = "";
   char model    [MAX_MODEL]     = "";
-  char c_type   [MAX_URL]       = "";
   char store    [MAX_STORE]     = "";
+  char c_type   [MAX_TYPE]      = "";
+  char c_price  [MAX_PRICE]     = "";
   char url      [MAX_URL]       = "";
   char url_text [MAX_URL_TEXT]  = "";
   char url_all  [MAX_HTML_PIECE_LINE] = "";
@@ -76,7 +78,8 @@ uint8_t HtmlParser::parseABike (const char* htmlPiece, uint32_t htmlPieceSize, B
    *   <td> Trademark </td>
    *   <td> Model </td>
    *   <td> Type  </td>
-   *   <td> Price  </td>
+   *   <td> Price </td>
+   *   <td> Store </td>
    *   <td><a href="http://url.com/the_url">URL TEXT</a></td>
    */
   char piece[MAX_HTML_PIECE];
@@ -101,6 +104,17 @@ uint8_t HtmlParser::parseABike (const char* htmlPiece, uint32_t htmlPieceSize, B
       else if(!strlen(c_type))
       {
         sscanf(now, "%[^<]</td>", c_type);
+        now += strlen(c_type);
+      }
+      else if(!strlen(c_price))
+      {
+        sscanf(now, "%[^<]</td>", c_price);
+        now += strlen(c_price);
+        price = strtod(c_price, NULL);
+      }
+      else if(!strlen(store))
+      {
+        sscanf(now, "%[^<]</td>", store);
         now += strlen(model);
       }
       else if(!strlen(url_all))
@@ -114,7 +128,7 @@ uint8_t HtmlParser::parseABike (const char* htmlPiece, uint32_t htmlPieceSize, B
       }
       now += strlen("</td>");
     }
-    bike->set(trademark, model, store, url, url_text, 0, type);
+    bike->set(trademark, model, store, url, url_text, price, type);
   }
   else
   {
@@ -157,7 +171,6 @@ HtmlParser::getHtmlPiece (FILE* f, char* htmlPiece, const uint16_t maxHtml)
   }
   return read;
 }
-
 
 void HtmlParser:: logList ()
 {  

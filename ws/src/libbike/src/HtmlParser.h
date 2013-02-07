@@ -19,7 +19,6 @@
 
 #include <stdint.h>
 #include <stdlib.h>
-#include <bsd/stdio.h>
 
 #include "Bike.h"
 

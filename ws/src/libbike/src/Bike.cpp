@@ -15,6 +15,7 @@
  **/
 #include <iostream>
 #include <limits>
+#include <stdio.h>
 
 #include "string.h"
 #include "Bike.h"
@@ -49,11 +50,10 @@ void Bike::log ()
   cout << "=================== BIKE =================" << endl;
   cout << "Trademark:" << _trademark << endl;
   cout << "Model    :" << _model     << endl;
-
+  cout << "Store    :" << _store     << endl;
   cout << "URL      :" << _url       << endl;
   cout << "URL Text :" << _url_text  << endl;
-  cout.precision(numeric_limits<double>::digits10 + 1);
-  cout << "Price    :" << _price << endl;
+  printf ("Price    :%.2f\n", _price);
   cout << "Type     :" << _type      << endl;
   cout << "================== /BIKE =================" << endl;
 }
