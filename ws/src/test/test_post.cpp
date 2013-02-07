@@ -47,7 +47,6 @@ int main(int argc, char* argv[])
     /* Perform the request, ret is the return code */ 
     ret = curl_easy_perform(curl);
     
-    /
     /* Check for errors */ 
     if(ret != CURLE_OK)
     {
