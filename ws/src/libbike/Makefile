@@ -22,4 +22,4 @@ $(TEST_LIB_BIKE): $(TEST_LIB_BIKE_SRC)
 	$(CC) $(CCFLAGS) $(LIB_BIKE_INC) -o $@ $^ -L$(OUTPUT_DIR) -lbike $(CURL_LIBS)
 
 clean:
-	rm -rf $(LIB_BIKE) *~ $(SRC_DIR)/*.*~ $(OUTPUT_DIR)
+	rm -rf $(LIB_BIKE) *~ $(TEST_DIR)/*.*~ $(SRC_DIR)/*.*~ $(OUTPUT_DIR)
