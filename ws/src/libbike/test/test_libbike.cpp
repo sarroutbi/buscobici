@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "HtmlGetter.h"
+#include "HtmlParser.h"
 
 #define DEFAULT_FILE "/tmp/file.html"
 
@@ -43,10 +44,21 @@ int main(int argc, char* argv[])
 
     if(hg.DumpHtml(dumpFile))
     {
-      ;
+      fprintf(stderr, "Error Dumping Html File\n");
     }
     else
+    {
+      HtmlParser hp(dumpFile);
+      if(hp.parse())
+      {
+        fprintf(stderr, "Error Parsing Html File\n");
+      }
+      else
+      {
+        hp.logList();
+      }
       return 0;
+    }
   }
   return 1;
 }

@@ -33,9 +33,9 @@ size_t writeCallback(void *ptr, size_t size, size_t nmemb, char* user)
   char* file = user;
   size_t written = 0;
 
-  fprintf(stderr, "Callback executed!\n");
-  fprintf(stderr, "Writing [%d] elements of size [%d] to file [%s]\n\n",
-          nmemb, size, file);
+  //fprintf(stderr, "Callback executed!\n");
+  //fprintf(stderr, "Writing [%d] elements of size [%d] to file [%s]\n\n",
+  //        nmemb, size, file);
 
   FILE* f = fopen(user, "a");
   if( !f || !file)
@@ -53,20 +53,20 @@ size_t writeCallback(void *ptr, size_t size, size_t nmemb, char* user)
 
 HtmlGetter::HtmlGetter ()
 {
-  memset(_url, 0, MAX_URL);
-  memset(_post, 0, MAX_URL);
+  memset(_url,  0, MAX_CURL_URL);
+  memset(_post, 0, MAX_CURL_URL);
 }
 
 HtmlGetter::HtmlGetter (char* url)
 {
-  strncpy(_url, url, MAX_URL);
-  memset(_post, 0, MAX_URL);
+  strncpy(_url, url, MAX_CURL_URL);
+  memset (_post,  0, MAX_CURL_URL);
 }
 
 HtmlGetter::HtmlGetter (char* url, char* post)
 {
-  strncpy(_url, url, MAX_URL);
-  strncpy(_post, post, MAX_URL);
+  strncpy(_url,  url,  MAX_CURL_URL);
+  strncpy(_post, post, MAX_CURL_URL);
 }
 
 HtmlGetter::~HtmlGetter ()

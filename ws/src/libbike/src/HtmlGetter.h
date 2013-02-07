@@ -13,10 +13,14 @@
  * NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
  * OR PERFORMANCE OF THIS SOFTWARE.
  **/
+
+#ifndef __HTML_GETTER_H__
+#define __HTML_GETTER_H__
+
 #include <stdint.h>
 #include <stdlib.h>
 
-const uint16_t MAX_URL=512;
+const uint16_t MAX_CURL_URL=512;
 
 class HtmlGetter
 {
@@ -27,6 +31,7 @@ public:
  ~HtmlGetter ();
   uint8_t DumpHtml (char* outFile);
 private:
-  char _url[MAX_URL];
-  char _post[MAX_URL];
+  char _url[MAX_CURL_URL];
+  char _post[MAX_CURL_URL];
 };
+#endif // __HTML_GETTER_H__

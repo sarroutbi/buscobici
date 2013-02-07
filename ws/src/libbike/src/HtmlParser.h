@@ -14,48 +14,32 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  **/
 
-#ifndef __BIKE_H__
-#define __BIKE_H__
+#ifndef __HTML_PARSER_H__
+#define __HTML_PARSER_H__
 
 #include <stdint.h>
-#include <list>
+#include <stdlib.h>
 
-const uint16_t MAX_TRADEMARK = 255;
-const uint16_t MAX_MODEL     = 255;
-const uint16_t MAX_URL       = 255;
-const uint16_t MAX_URL_TEXT  = 255;
+#include "Bike.h"
 
-enum bike_type_t
-{
-  BIKE_TYPE_MTB=0, 
-  BIKE_TYPE_ROAD=1, 
-  BIKE_TYPE_URBAN=2,
-  BIKE_TYPE_BMX=3,
-  BIKE_TYPE_KIDS=4,
-  BIKE_TYPE_UNDEFINED=255
-};
-
-class Bike
+class HtmlParser
 {
 public:
+          HtmlParser  ();
+          HtmlParser  (const char* file);
+         ~HtmlParser  ();
+  void    setFile     (const char* file);
+  uint8_t parse       ();
+  uint8_t parse       (const char* file);
+  void    logList     ();
 
-       Bike ();
-       Bike (char* trademark, char* model, char* url, char* url_tex,
-             float price, bike_type_t type);
-      ~Bike ();
-  void set  (char* trademark, char* model, char* url, char* url_text,
-             float price, bike_type_t type);
-  void log  ();
+  const BikeList & getList       ();
+  uint8_t          dummyBikeFill (Bike* bike);
 
 private:
-  char  _trademark [MAX_TRADEMARK];
-  char  _model     [MAX_MODEL];
-  char  _url       [MAX_URL];
-  char  _url_text  [MAX_URL_TEXT];
-  float _price; 
-  bike_type_t _type;
+  uint8_t parseABike (const char* htmlPiece, uint32_t htmlPieceSize, Bike* bike);
+
+  char _file[FILENAME_MAX];
+  BikeList _bikeList;
 };
-
-typedef std::list<Bike> BikeList;
-
-#endif // __BIKE_H__
+#endif // __HTML_PARSER_H__
