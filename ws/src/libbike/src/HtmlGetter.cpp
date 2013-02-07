@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -78,6 +79,8 @@ uint8_t HtmlGetter::DumpHtml (char* outFile)
 {
   CURL *curl;
   CURLcode ret;
+
+  unlink(outFile);
 
   curl_global_init(CURL_GLOBAL_ALL);
 

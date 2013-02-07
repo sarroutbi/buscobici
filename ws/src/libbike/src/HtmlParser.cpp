@@ -197,12 +197,12 @@ uint8_t HtmlParser::parse ()
   { 
     while((pieceLength = getHtmlPiece(f, htmlPiece, MAX_HTML_PIECE))>0)
     {
-      fprintf(stderr, "Read html piece of [%d] bytes, =>%s<=\n", 
-              pieceLength, htmlPiece);
+      //fprintf(stderr, "Read html piece of [%d] bytes, =>%s<=\n", 
+      //        pieceLength, htmlPiece);
       Bike bike;
       parseABike(htmlPiece, pieceLength, &bike);
       memset(htmlPiece, 0, MAX_HTML_PIECE);
-      _bikeList.push_front(bike);
+      _bikeList.push_back(bike);
     }
     fclose(f);
   }
