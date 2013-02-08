@@ -20,40 +20,93 @@
 #include "HtmlParser.h"
 
 const char* DEFAULT_FILE = "/tmp/file.html";
+const bool  DEFAULT_DUMP = false;
+
+void usage(char* argv, int8_t err)
+{
+  fprintf(stderr, "\n");
+  fprintf(stderr, "%s -u \"url\" -p \"post_data\" [-o]\n", argv);
+  fprintf(stderr, "\n");
+  exit(err);
+}
+
+void stderr_error(char* argv, char* err, int8_t ret)
+{
+  fprintf(stderr, "\n");
+  fprintf(stderr, "%s", err);
+  fprintf(stderr, "\n");
+  usage(argv, ret);
+}
 
 int main(int argc, char* argv[])
 {
-  char* dumpFile = NULL;
-
-  if ((argc<2) || (!argv[1]))
+  char    dumpFile[FILENAME_MAX] = "";
+  char    url     [MAX_URL] = "";
+  char    post    [MAX_URL] = "";
+  bool    dump = DEFAULT_DUMP;
+  char*   dumpFile_p = NULL;
+  int8_t  c = 0;
+  uint8_t opterr = 0;
+     
+  while ((c = getopt (argc, argv, "of:u:p:")) != -1)
   {
-    fprintf(stderr, "Please provide a URL \n");
+    switch (c)
+    {
+      case 'o':
+        dump = true;
+        break;
+      case 'u':
+        strncpy(url, optarg, MAX_URL);
+        break;
+      case 'f':
+        strncpy(dumpFile, optarg, FILENAME_MAX);
+        break;
+      case 'p':
+        strncpy(post, optarg, MAX_URL);
+        break;
+      case '?':
+        if (optopt == 'c')
+          fprintf (stderr, "Option -%c requires an argument.\n", optopt);
+        else if (isprint (optopt))
+          fprintf (stderr, "Unknown option `-%c'.\n", optopt);
+        else
+          fprintf (stderr,
+                   "Unknown option character `\\x%x'.\n",
+                   optopt);
+        usage (argv[0], 1);
+      default:
+        usage (argv[0], 1);
+    }
+  } 
+  if (!strlen(url))
+  {
+    stderr_error(argv[0], "Please provide a URL \n", 1);
   }
-  else if((argc<3) || (!argv[2]))
+  else if(!strlen(post))
   {
-    fprintf(stderr, "Please provide the data to post\n");
+    stderr_error(argv[0], "Please provide the data to post\n", 1);
   }
   else
   {
-    HtmlGetter hg(argv[1], argv[2]);
+    HtmlGetter hg(url, post);
 
-    if ((argc > 3) && argv[3]) 
-      dumpFile = argv[3];
+    if (strlen(dumpFile)) 
+      dumpFile_p = dumpFile;
     else 
-      dumpFile = const_cast<char*>(DEFAULT_FILE);
+      dumpFile_p = const_cast<char*>(DEFAULT_FILE);
 
-    if(hg.DumpHtml(dumpFile))
+    if(hg.DumpHtml(dumpFile_p))
     {
       fprintf(stderr, "Error Dumping Html File\n");
     }
     else
     {
-      HtmlParser hp(dumpFile);
+      HtmlParser hp(dumpFile_p);
       if(hp.parse())
       {
         fprintf(stderr, "Error Parsing Html File\n");
       }
-      else
+      else if(dump)
       {
         hp.logList();
       }

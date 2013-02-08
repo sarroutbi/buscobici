@@ -80,7 +80,7 @@ HtmlParser::dissertUrl (const char* url, char* link, const uint16_t urlMax,
   }
   return 0;
 error_no_link:
-  fprintf(stderr, "Error parsing link. Could parse up to:=>%s<=\n", now);
+  //fprintf(stderr, "Error parsing link. Could parse up to:=>%s<=\n", now ? now : "NULL");
   return 1;
 }
 
