@@ -163,13 +163,14 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
         $islink = substr($col_value, 0, $compare_len);
         if($round == 0) {
           $trademark = $col_value;
+          $trademark_trim = trim($trademark);
         }
         if($round == 1) {
           $model = $col_value;
         }
 
         if ( strcmp($islink, $http_line) == 0 ) {
-          echo "\t\t<td><a href=\"$col_value\" target=\"_blank\">$trademark - $model</a></td>\n";
+          echo "\t\t<td><a href=\"$col_value\" target=\"_blank\">$trademark_trim - $model</a></td>\n";
         }
         else {
           if ( strcmp($col_value, "URBAN-CONFORT-FOLDING") == 0 ) {
