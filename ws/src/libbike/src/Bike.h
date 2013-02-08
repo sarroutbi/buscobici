@@ -41,15 +41,14 @@ enum bike_type_t
 class Bike
 {
 public:
-
        Bike ();
        Bike (const char* trademark, const char* model, const char* store,
              const char* url, const char* url_tex, float price, 
-             bike_type_t type);
+             const char* type);
       ~Bike ();
   void set  (const char* trademark, const char* model, const char* store,
              const char* url, const char* url_text, float price, 
-             bike_type_t type);
+             const char* type);
   void log  ();
 
 private:
@@ -59,7 +58,7 @@ private:
   char  _url       [MAX_URL];
   char  _url_text  [MAX_URL_TEXT];
   float _price; 
-  bike_type_t _type;
+  char  _type      [MAX_TYPE];
 };
 
 typedef std::list<Bike> BikeList;

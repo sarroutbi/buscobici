@@ -95,7 +95,7 @@ uint8_t HtmlParser::dummyBikeFill (Bike* bike)
 {
   if(bike)
     bike->set("Specialized", "2013", "http://test.com/test-url", "TheStore",
-              "Specialized 2013", (rand()*999), BIKE_TYPE_MTB);
+              "Specialized 2013", (rand()*999), "MTB");
 }
 
 uint8_t HtmlParser::parseABike (const char* htmlPiece, uint32_t htmlPieceSize, Bike* bike)
@@ -113,13 +113,12 @@ uint8_t HtmlParser::parseABike (const char* htmlPiece, uint32_t htmlPieceSize, B
   char trademark[MAX_TRADEMARK] = "";
   char model    [MAX_MODEL]     = "";
   char store    [MAX_STORE]     = "";
-  char c_type   [MAX_TYPE]      = "";
+  char type     [MAX_TYPE]      = "";
   char c_price  [MAX_PRICE]     = "";
   char url      [MAX_URL]       = "";
   char url_text [MAX_URL_TEXT]  = "";
   char url_all  [MAX_HTML_PIECE_LINE] = "";
   float       price = 0;
-  bike_type_t type  = BIKE_TYPE_UNDEFINED;
 
   if(bike)
   {
@@ -137,10 +136,10 @@ uint8_t HtmlParser::parseABike (const char* htmlPiece, uint32_t htmlPieceSize, B
         sscanf(now, "%[^<]</td>", model);
         now += strlen(model);
       }
-      else if(!strlen(c_type))
+      else if(!strlen(type))
       {
-        sscanf(now, "%[^<]</td>", c_type);
-        now += strlen(c_type);
+        sscanf(now, "%[^<]</td>", type);
+        now += strlen(type);
       }
       else if(!strlen(c_price))
       {

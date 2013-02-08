@@ -30,19 +30,20 @@ Bike::Bike ()
   memset(_store, 0, MAX_STORE);
   memset(_url, 0, MAX_URL);
   memset(_url_text, 0, MAX_URL_TEXT);
-  _type  = BIKE_TYPE_UNDEFINED;
+  memset(_type, 0, MAX_TYPE);
   _price = 0;
 }
   
 Bike::Bike (const char* trademark, const char* model, 
             const char* url, const char* store,
-            const char* url_type, float price, bike_type_t type) : 
-            _price(price), _type(type)  
+            const char* url_type, float price, const char* type) : 
+            _price(price)
 {
   strncpy(_trademark, trademark, MAX_TRADEMARK);
   strncpy(_model, model, MAX_MODEL);
   strncpy(_store, store, MAX_STORE);
   strncpy(_url, url, MAX_URL);
+  strncpy(_type, type, MAX_TYPE);
 }
 
 void Bike::log ()
@@ -60,15 +61,15 @@ void Bike::log ()
 
 void Bike::set(const char* trademark, const char* model, const char* store,
                const char* url, const char* url_text, float price, 
-               bike_type_t type)
+               const char* type)
 {
   _price = price;
-  _type  = type;
   strncpy(_trademark, trademark, MAX_TRADEMARK);
   strncpy(_model, model, MAX_MODEL);
   strncpy(_store, store, MAX_STORE);
   strncpy(_url, url, MAX_URL);
   strncpy(_url_text, url_text, MAX_URL_TEXT);
+  strncpy(_type, type, MAX_TYPE);
 }
 
 Bike::~Bike ()
