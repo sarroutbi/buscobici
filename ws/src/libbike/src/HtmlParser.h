@@ -43,8 +43,9 @@ private:
   uint8_t  parseABike   (const char* htmlPiece, uint32_t htmlPieceSize, 
                          Bike* bike);
   uint16_t getHtmlPiece (FILE* f, char* htmlPiece, const uint16_t htmlMax);
-  uint8_t  dissertUrl   (const char* url, char* url, const uint16_t urlMax,
-                         char* urlText, const uint16_t urlTextMax);
+  uint8_t  dissertUrl   (const char* url, char* urlFull, 
+                         const uint16_t urlMax, char* urlText, 
+                         const uint16_t urlTextMax);
 
   char     _file[FILENAME_MAX];
   BikeList _bikeList;

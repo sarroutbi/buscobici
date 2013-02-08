@@ -16,13 +16,15 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <string.h>
 #include "HtmlGetter.h"
 #include "HtmlParser.h"
 
 const char* DEFAULT_FILE = "/tmp/file.html";
 const bool  DEFAULT_DUMP = false;
 
-void usage(char* argv, int8_t err)
+void usage(const char* argv, int8_t err)
 {
   fprintf(stderr, "\n");
   fprintf(stderr, "%s -u \"url\" -p \"post_data\" [-o]\n", argv);
@@ -30,7 +32,7 @@ void usage(char* argv, int8_t err)
   exit(err);
 }
 
-void stderr_error(char* argv, char* err, int8_t ret)
+void stderr_error(const char* argv, const char* err, int8_t ret)
 {
   fprintf(stderr, "\n");
   fprintf(stderr, "%s", err);
@@ -38,7 +40,7 @@ void stderr_error(char* argv, char* err, int8_t ret)
   usage(argv, ret);
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char** argv)
 {
   char    dumpFile[FILENAME_MAX] = "";
   char    url     [MAX_URL] = "";
@@ -67,13 +69,8 @@ int main(int argc, char* argv[])
       case '?':
         if (optopt == 'c')
           fprintf (stderr, "Option -%c requires an argument.\n", optopt);
-        else if (isprint (optopt))
+        else 
           fprintf (stderr, "Unknown option `-%c'.\n", optopt);
-        else
-          fprintf (stderr,
-                   "Unknown option character `\\x%x'.\n",
-                   optopt);
-        usage (argv[0], 1);
       default:
         usage (argv[0], 1);
     }
