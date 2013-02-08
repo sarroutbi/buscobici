@@ -185,24 +185,23 @@ HtmlParser::getHtmlPiece (FILE* f, char* htmlPiece, const uint16_t maxHtml)
     char line[MAX_HTML_PIECE_LINE];
     char trimmedLine[MAX_HTML_PIECE_LINE];
     uint16_t piecePending = MAX_HTML_PIECE_LINE;
-
-    while((fgets(line, MAX_HTML_PIECE, f)) && (!finish) 
-          && (read <= maxHtml))
+   
+    while((!finish) && (read <= maxHtml) && (fgets(line, MAX_HTML_PIECE, f)))
     {
+      // fprintf(stderr, "Line:=>%s<=", line);
       if (strstr(line, "<tr>"))
       {
-         pieceStart = true;
+        pieceStart = true;
       }
       else if(pieceStart && strstr(line, "</tr>"))
       {
-         pieceStart = false;
+        pieceStart = false;
         finish = true;
       }
-      else if(pieceStart)
+      else if(pieceStart && (!finish))
       {
-        piecePending -= strlen(line);
-        read += strlen(line);
         strncat(htmlPiece, line, piecePending);
+        read += strlen(line);
       }
     }
   }
@@ -215,6 +214,7 @@ void HtmlParser:: logList ()
 
   for(i = _bikeList.begin(); i != _bikeList.end(); ++i)
     (*i).log();
+  cout << "Total number of bikes:=>" << _bikeList.size() << "<=" << endl;
 }
 
 uint8_t HtmlParser::parse ()
@@ -234,8 +234,8 @@ uint8_t HtmlParser::parse ()
   { 
     while((pieceLength = getHtmlPiece(f, htmlPiece, MAX_HTML_PIECE))>0)
     {
-      //fprintf(stderr, "Read html piece of [%d] bytes, =>%s<=\n", 
-      //        pieceLength, htmlPiece);
+      // fprintf(stderr, "Read html piece of [%d] bytes, =>%s<=\n", 
+      //         pieceLength, htmlPiece);
       Bike bike;
       parseABike(htmlPiece, pieceLength, &bike);
       memset(htmlPiece, 0, MAX_HTML_PIECE);
