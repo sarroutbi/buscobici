@@ -43,16 +43,53 @@ HtmlParser::HtmlParser (const char* file)
   setFile(file);
 }
 
+HtmlParser::~HtmlParser ()
+{
+  _bikeList.clear();
+}
+
+uint8_t  
+HtmlParser::dissertUrl (const char* url, char* link, const uint16_t urlMax,
+                        char* urlText, const uint16_t urlTextMax)
+{
+  /**
+   * URL input here has next format
+   * "http://url.com/the_url" target="_blank">URL TEXT
+   */
+  char* now = const_cast<char*>(url);
+  char* aux;
+  now = strstr(now, "\"");
+  if(!now)
+  {
+     goto error_no_link;
+  }
+  now += 1; // avoid '"' character
+  if(sscanf(now, "%[^\"]>", link) <1)
+  {
+     goto error_no_link;
+  }
+  now += strlen(link);
+  if((aux = strstr(now, "target=\"_blank\">")))
+  {
+    now = aux;
+    now += strlen("target=\"_blank\">");
+  }
+  if(sscanf(now, "%[^<]</td>", urlText) <= 0)
+  {
+     goto error_no_link;
+  }
+  return 0;
+error_no_link:
+  fprintf(stderr, "Error parsing link. Could parse up to:=>%s<=\n", now);
+  return 1;
+}
+
 void HtmlParser::setFile(const char* file)
 {
   if(file)
     strncpy(_file, file, FILENAME_MAX);
 }
 
-HtmlParser::~HtmlParser ()
-{
-  _bikeList.clear();
-}
 
 uint8_t HtmlParser::dummyBikeFill (Bike* bike)
 {
@@ -64,6 +101,15 @@ uint8_t HtmlParser::dummyBikeFill (Bike* bike)
 uint8_t HtmlParser::parseABike (const char* htmlPiece, uint32_t htmlPieceSize, Bike* bike)
 {
   uint8_t err = 0;
+
+  /* Each html piece of each bike is of the type:
+   *   <td> Trademark </td>
+   *   <td> Model </td>
+   *   <td> Type  </td>
+   *   <td> Price </td>
+   *   <td> Store </td>
+   *   <td><a href="http://url.com/the_url">URL TEXT</a></td>
+   */
   char trademark[MAX_TRADEMARK] = "";
   char model    [MAX_MODEL]     = "";
   char store    [MAX_STORE]     = "";
@@ -74,20 +120,10 @@ uint8_t HtmlParser::parseABike (const char* htmlPiece, uint32_t htmlPieceSize, B
   char url_all  [MAX_HTML_PIECE_LINE] = "";
   float       price = 0;
   bike_type_t type  = BIKE_TYPE_UNDEFINED;
-  /* Each html piece of each bike is of the type:
-   *   <td> Trademark </td>
-   *   <td> Model </td>
-   *   <td> Type  </td>
-   *   <td> Price </td>
-   *   <td> Store </td>
-   *   <td><a href="http://url.com/the_url">URL TEXT</a></td>
-   */
-  char piece[MAX_HTML_PIECE];
-  strncpy(piece, htmlPiece, MAX_HTML_PIECE);
 
   if(bike)
   {
-    char* now = piece;
+    char* now = const_cast<char*>(htmlPiece);
     while(now = strstr(now, "<td>"))
     {
       now += strlen("<td>");
@@ -115,12 +151,13 @@ uint8_t HtmlParser::parseABike (const char* htmlPiece, uint32_t htmlPieceSize, B
       else if(!strlen(store))
       {
         sscanf(now, "%[^<]</td>", store);
-        now += strlen(model);
+        now += strlen(store);
       }
       else if(!strlen(url_all))
       {
-        sscanf(now, "%[^<]</td>", url_all);
-        now += strlen(model);
+        now += 1; // avoid '<' of <a href>....</a></td>
+        sscanf(now, "%[^<]</a>", url_all);
+        dissertUrl(url_all, url, MAX_URL, url_text, MAX_URL_TEXT);
       }
       else
       {
