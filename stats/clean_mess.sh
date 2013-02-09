@@ -14,6 +14,6 @@
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
-rm *.pdf
-rm *.png
-rm *.txt
+rm -f *.pdf
+rm -f *.png
+rm -f *.txt
