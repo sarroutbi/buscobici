@@ -6,7 +6,7 @@ reset
 #randcolor(r) = (((r/1000)*0xFF0000) + ((r/1000)*0x00FF00) + ((r/1000)*0x0000FF))
 #randcolor(r) = (((r/1000)*0xFF0000) + (rand(0)*0x00FF00) + (rand(r)*0x0000FF))
 
-greencolor = 0x00FF00
+pinkcolor = 0xFF69B4
 
 set  lmargin at screen 0.10
 set  rmargin at screen 0.95
@@ -23,4 +23,4 @@ set  boxwidth 0.85 absolute
 set  style fill transparent solid 1 noborder
 set  xtic rotate by -45 scale 0 font ",13"
 
-plot './stats_models_BMX.txt' using ($0):2:(greencolor):xticlabels(1) w boxes lc rgb variable notitle
+plot './stats_models_BMX.txt' using ($0):2:(pinkcolor):xticlabels(1) w boxes lc rgb variable notitle
