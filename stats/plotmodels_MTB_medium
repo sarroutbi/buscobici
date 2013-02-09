@@ -1,0 +1,26 @@
+#!/usr/bin/gnuplot
+
+reset
+
+#randcolor(r) = ((rand(0)*0xFF0000) + (rand(0)*0x00FF00) + (rand(0)*0x0000FF))
+#randcolor(r) = (((r/1000)*0xFF0000) + ((r/1000)*0x00FF00) + ((r/1000)*0x0000FF))
+#randcolor(r) = (((r/1000)*0xFF0000) + (rand(0)*0x00FF00) + (rand(r)*0x0000FF))
+
+redcolor = 0xFF0000
+
+set  lmargin at screen 0.10
+set  rmargin at screen 0.95
+set  bmargin at screen 0.25
+set  tmargin at screen 0.85
+set  datafile separator ","
+set  title "Oferta de modelos de bicicletas MTB por tienda"
+set  ylabel "Número de modelos"
+set  xlabel "Tienda"
+set  output 'stats_models_MTB_medium.png'
+set  terminal png truecolor font 'Verdana,15' size 1280,960
+set  grid
+set  boxwidth 0.85 absolute
+set  style fill transparent solid 1 noborder
+set  xtic rotate by -45 scale 0 font ",15"
+
+plot './stats_models_MTB.txt' using ($0):2:(redcolor):xticlabels(1) w boxes lc rgb variable notitle
