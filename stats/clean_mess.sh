@@ -17,3 +17,4 @@
 rm -f *.pdf
 rm -f *.png
 rm -f *.txt
+rm -f *~
