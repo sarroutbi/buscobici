@@ -2,16 +2,8 @@
 
 reset
 
-# Function with variation also in green
-# randcolor(min,max,r) = (( ceil(((r-max)/(min-max))*255)) * 256 * 256 ) + (( ceil(((r-max)/(min-max))*255)) * 256 ) + ( floor(((r-min)/(max-min))* 255) ) 
-
-# Function with no variation in green (Blue->Black, Black->Red)
-# randcolor(min,max,r) = (( ceil(((r-max)/(min-max))*255)) ) + ( floor(((r-min)/(max-min))* 255)*256*256) 
-
-# Function with no variation in blue (Red->Black, Black->Blue)
-# randcolor(min,max,r) = (( ceil(((r-max)/(min-max))*255))*256*256 ) + ( floor(((r-min)/(max-min))* 255)) 
-
-greencolor = 0x00FF00
+# Function with no variation in green (Red->Red (1->1), Black->Blue(0->1))
+randcolor(min,max,r) = (255*256*256) + (floor(((r-min)/(max-min))* 255)) 
 
 set  lmargin at screen 0.10
 set  rmargin at screen 0.95
@@ -30,10 +22,10 @@ set  xtic rotate by -45 scale 0 font ",20"
 
 # First plot, just check output max, min values
 set  output "/dev/null"
-plot "./stats_meanprice.txt" using  ($0):2:($0):xticlabels(1) w boxes lc rgb variable notitle
+plot "./stats_meanprice_BMX.txt" using  ($0):2:($0):xticlabels(1) w boxes lc rgb variable notitle
 max=GPVAL_DATA_Y_MAX
 min=GPVAL_DATA_Y_MIN
 
 # Final plot, just check output max, min values
 set  output  "stats_meanprice_BMX.png"
-plot './stats_meanprice_BMX.txt' using ($0):2:(greencolor):xticlabels(1) w boxes lc rgb variable notitle
+plot './stats_meanprice_BMX.txt' using ($0):2:(randcolor(min,max,$2)):xticlabels(1) w boxes lc rgb variable notitle
