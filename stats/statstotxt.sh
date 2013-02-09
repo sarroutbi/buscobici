@@ -14,7 +14,13 @@
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
+TYPES="MTB ROAD BMX URBAN KIDS" 
 ./statsdb.py -p postgres123 -S 'nummodels' -s 'all'    | sort -t"," -n -k2 > stats_models.txt
 ./statsdb.py -p postgres123 -S 'meanprice' -s 'all'    | sort -t"," -n -k2 > stats_meanprice.txt
 ./statsdb.py -p postgres123 -S 'modelsbytype' -s 'all' | sort -t"," -n -k7 > stats_models_type.txt
 ./statsdb.py -p postgres123 -S 'modelsbypricerange' -s 'all' | sort -t"," -n -k11 > stats_models_pricerange.txt
+
+for type in ${TYPES}; 
+do
+  ./statsdb.py -S 'nummodels' -e ${type} -s 'all' -ppostgres123 | sort -t"," -n -k2 > stats_models_${type}.txt
+done
