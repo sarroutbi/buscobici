@@ -150,20 +150,17 @@ def dump_store_models_pricerange(cur, table, store, pricerange):
   else:
     print ", %0"
 
-def get_models_bytype(cur, table, store, extra): 
+def get_models_bytype(cur, table, store): 
   #print 
   #print 'Dumping models by type of store:' + store
   #print
-  if extra == "":
-    types = ['MTB','ROAD','URBAN','BMX','KIDS'];
-  else:
-    types = [extra];
+  types = ['MTB','ROAD','URBAN','BMX','KIDS'];
 
   if store == "all": 
     cur.execute("SELECT DISTINCT store FROM " + table)
     stores = cur.fetchall()
     for store in stores:
-      get_models_bytype(cur, table, store[0], extra)
+      get_models_bytype(cur, table, store[0])
     return 0
   else:
     if store != "Total" and store != "":
