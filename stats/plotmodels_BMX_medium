@@ -13,7 +13,7 @@ set  rmargin at screen 0.95
 set  bmargin at screen 0.25
 set  tmargin at screen 0.85
 set  datafile separator ","
-set  title "Oferta de modelos de bicicletas BMX por tienda"
+set  title "Oferta de modelos de bicicletas de tipo BMX por tienda"
 set  ylabel "Número de modelos"
 set  xlabel "Tienda"
 set  output 'stats_models_BMX_medium.png'

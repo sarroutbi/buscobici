@@ -16,7 +16,7 @@ set  datafile separator ","
 
 set  ylabel "Número de modelos"
 set  xlabel "Tienda"
-set  title "Oferta de modelos de bicicletas URBAN por tienda"
+set  title "Oferta de modelos de bicicletas de tipo URBAN por tienda"
 set  output 'stats_models_URBAN_small.png'
 set  terminal png truecolor font 'Verdana,10' size 640,480
 set  grid
