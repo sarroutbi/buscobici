@@ -78,28 +78,29 @@ def print_usage(command):
 def print_stat(cur, table, store, stat, extra):
   if stat == "all":
     get_models(cur, table, store, extra)
-    get_meanprice(cur, table, store)
+    get_meanprice(cur, table, store, extra)
     get_models_bytype(cur, table, store)
   elif stat == "nummodels":
     get_models(cur, table, store, extra)
   elif stat == "meanprice":
-    get_meanprice(cur, table, store)
+    get_meanprice(cur, table, store, extra)
   elif stat == "modelsbytype":
     get_models_bytype(cur, table, store)
   elif stat == "modelsbypricerange":
     get_models_bypricerange(cur, table, store)
 
-def get_meanprice(cur, table, store): 
+def get_meanprice(cur, table, store, type): 
   if store == "all": 
-    cur.execute("SELECT DISTINCT store FROM " + table)
+    cur.execute("SELECT DISTINCT store FROM " + table + " WHERE kind ~ '" + type + "'")
     stores = cur.fetchall()
     for store in stores:
-      get_meanprice(cur, table, store[0])
+      get_meanprice(cur, table, store[0], type)
     return 0
   elif store == "Total": 
     cur.execute("SELECT AVG(price) FROM " + table )
   else:
-    cur.execute("SELECT AVG(price) FROM " + table + " WHERE store LIKE '" + store + "'")
+    cur.execute("SELECT AVG(price) FROM " + table + " WHERE store LIKE '" 
+                + store + "'" + " AND kind ~ '" + type + "'")
 
   for record in cur:
     price = record
@@ -119,7 +120,7 @@ def dump_models_type(cur, table, type):
 
 def dump_store_models_type(cur, table, store, type):
   cur.execute("SELECT COUNT(*) FROM " + table + " WHERE kind ~ '" + type + "'"\
-    + " AND store LIKE '" + store +"'")
+              + " AND store LIKE '" + store +"'")
   for record in cur:
     num_models = record 
 

@@ -23,4 +23,5 @@ TYPES="MTB ROAD BMX URBAN KIDS"
 for type in ${TYPES}; 
 do
   ./statsdb.py -S 'nummodels' -e ${type} -s 'all' -ppostgres123 | sort -t"," -n -k2 > stats_models_${type}.txt
+  ./statsdb.py -S 'meanprice' -e ${type} -s 'all' -ppostgres123 | sort -t"," -n -k2 > stats_meanprice_${type}.txt
 done
