@@ -26,6 +26,7 @@ default_dbpasswd="postgres"
 default_dbtable="bikes"
 default_hostname="localhost"
 default_stat="all"
+default_extra=""
 
 def parse_args(opts, args):
   database = default_db
@@ -35,6 +36,7 @@ def parse_args(opts, args):
   dbtable  = default_dbtable
   store    = ""
   stat     = default_stat
+  extra    = default_extra
   for opt, arg in opts:
     if opt == '-h':
       print_usage()
@@ -51,6 +53,8 @@ def parse_args(opts, args):
       store = arg
     elif opt in ("-p", "--password"):
       dbpasswd = arg
+    elif opt in ("-e", "--extra_stat_data"):
+      extra = arg
     elif opt in ("-S", "--stat"):
       stat = arg
 
@@ -61,22 +65,23 @@ def parse_args(opts, args):
   #print 'store    is :', store
   #print 'password is :', dbpasswd
   #print 'stat     is :', stat
+  #print 'extra is :', extra
  
-  return database, dbtable, hostname, dbuser, store, dbpasswd, stat
+  return database, dbtable, hostname, dbuser, store, dbpasswd, stat, extra
    
 def print_usage(command):
   print command + ":" 
-  print '             ' + command + ' [-d <database> -u <user> -h<dbhost> -S<stat>] -s<store> -p<password>'
+  print '             ' + command + ' [-d <database> -u <user> -h<dbhost> -S<stat> -e<extra_stat_data>] -s<store> -p<password>'
   print '             Valid stats: all, nummodels, meanprice, modelsbytype, modelsbypricerange' 
   print 
 
-def print_stat(cur, table, store, stat):
+def print_stat(cur, table, store, stat, extra):
   if stat == "all":
-    get_models(cur, table, store)
+    get_models(cur, table, store, extra)
     get_meanprice(cur, table, store)
     get_models_bytype(cur, table, store)
   elif stat == "nummodels":
-    get_models(cur, table, store)
+    get_models(cur, table, store, extra)
   elif stat == "meanprice":
     get_meanprice(cur, table, store)
   elif stat == "modelsbytype":
@@ -145,17 +150,20 @@ def dump_store_models_pricerange(cur, table, store, pricerange):
   else:
     print ", %0"
 
-def get_models_bytype(cur, table, store): 
+def get_models_bytype(cur, table, store, extra): 
   #print 
   #print 'Dumping models by type of store:' + store
   #print
-  types = ['MTB','ROAD','URBAN','BMX','KIDS'];
+  if extra == "":
+    types = ['MTB','ROAD','URBAN','BMX','KIDS'];
+  else:
+    types = [extra];
 
   if store == "all": 
     cur.execute("SELECT DISTINCT store FROM " + table)
     stores = cur.fetchall()
     for store in stores:
-      get_models_bytype(cur, table, store[0])
+      get_models_bytype(cur, table, store[0], extra)
     return 0
   else:
     if store != "Total" and store != "":
@@ -190,20 +198,26 @@ def get_models_bypricerange(cur, table, store):
       dump_store_models(cur, table, store)
       print
 
-def get_models(cur, table, store): 
+def get_models(cur, table, store, type): 
   #print 
   #print 'Dumping models number of store:' + store
+  #print 'With extra type:' + type
   #print
+  if type == "": 
+    sql_type = ''
+  else: 
+    sql_type = type
+
   if store == "all": 
     cur.execute("SELECT DISTINCT store FROM " + table)
     stores = cur.fetchall()
     for store in stores:
-      get_models(cur, table, store[0])
+      get_models(cur, table, store[0], type)
     return 0
   elif store == "Total": 
-    cur.execute("SELECT COUNT(*) FROM " + table )
+    cur.execute("SELECT COUNT(*) FROM " + table + "AND kind ~ '" + sql_type + "'")
   else:
-    cur.execute("SELECT COUNT(*) FROM " + table + " WHERE store LIKE '" + store + "'")
+    cur.execute("SELECT COUNT(*) FROM " + table + " WHERE store LIKE '" + store + "'" + "AND kind ~ '" + sql_type + "'")
 
   for record in cur:
     num_models = record
@@ -214,12 +228,13 @@ def get_models(cur, table, store):
 
 def main(argv):
   try:
-    opts, args = getopt.getopt(argv[1:],"hd:h:u:s:p:S:",["database=","hostname=","user=","store=","password=","stat="])
+    opts, args = getopt.getopt(argv[1:],"hd:h:u:s:p:S:e:",["database=","hostname=","user=","store=","password=","stat=", "extra="])
   except getopt.GetoptError:
+    print "Exception!"
     print_usage(argv[0])
     sys.exit(2)
  
-  db, table, hostname, dbuser, store, password, stat = parse_args(opts, args)
+  db, table, hostname, dbuser, store, password, stat, extra = parse_args(opts, args)
 
   if store == "":
     print ''
@@ -234,7 +249,7 @@ def main(argv):
   # Obtain the cursor to the Database
   cur = conn.cursor()
 
-  print_stat(cur, table, store, stat)
+  print_stat(cur, table, store, stat, extra)
 
 if __name__ == "__main__":
    main(sys.argv[0:])
