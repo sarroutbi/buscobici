@@ -13,7 +13,7 @@ set  rmargin at screen 0.95
 set  bmargin at screen 0.15
 set  tmargin at screen 0.95
 set  datafile separator ","
-set  title "Oferta de modelos de tipo INFANTIL por tienda"
+set  title "Oferta de modelos de bicicletas de tipo INFANTIL por tienda"
 set  ylabel "Número de modelos"
 set  xlabel "Tienda"
 set  output 'stats_models_KIDS.png'
