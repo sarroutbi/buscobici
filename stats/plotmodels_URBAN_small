@@ -1,0 +1,27 @@
+#!/usr/bin/gnuplot
+
+reset
+
+#randcolor(r) = ((rand(0)*0xFF0000) + (rand(0)*0x00FF00) + (rand(0)*0x0000FF))
+#randcolor(r) = (((r/1000)*0xFF0000) + ((r/1000)*0x00FF00) + ((r/1000)*0x0000FF))
+#randcolor(r) = (((r/1000)*0xFF0000) + (rand(0)*0x00FF00) + (rand(r)*0x0000FF))
+
+bluecolor = 0x0000FF
+
+set  lmargin at screen 0.10
+set  rmargin at screen 0.95
+set  bmargin at screen 0.25
+set  tmargin at screen 0.85
+set  datafile separator ","
+
+set  ylabel "Número de modelos"
+set  xlabel "Tienda"
+set  title "Oferta de modelos de bicicletas URBAN por tienda"
+set  output 'stats_models_URBAN_small.png'
+set  terminal png truecolor font 'Verdana,10' size 640,480
+set  grid
+set  boxwidth 0.85 absolute
+set  style fill transparent solid 1 noborder
+set  xtic rotate by -45 scale 0 font ",10"
+
+plot './stats_models_URBAN.txt' using ($0):2:(bluecolor):xticlabels(1) w boxes lc rgb variable notitle
