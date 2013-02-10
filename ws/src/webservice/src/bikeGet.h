@@ -1,4 +1,4 @@
-// File: bikeGet.h
+//File: bikeGet.h
 //gsoap ns2 service name: bikeGet
 //gsoap ns2 service namespace: urn:bikeGet
 //gsoap ns2 service location: http://www.buscobici.com/bikesearch/bikeGet.cgi
@@ -16,7 +16,6 @@ class ns2Bike
 
 class ns2BikeList
 {
-  int size;
   std::vector<ns2Bike> bikeList;
 };
 

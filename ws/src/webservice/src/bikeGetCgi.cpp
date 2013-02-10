@@ -57,7 +57,7 @@ void copyList(ns2BikeList* ns2bl, BikeList & bl)
   }
 }
 
-int ns2__bikeGet(struct soap *soap, char* search, char* type, 
+int ns2__bikeGet(struct soap *soap, char* search, char* type,
                  int priceFrom, int priceTo, ns2BikeList & response)
 {
   char post[MAX_POST];
