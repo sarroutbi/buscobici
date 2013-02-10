@@ -50,8 +50,6 @@ public:
              const char* url, const char* url_text, float price, 
              const char* type);
   void log  ();
-
-private:
   char  _trademark [MAX_TRADEMARK];
   char  _model     [MAX_MODEL];
   char  _store     [MAX_MODEL];

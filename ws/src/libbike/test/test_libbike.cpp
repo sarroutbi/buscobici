@@ -1,5 +1,5 @@
 /**
- * Copyright Â© 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+ * Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
  * 
  * Permission to use, copy, modify, and/or distribute this software 
  * for any purpose with or without fee is hereby granted, provided that 
