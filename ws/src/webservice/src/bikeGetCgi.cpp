@@ -48,7 +48,12 @@ void copyList(ns2BikeList* ns2bl, BikeList & bl)
   {
     i->log();
     ns2Bike nsb;
-    nsb.trademark = i->_trademark;
+    nsb.trademark  = i->_trademark;
+    nsb.store      = i->_store;
+    nsb.url        = i->_url;
+    nsb.urlContent = i->_url_text;
+    nsb.type       = i->_type;
+    nsb.price      = i->_price;
     ns2bl->bikeList.push_back(nsb);
   }
 }

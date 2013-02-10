@@ -6,12 +6,12 @@
 
 class ns2Bike
 {
-  char* trademark;
-  char* store;
-  char* url;
-  char* urlContent;
-  char* type;
-  float price;
+  char*  trademark;
+  char*  store;
+  char*  url;
+  char*  urlContent;
+  char*  type;
+  double price;
 };
 
 class ns2BikeList
