@@ -46,7 +46,6 @@ void copyList(ns2BikeList* ns2bl, BikeList & bl)
   BikeList::iterator i;
   for(i = bl.begin(); i != bl.end(); ++i)
   {
-    i->log();
     ns2Bike nsb;
     nsb.trademark  = i->_trademark;
     nsb.store      = i->_store;
