@@ -8,6 +8,7 @@ class ns2Bike
 {
   char*  trademark;
   char*  store;
+  char*  model;
   char*  url;
   char*  urlContent;
   char*  type;

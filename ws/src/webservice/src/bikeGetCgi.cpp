@@ -48,6 +48,7 @@ void copyList(ns2BikeList* ns2bl, BikeList & bl)
   {
     ns2Bike nsb;
     nsb.trademark  = i->_trademark;
+    nsb.model      = i->_model;
     nsb.store      = i->_store;
     nsb.url        = i->_url;
     nsb.urlContent = i->_url_text;
