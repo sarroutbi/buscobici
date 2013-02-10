@@ -2,6 +2,9 @@ APP=bikeGet
 SRC=$(APP).h
 SOAPCC=soapcpp2
 CC=g++
+LIBBIKE_PATH=../../libbike/o
+LIBBIKE_INC_PATH=../../libbike/src
+LIBBIKE=bike $(shell curl-config --libs)
 
 SOAP_OUT=$(APP).nsmap $(APP).wsdl ns.xsd soap$(APP)Object.h soap$(APP)Proxy.h soapC.cpp soapClient.cpp soapClientLib.cpp soapH.h soapServer.cpp soapServerLib.cpp soapStub.h soapObject.h ns2.nsmap ns2.wsdl ns2.xsd
 
@@ -27,4 +30,4 @@ cleanxml:
 	rm -f *.xml
 
 build:
-	$(CC) -o $(APP).cgi $(APP)Cgi.cpp soapC.cpp soapServer.cpp -lgsoap++
+	$(CC) -o $(APP).cgi $(APP)Cgi.cpp soapC.cpp soapServer.cpp -lgsoap++ -L$(LIBBIKE_PATH) -l$(LIBBIKE) -I$(LIBBIKE_INC_PATH)

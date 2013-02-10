@@ -4,20 +4,20 @@
 //gsoap ns2 service location: http://www.buscobici.com/bikesearch/bikeGet.cgi
 #import "stlvector.h"
 
-class Bike
+class ns2Bike
 {
-       char* trademark;
-       char* store;
-       char* url;
-       char* urlContent;
-       char* type;
-       float price;
+  char* trademark;
+  char* store;
+  char* url;
+  char* urlContent;
+  char* type;
+  float price;
 };
 
-class BikeList
+class ns2BikeList
 {
-   int size;
-   std::vector<Bike*> bikeList;
+  int size;
+  std::vector<ns2Bike> bikeList;
 };
 
-int ns2__bikeGet(char* search, char* type, int priceFrom, int priceTo, BikeList & bikeList);
+int ns2__bikeGet(char* search, char* type, int priceFrom, int priceTo, ns2BikeList & bikeList);
