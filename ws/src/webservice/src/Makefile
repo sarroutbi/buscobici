@@ -27,4 +27,4 @@ cleanxml:
 	rm -f *.xml
 
 build:
-	$(CC) -o $(APP).cgi bikeGet.cpp soapC.cpp soapServer.cpp -lgsoap++
+	$(CC) -o $(APP).cgi $(APP)Cgi.cpp soapC.cpp soapServer.cpp -lgsoap++
