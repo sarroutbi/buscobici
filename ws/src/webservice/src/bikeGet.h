@@ -1,7 +1,7 @@
 //File: bikeGet.h
 //gsoap ns2 service name: bikeGet
 //gsoap ns2 service namespace: urn:bikeGet
-//gsoap ns2 service location: http://www.buscobici.com/bikesearch/bikeGet.cgi
+//gsoap ns2 service location: http://buscobici.com/bikesearch/bikeGet.cgi
 #import "stlvector.h"
 
 class ns2Bike
