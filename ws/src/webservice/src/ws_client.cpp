@@ -25,7 +25,8 @@ int main()
 {
   ns2BikeList bl;
   struct soap *soap = soap_new();
-  if(soap_call_ns2__bikeGet(soap, NULL, NULL, "Trek", "MTB", 0, 1000, bl) == SOAP_OK)
+  if(soap_call_ns2__bikeGet(soap, NULL, NULL, const_cast<char*>("Trek"), 
+                            const_cast<char*>("MTB"), 0, 1000, bl) == SOAP_OK)
   {
     logList(bl);
   }

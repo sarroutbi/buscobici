@@ -8,7 +8,7 @@ LIBBIKE_PATH=../../libbike/o
 LIBBIKE_INC_PATH=../../libbike/src
 LIBBIKE=bike $(shell curl-config --libs)
 
-SOAP_OUT=$(APP).nsmap $(APP).wsdl ns.xsd soap$(APP)Object.h soap$(APP)Proxy.h soapC.cpp soapClient.cpp soapClientLib.cpp soapH.h soapServer.cpp soapServerLib.cpp soapStub.h soapObject.h ns2.nsmap ns2.wsdl ns2.xsd soap$(APP)Service.cpp soap$(APP)Service.h
+SOAP_OUT=$(APP).nsmap $(APP).wsdl ns.xsd soap$(APP)Object.h soap$(APP)Proxy.h soapC.cpp soapClient.cpp soapClientLib.cpp soapH.h soapServer.cpp soapServerLib.cpp soapStub.h soapObject.h soapProxy.h ns2.nsmap ns2.wsdl ns2.xsd soap$(APP)Service.cpp soap$(APP)Service.h
 
 INC_DIR=/usr/include/gsoap/import
 
