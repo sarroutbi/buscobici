@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">buscobici.com</string>
+    <string name="hello_world">Hola Patri!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="simple_search">Búsqueda Simple</string>
+    <string name="search_bytype">Por precio y tipo</string>
+    <string name="button_search">Buscar</string>
+    <string name="type_mtb">MTB</string>
+    <string name="type_road">ROAD</string>
+    <string name="type_urban">URBAN</string>
+    <string name="type_bmx">BMX</string>
+    <string name="type_kids">INFANTIL</string>
+    <string name="type_all">TODAS</string>
+    
+    
+</resources>
