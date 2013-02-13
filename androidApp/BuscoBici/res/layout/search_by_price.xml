@@ -111,4 +111,22 @@
 
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/textView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/seekBar2"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/seekBar2"
+        android:layout_toRightOf="@+id/seekBar2" />
+
+    <TextView
+        android:id="@+id/textView00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/seekBar1"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/seekBar1" />
+
 </RelativeLayout>
