@@ -25,6 +25,8 @@ public class ByPriceSearch extends Activity implements SeekBar.OnSeekBarChangeLi
         textView01=(TextView)findViewById(R.id.textView01);
         seekBar1.setOnSeekBarChangeListener(this);
         seekBar2.setOnSeekBarChangeListener(this);
+    	textView00.setText(" " + "0" + "€");
+    	textView01.setText(" " + "0" + "€");
 	}
 
 	@Override
@@ -52,10 +54,11 @@ public class ByPriceSearch extends Activity implements SeekBar.OnSeekBarChangeLi
 		 {
 			 int minPrice = seekBar1.getProgress();
 			 int maxPrice = seekBar2.getProgress();     
-             textView00.setText(" "+progress + "€");
+             textView00.setText(" " + (progress*progress) + "€");
+            
 		     if(minPrice > maxPrice)
 		     {
-		    	 textView01.setText(" "+progress + "€");
+		    	 textView01.setText(" " + (progress*progress) + "€");
 		    	 seekBar2.setProgress(progress);
 		     }
 		 }
@@ -64,10 +67,10 @@ public class ByPriceSearch extends Activity implements SeekBar.OnSeekBarChangeLi
 			 //int minPrice = Integer.parseInt((String) textView00.getText());
 			 int minPrice = seekBar1.getProgress();
 			 int maxPrice = seekBar2.getProgress();             
-             textView01.setText(" "+progress + "€");
+             textView01.setText(" " + (progress*progress) + "€");
              if(maxPrice < minPrice)
 		     {
-		    	 textView00.setText(" "+progress + "€");
+		    	 textView00.setText(" " + (progress*progress) + "€");
 		    	 seekBar1.setProgress(progress);
 		     }
 		 }
