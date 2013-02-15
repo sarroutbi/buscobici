@@ -1,6 +1,12 @@
 package com.example.bikeget;
 
 import android.os.Bundle;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+
 import android.content.Intent;
 import android.view.View;
 import android.app.Activity;
@@ -10,6 +16,7 @@ import android.widget.TextView;
 
 public class ByPriceSearch extends Activity implements SeekBar.OnSeekBarChangeListener {
 
+	// Visual elements
     SeekBar seekBar1;
     SeekBar seekBar2;
     TextView textView00;
@@ -54,11 +61,13 @@ public class ByPriceSearch extends Activity implements SeekBar.OnSeekBarChangeLi
 		 {
 			 int minPrice = seekBar1.getProgress();
 			 int maxPrice = seekBar2.getProgress();     
-             textView00.setText(" " + (progress*progress) + "€");
+             textView00.setText(" " + ((progress*progress*2) + 100 - 
+            		 ((progress*progress*2)%100)) + "€");
             
 		     if(minPrice > maxPrice)
 		     {
-		    	 textView01.setText(" " + (progress*progress) + "€");
+		    	 textView01.setText(" " + ((progress*progress*2) + 100 - 
+	            		 ((progress*progress*2)%100)) + "€");
 		    	 seekBar2.setProgress(progress);
 		     }
 		 }
@@ -67,10 +76,12 @@ public class ByPriceSearch extends Activity implements SeekBar.OnSeekBarChangeLi
 			 //int minPrice = Integer.parseInt((String) textView00.getText());
 			 int minPrice = seekBar1.getProgress();
 			 int maxPrice = seekBar2.getProgress();             
-             textView01.setText(" " + (progress*progress) + "€");
+             textView01.setText(" " + ((progress*progress*2) + 100 - 
+            		 ((progress*progress*2)%100)) + "€");
              if(maxPrice < minPrice)
 		     {
-		    	 textView00.setText(" " + (progress*progress) + "€");
+		    	 textView00.setText(" " + ((progress*progress*2) + 100 - 
+	            		 ((progress*progress*2)%100)) + "€");
 		    	 seekBar1.setProgress(progress);
 		     }
 		 }

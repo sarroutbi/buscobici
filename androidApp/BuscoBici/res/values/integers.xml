@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="maxPrice">150</integer>
+    <integer name="maxPrice">102</integer>
     <integer name="minPrice">0</integer>
-    <integer name="minMaxPrice">150</integer>
+    <integer name="minMaxPrice">102</integer>
 </resources>
