@@ -67,7 +67,7 @@ public class ByPriceSearch extends Activity implements SeekBar.OnSeekBarChangeLi
 		     if(minPrice > maxPrice)
 		     {
 		    	 textView01.setText(" " + ((progress*progress*2) + 100 - 
-	            		 ((progress*progress*2)%100)) + "€");
+				    	 ((progress*progress*2)%100)) + "€");
 		    	 seekBar2.setProgress(progress);
 		     }
 		 }
