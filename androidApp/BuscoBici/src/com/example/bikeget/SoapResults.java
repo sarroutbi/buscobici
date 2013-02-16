@@ -1,13 +1,10 @@
 package com.example.bikeget;
 
-import java.util.regex.Pattern;
-
 import android.os.Bundle;
 
 import android.content.Intent;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
 import android.view.View;
 import android.app.Activity;
 import android.view.Menu;
@@ -20,8 +17,17 @@ public class SoapResults extends Activity  {
 	BikeList resultList;
     TableLayout soapTable;
     
-    private void setAsLink(TextView view, String url, String urlText){
-        view.setText(Html.fromHtml("<a href='"+url+"'>"+urlText+"</a>"));
+    private void setAsLink(TextView view, String url, String urlText)
+    {
+    	String urlTextTrimmed = urlText;
+    	if(urlText.length()>Constants.MAX_URL_TEXT)
+    	{
+    		 urlTextTrimmed = urlText.substring(0, 
+    				 	Constants.MAX_URL_TEXT - 3);
+    		 urlTextTrimmed += "...";
+    	}
+        view.setText(Html.fromHtml("<a href='" + url + "'>" + 
+        		urlTextTrimmed + "</a>"));
         view.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
@@ -33,16 +39,14 @@ public class SoapResults extends Activity  {
 	  {
         for (int current = 0; current < list.bikeList.size(); current++)
         {
-            // Create a TableRow and give it an ID
             TableRow tr = new TableRow(this);
-            tr.setId(Constants.MAX_BIKES+current);
+            tr.setId(Constants.MAX_BIKES + current);
             tr.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));   
 
-            // Create a TextView to house the link
             TextView urlText = new TextView(this);
-            urlText.setId(Constants.MAX_BIKES+current);
+            urlText.setId(Constants.MAX_BIKES + current);
             urlText.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
@@ -51,17 +55,15 @@ public class SoapResults extends Activity  {
 
             tr.addView(urlText);
             
-            // Create a TextView to house the price
             TextView price = new TextView(this);
-            price.setId(Constants.MAX_BIKES+current);
-            price.setText(Float.toString(list.bikeList.get(current).price));
+            price.setId(Constants.MAX_BIKES + current);
+            price.setText(Float.toString(
+            			list.bikeList.get(current).price));
             price.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             tr.addView(price);
 
-
-            // Create a TextView to house the value of the after-tax income
             TextView store = new TextView(this);
             store.setId(current);
             store.setText(list.bikeList.get(current).store);
@@ -70,7 +72,6 @@ public class SoapResults extends Activity  {
                     LayoutParams.WRAP_CONTENT));
             tr.addView(store);
 
-            // Add the TableRow to the TableLayout
             soapTable.addView(tr, new TableLayout.LayoutParams(
             		LayoutParams.MATCH_PARENT,
             		LayoutParams.WRAP_CONTENT));
@@ -99,13 +100,14 @@ public class SoapResults extends Activity  {
 	}
 	
 	 public void byPriceSearch(View view) {
-	        Intent intentExercise = new Intent(view.getContext(), ByPriceSearch.class);	        
+	        Intent intentExercise = new Intent(view.getContext(), 
+	        		ByPriceSearch.class);	        
 	        startActivityForResult(intentExercise, 0);
 	 } 
 	 
 	 public void simpleSearch(View view) {
-	        Intent intentExercise = new Intent(view.getContext(), SimpleSearch.class);
+	        Intent intentExercise = new Intent(view.getContext(), 
+	        		SimpleSearch.class);
 	        startActivityForResult(intentExercise, 0);
 	 } 
-
 }

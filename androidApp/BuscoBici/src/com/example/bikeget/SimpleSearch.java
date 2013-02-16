@@ -65,7 +65,7 @@ public class SimpleSearch extends Activity {
                   envelope.dotNet = true;
                   HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
                  
-                  //this is the actual part that will call the webservice
+                  //this is the actual part that will call the web service
                   androidHttpTransport.call(SOAP_ACTION, envelope);
                
                   // Get the SoapResult from the envelope body.
