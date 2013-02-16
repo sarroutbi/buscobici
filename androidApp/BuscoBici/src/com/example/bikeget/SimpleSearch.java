@@ -22,7 +22,10 @@ public class SimpleSearch extends Activity {
 	private static String URL="http://buscobici.com/bikesearch/bikeGet.cgi";
 	private static final String METHOD_NAME = "bikeGet";
 	private static final String SOAP_ACTION = "http://buscobici.com/bikeGet";
+
 	EditText editText00;
+	List<Bike> bikeList;
+	BikeList bList;
  
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,19 +73,24 @@ public class SimpleSearch extends Activity {
 
                   if(result != null)
                   {
-                	  parseList(result);
+                	  bikeList = parseList(result);
+                	  BikeList bList = ((BikeList)getApplicationContext());                	    
+                	  bList.bikeList = bikeList;
                   }
             } 
             catch (Exception e) {
                   e.printStackTrace();
-            }            
+            }
+	        Intent intentExercise = new Intent(view.getContext(), SoapResults.class);
+            startActivityForResult(intentExercise, 0);
 	}
-	private void parseList(SoapObject response) {
+	 
+	private List<Bike> parseList(SoapObject response) {
 	    SoapObject soap_list = (SoapObject)response.getProperty(0);
 	    List<Bike> list = soapToList(soap_list);
-	    editText00.setText("Received:=>" + list.size() +"<= elements");
-		    
+	    return list;
     } 
+	
 	private List<Bike> soapToList(SoapObject soapList) {
 	    List<Bike> list = new ArrayList<Bike>();
 	    for(int i=0; i<soapList.getPropertyCount(); i++)

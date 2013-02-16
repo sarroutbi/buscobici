@@ -14,7 +14,8 @@ import android.view.Menu;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class ByPriceSearch extends Activity implements SeekBar.OnSeekBarChangeListener {
+public class ByPriceSearch extends Activity implements 
+	SeekBar.OnSeekBarChangeListener {
 
 	// Visual elements
     SeekBar seekBar1;
@@ -73,7 +74,6 @@ public class ByPriceSearch extends Activity implements SeekBar.OnSeekBarChangeLi
 		 }
 		 else if(seekBar == seekBar2)
 		 {
-			 //int minPrice = Integer.parseInt((String) textView00.getText());
 			 int minPrice = seekBar1.getProgress();
 			 int maxPrice = seekBar2.getProgress();             
              textView01.setText(" " + ((progress*progress*2) + 100 - 
