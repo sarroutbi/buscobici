@@ -17,6 +17,7 @@ void logList(const ns2BikeList & ns2bl)
     std::cout << "Store    :" << i->store<< std::endl;
     std::cout << "Url      :" << i->url<< std::endl;
     std::cout << "Url Text :" << i->urlContent<< std::endl;
+    std::cout << "Type     :" << i->type << std::endl;
     std::cout << "Price    :" << i->price<< std::endl;
     std::cout << "===================================================="
               << "====================================================" 
