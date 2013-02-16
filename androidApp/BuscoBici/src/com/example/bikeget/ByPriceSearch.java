@@ -2,11 +2,6 @@ package com.example.bikeget;
 
 import android.os.Bundle;
 
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-
 import android.content.Intent;
 import android.view.View;
 import android.app.Activity;
