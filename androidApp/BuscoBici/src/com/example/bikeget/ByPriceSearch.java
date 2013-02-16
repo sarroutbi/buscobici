@@ -84,7 +84,8 @@ public class ByPriceSearch extends Activity implements
  	     
  	     SoapRequester soapRequester = new SoapRequester(search, 
  	    		 priceFrom, priceTo, type);
- 	     bList = ((BikeList)getApplicationContext()); 
+ 	     bList = ((BikeList)getApplicationContext());
+ 	     bList.bikeList.clear();
    	     bList.bikeList = soapRequester.getList();
 	     Intent intentExercise = new Intent(view.getContext(),
 	    		 SoapResults.class);

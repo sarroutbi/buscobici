@@ -57,7 +57,7 @@ public class SoapResults extends Activity  {
             
             TextView price = new TextView(this);
             price.setId(Constants.MAX_BIKES + current);
-            price.setText(Float.toString(
+            price.setText(String.format("%.2f", 
             			list.bikeList.get(current).price));
             price.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
