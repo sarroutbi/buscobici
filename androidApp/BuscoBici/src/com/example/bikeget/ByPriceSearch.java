@@ -112,13 +112,13 @@ public class ByPriceSearch extends Activity implements
 		 {
 			 int minPrice = seekBar1.getProgress();
 			 int maxPrice = seekBar2.getProgress();     
-             textView00.setText(" " + ((progress*progress*2) + 100 - 
-            		 ((progress*progress*2)%100)) + "€");
+             textView00.setText(" " + ((progress*progress*9) + 100 - 
+            		 ((progress*progress*9)%100)) + "€");
             
 		     if(minPrice > maxPrice)
 		     {
-		    	 textView01.setText(" " + ((progress*progress*2) + 100 - 
-				    	 ((progress*progress*2)%100)) + "€");
+		    	 textView01.setText(" " + ((progress*progress*9) + 100 - 
+				    	 ((progress*progress*9)%100)) + "€");
 		    	 seekBar2.setProgress(progress);
 		     }
 		 }
@@ -126,12 +126,12 @@ public class ByPriceSearch extends Activity implements
 		 {
 			 int minPrice = seekBar1.getProgress();
 			 int maxPrice = seekBar2.getProgress();             
-             textView01.setText(" " + ((progress*progress*2) + 100 - 
-            		 ((progress*progress*2)%100)) + "€");
+             textView01.setText(" " + ((progress*progress*9) + 100 - 
+            		 ((progress*progress*9)%100)) + "€");
              if(maxPrice < minPrice)
 		     {
-		    	 textView00.setText(" " + ((progress*progress*2) + 100 - 
-	            		 ((progress*progress*2)%100)) + "€");
+		    	 textView00.setText(" " + ((progress*progress*9) + 100 - 
+	            		 ((progress*progress*9)%100)) + "€");
 		    	 seekBar1.setProgress(progress);
 		     }
 		 }
