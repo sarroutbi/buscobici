@@ -39,9 +39,9 @@ public class SimpleSearch extends Activity {
 	 }
 	 
 	 public void soapSearch(View view) { 
-    	    bList = ((BikeList)getApplicationContext());   
     	    SoapRequester soapRequester = new 
     	    		SoapRequester(editText00.getText().toString(), 0, 0, "");
+    	    bList = ((BikeList)getApplicationContext());
     	    bList.bikeList = soapRequester.getList();
 	        Intent intentExercise = new Intent(view.getContext(), 
 	        		SoapResults.class);
