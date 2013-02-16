@@ -44,6 +44,7 @@ void composePostInfo(const char* search, const char* type,
 void copyList(ns2BikeList* ns2bl, BikeList & bl)
 {
   BikeList::iterator i;
+  fprintf(stderr, "Returning =>%d<= elements\n", bl.size());
   for(i = bl.begin(); i != bl.end(); ++i)
   {
     ns2Bike nsb;

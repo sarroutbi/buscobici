@@ -187,7 +187,7 @@ HtmlParser::getHtmlPiece (FILE* f, char* htmlPiece, const uint16_t maxHtml)
    
     while((!finish) && (read <= maxHtml) && (fgets(line, MAX_HTML_PIECE, f)))
     {
-      // fprintf(stderr, "Line:=>%s<=", line);
+      //fprintf(stderr, "Line:=>%s<=", line);
       if (strstr(line, "<tr>"))
       {
         pieceStart = true;
@@ -222,6 +222,7 @@ uint8_t HtmlParser::parse ()
   uint16_t pieceLength = 0;
   FILE*    f = fopen(_file, "r");
   char     htmlPiece[MAX_HTML_PIECE];
+  uint16_t bikes = 0;
 
   memset(htmlPiece, 0, MAX_HTML_PIECE);
 
@@ -233,15 +234,17 @@ uint8_t HtmlParser::parse ()
   { 
     while((pieceLength = getHtmlPiece(f, htmlPiece, MAX_HTML_PIECE))>0)
     {
-      // fprintf(stderr, "Read html piece of [%d] bytes, =>%s<=\n", 
-      //         pieceLength, htmlPiece);
+      //fprintf(stderr, "Read html piece of [%d] bytes, =>%s<=\n", 
+      //        pieceLength, htmlPiece);
       Bike bike;
       parseABike(htmlPiece, pieceLength, &bike);
       memset(htmlPiece, 0, MAX_HTML_PIECE);
+      bikes++;
       _bikeList.push_back(bike);
     }
     fclose(f);
   }
+  fprintf(stderr, "Read up to [%d] bycicles\n", bikes);
   return err;
 }
 
@@ -258,6 +261,5 @@ uint8_t HtmlParser::parse (const char* file)
 
 const BikeList & HtmlParser::getList ()
 {
-  parse(_file);
   return _bikeList;
 }
