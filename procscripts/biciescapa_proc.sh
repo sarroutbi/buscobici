@@ -238,7 +238,7 @@ KIDS_BIKES_PAGES="$(seq 1 5)"
 
 process_pages "${MTB_FIX_BIKES_BASE}"    "${MTB_FIX_BIKES_PAGES}"    "Bici Escapa" "MTB-FIX"      >> ${OUTPUT_FILE}
 process_pages "${MTB_DOUBLE_BIKES_BASE}" "${MTB_DOUBLE_BIKES_PAGES}" "Bici Escapa" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_DOWN_BIKES_BASE}"   "${MTB_DOWN_BIKES_PAGES}"   "Bici Escapa" "MTB-DOWNHILL" >> ${OUTPUT_FILE}
+process_pages "${MTB_DOWN_BIKES_BASE}"   "${MTB_DOWN_BIKES_PAGES}"   "Bici Escapa" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_29_BIKES_BASE}"     "${MTB_29_BIKES_PAGES}"     "Bici Escapa" "MTB-29" >> ${OUTPUT_FILE}
 process_pages "${ROAD_BIKES_BASE}"       "${ROAD_BIKES_PAGES}"       "Bici Escapa" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${BMX_BIKES_BASE}"        "${BMX_BIKES_PAGES}"        "Bici Escapa" "BMX" >> ${OUTPUT_FILE}
