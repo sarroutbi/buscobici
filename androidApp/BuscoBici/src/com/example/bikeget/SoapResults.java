@@ -27,8 +27,9 @@ public class SoapResults extends Activity  {
     				 	Constants.MAX_URL_TEXT - 3);
     		 urlTextTrimmed += "...";
     	}
-        view.setText(Html.fromHtml("<a href='" + url + "'>" + 
-        		urlTextTrimmed + "</a>"));
+        view.setText(Html.fromHtml("<a charset=" + 
+        		Constants.DEFAULT_CHARSET + " + href='" + url + 
+        			"'>" + urlTextTrimmed + "</a>"));
         view.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
@@ -66,8 +67,11 @@ public class SoapResults extends Activity  {
             urlText.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
+            
+            byte[] utf16le = list.bikeList.get(current).urlText.
+            		getBytes(Constants.DEFAULT_CHARSET);
             setAsLink(urlText, list.bikeList.get(current).url,
-            		list.bikeList.get(current).urlText);
+            		new String(utf16le, Constants.DEFAULT_CHARSET));
             tr.addView(urlText);
             
             TextView price = new TextView(this);

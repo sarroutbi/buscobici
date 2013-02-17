@@ -18,4 +18,6 @@ public class Constants {
 	public static final String  TYPE_KIDS   = "KIDS";
 	// Table Margins
 	public static final int     SOAP_RESULTS_TABLE_MARGIN = 12;
+	// Default Char set
+	public static final String   DEFAULT_CHARSET = "ISO-8859-1";
 }
