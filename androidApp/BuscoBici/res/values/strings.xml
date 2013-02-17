@@ -6,6 +6,7 @@
     <string name="menu_settings">Settings</string>
     <string name="simple_search">Búsqueda Simple</string>
     <string name="search_bytype">Por precio y tipo</string>
+    <string name="advanced_search">Búsqueda Avanzada</string>
     <string name="button_search">Buscar</string>
     <string name="type_mtb">MTB</string>
     <string name="type_road">ROAD</string>

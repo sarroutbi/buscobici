@@ -100,9 +100,15 @@ public class ByPriceSearch extends Activity implements
 	 } 
 	 
 	 public void byPriceSearch(View view) {
-	        Intent intentExercise = new Intent(view.getContext(), 
-	        		ByPriceSearch.class);
-	        startActivityForResult(intentExercise, 0);
+	        //Intent intentExercise = new Intent(view.getContext(), 
+	        //		ByPriceSearch.class);
+	        //startActivityForResult(intentExercise, 0);
+	 } 
+	 
+	 public void advancedSearch(View view) {
+	        //Intent intentExercise = new Intent(view.getContext(), 
+	        //		AdvancedSearch.class);
+	        //startActivityForResult(intentExercise, 0);
 	 } 
 	 
 	 @Override
