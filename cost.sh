@@ -16,4 +16,4 @@
 export LANGUAGE=
 export LC_ALL=
 export LANG=
-sloccount --personcost 30000 --addlang html --addlangall $(for i in $(ls -d * | grep -v BACKUPS); do echo $i; done);
+sloccount --personcost 34000 --addlang html --addlangall $(for i in $(ls -d * | grep -v BACKUPS); do echo $i; done);

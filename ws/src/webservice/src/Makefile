@@ -1,6 +1,7 @@
 APP=bikeGet
 SRC=$(APP).h
 SOAPCC=soapcpp2
+CCFLAGS=-DWITH_GZIP
 CC=g++
 CLI=ws_client
 CLI_SRC=$(CLI).cpp
@@ -17,7 +18,7 @@ all: soap build buildcli
 clean: soapclean cleanall cleancgi cleanxml cleancli
 
 soap: $(SRC)
-	$(SOAPCC) $(SRC) -I$(INC_DIR)
+	$(SOAPCC)  $(SRC) -I$(INC_DIR)
 
 soapclean:
 	rm -f $(SOAP_OUT)
@@ -35,7 +36,7 @@ cleancli:
 	rm -f $(CLI)
 
 build: $(APP)Cgi.cpp
-	$(CC) -o $(APP).cgi $(APP)Cgi.cpp soapC.cpp soapServer.cpp -lgsoap++ -L$(LIBBIKE_PATH) -l$(LIBBIKE) -I$(LIBBIKE_INC_PATH)
+	$(CC) $(CCFLAGS) -o $(APP).cgi $(APP)Cgi.cpp soapC.cpp soapServer.cpp -lgsoap++ -L$(LIBBIKE_PATH) -l$(LIBBIKE) -I$(LIBBIKE_INC_PATH)
 
 buildcli:
 	$(CC) -o $(CLI) soapC.cpp soapClient.cpp $(CLI_SRC) -I$(LIBBIKE_INC_PATH) -lgsoap++

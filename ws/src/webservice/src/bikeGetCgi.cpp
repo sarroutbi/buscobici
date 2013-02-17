@@ -13,6 +13,7 @@ const char*    URL = "http://buscobici.com/bikesearch/search.php";
 const char*    POST_FORMAT = "search=%s&priceFrom=%s&priceTo=%s&type=%s";
 const uint32_t MAX_POST_FIELD = 255;
 const uint32_t MAX_POST       = 1024;
+const uint32_t MAX_RESULTS    = 2000;
 
 int main(int argc, char* argv[])
 {
@@ -44,8 +45,9 @@ void composePostInfo(const char* search, const char* type,
 void copyList(ns2BikeList* ns2bl, BikeList & bl)
 {
   BikeList::iterator i;
-  fprintf(stderr, "Returning =>%d<= elements\n", bl.size());
-  for(i = bl.begin(); i != bl.end(); ++i)
+  uint32_t counter = 0;
+  fprintf(stderr, "Detected =>%d<= elements\n", bl.size());
+  for(i = bl.begin(); (i != bl.end()) && counter<MAX_RESULTS; ++i, counter++)
   {
     ns2Bike nsb;
     nsb.trademark  = i->_trademark;
@@ -57,6 +59,7 @@ void copyList(ns2BikeList* ns2bl, BikeList & bl)
     nsb.price      = i->_price;
     ns2bl->bikeList.push_back(nsb);
   }
+  fprintf(stderr, "Returning =>%d<= elements\n", ns2bl->bikeList.size());
 }
 
 int ns2__bikeGet(struct soap *soap, char* search, char* type,
@@ -71,15 +74,20 @@ int ns2__bikeGet(struct soap *soap, char* search, char* type,
   }
   else
   {
+    soap_set_omode(soap, SOAP_ENC_ZLIB);
+    soap->z_level = 9; // best compression
     composePostInfo(search, type, priceFrom, priceTo, post, MAX_POST);
     HtmlGetter hg(const_cast<char*>(URL), post);
     fprintf(stderr, "POST=>%s<=\n", post);
     hg.DumpHtml(file);
     HtmlParser hp(file);
     hp.parse();
+    fprintf(stderr, "File=>%s<= parsed\n", file);
     BikeList bl = hp.getList();
     copyList(&response, bl);
+    fprintf(stderr, "List copied\n", file);
     unlink(file);
+    fprintf(stderr, "File =>%s<= correctly deleted\n", file);
     return SOAP_OK;
   }
 }
