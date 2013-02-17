@@ -38,6 +38,12 @@ public class SimpleSearch extends Activity {
 	        startActivityForResult(intentExercise, 0);
 	 }
 	 
+	 public void advancedSearch(View view) {
+	        //Intent intentExercise = new Intent(view.getContext(), 
+	        //		AdvancedSearch.class);
+	        //startActivityForResult(intentExercise, 0);
+	 } 
+	 
 	 public void soapSearch(View view) { 
     	    SoapRequester soapRequester = new 
     	    		SoapRequester(editText00.getText().toString(), 0, 0, "");

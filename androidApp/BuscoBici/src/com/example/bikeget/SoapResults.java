@@ -145,4 +145,10 @@ public class SoapResults extends Activity  {
 	        		SimpleSearch.class);
 	        startActivityForResult(intentExercise, 0);
 	 } 
+	 
+	 public void advancedSearch(View view) {
+	        //Intent intentExercise = new Intent(view.getContext(), 
+	        //		AdvancedSearch.class);
+	        //startActivityForResult(intentExercise, 0);
+	 }
 }
