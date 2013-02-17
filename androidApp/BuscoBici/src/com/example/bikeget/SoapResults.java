@@ -8,6 +8,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
@@ -40,32 +41,62 @@ public class SoapResults extends Activity  {
         for (int current = 0; current < list.bikeList.size(); current++)
         {
             TableRow tr = new TableRow(this);
+            TableLayout.LayoutParams tableRowParams =
+            		  new TableLayout.LayoutParams
+            		  (TableLayout.LayoutParams.WRAP_CONTENT,
+            				  TableLayout.LayoutParams.WRAP_CONTENT);
+
+            int leftMargin=2;
+            int topMargin=2;
+            int rightMargin=2;
+            int bottomMargin=2;
+
+            tableRowParams.setMargins(leftMargin, topMargin, rightMargin, 
+            		bottomMargin);
+            
+            tr.setLayoutParams(tableRowParams);
+            
             tr.setId(Constants.MAX_BIKES + current);
             tr.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));   
 
             TextView urlText = new TextView(this);
-            urlText.setId(Constants.MAX_BIKES + current);
+            urlText.setId(2 * Constants.MAX_BIKES + current);
             urlText.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             setAsLink(urlText, list.bikeList.get(current).url,
             		list.bikeList.get(current).urlText);
-
             tr.addView(urlText);
             
             TextView price = new TextView(this);
-            price.setId(Constants.MAX_BIKES + current);
+            price.setId(3 * Constants.MAX_BIKES + current);
             price.setText(String.format("%.2f", 
             			list.bikeList.get(current).price));
             price.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
+            LinearLayout.LayoutParams lp=(LinearLayout.LayoutParams)
+            		price.getLayoutParams();
+            lp.leftMargin=Constants.SOAP_RESULTS_TABLE_MARGIN;
+            lp.rightMargin=Constants.SOAP_RESULTS_TABLE_MARGIN;
+            
             tr.addView(price);
 
+            TextView type = new TextView(this);
+            type.setId(4 * Constants.MAX_BIKES + current);
+            type.setText(list.bikeList.get(current).type);
+            type.setLayoutParams(new LayoutParams(
+                    LayoutParams.MATCH_PARENT,
+                    LayoutParams.WRAP_CONTENT));
+            tr.addView(type);
+            LinearLayout.LayoutParams lp2 = (LinearLayout.LayoutParams)
+            		type.getLayoutParams();
+            lp2.rightMargin=Constants.SOAP_RESULTS_TABLE_MARGIN;
+            
             TextView store = new TextView(this);
-            store.setId(current);
+            store.setId(5 * Constants.MAX_BIKES + current);
             store.setText(list.bikeList.get(current).store);
             store.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
