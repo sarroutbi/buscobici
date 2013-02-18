@@ -74,6 +74,7 @@ int ns2__bikeGet(struct soap *soap, char* search, char* type,
   }
   else
   {
+    fprintf(stderr, "cgi search to url:=>%s<=\n", URL);
     soap_set_omode(soap, SOAP_ENC_ZLIB);
     soap->z_level = 9; // best compression
     composePostInfo(search, type, priceFrom, priceTo, post, MAX_POST);
