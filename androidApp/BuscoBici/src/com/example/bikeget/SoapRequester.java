@@ -8,9 +8,7 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-import android.app.Activity;
-
-public class SoapRequester extends Activity {
+public class SoapRequester {
 
 	private List<Bike> bikeList;
  
@@ -26,17 +24,21 @@ public class SoapRequester extends Activity {
 		    request.addProperty("priceFrom", priceFrom);
 		    request.addProperty("priceTo",   priceTo);
 		    request.addProperty("type",      type);
-
+		    
 		    //Declare the version of the SOAP request
             SoapSerializationEnvelope envelope = 
             	new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.setOutputSoapObject(request);
-            envelope.dotNet = true;
+            envelope.dotNet = false;
             HttpTransportSE androidHttpTransport = 
             		new HttpTransportSE(Constants.URL);
            
+            Thread.yield();
+
             //this is the actual part that will call the web service
             androidHttpTransport.call(Constants.SOAP_ACTION, envelope);
+            
+            Thread.yield();
          
             // Get the SoapResult from the envelope body.
             SoapObject result = (SoapObject)envelope.bodyIn;
@@ -76,7 +78,8 @@ public class SoapRequester extends Activity {
 	       aBike.type      = bike.getProperty(5).toString();
            aBike.price = Float.valueOf(bike.getProperty(6).toString());
 	       list.add(aBike);
-	    }
+	       Thread.yield();
+		}
 	    return list;
 	}
 }
