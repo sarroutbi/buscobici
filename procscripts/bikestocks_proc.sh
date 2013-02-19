@@ -139,7 +139,7 @@ function dump_bike_from_urls()
     TRADEMARK_MODEL=$(print_model "${URL}" "${FILE}" | sed -e s/"BICICLETA "//g)
     TRADEMARK_MODEL_CLEAN=$(clean_model "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
-    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+    MODEL=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     PRICE=$(print_price "${URL}" "${FILE}")
     ### SOME URLs, that contain %, are not well parsed by awk. We insert an additional % char
     NOBASE_URL=$(echo ${URL} | tr -d '"' | sed s-%-%%-g)
