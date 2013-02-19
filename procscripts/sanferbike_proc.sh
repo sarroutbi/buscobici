@@ -26,7 +26,8 @@
 
 #### Some global configs
 URL_BASE="http://www.sanferbike.com"
-OUTPUT_FILE="output"
+#OUTPUT_FILE="output"
+OUTPUT_FILE=/dev/stdout
 NO_CAMEL_MIN=6
 
 #### The keys
@@ -49,6 +50,8 @@ FILE_TRIATLON="triatlon.asp"
 MAX_REV_SEARCH=10000
 TRADEMARK_SEP="&nbsp;"
 PRICE_KEY="Precio"
+MAX_BIKES_PAGE=200
+MAX_PRICE_DOWN=20
 
 #
 # 1 - The sentence: THIS IS A SENTENCE => This Is A Sentence
@@ -102,11 +105,21 @@ function get_price()
 }
 
 #
+# 1 - The file
+# 2 - The model
+#
+function get_price_fm()
+{
+  PRICE=$(grep "${2}" "${1}" -A${MAX_PRICE_DOWN} | grep 'class="price"' | sed -e 's/<[^>]*>//g' | tr -d ' ' | sed -e 's/\t//g' | egrep -o -E "[0-9]{1,},{0,1}[0-9]{1,3}" | head -1)
+  echo "${PRICE}"
+}
+
+#
 # 1 - The model
 # Prints the trademark
 function get_trademark()
 {
-  TRADEMARK=$(echo "$1" | tr -d '"' | awk -F "${TRADEMARK_SEP}" {'print $1'} | awk -F "&nbsp;" {'print $1'})
+  TRADEMARK=$(echo "$1" | tr -d '"' | awk {'print $1'})
   echo "${TRADEMARK}"
 }
 
@@ -116,8 +129,8 @@ function get_trademark()
 # Prints the url
 function get_url()
 {
-  SUBURL=$(grep "$2" "$1" -A10 | grep "a href" | head -1 | awk -F "a href=" {'print $2'}| awk -F ">" {'print $1'})
-  echo "\"${URL_BASE}/${SUBURL}\""
+  SUBURL=$(grep "$2" "$1" -A10 | grep "a href" | head -1 | awk -F "a href=" {'print $2'} | awk -F " " {'print $1'}) 
+  echo "${SUBURL}"
 }
 
 #
@@ -169,12 +182,12 @@ function get_type()
 # 2 - The Store
 function process_file()
 {
-  cat "$1" | grep 'class="marca"' -A2 | sed -e 's/<[^>]*>//g' | grep "[A-Z,a-z]" | tr -d '\r' | while read model;
+  cat "$1" | grep 'class="product_link"' | sed -e 's/<[^>]*>//g' | grep "[A-Z,a-z]" | tr -d '\r' | while read model;
   do
-     TYPE=$(get_type "$1" "${model}")
+     TYPE=$3
      URL=$(get_url "$1" "${model}")
      TRADEMARK=$(get_trademark "${model}")
-     PRICE=$(get_price "${URL}")
+     PRICE=$(get_price_fm "${1}" "${model}")
      MODEL=$(echo "${model}" | awk -F "&nbsp;" {'print $2'})
      if [ "${MODEL}" = "" ];
      then
@@ -193,18 +206,46 @@ function process_file()
        echo "${KEY_TRADEMARK}=${TRADEMARK_CAMEL}"
        echo "${KEY_PRICE}=${PRICE}"
        echo "${KEY_STORE}=${2}"
-       echo "${KEY_KIND}=${TYPE}"
+       echo "${KEY_KIND}=${3}"
        echo 
      fi
   done
 } 
 
 > ${OUTPUT_FILE}
-process_file "${FILE_29}" "Sanferbike"  >> ${OUTPUT_FILE}
-process_file "${FILE_BMC}" "Sanferbike" >> ${OUTPUT_FILE}
-process_file "${FILE_CANNONDALE}" "Sanferbike" >> ${OUTPUT_FILE}
-process_file "${FILE_ORBEA}" "Sanferbike" >> ${OUTPUT_FILE}
-process_file "${FILE_WOMAN}" "Sanferbike" >> ${OUTPUT_FILE}
-process_file "${FILE_GIANT}" "Sanferbike" >> ${OUTPUT_FILE}
-process_file "${FILE_LAPIERRE}" "Sanferbike" >> ${OUTPUT_FILE}
-process_file "${FILE_TRIATLON}" "Sanferbike" >> ${OUTPUT_FILE}
+
+process_file	"207-sport-maraton?n=${MAX_BIKES_PAGE}"                     "Sanferbike"  "MTB" >> ${OUTPUT_FILE}
+process_file	"265-trail?n=${MAX_BIKES_PAGE}"                             "Sanferbike"  "MTB" >> ${OUTPUT_FILE}
+process_file	"263-scalpel?n=${MAX_BIKES_PAGE}"                           "Sanferbike"  "MTB-DOUBLE">> ${OUTPUT_FILE}
+process_file	"309-flash?n=${MAX_BIKES_PAGE}"                             "Sanferbike"  "MTB" >> ${OUTPUT_FILE}
+process_file	"264-rz?n=${MAX_BIKES_PAGE}"                                "Sanferbike"  "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_file	"266-b?n=${MAX_BIKES_PAGE}"                                 "Sanferbike"  "MTB" >> ${OUTPUT_FILE}
+process_file	"208-all-enduro-cannondale?n=${MAX_BIKES_PAGE}"             "Sanferbike"  "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_file	"209-over-mountain?n=${MAX_BIKES_PAGE}"                     "Sanferbike"  "MTB-29" >> ${OUTPUT_FILE}
+process_file	"204-montana-mujer?n=${MAX_BIKES_PAGE}"                     "Sanferbike"  "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_file	"205-carretera?n=${MAX_BIKES_PAGE}"                         "Sanferbike"  "ROAD" >> ${OUTPUT_FILE}
+process_file	"267-caad?n=${MAX_BIKES_PAGE}"                              "Sanferbike"  "ROAD" >> ${OUTPUT_FILE}
+process_file	"269-shinapse?n=${MAX_BIKES_PAGE}"                          "Sanferbike"  "ROAD" >> ${OUTPUT_FILE}
+process_file	"268-supersix?n=${MAX_BIKES_PAGE}"                          "Sanferbike"  "ROAD" >> ${OUTPUT_FILE}
+process_file	"270-slice?n=${MAX_BIKES_PAGE}"                             "Sanferbike"  "ROAD" >> ${OUTPUT_FILE}
+process_file	"310-superx?n=${MAX_BIKES_PAGE}"                            "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"226-carretera-mujer-2013?n=${MAX_BIKES_PAGE}"              "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"206-urbanas?n=${MAX_BIKES_PAGE}"                           "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"163-bicicletas-lapierre-2013?n=${MAX_BIKES_PAGE}"          "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"166-lap-montana-hombre?n=${MAX_BIKES_PAGE}"                "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"171-x-country-maraton?n=${MAX_BIKES_PAGE}"                 "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"278-raid?n=${MAX_BIKES_PAGE}"                              "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"275-pro-race?n=${MAX_BIKES_PAGE}"                          "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"276-x-control?n=${MAX_BIKES_PAGE}"                         "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"279-xr?n=${MAX_BIKES_PAGE}"                                "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"277-x-flow?n=${MAX_BIKES_PAGE}"                            "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"274-bicicletas-29er?n=${MAX_BIKES_PAGE}"                   "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"172-all-mountain-enduro?n=${MAX_BIKES_PAGE}"               "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"280-zesty?n=${MAX_BIKES_PAGE}"                             "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"43-bicicletas?n=${MAX_BIKES_PAGE}"                         "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"323-bicis-montana-2011-en-oferta?n=${MAX_BIKES_PAGE}"      "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"322-ofertas-2011-bicis-carretera?n=${MAX_BIKES_PAGE}"      "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"318-ofertas-2012-bicis-montana?n=${MAX_BIKES_PAGE}"        "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"319-carretera-road-ofertas-bicicletas?n=${MAX_BIKES_PAGE}" "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"321-ofertas-2013-mtb?n=${MAX_BIKES_PAGE}"                  "Sanferbike"  >> ${OUTPUT_FILE}
+process_file	"320-ofertas-2013-road?n=${MAX_BIKES_PAGE}"                 "Sanferbike"  >> ${OUTPUT_FILE}
