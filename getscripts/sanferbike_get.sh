@@ -38,7 +38,7 @@ function get_page()
   fi
 }
 
-get_page	"${URL}/tiendaonline/153-bicicletas?n=${MAX_BIKES_PAGE}" 
+get_page	"${URL}/tiendaonline/153-bicicletas?n=${MAX_BIKES_PAGE}"                              
 get_page	"${URL}/tiendaonline/189-cannondale-2013?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/203-bicicleta-montana-hombre?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/207-sport-maraton?n=${MAX_BIKES_PAGE}" 
@@ -61,13 +61,14 @@ get_page	"${URL}/tiendaonline/206-urbanas?n=${MAX_BIKES_PAGE}"
 get_page	"${URL}/tiendaonline/163-bicicletas-lapierre-2013?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/166-lap-montana-hombre?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/171-x-country-maraton?n=${MAX_BIKES_PAGE}" 
+get_page	"${URL}/tiendaonline/172-all-mountain-enduro?n=${MAX_BIKES_PAGE}" 
+get_page	"${URL}/tiendaonline/173-over-ride-montana-lapierre?n=${MAX_BIKES_PAGE}"
 get_page	"${URL}/tiendaonline/278-raid?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/275-pro-race?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/276-x-control?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/279-xr?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/277-x-flow?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/274-bicicletas-29er?n=${MAX_BIKES_PAGE}" 
-get_page	"${URL}/tiendaonline/172-all-mountain-enduro?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/280-zesty?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/43-bicicletas?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/323-bicis-montana-2011-en-oferta?n=${MAX_BIKES_PAGE}" 
@@ -75,5 +76,5 @@ get_page	"${URL}/tiendaonline/322-ofertas-2011-bicis-carretera?n=${MAX_BIKES_PAG
 get_page	"${URL}/tiendaonline/318-ofertas-2012-bicis-montana?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/319-carretera-road-ofertas-bicicletas?n=${MAX_BIKES_PAGE}" 
 get_page	"${URL}/tiendaonline/321-ofertas-2013-mtb?n=${MAX_BIKES_PAGE}" 
-get_page	"${URL}/tiendaonline/320-ofertas-2013-road?n=${MAX_BIKES_PAGE}" 
+get_page	"${URL}/tiendaonline/320-ofertas-2013-road?n=${MAX_BIKES_PAGE}"                  
 
