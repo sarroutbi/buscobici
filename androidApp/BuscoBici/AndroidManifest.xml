@@ -38,5 +38,12 @@
             android:configChanges="orientation"
             android:screenOrientation="landscape">
         </activity>
+        <activity
+            android:name="com.example.bikeget.SoapThreadHandler"
+            android:label="@string/app_name" 
+            android:configChanges="orientation"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:screenOrientation="landscape">
+        </activity>
     </application>        
 </manifest>

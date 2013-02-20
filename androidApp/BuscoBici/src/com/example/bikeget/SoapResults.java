@@ -118,6 +118,15 @@ public class SoapResults extends Activity  {
 	}
 	
 	@Override
+	public void onBackPressed() {
+        Intent intentExercise = new Intent(this, 
+        		SimpleSearch.class);
+        startActivityForResult(intentExercise, 0);
+	    // do something on back.
+	    return;
+	}
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.soap_results);
