@@ -12,9 +12,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 public class SimpleSearch extends Activity {
 
@@ -22,6 +19,7 @@ public class SimpleSearch extends Activity {
 	ProgressBar progressBar00;
 	private BikeList bList = null;
 	private final String TAG = "SimpleSearch";
+	AsyncTask<String, Integer, List<Bike>> taskSoapSearch = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +35,17 @@ public class SimpleSearch extends Activity {
 		super.onResume();
         progressBar00=(ProgressBar)findViewById(R.id.progressBar00);
 	    progressBar00.setVisibility(View.INVISIBLE);
+	    if(taskSoapSearch!=null)
+	    	taskSoapSearch.cancel(true);
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+        progressBar00=(ProgressBar)findViewById(R.id.progressBar00);
+	    progressBar00.setVisibility(View.INVISIBLE);
+	    if(taskSoapSearch!=null)
+	    	taskSoapSearch.cancel(true);
 	}
 
 	@Override
@@ -47,23 +56,31 @@ public class SimpleSearch extends Activity {
 	}
 	
 	 public void simpleSearch(View view) {
-	        //Intent intentExercise = new Intent(view.getContext(), SimpleSearch.class);
-	        //startActivityForResult(intentExercise, 0);
+		 if(taskSoapSearch!=null) {
+			 taskSoapSearch.cancel(true);
+		 }
+	     progressBar00.setVisibility(View.INVISIBLE);
 	 } 
 	 
 	 public void byPriceSearch(View view) {
-	        Intent intentExercise = new Intent(view.getContext(), 
-	        		ByPriceSearch.class);
-	        startActivityForResult(intentExercise, 0);
+		 if(taskSoapSearch!=null) {
+			 taskSoapSearch.cancel(true);
+		 }
+	     Intent intentExercise = new Intent(view.getContext(), 
+	    		 ByPriceSearch.class);
+	     startActivityForResult(intentExercise, 0);
 	 }
 	 
 	 public void advancedSearch(View view) {
-	        //Intent intentExercise = new Intent(view.getContext(), 
-	        //		AdvancedSearch.class);
-	        //startActivityForResult(intentExercise, 0);
+		 if(taskSoapSearch!=null) {
+			 taskSoapSearch.cancel(true);
+		 }
+	     progressBar00.setVisibility(View.INVISIBLE);
 	 } 
 	 
 	 public void soapSearch(View view) {
+	     progressBar00.setVisibility(View.VISIBLE);
+
 		 if(Constants.MULTI_THREAD == 0)
 			 soapSearchMonothread(view);
 		 else if(Constants.MULTI_THREAD == 1)
@@ -91,51 +108,42 @@ public class SimpleSearch extends Activity {
 	 	// Called once the background activity has completed
 	 	@Override
 	 	protected void onPostExecute(List<Bike> list) { //
-    	    bList = ((BikeList)getApplicationContext());
-	 		bList.bikeList = list;
-	 		Log.d(TAG, "postExecute");
+	 		if(!isCancelled())
+	 		{
+	 			loadResults();
+	 			bList = ((BikeList)getApplicationContext());
+	 			bList.bikeList = list;
+	 		}
 	 	}
 	 }
 	
+	 protected void loadResults()
+	 {
+	     Intent intentExercise = new Intent(this, 
+	        		SoapResults.class);
+	     startActivityForResult(intentExercise, 0);
+	 }
+	 
 	 protected void onProgressUpdate(Integer... values) { //
  		// Not used in this case
  	 }
 
 	 public void soapSearchAsynctask(View view) {
-
-		 AsyncTask<String, Integer, List<Bike>> task = 
-				 new SoapSearch().execute(editText00.getText().toString());
-
-  		 progressBar00.setVisibility(View.VISIBLE); 
-
-		 try {
-			task.get(Constants.SOAP_RESPONSE_TIMEOUT, TimeUnit.MILLISECONDS);
-	  	 } catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		 } catch (ExecutionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		 } catch (TimeoutException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		 }
-		 
-	     Intent intentExercise = new Intent(view.getContext(), 
-	        		SoapResults.class);
-         startActivityForResult(intentExercise, 0);
+		 taskSoapSearch = new SoapSearch().execute(editText00.getText().toString());
 	 }
 	 
 	 public void soapSearchMultithread(View view) { 
-	     progressBar00.setVisibility(View.VISIBLE);
+	     
 		 Thread runner = new Thread(new Runnable() {
 			    public void run() {
+			    	Thread.yield();
 			    	SoapRequester soapRequester = new 
 		    	    		SoapRequester(
 		    	    				editText00.getText().toString(), 
-		    	    					0, 0, "");		       	    
+		    	    					0, 0, "");			
 		    	    bList = ((BikeList)getApplicationContext());
-		    	    bList.bikeList = soapRequester.getList();			        
+		    	    bList.bikeList = soapRequester.getList();
+		    	    loadResults();
 			    }
 			  });
 		 runner.setPriority(Thread.MIN_PRIORITY);
@@ -146,9 +154,6 @@ public class SimpleSearch extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		 }
-		 Intent intentExercise = new Intent(view.getContext(), 
-	        		SoapResults.class);
-         startActivityForResult(intentExercise, 0);
 	 }
 	 
 	 public void soapSearchMonothread(View view) { 

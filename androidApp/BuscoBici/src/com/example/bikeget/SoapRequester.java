@@ -18,13 +18,12 @@ public class SoapRequester {
 		try {
 		    //Initialize soap request + add parameters
 		 	SoapObject request = new SoapObject(Constants.NAMESPACE, 
-		 			Constants.METHOD_NAME);                 
+		 			Constants.METHOD_NAME);
 		 	//Use this to add parameters
 		    request.addProperty("search",    searchText);
 		    request.addProperty("priceFrom", priceFrom);
 		    request.addProperty("priceTo",   priceTo);
 		    request.addProperty("type",      type);
-		    
 		    //Declare the version of the SOAP request
             SoapSerializationEnvelope envelope = 
             	new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -32,17 +31,11 @@ public class SoapRequester {
             envelope.dotNet = false;
             HttpTransportSE androidHttpTransport = 
             		new HttpTransportSE(Constants.URL);
-           
-            Thread.yield();
-
             //this is the actual part that will call the web service
             androidHttpTransport.call(Constants.SOAP_ACTION, envelope);
-            
-            Thread.yield();
-         
             // Get the SoapResult from the envelope body.
             SoapObject result = (SoapObject)envelope.bodyIn;
-
+            Thread.yield();
             if(result != null)
             {
           	  bikeList = SoapRequester.parseList(result);  	    
@@ -55,12 +48,25 @@ public class SoapRequester {
 	
 	public List<Bike> getList()
 	{
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return bikeList;
 	}
 	
 	public static List<Bike> parseList(SoapObject response) {
 	    SoapObject soap_list = (SoapObject)response.getProperty(0);
+	 	Thread.yield();
 	    List<Bike> list = soapToList(soap_list);
+	    try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    return list;
     } 
 	

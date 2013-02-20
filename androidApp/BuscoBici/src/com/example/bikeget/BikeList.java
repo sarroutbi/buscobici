@@ -6,7 +6,7 @@ import android.app.Application;
 
 public class BikeList extends Application {
 
-	public List<Bike> bikeList;
+	public List<Bike> bikeList = null; 
 	
 	public BikeList() {
 		bikeList = null;

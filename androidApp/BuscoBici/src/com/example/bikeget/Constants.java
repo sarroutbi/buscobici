@@ -17,11 +17,11 @@ public class Constants {
 	public static final String  TYPE_BMX    = "BMX";
 	public static final String  TYPE_KIDS   = "KIDS";
 	// Table Margins
-	public static final int     SOAP_RESULTS_TABLE_MARGIN = 12;
+	public static final int     SOAP_RESULTS_TABLE_MARGIN = 15;
 	// Default Char set
 	public static final String   DEFAULT_CHARSET = "ISO-8859-1";
 	// Multi thread mode (0=monothread, 1=multithread, 2=asynctask)
-	public static int MULTI_THREAD = 0;
+	public static int MULTI_THREAD = 2;
 	// Response timeout (milliseconds)
 	public static final int      SOAP_RESPONSE_TIMEOUT = 30000;
 
