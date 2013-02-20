@@ -70,9 +70,15 @@ if ( !$search) {
 }
 if ( !$priceFrom) {
   $priceFrom=$priceFromGet;
+  if (!$priceFrom)
+    $priceFrom=0;
+  if (!$priceFrom && ($priceTo>0))
+    $priceFrom=0;
 }
 if ( !$priceTo) {
   $priceTo=$priceToGet;
+  if (!priceTo)
+    $priceTo=0;
 }
 if ( !$type) {
   $type=$typeGet;
