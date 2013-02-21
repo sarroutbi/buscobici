@@ -26,6 +26,7 @@ public class ByPriceSearch extends Activity implements
     RadioButton radioBmx;
     RadioButton radioKids;
 	private BikeList bList = null;
+	SoapThreadHandler soapThread = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,34 +82,39 @@ public class ByPriceSearch extends Activity implements
  	     int priceFrom = Integer.valueOf(sPriceFrom);
  	     int priceTo   = Integer.valueOf(sPriceTo);
  	     String type   = getType();
- 	 
- 	     SoapRequester soapRequester = new SoapRequester(search, 
- 	    		 priceFrom, priceTo, type);
- 	     bList = ((BikeList)getApplicationContext());
- 	     if (bList.bikeList != null)
- 	    	 bList.bikeList.clear();
-   	     bList.bikeList = soapRequester.getList();
-	     Intent intentExercise = new Intent(view.getContext(),
-	    		 SoapResults.class);
-         startActivityForResult(intentExercise, 0);
+ 	     
+	     bList = ((BikeList)getApplicationContext());
+	     if(bList.bikeList != null)
+	      	bList.bikeList.clear();
+
+	     SoapSearchData soapSearchData = new SoapSearchData(bList, 
+	       		search, priceFrom, priceTo, type);
+	     bList.globalSearchData = soapSearchData;
+	     soapThread = new SoapThreadHandler(getApplicationContext());
 	 } 
 	 
 	 public void simpleSearch(View view) {
-	        Intent intentExercise = new Intent(view.getContext(), 
-	        		SimpleSearch.class);
-	        startActivityForResult(intentExercise, 0);
+		 if(soapThread != null)
+		    	soapThread.cancelDownload();
+	     Intent intentExercise = new Intent(view.getContext(), 
+	    		SimpleSearch.class);
+	     startActivityForResult(intentExercise, 0);
 	 } 
 	 
 	 public void byPriceSearch(View view) {
 	        //Intent intentExercise = new Intent(view.getContext(), 
 	        //		ByPriceSearch.class);
 	        //startActivityForResult(intentExercise, 0);
+		 if(soapThread != null)
+		    	soapThread.cancelDownload();
 	 } 
 	 
 	 public void advancedSearch(View view) {
 	        //Intent intentExercise = new Intent(view.getContext(), 
 	        //		AdvancedSearch.class);
 	        //startActivityForResult(intentExercise, 0);
+		 if(soapThread != null)
+		    	soapThread.cancelDownload();
 	 } 
 	 
 	 @Override
@@ -144,14 +150,13 @@ public class ByPriceSearch extends Activity implements
 		 }
 	 }
 
-	@Override
-	public void onStartTrackingTouch(SeekBar arg0) {
-		// TODO Auto-generated method stub
-	}
+	 @Override
+	 public void onStartTrackingTouch(SeekBar arg0) {
+		 // TODO Auto-generated method stub
+	 }
 
-	@Override
-	public void onStopTrackingTouch(SeekBar arg0) {
-		// TODO Auto-generated method stub
-	}
-
+	 @Override
+	 public void onStopTrackingTouch(SeekBar arg0) {
+		 // TODO Auto-generated method stub
+	 }
 }

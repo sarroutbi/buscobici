@@ -41,22 +41,22 @@ public class SoapThreadHandler {
 				return searchData[0];
 			else
 				return null;
-			}
-			// Called when there's a status to be updated
-			@Override
-			protected void onProgressUpdate(Integer... values) { //
-				// Not used in this case
-				super.onProgressUpdate(values);
-			}
-			// Called once the background activity has completed
-			@Override
-			protected void onPostExecute(SoapSearchData searchData) { //
-				if(!cancelled && !isCancelled() && searchData != null)
-				{
-					searchData.SetBikeList(searchData.GetSoapBikeList());
-				loadResults();
-			}
-		}
+	 	}
+	 	// Called when there's a status to be updated
+	 	@Override
+	 	protected void onProgressUpdate(Integer... values) { //
+	 		// Not used in this case
+	 		super.onProgressUpdate(values);
+	 	}
+	 	// Called once the background activity has completed
+	 	@Override
+	 	protected void onPostExecute(SoapSearchData searchData) { //
+	 		if(!cancelled && !isCancelled() && searchData != null)
+	 		{
+	    	    searchData.SetBikeList(searchData.GetSoapBikeList());
+	 			loadResults();
+	 		}
+	 	}
 	}
 	
 	protected void loadResults()
@@ -73,6 +73,6 @@ public class SoapThreadHandler {
 	public void cancelDownload() {
 		cancelled = true;
 		if(taskSoapSearch!=null)
-			taskSoapSearch.cancel(true);
+	    	taskSoapSearch.cancel(true);
 	}
 }
