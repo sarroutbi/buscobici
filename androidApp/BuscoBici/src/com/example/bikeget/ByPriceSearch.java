@@ -7,6 +7,7 @@ import android.view.View;
 import android.app.Activity;
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class ByPriceSearch extends Activity implements
     RadioButton radioUrban;
     RadioButton radioBmx;
     RadioButton radioKids;
+	ProgressBar progressBar00;
 	private BikeList bList = null;
 	SoapThreadHandler soapThread = null;
 
@@ -42,11 +44,32 @@ public class ByPriceSearch extends Activity implements
         radioBmx   = (RadioButton)findViewById(R.id.RadioBmx);
         radioUrban = (RadioButton)findViewById(R.id.RadioUrban);
         radioKids  = (RadioButton)findViewById(R.id.RadioKids);
+        progressBar00 = (ProgressBar)findViewById(R.id.progressBar00);
 
         seekBar1.setOnSeekBarChangeListener(this);
         seekBar2.setOnSeekBarChangeListener(this);
     	textView00.setText(" " + "0" + "€");
     	textView01.setText(" " + "0" + "€");
+        progressBar00.setVisibility(View.INVISIBLE);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+        progressBar00=(ProgressBar)findViewById(R.id.progressBar00);
+	    progressBar00.setVisibility(View.INVISIBLE);
+	    if(soapThread!=null) {
+	    	soapThread.cancelDownload();
+	    }
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+        progressBar00=(ProgressBar)findViewById(R.id.progressBar00);
+	    progressBar00.setVisibility(View.INVISIBLE);
+	    if(soapThread!=null) 
+	    	soapThread.cancelDownload();
 	}
 
 	@Override
@@ -72,6 +95,8 @@ public class ByPriceSearch extends Activity implements
 	}
 	
 	public void soapSearch(View view) {
+	     progressBar00.setVisibility(View.VISIBLE);
+
  	     String search        = search00.getText().toString();
  	     String sFromCurrency = textView00.getText().toString().trim();
  	     String sToCurrency   = textView01.getText().toString().trim();
@@ -82,6 +107,7 @@ public class ByPriceSearch extends Activity implements
  	     int priceFrom = Integer.valueOf(sPriceFrom);
  	     int priceTo   = Integer.valueOf(sPriceTo);
  	     String type   = getType();
+ 	     
  	     
 	     bList = ((BikeList)getApplicationContext());
 	     if(bList.bikeList != null)
@@ -118,6 +144,16 @@ public class ByPriceSearch extends Activity implements
 	 } 
 	 
 	 @Override
+	 public void onStartTrackingTouch(SeekBar arg0) {
+		 // TODO Auto-generated method stub
+	 }
+
+	 @Override
+	 public void onStopTrackingTouch(SeekBar arg0) {
+		 // TODO Auto-generated method stub
+	 }
+	 
+	 @Override
 	 public void onProgressChanged(SeekBar seekBar, int progress,
 	     boolean fromUser) {
 	     //  Notify that the progress level has changed.
@@ -150,13 +186,4 @@ public class ByPriceSearch extends Activity implements
 		 }
 	 }
 
-	 @Override
-	 public void onStartTrackingTouch(SeekBar arg0) {
-		 // TODO Auto-generated method stub
-	 }
-
-	 @Override
-	 public void onStopTrackingTouch(SeekBar arg0) {
-		 // TODO Auto-generated method stub
-	 }
 }

@@ -116,16 +116,8 @@ public class SoapResults extends Activity  {
           e.printStackTrace();  
 	  }
 	}
-	
-	@Override
-	public void onBackPressed() {
-        Intent intentExercise = new Intent(this, 
-        		SimpleSearch.class);
-        startActivityForResult(intentExercise, 0);
-	    // do something on back.
-	    return;
-	}
-	
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

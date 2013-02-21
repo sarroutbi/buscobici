@@ -138,4 +138,11 @@
         android:onClick="advancedSearch"
         android:text="@string/advanced_search" />
 
+    <ProgressBar
+        android:id="@+id/progressBar00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
