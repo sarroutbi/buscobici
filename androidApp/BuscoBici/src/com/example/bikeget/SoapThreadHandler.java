@@ -9,6 +9,7 @@ public class SoapThreadHandler {
 	Context context = null;
 	AsyncTask<SoapSearchData, Integer, SoapSearchData> taskSoapSearch = null;
 	SoapSearchData soapSearchData = null;
+	boolean cancelled = false;
 	
 	//@Override
 	//protected void onCreate(Bundle savedInstanceState) {
@@ -28,30 +29,34 @@ public class SoapThreadHandler {
 		SoapSearchData> { //
 		// Called to initiate the background activity
 		@Override
-	 	protected SoapSearchData doInBackground(SoapSearchData... searchData)	{ 
+	 	protected SoapSearchData doInBackground(SoapSearchData... searchData)	{
+			cancelled = false;
 			SoapRequester soapRequester = new 
     	    		SoapRequester(searchData[0].GetSearch(), 
     	    				searchData[0].GetPriceFrom(), 
     	    				searchData[0].GetPriceTo(),	
     	    				searchData[0].GetType());
 			searchData[0].SetSoapBikeList(soapRequester.getList());
-			return searchData[0];
-	 	}
-	 	// Called when there's a status to be updated
-	 	@Override
-	 	protected void onProgressUpdate(Integer... values) { //
-	 		// Not used in this case
-	 		super.onProgressUpdate(values);
-	 	}
-	 	// Called once the background activity has completed
-	 	@Override
-	 	protected void onPostExecute(SoapSearchData searchData) { //
-    	    searchData.SetBikeList(searchData.GetSoapBikeList());
-	 		if(!isCancelled())
-	 		{
-	 			loadResults();
-	 		}
-	 	}
+			if(!isCancelled())
+				return searchData[0];
+			else
+				return null;
+			}
+			// Called when there's a status to be updated
+			@Override
+			protected void onProgressUpdate(Integer... values) { //
+				// Not used in this case
+				super.onProgressUpdate(values);
+			}
+			// Called once the background activity has completed
+			@Override
+			protected void onPostExecute(SoapSearchData searchData) { //
+				if(!cancelled && !isCancelled() && searchData != null)
+				{
+					searchData.SetBikeList(searchData.GetSoapBikeList());
+				loadResults();
+			}
+		}
 	}
 	
 	protected void loadResults()
@@ -66,7 +71,8 @@ public class SoapThreadHandler {
 	}
 	
 	public void cancelDownload() {
+		cancelled = true;
 		if(taskSoapSearch!=null)
-	    	taskSoapSearch.cancel(true);
+			taskSoapSearch.cancel(true);
 	}
 }

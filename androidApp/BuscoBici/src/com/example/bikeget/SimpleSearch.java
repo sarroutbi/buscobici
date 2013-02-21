@@ -94,7 +94,7 @@ public class SimpleSearch extends Activity {
 	        SoapSearchData soapSearchData = new SoapSearchData(bList, 
 	        		editText00.getText().toString(), 0, 0, "");
  	        bList.globalSearchData = soapSearchData;
-	        new SoapThreadHandler(getApplicationContext());
+	        soapThread = new SoapThreadHandler(getApplicationContext());
 	 }
 	 
 	 public void soapSearchMultithread(View view) { 
@@ -122,7 +122,8 @@ public class SimpleSearch extends Activity {
 	 
 	 public void soapSearchMonothread(View view) { 
     	    SoapRequester soapRequester = new 
-    	    		SoapRequester(editText00.getText().toString(), 0, 0, "");
+    	    		SoapRequester(editText00.getText().toString(), 0, 0, 
+    	    				"");
     	    bList = ((BikeList)getApplicationContext());
     	    bList.bikeList = soapRequester.getList();
 	        Intent intentExercise = new Intent(view.getContext(), 

@@ -15,11 +15,11 @@ public class ByPriceSearch extends Activity implements
 	SeekBar.OnSeekBarChangeListener {
 
 	// Visual elements
-	EditText search00;
-    SeekBar  seekBar1;
-    SeekBar  seekBar2;
-    TextView textView00;
-    TextView textView01;
+	EditText    search00;
+    SeekBar     seekBar1;
+    SeekBar     seekBar2;
+    TextView    textView00;
+    TextView    textView01;
     RadioButton radioMtb;
     RadioButton radioRoad;
     RadioButton radioUrban;
@@ -81,7 +81,7 @@ public class ByPriceSearch extends Activity implements
  	     int priceFrom = Integer.valueOf(sPriceFrom);
  	     int priceTo   = Integer.valueOf(sPriceTo);
  	     String type   = getType();
- 	     
+ 	 
  	     SoapRequester soapRequester = new SoapRequester(search, 
  	    		 priceFrom, priceTo, type);
  	     bList = ((BikeList)getApplicationContext());
