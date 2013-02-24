@@ -1,6 +1,8 @@
 package com.example.bikeget;
 
 import android.os.Bundle;
+import com.google.analytics.tracking.android.Tracker;
+import com.google.analytics.tracking.android.GoogleAnalytics;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +17,9 @@ public class SimpleSearch extends Activity {
 	ProgressBar progressBar00;
 	private BikeList bList = null;
 	SoapThreadHandler soapThread = null;
-	
+	GoogleAnalytics gAnalyzer;
+	private Tracker gTracker;
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,6 +27,10 @@ public class SimpleSearch extends Activity {
         editText00=(EditText)findViewById(R.id.editText1);
         progressBar00=(ProgressBar)findViewById(R.id.progressBar00);
         progressBar00.setVisibility(View.INVISIBLE);
+        gAnalyzer = GoogleAnalytics.getInstance(this);
+        if(Constants.GOOGLE_ANALYTICS_DEBUG)
+        	gAnalyzer.setDebug(true);
+        gTracker = gAnalyzer.getTracker(Constants.GOOGLE_TRACKER);
 	}
 	
 	@Override
@@ -33,6 +41,17 @@ public class SimpleSearch extends Activity {
 	    if(soapThread!=null) {
 	    	soapThread.cancelDownload();
 	    }
+	}
+	 
+	@Override
+	protected void onStart() {
+		 super.onStart();
+		 gTracker.sendView("/Android/SimpleSearch");
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
 	}
 	
 	@Override

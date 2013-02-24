@@ -1,5 +1,8 @@
 package com.example.bikeget;
 
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.Tracker;
+
 import android.os.Bundle;
 
 import android.content.Intent;
@@ -17,6 +20,8 @@ import android.widget.TextView;
 public class SoapResults extends Activity  {
 	BikeList resultList;
     TableLayout soapTable;
+	GoogleAnalytics gAnalyzer;
+	private Tracker gTracker;
     
     private void setAsLink(TextView view, String url, String urlText)
     {
@@ -98,8 +103,22 @@ public class SoapResults extends Activity  {
             price.setTextSize(Constants.RESULTS_PRICE_TEXT_SIZE);
             tr.addView(price);
 
+            TextView store = new TextView(this);
+            store.setId(4 * Constants.MAX_BIKES + current);
+            store.setText(list.bikeList.get(current).store);
+            store.setLayoutParams(new LayoutParams(
+                    LayoutParams.MATCH_PARENT,
+                    LayoutParams.WRAP_CONTENT));
+            store.setTextSize(Constants.RESULTS_STORE_TEXT_SIZE);
+            
+            LinearLayout.LayoutParams margins2 = (LinearLayout.LayoutParams)
+            		store.getLayoutParams();
+            margins2.rightMargin=Constants.SOAP_RESULTS_TABLE_MARGIN;
+
+            tr.addView(store);
+            
             TextView type = new TextView(this);
-            type.setId(4 * Constants.MAX_BIKES + current);
+            type.setId(5 * Constants.MAX_BIKES + current);
             type.setText(list.bikeList.get(current).type);
             type.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
@@ -107,19 +126,6 @@ public class SoapResults extends Activity  {
             type.setTextSize(Constants.RESULTS_TYPE_TEXT_SIZE);
             tr.addView(type);
             
-            LinearLayout.LayoutParams margins2 = (LinearLayout.LayoutParams)
-            		type.getLayoutParams();
-            margins2.rightMargin=Constants.SOAP_RESULTS_TABLE_MARGIN;
-            
-            TextView store = new TextView(this);
-            store.setId(5 * Constants.MAX_BIKES + current);
-            store.setText(list.bikeList.get(current).store);
-            store.setLayoutParams(new LayoutParams(
-                    LayoutParams.MATCH_PARENT,
-                    LayoutParams.WRAP_CONTENT));
-            store.setTextSize(Constants.RESULTS_STORE_TEXT_SIZE);
-            tr.addView(store);
-
             soapTable.addView(tr, new TableLayout.LayoutParams(
             		LayoutParams.MATCH_PARENT,
             		LayoutParams.WRAP_CONTENT));
@@ -138,6 +144,21 @@ public class SoapResults extends Activity  {
         resultList = ((BikeList)getApplicationContext());;
         if(resultList != null)
           fillList(resultList);
+	    gAnalyzer = GoogleAnalytics.getInstance(this);
+        if(Constants.GOOGLE_ANALYTICS_DEBUG)
+        	gAnalyzer.setDebug(true);
+	    gTracker = gAnalyzer.getTracker(Constants.GOOGLE_TRACKER);
+	}
+	
+	@Override
+	protected void onStart() {
+		 super.onStart();
+		 gTracker.sendView("/Android/SoapResults");
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
 	}
 
 	@Override

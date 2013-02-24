@@ -1,5 +1,8 @@
 package com.example.bikeget;
 
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.Tracker;
+
 import android.os.Bundle;
 
 import android.content.Intent;
@@ -29,6 +32,8 @@ public class ByPriceSearch extends Activity implements
 	ProgressBar progressBar00;
 	private BikeList bList = null;
 	SoapThreadHandler soapThread = null;
+	GoogleAnalytics gAnalyzer;
+	private Tracker gTracker;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,10 @@ public class ByPriceSearch extends Activity implements
     	textView00.setText(" " + "0" + "€");
     	textView01.setText(" " + "0" + "€");
         progressBar00.setVisibility(View.INVISIBLE);
+        gAnalyzer = GoogleAnalytics.getInstance(this);
+        if(Constants.GOOGLE_ANALYTICS_DEBUG)
+        	gAnalyzer.setDebug(true);
+        gTracker = gAnalyzer.getTracker(Constants.GOOGLE_TRACKER);
 	}
 	
 	@Override
@@ -153,6 +162,17 @@ public class ByPriceSearch extends Activity implements
 	 @Override
 	 public void onStopTrackingTouch(SeekBar arg0) {
 		 // TODO Auto-generated method stub
+	 }
+	 
+	 @Override
+	 protected void onStart() {
+		 super.onStop();
+		 gTracker.sendView("/Android/ByPriceSearch");
+	 }
+	 
+	 @Override
+	 protected void onStop() {
+		 super.onStop();
 	 }
 	 
 	 @Override
