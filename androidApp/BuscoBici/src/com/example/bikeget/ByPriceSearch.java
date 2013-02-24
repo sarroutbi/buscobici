@@ -108,7 +108,6 @@ public class ByPriceSearch extends Activity implements
  	     int priceTo   = Integer.valueOf(sPriceTo);
  	     String type   = getType();
  	     
- 	     
 	     bList = ((BikeList)getApplicationContext());
 	     if(bList.bikeList != null)
 	      	bList.bikeList.clear();
@@ -122,6 +121,7 @@ public class ByPriceSearch extends Activity implements
 	 public void simpleSearch(View view) {
 		 if(soapThread != null)
 		    	soapThread.cancelDownload();
+		 progressBar00.setVisibility(View.INVISIBLE);
 	     Intent intentExercise = new Intent(view.getContext(), 
 	    		SimpleSearch.class);
 	     startActivityForResult(intentExercise, 0);
@@ -133,6 +133,7 @@ public class ByPriceSearch extends Activity implements
 	        //startActivityForResult(intentExercise, 0);
 		 if(soapThread != null)
 		    	soapThread.cancelDownload();
+		 progressBar00.setVisibility(View.INVISIBLE);
 	 } 
 	 
 	 public void advancedSearch(View view) {
@@ -141,6 +142,7 @@ public class ByPriceSearch extends Activity implements
 	        //startActivityForResult(intentExercise, 0);
 		 if(soapThread != null)
 		    	soapThread.cancelDownload();
+		 progressBar00.setVisibility(View.INVISIBLE);
 	 } 
 	 
 	 @Override

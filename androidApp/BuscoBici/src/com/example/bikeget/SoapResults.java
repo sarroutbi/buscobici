@@ -21,7 +21,7 @@ public class SoapResults extends Activity  {
     private void setAsLink(TextView view, String url, String urlText)
     {
     	String urlTextTrimmed = urlText;
-    	if(urlText.length()>Constants.MAX_URL_TEXT)
+    	if(urlText.length() > Constants.MAX_URL_TEXT)
     	{
     		 urlTextTrimmed = urlText.substring(0, 
     				 	Constants.MAX_URL_TEXT - 3);
@@ -81,6 +81,7 @@ public class SoapResults extends Activity  {
 
             setAsLink(urlText, list.bikeList.get(current).url,
             		urlTextFormat);
+            urlText.setTextSize(Constants.RESULTS_URL_TEXT_SIZE);
             tr.addView(urlText);
             
             TextView price = new TextView(this);
@@ -90,11 +91,11 @@ public class SoapResults extends Activity  {
             price.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
-            LinearLayout.LayoutParams lp=(LinearLayout.LayoutParams)
+            LinearLayout.LayoutParams margins = (LinearLayout.LayoutParams)
             		price.getLayoutParams();
-            lp.leftMargin=Constants.SOAP_RESULTS_TABLE_MARGIN;
-            lp.rightMargin=Constants.SOAP_RESULTS_TABLE_MARGIN;
-            
+            margins.leftMargin  = Constants.SOAP_RESULTS_TABLE_MARGIN;
+            margins.rightMargin = Constants.SOAP_RESULTS_TABLE_MARGIN;
+            price.setTextSize(Constants.RESULTS_PRICE_TEXT_SIZE);
             tr.addView(price);
 
             TextView type = new TextView(this);
@@ -103,10 +104,12 @@ public class SoapResults extends Activity  {
             type.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
+            type.setTextSize(Constants.RESULTS_TYPE_TEXT_SIZE);
             tr.addView(type);
-            LinearLayout.LayoutParams lp2 = (LinearLayout.LayoutParams)
+            
+            LinearLayout.LayoutParams margins2 = (LinearLayout.LayoutParams)
             		type.getLayoutParams();
-            lp2.rightMargin=Constants.SOAP_RESULTS_TABLE_MARGIN;
+            margins2.rightMargin=Constants.SOAP_RESULTS_TABLE_MARGIN;
             
             TextView store = new TextView(this);
             store.setId(5 * Constants.MAX_BIKES + current);
@@ -114,6 +117,7 @@ public class SoapResults extends Activity  {
             store.setLayoutParams(new LayoutParams(
                     LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
+            store.setTextSize(Constants.RESULTS_STORE_TEXT_SIZE);
             tr.addView(store);
 
             soapTable.addView(tr, new TableLayout.LayoutParams(
@@ -133,7 +137,7 @@ public class SoapResults extends Activity  {
         soapTable = (TableLayout)findViewById(R.id.resultsTable00);
         resultList = ((BikeList)getApplicationContext());;
         if(resultList != null)
-          fillList(resultList);        
+          fillList(resultList);
 	}
 
 	@Override

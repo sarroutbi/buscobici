@@ -4,7 +4,7 @@ public class Constants {
 	// Generic
 	//public final static String  CUSTOM_BIKELIST = "BikeList";
 	public final static int     MAX_BIKES = 10000;
-	public final static int     MAX_URL_TEXT = 35;
+	public final static int     MAX_URL_TEXT = 30;
 	// SOAP specific
 	public static final String  NAMESPACE = "urn:bikeGet";
 	public static final String  URL = "http://buscobici.com/bikesearch/bikeGet.cgi";
@@ -24,5 +24,11 @@ public class Constants {
 	public static int MULTI_THREAD = 2;
 	// Response timeout (milliseconds)
 	public static final int      SOAP_RESPONSE_TIMEOUT = 30000;
+	// Results text size
+	public static final int      RESULTS_URL_TEXT_SIZE   = 18;
+	public static final int      RESULTS_TYPE_TEXT_SIZE  = 15;
+	public static final int      RESULTS_PRICE_TEXT_SIZE = 15;
+	public static final int      RESULTS_STORE_TEXT_SIZE = 15;
+
 
 }
