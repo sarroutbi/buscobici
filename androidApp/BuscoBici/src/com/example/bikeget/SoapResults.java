@@ -70,8 +70,17 @@ public class SoapResults extends Activity  {
             
             byte[] utf16le = list.bikeList.get(current).urlText.
             		getBytes(Constants.DEFAULT_CHARSET);
+            String urlString = new String(utf16le, 
+            		Constants.DEFAULT_CHARSET);
+            String urlTextFormat = urlString.replaceAll("Ã±", "ñ");
+            urlTextFormat = urlTextFormat.replaceAll("Ã¡", "á");
+            urlTextFormat = urlTextFormat.replaceAll("Ã©", "é");
+            urlTextFormat = urlTextFormat.replaceAll("Ã­",  "í");
+            urlTextFormat = urlTextFormat.replaceAll("Ã³", "ó");
+            urlTextFormat = urlTextFormat.replaceAll("Ãº", "ú");
+
             setAsLink(urlText, list.bikeList.get(current).url,
-            		new String(utf16le, Constants.DEFAULT_CHARSET));
+            		urlTextFormat);
             tr.addView(urlText);
             
             TextView price = new TextView(this);
@@ -116,8 +125,7 @@ public class SoapResults extends Activity  {
           e.printStackTrace();  
 	  }
 	}
-
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
