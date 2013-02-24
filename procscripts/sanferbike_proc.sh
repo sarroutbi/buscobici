@@ -188,7 +188,7 @@ function process_file()
      URL=$(get_url "$1" "${model}")
      TRADEMARK=$(get_trademark "${model}")
      PRICE=$(get_price_fm "${1}" "${model}")
-     MODEL=$(echo "${model}" | awk -F "&nbsp;" {'print $2'})
+     MODEL=$(echo "${model}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
      if [ "${MODEL}" = "" ];
      then
        MODEL=$(echo "${model}" | awk -F "&nbsp;&nbsp;" {'print $2'})
@@ -215,7 +215,7 @@ function process_file()
 > ${OUTPUT_FILE}
 
 process_file "164-lap-carretera-hombre?n=${MAX_BIKES_PAGE}"                  "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file "165-lap-carretera-mujer?n=${MAX_BIKES_PAGE}"                   "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
+process_file "165-lap-carretera-mujer?n=${MAX_BIKES_PAGE}"                   "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
 process_file "166-lap-montana-hombre?n=${MAX_BIKES_PAGE}"                    "Sanferbike" "MTB" >> ${OUTPUT_FILE}
 process_file "167-lap-montana-mujer?n=${MAX_BIKES_PAGE}"                     "Sanferbike" "MTB" >> ${OUTPUT_FILE}
 process_file "168-bicicletas-hibridas-mujeres?n=${MAX_BIKES_PAGE}"           "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
@@ -242,7 +242,7 @@ process_file "220-bicicletas-hibridas-madrid?n=${MAX_BIKES_PAGE}"            "Sa
 process_file "222-bicicletas-ciudad-urbanas-giant?n=${MAX_BIKES_PAGE}"       "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
 process_file "223-bicicletas-ciudad-urbanas-mujeres?n=${MAX_BIKES_PAGE}"     "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
 process_file "225-dahon-calidad-plegables?n=${MAX_BIKES_PAGE}"               "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
-process_file "226-carretera-mujer-2013?n=${MAX_BIKES_PAGE}"                  "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
+process_file "226-carretera-mujer-2013?n=${MAX_BIKES_PAGE}"                  "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
 process_file "227-competicion?n=${MAX_BIKES_PAGE}"                           "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
 process_file "228-rendimiento?n=${MAX_BIKES_PAGE}"                           "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
 process_file "230-sport?n=${MAX_BIKES_PAGE}"                                 "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
@@ -254,8 +254,8 @@ process_file "235-aqua?n=${MAX_BIKES_PAGE}"                                  "Sa
 process_file "236-onix?n=${MAX_BIKES_PAGE}"                                  "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
 process_file "237-terra-bicicletas-ciclocross?n=${MAX_BIKES_PAGE}"           "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
 process_file "238-ordu?n=${MAX_BIKES_PAGE}"                                  "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file "239-bicicleta-orca-mujer?n=${MAX_BIKES_PAGE}"                  "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
-process_file "240-bicicleta-aqua-mujer?n=${MAX_BIKES_PAGE}"                  "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
+process_file "239-bicicleta-orca-mujer?n=${MAX_BIKES_PAGE}"                  "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_file "240-bicicleta-aqua-mujer?n=${MAX_BIKES_PAGE}"                  "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
 process_file "241-bicicletas-orbea-montana?n=${MAX_BIKES_PAGE}"              "Sanferbike" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_file "242-bicicletas-orbea-montana?n=${MAX_BIKES_PAGE}"              "Sanferbike" "MTB" >> ${OUTPUT_FILE}
 process_file "243-bicicletas-sport-orbea?n=${MAX_BIKES_PAGE}"                "Sanferbike" "MTB" >> ${OUTPUT_FILE}
