@@ -14,20 +14,7 @@
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
-test -z ${1} && exit 1
-
-for file in truncscripts/*; 
-do 
-  ./${file}
-done
-
-for file in ${1}/psql*; 
-do 
-  ./loaddb.sh ./${file}
-done
-
-for file in postscripts/*; 
-do 
-  ./${file}
-done
-
+# Remember: This can be done becahse a .pgpass must exist on 
+# HOME dir, with permission 0600, containing the password
+psql --user postgres -h 192.168.0.40 bikesearch -c "DELETE FROM bikes WHERE PRICE = 0;"
+psql --user postgres -h 192.168.0.40 bikesearch -c "DELETE FROM bikes WHERE Trademark = 'Bellelli';"
