@@ -231,6 +231,13 @@ background-size: 100%;
 border-radius: 22px;
 }
 
+#page_results {
+text-align:center;
+color: #777;
+font-size: 10px;
+margin-left:auto;
+margin-right:auto;
+}
 
 #num_results {
 /*** position:absolute; ***/
@@ -251,6 +258,13 @@ margin-right:auto;
 .social_links {
 position: absolute;
 top:90%; 
+left:38%;
+line-height:0;
+}
+
+.down_links{
+position: absolute;
+top:75%; 
 left:38%;
 line-height:0;
 }
