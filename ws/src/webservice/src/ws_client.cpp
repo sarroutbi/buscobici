@@ -36,11 +36,11 @@ void usage(char* argv, uint8_t err)
 {
   if(argv)
   {
-    fprintf(stderr, "", argv);
+    fprintf(stderr, "\n");
     fprintf(stderr, "%s: ", argv);
     fprintf(stderr, "	%s [-s\"search\"] -k[\"bike_kind\"] -f\
-                    [\"price_from\"] -t[\"price_to\"]", argv);
-    fprintf(stderr, "", argv);
+[\"price_from\"] -t[\"price_to\"]\n", argv);
+    fprintf(stderr, "\n");
   }
   exit(err);
 }
@@ -52,7 +52,7 @@ void parseArgs(int argc, char* argv[], char* search, uint8_t search_max,
   int8_t  c = 0;
   uint8_t opterr = 0;
      
-  while ((c = getopt (argc, argv, "s:k:f:t:")) != -1)
+  while ((c = getopt (argc, argv, "s:k:f:t:h")) != -1)
   {
     switch (c)
     {
@@ -68,11 +68,6 @@ void parseArgs(int argc, char* argv[], char* search, uint8_t search_max,
       case 't':
         *priceTo = strtoul(optarg, 0, 10);
         break;
-      case '?':
-        if (optopt == 'c')
-          fprintf (stderr, "Option -%c requires an argument.\n", optopt);
-        else 
-          fprintf (stderr, "Unknown option `-%c'.\n", optopt);
       default:
         usage (argv[0], 1);
     }

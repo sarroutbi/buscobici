@@ -9,11 +9,12 @@
 #include "HtmlGetter.h"
 #include "HtmlParser.h"
 
-const char*    URL = "http://buscobici.com/bikesearch/search.php";
-const char*    POST_FORMAT = "search=%s&priceFrom=%s&priceTo=%s&type=%s";
-const uint32_t MAX_POST_FIELD = 255;
-const uint32_t MAX_POST       = 1024;
-const uint32_t MAX_RESULTS    = 2000;
+const char*    URL             = "http://buscobici.com/bikesearch/search.php";
+const char*    POST_FORMAT     = "search=%s&priceFrom=%s&priceTo=%s&type=%s&numResults=%d";
+const uint32_t MAX_POST_FIELD  = 255;
+const uint32_t MAX_POST        = 1024;
+const uint32_t MAX_RESULTS     = 2000;
+const uint32_t MAX_SRV_RESULTS = 10000;
 
 int main(int argc, char* argv[])
 {
@@ -39,7 +40,7 @@ void composePostInfo(const char* search, const char* type,
    if(priceTo)
      snprintf(pT, MAX_POST_FIELD, "%d", priceTo);
 
-   snprintf(postString, maxPost, POST_FORMAT, s, pF, pT, t);
+   snprintf(postString, maxPost, POST_FORMAT, s, pF, pT, t, MAX_SRV_RESULTS);
 }
 
 void copyList(ns2BikeList* ns2bl, BikeList & bl)
