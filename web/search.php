@@ -151,6 +151,9 @@ if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
   exit();
 }
 
+
+$search = preg_replace('/[^a-zA-Z0-9\ ]/i', null, $search);
+
 $search_array=str_word_count($search, 1, '0123456789-/.');
 $start = ($page - 1) * $resultsPerPage;
 $query = "SELECT trademark, model, kind, CAST(price AS decimal(10,2)), store, url FROM bikes ";
