@@ -252,16 +252,16 @@ URBAN_BIKES_PAGES="$(seq 1 3)"
 URBAN_WOMAN_BIKES_BASE="index.php?cPath=30_253"
 URBAN_WOMAN_BIKES_PAGES=""
 
-process_pages "${MTB_BIKES_BASE}"              "${MTB_BIKES_PAGES}"              "La Bicitienda" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_WOMAN_BIKES_BASE}"        "${MTB_WOMAN_BIKES_PAGES}"        "La Bicitienda" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_pages "${MTB_DOUBLE_BIKES_BASE}"       "${MTB_DOUBLE_BIKES_PAGES}"       "La Bicitienda" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_DOUBLE_WOMAN_BIKES_BASE}" "${MTB_DOUBLE_WOMAN_BIKES_PAGES}" "La Bicitienda" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_pages "${ROAD_BIKES_BASE}"             "${ROAD_BIKES_PAGES}"             "La Bicitienda" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${ROAD_TRIATHLON_BIKES_BASE}"   "${ROAD_TRIATHLON_BIKES_PAGES}"   "La Bicitienda" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${DIRT_BIKES_BASE}"             "${DIRT_BIKES_PAGES}"             "La Bicitienda" "BMX" >> ${OUTPUT_FILE}
-process_pages "${BMX_FREE_BIKES_BASE}"         "${BMX_FREE_BIKES_PAGES}"         "La Bicitienda" "BMX" >> ${OUTPUT_FILE}
-process_pages "${URBAN_HYBRID_BIKES_BASE}"     "${URBAN_HYBRID_BIKES_PAGES}"     "La Bicitienda" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${KIDS_BIKES_BASE}"             "${KIDS_BIKES_PAGES}"             "La Bicitienda" "KIDS" >> ${OUTPUT_FILE}
-process_pages "${KIDS_JUNIOR_BIKES_BASE}"      "${KIDS_JUNIOR_BIKES_PAGES}"      "La Bicitienda" "KIDS" >> ${OUTPUT_FILE}
-process_pages "${URBAN_FOLDING_BIKES_BASE}"    "${URBAN_FOLDING_BIKES_PAGES}"    "La Bicitienda" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_BIKES_BASE}"            "${URBAN_BIKES_PAGES}"            "La Bicitienda" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_BASE}"              "${MTB_BIKES_PAGES}"              "LaBiciTienda" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_WOMAN_BIKES_BASE}"        "${MTB_WOMAN_BIKES_PAGES}"        "LaBiciTienda" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_BIKES_BASE}"       "${MTB_DOUBLE_BIKES_PAGES}"       "LaBiciTienda" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_WOMAN_BIKES_BASE}" "${MTB_DOUBLE_WOMAN_BIKES_PAGES}" "LaBiciTienda" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}"             "${ROAD_BIKES_PAGES}"             "LaBiciTienda" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${ROAD_TRIATHLON_BIKES_BASE}"   "${ROAD_TRIATHLON_BIKES_PAGES}"   "LaBiciTienda" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${DIRT_BIKES_BASE}"             "${DIRT_BIKES_PAGES}"             "LaBiciTienda" "BMX" >> ${OUTPUT_FILE}
+process_pages "${BMX_FREE_BIKES_BASE}"         "${BMX_FREE_BIKES_PAGES}"         "LaBiciTienda" "BMX" >> ${OUTPUT_FILE}
+process_pages "${URBAN_HYBRID_BIKES_BASE}"     "${URBAN_HYBRID_BIKES_PAGES}"     "LaBiciTienda" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${KIDS_BIKES_BASE}"             "${KIDS_BIKES_PAGES}"             "LaBiciTienda" "KIDS" >> ${OUTPUT_FILE}
+process_pages "${KIDS_JUNIOR_BIKES_BASE}"      "${KIDS_JUNIOR_BIKES_PAGES}"      "LaBiciTienda" "KIDS" >> ${OUTPUT_FILE}
+process_pages "${URBAN_FOLDING_BIKES_BASE}"    "${URBAN_FOLDING_BIKES_PAGES}"    "LaBiciTienda" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_BIKES_BASE}"            "${URBAN_BIKES_PAGES}"            "LaBiciTienda" "URBAN" >> ${OUTPUT_FILE}
