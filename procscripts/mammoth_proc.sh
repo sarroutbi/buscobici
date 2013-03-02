@@ -58,7 +58,7 @@ CUFFS_SEARCH="Puños"
 DIR_SEARCH="Dirección"
 BREAK_SEARCH="Frenos"
 
-pages="$(seq 1 13)"
+pages="$(seq 1 20)"
 
 test -f ${ALL_BIKEURLS_FILE} && rm ${ALL_BIKEURLS_FILE}
 test -f ${ALL_BIKENAMES_FILE} && rm ${ALL_BIKENAMES_FILE}
