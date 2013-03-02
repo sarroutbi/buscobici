@@ -152,7 +152,7 @@ if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
 }
 
 
-$search = preg_replace('/[^a-zA-Z0-9\ ]/i', null, $search);
+$search = preg_replace('/[^a-zA-Z0-9\ \.]/i', null, $search);
 
 $search_array=str_word_count($search, 1, '0123456789-/.');
 $start = ($page - 1) * $resultsPerPage;
