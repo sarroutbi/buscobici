@@ -1,0 +1,28 @@
+# Netscape HTTP Cookie File
+# http://www.netscape.com/newsref/std/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.www.ademails.com	TRUE	/	FALSE	0	IC1059993773	1059993773
+.google.es	TRUE	/	FALSE	0	PREF	ID=ea62f0c3cfa9eb7f:FF=0:TM=1362237525:LM=1362237525:S=E4CLqbrwnjWd8sO1
+.google.es	TRUE	/	FALSE	0	NID	67=Gajexh6w6NHBOWHjHK0hOp54_Iq_CRY42XIyW7VooBWnEpbknj-fCp7H19853pfRM2aWvAJpfJMAhvroNkWQ6AqpW6P0_MQnPkO0X1ww5q2sKzx7YkAkY3ZaYFpgoauE
+.www.labicitienda.com	TRUE	/	FALSE	0	osCsid	2acd915569b87d1e54ead0e916f8be27
+.labicitienda.com	TRUE	/	FALSE	0	__utmc	212737545
+.labicitienda.com	TRUE	/	FALSE	0	__utmz	212737545.1362237079.1.1.utmccn=(direct)|utmcsr=(direct)|utmcmd=(none)
+.labicitienda.com	TRUE	/	FALSE	0	__utmb	212737545
+.labicitienda.com	TRUE	/	FALSE	0	__utma	212737545.1392775721.1362237079.1362237079.1362237079.1
+www.google.com	FALSE	/accounts/	TRUE	0	GoogleAccountsLocale_session	es
+accounts.google.com	FALSE	/	TRUE	0	GoogleAccountsLocale_session	es
+accounts.google.com	FALSE	/	TRUE	0	GAPS	1:tF9SJne49_BWYrpzn2rJ-NPdAAlVfg:cl1S5rPpN2xOLIzw
+accounts.google.com	FALSE	/	TRUE	0	GALX	SWDdchIWMvs
+.accounts.google.com	TRUE	/	FALSE	0	__utma	72592003.2007769739.1362237063.1362237063.1362237063.1
+.accounts.google.com	TRUE	/	FALSE	0	__utmb	72592003.1.10.1362237063
+.accounts.google.com	TRUE	/	FALSE	0	__utmc	72592003
+.accounts.google.com	TRUE	/	FALSE	0	__utmz	72592003.1362237063.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+.google.com	TRUE	/	FALSE	0	GMAIL_RTT	191
+.google.com	TRUE	/	FALSE	0	PREF	ID=3daee4f5be0e7266:TM=1362237223:LM=1362237223:S=h2T3p3jAF7aYRxSI
+.google.com	TRUE	/	FALSE	0	NID	67=q4f8WocKyMgUnowYosQJPaMnI6lHkt096kpEKo_bUWG-xAAsf0UcvWc-QQkpLdNef8Uj23K_Agr0tWaQeY8f9pVIrbfhNcMImJqlneu02Avg1JLW5vPfpJcUJuOZP7Iq
+accounts.youtube.com	FALSE	/accounts/	TRUE	0	GoogleAccountsLocale_session	es
+accounts.youtube.com	FALSE	/accounts/	FALSE	0	CheckConnectionTempCookie575	723574
+www.linkdiagnosis.com	FALSE	/	FALSE	0	AWSELB	9DE707BB184138C3CBAB92766051F8D9605528B59A171C8FFB6AF1967222C1A215BD9A2EAEF5B537533572CF5B1F4213A82F89A2F9274796DF5E874C2A851ED75600887C7E
+.doubleclick.net	TRUE	/	FALSE	0	_drt_	NO_DATA
+.doubleclick.net	TRUE	/	FALSE	0	id	22294d1e7701003f||t=1362237559|et=730|cs=002213fd484d4daa5516df2a80
