@@ -20,6 +20,8 @@
 URL="http://www.probikeshop.es"
 ONLY_DOMAIN="probikeshop.es"
 EXCLUDE="-Rgif -Rpng -Rjpg"
+MAX_TRIES=10
+MAX_TIMEOUT=10
 
 function get_page()
 {
@@ -28,12 +30,12 @@ function get_page()
   if [ "${PAGES}" = "" ];
   then
     echo "GETTING PAGE=>${BASE_URL}<="
-    wget "${BASE_URL}" 
+    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
   else
     for page in ${PAGES};
     do
     echo "GETTING PAGE=>${BASE_URL}${page}<="
-      wget "${BASE_URL}${page}" 
+      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
     done 
   fi
 }

@@ -18,6 +18,8 @@
 # Calmera store !
 URL="www.ciclosnico.com"
 ONLY_DOMAIN="ciclosnico.com"
+MAX_TRIES=10
+MAX_TIMEOUT=10
 
 function get_page()
 {
@@ -25,15 +27,14 @@ function get_page()
   PAGES="$2"
   if [ "${PAGES}" = "" ];
   then
-    wget "${BASE_URL}" 
+    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
   else
     for page in ${PAGES};
     do
-      wget "${BASE_URL}${page}" 
+      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
     done 
   fi
 }
-
 
 ROAD_BIKES_BASE="${URL}/tienda/31-carretera"
 ROAD_BIKES_PAGES=""
