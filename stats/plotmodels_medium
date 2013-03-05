@@ -4,7 +4,7 @@ reset
 
 #randcolor(r) = ((rand(0)*0xFF0000) + (rand(0)*0x00FF00) + (rand(0)*0x0000FF))
 #randcolor(r) = (((r/1000)*0xFF0000) + ((r/1000)*0x00FF00) + ((r/1000)*0x0000FF))
-randcolor(r) = (((r/1000)*0xFF0000) + (rand(0)*0x00FF00) + (rand(r)*0x0000FF))
+randcolor(r) = (((r/1000)*0xFF0000) + (rand(1)*0x00FF00) + (rand(r)*0x0000FF))
 
 set  lmargin at screen 0.10
 set  rmargin at screen 0.95
