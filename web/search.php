@@ -75,7 +75,7 @@ echo "<html>\n";
 echo "\n";
 echo "<head>\n";
 echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
-echo "<title>Buscador de Bicicletas - Comprar Bici - Buscar</title>\n";
+echo "<title>Buscador de Bicicletas - Comprar Bicicleta - Resultados</title>\n";
 echo "<link rel=\"stylesheet\" href=\"bikesearch.css\" type=\"text/css\">\n";
 echo "<script type=\"text/javascript\">\n";
 echo "  var _gaq = _gaq || [];\n";
