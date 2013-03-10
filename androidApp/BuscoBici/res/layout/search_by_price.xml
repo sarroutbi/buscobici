@@ -10,17 +10,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:minWidth="100dp"
         android:onClick="simpleSearch"
-        android:text="@string/simple_search" />
-
-    <SeekBar
-        android:id="@+id/seekBar01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/seekBar00"
-        android:layout_below="@+id/seekBar00"
-        android:max="@integer/maxPrice" />
+        android:text="@string/simple_search"
+        android:width="240dp" />
 
     <SeekBar
         android:id="@+id/seekBar00"
@@ -54,40 +47,12 @@
         android:onClick="soapSearch"
         android:text="@string/button_search" />
 
-    <TextView
-        android:id="@+id/textView01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/seekBar01"
-        android:layout_alignLeft="@+id/button3"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/seekBar00" />
-
-    <TextView
-        android:id="@+id/textView00"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/seekBar00"
-        android:layout_alignLeft="@+id/textView01"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/seekBar00"
-        android:layout_toLeftOf="@+id/textView01" />
-
-    <Button
-        android:id="@+id/Button01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button3"
-        android:layout_toRightOf="@+id/button2"
-        android:onClick="byPriceSearch"
-        android:text="@string/search_bytype" />
-
     <RadioGroup
         android:id="@+id/radioGroup1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/seekBar01"
+        android:layout_below="@+id/seekBar00"
         android:orientation="horizontal" >
 
         <RadioButton
@@ -128,21 +93,48 @@
             android:text="@string/type_all" />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button3"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/Button01"
-        android:onClick="advancedSearch"
-        android:text="@string/advanced_search" />
-
     <ProgressBar
         android:id="@+id/progressBar00"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <SeekBar
+        android:id="@+id/seekBar01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progressBar00"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/seekBar00"
+        android:max="@integer/maxPrice" />
+
+    <Button
+        android:id="@+id/Button01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button3"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/button2"
+        android:onClick="byPriceSearch"
+        android:text="@string/search_bytype" />
+
+    <TextView
+        android:id="@+id/textView00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/seekBar00"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/seekBar00" />
+
+    <TextView
+        android:id="@+id/textView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progressBar00"
+        android:layout_alignLeft="@+id/textView00"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/seekBar01" />
 
 </RelativeLayout>

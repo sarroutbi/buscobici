@@ -23,7 +23,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:onClick="simpleSearch"
-        android:text="@string/simple_search" />
+        android:text="@string/simple_search"
+        android:width="240dp" />
 
     <Button
         android:id="@+id/button3"
@@ -39,20 +40,11 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/button2"
         android:onClick="byPriceSearch"
         android:text="@string/search_bytype" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/button1"
-        android:onClick="advancedSearch"
-        android:text="@string/advanced_search" />
 
     <ProgressBar
         android:id="@+id/progressBar00"

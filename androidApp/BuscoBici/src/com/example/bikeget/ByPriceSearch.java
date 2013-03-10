@@ -110,9 +110,9 @@ public class ByPriceSearch extends Activity implements
  	     String sFromCurrency = textView00.getText().toString().trim();
  	     String sToCurrency   = textView01.getText().toString().trim();
  	     String sPriceFrom = sFromCurrency.substring(0, 
- 	    		 sFromCurrency.length()-1);
+ 	    		 sFromCurrency.length()-3);
  	     String sPriceTo   = sToCurrency.substring(0, 
- 	    		 sToCurrency.length()-1);
+ 	    		 sToCurrency.length()-3);
  	     int priceFrom = Integer.valueOf(sPriceFrom);
  	     int priceTo   = Integer.valueOf(sPriceTo);
  	     String type   = getType();
@@ -145,14 +145,14 @@ public class ByPriceSearch extends Activity implements
 		 progressBar00.setVisibility(View.INVISIBLE);
 	 } 
 	 
-	 public void advancedSearch(View view) {
+	 /*public void advancedSearch(View view) {
 	        //Intent intentExercise = new Intent(view.getContext(), 
 	        //		AdvancedSearch.class);
 	        //startActivityForResult(intentExercise, 0);
 		 if(soapThread != null)
 		    	soapThread.cancelDownload();
 		 progressBar00.setVisibility(View.INVISIBLE);
-	 } 
+	 }*/ 
 	 
 	 @Override
 	 public void onStartTrackingTouch(SeekBar arg0) {
@@ -182,27 +182,83 @@ public class ByPriceSearch extends Activity implements
 		 if(seekBar == seekBar1)
 		 {
 			 int minPrice = seekBar1.getProgress();
-			 int maxPrice = seekBar2.getProgress();     
-             textView00.setText(" " + ((progress*progress*9) + 100 - 
-            		 ((progress*progress*9)%100)) + "€");
+			 int maxPrice = seekBar2.getProgress();
+			 if (progress == 0)
+				 textView00.setText("0 €");
+			 else if (progress > 98)
+				 textView00.setText(" " + ((progress*progress*2.1) + 100 - 
+						 ((progress*progress*2.1)%100)) + "€");
+			 else if (progress > 96)
+				 textView00.setText(" " + ((progress*progress*1.8) + 100 - 
+						 ((progress*progress*1.8)%100)) + "€");
+			 else if (progress > 93)
+				 textView00.setText(" " + ((progress*progress*1.5) + 100 - 
+						 ((progress*progress*1.5)%100)) + "€");
+			 else if (progress > 90)
+				 textView00.setText(" " + ((progress*progress*1.2) + 100 - 
+						 ((progress*progress*1.2)%100)) + "€");			 
+			 else
+				 textView00.setText(" " + ((progress*progress*1.0) + 100 - 
+						 ((progress*progress*1.0)%100)) + "€");
             
 		     if(minPrice > maxPrice)
 		     {
-		    	 textView01.setText(" " + ((progress*progress*9) + 100 - 
-				    	 ((progress*progress*9)%100)) + "€");
+		    	 if (progress > 98)
+					 textView00.setText(" " + ((progress*progress*2.1) + 100 - 
+							 ((progress*progress*2.1)%100)) + "€");
+		    	 else if (progress > 96)
+					 textView00.setText(" " + ((progress*progress*1.8) + 100 - 
+							 ((progress*progress*1.8)%100)) + "€");
+		    	 else if (progress > 93)
+					 textView00.setText(" " + ((progress*progress*1.5) + 100 - 
+							 ((progress*progress*1.5)%100)) + "€");		    	
+		    	 else if(progress > 90)
+		    		 textView01.setText(" " + ((progress*progress*1.2) + 100 - 
+		    				 ((progress*progress*1.2)%100)) + "€");
+		    	 else
+		    		 textView01.setText(" " + ((progress*progress*1.0) + 100 - 
+		    				 ((progress*progress*1.0)%100)) + "€");
 		    	 seekBar2.setProgress(progress);
 		     }
 		 }
 		 else if(seekBar == seekBar2)
 		 {
 			 int minPrice = seekBar1.getProgress();
-			 int maxPrice = seekBar2.getProgress();             
-             textView01.setText(" " + ((progress*progress*9) + 100 - 
-            		 ((progress*progress*9)%100)) + "€");
+			 int maxPrice = seekBar2.getProgress();
+			 if (progress == 0)
+				 textView01.setText("0 €");
+			 else if (progress > 98)
+				 textView01.setText(" " + ((progress*progress*2.1) + 100 - 
+						 ((progress*progress*2.1)%100)) + "€");
+			 else if (progress > 96)
+				 textView01.setText(" " + ((progress*progress*1.8) + 100 - 
+						 ((progress*progress*1.8)%100)) + "€");
+			 else if (progress > 93)
+				 textView01.setText(" " + ((progress*progress*1.5) + 100 - 
+						 ((progress*progress*1.5)%100)) + "€");
+			 else if (progress > 90)
+				 textView01.setText(" " + ((progress*progress*1.2) + 100 - 
+						 ((progress*progress*1.2)%100)) + "€");
+			 else
+				 textView01.setText(" " + ((progress*progress*1.0) + 100 - 
+						 ((progress*progress*1.0)%100)) + "€");
              if(maxPrice < minPrice)
 		     {
-		    	 textView00.setText(" " + ((progress*progress*9) + 100 - 
-	            		 ((progress*progress*9)%100)) + "€");
+    			 if (progress > 98)
+    				 textView00.setText(" " + ((progress*progress*2.1) + 100 - 
+    						 ((progress*progress*2.1)%100)) + "€");
+    			 else if (progress > 96)
+    				 textView00.setText(" " + ((progress*progress*1.8) + 100 - 
+    						 ((progress*progress*1.8)%100)) + "€");
+    			 else if (progress > 93)
+    				 textView00.setText(" " + ((progress*progress*1.5) + 100 - 
+    						 ((progress*progress*1.5)%100)) + "€");
+    			 else if (progress > 90)
+    				 textView00.setText(" " + ((progress*progress*1.2) + 100 - 
+    						 ((progress*progress*1.2)%100)) + "€");
+    			 else
+    				 textView00.setText(" " + ((progress*progress*1.0) + 100 - 
+    						 ((progress*progress*1.0)%100)) + "€");
 		    	 seekBar1.setProgress(progress);
 		     }
 		 }

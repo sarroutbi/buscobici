@@ -84,11 +84,11 @@ public class SimpleSearch extends Activity {
 	     startActivityForResult(intentExercise, 0);
 	 }
 	 
-	 public void advancedSearch(View view) {
+	 /*public void advancedSearch(View view) {
 		 if(soapThread!=null)
 		    	soapThread.cancelDownload();
 	     progressBar00.setVisibility(View.INVISIBLE);
-	 } 
+	 }*/ 
 	 
 	 public void soapSearch(View view) {
 	     progressBar00.setVisibility(View.VISIBLE);
