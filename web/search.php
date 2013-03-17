@@ -136,6 +136,18 @@ if (   ((!$search)    || (strlen($search)==0))
     && ((!$priceTo)   || (strlen($priceTo)==0))   
     && ((!$type)      || (strlen($type)==0))   
     ) {
+  echo "<a href=\"index.html\"><img class=\"logo_img\" src=\"resource/logo-ori-t-pink-grey-smaller.png\" alt=\"Inicio\"/></a>";
+  echo "<nav class=\"nav_search\">\n";
+  echo "<ul>\n";
+  echo "\t<li><a href=\"index.html\">Búsqueda Simple</a></li>\n";
+  echo "\t<li><a href=\"byprice.html\">Búsqueda por Precio y Tipo</a></li>\n";
+  echo "\t<li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
+  echo "\t<li><a href=\"stats_fullscreen.html\">Estadísticas</a></li>\n";
+  echo "\t<li><a href=\"contact.html\">Contactar</a></li>\n";
+  echo "</ul>\n";
+  echo "</nav>\n";
+  echo "<br>\n";
+  echo "<br>\n";
   echo "<section id=\"search_error\">\n";
   echo "<p>B&uacute;squeda vac&iacute;a</p>\n";
   echo "</section>\n";
@@ -224,13 +236,14 @@ $query .= ";";
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
 
 echo "<section>\n";
-        echo "<nav>\n";
+        echo "<a href=\"index.html\"><img class=\"logo_img\" src=\"resource/logo-ori-t-pink-grey-smaller.png\" alt=\"Inicio\"/></a>";
+        echo "<nav class=\"nav_search\">\n";
         echo "<ul>\n";
         echo "\t<li><a href=\"index.html\">Búsqueda Simple</a></li>\n";
         echo "\t<li><a href=\"byprice.html\">Búsqueda por Precio y Tipo</a></li>\n";
         echo "\t<li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
         echo "\t<li><a href=\"stats_fullscreen.html\">Estadísticas</a></li>\n";
-        echo "\t<li id=\"li_contact\"><a href=\"contact.html\">Contactar</a></li>\n";
+        echo "\t<li><a href=\"contact.html\">Contactar</a></li>\n";
         echo "</ul>\n";
         echo "</nav>\n";
         echo "<br>\n";
@@ -297,7 +310,7 @@ echo "</table>\n";
 echo "</section>\n";
 if ($round==0) {
     echo "<section id=\"search_error\">\n";
-    echo "<p>Sin resultados</p>\n";
+    echo "<p>Lo sentimos. No se encontraron resultados para su b&uacute;squeda.</p>\n";
     echo "</section>\n";
 }
 
