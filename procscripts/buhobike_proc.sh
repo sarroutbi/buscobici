@@ -75,7 +75,7 @@ function print_model()
 # 1 - The URL of bike
 function print_price()
 {
-  PRICES=$(wget "$1" -O - 2>&1 | grep "IVA" | grep '&euro' | grep -o "[0-9,\.]*[0-9],[0-9]*" | tr -d '.' | tail -1)
+  PRICES=$(wget "$1" -O - 2>&1 | grep '&euro' | grep -o "[0-9,\.]*[0-9],[0-9]*" | tr -d '.' | tail -1)
   for price in ${PRICES};
   do
     PRICE=${price} 
@@ -153,7 +153,7 @@ function process_pages()
         # echo "BIKE:=>${bike}<="
         TRADEMARK=$(echo ${bike} | awk -F "<br>" {'print $1'} | sed -e 's/<[^>]*>//g')
         MODEL=$(echo ${bike} | awk -F "<br>" {'print $2'} | sed -e 's/<[^>]*>//g' | tr "'" '"')
-        PRICE=$(echo ${bike} | awk -F "<br>" {'print $3'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o)
+        PRICE=$(echo ${bike} | awk -F "<br>" {'print $3'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o | tail -1)
         # echo "=========>${bike}<==========="
         URL=$(echo "${bike}" | awk -F "<a href='" {'print $2'} | awk -F ">" {'print $1'} | tr -d "'")
         FINAL_URL="${BASE_URL}${URL}"
@@ -171,7 +171,7 @@ function process_pages()
         # echo "BIKE:=>${bike}<="
         TRADEMARK=$(echo ${bike} | awk -F "<br>" {'print $1'} | sed -e 's/<[^>]*>//g')
         MODEL=$(echo ${bike} | awk -F "<br>" {'print $2'} | sed -e 's/<[^>]*>//g' | tr "'" '"')
-        PRICE=$(echo ${bike} | awk -F "<br>" {'print $3'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o)
+        PRICE=$(echo ${bike} | awk -F "<br>" {'print $3'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o | tail -1)
         # echo "=========>${bike}<==========="
         URL=$(echo "${bike}" | awk -F "<a href='" {'print $2'} | awk -F ">" {'print $1'} | tr -d "'")
         FINAL_URL="${BASE_URL}${URL}"
