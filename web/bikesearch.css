@@ -38,7 +38,7 @@ top: 0%;
 
 .nav_search {
 position: relative;
-left: 10%;
+left: -2%;
 top: 0;
 width: 100%;
 background: nav_);
@@ -46,9 +46,9 @@ background: nav_);
 
 nav {
 position: relative;
-left: 180px;
+/* left: 20px; */
 /* top: 50px; */
-width: 90%;
+width: 100%;
 background: nav_);
 }
 
@@ -61,7 +61,7 @@ nav ul {
 margin: 0 auto;
 width: 1024px;
 list-style: none;
-width: 90%;
+width: 100%;
 }
 
 nav ul li {
@@ -80,7 +80,7 @@ nav ul li a {
 display: block;
 margin-right: 30px;
 /* width: 220px; */
-font-size: 18px;
+font-size: 24px;
 line-height: 44px;
 text-align: left;
 text-decoration: none;
@@ -112,8 +112,8 @@ margin-right:auto;
 
 #contact {
 position: absolute;
-top:30%; 
-left:27%;
+top:35%; 
+left:32%;
 margin-left:auto;
 margin-right:auto;
 font-size: 14px;
@@ -286,8 +286,8 @@ margin-right:auto;
 /* top:25%; */
 text-align: center; 
 position: absolute;
-left:25px;
-font-size: 12px;
+left:26px;
+font-size: 15px;
 color: #777;
 }
 
@@ -335,7 +335,7 @@ line-height:0;
 }
 
 #input_search_en {
-width:200px;
+width:250px;
 }
 
 #input_search {
@@ -446,7 +446,7 @@ table.tableSearch{
 }
 
 .input_simple_search {
-   width: 260px; 
+   width: 350px; 
    height: 25px; 
    background: #ffffff;
    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff20%);
@@ -462,7 +462,7 @@ table.tableSearch{
 }
 
 .input_byprice_search {
-   width: 260px; 
+   width: 350px; 
    height: 25px; 
    background: #ffffff;
    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff20%);
