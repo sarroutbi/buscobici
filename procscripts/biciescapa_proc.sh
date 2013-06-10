@@ -208,10 +208,10 @@ function process_pages()
 }
 
 MTB_FIX_BIKES_BASE="12-bicicletas-rigidas?p="
-MTB_FIX_BIKES_PAGES="$(seq 1 5)"
+MTB_FIX_BIKES_PAGES="$(seq 1 10)"
 
 MTB_DOUBLE_BIKES_BASE="14-doble-suspensio?p="
-MTB_DOUBLE_BIKES_PAGES="$(seq 1 5)"
+MTB_DOUBLE_BIKES_PAGES="$(seq 1 10)"
 
 MTB_DOWN_BIKES_BASE="13-descenso"
 MTB_DOWN_BIKES_PAGES=""
@@ -228,8 +228,8 @@ BMX_BIKES_PAGES=""
 URBAN_BIKES_BASE="10-bicicletas-paseo-electricas?p="
 URBAN_BIKES_PAGES="$(seq 1 5)"
 
-FOLDING_BIKES_BASE="11-plegables"
-FOLDING_BIKES_PAGES=""
+FOLDING_BIKES_BASE="11-plegables?p="
+FOLDING_BIKES_PAGES="$(seq 1 2)"
 
 KIDS_BIKES_BASE="61-junior?p="
 KIDS_BIKES_PAGES="$(seq 1 5)"
