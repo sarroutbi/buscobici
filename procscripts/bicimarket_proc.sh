@@ -164,6 +164,7 @@ BMX_BIKES_BASE="Bicicletas-BMX-c20249.html"
 ROAD_BIKES_BASE="Bicicletas-Carretera-c10020.html"
 CICLOCROSS_BIKES_BASE="Bicicletas-Ciclocross-c20270.html"
 MTB_XC_BIKES_BASE="Bicicletas-Cross-country-c1010.html"
+CRUISERS_BIKES_BASE="Bicicletas-Cruisers-c20397.html"
 DIRT_BIKES_BASE="Bicicletas-Dirt-c20303.html"
 DOUBLE_FREERIDE_BIKES_BASE="Bicicletas-Doble-Freeride-DH-c20164.html"
 MTB_DOUBLE_BIKES_BASE="Bicicletas-Doble-XC-Enduro-c20075.html"
@@ -171,6 +172,7 @@ FIXIE_BIKES_BASE="Bicicletas-Fixed-c20306.html"
 HYBRID_BIKES_BASE="Bicicletas-Hibrida-c10050.html"
 JUNIOR_BIKES_BASE="Bicicletas-Infantil-c20177.html"
 LADY_BIKES_BASE="Bicicletas-Lady-c20253.html"
+VELO_BIKES_BASE="Bicicletas-Pista-c20396.html"
 FOLDING_BIKES_BASE="Bicicletas-Plegable-c10070.html"
 TRIATLON_BIKES_BASE="Bicicletas-Triatlon-c20376.html"
 URBAN_BIKES_BASE="Bicicletas-Urbanas-c10030.html"
@@ -183,6 +185,7 @@ process_pages "${BMX_BIKES_BASE}" "Bicimarket" "BMX" >> ${OUTPUT_FILE}
 process_pages "${ROAD_BIKES_BASE}" "Bicimarket" "ROAD"  >> ${OUTPUT_FILE}
 process_pages "${CICLOCROSS_BIKES_BASE}" "Bicimarket" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${MTB_XC_BIKES_BASE}" "Bicimarket" "MTB-FIX" >> ${OUTPUT_FILE}
+process_pages "${CRUISERS_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${DIRT_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${DOUBLE_FREERIDE_BIKES_BASE}" "Bicimarket" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_DOUBLE_BIKES_BASE}" "Bicimarket" "MTB-DOUBLE" >> ${OUTPUT_FILE}
@@ -190,6 +193,7 @@ process_pages "${FIXIE_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${HYBRID_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${JUNIOR_BIKES_BASE}" "Bicimarket" "KIDS" >> ${OUTPUT_FILE}
 process_pages "${LADY_BIKES_BASE}" "Bicimarket" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages "${VELO_BIKES_BASE}" "Bicimarket" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${FOLDING_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${TRIATLON_BIKES_BASE}" "Bicimarket" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${URBAN_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
