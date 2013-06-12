@@ -38,6 +38,9 @@ function get_page()
   fi
 }
 
+MTB_27_5_BIKES_BASE="${URL}/Bicicletas-27-5-pulgadas-c20400.html"
+MTB_27_5_BIKES_PAGES=""
+
 MTB_29_BIKES_BASE="${URL}/Bicicletas-29-pulgadas-c20380.html"
 MTB_29_BIKES_PAGES=""
 
@@ -90,6 +93,7 @@ URBAN_BIKES_BASE="${URL}/Bicicletas-Urbanas-c10030.html"
 URBAN_BIKES_PAGES=""
 
 get_page "${MTB_29_BIKES_BASE}"
+get_page "${MTB_27_5_BIKES_BASE}"
 get_page "${ELECTRIC_BIKES_BASE}"
 get_page "${TRIAL_BIKES_BASE}"
 get_page "${BMX_BIKES_BASE}"

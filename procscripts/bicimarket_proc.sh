@@ -157,6 +157,7 @@ function process_pages()
 > ${OUTPUT_FILE}
 
 MTB_29_BIKES_BASE="Bicicletas-29-pulgadas-c20380.html"
+MTB_27_5_BIKES_BASE="Bicicletas-27-5-pulgadas-c20400.html"
 ELECTRIC_BIKES_BASE="Bicicletas-Bicicleta-Electrica-c20130.html"
 TRIAL_BIKES_BASE="Bicicletas-BikeTrial-c20131.html"
 BMX_BIKES_BASE="Bicicletas-BMX-c20249.html"
@@ -174,6 +175,7 @@ FOLDING_BIKES_BASE="Bicicletas-Plegable-c10070.html"
 TRIATLON_BIKES_BASE="Bicicletas-Triatlon-c20376.html"
 URBAN_BIKES_BASE="Bicicletas-Urbanas-c10030.html"
 
+process_pages "${MTB_27_5_BIKES_BASE}" "Bicimarket" "MTB" >> ${OUTPUT_FILE}
 process_pages "${MTB_29_BIKES_BASE}" "Bicimarket" "MTB-29" >> ${OUTPUT_FILE}
 process_pages "${ELECTRIC_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${TRIAL_BIKES_BASE}" "Bicimarket" "BMX" >> ${OUTPUT_FILE}
