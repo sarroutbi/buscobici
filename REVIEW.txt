@@ -1,0 +1,8 @@
+REVIEW.txt file
+---------------
+This file contains which stores have been reviewed and the date.
+
+- BiciEscapa: 20130612
+- BiciMania : 20130612
+- BiciMarket: 20130612
+- BikeOS    : 20130612
