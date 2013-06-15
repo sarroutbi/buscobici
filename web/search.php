@@ -139,8 +139,8 @@ if (   ((!$search)    || (strlen($search)==0))
   echo "<a href=\"index.html\"><img class=\"logo_img\" src=\"resource/logo-ori-t-pink-grey-small.png\" alt=\"Inicio\"/></a>";
   echo "<nav class=\"nav_search\">\n";
   echo "<ul>\n";
-  echo "\t<li><a href=\"index.html\">Búsqueda Simple</a></li>\n";
-  echo "\t<li><a href=\"byprice.html\">Búsqueda por Precio y Tipo</a></li>\n";
+  echo "\t<li><a href=\"index.html\">Simple</a></li>\n";
+  echo "\t<li><a href=\"byprice.html\">Precio y Tipo</a></li>\n";
   echo "\t<li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
   echo "\t<li><a href=\"stats_fullscreen.html\">Estadísticas</a></li>\n";
   echo "\t<li><a href=\"contact.html\">Contactar</a></li>\n";
@@ -236,11 +236,10 @@ $query .= ";";
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
 
 echo "<section>\n";
-        echo "<a href=\"index.html\"><img class=\"logo_img\" src=\"resource/logo-ori-t-pink-grey-small.png\" alt=\"Inicio\"/></a>";
         echo "<nav class=\"nav_search\">\n";
         echo "<ul>\n";
-        echo "\t<li><a href=\"index.html\">Búsqueda Simple</a></li>\n";
-        echo "\t<li><a href=\"byprice.html\">Búsqueda por Precio y Tipo</a></li>\n";
+        echo "\t<li><a href=\"index.html\">B&uacute;squeda Simple</a></li>\n";
+        echo "\t<li><a href=\"byprice.html\">B&uacute;squeda por Precio y Tipo</a></li>\n";
         echo "\t<li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
         echo "\t<li><a href=\"stats_fullscreen.html\">Estadísticas</a></li>\n";
         echo "\t<li><a href=\"contact.html\">Contactar</a></li>\n";
