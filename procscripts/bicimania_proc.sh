@@ -63,7 +63,7 @@ function print_model()
 {
   #echo "======================================"
   #  echo "======> URL:${1} <========="
-  MODELS=$(wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} -O - "$1" 2>&1 | grep "<title>" -A3 | sed -e 's/<[^>]*>//g' | grep "[A-Z,a-z,0-9]" | head -1 | awk -F " - " {'print $NF'} | tr -d "\n")
+  MODELS=$(wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} -O - "$1" 2>&1 | grep "<title>" -A3 | sed -e 's/<[^>]*>//g' | grep "[A-Z,a-z,0-9]" | head -1 | awk -F " - " {'print $NF'} | tr -d "\n" | sed s-" [Nn]i.a "-" Niña "-g | sed s-" [Nn]i.o "-" Niño "-g)
   echo "${MODELS}" | while read model;
   do
     MODEL="${model}"
