@@ -24,8 +24,8 @@
 # KIND=MTB-FIX
 
 MAX_PRICE=2
-#OUTPUT_FILE=./output
-OUTPUT_FILE=/dev/stdout
+OUTPUT_FILE=./output
+#OUTPUT_FILE=/dev/stdout
 BASE_URL="http://www.bicispasaje.es"
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
