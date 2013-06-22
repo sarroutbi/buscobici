@@ -16,8 +16,8 @@
 #
 # This script gets all the bicycles from
 # Calmera store !
-URL="www.bicispasaje.es"
-ONLY_DOMAIN="bicispasaje.es"
+URL="preciosbicicletas.es"
+ONLY_DOMAIN="preciosbicicletas.es"
 MAX_TRIES=10
 MAX_TIMEOUT=10
 
@@ -36,30 +36,36 @@ function get_pages()
   fi
 }
 
-MTB_BIKES_ORBEA_26_MTB_BASE="${URL}/orbea-2013/orbea-mtb-26.html"
-MTB_BIKES_CUBE_26_MTB_BASE="${URL}/cube-2013/cube_mtb.html"
-MTB_BIKES_ORBEA_29_MTB_BASE="${URL}/orbea-2013/orbea-mtb-29.html"
-MTB_BIKES_CUBE_29_MTB_BASE="${URL}/cube-2013/cube_mtb_29_er.html"
-MTB_BIKES_ORBEA_DOUBLE_26_MTB_BASE="${URL}/orbea-2013/orbea-doble-suspension-2013.html"
-MTB_BIKES_CUBE_DOUBLE_26_MTB_BASE="${URL}/cube-2013/cube-doble-suspension-26.html"
-MTB_BIKES_ORBEA_DOUBLE_29_MTB_BASE="${URL}/orbea-2013/orbea-doble-suspension-29er.html"
-MTB_BIKES_CUBE_DOUBLE_29_MTB_BASE="${URL}/cube-2013/cube-doble-suspension-29er.html"
-MTB_BIKES_ORBEA_ROAD_MTB_BASE="${URL}/orbea-2013/orbea-carretera.html"
-MTB_BIKES_CUBE_ROAD_MTB_BASE="${URL}/cube-2013/cube-carretera.html"
-MTB_BIKES_CUBE_2012_MTB_BASE="${URL}/cube-2012/cube-liquidacion-2012.html"
-MTB_BIKES_LAPIERRE_2012_MTB_BASE="${URL}/lapierre-2012/mtb-lapierre.html"
-MTB_BIKES_ORBEA_2012_MTB_BASE="${URL}/orbea-2012/liquidacion-2012-orbea.html"
+MTB_BIKES_ORBEA_26_MTB_BASE="${URL}/es/8-orbea-rígidas-26"
+MTB_BIKES_CUBE_26_MTB_BASE="${URL}/es/9-cube-rígida-26"
+MTB_BIKES_MMR_26_MTB_BASE="${URL}/es/151-mmr-rígida-26"
+MTB_BIKES_ORBEA_29_MTB_BASE="${URL}/es/11-orbea-rígida-29er"
+MTB_BIKES_CUBE_29_MTB_BASE="${URL}/es/14-cube-rígida-29er"
+MTB_BIKES_MMR_29_MTB_BASE="${URL}/es/152-mmr-rígida-29er"
+MTB_BIKES_ORBEA_DOUBLE_26_MTB_BASE="${URL}/es/18-orbea-doble-susp-26"
+MTB_BIKES_CUBE_DOUBLE_26_MTB_BASE="${URL}/es/19-cube-doble-susp-26"
+MTB_BIKES_ORBEA_DOUBLE_29_MTB_BASE="${URL}/es/28-orbea-doble-susp-29er"
+MTB_BIKES_CUBE_DOUBLE_29_MTB_BASE="${URL}/es/23-cube-doble-susp-29er"
+MTB_BIKES_ORBEA_ROAD_MTB_BASE="${URL}/es/33-orbea-carretera"
+MTB_BIKES_CUBE_ROAD_MTB_BASE="${URL}/es/32-cube-carretera"
+MTB_BIKES_ROAD_2012="${URL}/es/63-bicis-carretera-2012"
+MTB_BIKES_ROAD_TRIATLON="${URL}/es/142-triatlon"
+MTB_BIKES_KIDS="${URL}/es/34-infantiles"
+MTB_BIKES_WOMAN="${URL}/es/122-dama"
 
 get_pages "${MTB_BIKES_ORBEA_26_MTB_BASE}"
 get_pages "${MTB_BIKES_CUBE_26_MTB_BASE}"
+get_pages "${MTB_BIKES_MMR_26_MTB_BASE}"
 get_pages "${MTB_BIKES_ORBEA_29_MTB_BASE}"
 get_pages "${MTB_BIKES_CUBE_29_MTB_BASE}"
+get_pages "${MTB_BIKES_MMR_29_MTB_BASE}"
 get_pages "${MTB_BIKES_ORBEA_DOUBLE_26_MTB_BASE}"
 get_pages "${MTB_BIKES_CUBE_DOUBLE_26_MTB_BASE}"
 get_pages "${MTB_BIKES_ORBEA_DOUBLE_29_MTB_BASE}"
 get_pages "${MTB_BIKES_CUBE_DOUBLE_29_MTB_BASE}"
 get_pages "${MTB_BIKES_ORBEA_ROAD_MTB_BASE}"
 get_pages "${MTB_BIKES_CUBE_ROAD_MTB_BASE}"
-get_pages "${MTB_BIKES_CUBE_2012_MTB_BASE}"
-get_pages "${MTB_BIKES_LAPIERRE_2012_MTB_BASE}"
-get_pages "${MTB_BIKES_ORBEA_2012_MTB_BASE}"
+get_pages "${MTB_BIKES_ROAD_2012}"
+get_pages "${MTB_BIKES_ROAD_TRIATLON}"
+get_pages "${MTB_BIKES_KIDS}"
+get_pages "${MTB_BIKES_WOMAN}"

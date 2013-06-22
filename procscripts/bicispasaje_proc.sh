@@ -24,7 +24,8 @@
 # KIND=MTB-FIX
 
 MAX_PRICE=2
-OUTPUT_FILE=./output
+#OUTPUT_FILE=./output
+OUTPUT_FILE=/dev/stdout
 BASE_URL="http://www.bicispasaje.es"
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
@@ -48,6 +49,8 @@ KIND_KEY="KIND"
 # 6 - Kind:      KIND=MTB
 function dump_bike()
 {
+  #if [[ "$1" != "" ]] && [[ "$2" != "" ]] && [[ "$3" != "" ]] \
+  #    && [[ "$4" != "" ]] && [[ "$4" -gt 50 ]] && [[ "$5" != "" ]]  && [[ "$6" != "" ]];
   if [[ "$1" != "" ]];
   then
     echo "[$1]"
@@ -79,25 +82,8 @@ function print_price()
 {
   FILE="$1"
   MODEL="$2"
-  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
-  if [ "${PRICE}" = "" ];
-  then
-    let MAX_PRICE_SEARCH=${MAX_PRICE_SEARCH}+5
-    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
-  fi
-  if [ "${PRICE}" = "" ];
-  then
-    let MAX_PRICE_SEARCH=${MAX_PRICE_SEARCH}+5
-    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | tail -1)
-  fi
-  if [ "${PRICE}" = "" ];
-  then
-    ### Last effort, go for first one
-    let MAX_PRICE_SEARCH=${MAX_PRICE_SEARCH}+90
-    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep -v "old-price" | grep -v "price-box" | grep "price" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,},{0,1}[0-9]{0,}" | tr -d '.' | head -1)
-  fi
-  PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ' ')
-  echo ${PRICE_NO_SPACE}
+  PRICE=$(echo "$1" | grep "${2}" | awk -F '<span class="price"' {'print $2'} | awk -F "/span>" {'print $1'} | awk -F ">" {'print $2'} | awk -F "<" {'print $1'})
+  echo ${PRICE} | awk -F "€" {'print $1'} | tr -d " "
 }
 
 # Params:
@@ -136,99 +122,75 @@ function camel()
   echo
 }
 
-function dump_bike_from_url()
-{
-    URL="$1"
-    SUBURL="$2"
-    FILE="$3"
-    STORE="$4"
-    TYPE="$5"
-    #FINAL_URL="${URL_BASE}/${SUBURL}/${URL}"
-
-    PRICE=$(grep ${URL} ${FILE} -B10 | grep "precio.jpg" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,}[0-9]{1,},{0,}[0-9]{0,}"  | tr "." "," | tail -1)
-    FINAL_URL=$(echo \""${BASE_URL}"/"${SUBURL}"/"${URL}"\")
-    FINAL_URL_NO_DOT=$(echo "${FINAL_URL}" | tr -d '"')
-    PRICE=$(wget -O - -o /dev/null ${FINAL_URL_NO_DOT} | grep -i precioactual -B2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{0,},{1}[0-9]{0,}" | tail -1 )
-    TRADEMARK_MODEL=$(wget -O - -o /dev/null ${FINAL_URL_NO_DOT} | grep "${PRICE}" -B2 | grep textoproducto | head -1 | sed -e 's/<[^>]*>//g')
-    TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
-    TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
-    MODEL=$(echo "${TRADEMARK_MODEL}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | sed -e 's/\.$//g')
-    MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
-    PRICE_NO_DOT=$(echo ${PRICE} | tr -d '.')
-    # echo "========================================================================"
-    # echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
-    # echo "TRADEMARK=${TRADEMARK_CAMEL}"
-    # echo "MODEL=${MODEL_CAMEL}"
-    # echo "URL=${FINAL_URL}"
-    # echo "PRICE=${PRICE_NO_DOT}"
-    # echo "STORE=${STORE}"
-    # echo "TYPE=${TYPE}"
-    # echo "FILE=${FILE}"
-    # echo "========================================================================"
-    dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE_NO_DOT}" "${STORE}" "${TYPE}"
-}
-
-function dump_bike_from_urls()
-{
-  URLS="$1"
-  SUBURL="$2"
-  FILE="$3"
-  STORE="$4"
-  TYPE="$5"
-  # echo "URLS:=>${URLS}<="
-  echo "${URLS}" | while read URL;
-  do
-    dump_bike_from_url "${URL}" "${SUBURL}" "${FILE}" "${STORE}" "${TYPE}"
-  done
-}
-
 function process_pages()
 {
   BASE_FILE="$1"
   PAGES="$2"
-  SUBURL="$3"
-  STORE="$4"
-  TYPE="$5"
+  STORE="$3"
+  TYPE="$4"
 
   if [ "${PAGES}" = "" ];
   then
-    URLS=$(cat "${BASE_FILE}" | grep "a href"  | grep img | grep "a href" | grep -v 'a href="\.\.' | awk -F "a href=" {'print $2'} | awk -F ">" {'print $1'} | grep -v facebook | tr -d '"')
-    dump_bike_from_urls "${URLS}" "${SUBURL}" "${BASE_FILE}" "${STORE}" "${TYPE}"
-  else
-    for page in ${PAGES};
-    do 
-      URLS=$(cat "${BASE_FILE}${page}" |grep "a href"  | grep img | grep "a href" | grep -v 'a href="\.\.' | awk -F "a href=" {'print $2'} | awk -F ">" {'print $1'} | grep -v facebook | tr -d '"')
-      dump_bike_from_urls "${URLS}" "${SUBURL}" "${BASE_FILE}${page}" "${STORE}" "${TYPE}"
+#    TRADEMARK_MODELS=$(cat ${BASE_FILE} | grep '<h3>' | awk -F '<h3>' {'print $2'} | awk -F '</h3>' {'print $1'} | sed -e 's/<[^>]*>//g')
+    TRADEMARK_MODELS=$(cat ${BASE_FILE} | grep '<h3>' | awk -F '<h3>' {'for(i=2;i<NF;++i){printf $i"\n";}'})
+    echo "${TRADEMARK_MODELS}" | while read line;
+    do
+      URL=$(echo ${line} | awk -F '</h3>' {'print $1'} | awk -F "<a href=" {'print $2'} | awk {'print $1'})
+      TRADEMARK_MODEL=$(echo ${line} | awk -F '</h3>' {'print $1'} | sed -e 's/<[^>]*>//g' )
+      TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
+      MODEL=$(echo "${TRADEMARK_MODEL}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+      MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+      TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+      PRICE=$(print_price "${line}" ${TRADEMARK_MODEL})
+      #echo "============================================================"
+      #echo "LINE=${line}"
+      #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
+      #echo "TRADEMARK=${TRADEMARK}"
+      #echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
+      #echo "MODEL=${MODEL}"
+      #echo "MODEL_CAMEL=${MODEL_CAMEL}"
+      #echo "PRICE=${PRICE}"
+      #echo "URL=${URL}"
+      #echo "STORE=${STORE}"
+      #echo "TYPE=${TYPE}"
+      #echo "============================================================"
+      dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
     done
   fi
 }
 
 > ${OUTPUT_FILE}
 
-MTB_BIKES_ORBEA_26_MTB_BASE="orbea-mtb-26.html"
-MTB_BIKES_CUBE_26_MTB_BASE="cube_mtb.html"
-MTB_BIKES_ORBEA_29_MTB_BASE="orbea-mtb-29.html"
-MTB_BIKES_CUBE_29_MTB_BASE="cube_mtb_29_er.html"
-MTB_BIKES_ORBEA_DOUBLE_26_MTB_BASE="orbea-doble-suspension-2013.html"
-MTB_BIKES_CUBE_DOUBLE_26_MTB_BASE="cube-doble-suspension-26.html"
-MTB_BIKES_ORBEA_DOUBLE_29_MTB_BASE="orbea-doble-suspension-29er.html"
-MTB_BIKES_CUBE_DOUBLE_29_MTB_BASE="cube-doble-suspension-29er.html"
-MTB_BIKES_ORBEA_ROAD_MTB_BASE="orbea-carretera.html"
-MTB_BIKES_CUBE_ROAD_MTB_BASE="cube-carretera.html"
-MTB_BIKES_CUBE_2012_MTB_BASE="cube-liquidacion-2012.html"
-MTB_BIKES_LAPIERRE_2012_MTB_BASE="mtb-lapierre.html"
-MTB_BIKES_ORBEA_2012_MTB_BASE="liquidacion-2012-orbea.html"
+MTB_BIKES_ORBEA_26_MTB_BASE="8-orbea-rígidas-26" 
+MTB_BIKES_CUBE_26_MTB_BASE="9-cube-rígida-26" 
+MTB_BIKES_MMR_26_MTB_BASE="151-mmr-rígida-26" 
+MTB_BIKES_ORBEA_29_MTB_BASE="11-orbea-rígida-29er" 
+MTB_BIKES_CUBE_29_MTB_BASE="14-cube-rígida-29er" 
+MTB_BIKES_MMR_29_MTB_BASE="152-mmr-rígida-29er"  
+MTB_BIKES_ORBEA_DOUBLE_26_MTB_BASE="18-orbea-doble-susp-26" 
+MTB_BIKES_CUBE_DOUBLE_26_MTB_BASE="19-cube-doble-susp-26" 
+MTB_BIKES_ORBEA_DOUBLE_29_MTB_BASE="28-orbea-doble-susp-29er" 
+MTB_BIKES_CUBE_DOUBLE_29_MTB_BASE="23-cube-doble-susp-29er" 
+MTB_BIKES_ORBEA_ROAD_MTB_BASE="33-orbea-carretera" 
+MTB_BIKES_CUBE_ROAD_MTB_BASE="32-cube-carretera" 
+MTB_BIKES_ROAD_2012="63-bicis-carretera-2012" 
+MTB_BIKES_ROAD_TRIATLON="142-triatlon" 
+MTB_BIKES_KIDS="34-infantiles" 
+MTB_BIKES_WOMAN="122-dama"                                   
 
-process_pages "${MTB_BIKES_ORBEA_26_MTB_BASE}" ""        "orbea-2013" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE} 
-process_pages "${MTB_BIKES_CUBE_26_MTB_BASE}" ""         "cube-2013"  "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_ORBEA_29_MTB_BASE}" ""        "orbea-2013" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_CUBE_29_MTB_BASE}" ""         "cube-2013"  "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_ORBEA_DOUBLE_26_MTB_BASE}" "" "orbea-2013" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_CUBE_DOUBLE_26_MTB_BASE}"  "" "cube-2013"  "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_ORBEA_DOUBLE_29_MTB_BASE}" "" "orbea-2013" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_CUBE_DOUBLE_29_MTB_BASE}" ""  "cube-2013"  "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_ORBEA_ROAD_MTB_BASE}" ""      "orbea-2013" "Bicicletas Pasaje" "ROAD">> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_CUBE_ROAD_MTB_BASE}" ""       "cube-2013"  "Bicicletas Pasaje" "ROAD">> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_CUBE_2012_MTB_BASE}" ""       "cube-2012"  "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_LAPIERRE_2012_MTB_BASE}" "" "lapierre-2012" "Bicicletas Pasaje" "MTB">> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_ORBEA_2012_MTB_BASE}" ""      "orbea-2012" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_ORBEA_26_MTB_BASE}" "" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_CUBE_26_MTB_BASE}" "" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}  
+process_pages "${MTB_BIKES_MMR_26_MTB_BASE}" "" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_ORBEA_29_MTB_BASE}" "" "Bicicletas Pasaje" "MTB-29" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_CUBE_29_MTB_BASE}" "" "Bicicletas Pasaje" "MTB-29" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_MMR_29_MTB_BASE}" "" "Bicicletas Pasaje" "MTB-29" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_ORBEA_DOUBLE_26_MTB_BASE}" "" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_CUBE_DOUBLE_26_MTB_BASE}" "" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_ORBEA_DOUBLE_29_MTB_BASE}" "" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_CUBE_DOUBLE_29_MTB_BASE}" "" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_ORBEA_ROAD_MTB_BASE}" "" "Bicicletas Pasaje" "ROAD" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_CUBE_ROAD_MTB_BASE}" "" "Bicicletas Pasaje" "ROAD" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_ROAD_2012}" "" "Bicicletas Pasaje"  "ROAD" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_ROAD_TRIATLON}" "" "Bicicletas Pasaje" "ROAD" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_KIDS}" "" "Bicicletas Pasaje" "KIDS" >> ${OUTPUT_FILE} 
+process_pages "${MTB_BIKES_WOMAN}" "" "Bicicletas Pasaje" "MTB-WOMAN" >> ${OUTPUT_FILE}
