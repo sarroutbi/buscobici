@@ -21,8 +21,8 @@ OUTPUT_FILE=bicimania.txt
 URL="www.bicimania.com"
 ONLY_DOMAIN="bicimania.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
-MAX_TRIES=10
-MAX_TIMEOUT=5
+MAX_TRIES=20
+MAX_TIMEOUT=10
 #EXCLUDE="-Ahtml"
 #HOST_ONLY="-D${ONLY_DOMAIN}"
 
