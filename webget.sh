@@ -78,6 +78,7 @@ function allSectionContent()
 }
 
 > ${DDBB_UPDATE_FILE}
+./cleandirs.sh
 mkdir -p ${RESULTS_DIR}/${DATE}
 
 # 1 - Read all configs:
