@@ -38,16 +38,16 @@ function get_page()
 }
 
 MTB_FIX_BIKES_BASE="${URL}/bicicletas/bicicletas-de-montana.html?page="
-MTB_FIX_BIKES_PAGES="$(seq 0 5)"
+MTB_FIX_BIKES_PAGES="$(seq 0 15)"
 
 MTB_DOUBLE_BIKES_BASE="${URL}/bicicletas/bicicletas-doble-suspension.html?page="
-MTB_DOUBLE_BIKES_PAGES="$(seq 0 5)"
+MTB_DOUBLE_BIKES_PAGES="$(seq 0 15)"
 
 MTB_29_BIKES_BASE="${URL}/bicicletas/bicicletas-29-pulgadas.html?page="
 MTB_29_BIKES_PAGES="$(seq 0 3)"
 
 KIDS_BIKES_BASE="${URL}/bicicletas/bicicletas-para-ninos.html?page="
-KIDS_BIKES_PAGES="$(seq 0 7)"
+KIDS_BIKES_PAGES="$(seq 0 10)"
 
 BTT_KIDS_BIKES_BASE="${URL}/bicicletas/bicicletas-juveniles-bicicletas-todo-terreno.html?page="
 BTT_KIDS_BIKES_PAGES="$(seq 0 1)"
@@ -56,7 +56,7 @@ BMX_BIKES_BASE="${URL}/bicicletas/bmx.html?page="
 BMX_BIKES_PAGES="$(seq 0 5)"
 
 ROAD_BIKES_BASE="${URL}/bicicletas/bicicletas-de-carretera.html?page="
-ROAD_BIKES_PAGES="$(seq 0 5)"
+ROAD_BIKES_PAGES="$(seq 0 10)"
 
 ROAD_CICLOCROSS_BIKES_BASE="${URL}/bicicletas/bicicletas-fitness-bicicletas-ciclocross.html"
 ROAD_CICLOCROSS_BIKES_PAGES=""
@@ -68,19 +68,22 @@ URBAN_SINGLE_BIKES_BASE="${URL}/bicicletas/bicicletas-single-speed.html"
 URBAN_SINGLE_BIKES_PAGES=""
 
 URBAN_WALK_BIKES_BASE="${URL}/bicicletas/bicicleta-de-paseo.html?page="
-URBAN_WALK_BIKES_PAGES="$(seq 0 2)"
+URBAN_WALK_BIKES_PAGES="$(seq 0 5)"
 
 URBAN_FOLDING_BIKES_BASE="${URL}/bicicletas/bicicletas-plegables-.html?page="
 URBAN_FOLDING_BIKES_PAGES="$(seq 0 2)"
 
-URBAN_RETRO_BIKES_BASE="${URL}/bicicletas/cruiser-retro.html"
-URBAN_RETRO_BIKES_PAGES=""
+URBAN_RETRO_BIKES_BASE="${URL}/bicicletas/cruiser-retro/cruiser.html?page="
+URBAN_RETRO_BIKES_PAGES="$(seq 0 2)"
 
 URBAN_ELECT_BIKES_BASE="${URL}/bicicletas/bicicletas-electricas-pedelec.html?page="
-URBAN_ELECT_BIKES_PAGES="$(seq 0 2)"
+URBAN_ELECT_BIKES_PAGES="$(seq 0 5)"
+
+URBAN_RAW_BIKES_BASE="${URL}/bicicletas/bicicletas-urbanas.html?page="
+URBAN_RAW_BIKES_PAGES="$(seq 0 2)"
 
 TREKKING_BIKES_BASE="${URL}/bicicletas/bicicletas-trekking.html?page="
-TREKKING_BIKES_PAGES="$(seq 0 3)"
+TREKKING_BIKES_PAGES="$(seq 0 5)"
 
 get_page "${MTB_FIX_BIKES_BASE}"       "${MTB_FIX_BIKES_PAGES}"
 get_page "${MTB_DOUBLE_BIKES_BASE}"    "${MTB_DOUBLE_BIKES_PAGES}"
@@ -96,4 +99,5 @@ get_page "${URBAN_WALK_BIKES_BASE}"    "${URBAN_WALK_BIKES_PAGES}"
 get_page "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}"
 get_page "${URBAN_RETRO_BIKES_BASE}"   "${URBAN_RETRO_BIKES_PAGES}"
 get_page "${URBAN_ELECT_BIKES_BASE}"   "${URBAN_ELECT_BIKES_PAGES}"
+get_page "${URBAN_RAW_BIKES_BASE}"     "${URBAN_RAW_BIKES_PAGES}"
 get_page "${TREKKING_BIKES_BASE}"      "${TREKKING_BIKES_PAGES}"

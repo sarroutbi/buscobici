@@ -6,3 +6,4 @@ This file contains which stores have been reviewed and the date.
 - BiciMania : 20130612
 - BiciMarket: 20130612
 - BikeOS    : 20130612
+- BikeSter  : 20130701

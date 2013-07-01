@@ -65,18 +65,6 @@ function dump_bike()
 }
 
 # Params:
-# 1 - The URL of bike
-function print_model()
-{
-  URL="$1"
-  FILE="$2"
-  #echo "================== MODEL ===================="
-  grep "${URL}" "${FILE}" | sed -e 's/<[^>]*>//g' | sed -e 's/[Bb]icicleta //g' \
-| sed -e 's/[Cc]arretera //g' | sed -e 's/[Cc]iclocross //g' | sed -e 's/[Mm]onta.a //g' | sed -e 's/[Tt]rial //g' | sed -e 's/[Tt]rekking//g' | sed -e 's/[Tt]riatl.n//g' | sed -e 's/[Dd]escenso //g' | sed -e 's/[Dd]irt //g' | sed -e 's-dirt/freeride--g' | sed -e 's-dirt/street--g' | sed -e 's/[Dd]oble //g' | sed -e 's/[Ff]reeride //g' | sed -e 's/[Pp]aseo//g' | sed -e 's/[Pp]legable//g' | sed -e 's/[Ii]nfantil //g' | sed -e 's/[Ee]l.ctrica //g' | sed -e 's/[Mm]inibike//g' | sed -e 's/[Ss]uspensi.on //g' | sed -e 's/[Tt]riciclo //g' | sed -e 's/[Ss]tick//g' | sed -e 's/[Ss]uspensi.n //g' | sed -e 's/de //g' | sed -e 's/BTT //g' | sed -e 's/BMX //g' | sed -e 's/TRAIL //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ee]l.ctrico //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ss]oporte //g' | sed -e 's/[Cc]erradura + llaves//g' | sed -e 's/[Dd]isplay //g'
-  #echo "================== MODEL ===================="
-}
-
-# Params:
 # 1 - The File of bike
 # 2 - The model of bike
 function print_price()
@@ -131,7 +119,7 @@ function camel()
 function clean_model()
 {
     MODEL="${1}"
-    echo "${MODEL}" | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo//g' | sed -e 's/Bici sin pedales//g'
+    echo "${MODEL}" | sed -e 's/Bici sin pedales//g' | sed -e 's/[Bb]icicletas para nin.os//g' | sed -e 's/[Bb]icicleta //g' | sed -e 's/[Cc]arretera //g' | sed -e 's/sin cambios//g' | sed -e 's/para hombre//g' | sed -e 's/para mujer//g' | sed -e 's/para nin.os//g' | sed -e 's/[Nn]in.os//g' | sed -e 's/[Cc]iclocross //g' | sed -e 's/[Mm]onta.a //g' | sed -e 's/[Tt]rial //g' | sed -e 's/[Tt]rekking//g' | sed -e 's/[Tt]riatl.n//g' | sed -e 's/[Dd]escenso //g' | sed -e 's-dirt/freeride--g' | sed -e 's-dirt/street--g' | sed -e 's/[Dd]oble //g' | sed -e 's/[Ff]reeride //g' | sed -e 's/[Pp]aseo//g' | sed -e 's/[Pp]legable//g' | sed -e 's/[Ii]nfantil //g' | sed -e 's/[Ee]l.ctrica //g' | sed -e 's/[Mm]inibike//g' | sed -e 's/[Ss]uspensi.on //g' | sed -e 's/[Tt]riciclo //g' | sed -e 's/[Ss]tick//g' | sed -e 's/[Ss]uspensi.n //g' | sed -e 's/de //g' | sed -e 's/BTT //g' | sed -e 's/BMX //g' | sed -e 's/TRAIL //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ee]l.ctrico //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ss]oporte //g' | sed -e 's/[Cc]erradura + llaves//g' | sed -e 's/[Dd]isplay //g' | sed -e 's/[Bb]mx//g' | sed -e 's/[Cc]arretera//g' | sed -e 's/[Dd]irt-hi//g'| sed -e 's/[Dd]irt//g' | sed -e 's/[Dd]oble//g' | sed -e 's/[Ee]l.ctrica//g' | sed -e 's![Ff]reeride/[Dd]ownhill!!g' | sed -e 's/[Hh]olandesa//g' | sed -e 's/[M]tb//g' | sed -e 's/[Mm]onopat.n//g' | sed -e 's/[Pp]legable//g' | sed -e 's/[Tt]riatl.n//g' | sed -e 's/[Uu]rbana//g' | sed -e 's/[Vv]eh.culos//g' | sed -e 's/[Cc]arreras//g' | sed -e 's/[Dd]irt//g' | sed -e 's/[Dd]ownhill//g' | sed -e 's/[Rr]ueda//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo//g' 
 }
 
 function dump_bike_from_file()
@@ -195,16 +183,16 @@ function process_pages()
 > ${OUTPUT_FILE}
 
 MTB_FIX_BIKES_BASE="bicicletas-de-montana.html?page="
-MTB_FIX_BIKES_PAGES="$(seq 0 5)"
+MTB_FIX_BIKES_PAGES="$(seq 0 15)"
 
 MTB_DOUBLE_BIKES_BASE="bicicletas-doble-suspension.html?page="
-MTB_DOUBLE_BIKES_PAGES="$(seq 0 5)"
+MTB_DOUBLE_BIKES_PAGES="$(seq 0 15)"
 
 MTB_29_BIKES_BASE="bicicletas-29-pulgadas.html?page="
 MTB_29_BIKES_PAGES="$(seq 0 3)"
 
 KIDS_BIKES_BASE="bicicletas-para-ninos.html?page="
-KIDS_BIKES_PAGES="$(seq 0 7)"
+KIDS_BIKES_PAGES="$(seq 0 10)"
 
 BTT_KIDS_BIKES_BASE="bicicletas-juveniles-bicicletas-todo-terreno.html?page="
 BTT_KIDS_BIKES_PAGES="$(seq 0 1)"
@@ -213,7 +201,7 @@ BMX_BIKES_BASE="bmx.html?page="
 BMX_BIKES_PAGES="$(seq 0 5)"
 
 ROAD_BIKES_BASE="bicicletas-de-carretera.html?page="
-ROAD_BIKES_PAGES="$(seq 0 5)"
+ROAD_BIKES_PAGES="$(seq 0 10)"
 
 ROAD_CICLOCROSS_BIKES_BASE="bicicletas-fitness-bicicletas-ciclocross.html"
 ROAD_CICLOCROSS_BIKES_PAGES=""
@@ -225,19 +213,22 @@ URBAN_SINGLE_BIKES_BASE="bicicletas-single-speed.html"
 URBAN_SINGLE_BIKES_PAGES=""
 
 URBAN_WALK_BIKES_BASE="bicicleta-de-paseo.html?page="
-URBAN_WALK_BIKES_PAGES="$(seq 0 2)"
+URBAN_WALK_BIKES_PAGES="$(seq 0 5)"
 
 URBAN_FOLDING_BIKES_BASE="bicicletas-plegables-.html?page="
 URBAN_FOLDING_BIKES_PAGES="$(seq 0 2)"
 
-URBAN_RETRO_BIKES_BASE="cruiser-retro.html"
-URBAN_RETRO_BIKES_PAGES=""
+URBAN_RETRO_BIKES_BASE="cruiser.html?page="
+URBAN_RETRO_BIKES_PAGES="$(seq 0 2)"
 
 URBAN_ELECT_BIKES_BASE="bicicletas-electricas-pedelec.html?page="
-URBAN_ELECT_BIKES_PAGES="$(seq 0 2)"
+URBAN_ELECT_BIKES_PAGES="$(seq 0 5)"
+
+URBAN_RAW_BIKES_BASE="bicicletas-urbanas.html?page="
+URBAN_RAW_BIKES_PAGES="$(seq 0 2)"
 
 TREKKING_BIKES_BASE="bicicletas-trekking.html?page="
-TREKKING_BIKES_PAGES="$(seq 0 3)"
+TREKKING_BIKES_PAGES="$(seq 0 5)"
 
 process_pages "${MTB_FIX_BIKES_BASE}"       "${MTB_FIX_BIKES_PAGES}"       "Bikester" "MTB"    >> ${OUTPUT_FILE}   
 process_pages "${MTB_DOUBLE_BIKES_BASE}"    "${MTB_DOUBLE_BIKES_PAGES}"    "Bikester" "MTB-DOUBLE" >> ${OUTPUT_FILE}
@@ -253,4 +244,5 @@ process_pages "${URBAN_WALK_BIKES_BASE}"    "${URBAN_WALK_BIKES_PAGES}"    "Bike
 process_pages "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "Bikester" "URBAN"  >> ${OUTPUT_FILE}
 process_pages "${URBAN_RETRO_BIKES_BASE}"   "${URBAN_RETRO_BIKES_PAGES}"   "Bikester" "URBAN"  >> ${OUTPUT_FILE}
 process_pages "${URBAN_ELECT_BIKES_BASE}"   "${URBAN_ELECT_BIKES_PAGES}"   "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_RAW_BIKES_BASE}"     "${URBAN_RAW_BIKES_PAGES}"     "Bikester" "URBAN"  >> ${OUTPUT_FILE}
 process_pages "${TREKKING_BIKES_BASE}"      "${TREKKING_BIKES_PAGES}"      "Bikester" "URBAN"  >> ${OUTPUT_FILE}
