@@ -7,3 +7,6 @@ This file contains which stores have been reviewed and the date.
 - BiciMarket: 20130612
 - BikeOS    : 20130612
 - BikeSter  : 20130701
+- BikeStocks: 20130704
+- Buhobike  : 20130705
+- Calmera   : 20130708

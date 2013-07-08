@@ -197,10 +197,10 @@ MTB_BIKES_BASE="productos2.asp?id=25&p="
 MTB_BIKES_PAGES="$(seq 1 5)"
 
 MTB_DOUBLE_BASE="productos2.asp?id=1&p="
-MTB_DOUBLE_PAGES="$(seq 1 1)"
+MTB_DOUBLE_PAGES="$(seq 1 5)"
 
 MTB_29_BIKES_BASE="productos2.asp?id=60&p="
-MTB_29_BIKES_PAGES="$(seq 1 3)"
+MTB_29_BIKES_PAGES="$(seq 1 10)"
 
 MTB_FREERIDE_BIKES_BASE="productos2.asp?id=4"
 
@@ -223,6 +223,7 @@ FOLDING_BIKES_BASE="productos2.asp?id=13&p="
 FOLDING_BIKES_PAGES="$(seq 1 5)"
 
 ELECTRIC_BIKES_BASE="productos2.asp?id=57&p="
+ELECTRIC_BIKES_PAGES="$(seq 1 1)"
 
 KIDS00_BIKES_BASE="productos2.asp?id=17"
 KIDS01_BIKES_BASE="productos2.asp?id=18"
@@ -261,4 +262,3 @@ process_pages "${TRICYCLE_BIKES_BASE}"      "${TRICYCLE_BIKES_PAGES}"      "Calm
 process_pages "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"           "Calmera" "BMX"    >> ${OUTPUT_FILE}
 process_pages "${BMX_FREESTYLE_BIKES_BASE}" "${BMX_FREESTYLE_BIKES_PAGES}" "Calmera" "BMX"    >> ${OUTPUT_FILE}
 process_pages "${BMX_TRIAL_BIKES_BASE}"     "${BMX_TRIAL_BIKES_PAGES}"     "Calmera" "BMX"    >> ${OUTPUT_FILE} 
-
