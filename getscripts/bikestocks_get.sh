@@ -38,29 +38,35 @@ function get_page()
   fi
 }
 
+MTB_WOMAN_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=527&pagact="
+MTB_WOMAN_2013_BIKES_PAGES=$(seq 1 5)
+
+MTB_KIDS_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=528&pagact="
+MTB_KIDS_2013_BIKES_PAGES=$(seq 1 5)
+
 MTB_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=499&pagact="
 MTB_2013_BIKES_PAGES=$(seq 1 20)
 
 MTB_2012_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=338&pagact="
-MTB_2012_BIKES_PAGES=$(seq 1 13)
+MTB_2012_BIKES_PAGES=$(seq 1 5)
 
 ROAD_2012_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=196&pagact="
 ROAD_2012_BIKES_PAGES=$(seq 1 10)
 
 ROAD_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=533&pagact="
-ROAD_2013_BIKES_PAGES=$(seq 1 15)
+ROAD_2013_BIKES_PAGES=$(seq 1 20)
 
 TREKKING_2012_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=370&pagact="
 TREKKING_2012_BIKES_PAGES=$(seq 1 2)
 
 TREKKING_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=476&pagact="
-TREKKING_2013_BIKES_PAGES=$(seq 1 3)
+TREKKING_2013_BIKES_PAGES=$(seq 1 10)
 
 URBAN_2012_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=368&pagact="
-URBAN_2012_BIKES_PAGES=$(seq 1 10)
+URBAN_2012_BIKES_PAGES=$(seq 1 5)
 
 URBAN_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=155&pagact="
-URBAN_2013_BIKES_PAGES=$(seq 1 5)
+URBAN_2013_BIKES_PAGES=$(seq 1 10)
 
 FOLDING_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=158&pagact="
 FOLDING_BIKES_PAGES=$(seq 1 5)
@@ -82,6 +88,9 @@ TRIATLON_BIKES_PAGES=$(seq 1 5)
 
 MTB_DOUBLE_OUTLET_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=Bicis-doble-suspension&md=1"
 MTB_FIX_OUTLET_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=Bicis-rigidas&md=1"
+
+get_page "${MTB_WOMAN_2013_BIKES_BASE}" "${MTB_WOMAN_2013_BIKES_PAGES}"
+get_page "${MTB_KIDS_2013_BIKES_BASE}" "${MTB_KIDS_2013_BIKES_PAGES}"
 
 get_page "${MTB_2013_BIKES_BASE}" "${MTB_2013_BIKES_PAGES}"
 get_page "${MTB_2012_BIKES_BASE}" "${MTB_2012_BIKES_PAGES}"
