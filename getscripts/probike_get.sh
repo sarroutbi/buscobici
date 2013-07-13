@@ -19,8 +19,8 @@
 URL="www.probike.com"
 ONLY_DOMAIN="probike.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
-MAX_TRIES=10
-MAX_TIMEOUT=10
+MAX_TRIES=15
+MAX_TIMEOUT=15
 
 function get_page()
 {

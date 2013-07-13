@@ -20,8 +20,8 @@
 URL="www.bikestocks.es"
 ONLY_DOMAIN="bikestocks.es"
 EXCLUDE="-Rgif -Rpng -Rjpg"
-MAX_TRIES=10
-MAX_TIMEOUT=10
+MAX_TRIES=15
+MAX_TIMEOUT=15
 
 function get_page()
 {

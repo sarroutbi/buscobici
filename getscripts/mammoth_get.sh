@@ -22,8 +22,8 @@ URL_BASE=http://www.mammoth.es/catalogo/bicicletas?page=
 EXCLUDE="-Rgif -Rpng -Rjpg -Rcss"
 PAGE_BASE="bicicletas?page="
 pages="$(seq 1 20)"
-MAX_TRIES=10
-MAX_TIMEOUT=10
+MAX_TRIES=15
+MAX_TIMEOUT=15
 
 for page in ${pages}
 do

@@ -19,8 +19,8 @@
 #
 URL="www.bikester.es"
 ONLY_DOMAIN="bikester.es"
-MAX_TRIES=10
-MAX_TIMEOUT=10
+MAX_TRIES=15
+MAX_TIMEOUT=20
 
 function get_page()
 {

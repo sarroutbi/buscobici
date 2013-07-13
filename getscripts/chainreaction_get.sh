@@ -18,8 +18,8 @@
 # Calmera store !
 URL="www.chainreactioncycles.com"
 ONLY_DOMAIN="chainreactioncycles.com"
-MAX_TRIES=10
-MAX_TIMEOUT=10
+MAX_TRIES=15
+MAX_TIMEOUT=15
 COOKIE_FILE="chainreactioncookies.txt"
 
 function get_page()

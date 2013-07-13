@@ -18,8 +18,8 @@
 # Calmera store !
 URL="preciosbicicletas.es"
 ONLY_DOMAIN="preciosbicicletas.es"
-MAX_TRIES=10
-MAX_TIMEOUT=10
+MAX_TRIES=15
+MAX_TIMEOUT=15
 
 function get_pages()
 {
