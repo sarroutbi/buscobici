@@ -144,15 +144,15 @@ function log_url()
 
 function print_url()
 {
-  model="$1"
+  model=$(echo "$1" | tr -d '\n' | tr -d '\r')
   BASE_FILE="$2"
   echo "${model}" | grep '"' > /dev/null
   if [ $? -eq 0 ]; 
   then
     MODEL=$(echo "${model}" | sed -e 's-\"-\\\"-g')
-    URL=$(grep "${MODEL}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
+    URL=$(grep "${MODEL}" "${BASE_FILE}" | grep "alt=\"${MODEL}\""  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
   else
-    URL=$(grep "${model}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
+    URL=$(grep "${model}" "${BASE_FILE}" | grep "alt=\"${model}\""  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
   fi
   URL_COMPLETE="${URL}"
   echo "${URL_COMPLETE}"
@@ -174,7 +174,7 @@ function process_page_url()
     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     #log_url "${MODEL_NO_FILTER}" "${BASE_FILE}"
-    URL=$(print_url "${MODEL_NO_FILTER}" "${BASE_FILE}")
+    URL=$(print_url "${model}" "${BASE_FILE}")
     PRICE=$(print_price "${BASE_FILE}" "${MODEL}")
     #echo "========================================================================"
     #echo "TRADEMARK=${TRADEMARK_CAMEL}"
