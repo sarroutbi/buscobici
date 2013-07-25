@@ -122,40 +122,24 @@ function print_price()
   echo ${PRICE}
 }
 
-function log_url()
+function print_url()
 {
   model="$1"
   BASE_FILE="$2"
-  echo "Model:${model}"
   echo "${model}" | grep '"' > /dev/null
-  if [ $? -eq 0 ]; 
-  then
-    echo "Here should go the link with quotes!!!"
-    echo "grep is:"
-    MODEL=$(echo "${model}" | sed -e 's-\"-\\\"-g')
-    echo "grep \"${MODEL}\" \"${BASE_FILE}\" | grep \"href\"  | awk -F \"href=\" {'print $2'} | awk -F \"class\" {'print \$1'} | awk -F \"title\" {'print \$1'} | head -1 | tr -d '\"' | sed -e 's/[ \t]$//g' | awk {'print \$1'})"
-    URL=$(grep "${MODEL}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
-  else
-    URL=$(grep "${model}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
-  fi
-  URL_COMPLETE="${URL_BASE}${URL}"
+  URL=$(grep "${model}" "${BASE_FILE}" | grep '<h3>' | awk -F "href=" {'print $2'} | awk {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g')
+  URL_COMPLETE="${URL}"
   echo "${URL_COMPLETE}"
 }
 
-function print_url()
+function print_trademark_url()
 {
-  model=$(echo "$1" | tr -d '\n' | tr -d '\r')
-  BASE_FILE="$2"
-  echo "${model}" | grep '"' > /dev/null
-  if [ $? -eq 0 ]; 
-  then
-    MODEL=$(echo "${model}" | sed -e 's-\"-\\\"-g')
-    URL=$(grep "${MODEL}" "${BASE_FILE}" | grep "alt=\"${MODEL}\""  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
-  else
-    URL=$(grep "${model}" "${BASE_FILE}" | grep "alt=\"${model}\""  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
-  fi
-  URL_COMPLETE="${URL}"
-  echo "${URL_COMPLETE}"
+  wget -o /dev/null -O - "$1" | grep '<title>' | sed -e 's/<[^>]*>//g' | awk {'print $1'}
+}
+
+function print_price_url()
+{
+  wget -o /dev/null -O - "$1" | grep our_price_display | sed -e 's/<[^>]*>//g' | tr -d "." | sed -e 's/^[ \t]//g' | egrep -E  "[0-9]{0,}\.{0,}[0-9]{1,}[0-9]{1,},[0-9]{1,}" -o
 }
 
 function process_page_url()
@@ -163,30 +147,23 @@ function process_page_url()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  MODELS=$(cat "${BASE_FILE}" | egrep -E '<h3>' | grep 'a href' | sed -e 's/<[^>]*>//g' )
+  MODELS=$(cat "${BASE_FILE}" | egrep -E '<h3>' | awk -F "<a href=" {'print "<a href="$2'} | grep 'a href' | sed -e 's/<[^>]*>//g' | tr -d '\r' | grep -iv reserva | sed -e 's/^[ \t]//g')
   echo "${MODELS}" | while read model;
   do
-    MODEL_FILTER=$(filter_model "${model}")
-    MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-    MODEL_NO_FILTER=$(echo "${model}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-    MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-    TRADEMARK=$(echo "${MODEL_FILTER}" | awk {'print $1'})
-    MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
-    TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
-    #log_url "${MODEL_NO_FILTER}" "${BASE_FILE}"
     URL=$(print_url "${model}" "${BASE_FILE}")
-    PRICE=$(print_price "${BASE_FILE}" "${MODEL}")
+    TRADEMARK=$(print_trademark_url "${URL}")
+    PRICE=$(print_price_url "${URL}")
+    MODEL_NO_TRADEMARK=$(echo "${model}" | sed s/"${TRADEMARK} "//g)
     #echo "========================================================================"
-    #echo "TRADEMARK=${TRADEMARK_CAMEL}"
-    #echo "MODEL=${MODEL_CAMEL}"
+    #echo "TRADEMARK=${TRADEMARK}"
+    #echo "MODEL=${MODEL_NO_TRADEMARK}"
     #echo "URL=${URL}"
     #echo "PRICE=${PRICE}"
     #echo "STORE=${STORE}"
     #echo "TYPE=${TYPE}"
     #echo "FILE=${BASE_FILE}"
-    #echo "SEARCH_MODEL=>${MODEL}<="
     #echo "========================================================================"
-    dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    dump_bike "${MODEL_NO_TRADEMARK}" "${URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 
