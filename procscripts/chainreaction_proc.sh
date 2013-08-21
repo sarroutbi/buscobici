@@ -24,10 +24,11 @@
 # KIND=MTB-FIX
 #
 URL_BASE="http://www.chainreactioncycles.com"
-MAX_PRICE=15
+MAX_PRICE=10
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
 OUTPUT_FILE=./output
+#OUTPUT_FILE=/dev/stdout
 
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
@@ -117,12 +118,7 @@ function filter_model()
 # 2 - The MODEL of bike
 function print_price()
 {
-  if [ "$2" = "Kidz Rebel Kidz Wood" ];
-  then
-    PRICE=$(grep "title=\"Rebel $2\"" "$1" -A${MAX_PRICE} | grep "Label11" | sed -e 's/<[^>]*>//g' | egrep -E -o '[0-9]{2,}.{0,}[0-9]{2,}' | head -1 | tr "." "," | tr -d '\r' | tr -d '\n' )
-  else
-    PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep "Label11" | sed -e 's/<[^>]*>//g' | egrep -E -o '[0-9]{2,}.{0,}[0-9]{2,}' | head -1 | tr "." "," | tr -d '\r' | tr -d '\n')
-  fi
+  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep Desde -A1 | tail -1 | sed -e 's/<[^>]*>//g' | tr '.' ',')
   echo ${PRICE}
 }
 
@@ -167,7 +163,7 @@ function process_page_url()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  MODELS=$(cat "${BASE_FILE}" | grep href | grep Models | grep 'class="Link99"' | sed -e 's/<[^>]*>//g' | tr -d '\r')
+  MODELS=$(cat "${BASE_FILE}" | grep Desde -B10 | grep '<li class="description">' -A2 | sed -e 's/<[^>]*>//g' | grep -v ^'--' | grep  ^[A-Z,a-z,0-9])
   echo "${MODELS}" | while read model;
   do
     MODEL_FILTER=$(filter_model "${model}")
@@ -220,39 +216,41 @@ function process_pages()
   fi
 }
 
-MTB_BIKES_BASE="Categories.aspx?CategoryID=1890&Page="
+MTB_BIKES_BASE="rigidos?f=2258&page="
 MTB_BIKES_PAGES="$(seq 1 5)"
 
-ROAD_BIKES_BASE="Categories.aspx?CategoryID=2156&Page="
+MTB_DOUBLE_BIKES_BASE="suspension-total?f=2258&page="
+MTB_DOUBLE_BIKES_PAGES="$(seq 1 5)"
+
+ROAD_BIKES_BASE="bicis-de-carretera?f=2259&page="
 ROAD_BIKES_PAGES="$(seq 1 5)"
 
-ELECTRIC_BIKES_BASE="Categories.aspx?CategoryID=1452"
+ELECTRIC_BIKES_BASE=""
 ELECTRIC_BIKES_PAGES=""
 
-FOLDING_BIKES_BASE="Categories.aspx?CategoryID=1134"
+FOLDING_BIKES_BASE=""
 FOLDING_BIKES_PAGES=""
 
-CRUISER_BIKES_BASE="Categories.aspx?CategoryID=1991"
+CRUISER_BIKES_BASE="bicis-cruiser?f=2260&page="
 CRUISER_BIKES_PAGES=""
 
-BMX_BIKES_BASE="Categories.aspx?CategoryID=162&Page="
+BMX_BIKES_BASE="bicis-bmx?f=2263&page="
 BMX_BIKES_PAGES="$(seq 1 3)"
 
-KIDS_BIKES_BASE="Categories.aspx?CategoryID=467"
-KIDS_BIKES_PAGES=""
+KIDS_BIKES_BASE="bicis-infantiles?f=2258&page="
+KIDS_BIKES_PAGES="$(seq 1 3)"
  
-URBAN_BIKES_BASE="Categories.aspx?CategoryID=508&Page="
+URBAN_BIKES_BASE="bicis-urbanas?f=2260&page="
 URBAN_BIKES_PAGES="$(seq 1 3)"
 
-CICLOCROSS_BIKES_BASE="Categories.aspx?CategoryID=1156"
+CICLOCROSS_BIKES_BASE="bicis-ciclocross?f=2259&page="
 CICLOCROSS_BIKES_PAGES=""
 
 > ${OUTPUT_FILE}
 
 process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Chain Reaction" "ROAD"  >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "Chain Reaction" "MTB" >> ${OUTPUT_FILE}
-process_pages "${ELECTRIC_BIKES_BASE}" "${ELECTRIC_BIKES_PAGES}" "Chain Reaction" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}" "Chain Reaction" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "Chain Reaction" "MTB-FIX" >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_BIKES_BASE}" "${MTB_DOUBLE_BIKES_PAGES}" "Chain Reaction" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${CRUISER_BIKES_BASE}" "${CRUISER_BIKES_PAGES}" "Chain Reaction" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "Chain Reaction" "BMX"  >> ${OUTPUT_FILE}
 process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "Chain Reaction" "KIDS"  >> ${OUTPUT_FILE}
