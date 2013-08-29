@@ -118,7 +118,7 @@ function filter_model()
 # 2 - The MODEL of bike
 function print_price()
 {
-  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep Desde -A1 | tail -1 | sed -e 's/<[^>]*>//g' | tr '.' ',')
+  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep Desde -A1 | tail -1 | sed -e 's/<[^>]*>//g' | tr '.' ',' | grep -o "[0-9,\.]*[0-9],[0-9]*")
   echo ${PRICE}
 }
 
