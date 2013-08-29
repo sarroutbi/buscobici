@@ -76,11 +76,7 @@ function print_model()
 # 1 - The URL of bike
 function print_price()
 {
-  PRICES=$(wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "$1" -O - 2>&1 | grep "IVA" | grep '&euro' | grep -o "[0-9,\.]*[0-9],[0-9]*" | tr -d '.' | tail -1)
-  for price in ${PRICES};
-  do
-    PRICE=${price} 
-  done
+  PRICE=$(wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "$1" -O - 2>&1 | grep -i "$2" -A25 | grep IVA | grep -o "[0-9,\.]*[0-9],[0-9]*" | tr -d '.' | tail -1)
   echo ${PRICE}
 }
 
@@ -111,7 +107,7 @@ function process_pages()
         MODEL=$(echo "${model}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
         TRADEMARK=$(echo "${model}" | awk {'print $1'})
         URL=$(grep "${model}" "${BASE_URL}${page}" | grep -o "<a href=[^>]*>" | sed -e 's/<a href=//g' | tr -d '>' | awk -F "?" {'print $1'} | head -1 | uniq)
-        PRICE=$(print_price $(echo "${URL}" | tr -d '"'))
+        PRICE=$(print_price2 "${MODEL}")
         dump_bike "${MODEL}" "${URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
       done
     done 
@@ -133,7 +129,7 @@ function process_pages2()
         TRADEMARK_MODEL=${TRADEMARK_MODEL}
         TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
         MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-        PRICE=$(print_price "${URL}")
+        PRICE=$(print_price "${URL}" "${MODEL}")
         FINAL_URL=$(echo "${URL}" | awk -F "?" {'print $1'})
         ##echo "========================================================================"
         ##echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
@@ -153,7 +149,7 @@ function process_pages2()
         TRADEMARK_MODEL=$(print_model ${URL})
         TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
         MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-        PRICE=$(print_price "${URL}")
+        PRICE=$(print_price "${URL}" "${MODEL}")
         FINAL_URL=$(echo ${URL} | awk -F "?" {'print $1'})
         ##echo "========================================================================"
         ##echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
