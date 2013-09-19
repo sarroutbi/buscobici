@@ -46,23 +46,23 @@ function get_page()
   fi
 }
 
-BH_BIKES_BASE="${URL}/products/index/bicicletas/bh_bikes/page:"
-BH_BIKES_PAGES="$(seq 1 6)"
+ROAD_BIKES_BASE="${URL}/products/index/bicicletas/carretera/page:"
+ROAD_BIKES_PAGES="$(seq 1 2)"
 
-CUBE_BIKES_BASE="${URL}/products/index/bicicletas/cube/page:"
-CUBE_BIKES_PAGES="$(seq 1 3)"
+MTB_DOUBLE_BIKES_BASE="${URL}/products/index/bicicletas/mtb_dobles/page:"
+MTB_DOUBLE_BIKES_PAGES="$(seq 1 3)"
 
-GT_BIKES_BASE="${URL}/products/index/bicicletas/gt_bicycles/page:"
-GT_BIKES_PAGES="$(seq 1 4)"
+MTB_FIX_BIKES_BASE="${URL}/products/index/bicicletas/mtb_rigidas/page:"
+MTB_FIX_BIKES_PAGES="$(seq 1 5)"
 
-STEVENS_BIKES_BASE="${URL}/products/index/bicicletas/stevens/page:" 
-STEVENS_BIKES_PAGES="$(seq 1 4)"
+MTB_WOMAN_BIKES_BASE="${URL}/products/index/bicicletas/coluer/page:" 
+MTB_WOMAN_BIKES_PAGES="$(seq 1 1)"
 
-OTHER_BIKES_BASE="${URL}/products/index/bicicletas/gt_bicycles/page:" 
-OTHER_BIKES_PAGES="$(seq 1 2)"
+KIDS_BIKES_BASE="${URL}/products/index/bicicletas/ninos/page:" 
+KIDS_BIKES_PAGES="$(seq 1 2)"
 
-get_page "${BH_BIKES_BASE}"      "${BH_BIKES_PAGES}"      "bh_bikes"
-get_page "${CUBE_BIKES_BASE}"    "${CUBE_BIKES_PAGES}"    "cube_bikes"
-get_page "${GT_BIKES_BASE}"      "${GT_BIKES_PAGES}"      "gt_bikes"
-get_page "${STEVENS_BIKES_BASE}" "${STEVENS_BIKES_PAGES}" "stevens_bikes"
-get_page "${OTHER_BIKES_BASE}"   "${OTHER_BIKES_PAGES}"   "other_bikes"
+get_page "${ROAD_BIKES_BASE}"        "${ROAD_BIKES_PAGES}"       "road_bikes"
+get_page "${MTB_DOUBLE_BIKES_BASE}"  "${MTB_DOUBLE_BIKES_PAGES}" "mtb_double_bikes"
+get_page "${MTB_FIX_BIKES_BASE}"     "${MTB_FIX_BIKES_PAGES}"    "mtb_fix_bikes"
+get_page "${MTB_WOMAN_BIKES_BASE}"   "${MTB_WOMAN_BIKES_PAGES}"  "mtb_woman_bikes"
+get_page "${KIDS_BIKES_BASE}"        "${KIDS_BIKES_PAGES}"       "kids_bikes"

@@ -212,23 +212,23 @@ function process_pages()
 
 > ${OUTPUT_FILE}
 
-BH_BIKES_BASE="bh_bikes_"
-BH_BIKES_PAGES="$(seq 1 6)"
+ROAD_BIKES_BASE="road_bikes_"
+ROAD_BIKES_PAGES="$(seq 1 1)"
 
-CUBE_BIKES_BASE="cube_bikes_"
-CUBE_BIKES_PAGES="$(seq 1 3)"
+MTB_DOUBLE_BIKES_BASE="mtb_double_bikes_"
+MTB_DOUBLE_BIKES_PAGES="$(seq 1 3)"
 
-GT_BIKES_BASE="gt_bikes_"
-GT_BIKES_PAGES="$(seq 1 4)"
+MTB_FIX_BIKES_BASE="mtb_fix_bikes_"
+MTB_FIX_BIKES_PAGES="$(seq 1 5)"
 
-STEVENS_BIKES_BASE="stevens_bikes_"
-STEVENS_BIKES_PAGES="$(seq 1 4)"
+MTB_WOMAN_BIKES_BASE="mtb_woman_bikes_"
+MTB_WOMAN_BIKES_PAGES="$(seq 1 1)"
 
-OTHER_BIKES_BASE="other_bikes_" 
-OTHER_BIKES_PAGES="$(seq 1 2)"
+MTB_KIDS_BIKES_BASE="kids_bikes_" 
+MTB_KIDS_BIKES_PAGES="$(seq 1 1)"
 
-process_pages "${BH_BIKES_BASE}"      "${BH_BIKES_PAGES}"       "CSBike" "MTB" >> ${OUTPUT_FILE}
-process_pages "${CUBE_BIKES_BASE}"    "${CUBE_BIKES_PAGES}"     "CSBike" "MTB" >> ${OUTPUT_FILE}
-process_pages "${GT_BIKES_BASE}"      "${GT_BIKES_PAGES}"       "CSBike" "MTB" >> ${OUTPUT_FILE}
-process_pages "${STEVENS_BIKES_BASE}" "${STEVENS_BIKES_PAGES}"  "CSBike" "MTB" >> ${OUTPUT_FILE}
-process_pages "${OTHER_BIKES_BASE}"   "${OTHER_BIKES_PAGES}"    "CSBike" "MTB" >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}"       "${ROAD_BIKES_PAGES}"       "CSBike" "ROAD"       >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_BIKES_BASE}" "${MTB_DOUBLE_BIKES_PAGES}" "CSBike" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_FIX_BIKES_BASE}"    "${MTB_FIX_BIKES_PAGES}"    "CSBike" "MTB-FIX"    >> ${OUTPUT_FILE}
+process_pages "${MTB_WOMAN_BIKES_BASE}"  "${MTB_WOMAN_BIKES_PAGES}"  "CSBike" "MTB-WOMAN"  >> ${OUTPUT_FILE}
+process_pages "${MTB_KIDS_BIKES_BASE}"   "${MTB_KIDS_BIKES_PAGES}"   "CSBike" "KIDS"       >> ${OUTPUT_FILE}
