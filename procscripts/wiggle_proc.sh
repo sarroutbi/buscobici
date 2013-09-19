@@ -109,7 +109,7 @@ function clean()
 # 2 - The MODEL of bike
 function print_price()
 {
-  PRICE="$(grep -A50 "$2" "$1"  | grep strong | grep '&euro' | head -1 | sed -e 's/<[^>]*>//g' | awk -F '&euro;' {'print $1'} | egrep -o -E " [0-9]{1,}.{0,1}[0-9]{1,3},{1,2}[0-9]{1,2}" | tr -d '.' | sed -e 's/^[ \t]*//g')"
+  PRICE="$(grep -A50 "$2" "$1"  | grep Pagas | grep '&euro' | head -1 | sed -e 's/<[^>]*>//g' | awk -F '&euro;' {'print $1'} | egrep -o -E " [0-9]{1,}.{0,1}[0-9]{1,3},{1,2}[0-9]{1,2}" | tr -d '.' | sed -e 's/^[ \t]*//g')"
   echo "${PRICE}"
 }
 
