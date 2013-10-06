@@ -15,17 +15,63 @@
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
 # This script gets all the bicycles from
-# Mammoth store !
-OUTPUT_FILE=bicimania.txt
-URL="www.mammoth.es"
-URL_BASE=http://www.mammoth.es/catalogo/bicicletas?page=
-EXCLUDE="-Rgif -Rpng -Rjpg -Rcss"
-PAGE_BASE="bicicletas?page="
-pages="$(seq 1 20)"
+# Calmera store !
+URL="http://www.mammoth.es"
+ONLY_DOMAIN="mammoth.es"
+EXCLUDE="-Rgif -Rpng -Rjpg"
 MAX_TRIES=15
 MAX_TIMEOUT=15
 
-for page in ${pages}
-do
-  wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} ${EXCLUDE} ${HOST_ONLY} ${URL_BASE}${page}
-done
+function get_page()
+{
+  BASE_URL="$1"
+  PAGES="$2"
+  OUT_FILE="$3"
+  test -z "${OUT_FILE}" && OUT_FILE="index.html"
+  if [ "${PAGES}" = "" ];
+  then
+    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} --output-document=${OUT_FILE} "${BASE_URL}"
+  else
+    for page in ${PAGES};
+    do
+      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} --output-document="${OUT_FILE}?p=${page}" "${BASE_URL}${page}"
+    done
+  fi
+}
+
+MTB_XC_BIKES_BASE="${URL}/catalogo/bicicletas/mtb/xc?page="
+MTB_XC_BIKES_PAGES="$(seq 0 5)"
+
+MTB_FIX_BIKES_BASE="${URL}/catalogo/bicicletas/mtb/rigidas?page="
+MTB_FIX_BIKES_PAGES="$(seq 0 5)"
+
+MTB_29_BIKES_BASE="${URL}/catalogo/bicicletas/mtb/rueda-de-29?page="
+MTB_29_BIKES_PAGES="$(seq 0 3)"
+
+BMX_BIKES_BASE="${URL}/catalogo/bicicletas/bmx?page="
+BMX_BIKES_PAGES="$(seq 0 1)"
+
+URBAN_BIKES_BASE="${URL}/catalogo/bicicletas/urbanas-plegables-hibridas?page="
+URBAN_BIKES_PAGES="$(seq 0 5)"
+
+ROAD_BIKES_BASE="${URL}/catalogo/bicicletas/carretera?page="
+ROAD_BIKES_PAGES="$(seq 0 5)"
+
+CICLOCROSS_BIKES_BASE="${URL}/catalogo/bicicletas/ciclocross-triathlon?page="
+CICLOCROSS_BIKES_PAGES="$(seq 0 3)"
+
+WOMAN_BIKES_BASE="${URL}/catalogo/bicicletas/mujer?page="
+WOMAN_BIKES_PAGES="$(seq 0 3)"
+
+KIDS_BIKES_BASE="${URL}/bicicletas/ninos?page="
+KIDS_BIKES_PAGES="$(seq 0 1)"
+
+get_page "${MTB_XC_BIKES_BASE}"  "${MTB_XC_BIKES_PAGES}"  "mtb_xc.html"
+get_page "${MTB_FIX_BIKES_BASE}" "${MTB_FIX_BIKES_PAGES}" "mtb_fix.html"
+get_page "${MTB_29_BIKES_BASE}"  "${MTB_29_BIKES_PAGES}"  "mtb_29.html"
+get_page "${BMX_BIKES_BASE}"     "${BMX_BIKES_PAGES}"     "bmx.html"
+get_page "${URBAN_BIKES_BASE}"   "${URBAN_BIKES_PAGES}"   "urban.html"
+get_page "${ROAD_BIKES_BASE}"    "${ROAD_BIKES_PAGES}"    "road.html"
+get_page "${CROSS_BIKES_BASE}"   "${CROSS_BIKES_PAGES}"   "ciclocross.html"
+get_page "${WOMAN_BIKES_BASE}"   "${WOMAN_BIKES_PAGES}"   "woman.html"
+get_page "${KIDS_BIKES_BASE}"    "${KIDS_BIKES_PAGES}"    "kids.html"
