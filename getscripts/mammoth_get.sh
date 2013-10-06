@@ -57,13 +57,13 @@ URBAN_BIKES_PAGES="$(seq 0 5)"
 ROAD_BIKES_BASE="${URL}/catalogo/bicicletas/carretera?page="
 ROAD_BIKES_PAGES="$(seq 0 5)"
 
-CICLOCROSS_BIKES_BASE="${URL}/catalogo/bicicletas/ciclocross-triathlon?page="
-CICLOCROSS_BIKES_PAGES="$(seq 0 3)"
+CROSS_BIKES_BASE="${URL}/catalogo/bicicletas/ciclocross-triathlon?page="
+CROSS_BIKES_PAGES="$(seq 0 3)"
 
 WOMAN_BIKES_BASE="${URL}/catalogo/bicicletas/mujer?page="
 WOMAN_BIKES_PAGES="$(seq 0 3)"
 
-KIDS_BIKES_BASE="${URL}/bicicletas/ninos?page="
+KIDS_BIKES_BASE="${URL}/catalogo/bicicletas/ninos?page="
 KIDS_BIKES_PAGES="$(seq 0 1)"
 
 get_page "${MTB_XC_BIKES_BASE}"  "${MTB_XC_BIKES_PAGES}"  "mtb_xc.html"
