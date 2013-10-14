@@ -176,18 +176,18 @@ function dump_bike_from_file()
     URL=$(grep "${trademark_model}" "${FILE}" | grep 'class="nombre"' | awk -F "<a href=" {'print $2'} | awk {'print $1'} | tr -d '"' | head -1)
     FINAL_URL=$(echo "\"${URL_BASE}${URL}\"")
     PRICE=$(print_price "${FILE}" "${TRADEMARK_MODEL}")
-    #echo "========================================================================"
-    #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
-    #echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
-    #echo "TRADEMARK=${TRADEMARK}"
-    #echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
-    #echo "MODEL=${MODEL}"
-    #echo "URL=${FINAL_URL}"
-    #echo "PRICE=${PRICE}"
-    #echo "STORE=${STORE}"
-    #echo "TYPE=${TYPE}"
-    #echo "FILE=${FILE}"
-    #echo "========================================================================"
+    echo "========================================================================"
+    echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
+    echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
+    echo "TRADEMARK=${TRADEMARK}"
+    echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
+    echo "MODEL=${MODEL}"
+    echo "URL=${FINAL_URL}"
+    echo "PRICE=${PRICE}"
+    echo "STORE=${STORE}"
+    echo "TYPE=${TYPE}"
+    echo "FILE=${FILE}"
+    echo "========================================================================"
     dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
@@ -227,8 +227,20 @@ MTB_WOMAN_BIKES_PAGES="$(seq 1 1)"
 MTB_KIDS_BIKES_BASE="kids_bikes_" 
 MTB_KIDS_BIKES_PAGES="$(seq 1 1)"
 
+MTB_FIX_BIKES_CARBON_BASE="mtb_fix_bikes_carbon_"
+MTB_FIX_BIKES_CARBON_PAGES="$(seq 1 2)"
+
+MTB_DOUBLE_BIKES_BASE="mtb_double_bikes_carbon_"
+MTB_DOUBLE_BIKES_PAGES="$(seq 1 2)"
+
+MTB_DOWNHILL_BIKES_BASE="mtb_downhill_bikes_"
+MTB_DOWNHILL_BIKES_PAGES="$(seq 1 2)"
+
 process_pages "${ROAD_BIKES_BASE}"       "${ROAD_BIKES_PAGES}"       "CSBike" "ROAD"       >> ${OUTPUT_FILE}
 process_pages "${MTB_DOUBLE_BIKES_BASE}" "${MTB_DOUBLE_BIKES_PAGES}" "CSBike" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_FIX_BIKES_BASE}"    "${MTB_FIX_BIKES_PAGES}"    "CSBike" "MTB-FIX"    >> ${OUTPUT_FILE}
 process_pages "${MTB_WOMAN_BIKES_BASE}"  "${MTB_WOMAN_BIKES_PAGES}"  "CSBike" "MTB-WOMAN"  >> ${OUTPUT_FILE}
 process_pages "${MTB_KIDS_BIKES_BASE}"   "${MTB_KIDS_BIKES_PAGES}"   "CSBike" "KIDS"       >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_BIKES_CARBON_BASE}" "${MTB_DOUBLE_BIKES_CARBON_PAGES}" "CSBike" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_FIX_BIKES_CARBON_BASE}"    "${MTB_FIX_BIKES_CARBON_PAGES}"    "CSBike" "MTB-FIX"    >> ${OUTPUT_FILE}
+process_pages "${MTB_DOWNHILL_BIKES_BASE}" "${MTB_DOWNHILL_BIKES_PAGES}" "CSBike" "MTB-DOUBLE" >> ${OUTPUT_FILE}

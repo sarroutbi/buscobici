@@ -52,8 +52,17 @@ ROAD_BIKES_PAGES="$(seq 1 2)"
 MTB_DOUBLE_BIKES_BASE="${URL}/products/index/bicicletas/mtb_dobles/page:"
 MTB_DOUBLE_BIKES_PAGES="$(seq 1 3)"
 
+MTB_DOUBLE_BIKES_CARBON_BASE="${URL}/products/index/bicicletas/mtb_dobles_carbono/page:"
+MTB_DOUBLE_BIKES_CARBON_PAGES="$(seq 1 2)"
+
 MTB_FIX_BIKES_BASE="${URL}/products/index/bicicletas/mtb_rigidas/page:"
 MTB_FIX_BIKES_PAGES="$(seq 1 5)"
+
+MTB_DOWNHILL_BIKES_BASE="${URL}/products/index/bicicletas/descenso/page:"
+MTB_DOWNHILL_BIKES_PAGES="$(seq 1 2)"
+
+MTB_FIX_BIKES_CARBON_BASE="${URL}/products/index/bicicletas/mtb_rigidas_carbono/page:"
+MTB_FIX_BIKES_CARBON_PAGES="$(seq 1 2)"
 
 MTB_WOMAN_BIKES_BASE="${URL}/products/index/bicicletas/coluer/page:" 
 MTB_WOMAN_BIKES_PAGES="$(seq 1 1)"
@@ -66,3 +75,6 @@ get_page "${MTB_DOUBLE_BIKES_BASE}"  "${MTB_DOUBLE_BIKES_PAGES}" "mtb_double_bik
 get_page "${MTB_FIX_BIKES_BASE}"     "${MTB_FIX_BIKES_PAGES}"    "mtb_fix_bikes"
 get_page "${MTB_WOMAN_BIKES_BASE}"   "${MTB_WOMAN_BIKES_PAGES}"  "mtb_woman_bikes"
 get_page "${KIDS_BIKES_BASE}"        "${KIDS_BIKES_PAGES}"       "kids_bikes"
+get_page "${MTB_DOUBLE_BIKES_CARBON_BASE}" "${MTB_DOUBLE_BIKES_CARBON_PAGES}" "mtb_double_bikes_carbon"
+get_page "${MTB_FIX_BIKES_CARBON_BASE}"    "${MTB_FIX_BIKES_CARBON_PAGES}"    "mtb_fix_bikes_carbon"
+get_page "${MTB_DOWNHILL_BIKES_BASE}" "${MTB_DOWNHILL_BIKES_PAGES}" "mtb_downhill_bikes"
