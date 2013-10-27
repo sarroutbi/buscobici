@@ -162,3 +162,33 @@ get_page "${URL}/tiendaonline/325-tm?n=${MAX_BIKES_PAGE}"
 get_page "${URL}/tiendaonline/326-tmr?n=${MAX_BIKES_PAGE}"
 get_page "${URL}/tiendaonline/331-plegables?n=${MAX_BIKES_PAGE}"
 get_page "${URL}/tiendaonline/43-bicicletas?n=${MAX_BIKES_PAGE}"
+
+# MTB-DOUBLE
+get_page "${URL}/tiendaonline/474-scalpel-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/475-rush-cannondale-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/455-over-mountain-cannondale-2014?n=${MAX_BIKES_PAGE}"
+
+# MTB-FIX
+get_page "${URL}/tiendaonline/477-bicicletas-flash?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/476-trail-cannondale-2014?n=${MAX_BIKES_PAGE}"
+
+# MTB-29
+get_page "${URL}/tiendaonline/472-bicis-29-cannondale-2014?n=${MAX_BIKES_PAGE}"
+
+# MTB-WOMAN
+get_page "${URL}/tiendaonline/465-montana-mujer-cannondale-2014?n=${MAX_BIKES_PAGE}"
+
+# ROAD
+get_page "${URL}/tiendaonline/462-carretera-hombre-cannondale-2014?n=${MAX_BIKES_PAGE}"
+
+# ROAD-WOMAN
+get_page "${URL}/tiendaonline/458-carretera-mujer-2014?n=${MAX_BIKES_PAGE}"
+
+# URBAN
+get_page "${URL}/tiendaonline/478-urbanas-cannondale-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/527-electricas-cannondale?n=${MAX_BIKES_PAGE}"
+
+# KIDS
+get_page "${URL}/tiendaonline/479-cannondale-para-ninos?n=${MAX_BIKES_PAGE}"
+
+
