@@ -328,37 +328,50 @@ process_file "498-xr?n=${MAX_BIKES_PAGE}"                                "Sanfer
 process_file "500-zt?n=${MAX_BIKES_PAGE}"                                "Sanferbike" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_file "501-sp?n=${MAX_BIKES_PAGE}"                                "Sanferbike" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_file "494-big-mountain-lapierre?n=${MAX_BIKES_PAGE}"             "Sanferbike" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_file "418-occam-2014?n=${MAX_BIKES_PAGE}"                        "Sanferbike" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_file "390-nuevas-orbea-oiz-2014?n=${MAX_BIKES_PAGE}"             "Sanferbike" "MTB-DOUBLE" >> ${OUTPUT_FILE}
  
 # MTB-FIX
 process_file "477-bicicletas-flash?n=${MAX_BIKES_PAGE}"                  "Sanferbike" "MTB" >> ${OUTPUT_FILE}
 process_file "476-trail-cannondale-2014?n=${MAX_BIKES_PAGE}"             "Sanferbike" "MTB" >> ${OUTPUT_FILE}
 process_file "495-pro?n=${MAX_BIKES_PAGE}"                               "Sanferbike" "MTB" >> ${OUTPUT_FILE}
 process_file "496-ra?n=${MAX_BIKES_PAGE}"                                "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_file "393-nuevas-orbea-alma-2014?n=${MAX_BIKES_PAGE}"            "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_file "395-nuevas-orbea-sport-2014?n=${MAX_BIKES_PAGE}"           "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_file "385-nuevas-orbea-mx-2014?n=${MAX_BIKES_PAGE}"              "Sanferbike" "MTB" >> ${OUTPUT_FILE}
                                                                                                
 # MTB-29
 process_file "472-bicis-29-cannondale-2014?n=${MAX_BIKES_PAGE}"          "Sanferbike" "MTB-29" >> ${OUTPUT_FILE}
 process_file "499-l29$?n=${MAX_BIKES_PAGE}"                              "Sanferbike" "MTB-29" >> ${OUTPUT_FILE}
+process_file "481-b?n=${MAX_BIKES_PAGE}"                                 "Sanferbike" "MTB-29" >> ${OUTPUT_FILE}
                                                                                                
 # MTB-27'5
 process_file "508-bi?n=${MAX_BIKES_PAGE}"                                "Sanferbike" "MTB-27-5" >> ${OUTPUT_FILE}
+process_file "484-bicis-27?n=${MAX_BIKES_PAGE}"                          "Sanferbike" "MTB-27-5" >> ${OUTPUT_FILE}
      
 # MTB-WOMAN
 process_file "465-montana-mujer-cannondale-2014?n=${MAX_BIKES_PAGE}"     "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
 process_file "487-montana-mujer-lap?n=${MAX_BIKES_PAGE}"                 "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_file "482-montana-mujer?n=${MAX_BIKES_PAGE}"                     "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
 
 # ROAD
 process_file "462-carretera-hombre-cannondale-2014?n=${MAX_BIKES_PAGE}"     "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
 process_file "488-bicis-carretera-hombre-lapierre-2014?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_file "406-orbea-road?n=${MAX_BIKES_PAGE}"                           "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
                                                                                                
 # ROAD-WOMAN
 process_file "458-carretera-mujer-2014?n=${MAX_BIKES_PAGE}"              "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
 process_file "489-cml?n=${MAX_BIKES_PAGE}"                               "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
+process_file "485-carretera-mujer-2014?n={MAX_BIKES_PAGE}"               "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
                                                                                                
 # URBAN
 process_file "478-urbanas-cannondale-2014?n=${MAX_BIKES_PAGE}"           "Sanferbike"  "URBAN" >> ${OUTPUT_FILE}
 process_file "527-electricas-cannondale?n=${MAX_BIKES_PAGE}"             "Sanferbike"  "URBAN" >> ${OUTPUT_FILE}
 process_file "490-ul?n=${MAX_BIKES_PAGE}"                                "Sanferbike"  "URBAN" >> ${OUTPUT_FILE}
+process_file "412-urban?n=${MAX_BIKES_PAGE}"                             "Sanferbike"  "URBAN" >> ${OUTPUT_FILE}
+process_file "518-hibridas-mujeres?n=${MAX_BIKES_PAGE}"                  "Sanferbike"  "URBAN" >> ${OUTPUT_FILE}
                                                                                                
 # KIDS
 process_file "479-cannondale-para-ninos?n=${MAX_BIKES_PAGE}"             "Sanferbike"  "KIDS" >> ${OUTPUT_FILE}
 process_file "507-n?n=${MAX_BIKES_PAGE}"                                 "Sanferbike"  "KIDS" >> ${OUTPUT_FILE}
+process_file "405-nuevas-orbea-mx-2014?n=${MAX_BIKES_PAGE}"              "Sanferbike"  "KIDS" >> ${OUTPUT_FILE}
