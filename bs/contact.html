@@ -40,10 +40,10 @@
         </a>
         <ul class="nav nav-justified">
           <li><a href="index.html">Búsqueda</a></li>
-          <li class="active"><a href="byprice.html">B. Avanzada</a></li>
+          <li><a href="byprice.html">B. Avanzada</a></li>
           <li><a href="http://buscobici.com/forum">Foros</a></li>
           <li><a href="http://buscobici.com/bikesearch/stats_fullscreen.html">Estadísticas</a></li>
-          <li><a href="contact.html">Contactar</a></li>
+          <li class="active"><a href="contact.html">Contactar</a></li>
         </ul>
       </div>
 
@@ -52,33 +52,22 @@
       </div>
 
       <div class="jumbotron">
-        <form class="form-horizontal">
-        <div class="control-group">
-          <input type="text" class="form-control" placeholder="Introduzca aquí su búsqueda (Vacío muestra todo)" autofocus>
-        </div>
-        <div class="input-group input-group-lg">
-          <span class="input-group-addon">Desde:</span>
-          <input type="number" class="form-control">
-          <span class="input-group-addon">€</span>
-          <span class="input-group-addon">Hasta:</span>
-          <input type="number" class="form-control">
-          <span class="input-group-addon">€</span>
-        </div>
-        <div class="control-group">
-          <label>Tipo:</label>
-          <select id="selectbasic" name="selectbasic" class="input-xlarge">
-            <option>Cualquier tipo</option>
-            <option>MTB</option>
-            <option>Carretera</option>
-            <option>Infantil</option>
-            <option>Urbanas</option>
-            <option>Bmx</option>
-          </select>
-        </div>
-        <div class="control-group">
-          <button class="btn btn-lg btn-primary btn-purple" type="submit">Buscar</button>
-        </div>
-        </form>
+      <form class="form-horizontal">
+      <!-- Text input-->
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon" required>Nombre:</span>
+        <input id="textinput" name="contact_name" type="text" placeholder="Introduzca aquí su nombre" class="form-control" required>
+        <span class="input-group-addon">E-mail:</span>
+        <input id="textinput" name="contact_email" type="text" placeholder="Escriba aquí su correo" class="form-control" required>
+      </div>
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon">Comentarios:</span>
+        <textarea placeholder="Por favor, incluya aquí sus comentarios" required></textarea>
+      </div>
+      <div class="control-group">
+        <button class="btn btn-lg btn-primary btn-purple" type="submit">Enviar comentario</button>
+      </div>
+      </form>
       </div>
 
       <!-- Site footer -->
