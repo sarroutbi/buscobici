@@ -167,28 +167,76 @@ get_page "${URL}/tiendaonline/43-bicicletas?n=${MAX_BIKES_PAGE}"
 get_page "${URL}/tiendaonline/474-scalpel-2014?n=${MAX_BIKES_PAGE}"
 get_page "${URL}/tiendaonline/475-rush-cannondale-2014?n=${MAX_BIKES_PAGE}"
 get_page "${URL}/tiendaonline/455-over-mountain-cannondale-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/497-xc?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/498-xr?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/500-zt?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/501-sp?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/494-big-mountain-lapierre?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/418-occam-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/390-nuevas-orbea-oiz-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/530-giant-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/544-all?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/379-trailfox-montana-bmc?n=${MAX_BIKES_PAGE}"
 
 # MTB-FIX
 get_page "${URL}/tiendaonline/477-bicicletas-flash?n=${MAX_BIKES_PAGE}"
 get_page "${URL}/tiendaonline/476-trail-cannondale-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/495-pro?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/496-ra?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/393-nuevas-orbea-alma-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/395-nuevas-orbea-sport-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/385-nuevas-orbea-mx-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/533-giant-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/543-revel-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/547-x?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/378-sportelite-montana-bmc?n=${MAX_BIKES_PAGE}"
+
+# MTB-27'5
+get_page "${URL}/tiendaonline/508-bi?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/484-bicis-27?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/483-bi?n=${MAX_BIKES_PAGE}"
 
 # MTB-29
 get_page "${URL}/tiendaonline/472-bicis-29-cannondale-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/499-l29?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/481-b?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/375-bmc-montana-foustroke?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/374-bmc-montana-teamelite?n=${MAX_BIKES_PAGE}"
 
 # MTB-WOMAN
 get_page "${URL}/tiendaonline/465-montana-mujer-cannondale-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/487-montana-mujer-lap?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/482-montana-mujer?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/538-m?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/518-hibridas-mujeres?n=${MAX_BIKES_PAGE}"
 
 # ROAD
 get_page "${URL}/tiendaonline/462-carretera-hombre-cannondale-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/488-bicis-carretera-hombre-lapierre-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/406-orbea-road?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/539-car?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/365-nuevas-bmc-carretera?n=${MAX_BIKES_PAGE}"
 
 # ROAD-WOMAN
 get_page "${URL}/tiendaonline/458-carretera-mujer-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/489-cml?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/485-carretera-mujer-2014?n={MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/540-car?n={MAX_BIKES_PAGE}"
 
 # URBAN
 get_page "${URL}/tiendaonline/478-urbanas-cannondale-2014?n=${MAX_BIKES_PAGE}"
 get_page "${URL}/tiendaonline/527-electricas-cannondale?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/490-ul?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/412-urban?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/550-h?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/541-e?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/517-brompton-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/225-dahon-calidad-plegables?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/528-bicis-plegables?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/305-bicis-electricas?n=${MAX_BIKES_PAGE}"
 
 # KIDS
 get_page "${URL}/tiendaonline/479-cannondale-para-ninos?n=${MAX_BIKES_PAGE}"
-
-
+get_page "${URL}/tiendaonline/507-n?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/405-nuevas-orbea-mx-2014?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/536-ninos?n=${MAX_BIKES_PAGE}"
