@@ -210,6 +210,7 @@ textarea {
   overflow: auto;
   vertical-align: top;
   width: 100%;
+  max-width: 100%;
 }
 
 table {
