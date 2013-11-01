@@ -51,17 +51,17 @@
       </div>
 
       <div class="jumbotron">
-      <form class="form-horizontal">
+      <form class="form-horizontal" method="post" action="mail.php">
       <!-- Text input-->
       <div class="input-group input-group-lg">
         <span class="input-group-addon" required>Nombre:</span>
-        <input id="textinput" name="contact_name" type="text" placeholder="Introduzca aquí su nombre" class="form-control" required>
+        <input id="textinput" name="first_name" type="text" placeholder="Introduzca aquí su nombre" class="form-control" required>
         <span class="input-group-addon">E-mail:</span>
-        <input id="textinput" name="contact_email" type="text" placeholder="Escriba aquí su correo" class="form-control" required>
+        <input id="textinput" name="email" type="text" placeholder="Escriba aquí su correo" class="form-control" required>
       </div>
       <div class="input-group input-group-lg">
         <span class="input-group-addon">Comentarios:</span>
-        <textarea rows="1" placeholder="Por favor, incluya aquí sus comentarios" required></textarea>
+        <textarea rows="1" name="comments" placeholder="Por favor, incluya aquí sus comentarios" required></textarea>
       </div>
       <div class="control-group">
         <button class="btn btn-lg btn-primary btn-purple" type="submit">Enviar comentario</button>

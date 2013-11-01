@@ -1,13 +1,28 @@
 <?php
 if(isset($_POST['email'])) {
 
+    // HEADER                           
     echo "<!DOCTYPE HTML>\n";
-    echo "<html>\n";
-    echo "\n";
+    echo "<html lang=\"es\">\n";
     echo "<head>\n";
-    echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
-    echo "<title>Buscador de Bicicletas - Comprar Bici - Contactar</title>\n";
-    echo "<link rel=\"stylesheet\" href=\"bikesearch.css\" type=\"text/css\">\n";
+    echo "\n";
+    echo "<title>buscobici.com - Buscador de Bicicletas</title>\n";
+    echo "<link href=\"./css/bootstrap.css\" rel=\"stylesheet\">\n";
+    echo "\n";
+    echo "<link href=\"./css/justified-nav.css\" rel=\"stylesheet\">\n";
+    echo "\n";
+    echo "<link href=\"./css/signin.css\" rel=\"stylesheet\">\n";
+    echo "<script type=\"text/javascript\">\n";
+    echo "  var _gaq = _gaq || [];\n";
+    echo "  _gaq.push(['_setAccount', 'UA-35382693-4']);\n";
+    echo "  _gaq.push(['_trackPageview']);\n";
+    echo "\n";
+    echo "  (function() {\n";
+    echo "    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;\n";
+    echo "    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';\n";
+    echo "    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);\n";
+    echo "  })();\n";
+    echo "</script>\n";
     echo "</head>\n";
      
     // EDIT THE 2 LINES BELOW AS REQUIRED
@@ -28,7 +43,6 @@ if(isset($_POST['email'])) {
      
     // validation expected data exists
     if( !isset($_POST['first_name']) ||
-        !isset($_POST['last_name'])  ||
         !isset($_POST['email']) ||
         !isset($_POST['comments'])) {
         died('Lo sentimos. Rellene todos los campos.');      
@@ -43,9 +57,6 @@ if(isset($_POST['email'])) {
     $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
   if((strlen($first_name)) <= 0) {
     $error_message .= '- El nombre es obligatorio<br />';
-  }
-  if((strlen($last_name)) <= 0) {
-    $error_message .= '- El apellido es obligatorio<br />';
   }
   if((strlen($email_from)) <= 0) {
     $error_message .= '- La direcci&oacute;n de correo es obligatoria<br />';
@@ -65,7 +76,6 @@ if(isset($_POST['email'])) {
   }
      
   $email_message .= "Nombre : ".clean_string($first_name)."\n";
-  $email_message .= "Apellido : ".clean_string($last_name)."\n";
   $email_message .= "Email : ".clean_string($email_from)."\n";
   $email_message .= "Comentarios : ".clean_string($comments)."\n";
      
@@ -77,15 +87,40 @@ if(isset($_POST['email'])) {
 ?>
  
 <!-- include your own success html here -->
-<html>
-<body>
-<section id="contact_result">
-  <p> Gracias por contactarnos. <br/>
-      Le responderemos en breve.<br/>
-      Un saludo.<br/>
-  </p>
-</section>
-</body>
+  <body>
+      <div class="masthead">
+        <a href="index.html">
+          <img src="res/logo.png" class="img-responsive" alt="Responsive image">
+        </a>
+        <ul class="nav nav-justified">
+          <li><a href="index.html">Búsqueda</a></li>
+          <li><a href="byprice.html">Búsq.Avzda.</a></li>
+          <li><a href="http://buscobici.com/forum">Foros</a></li>
+          <li><a href="http://buscobici.com/bikesearch/stats_fullscreen.html">Estadísticas</a></li>
+          <li class="active"><a href="contact.html">Contactar</a></li>
+        </ul>
+      </div>
+      <div class="well">
+        <p>¿Vas a comprar una bicicleta? Compara entre 8000 bicicletas de las principales marcas en diversas tiendas on-line: Trek, Specialized, Giant, Merida, Scott, Cube, Bmc, Lapierre, Cervélo, Mondraker, Orbea, Bh, Conor, Gt, Ghost, Fuji, ...</p>
+      </div>
+      <div class="jumbotron">
+        <div class="container">
+          <h2>Gracias por su comentario !</h2>
+          <p>Contactaremos con usted en breve</p>
+        </div>
+      </div>
+      <!-- Site footer -->
+      <div class="footer">
+        <p>S&iacute;guenos :&nbsp; 
+          <a href="http://www.facebook.com/buscobicidotcom" target="_blank">
+            <img src="res/facebook00.jpg" alt="Facebook"/>
+          </a>
+          <a href="http://www.twitter.com/buscobici" target="_blank">
+            <img src="res/twitter01.jpg" alt="Twitter"/> 
+          </a>
+        </p>
+      </div>
+   </body>
 </html>
 <?php
 }
