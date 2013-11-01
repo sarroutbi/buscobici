@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" > 
+    <title>Buscador de Bicicletas - Estadísticas de mercado de la bicicleta</title> 
+    <meta name="description" content="Estadísticas Mercado Bicicletas MTB ROAD BMX KIDS URBAN"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--///////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    //		Styles
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////--> 
+    <link rel='stylesheet' id='camera-css'  href='./camera.css' type='text/css' media='all'> 
+    <style>
+		html,body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		a {
+			color: #09f;
+		}
+		a:hover {
+			text-decoration: none;
+		}
+		#back_to_camera {
+			background: rgba(255,255,255,.9);
+			clear: both;
+			display: block;
+			height: 40px;
+			line-height: 40px;
+			padding: 20px;
+			position: relative;
+			z-index: 1;
+		}
+		.fluid_container {
+			bottom: 0;
+			height: 100%;
+			left: 0;
+			position: fixed;
+			right: 0;
+			top: 0;
+			z-index: 0;
+		}
+		#camera_wrap_4 {
+			bottom: 0;
+			height: 100%;
+			left: 0;
+			margin-bottom: 0!important;
+			position: fixed;
+			right: 0;
+			top: 0;
+		}
+		.camera_bar {
+			z-index: 2;
+		}
+		.camera_thumbs {
+			margin-top: -100px;
+			position: relative;
+			z-index: 1;
+		}
+		.camera_thumbs_cont {
+			border-radius: 0;
+			-moz-border-radius: 0;
+			-webkit-border-radius: 0;
+		}
+		.camera_overlayer {
+			opacity: .1;
+		}
+	</style>
+
+    <!--///////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    //		Scripts
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////--> 
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-35382693-4']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
+    <script type='text/javascript' src='./scripts/jquery.min.js'></script>
+    <script type='text/javascript' src='./scripts/jquery.mobile.customized.min.js'></script>
+    <script type='text/javascript' src='./scripts/jquery.easing.1.3.js'></script> 
+    <script type='text/javascript' src='./scripts/camera.min.js'></script> 
+    
+    <script>
+		jQuery(function(){
+			
+			jQuery('#camera_wrap_4').camera({
+				height: 'auto',
+				loader: 'bar',
+				pagination: false,
+				thumbnails: false,
+				hover: false,
+				opacityOnGrid: false,
+				imagePath: './resource/'
+			});
+
+		});
+	</script>
+ 
+</head>
+<body>
+    <header class="body">
+      <title>Buscador de Bicicletas - Estadísticas de mercado de la bicicleta</title>
+    </header>
+
+    <div class="fluid_container">
+        <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
+            <div data-thumb="./resource/stats_models_thumb.png" data-src="./resource/stats_models_web.png">
+            </div>
+            <div data-thumb="./resource/stats_meanprice_thumb.png" data-src="./resource/stats_meanprice_web.png">
+            </div>
+            <div data-thumb="./resource/stats_models_pricerange_thumb.png" data-src="./resource/stats_models_pricerange_web.png">
+            </div>
+            <div data-thumb="./resource/stats_models_pricerange_percent_thumb.png" data-src="./resource/stats_models_pricerange_percent_web.png">
+            </div>
+            <div data-thumb="./resource/stats_models_type_thumb.png" data-src="./resource/stats_models_type_web.png">
+            </div>
+            <div data-thumb="./resource/stats_models_type_percent_thumb.png" data-src="./resource/stats_models_type_percent_web.png">
+            </div>
+            <div data-thumb="./resource/stats_models_MTB_thumb.png" data-src="./resource/stats_models_MTB_web.png"></div>
+            <div data-thumb="./resource/stats_models_ROAD_thumb.png" data-src="./resource/stats_models_ROAD_web.png"></div>
+            <div data-thumb="./resource/stats_models_URBAN_thumb.png" data-src="./resource/stats_models_URBAN_web.png"></div>
+            <div data-thumb="./resource/stats_models_BMX_thumb.png" data-src="./resource/stats_models_BMX_web.png"></div>
+            <div data-thumb="./resource/stats_models_KIDS_thumb.png" data-src="./resource/stats_models_KIDS_web.png"></div>
+        </div><!-- #camera_wrap_4 -->
+    </div><!-- .fluid_container -->
+    
+</body> 
+</html>
