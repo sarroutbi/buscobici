@@ -24,19 +24,50 @@ if(isset($_POST['email'])) {
     echo "  })();\n";
     echo "</script>\n";
     echo "</head>\n";
-     
+
     // EDIT THE 2 LINES BELOW AS REQUIRED
     $email_to = "buscobici.com@gmail.com";
     $email_subject = "Mensaje desde buscobici.com";
      
     function died($error) {
-        echo "<section id=\"contact_error\">\n";
-        echo "<p>Lo sentimos. ";
-        echo "Se produjo el siguiente error:<br /><br />";
-        echo $error."<br /><br />";
-        echo "<br /><br />";
-        echo "</p>";
-        echo "</section>\n";
+        echo "<body>\n";
+        echo "  <div class=\"container\">\n";
+        echo "\n";
+        echo "    <div class=\"masthead\">\n";
+        echo "      <a href=\"index.html\">\n";
+        echo "        <img src=\"res/logo.png\" class=\"img-responsive\" alt=\"Responsive image\">\n";
+        echo "      </a>\n";
+        echo "      <ul class=\"nav nav-justified\">\n";
+        echo "        <li><a href=\"index.html\">Búsqueda</a></li>\n";
+        echo "        <li><a href=\"byprice.html\">Búsq.Avzda.</a></li>\n";
+        echo "        <li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
+        echo "        <li><a href=\"http://buscobici.com/bikesearch/stats_fullscreen.html\">Estadísticas</a></li>\n";
+        echo "        <li><a href=\"contact.html\">Contactar</a></li>\n";
+        echo "      </ul>\n";
+                
+        echo "      <div class=\"well\">\n";
+        echo "        <p>¿Vas a comprar una bicicleta? Compara entre 8000 bicicletas de las principales marcas en diversas tiendas on-line: Trek, Specialized, Giant, Merida, Scott, Cube, Bmc, Lapierre, Cervélo, Mondraker, Orbea, Bh, Conor, Gt, Ghost, Fuji, ...</p>\n";
+        echo "      </div>\n";
+        echo "\n";
+        echo "      <!-- Jumbotron -->\n";
+        echo "      <div class=\"jumbotron\">\n";
+        echo "        <p>Lo sentimos.  Se produjo el siguiente error:<br /><br />";
+        echo "          $error<br /><br />";
+        echo "        </p>";
+        echo "      </div>\n";
+        echo "    </div>\n";
+        echo "  </div>\n";
+        echo "  <div class=\"footer\">\n";
+        echo "    <p>S&iacute;guenos :&nbsp; \n";
+        echo "      <a href=\"http://www.facebook.com/buscobicidotcom\" target=\"_blank\">\n";
+        echo "        <img src=\"res/facebook00.jpg\" alt=\"Facebook\"/>\n";
+        echo "      </a>\n";
+        echo "      <a href=\"http://www.twitter.com/buscobici\" target=\"_blank\">\n";
+        echo "        <img src=\"res/twitter01.jpg\" alt=\"Twitter\"/> \n";
+        echo "      </a>\n";
+        echo "    </p>\n";
+        echo "  </div>\n";
+        echo "</body>\n";
         echo "</html>\n";
         exit();
     }
@@ -55,6 +86,7 @@ if(isset($_POST['email'])) {
      
     $error_message = "";
     $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
+
   if((strlen($first_name)) <= 0) {
     $error_message .= '- El nombre es obligatorio<br />';
   }
@@ -67,6 +99,7 @@ if(isset($_POST['email'])) {
   if((strlen($error_message)) > 0) {
     died($error_message);
   }
+
   $string_exp = "/^[A-Za-z .'-]+$/";
   $email_message = "Detalle de mensaje de contacto:\n\n";
      

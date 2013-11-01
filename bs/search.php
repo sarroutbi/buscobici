@@ -177,7 +177,6 @@ if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
   exit();
 }
 
-
 $search = preg_replace('/[^a-zA-Z0-9\ \.]/i', null, $search);
 
 $search_array=str_word_count($search, 1, '0123456789-/.');
@@ -435,7 +434,6 @@ if ($num_results > 0) {
 // echo "      <img src=\"res/twitter01.jpg\" alt=\"Twitter\"/> \n";
 // echo "    </a>\n";
 // echo "  </p>\n";
-// echo "  <p>buscobici.com 2013</p>\n";
 // echo "</div>\n";
 
 echo "</body>\n";
