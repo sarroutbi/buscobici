@@ -71,12 +71,15 @@ else if(!$page  || ($page == ""))
 // HTML Results Print
 
 echo "<!DOCTYPE HTML>\n";
-echo "<html>\n";
-echo "\n";
+echo "<html lang=\"es\">\n";
 echo "<head>\n";
-echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
-echo "<title>Buscador de Bicicletas - Comprar Bicicleta - Resultados</title>\n";
-echo "<link rel=\"stylesheet\" href=\"bikesearch.css\" type=\"text/css\">\n";
+echo "\n";
+echo "<title>buscobici.com - Buscador de Bicicletas</title>\n";
+echo "<link href=\"./css/bootstrap.css\" rel=\"stylesheet\">\n";
+echo "\n";
+echo "<link href=\"./css/justified-nav.css\" rel=\"stylesheet\">\n";
+echo "\n";
+echo "<link href=\"./css/signin.css\" rel=\"stylesheet\">\n";
 echo "<script type=\"text/javascript\">\n";
 echo "  var _gaq = _gaq || [];\n";
 echo "  _gaq.push(['_setAccount', 'UA-35382693-4']);\n";
@@ -136,21 +139,32 @@ if (   ((!$search)    || (strlen($search)==0))
     && ((!$priceTo)   || (strlen($priceTo)==0))   
     && ((!$type)      || (strlen($type)==0))   
     ) {
-  echo "<a href=\"index.html\"><img class=\"logo_img\" src=\"resource/logo-ori-t-pink-grey-small.png\" alt=\"Inicio\"/></a>";
-  echo "<nav class=\"nav_search\">\n";
-  echo "<ul>\n";
-  echo "\t<li><a href=\"index.html\">Simple</a></li>\n";
-  echo "\t<li><a href=\"byprice.html\">Precio y Tipo</a></li>\n";
-  echo "\t<li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
-  echo "\t<li><a href=\"stats_fullscreen.html\">Estadísticas</a></li>\n";
-  echo "\t<li><a href=\"contact.html\">Contactar</a></li>\n";
-  echo "</ul>\n";
-  echo "</nav>\n";
-  echo "<br>\n";
-  echo "<br>\n";
-  echo "<section id=\"search_error\">\n";
-  echo "<p>B&uacute;squeda vac&iacute;a</p>\n";
-  echo "</section>\n";
+  echo "\n";
+  echo "\n";
+  echo "<div class=\"container\">\n";
+  echo "\n";
+  echo "  <div class=\"masthead\">\n";
+  echo "    <a href=\"index.html\">\n";
+  echo "      <img src=\"res/logo-med.png\" class=\"img-responsive\" alt=\"Responsive image\">\n";
+  echo "    </a>\n";
+  echo "    <ul class=\"nav nav-justified\">\n";
+  echo "      <li><a href=\"index.html\">Búsqueda</a></li>\n";
+  echo "      <li><a href=\"byprice.html\">Búsq.Avzda.</a></li>\n";
+  echo "      <li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
+  echo "      <li><a href=\"http://buscobici.com/bikesearch/stats_fullscreen.html\">Estadísticas</a></li>\n";
+  echo "      <li><a href=\"contact.html\">Contactar</a></li>\n";
+  echo "    </ul>\n";
+
+  echo "    <div class=\"well\">\n";
+  echo "      <p>¿Vas a comprar una bicicleta? Compara entre 8000 bicicletas de las principales marcas en diversas tiendas on-line: Trek, Specialized, Giant, Merida, Scott, Cube, Bmc, Lapierre, Cervélo, Mondraker, Orbea, Bh, Conor, Gt, Ghost, Fuji, ...</p>\n";
+  echo "    </div>\n";
+  echo "\n";
+  echo "    <!-- Jumbotron -->\n";
+  echo "    <div class=\"jumbotron\">\n";
+  echo "      <p>B&uacute;squeda vac&iacute;a</p>\n";
+  echo "    </div>\n";
+  echo "  </div>\n";
+  echo "</div>\n";
   echo "</html>\n";
   exit();
 }
@@ -235,18 +249,22 @@ $query .= ";";
 
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
 
-echo "<section>\n";
-        echo "<nav class=\"nav_search\">\n";
-        echo "<ul>\n";
-        echo "\t<li><a href=\"index.html\">B&uacute;squeda Simple</a></li>\n";
-        echo "\t<li><a href=\"byprice.html\">B&uacute;squeda por Precio y Tipo</a></li>\n";
-        echo "\t<li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
-        echo "\t<li><a href=\"stats_fullscreen.html\">Estadísticas</a></li>\n";
-        echo "\t<li><a href=\"contact.html\">Contactar</a></li>\n";
-        echo "</ul>\n";
-        echo "</nav>\n";
-        echo "<br>\n";
-        echo "<br>\n";
+echo "<div class=\"container\">\n";
+echo "\n";
+echo "  <div class=\"masthead\">\n";
+echo "    <a href=\"index.html\">\n";
+echo "      <img src=\"res/logo-med.png\" class=\"img-responsive\" alt=\"Responsive image\">\n";
+echo "    </a>\n";
+echo "    <ul class=\"nav nav-justified\">\n";
+echo "      <li><a href=\"index.html\">Búsqueda</a></li>\n";
+echo "      <li><a href=\"byprice.html\">Búsq.Avzda.</a></li>\n";
+echo "      <li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
+echo "      <li><a href=\"http://buscobici.com/bikesearch/stats_fullscreen.html\">Estadísticas</a></li>\n";
+echo "      <li><a href=\"contact.html\">Contactar</a></li>\n";
+echo "    </ul>\n";
+echo "\n";
+echo "  </div>\n";
+echo "</div>\n";
 
 $round = 0;
 
@@ -307,10 +325,12 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
 echo "\t</tbody>\n";
 echo "</table>\n";    
 echo "</section>\n";
+
 if ($round==0) {
-    echo "<section id=\"search_error\">\n";
-    echo "<p>Lo sentimos. No se encontraron resultados para su b&uacute;squeda.</p>\n";
-    echo "</section>\n";
+  echo "    <!-- Jumbotron -->\n";
+  echo "    <div class=\"jumbotron\">\n";
+  echo "      <p>Lo sentimos, no se encontr&oacute; ning&uacute;n resultado</p>\n";
+  echo "    </div>\n";
 }
 
 if ($num_results > 0) {
@@ -397,6 +417,18 @@ if ($num_results > 0) {
       echo "</form>\n";
     }
 }
+
+echo "<div class=\"footer\">\n";
+echo "  <p>S&iacute;guenos :&nbsp; \n";
+echo "    <a href=\"http://www.facebook.com/buscobicidotcom\" target=\"_blank\">\n";
+echo "      <img src=\"res/facebook00.jpg\" alt=\"Facebook\"/>\n";
+echo "    </a>\n";
+echo "    <a href=\"http://www.twitter.com/buscobici\" target=\"_blank\">\n";
+echo "      <img src=\"res/twitter01.jpg\" alt=\"Twitter\"/> \n";
+echo "    </a>\n";
+echo "  </p>\n";
+echo "  <p>buscobici.com 2013</p>\n";
+echo "</div>\n";
 
 echo "</body>\n";
 echo "</html>\n";

@@ -52,16 +52,16 @@
 
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="post" action="search.php">
         <fieldset>
 
         <!-- Search input-->
         <div class="control-group">
-          <input type="text" class="form-control" placeholder="Introduzca aquí su búsqueda" required autofocus>
+          <input type="text" class="form-control" id="input_search" name="search" placeholder="Introduzca aquí su búsqueda" required autofocus>
           <p class="help-block">Ejemplo: <a href="search.php?search=Trek+Elite+2013">Trek Elite 2013</a>, 
 <a href="search.php?search=Rockhopper+2013">Rockhopper 2013</a>,
 <a href="search.php?search=Occam+S10">Occam S10</a></p></p>
-          <button class="btn btn-lg btn-primary btn-purple" type="submit">Buscar</button>
+          <button class="btn btn-lg btn-primary btn-purple" name="submit" type="submit">Buscar</button>
         </div>
         
         </fieldset>
