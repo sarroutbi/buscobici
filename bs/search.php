@@ -384,6 +384,10 @@ if ($num_results > 0) {
         if (($num_pages) > 1) {
           echo "<label> - Entradas por p&aacute;gina :</label>\n";
           echo "<select name=\"entryPerPage\" id=\"entryPerPage\" onSelect=\"form.submit()\" onChange=\"form.submit()\">\n";
+          if ($resultsPerPage == 5) 
+            echo "  <option value=\"5\" selected=\"selected\">5</option>\n";
+       	  else 
+            echo "  <option value=\"5\">5</option>\n";
           if ($resultsPerPage == 10) 
             echo "  <option value=\"10\" selected=\"selected\">10</option>\n";
        	  else 
