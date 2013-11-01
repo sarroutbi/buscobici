@@ -271,8 +271,11 @@ $num_results = pg_numrows($result);
 $num_pages = ceil($num_results / $resultsPerPage);
 $result = pg_query($query_limited) or die('Query returned an error: ' . pg_last_error());
 
+echo "<div>\n";
+echo "  <br />\n";
+echo "</div>\n";
 echo "<div class=\"table-responsive\">\n";
-echo "  <table class=\"table\">\n";
+echo "  <table class=\"table table-striped table-condensed\">\n";
 while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     if ($round== 0)
     {
