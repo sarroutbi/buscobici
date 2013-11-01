@@ -35,7 +35,7 @@
 
       <div class="masthead">
         <a href="index.html">
-          <img src="res/logo-med.png" class="img-responsive" alt="Responsive image">
+          <img src="res/logo.png" class="img-responsive" alt="Responsive image">
         </a>
         <ul class="nav nav-justified">
           <li><a href="index.html">Búsqueda</a></li>
@@ -51,27 +51,26 @@
       </div>
 
       <div class="jumbotron">
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="post" action="search.php">
         <div class="control-group">
-          <input type="text" class="form-control" placeholder="Introduzca aquí su búsqueda (Vacío muestra todo)" autofocus>
+          <input type="text" id="input_search" name="search" class="form-control" placeholder="Introduzca aquí su búsqueda (Vacío muestra todo)" autofocus>
         </div>
         <div class="input-group input-group-lg">
           <span class="input-group-addon">Desde:</span>
-          <input type="number" class="form-control">
+          <input name="priceFrom" type="number" min="0" max="30000" type="number" class="form-control">
           <span class="input-group-addon">€</span>
+
           <span class="input-group-addon">Hasta:</span>
-          <input type="number" class="form-control">
+          <input name="priceTo" type="number" min="1" max="30000" type="number" class="form-control">
           <span class="input-group-addon">€</span>
-        <!--/div>
-        <div class="control-group">
-          <label>Tipo:</label-->
-          <select id="selectbasic" name="selectbasic" class="input-xlarge">
-            <option>Cualquier tipo</option>
-            <option>MTB</option>
-            <option>Carretera</option>
-            <option>Infantil</option>
-            <option>Urbanas</option>
-            <option>Bmx</option>
+
+          <select id="byType" name="type" class="input-xlarge">
+            <option value="">Cualquier tipo</option>
+            <option value="MTB">MTB</option>
+            <option value="ROAD">Carretera</option>
+            <option value="KIDS">Infantil</option>
+            <option value="URBAN">Urbanas</option>
+            <option value="ROAD">Bmx</option>
           </select>
         </div>
         <div class="control-group">
@@ -90,7 +89,6 @@
             <img src="res/twitter01.jpg" alt="Twitter"/> 
           </a>
         </p>
-        <p>buscobici.com 2013</p>
       </div>
     </div> <!-- /container -->
   </body>

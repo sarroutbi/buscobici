@@ -39,7 +39,7 @@ $numResultsGet   = $_GET['numResults'];
 $entryPerPageGet = $_GET['entryPerPage'];
 
 // Default Num. of results per page
-$defaultResultsPerPage = 15;
+$defaultResultsPerPage = 10;
 $defaultAroundPages    = 2;
 $defaultFirstPages     = 5;
 $defaultLastPages      = 5;
@@ -145,7 +145,7 @@ if (   ((!$search)    || (strlen($search)==0))
   echo "\n";
   echo "  <div class=\"masthead\">\n";
   echo "    <a href=\"index.html\">\n";
-  echo "      <img src=\"res/logo-med.png\" class=\"img-responsive\" alt=\"Responsive image\">\n";
+  echo "      <img src=\"res/logo.png\" class=\"img-responsive\" alt=\"Responsive image\">\n";
   echo "    </a>\n";
   echo "    <ul class=\"nav nav-justified\">\n";
   echo "      <li><a href=\"index.html\">Búsqueda</a></li>\n";
@@ -253,7 +253,7 @@ echo "<div class=\"container\">\n";
 echo "\n";
 echo "  <div class=\"masthead\">\n";
 echo "    <a href=\"index.html\">\n";
-echo "      <img src=\"res/logo-med.png\" class=\"img-responsive\" alt=\"Responsive image\">\n";
+echo "      <img src=\"res/logo.png\" class=\"img-responsive\" alt=\"Responsive image\">\n";
 echo "    </a>\n";
 echo "    <ul class=\"nav nav-justified\">\n";
 echo "      <li><a href=\"index.html\">Búsqueda</a></li>\n";
@@ -272,13 +272,13 @@ $num_results = pg_numrows($result);
 $num_pages = ceil($num_results / $resultsPerPage);
 $result = pg_query($query_limited) or die('Query returned an error: ' . pg_last_error());
 
-echo "<table class=\"tableSearch\">\n";
-
+echo "<div class=\"table-responsive\">\n";
+echo "  <table class=\"table\">\n";
 while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     if ($round== 0)
     {
         echo "\t<thead>\n";
-        echo "\t<tr id=\"search_results\">\n";
+        echo "\t<tr>\n";
         echo "\t<td><b>Marca</b></td>\n";
         echo "\t<td><b>Modelo</b></td>\n";
         echo "\t<td><b>Tipo</b></td>\n";
@@ -322,9 +322,9 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     }
     echo "\t</tr>\n";
 }
-echo "\t</tbody>\n";
-echo "</table>\n";    
-echo "</section>\n";
+echo "  </tbody>\n";
+echo "  </table>\n";
+echo "</div>\n";
 
 if ($round==0) {
   echo "    <!-- Jumbotron -->\n";
@@ -386,15 +386,19 @@ if ($num_results > 0) {
           echo "<select name=\"entryPerPage\" id=\"entryPerPage\" onSelect=\"form.submit()\" onChange=\"form.submit()\">\n";
           if ($resultsPerPage == 10) 
             echo "  <option value=\"10\" selected=\"selected\">10</option>\n";
-	  else 
+       	  else 
             echo "  <option value=\"10\">10</option>\n";
+          if ($resultsPerPage == 12) 
+            echo "  <option value=\"12\" selected=\"selected\">12</option>\n";
+       	  else 
+            echo "  <option value=\"12\">12</option>\n";
           if ($resultsPerPage == 15) 
             echo "  <option value=\"15\" selected=\"selected\">15</option>\n";
-	  else 
+      	   else 
             echo "  <option value=\"15\">15</option>\n";
           if ($resultsPerPage == 20) 
             echo "  <option value=\"20\" selected=\"selected\">20</option>\n";
-	  else 
+       	  else 
             echo "  <option value=\"20\">20</option>\n";
           if ($resultsPerPage == 25) 
             echo "  <option value=\"25\" selected=\"selected\">25</option>\n";
@@ -418,17 +422,17 @@ if ($num_results > 0) {
     }
 }
 
-echo "<div class=\"footer\">\n";
-echo "  <p>S&iacute;guenos :&nbsp; \n";
-echo "    <a href=\"http://www.facebook.com/buscobicidotcom\" target=\"_blank\">\n";
-echo "      <img src=\"res/facebook00.jpg\" alt=\"Facebook\"/>\n";
-echo "    </a>\n";
-echo "    <a href=\"http://www.twitter.com/buscobici\" target=\"_blank\">\n";
-echo "      <img src=\"res/twitter01.jpg\" alt=\"Twitter\"/> \n";
-echo "    </a>\n";
-echo "  </p>\n";
-echo "  <p>buscobici.com 2013</p>\n";
-echo "</div>\n";
+// echo "<div class=\"footer\">\n";
+// echo "  <p>S&iacute;guenos :&nbsp; \n";
+// echo "    <a href=\"http://www.facebook.com/buscobicidotcom\" target=\"_blank\">\n";
+// echo "      <img src=\"res/facebook00.jpg\" alt=\"Facebook\"/>\n";
+// echo "    </a>\n";
+// echo "    <a href=\"http://www.twitter.com/buscobici\" target=\"_blank\">\n";
+// echo "      <img src=\"res/twitter01.jpg\" alt=\"Twitter\"/> \n";
+// echo "    </a>\n";
+// echo "  </p>\n";
+// echo "  <p>buscobici.com 2013</p>\n";
+// echo "</div>\n";
 
 echo "</body>\n";
 echo "</html>\n";
