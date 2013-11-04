@@ -189,6 +189,9 @@ function process_pages()
   fi
 }
 
+RACETRACK_BIKES_BASE="racetrack.html"
+RACETRACK_BIKES_PAGES=
+
 FIXIE_BIKES_BASE="fixies.html"
 FIXIE_BIKES_PAGES=
 
@@ -215,11 +218,12 @@ URBAN_BIKES_PAGES="$(seq 1 3)"
 
 > ${OUTPUT_FILE}
 
-process_pages "${FIXIE_BIKES_BASE}" "${FIXIE_BIKES_PAGES}" "Wiggle" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${BMX_BIKES_BASE}"   "${BMX_BIKES_PAGES}"   "Wiggle" "BMX"   >> ${OUTPUT_FILE}
-process_pages "${ROAD_BIKES_BASE}"  "${ROAD_BIKES_PAGES}"  "Wiggle" "ROAD"  >> ${OUTPUT_FILE}
+process_pages "${RACETRACK_BIKES_BASE}" "${RACETRACK_BIKES_PAGES}"   "Wiggle" "ROAD-RACETRACK" >> ${OUTPUT_FILE}
+process_pages "${FIXIE_BIKES_BASE}" "${FIXIE_BIKES_PAGES}"           "Wiggle" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${BMX_BIKES_BASE}"   "${BMX_BIKES_PAGES}"             "Wiggle" "BMX"   >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}"  "${ROAD_BIKES_PAGES}"            "Wiggle" "ROAD"  >> ${OUTPUT_FILE}
 process_pages "${CICLOCROSS_BIKES_BASE}" "${CICLOCROSS_BIKES_PAGES}" "Wiggle" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "Wiggle" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}"               "Wiggle" "MTB" >> ${OUTPUT_FILE}
 process_pages "${MTB_DOUBLE_BIKES_BASE}" "${MTB_DOUBLE_BIKES_PAGES}" "Wiggle" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${KIDS_BIKES_BASE}" "" "Wiggle" "KIDS"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "Wiggle" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${KIDS_BIKES_BASE}" ""                                "Wiggle" "KIDS"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}"           "Wiggle" "URBAN"  >> ${OUTPUT_FILE}

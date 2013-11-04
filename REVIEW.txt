@@ -11,3 +11,4 @@ This file contains which stores have been reviewed and the date.
 - Calmera   : 20130708
 - BiciMarket: 20131010
 - Sanferbike: 20131030
+- Wiggle    : 20131031

@@ -39,35 +39,39 @@ function get_page()
   fi
 }
 
-FIXIE_BIKES_BASE="${URL}/bicicletas/bicis-sin-cambios/"
+RACETRACK_BIKES_BASE="${URL}/ciclismo/bicis-de-pista/"
+RACETRACK_BIKES_PAGES=""
+
+FIXIE_BIKES_BASE="${URL}/ciclismo/bicis-sin-cambios/"
 FIXIE_BIKES_PAGES=""
 
-BMX_BIKES_BASE="${URL}/bicicletas/bicis-bmx/"
+BMX_BIKES_BASE="${URL}/ciclismo/bicis-bmx/"
 BMX_BIKES_PAGES="$(seq 1 3)"
 
-ROAD_BIKES_BASE="${URL}/bicicletas/bicis-de-carretera-y-contrarreloj/"
+ROAD_BIKES_BASE="${URL}/ciclismo/bicis-de-carretera-y-contrarreloj/"
 ROAD_BIKES_PAGES="$(seq 1 10)"
 
-CICLOCROSS_BIKES_BASE="${URL}/bicicletas/bicis-de-ciclocross/"
+CICLOCROSS_BIKES_BASE="${URL}/ciclismo/bicis-de-ciclocross/"
 CICLOCROSS_BIKES_PAGES=""
 
-MTB_BIKES_BASE="${URL}/bicicletas/bicis-mtb-rigidas"
+MTB_BIKES_BASE="${URL}/ciclismo/bicis-mtb-rigidas"
 MTB_BIKES_PAGES=$(seq 1 5)
 
-MTB_DOUBLE_BIKES_BASE="${URL}/bicicletas/bicis-mtb-doble-suspension/"
+MTB_DOUBLE_BIKES_BASE="${URL}/ciclismo/bicis-mtb-doble-suspension/"
 MTB_DOUBLE_BIKES_PAGES=$(seq 1 5)
 
-KIDS_BIKES_BASE="${URL}/bicicletas/bicis-para-ninos/"
+KIDS_BIKES_BASE="${URL}/ciclismo/bicis-para-ninos/"
 KIDS_BIKES_PAGES=""
 
-URBAN_BIKES_BASE="${URL}/bicicletas/bicis-urbanas/"
+URBAN_BIKES_BASE="${URL}/ciclismo/bicis-urbanas/"
 URBAN_BIKES_PAGES=$(seq 1 3)
 
-get_page "${FIXIE_BIKES_BASE}" "${FIXIE_BIKES_PAGES}"             "fixies.html"
-get_page "${BMX_BIKES_BASE}"   "${BMX_BIKES_PAGES}"               "bmx.html"
-get_page "${ROAD_BIKES_BASE}"  "${ROAD_BIKES_PAGES}"              "road.html"
-get_page "${CICLOCROSS_BIKES_BASE}"  "${CICLOCROSS_BIKES_PAGES}"  "ciclocross.html"
-get_page "${MTB_BIKES_BASE}"   "${MTB_BIKES_PAGES}"               "mtb.html"
-get_page "${MTB_DOUBLE_BIKES_BASE}"   "${MTB_DOUBLE_BIKES_PAGES}" "mtb-double.html"
-get_page "${KIDS_BIKES_BASE}"  "${KIDS_BIKES_PAGES}"              "bicis-para-ninos.html"
-get_page "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}"             "urban.html"
+get_page "${RACETRACK_BIKES_BASE}"   "${RACETRACK_BIKES_PAGES}"         "racetrack.html"
+get_page "${FIXIE_BIKES_BASE}"       "${FIXIE_BIKES_PAGES}"             "fixies.html"
+get_page "${BMX_BIKES_BASE}"         "${BMX_BIKES_PAGES}"               "bmx.html"
+get_page "${ROAD_BIKES_BASE}"        "${ROAD_BIKES_PAGES}"              "road.html"
+get_page "${CICLOCROSS_BIKES_BASE}"  "${CICLOCROSS_BIKES_PAGES}"        "ciclocross.html"
+get_page "${MTB_BIKES_BASE}"         "${MTB_BIKES_PAGES}"               "mtb.html"
+get_page "${MTB_DOUBLE_BIKES_BASE}"  "${MTB_DOUBLE_BIKES_PAGES}"        "mtb-double.html"
+get_page "${KIDS_BIKES_BASE}"        "${KIDS_BIKES_PAGES}"              "bicis-para-ninos.html"
+get_page "${URBAN_BIKES_BASE}"       "${URBAN_BIKES_PAGES}"             "urban.html"
