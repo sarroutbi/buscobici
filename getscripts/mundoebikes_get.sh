@@ -28,11 +28,13 @@ function get_page()
   PAGES="$2"
   if [ "${PAGES}" = "" ];
   then
-    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
+    wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4' \
+      --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
   else
     for page in ${PAGES};
     do
-      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
+      wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4' \
+        --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
     done 
   fi
 }
