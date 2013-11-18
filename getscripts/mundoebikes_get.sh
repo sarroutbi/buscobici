@@ -26,14 +26,15 @@ function get_page()
 {
   BASE_URL="$1"
   PAGES="$2"
+  sleep 5
   if [ "${PAGES}" = "" ];
   then
-    wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4' \
+    wget -w5 --random-wait -e robots=off -U 'mozilla' \
       --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
   else
     for page in ${PAGES};
     do
-      wget -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4' \
+      wget -w6 --random-wait -e robots=off -U 'mozilla' \
         --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
     done 
   fi
