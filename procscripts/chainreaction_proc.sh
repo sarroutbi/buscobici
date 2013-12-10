@@ -195,7 +195,12 @@ function process_page_url()
     #log_url "${MODEL_NO_FILTER}" "${BASE_FILE}"
     URL=$(print_url "${MODEL_NO_FILTER}" "${BASE_FILE}")
     PRICE=$(print_price "${BASE_FILE}" "${MODEL}")
+
+    # Avoid prices smaller than 100 euros, as many models (not only bikes) are being parsed
     test -z "${PRICE}" && PRICE=$(print_price2 "${URL}" "${MODEL}")
+    PRICE_NO_DEC=$(echo ${PRICE} | awk -F "," {'print $1'})
+    if [ ${PRICE_NO_DEC} -lt 100 ]; then PRICE=; fi
+
     #echo "========================================================================"
     #echo "TRADEMARK=${TRADEMARK_CAMEL}"
     #echo "MODEL=${MODEL}"
