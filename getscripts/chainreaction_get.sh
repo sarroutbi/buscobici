@@ -38,13 +38,13 @@ function get_page()
 }
 
 
-MTB_BIKES_BASE="${URL}/es/es/bicis-montana/rigidos?f=2258&page="
+MTB_BIKES_BASE="${URL}/es/es/bicis-montana/rigidos?page="
 MTB_BIKES_PAGES="$(seq 1 5)"
 
-MTB_DOUBLE_BIKES_BASE="${URL}/es/es/bicis-montana/suspension-total?f=2258&page="
+MTB_DOUBLE_BIKES_BASE="${URL}/es/es/bicis-montana/suspension-total?page="
 MTB_DOUBLE_BIKES_PAGES="$(seq 1 5)"
 
-ROAD_BIKES_BASE="${URL}/es/es/bicis-de-carretera?f=2259&page="
+ROAD_BIKES_BASE="${URL}/es/es/bicis-de-carretera?page="
 ROAD_BIKES_PAGES="$(seq 1 5)"
 
 ELECTRIC_BIKES_BASE=""
@@ -53,19 +53,19 @@ ELECTRIC_BIKES_PAGES=""
 FOLDING_BIKES_BASE=""
 FOLDING_BIKES_PAGES=""
 
-CRUISER_BIKES_BASE="${URL}/es/es/bicis-cruiser?f=2260&page="
+CRUISER_BIKES_BASE="${URL}/es/es/bicis-cruiser?page="
 CRUISER_BIKES_PAGES=""
 
-BMX_BIKES_BASE="${URL}/es/es/bicis-bmx?f=2263&page="
+BMX_BIKES_BASE="${URL}/es/es/bicis-bmx?page="
 BMX_BIKES_PAGES="$(seq 1 3)"
 
-KIDS_BIKES_BASE="${URL}/es/es/bicis-infantiles?f=2258&page="
+KIDS_BIKES_BASE="${URL}/es/es/bicis-infantiles?page="
 KIDS_BIKES_PAGES="$(seq 1 3)"
  
-URBAN_BIKES_BASE="${URL}/es/es/bicis-urbanas?f=2260&page="
+URBAN_BIKES_BASE="${URL}/es/es/bicis-urbanas?page="
 URBAN_BIKES_PAGES="$(seq 1 3)"
 
-CICLOCROSS_BIKES_BASE="${URL}/es/es/bicis-ciclocross?f=2259&page="
+CICLOCROSS_BIKES_BASE="${URL}/es/es/bicis-ciclocross?page="
 CICLOCROSS_BIKES_PAGES=""
 
 get_page "${MTB_BIKES_BASE}"        "${MTB_BIKES_PAGES}"

@@ -24,7 +24,7 @@
 # KIND=MTB-FIX
 #
 URL_BASE="http://www.chainreactioncycles.com"
-MAX_PRICE=10
+MAX_PRICE=100
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
 OUTPUT_FILE=./output
@@ -118,8 +118,17 @@ function filter_model()
 # 2 - The MODEL of bike
 function print_price()
 {
-  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep Desde -A1 | tail -1 | sed -e 's/<[^>]*>//g' | tr '.' ',' | grep -o "[0-9,\.]*[0-9],[0-9]*")
+  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep "Desde\|AHORA" -A1 | tail -1 | sed -e 's/<[^>]*>//g' | tr '.' ',' | grep -o "[0-9,\.]*[0-9],[0-9]*")
   echo ${PRICE}
+}
+
+# Params:
+# 1 - The URL of bike
+# 2 - The MODEL of bike
+function print_price2()
+{
+  PRICE=$(wget -o /dev/null -O - "$1" | grep "$2" -A${MAX_PRICE} | grep 'id="crc_product_rp"' | sed -e 's/<[^>]*>//g' | tr '.' ',' | grep -o "[0-9,\.]*[0-9],[0-9]*" | head -1)
+  echo "${PRICE}"
 }
 
 function log_url()
@@ -150,9 +159,9 @@ function print_url()
   if [ $? -eq 0 ]; 
   then
     MODEL=$(echo "${model}" | sed -e 's-\"-\\\"-g')
-    URL=$(grep "${MODEL}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
+    URL=$(grep "${MODEL}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | tr -d "'" | sed -e 's/[ \t]$//g' | awk {'print $1'})
   else
-    URL=$(grep "${model}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | awk {'print $1'})
+    URL=$(grep "${model}" "${BASE_FILE}" | grep "href"  | awk -F "href=" {'print $2'} | awk -F "class" {'print $1'} | awk -F "title" {'print $1'} | head -1 | tr -d '"' | tr -d "'" | sed -e 's/[ \t]$//g' | awk {'print $1'})
   fi
   URL_COMPLETE="${URL_BASE}${URL}"
   echo "${URL_COMPLETE}"
@@ -163,7 +172,8 @@ function process_page_url()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  MODELS=$(cat "${BASE_FILE}" | grep Desde -B10 | grep '<li class="description">' -A2 | sed -e 's/<[^>]*>//g' | grep -v ^'--' | grep  ^[A-Z,a-z,0-9])
+  #MODELS=$(cat "${BASE_FILE}" | grep '<li class="description">' -A2 | sed -e 's/<[^>]*>//g' | grep -v ^'--' | grep  ^[A-Z,a-z,0-9] | grep -v "Pedals" | grep -v "Helmet")
+  MODELS=$(cat "${BASE_FILE}" | grep 'product_image' -A2  | grep img | grep title | awk -F 'title=' {'print $2'} | awk -F "'" {'print $2'} | grep -v "Pedals" | grep -v "Helmet")
   echo "${MODELS}" | while read model;
   do
     MODEL_FILTER=$(filter_model "${model}")
@@ -185,9 +195,11 @@ function process_page_url()
     #log_url "${MODEL_NO_FILTER}" "${BASE_FILE}"
     URL=$(print_url "${MODEL_NO_FILTER}" "${BASE_FILE}")
     PRICE=$(print_price "${BASE_FILE}" "${MODEL}")
+    test -z "${PRICE}" && PRICE=$(print_price2 "${URL}" "${MODEL}")
     #echo "========================================================================"
     #echo "TRADEMARK=${TRADEMARK_CAMEL}"
-    #echo "MODEL=${MODEL_CAMEL}"
+    #echo "MODEL=${MODEL}"
+    #echo "MODEL_CAMEL=${MODEL_CAMEL}"
     #echo "URL=${URL}"
     #echo "PRICE=${PRICE}"
     #echo "STORE=${STORE}"
@@ -216,13 +228,13 @@ function process_pages()
   fi
 }
 
-MTB_BIKES_BASE="rigidos?f=2258&page="
+MTB_BIKES_BASE="rigidos?page="
 MTB_BIKES_PAGES="$(seq 1 5)"
 
-MTB_DOUBLE_BIKES_BASE="suspension-total?f=2258&page="
+MTB_DOUBLE_BIKES_BASE="suspension-total?page="
 MTB_DOUBLE_BIKES_PAGES="$(seq 1 5)"
 
-ROAD_BIKES_BASE="bicis-de-carretera?f=2259&page="
+ROAD_BIKES_BASE="bicis-de-carretera?page="
 ROAD_BIKES_PAGES="$(seq 1 5)"
 
 ELECTRIC_BIKES_BASE=""
@@ -231,19 +243,19 @@ ELECTRIC_BIKES_PAGES=""
 FOLDING_BIKES_BASE=""
 FOLDING_BIKES_PAGES=""
 
-CRUISER_BIKES_BASE="bicis-cruiser?f=2260&page="
+CRUISER_BIKES_BASE="bicis-cruiser?page="
 CRUISER_BIKES_PAGES=""
 
-BMX_BIKES_BASE="bicis-bmx?f=2263&page="
+BMX_BIKES_BASE="bicis-bmx?page="
 BMX_BIKES_PAGES="$(seq 1 3)"
 
-KIDS_BIKES_BASE="bicis-infantiles?f=2258&page="
+KIDS_BIKES_BASE="bicis-infantiles?page="
 KIDS_BIKES_PAGES="$(seq 1 3)"
  
-URBAN_BIKES_BASE="bicis-urbanas?f=2260&page="
+URBAN_BIKES_BASE="bicis-urbanas?page="
 URBAN_BIKES_PAGES="$(seq 1 3)"
 
-CICLOCROSS_BIKES_BASE="bicis-ciclocross?f=2259&page="
+CICLOCROSS_BIKES_BASE="bicis-ciclocross?page="
 CICLOCROSS_BIKES_PAGES=""
 
 > ${OUTPUT_FILE}
