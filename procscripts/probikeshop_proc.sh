@@ -25,11 +25,12 @@
 
 MAX_PRICE=2
 OUTPUT_FILE=./output
+#OUTPUT_FILE=/dev/stdout
 BASE_URL="http://www.probikeshop.es"
-NO_CAMEL_MIN=6
+NO_CAMEL_MIN=1
 NO_CAMEL_TRADEMARK_MIN=0
-DOWN_SEARCH=20
-PRICE_SEARCH=4
+DOWN_SEARCH=10
+PRICE_SEARCH=10
 URL="www.probikeshop.es"
 ONLY_DOMAIN="probikeshop.es"
 
@@ -140,7 +141,7 @@ function camel()
 function clean_model()
 {
     MODEL="${1}"
-    echo "${MODEL}" | sed -e 's/[Cc]uatriciclo//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo//g' | sed -e 's/Bici sin pedales//g'
+    echo "${MODEL}" | sed -e 's/[Bb]icicleta de [Cc]iclocross//g' | sed -e 's/[Bb]icicleta de [Cc]arrera//g' | sed -e 's/[Bb]icicleta [Nn]i.[oa] con ruedines//g' | sed -e 's/[Cc]uatriciclo//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo //g' | sed -e 's/Bici sin pedales//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Mm]ountain [Bb]ike//g' | sed -e 's/[Bb]icicleta de [Nn]i.[oa]//g' | sed -e 's/[Bb][Mm][Xx] Completa//g' | sed -e 's/[Bb][Mm][Xx]//g' | sed -e 's/Ni.[o,a]//g' | sed -e 's/[Bb]icicleeta//g' | sed -e 's/Bici//g' | sed -e 's/Bikes//g'
 }
 
 function dump_bike_from_file()
@@ -148,29 +149,30 @@ function dump_bike_from_file()
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  TRADEMARK_MODELS=$(cat "${FILE}" | grep "<td class='product_thumb'>" -A${DOWN_SEARCH} | grep "<h3><a href")
+  TRADEMARK_MODELS=$(cat "${FILE}" | grep -A5 '<span class="wrap-img img-product">' | grep '<span class="title"' -A1 | sed -e 's/<[^>]*>//g' | egrep -E '[A-Z,a-z]')
   echo "${TRADEMARK_MODELS}" | while read trademark_model;
   do 
     #echo "===== TRADEMARK MODEL ====="
     #echo "=>${trademark_model}<="
     #echo "===== /TRADEMARK MODEL ====="
     test -z "${trademark_model}" && continue;
-    TRADEMARK_MODEL=$(grep "${trademark_model}" "${FILE}" | grep "<h3><a href" | sed -e 's/<[^>]*>//g')
+    TRADEMARK_MODEL="${trademark_model}"
     TRADEMARK_MODEL_CLEAN=$(clean_model "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
     MODEL_CAMEL=$(camel "${MODEL}" "${NO_CAMEL_MIN}")
-    URL=$(grep "${trademark_model}" "${FILE}" | grep "<h3><a href" | awk -F "a href=" {'print $2'} | awk -F ">" {'print $1'} | tr -d '"')
+    URL=$(grep "${trademark_model}" "${FILE}" -B5 | grep "<a href" | awk -F "a href=" {'print $2'} | awk -F ">" {'print $1'} | tr -d '"' | tr -d ' ')
     FINAL_URL=$(echo "\"${BASE_URL}${URL}\"")
-    PRICE=$(grep "${trademark_model}" "${FILE}" -A${DOWN_SEARCH} | grep "product_price" -A${PRICE_SEARCH} | egrep -E "[0-9]{0,1}.{0,1}[0-9]{2,},{0,1}[0-9]{0,}" -o | head -1 | tr -d '.' | sed -e 's/^[ /t]*//g' | tr -d ' ' | tr -d '\r' | tr -d '\n' | tr -d '\302' | tr -d '\240')
+#    PRICE=$(grep "${trademark_model}" "${FILE}" -A${DOWN_SEARCH} | grep '<span class="title"' -A${PRICE_SEARCH} | egrep -E "[0-9]{0,1}.{0,1}[0-9]{2,},{0,1}[0-9]{0,}" -o | head -1 | tr -d '.' | sed -e 's/^[ /t]*//g' | tr -d ' ' | tr -d '\r' | tr -d '\n' | tr -d '\302' | tr -d '\240')
+    PRICE=$(grep "${trademark_model}" "${FILE}" -A${DOWN_SEARCH} | grep '<span class="price"' -A${PRICE_SEARCH} | sed -e 's/<[^>]*>//g' | egrep -E "[0-9]{0,1}.{0,1}[0-9]{2,},{0,1}[0-9]{0,}" | head -1 | sed -e 's/^[ /t]*//g' | tr -d ' ' | tr -d '\r' | tr -d '\n' | tr -d '\302' | tr -d '\240' | tr -d '.' | sed -e 's/^[ /t]*//g' | egrep -E "[0-9]{2,},{0,1}[0-9]{0,}" -o)
     #echo "========================================================================"
     #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
     #echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
     #echo "TRADEMARK=${TRADEMARK}"
     #echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
     #echo "MODEL=${MODEL}="
-    #echo "MODEL_CLEAN=${MODEL_CLEAN}="
+    #echo "MODEL_CAMEL=${MODEL_CAMEL}="
     #echo "URL=${FINAL_URL}"
     #echo "PRICE=${PRICE}"
     #echo "STORE=${STORE}"

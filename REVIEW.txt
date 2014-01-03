@@ -13,3 +13,4 @@ This file contains which stores have been reviewed and the date.
 - Sanferbike: 20131030
 - Wiggle    : 20131031
 - ChainReaction : 20131211
+- ProBikeShop: 20140103
