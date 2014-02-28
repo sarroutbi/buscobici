@@ -148,7 +148,7 @@ function dump_bike_from_file()
     fi
     MODEL_CAMEL=$(camel "${MODEL}" "${NO_CAMEL_MIN}")
     URL=$(grep "${trademark_model}" "${FILE}" | grep "<a href" | awk -F "a href=" {'print $2'} | awk {'print $1'} | tr -d '"')
-    FINAL_URL=$(echo "\"${BASE_URL}/${URL}\"")
+    FINAL_URL=$(echo "\"${URL}\"")
     PRICE=$(print_price "${FILE}" "${TRADEMARK_MODEL}")
     #echo "========================================================================"
     #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
