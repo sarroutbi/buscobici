@@ -40,19 +40,19 @@ function get_page()
   fi
 }
 
-BMX_BIKES_BASE="${URL}/bicicletas-bmx"
+BMX_BIKES_BASE="${URL}/bicicletas-bmx-freestyle"
 BMX_BIKES_PAGES=""
 
 ROAD_BIKES_BASE="${URL}/bicicletas-de-carretera?limit=20&limitstart="
 ROAD_BIKES_PAGES="0 20 40"
 
-ROAD_TRIATLON_BASE="${URL}/bicicletas-triatlon"
+ROAD_TRIATLON_BASE="${URL}/bicicletas-triatlon-contrarreloj"
 ROAD_TRIATLON_PAGES=""
 
 URBAN_ELECTRIC_BIKES_BASE="${URL}/bicicletas-electricas-deportivas?limit=20&limitstart="
 URBAN_ELECTRIC_BIKES_PAGES="0 20"
 
-URBAN_FOLDING_BIKES_BASE="${URL}/bicicletas-urbanas-plegables"
+URBAN_FOLDING_BIKES_BASE="${URL}/bicicletas-ciudad-paseo-urbanas-plegables"
 URBAN_FOLDING_BIKES_PAGES=""
 
 URBAN_EFOLDING_BIKES_BASE="${URL}/bicicletas-electricas-plegables"
@@ -70,7 +70,7 @@ URBAN_CRUISER_PAGES=""
 URBAN_TREKKING_BASE="${URL}/bicicletas-trekking?limit=20&limitstart="
 URBAN_TREKKING_PAGES="0 20 40"
 
-URBAN_CITY_BASE="${URL}/bicicletas-urbanas-ciudad?limit=20&limitstart="
+URBAN_CITY_BASE="${URL}/bicicletas-ciudad-paseo-urbanas?limit=20&limitstart="
 URBAN_CITY_PAGES="0 20 40 60"
 
 MTB29_BIKES_BASE="${URL}/bicicletas-mtb-29r?limit=20&limitstart="
