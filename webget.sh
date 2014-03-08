@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2014 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -20,6 +20,7 @@ GET_CONFIG=./webget.conf
 CONFIGS=""
 TMP_CONFIGS_FILE=/tmp/configs
 TEMP=
+COMMON_PROC=procscripts/common_proc
 TMP_DIR_FILE=$(mktemp)
 TMP_SCRIPT_FILE=$(mktemp)
 TMP_PSCRIPT_FILE=$(mktemp)
@@ -153,6 +154,7 @@ do
             cp ${SCRIPT_FILE} ${SCRIPT_DIR}
             cp ${PSCRIPT_FILE} ${SCRIPT_DIR}
             cp ${COOKIES_FILE} ${SCRIPT_DIR}
+            cp ${COMMON_PROC} ${SCRIPT_DIR}
             pushd ${SCRIPT_DIR} > /dev/null 
             ./$(basename ${SCRIPT_FILE})
             ./$(basename ${PSCRIPT_FILE})

@@ -1,17 +1,17 @@
 #!/bin/bash
 #
 # Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
-# 
-# Permission to use, copy, modify, and/or distribute this software 
-# for any purpose with or without fee is hereby granted, provided that 
+#
+# Permission to use, copy, modify, and/or distribute this software
+# for any purpose with or without fee is hereby granted, provided that
 # the above copyright notice and this permission notice appear in all copies.
-# 
-# THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES 
-# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
-# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, 
-# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
-# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, 
-# NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+#
+# THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+# NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
 # Parse results to common file with structure:
@@ -25,7 +25,8 @@
 
 MAX_PRICE=2
 OUTPUT_FILE=./output
-BASE_URL="http://www.tomasdomingo.com/esp"
+#OUTPUT_FILE=/dev/stdout
+BASE_URL="http://www.tomasdomingo.com"
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
 MAX_PRICE_SEARCH=35
@@ -39,6 +40,9 @@ SUBURL_KEY="SUBURL"
 STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
+
+#### LOAD COMMON FUNCTIONS
+. ./common_proc
 
 # Params
 # 1 - Model:     [MODEL]
@@ -57,7 +61,7 @@ function dump_bike()
     echo "${PRICE_KEY}=$4"
     echo "${STORE_KEY}=$5"
     echo "${KIND_KEY}=$6"
-    echo 
+    echo
   fi
 }
 
@@ -118,7 +122,7 @@ function camel()
     let counter2=${counter2}+1
     if [ ${len} -ge ${2} ]; then
       firstLetter=$(echo "${word:0:1}")
-      rest=$(echo ${word:1} | tr "[A-Z]" "[a-z]") 
+      rest=$(echo ${word:1} | tr "[A-Z]" "[a-z]")
       if [ ${counter2} -lt ${counter} ];
       then
         echo -n "${firstLetter}${rest} "
@@ -178,57 +182,113 @@ function process_pages()
 
   if [ "${PAGES}" = "" ];
   then
-    URLS=$(cat "${BASE_FILE}" | grep -i "+ info" | awk -F "a href=" '{print $2}' | awk {'print $1'} | tr -d '"')
+    URLS=$(cat "${BASE_FILE}")
     dump_bike_from_urls "${URLS}" "${BASE_FILE}" "${STORE}" "${TYPE}"
   else
     for page in ${PAGES};
-    do 
+    do
       URLS=$(cat "${BASE_FILE}${page}" | grep -i "+ info" | awk -F "a href=" '{print $2}' | awk {'print $1'} | tr -d '"')
       dump_bike_from_urls "${URLS}" "${BASE_FILE}${page}" "${STORE}" "${TYPE}"
     done
   fi
 }
 
+function process_pages_raw()
+{
+  BASE_FILE="$1"
+  PAGES="$2"
+  STORE="$3"
+  TYPE="$4"
+  #echo "BASE_FILE=$1"
+  #echo "PAGES=$2"
+  #echo "STORE=$3"
+  #echo "TYPE=$4"
+
+  if [ "${PAGES}" = "" ];
+  then
+    MODELS=$(cat "${BASE_FILE}"| grep 'span class="titol"')
+    echo "${MODELS}" | while read MODEL_PRICE;
+    do
+      PRICE=$(echo "${MODEL_PRICE}" | awk -F '<span class="preu">' '{print $2}' | sed -e 's/<[^>]*>//g' | tr -d '€' | tr -d '.')
+      MODEL=$(echo "${MODEL_PRICE}" | awk -F '<span class="preu">' '{print $1}' | sed -e 's/<[^>]*>//g')
+      URL=$(grep "${MODEL}" "${BASE_FILE}" -B5 | grep href | awk -F "<a href=" {'print $2'} | awk {'print $1'} | tr -d '"')
+      FINAL_URL="\"${BASE_URL}/${URL}\""
+      MODEL_CAMEL_UNCLEANED=$(camel "${MODEL}" ${NO_CAMEL_TRADEMARK_MIN})
+      MODEL_CAMEL_CLEANED=$(bubic_clean "${MODEL_CAMEL_UNCLEANED}")
+      MODEL_CAMEL=$(echo ${MODEL_CAMEL_CLEANED} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
+      #MODEL_CAMEL=${MODEL_CAMEL_UNCLEANED}
+      TRADEMARK=$(echo ${MODEL_CAMEL_CLEANED} | awk {'print $1'})
+      TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+      #echo "MODEL_PRICE:${MODEL_PRICE}"
+      #echo "MODEL:${MODEL}"
+      #echo "MODEL_CAMEL:${MODEL_CAMEL}"
+      #echo "PRICE:${PRICE}"
+      #echo "URL:${URL}"
+      #echo "FINAL_URL:${FINAL_URL}"
+      dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    done
+  fi
+}
+
 > ${OUTPUT_FILE}
 
-MTB_BIKES_BASE="fitxa.php?numpag="
-MTB_BIKES_PAGES="$(seq 1 10)"
+ROAD_BIKES_BASE=road
+ROAD_BIKES_PAGES=""
 
-MTB_DOWNBIKES_BASE="fitxa_downhill.php?numpag="
-MTB_DOWNBIKES_PAGES="$(seq 1 1)"
+ROAD_WOMAN_BIKES_BASE=road-woman
+ROAD_WOMAN_BIKES_PAGES=""
 
-MTB_WOMAN_BIKES_BASE="fitxa_dona.php?numpag="
-MTB_WOMAN_BIKES_PAGES="$(seq 1 2)"
+URBAN_CONFORT_BIKES_BASE=urban-confort
+URBAN_CONFORT_BIKES_PAGES=""
 
-ROAD_BIKES_BASE="fitxa_carretera.php?numpag="
-ROAD_BIKES_PAGES="$(seq 1 5)"
+URBAN_CONFORTM_BIKES_BASE=urban-confort-m
+URBAN_CONFORTM_BIKES_PAGES=""
 
-DUAL_STREET_BIKES_BASE="fitxa_dual.php?numpag="
-DUAL_STREET_BIKES_PAGES="$(seq 1 1)"
+URBAN_CONFORT_HYBRID_BASE=urban-confort-hybrid
+URBAN_CONFORT_HYBRID_PAGES=""
 
-BMX_BIKES_BASE="fitxa_bmx.php?numpag="
-BMX_BIKES_PAGES="$(seq 1 1)"
+URBAN_FOLDING_BIKES_BASE=urban-folding
+URBAN_FOLDING_BIKES_PAGES=""
 
-URBAN_BIKES_BASE="fitxa_urban.php?numpag="
-URBAN_BIKES_PAGES="$(seq 1 2)"
+MTB_DOUBLE_27_BIKES_BASE=mtb-double-27
+MTB_DOUBLE_27_BIKES_PAGES=""
 
-KIDS_BIKES_BASE="fitxa_infantil.php?numpag="
-KIDS_BIKES_PAGES="$(seq 1 2)"
+MTB_DOUBLE_29_BIKES_BASE=mtb-double-29
+MTB_DOUBLE_29_BIKES_PAGES=""
 
-process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}"  "TomasDomingo" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_DOWNBIKES_BASE}"  "${MTB_DOWNBIKES_PAGES}"  "TomasDomingo" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_WOMAN_BASE}"  "${MTB_WOMAN_PAGES}"  "TomasDomingo" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "TomasDomingo" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${BMX_BIKES_BASE}"  "${BMX_BIKES_PAGES}"  "TomasDomingo" "BMX" >> ${OUTPUT_FILE}
-process_pages "${DUAL_STREET_BIKES_BASE}"  "${DUAL_STREET_BIKES_PAGES}" "TomasDomingo" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "TomasDomingo" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "TomasDomingo" "KIDS" >> ${OUTPUT_FILE}
+MTB_FIX_26_BIKES_BASE=mtb-fix-26
+MTB_FIX_26_BIKES_PAGES=""
 
-# process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}"  "TomasDomingo" "MTB" 
-# process_pages "${MTB_DOWNBIKES_BASE}"  "${MTB_DOWNBIKES_PAGES}"  "TomasDomingo" "MTB-DOUBLE" 
-# process_pages "${MTB_WOMAN_BASE}"  "${MTB_WOMAN_PAGES}"  "TomasDomingo" "MTB-WOMAN"
-# process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "TomasDomingo" "ROAD"
-# process_pages "${BMX_BIKES_BASE}"  "${BMX_BIKES_PAGES}"  "TomasDomingo" "BMX"
-# process_pages "${DUAL_STREET_BIKES_BASE}"  "${DUAL_STREET_BIKES_PAGES}" "TomasDomingo" "URBAN"
-# process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "TomasDomingo" "URBAN"
-# process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "TomasDomingo" "KIDS"
+MTB_FIX_27_BIKES_BASE=mtb-fix-27
+MTB_FIX_27_BIKES_PAGES=""
+
+MTB_FIX_29_BIKES_BASE=mtb-fix-29
+MTB_FIX_29_BIKES_PAGES=""
+
+MTB_FIX_26_WOMAN_BIKES_BASE=mtb-fix-woman-26
+MTB_FIX_26_WOMAN_BIKES_PAGES=""
+
+MTB_FIX_27_WOMAN_BIKES_BASE=mtb-fix-woman-27
+MTB_FIX_27_WOMAN_BIKES_PAGES=""
+
+MTB_FIX_29_WOMAN_BIKES_BASE=mtb-fix-woman-29
+MTB_FIX_29_WOMAN_BIKES_PAGES=""
+
+KIDS_BIKES_BASE=kids
+KIDS_BIKES_PAGES=""
+
+process_pages_raw "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "TomasDomingo" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "${ROAD_WOMAN_BIKES_BASE}" "${ROAD_WOMAN_BIKES_PAGES}" "TomasDomingo" "ROAD-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_CONFORT_BIKES_BASE}" "${URBAN_CONFORT_BIKES_PAGES}" "TomasDomingo"   "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_CONFORTM_BIKES_BASE}" "${URBAN_CONFORTM_BIKES_PAGES}" "TomasDomingo" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_CONFORT_HYBRID_BASE}" "${URBAN_CONFORT_HYBRID_PAGES}" "TomasDomingo" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "TomasDomingo"   "URBAN"  >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_DOUBLE_27_BIKES_BASE}" "${MTB_DOUBLE_27_BIKES_PAGES}" "TomasDomingo"   "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_DOUBLE_29_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" "TomasDomingo"   "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_FIX_26_BIKES_BASE}" "${MTB_FIX_26_BIKES_PAGES}" "TomasDomingo"         "MTB-FIX" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_FIX_27_BIKES_BASE}" "${MTB_FIX_27_BIKES_PAGES}" "TomasDomingo"         "MTB-FIX" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_FIX_29_BIKES_BASE}" "${MTB_FIX_29_BIKES_PAGES}" "TomasDomingo"         "MTB-FIX" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_FIX_26_WOMAN_BIKES_BASE}" "${MTB_FIX_26_WOMAN_BIKES_PAGES}" "TomasDomingo" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_FIX_27_WOMAN_BIKES_BASE}" "${MTB_FIX_27_WOMAN_BIKES_PAGES}" "TomasDomingo" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_FIX_29_WOMAN_BIKES_BASE}" "${MTB_FIX_29_WOMAN_BIKES_PAGES}" "TomasDomingo" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "TomasDomingo" "MTB-WOMAN" >> ${OUTPUT_FILE}
