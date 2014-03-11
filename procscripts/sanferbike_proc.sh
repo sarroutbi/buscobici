@@ -17,12 +17,12 @@
 # PROCESSING INFORMATION FOR SANFERBIKE STORE
 #
 # OUTPUT:
-# [Hotwalk Ni�a 2011Specialized Hotwalk Ni�a 2011">Specialized Hotwalk Ni�a 2011">]
+# [Hotwalk]
 # SUBURL="http://bicimania.com/specialized-hotwalk-nina-2011-p-5739.html"
 # TRADEMARK=Specialized
 # PRICE=139,38
 # STORE=Bicimania
-# KIND=KIDS (Values valid:KIDS,MTB-*,URBAN-CONFORT-FOLDING,WOMEN,BMX,ROAD)
+# KIND=KIDS (Values valid:KIDS,MTB-*,URBAN,BMX,ROAD)
 
 #### Some global configs
 URL_BASE="http://www.sanferbike.com"
