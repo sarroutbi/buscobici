@@ -23,6 +23,9 @@
 # STORE=Biciletas Gil
 # KIND=MTB-FIX
 
+#### LOAD COMMON FUNCTIONS
+. ./common_proc
+
 MAX_PRICE=2
 #OUTPUT_FILE=/dev/stdout
 OUTPUT_FILE=./output
@@ -132,7 +135,7 @@ function dump_bike_from_file()
   do 
     test -z "${trademark_model}" && continue;
     TRADEMARK_MODEL="${trademark_model}"
-    TRADEMARK_MODEL_CLEAN=$(clean_model "${TRADEMARK_MODEL}")
+    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     if [ "${TRADEMARK_CAMEL}" = "Solid" ];
@@ -147,7 +150,7 @@ function dump_bike_from_file()
       MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
     fi
     MODEL_CAMEL=$(camel "${MODEL}" "${NO_CAMEL_MIN}")
-    URL=$(grep "${trademark_model}" "${FILE}" | grep "<a href" | awk -F "a href=" {'print $2'} | awk {'print $1'} | tr -d '"')
+    URL=$(grep "${trademark_model}" "${FILE}" | grep "<a href" | awk -F "a href=" {'print $2'} | awk {'print $1'} | tr -d '"' | head -1)
     FINAL_URL=$(echo "\"${URL}\"")
     PRICE=$(print_price "${FILE}" "${TRADEMARK_MODEL}")
     #echo "========================================================================"
