@@ -87,6 +87,12 @@ MTB_DOUBLE_WOMAN_BIKES_PAGES="$(seq 0 2)"
 MTB_DOUBLE_DIRT_BIKES_BASE="${URL}/es/shop/dirtbike-7631"
 MTB_DOUBLE_DIRT_BIKES_PAGES="$(seq 0 2)"
 
+MTB_ELECTRIC_BIKES_BASE="${URL}/es/shop/e-bike-hardtail-4507"
+MTB_ELECTRIC_BIKES_PAGES="$(seq 0 1)"
+
+MTB_DOUBLE_ELECTRIC_BIKES_BASE="${URL}/es/shop/e-bike-fully-4505"
+MTB_DOUBLE_ELECTRIC_BIKES_PAGES="$(seq 0 1)"
+
 get_page "${MTB_26_BIKES_BASE}" "${MTB_26_BIKES_PAGES}" mtbfix-26
 get_page "${MTB_275_BIKES_BASE}" "${MTB_275_BIKES_PAGES}" mtbfix-275
 get_page "${MTB_29_BIKES_BASE}" "${MTB_29_BIKES_PAGES}" mtbfix-29
@@ -97,3 +103,63 @@ get_page "${MTB_DOUBLE_275_BIKES_BASE}" "${MTB_DOUBLE_275_BIKES_PAGES}" mtb-doub
 get_page "${MTB_DOUBLE_29_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" mtb-double-29
 get_page "${MTB_DOUBLE_WOMAN_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" mtb-double-woman
 get_page "${MTB_DOUBLE_DIRT_BIKES_BASE}" "${MTB_DOUBLE_DIRT_BIKES_PAGES}" mtb-double-dirt
+
+get_page "${MTB_ELECTRIC_BIKES_BASE}" "${MTB_ELECTRIC_BIKES_PAGES}" mtbfix-electric
+get_page "${MTB_DOUBLE_ELECTRIC_BIKES_BASE}" "${MTB_DOUBLE_ELECTRIC_BIKES_PAGES}" mtb-double-electric
+
+#### URBAN ####
+URBAN_TREKKING_BIKES_BASE="${URL}/es/shop/bicicletas-trekking-24"
+URBAN_TREKKING_BIKES_PAGES="$(seq 0 6)"
+
+URBAN_TREKKING_WOMAN_BIKES_BASE="${URL}/es/shop/bicicletas-trekking-mujer-914"
+URBAN_TREKKING_WOMAN_BIKES_PAGES="$(seq 0 6)"
+
+URBAN_BIKES_BASE="${URL}/es/shop/bicis-urbanas-42"
+URBAN_BIKES_PAGES="$(seq 0 1)"
+
+URBAN_CRUISERS_BASE="${URL}/es/shop/cruisers-35"
+URBAN_CRUISERS_PAGES="$(seq 0 1)"
+
+URBAN_FIXIE_BASE="${URL}/es/shop/monomarcha-pista-37"
+URBAN_FIXIE_PAGES="$(seq 0 1)"
+
+URBAN_FITNESS_BIKES_BASE="${URL}/es/shop/bicicletas-fitness-27"
+URBAN_FITNESS_BIKES_PAGES="$(seq 0 2)"
+
+URBAN_FITNESS_WOMAN_BIKES_BASE="${URL}/es/shop/bicicletas-fitness-mujer-918"
+URBAN_FITNESS_WOMAN_BIKES_PAGES="$(seq 0 1)"
+
+URBAN_CROSSBIKES_BIKES_BASE="${URL}/es/shop/crossbikes-29"
+URBAN_CROSSBIKES_BIKES_PAGES="$(seq 0 3)"
+
+URBAN_CROSSBIKES_WOMAN_BIKES_BASE="${URL}/es/shop/crossbikes-mujer-916"
+URBAN_CROSSBIKES_WOMAN_BIKES_PAGES="$(seq 0 3)"
+
+URBAN_ELECTRIC_BIKES_BASE="${URL}/es/shop/e-bikes-trekking-4504"
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 0 3)"
+
+URBAN_ELECTRIC_WOMAN_BIKES_BASE="${URL}/es/shop/e-bikes-trekking-mujer-8561"
+URBAN_ELECTRIC_WOMAN_BIKES_PAGES="$(seq 0 3)"
+
+get_page "${URBAN_TREKKING_BIKES_BASE}" "${URBAN_TREKKING_BIKES_PAGES}" urban-trekking
+get_page "${URBAN_TREKKING_WOMAN_BIKES_BASE}" "${URBAN_TREKKING_WOMAN_BIKES_PAGES}" urban-trekking-woman
+get_page "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" urban
+get_page "${URBAN_CRUISERS_BASE}" "${URBAN_CRUISERS_PAGES}" urban-cruisers
+get_page "${URBAN_FIXIE_BASE}" "${URBAN_FIXIE_PAGES}" urban-fixies
+get_page "${URBAN_FITNESS_BIKES_BASE}" "${URBAN_FITNESS_BIKES_PAGES}" urban-fitness
+get_page "${URBAN_FITNESS_WOMAN_BIKES_BASE}" "${URBAN_FITNESS_WOMAN_BIKES_PAGES}" urban-fitness-woman
+get_page "${URBAN_CROSSBIKES_BIKES_BASE}" "${URBAN_CROSSBIKES_BIKES_PAGES}" urban-crossbikes
+get_page "${URBAN_CROSSBIKES_WOMAN_BIKES_BASE}" "${URBAN_CROSSBIKES_WOMAN_BIKES_PAGES}" urban-crossbikes-woman
+get_page "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" urban-electric
+get_page "${URBAN_ELECTRIC_WOMAN_BIKES_BASE}" "${URBAN_ELECTRIC_WOMAN_BIKES_PAGES}" urban-electric-woman
+
+#### BMX ####
+BMX_BIKES_BASE="${URL}/es/shop/bicis-bmx-36"
+BMX_BIKES_PAGES="$(seq 0 2)"
+get_page "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" bmx
+
+#### KIDS ####
+KIDS_BIKES_BASE="${URL}/es/shop/bicicletas-para-ni-os-6671"
+KIDS_BIKES_PAGES="$(seq 0 7)"
+get_page "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" kids
+

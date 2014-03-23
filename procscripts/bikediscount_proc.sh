@@ -51,10 +51,11 @@ function process_file()
   TYPE="$3"
   cat "${BASE_FILE}" | grep 'class="product-box"' | while read model;
   do
-    TRADEMARK=$(echo ${model} | awk -F 'span class="manufacturer ' {'print $2'} | awk -F '</span>' {'print $1'} | awk -F ">" {'print $2'})
-    MODEL=$(echo ${model} | awk -F 'span class="manufacturer ' {'print $2'} | awk -F '</span>' {'print $2'} | awk -F ">" {'print $2'})
-    PRICE=$(grep "<span>${MODEL}</span>" "${BASE_FILE}" -A50 | awk -F 'class="figure-awards"' {'print $2'} | sed -e 's/<[^>]*>//g' | awk -F ">" {'print $2'} | grep [0-9] | tr -d "€" | tr -d " " | head -1 | sed -e 's@-@00@g' | tr -d '.')
-    SUBURL=$(echo ${model} | awk -F "<a href=" {'print $2'} | awk {'print $1'} | tr -d '"')
+    TRADEMARK=$(echo ${model} | awk -F 'span class="manufacturer ' {'print $2'} | awk -F '</span>' {'print $1'} | awk -F ">" {'print $2'} | tr -d '\n' | tr -d '\r')
+    MODEL=$(echo ${model} | awk -F 'span class="manufacturer ' {'print $2'} | awk -F '</span>' {'print $2'} | awk -F ">" {'print $2'} | tr -d '\n' | tr -d '\r')
+    #PRICE=$(grep "<span>${MODEL}</span>" "${BASE_FILE}" -A50 | awk -F 'class="figure-awards"' {'print $2'} | sed -e 's/<[^>]*>//g' | awk -F ">" {'print $2'} | grep [0-9] | tr -d "€" | tr -d " "| sed -e 's@-@00@g' | tr -d '.' | tr -d '\n' | tr -d '\r')
+    PRICE=$(grep "<span>${MODEL}</span>" "${BASE_FILE}" -A50 | awk -F 'class="figure-awards"' {'print $2'} | awk -F '<div class="price" itemprop="price">' {'print $2'} | awk -F "</div>" {'print $1'} | grep [0-9] | head -1 | tr -d "€" | tr -d " "| sed -e 's@-@00@g' | tr -d '.' | tr -d '\n' | tr -d '\r')
+    SUBURL=$(echo ${model} | awk -F "<a href=" {'print $2'} | awk {'print $1'} | tr -d '"' | tr -d '\n' | tr -d '\r')
     URL="\"${BASE_URL}${SUBURL}\""
     MODEL_CAMEL=$(bubic_camel "${MODEL}")
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
@@ -63,6 +64,7 @@ function process_file()
     #echo "MODEL:=>${MODEL}<="
     #echo "TRADEMARK:=>${TRADEMARK}<="
     #echo "PRICE:=>${PRICE}<="
+    #echo "OTHER_PRICE:=>${OTHER_PRICE}<="
     #echo "SUBURL:=>${SUBURL}<="
     #echo "URL:=>${URL}<="
     #echo
@@ -142,6 +144,12 @@ MTB_DOUBLE_WOMAN_BIKES_PAGES="$(seq 0 2)"
 MTB_DOUBLE_DIRT_BIKES_BASE="mtb-double-dirt"
 MTB_DOUBLE_DIRT_BIKES_PAGES="$(seq 0 2)"
 
+MTB_ELECTRIC_BIKES_BASE="mtbfix-electric"
+MTB_ELECTRIC_BIKES_PAGES="$(seq 0 1)"
+
+MTB_DOUBLE_ELECTRIC_BIKES_BASE="mtb-double-electric"
+MTB_DOUBLE_ELECTRIC_BIKES_PAGES="$(seq 0 1)"
+
 process_pages_raw "${MTB_26_BIKES_BASE}" "${MTB_26_BIKES_PAGES}" "BikeDiscount" "MTB" >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_275_BIKES_BASE}" "${MTB_275_BIKES_PAGES}" "BikeDiscount" "MTB" >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_29_BIKES_BASE}" "${MTB_29_BIKES_PAGES}" "BikeDiscount" "MTB" >> ${OUTPUT_FILE}
@@ -152,3 +160,61 @@ process_pages_raw "${MTB_DOUBLE_275_BIKES_BASE}" "${MTB_DOUBLE_275_BIKES_PAGES}"
 process_pages_raw "${MTB_DOUBLE_29_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_DOUBLE_WOMAN_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE-WOMAN" >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_DOUBLE_DIRT_BIKES_BASE}" "${MTB_DOUBLE_DIRT_BIKES_PAGES}" "BikeDiscount" "MTB-DIRT" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_ELECTRIC_BIKES_BASE}" "${MTB_ELECTRIC_BIKES_PAGES}" "BikeDiscount" "MTB-ELECTRIC" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_DOUBLE_ELECTRIC_BIKES_BASE}" "${MTB_DOUBLE_ELECTRIC_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE-ELECTRIC" >> ${OUTPUT_FILE}
+
+#### URBAN ####
+URBAN_TREKKING_BIKES_BASE="urban-trekking"
+URBAN_TREKKING_BIKES_PAGES="$(seq 0 6)"
+
+URBAN_TREKKING_WOMAN_BIKES_BASE="urban-trekking-woman"
+URBAN_TREKKING_WOMAN_BIKES_PAGES="$(seq 0 6)"
+
+URBAN_BIKES_BASE="urban"
+URBAN_BIKES_PAGES="$(seq 0 1)"
+
+URBAN_CRUISERS_BASE="urban-cruisers"
+URBAN_CRUISERS_PAGES="$(seq 0 1)"
+
+URBAN_FIXIE_BASE="urban-fixies"
+URBAN_FIXIE_PAGES="$(seq 0 1)"
+
+URBAN_FITNESS_BIKES_BASE="urban-fitness"
+URBAN_FITNESS_BIKES_PAGES="$(seq 0 2)"
+
+URBAN_FITNESS_WOMAN_BIKES_BASE="urban-fitness-woman"
+URBAN_FITNESS_WOMAN_BIKES_PAGES="$(seq 0 1)"
+
+URBAN_CROSSBIKES_BIKES_BASE="urban-crossbikes"
+URBAN_CROSSBIKES_BIKES_PAGES="$(seq 0 3)"
+
+URBAN_CROSSBIKES_WOMAN_BIKES_BASE="urban-crossbikes-woman"
+URBAN_CROSSBIKES_WOMAN_BIKES_PAGES="$(seq 0 3)"
+
+URBAN_ELECTRIC_BIKES_BASE="urban-electric"
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 0 3)"
+
+URBAN_ELECTRIC_WOMAN_BIKES_BASE="urban-electric-woman"
+URBAN_ELECTRIC_WOMAN_BIKES_PAGES="$(seq 0 3)"
+
+process_pages_raw "${URBAN_TREKKING_BIKES_BASE}" "${URBAN_TREKKING_BIKES_PAGES}" "BikeDiscount" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_TREKKING_WOMAN_BIKES_BASE}" "${URBAN_TREKKING_WOMAN_BIKES_PAGES}" "BikeDiscount" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN__BIKES_BASE}" "${URBAN__BIKES_PAGES}" "BikeDiscount" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_CRUISERS_BASE}" "${URBAN_CRUISERS_PAGES}" "BikeDiscount" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_FIXIE_BASE}" "${URBAN_FIXIE_PAGES}" "BikeDiscount" "URBAN-FIXIE" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_FITNESS_BIKES_BASE}" "${URBAN_FITNESS_BIKES_PAGES}" "BikeDiscount" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_FITNESS_WOMAN_BIKES_BASE}" "${URBAN_FITNESS_WOMAN_BIKES_PAGES}" "BikeDiscount" "URBAN-WOMAM" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_CROSSBIKES_BIKES_BASE}" "${URBAN_CROSSBIKES_BIKES_PAGES}" "BikeDiscount" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_CROSSBIKES_WOMAN_BIKES_BASE}" "${URBAN_CROSSBIKES_WOMAN_BIKES_PAGES}" "BikeDiscount" "URBAN-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "BikeDiscount" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_ELECTRIC_WOMAN_BIKES_BASE}" "${URBAN_ELECTRIC_WOMAN_BIKES_PAGES}" "BikeDiscount" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
+
+#### BMX ####
+BMX_BIKES_BASE="bmx"
+BMX_BIKES_PAGES="$(seq 0 2)"
+process_pages_raw "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "BikeDiscount" "BMX" >> ${OUTPUT_FILE}
+
+#### KIDS ####
+KIDS_BIKES_BASE="kids"
+KIDS_BIKES_PAGES="$(seq 0 7)"
+process_pages_raw "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "BikeDiscount" "KIDS" >> ${OUTPUT_FILE}
