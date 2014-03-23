@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2014 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -30,6 +30,9 @@ OUTPUT_FILE="output"
 #OUTPUT_FILE=/dev/stdout
 NO_CAMEL_MIN=6
 
+#### LOAD COMMON FUNCTIONS
+. ./common_proc
+
 #### The keys
 KEY_URL="SUBURL"
 KEY_TRADEMARK="TRADEMARK"
@@ -54,6 +57,14 @@ MAX_BIKES_PAGE=200
 MAX_PRICE_DOWN=20
 
 #
+# 1 - URL
+#
+function get_price_from_url()
+{
+  wget "${1}" -O - 2>/dev/null | egrep -E -o "[0-9]{1,2} {0,1}[0-9]{1,3},{1,2}[0-9]{1,2} €" | tr -d '€' | tr -d ' ' | grep [0-9] | head -1
+}
+
+#
 # 1 - The sentence: THIS IS A SENTENCE => This Is A Sentence
 # 2 - The min length: 4 => THIS IS A SENTENCE => This IS A Sentence
 #
@@ -70,7 +81,7 @@ function camel()
     let len=${#word}
     let counter2=${counter2}+1
     if [ ${len} -ge ${2} ]; then
-      firstLetter=$(echo "${word:0:1}")
+      firstLetter=$(echo "${word:0:1}" | tr "[a-z]" "[A-Z]")
       rest=$(echo ${word:1} | tr "[A-Z]" "[a-z]") 
       if [ ${counter2} -lt ${counter} ];
       then
@@ -197,8 +208,8 @@ function process_file()
          MODEL="${model}"
        fi
      fi
-     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
-     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" 0)
+     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
      if [ "${TYPE}" != "" ];
      then 
        echo "[${MODEL_CAMEL}]"
@@ -217,13 +228,15 @@ function process_file()
 # 2 - The Store
 function process_file2()
 {
-  cat "$1" | grep '<h3>' | sed -e 's/<[^>]*>//g' | while read model;
+  cat "$1" | sed -e 's@/div><@/div>\n<@g'| grep -i 'product_desc' | awk -F "<h3>" {'print $2'} | awk -F "</h3>" {'print $1'} | while read model
   do
      TYPE=$3
-     PRICE=$(grep "${model}" -A20 "${1}" | grep '<span class="price"' | sed -e 's/<[^>]*>//g' | tr -d ' ' | egrep -o -E "[0-9]{2,5},{0,1}[0-9]{0,2}" | head -1)
-     TRADEMARK=$(get_trademark "${model}")
-     MODEL=$(echo "${model}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
-     URL=$(grep "${model}" -A20 "${1}" | awk -F 'a href=' {'print $2'} | awk {'print $1'} | head -1)
+     MODEL_TRADEMARK=$(echo ${model} | sed -e 's/<[^>]*>//g')
+     TRADEMARK=$(get_trademark "${MODEL_TRADEMARK}")
+     MODEL=$(echo "${MODEL_TRADEMARK}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
+     URL=$(echo "${model}" | awk -F '<a href=' {'print $2'} | awk {'print $1'})
+     #PRICE=$(cat "${1}" | awk -F "${MODEL_TRADEMARK}" {'print $2'} | awk -F '<span class="price"' {'print $2'} | awk -F '</span>' {'print $1'} | sed -e 's/<[^>]*>//g')
+     PRICE=$(cat "${1}" | awk -F "${MODEL_TRADEMARK}" {'print $6'} | awk -F '<span class="price"' {'print $2'} | awk -F '</span>' {'print $1'} | awk -F ">" {'print $2'} | sed -e 's/<[^>]*>//g' | tr -d '€' | tr -d ' ' | grep [0-9])
      if [ "${MODEL}" = "" ];
      then
        MODEL=$(echo "${model}" | awk -F "&nbsp;&nbsp;" {'print $2'})
@@ -232,8 +245,13 @@ function process_file2()
          MODEL="${model}"
        fi
      fi
-     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
-     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+     if [ "${PRICE}" = "" ];
+     then
+       URL_NO_DASH=$(echo ${URL} | tr -d '"')
+       PRICE=$(get_price_from_url "${URL_NO_DASH}")
+     fi
+     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" 0)
+     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
      if [ "${TYPE}" != "" ];
      then 
        echo "[${MODEL_CAMEL}]"
