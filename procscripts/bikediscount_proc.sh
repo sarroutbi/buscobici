@@ -24,8 +24,8 @@
 # KIND=MTB-FIX
 
 MAX_PRICE=2
-#OUTPUT_FILE=./output
-OUTPUT_FILE=/dev/stdout
+OUTPUT_FILE=./output
+#OUTPUT_FILE=/dev/stdout
 BASE_URL="http://www.bike-discount.de"
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
@@ -92,6 +92,7 @@ function process_pages_raw()
 
 > ${OUTPUT_FILE}
 
+#### ROAD ####
 ROAD_BIKES_ALUM_BASE="road-alum"
 ROAD_BIKES_ALUM_PAGES="$(seq 0 5)"
 
@@ -99,12 +100,55 @@ ROAD_BIKES_CARBON_BASE="road-carbon"
 ROAD_BIKES_CARBON_PAGES="$(seq 0 5)"
 
 ROAD_BIKES_WOMAN_BASE="road-woman"
-ROAD_BIKES_WOMAN_PAGES="$(seq 0 5)"
+ROAD_BIKES_WOMAN_PAGES="$(seq 0 1)"
 
 ROAD_BIKES_TRIATLON_BASE="road-triatlon"
-ROAD_BIKES_TRIATLON_PAGES="$(seq 0 5)"
+ROAD_BIKES_TRIATLON_PAGES="$(seq 0 1)"
 
 ROAD_BIKES_CYCLOCROSS_BASE="road-cyclocross"
-ROAD_BIKES_CYCLOCROSS_PAGES="$(seq 0 5)"
+ROAD_BIKES_CYCLOCROSS_PAGES="$(seq 0 3)"
 
 process_pages_raw "${ROAD_BIKES_ALUM_BASE}" "${ROAD_BIKES_ALUM_PAGES}" "BikeDiscount" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "${ROAD_BIKES_CARBON_BASE}" "${ROAD_BIKES_CARBON_PAGES}" "BikeDiscount" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "${ROAD_BIKES_WOMAN_BASE}" "${ROAD_BIKES_WOMAN_PAGES}" "BikeDiscount" "ROAD-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "${ROAD_BIKES_TRIATLON_BASE}" "${ROAD_BIKES_TRIATLON_PAGES}" "BikeDiscount" "ROAD-TRIATLON" >> ${OUTPUT_FILE}
+process_pages_raw "${ROAD_BIKES_CYCLOCROSS_BASE}" "${ROAD_BIKES_CYCLOCROSS_PAGES}" "BikeDiscount" "ROAD" >> ${OUTPUT_FILE}
+
+#### MTB ####
+MTB_26_BIKES_BASE="mtbfix-26"
+MTB_26_BIKES_PAGES="$(seq 0 5)"
+
+MTB_275_BIKES_BASE="mtbfix-275"
+MTB_275_BIKES_PAGES="$(seq 0 5)"
+
+MTB_29_BIKES_BASE="mtbfix-29"
+MTB_29_BIKES_PAGES="$(seq 0 5)"
+
+MTB_WOMAN_BIKES_BASE="mtbfix-woman"
+MTB_WOMAN_BIKES_PAGES="$(seq 0 5)"
+
+MTB_DOUBLE_26_BIKES_BASE="mtb-double-26"
+MTB_DOUBLE_26_BIKES_PAGES="$(seq 0 5)"
+
+MTB_DOUBLE_275_BIKES_BASE="mtb-double-275"
+MTB_DOUBLE_275_BIKES_PAGES="$(seq 0 5)"
+
+MTB_DOUBLE_29_BIKES_BASE="mtb-double-29"
+MTB_DOUBLE_29_BIKES_PAGES="$(seq 0 5)"
+
+MTB_DOUBLE_WOMAN_BIKES_BASE="mtb-double-woman"
+MTB_DOUBLE_WOMAN_BIKES_PAGES="$(seq 0 2)"
+
+MTB_DOUBLE_DIRT_BIKES_BASE="mtb-double-dirt"
+MTB_DOUBLE_DIRT_BIKES_PAGES="$(seq 0 2)"
+
+process_pages_raw "${MTB_26_BIKES_BASE}" "${MTB_26_BIKES_PAGES}" "BikeDiscount" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_275_BIKES_BASE}" "${MTB_275_BIKES_PAGES}" "BikeDiscount" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_29_BIKES_BASE}" "${MTB_29_BIKES_PAGES}" "BikeDiscount" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_WOMAN_BIKES_BASE}" "${MTB_WOMAN_BIKES_PAGES}" "BikeDiscount" "MTB-WOMAN" >> ${OUTPUT_FILE}
+
+process_pages_raw "${MTB_DOUBLE_26_BIKES_BASE}" "${MTB_DOUBLE_26_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_DOUBLE_275_BIKES_BASE}" "${MTB_DOUBLE_275_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_DOUBLE_29_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_DOUBLE_WOMAN_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_DOUBLE_DIRT_BIKES_BASE}" "${MTB_DOUBLE_DIRT_BIKES_PAGES}" "BikeDiscount" "MTB-DIRT" >> ${OUTPUT_FILE}
