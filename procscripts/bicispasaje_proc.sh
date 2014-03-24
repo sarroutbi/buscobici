@@ -180,9 +180,9 @@ process_pages "${MTB_BIKES_26_BASE}" "" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FI
 process_pages "${MTB_BIKES_27_5_BASE}" "${MTB_BIKES_27_5_PAGES}" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
 process_pages "${MTB_BIKES_29_BASE}" "${MTB_BIKES_29_PAGES}" "Bicicletas Pasaje" "MTB-29" >> ${OUTPUT_FILE}
 process_pages "${MTB_BIKES_DOUBLE_26_BASE}" "" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_DOUBLE_27_5_BASE}" "" "Bicicletas Pasaje" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_DOUBLE_27_5_BASE}" "" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_BIKES_DOUBLE_29_BASE}" "" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "" "Bicicletas Pasaje" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Bicicletas Pasaje" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${ROAD_TRIATLON_BIKES_BASE}" "" "Bicicletas Pasaje" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${KIDS_BIKES_BASE}" "" "Bicicletas Pasaje" "KIDS" >> ${OUTPUT_FILE}
 process_pages "${WOMAN_BIKES_BASE}" "" "Bicicletas Pasaje" "MTB-WOMAN" >> ${OUTPUT_FILE}
