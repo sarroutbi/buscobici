@@ -31,3 +31,4 @@ do
   ./${file}
 done
 
+psql --username postgres -h 192.168.0.40 -c "INSERT INTO last VALUES('${1}', now())" bikesearch;

@@ -6,14 +6,20 @@ CREATE DATABASE bikesearch;
 --- Drop database:
 DROP DATABASE bikesearch;
 
---- Create table:
+--- Create bike table:
 CREATE TABLE BIKES(
-    model       char(70) NOT NULL,
+    model       char(100) NOT NULL,
     trademark   char(30) NOT NULL,
     store       varchar(30) NOT NULL,
     url         varchar(200) NOT NULL,
-    kind        varchar(30),
+    kind        varchar(30) NOT NULL,
     price       real NOT NULL
+);
+
+--- Create insertion table:
+CREATE table LAST (
+    dir VARCHAR(100) NOT NULL, 
+    timestamp TIMESTAMP NOT NULL
 );
 
 --- Insert value in table:
