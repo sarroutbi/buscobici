@@ -118,7 +118,7 @@ function filter_model()
 # 2 - The MODEL of bike
 function print_price()
 {
-  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep "Desde\|AHORA" -A1 | head -1 | sed -e 's/<[^>]*>//g' | tr '.' ',' | grep -o "[0-9,\.]*[0-9],[0-9]*")
+  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep "Desde\|AHORA" -A1 | grep '€' | head -1 | sed -e 's/<[^>]*>//g' | tr '.' ',' | grep -o "[0-9,\.]*[0-9],[0-9]*")
   echo ${PRICE}
 }
 
@@ -195,12 +195,6 @@ function process_page_url()
     #log_url "${MODEL_NO_FILTER}" "${BASE_FILE}"
     URL=$(print_url "${MODEL_NO_FILTER}" "${BASE_FILE}")
     PRICE=$(print_price "${BASE_FILE}" "${MODEL}")
-
-    # Avoid prices smaller than 100 euros, as many models (not only bikes) are being parsed
-    test -z "${PRICE}" && PRICE=$(print_price2 "${URL}" "${MODEL}")
-    PRICE_NO_DEC=$(echo ${PRICE} | awk -F "," {'print $1'})
-    if [ ${PRICE_NO_DEC} -lt 100 ]; then PRICE=; fi
-
     #echo "========================================================================"
     #echo "TRADEMARK=${TRADEMARK_CAMEL}"
     #echo "MODEL=${MODEL}"
@@ -212,6 +206,16 @@ function process_page_url()
     #echo "FILE=${BASE_FILE}"
     #echo "SEARCH_MODEL=>${MODEL}<="
     #echo "========================================================================"
+
+    # Avoid prices smaller than 100 euros, as many models (not only bikes) are being parsed
+    test -z "${PRICE}" && PRICE=$(print_price2 "${URL}" "${MODEL}")
+    PRICE_NO_DEC=$(echo ${PRICE} | awk -F "," {'print $1'})
+    test -z ${PRICE_NO_DEC}
+    if [ $? -ne 0 ];
+    then
+      if [ ${PRICE_NO_DEC} -lt 100 ]; then PRICE=; fi
+    fi
+
     dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }

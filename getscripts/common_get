@@ -1,0 +1,37 @@
+#!/bin/bash
+function bubic_get_page()
+{
+  BASE_URL="$1"
+  PAGES="$2"
+  sleep 5
+  if [ "${PAGES}" = "" ];
+  then
+    wget -w5 --random-wait -e robots=off -U 'mozilla' \
+      --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}"
+  else
+    for page in ${PAGES};
+    do
+      wget -w6 --random-wait -e robots=off -U 'mozilla' \
+        --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}"
+    done
+  fi
+}
+
+function bubic_get_page_cookies()
+{
+  BASE_URL="$1"
+  PAGES="$2"
+  COOKIE_FILE="$3"
+  if [ "${PAGES}" = "" ];
+  then
+    wget --load-cookies=${COOKIE_FILE} -w5 --random-wait -e robots=off -U 'mozilla' \
+      --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}"
+  else
+    for page in ${PAGES};
+    do
+      wget --load-cookies=${COOKIE_FILE} -w6 --random-wait -e robots=off -U 'mozilla' \
+        --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}"
+    done
+  fi
+}
+

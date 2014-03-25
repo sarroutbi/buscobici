@@ -14,15 +14,22 @@
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
-# This script gets all the bicycles from
-# Calmera store !
+
+# Import the get_common
+. ./common_get
+
 URL="www.chainreactioncycles.com"
 ONLY_DOMAIN="chainreactioncycles.com"
 MAX_TRIES=15
 MAX_TIMEOUT=15
 COOKIE_FILE="chainreactioncookies.txt"
 
-function get_page()
+function get_page() 
+{
+  bubic_get_page_cookies "$1" "$2" "${COOKIE_FILE}"
+}
+
+function prev_get_page()
 {
   BASE_URL="$1"
   PAGES="$2"
