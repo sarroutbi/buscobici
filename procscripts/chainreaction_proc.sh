@@ -24,11 +24,11 @@
 # KIND=MTB-FIX
 #
 URL_BASE="http://www.chainreactioncycles.com"
-MAX_PRICE=100
+MAX_PRICE=50
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
-OUTPUT_FILE=./output
-#OUTPUT_FILE=/dev/stdout
+#OUTPUT_FILE=./output
+OUTPUT_FILE=/dev/stdout
 
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
@@ -118,7 +118,7 @@ function filter_model()
 # 2 - The MODEL of bike
 function print_price()
 {
-  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep "Desde\|AHORA" -A1 | tail -1 | sed -e 's/<[^>]*>//g' | tr '.' ',' | grep -o "[0-9,\.]*[0-9],[0-9]*")
+  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | grep "Desde\|AHORA" -A1 | head -1 | sed -e 's/<[^>]*>//g' | tr '.' ',' | grep -o "[0-9,\.]*[0-9],[0-9]*")
   echo ${PRICE}
 }
 
