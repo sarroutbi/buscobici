@@ -10,6 +10,8 @@ test -z $1 && exit_error "Please, provide source comparison directory" 1
 test -z $2 && exit_error "Please, provide destination comparison directory" 1
 test -d $1 || exit_error "Directory:[${1}] does not exist" 1
 test -d $2 || exit_error "Directory:[${2}] does not exist" 1
+ls $1/psql* >/dev/null || exit_error "Directory:[${1}] does not contain psql files" 1
+ls $2/psql* >/dev/null || exit_error "Directory:[${2}] does not contain psql files" 1
 
 for psql_file in $(ls $1/psql*); 
 do
