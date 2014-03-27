@@ -16,17 +16,19 @@ ls $2/psql* >/dev/null || exit_error "Directory:[${2}] does not contain psql fil
 for psql_file in $(ls $1/psql*); 
 do
   DST_PSQL_FILE=$(echo $psql_file | sed s@${1}@${2}@g)
+  echo "=========================================================="
+  echo "$(basename ${psql_file}):"
+  echo -n "${1}:"
+  wc -l ${psql_file} | awk {'print $1'}
+  echo -n "${2}:"
   test -f ${DST_PSQL_FILE}
   if [ $? -eq 0 ];
   then
-    echo "=========================================================="
-    echo "$(basename ${psql_file}):"
-    echo -n "${1}:"
-    wc -l ${psql_file} | awk {'print $1'}
-    echo -n "${2}:"
     wc -l $(echo $psql_file | sed s@${1}@${2}@g) | awk {'print $1'}
-    echo "=========================================================="
+  else
+    echo "0"
   fi
+  echo "=========================================================="
 done
 echo -n "TOTAL results in [${1}]: "
 let LAST_TOTAL=$(wc -l ${1}/psql* | tail -1 | awk {'print $1'} | tr -d ' ')
