@@ -23,6 +23,9 @@ let COUNTER_URL=0
 let ERROR_COUNTER=0
 TMP_FILE=$(mktemp)
 
+BASEDIR=$(dirname $0)
+cd ${BASEDIR}
+
 > "${ERROR_LOG_FILE}"
 > "${TMP_FILE}"
 rm -f "${SEARCH_PHP}"
@@ -44,6 +47,7 @@ wget --post-data "search=\*&entryPerPage=10000" "${GLOBAL_URL}/${SEARCH_PHP}" -o
 #done
 
 cat ${SEARCH_PHP} | grep -v '<li>' | egrep -E -o '<a href="[^>]*>' | sed -e 's/<a href="//g' | sed -e 's/">//g' >> ${TMP_FILE}
+
 while read URL;
 do 
   let COUNTER_URL=${COUNTER_URL}+1 
