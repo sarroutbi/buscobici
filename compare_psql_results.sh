@@ -19,12 +19,20 @@ do
   echo "=========================================================="
   echo "$(basename ${psql_file}):"
   echo -n "${1}:"
-  wc -l ${psql_file} | awk {'print $1'}
+  OLD_COUNT=$(wc -l ${psql_file} | awk {'print $1'})
+  echo ${OLD_COUNT}
   echo -n "${2}:"
   test -f ${DST_PSQL_FILE}
   if [ $? -eq 0 ];
   then
-    wc -l $(echo $psql_file | sed s@${1}@${2}@g) | awk {'print $1'}
+    NEW_COUNT=$(wc -l $(echo $psql_file | sed s@${1}@${2}@g) | awk {'print $1'})
+    let difference=$(($NEW_COUNT - $OLD_COUNT))
+    if [ $difference -gt 0 ];
+    then
+      printf "$NEW_COUNT (+${difference})\n"
+    else 
+      printf "$NEW_COUNT (${difference})\n"
+    fi
   else
     echo "0"
   fi
