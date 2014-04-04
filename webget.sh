@@ -39,6 +39,45 @@ RESULTS_DIR=RESULTS
 DATE=$(date +%Y%m%d)
 TEST_DIR=test
 DDBB_UPDATE_FILE=dbupdate.txt
+MY_DIR=$(dirname $0)
+cd ${MY_DIR}
+
+####### Options specified ######
+# Checkout configuration file (take from repository), 1=>Checkout:
+OPT_CHECKOUT=0
+OPT_VERBOSE=0
+
+function usage() 
+{
+  test -z "${1}" && EXIT=1 || EXIT=0 
+  echo ""
+  echo "$0:"
+  echo "          $0 [-c] [-v] [-h]"
+  echo ""
+  echo "-c: checkout configuration file, discarding local changes"
+  echo "-v: verbose mode"
+  echo "-h: usage details"
+  echo ""
+  exit ${EXIT}
+}
+
+function getparams() 
+{
+  while getopts "cvh" opt;
+  do
+    case $opt in
+      c)
+        OPT_CHECKOUT=1
+        ;;
+      v)
+        OPT_VERBOSE=$OPTARG
+        ;;
+      h)
+        usage $0
+        ;;
+    esac
+  done
+}
 
 # Param 1 - The Line
 # Param 2 - The Key
@@ -78,6 +117,19 @@ function allSectionContent()
   done
   #echo "============================================"
 }
+
+function checkout() 
+{
+  test -z "${OPT_CHECKOUT}" && return 0
+  if [ "${OPT_CHECKOUT}" == "1" ];
+  then
+    echo "Checking out configuration file: [${GET_CONFIG}] ..."
+    git checkout ${GET_CONFIG}
+  fi
+}
+
+getparams $*
+checkout ${OPT_CHECKOUT}
 
 > ${DDBB_UPDATE_FILE}
 ./cleandirs.sh
