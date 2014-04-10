@@ -40,28 +40,8 @@ STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
 
-# Params
-# 1 - Model:     [MODEL]
-# 2 - Url:       SUBURL="www.whatever.es"
-# 3 - Trademark: TRADEMARK=Trek
-# 4 - Price:     PRICE=100000,99
-# 5 - Store:     STORE=Mammoth
-# 6 - Kind:      KIND=MTB
-function dump_bike()
-{
-  #if [[ "$1" != "" ]] && [[ "$2" != "" ]] && [[ "$3" != "" ]] \
-  #    && [[ "$4" != "" ]] && [[ "$4" -gt 50 ]] && [[ "$5" != "" ]]  && [[ "$6" != "" ]];
-  if [[ "$1" != "" ]];
-  then
-    echo "[$1]"
-    echo "${SUBURL_KEY}=$2"
-    echo "${TRADEMARK_KEY}=$3"
-    echo "${PRICE_KEY}=$4"
-    echo "${STORE_KEY}=$5"
-    echo "${KIND_KEY}=$6"
-    echo 
-  fi
-}
+#### LOAD COMMON FUNCTIONS
+. ./common_proc
 
 # Params:
 # 1 - The File of bike
@@ -120,7 +100,7 @@ function process_one_page()
   echo "${TRADEMARK_MODELS}" | while read line;
   do
     PRICE=$(grep "${line}" "${BASE_FILE}" | awk -F '<span class="price">' {'print $2'} | awk -F '</span>' {'print $1'} | tr -d " " | tr -d "€" | tail -1)
-    URL=$(grep "${line}" "${BASE_FILE}" | sed -e 's/href=/\nhref=/g' | awk -F "href=" {'print $2'} | awk {'print $1'} | tail -1)
+    URL=$(grep "${line}" "${BASE_FILE}" | sed -e 's/href=/\nhref=/g' | awk -F "href=" {'print $2'} | awk {'print $1'} | grep http | tail -1)
     TRADEMARK_MODEL=$(echo ${line} | awk -F '</h3>' {'print $1'} | sed -e 's/<[^>]*>//g' )
     TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
     MODEL=$(echo "${TRADEMARK_MODEL}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
@@ -138,7 +118,7 @@ function process_one_page()
     #echo "STORE=${STORE}"
     #echo "TYPE=${TYPE}"
     #echo "============================================================"
-    dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 
