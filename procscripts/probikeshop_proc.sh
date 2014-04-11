@@ -210,9 +210,12 @@ function process_pages()
 MTB_BIKES_BASE="bicicletas-c517.html?page="
 MTB_BIKES_PAGES="$(seq 1 5)"
 
+URBAN_BIKES_BASE="ciudad-bicicletas-urbanas-c1088.html"
+
 MTB_WOMAN_BASE="bicicletas-c640.html"
 
-ROAD_BIKES_BASE="bicicletas-c616.html"
+ROAD_BIKES_BASE="bicicletas-c616.html?page="
+ROAD_BIKES_PAGES="$(seq 1 3)"
 
 BMX_BIKES_BASE="bicicletas-bmx-c673.html?page="
 BMX_BIKES_PAGES="$(seq 1 10)"
@@ -223,6 +226,7 @@ KIDS02_BIKES_BASE="bicicletas-ninos-bicis-sin-pedales-c693.html"
 KIDS03_BIKES_BASE="bicicletas-ninos-cuatriciclos-c696.html"
 KIDS04_BIKES_BASE="bicicletas-ninos-triciclos-c697.html"
 
+process_pages "${URBAN_BIKES_BASE}"  "${URBAN_BIKES_PAGES}"  "ProbikeShop" "URBAN"     >> ${OUTPUT_FILE}
 process_pages "${MTB_BIKES_BASE}"    "${MTB_BIKES_PAGES}"    "ProbikeShop" "MTB"       >> ${OUTPUT_FILE}
 process_pages "${MTB_WOMAN_BASE}"    "${MTB_WOMAN_PAGES}"    "ProbikeShop" "MTB-WOMAN" >> ${OUTPUT_FILE}
 process_pages "${ROAD_BIKES_BASE}"   "${ROAD_BIKES_PAGES}"   "ProbikeShop" "ROAD"      >> ${OUTPUT_FILE}
