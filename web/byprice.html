@@ -1,81 +1,125 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- meta description -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Buscador y comparador de bicicletas en las principales tiendas de venta on-line . Más de 9000 bicicletas registradas.">
+    <meta name="keywords" content="buscador, bicicletas, catálogo 2013, mountain bike, 29er, cross country, descenso, carretera, triatlón, híbrida, fixed" />
+    <meta name="author" content="buscobici.com">
+    <link rel="icon" type="image/png" href="favicon.ico">
 
-<head>
-<title>Buscador de Bicicletas - Comprar Bicicleta - Buscar</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Language" content="es"/>
-<meta name="keywords" content="bike, bicicleta, comprar, buscador, comparar">
-<meta name="description" content="Web para realizar comparativa de tiendas on-line de venta de bicicletas">
-<link rel="stylesheet" href="bikesearch.css" type="text/css">
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-35382693-4']);
-  _gaq.push(['_trackPageview']);
+    <title> Buscador de bicicletas | Comprar Bicicleta | buscobici.com </title>
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-</head>
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
 
-<body>
-    <a href="index.html"><img class="logo_img" src="resource/logo-ori-t-pink-grey-small.png" alt="Inicio"/></a>
-    <nav>
-    <p class="web_info">¿Vas a comprar una bicicleta? Compara entre 8000 bicicletas de las principales marcas en diversas tiendas on-line:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trek, Specialized, Giant, Merida, Scott, Cube, Bmc, Lapierre, Cervélo, Mondraker, Orbea, Bh, Conor, Gt, Ghost, Fuji, ... </p>
-    <ul class="nav_moved">
-    <li><a href="index.html">B&uacute;squeda ...</a>
-      <ul>
-        <li><a href="index.html">&rarr; Simple</a></li>
-        <li><a href="byprice.html">&rarr; Por Precio y Tipo</a></li>
-      </ul>
-    </li>
-    <li><a href="http://buscobici.com/forum">Foros</a></li>
-    <li><a href="stats_fullscreen.html">Estadísticas</a></li>
-    <li><a href="contact.html">Contactar</a><li>
-    </ul>
-    </nav>
+    <!-- Custom styles for this template -->
+    <link href="./css/justified-nav.css" rel="stylesheet">
 
-    <div id="search">
-      <form method="post" action="search.php">
-          <input class="input_byprice_search" id="input_search" name="search" placeholder="Búsqueda (Vacío muestra todo)">
-          <br>
-          <label>Desde:</label>
-          <input id="input_price" name="priceFrom" type="number" min="0" max="30000">
-          <label>&euro;&nbsp;&nbsp; Hasta:</label>
-          <input id="input_price" name="priceTo" type="number" min="0" max="30000">
-          <label>&euro;</label>
-          <br>
-          <label>Tipo:&nbsp;&nbsp;&nbsp;</label>
-          <select class="select_type" name="type" id="byType">
-            <option value="MTB">Mtb</option>
+    <!-- Custom styles for this template -->
+    <link href="./css/signin.css" rel="stylesheet">
+
+    <!-- Auto-Numeric -->
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"> </script>
+    <script type="text/javascript" src="autoNumeric.js"></script>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-35382693-4']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="masthead">
+        <a href="index.html">
+          <img title="buscobici" src="res/logo.png" class="img-responsive" alt="Responsive image">
+        </a>
+        <ul class="nav nav-justified">
+          <li><a href="index.html">Búsqueda</a></li>
+          <li class="active"><a href="byprice.html">Búsq.Avzda.</a></li>
+          <li><a href="http://buscobici.com/forum">Foros</a></li>
+          <li><a href="http://buscobici.blogspot.com.es" target="_blank">Blog</a></li>
+          <li><a href="http://buscobici.com/stats/statsfs.html">Estadísticas</a></li>
+          <li><a href="contact.html">Contactar</a></li>
+        </ul>
+      </div>
+
+      <div class="well">
+        <h1>&iquest;Vas a comprar una bicicleta?</h1> <p><u>Compara entre 9000 bicicletas de las principales marcas en diversas tiendas on-line:</u> <i>Trek, Specialized, Giant, Merida, Scott, Cube, Bmc, Lapierre, Cerv&eacute;lo, Mondraker, Orbea, Bh, Cannondale, Merida, Conor, Colnago, Brompton, Dahon, Felt, WeThePeople, Gt, Fuji, Monty, Kross, De Rosa, WeThePeople, Eastern, Ruption, ...</i></p>
+      </div>
+
+      <div class="jumbotron">
+        <form class="form-inline" role="form" method="post" action="search.php">
+        <!--div class="control-group"-->
+        <div class="col-md-6 col-md-offset-3">
+          <input type="text" id="input_search" name="search" class="form-control" placeholder="Introduzca aquí su búsqueda (Vacío muestra todo)" autofocus>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="form-group col-md-offset-1">
+          <label for="from" class="col-lg-2 control-label">Desde:</label>
+          <div class="col-lg-3">
+            <input name="priceFrom" type="number" min="0" max="30000" class="form-control">
+          </div>
+          <label for="from" class="col-lg-2 control-label">Hasta:</label>
+          <div class="col-lg-3">
+            <input name="priceTo" type="number" min="1" max="30000" class="form-control">
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="control-group">
+          <select id="byType" name="type" class="input-xlarge">
+            <option value="">Cualquier tipo</option>
+            <option value="MTB">MTB</option>
             <option value="ROAD">Carretera</option>
+            <option value="KIDS">Infantil</option>
             <option value="URBAN">Urbanas</option>
             <option value="BMX">Bmx</option>
-            <option value="KIDS">Infantil</option>
-            <option value="" selected="selected">Todas</option>
           </select>
-          <input id="submitPrice" name="submit" type="submit" value="Buscar">
-      </form>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="control-group">
+          <button class="btn btn-lg btn-primary btn-purple" type="submit">Busca mi bici!</button>
+        </div>
+        </form>
+      </div>
 
-    <div class="social_links"> 
-        <p id="social_text">S&iacute;guenos :&nbsp; 
-          <a href="http://www.facebook.com/buscobicidotcom" target="_blank">
-          <img class="social_img" src="resource/facebook00.jpg" alt="Facebook"></a>
-          <a href="http://www.twitter.com/buscobici" target="_blank">
-          <img class="social_img" src="resource/twitter01.jpg" alt="Twitter"/>
+      <!-- Site footer -->
+      <div class="footer">
+        <p>S&iacute;guenos :&nbsp;</p>
+        <a href="http://www.facebook.com/buscobicidotcom" target="_blank">
+            <img title="facebook" src="res/facebook00.jpg" alt="Facebook"/>
         </a>
-        </p>
-    </div>
+        <a href="http://www.twitter.com/buscobici" target="_blank">
+            <img title="twitter" src="res/twitter01.jpg" alt="Twitter"/> 
+        </a>
+        <div class="clearfix"></div>
+        <!-- Place this tag where you want the +1 button to render. -->
+        <div class="g-plusone" data-size="tall" data-annotation="inline" data-width="300"></div>
 
-    <footer class="body">
-    </footer>
+          <!-- Place this tag after the last +1 button tag. -->
+          <script type="text/javascript">
+            window.___gcfg = {lang: 'es'};
 
-</body>
-
+            (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+          </script>
+        </div>
+      </div>
+    </div> <!-- /container -->
+  </body>
 </html>

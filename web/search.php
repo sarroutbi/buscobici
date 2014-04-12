@@ -39,11 +39,11 @@ $numResultsGet   = $_GET['numResults'];
 $entryPerPageGet = $_GET['entryPerPage'];
 
 // Default Num. of results per page
-$defaultResultsPerPage = 15;
+$defaultResultsPerPage = 10;
 $defaultAroundPages    = 2;
 $defaultFirstPages     = 5;
 $defaultLastPages      = 5;
-$defaultMaxModel       = 25;
+$defaultMaxModel       = 40;
 
 if ( ($numResultsGet     && ($numResultsGet   != "" )) ||
      ($numResults        && ($numResults      != "" )) ||
@@ -71,12 +71,15 @@ else if(!$page  || ($page == ""))
 // HTML Results Print
 
 echo "<!DOCTYPE HTML>\n";
-echo "<html>\n";
-echo "\n";
+echo "<html lang=\"es\">\n";
 echo "<head>\n";
-echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
-echo "<title>Buscador de Bicicletas - Comprar Bicicleta - Resultados</title>\n";
-echo "<link rel=\"stylesheet\" href=\"bikesearch.css\" type=\"text/css\">\n";
+echo "\n";
+echo "<title>buscobici.com - Buscador de Bicicletas</title>\n";
+echo "<link href=\"./css/bootstrap.css\" rel=\"stylesheet\">\n";
+echo "\n";
+echo "<link href=\"./css/justified-nav.css\" rel=\"stylesheet\">\n";
+echo "\n";
+echo "<link href=\"./css/signin.css\" rel=\"stylesheet\">\n";
 echo "<script type=\"text/javascript\">\n";
 echo "  var _gaq = _gaq || [];\n";
 echo "  _gaq.push(['_setAccount', 'UA-35382693-4']);\n";
@@ -136,21 +139,33 @@ if (   ((!$search)    || (strlen($search)==0))
     && ((!$priceTo)   || (strlen($priceTo)==0))   
     && ((!$type)      || (strlen($type)==0))   
     ) {
-  echo "<a href=\"index.html\"><img class=\"logo_img\" src=\"resource/logo-ori-t-pink-grey-small.png\" alt=\"Inicio\"/></a>";
-  echo "<nav class=\"nav_search\">\n";
-  echo "<ul>\n";
-  echo "\t<li><a href=\"index.html\">Simple</a></li>\n";
-  echo "\t<li><a href=\"byprice.html\">Precio y Tipo</a></li>\n";
-  echo "\t<li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
-  echo "\t<li><a href=\"stats_fullscreen.html\">Estadísticas</a></li>\n";
-  echo "\t<li><a href=\"contact.html\">Contactar</a></li>\n";
-  echo "</ul>\n";
-  echo "</nav>\n";
-  echo "<br>\n";
-  echo "<br>\n";
-  echo "<section id=\"search_error\">\n";
-  echo "<p>B&uacute;squeda vac&iacute;a</p>\n";
-  echo "</section>\n";
+  echo "\n";
+  echo "\n";
+  echo "<div class=\"container\">\n";
+  echo "\n";
+  echo "  <div class=\"masthead\">\n";
+  echo "    <a href=\"index.html\">\n";
+  echo "      <img src=\"res/logo.png\" class=\"img-responsive\" alt=\"Responsive image\">\n";
+  echo "    </a>\n";
+  echo "    <ul class=\"nav nav-justified\">\n";
+  echo "      <li><a href=\"index.html\">Búsqueda</a></li>\n";
+  echo "      <li><a href=\"byprice.html\">Búsq.Avzda.</a></li>\n";
+  echo "      <li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
+  echo "      <li><a href=\"http://buscobici.blogspot.com.es\" target=\"_blank\">Blog</a></li>\n";
+  echo "      <li><a href=\"http://buscobici.com/bikesearch_php_raw/stats_fullscreen.html\">Estadísticas</a></li>\n";
+  echo "      <li><a href=\"contact.html\">Contactar</a></li>\n";
+  echo "    </ul>\n";
+
+  echo "    <div class=\"well\">\n";
+  echo "      <p>¿Vas a comprar una bicicleta? Compara entre 8000 bicicletas de las principales marcas en diversas tiendas on-line: Trek, Specialized, Giant, Merida, Scott, Cube, Bmc, Lapierre, Cervélo, Mondraker, Orbea, Bh, Conor, Gt, Ghost, Fuji, ...</p>\n";
+  echo "    </div>\n";
+  echo "\n";
+  echo "    <!-- Jumbotron -->\n";
+  echo "    <div class=\"jumbotron\">\n";
+  echo "      <p>B&uacute;squeda vac&iacute;a</p>\n";
+  echo "    </div>\n";
+  echo "  </div>\n";
+  echo "</div>\n";
   echo "</html>\n";
   exit();
 }
@@ -162,7 +177,6 @@ if (($priceFrom >= $priceTo) && ($priceFrom) && ($priceTo)) {
   echo "</html>\n";
   exit();
 }
-
 
 $search = preg_replace('/[^a-zA-Z0-9\ \.]/i', null, $search);
 
@@ -235,18 +249,23 @@ $query .= ";";
 
 $result = pg_query($query) or die('Query returned an error: ' . pg_last_error());
 
-echo "<section>\n";
-        echo "<nav class=\"nav_search\">\n";
-        echo "<ul>\n";
-        echo "\t<li><a href=\"index.html\">B&uacute;squeda Simple</a></li>\n";
-        echo "\t<li><a href=\"byprice.html\">B&uacute;squeda por Precio y Tipo</a></li>\n";
-        echo "\t<li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
-        echo "\t<li><a href=\"stats_fullscreen.html\">Estadísticas</a></li>\n";
-        echo "\t<li><a href=\"contact.html\">Contactar</a></li>\n";
-        echo "</ul>\n";
-        echo "</nav>\n";
-        echo "<br>\n";
-        echo "<br>\n";
+echo "<div class=\"container\">\n";
+echo "\n";
+echo "  <div class=\"masthead\">\n";
+echo "    <a href=\"index.html\">\n";
+echo "      <img src=\"res/logo.png\" class=\"img-responsive\" alt=\"Responsive image\">\n";
+echo "    </a>\n";
+echo "    <ul class=\"nav nav-justified\">\n";
+echo "      <li><a href=\"index.html\">Búsqueda</a></li>\n";
+echo "      <li><a href=\"byprice.html\">Búsq.Avzda.</a></li>\n";
+echo "      <li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
+echo "      <li><a href=\"http://buscobici.blogspot.com.es\" target=\"_blank\">Blog</a></li>\n";
+echo "      <li><a href=\"http://buscobici.com/bikesearch_php_raw/stats_fullscreen.html\">Estadísticas</a></li>\n";
+echo "      <li><a href=\"contact.html\">Contactar</a></li>\n";
+echo "    </ul>\n";
+echo "\n";
+echo "  </div>\n";
+echo "</div>\n";
 
 $round = 0;
 
@@ -254,13 +273,16 @@ $num_results = pg_numrows($result);
 $num_pages = ceil($num_results / $resultsPerPage);
 $result = pg_query($query_limited) or die('Query returned an error: ' . pg_last_error());
 
-echo "<table class=\"tableSearch\">\n";
-
+echo "<div>\n";
+echo "  <br />\n";
+echo "</div>\n";
+echo "<div class=\"table-responsive\">\n";
+echo "  <table class=\"table table-striped table-condensed\">\n";
 while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     if ($round== 0)
     {
         echo "\t<thead>\n";
-        echo "\t<tr id=\"search_results\">\n";
+        echo "\t<tr>\n";
         echo "\t<td><b>Marca</b></td>\n";
         echo "\t<td><b>Modelo</b></td>\n";
         echo "\t<td><b>Tipo</b></td>\n";
@@ -283,8 +305,10 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
         if($round == 1) {
           $model = $col_value;
           $limited_model = $model;
-          if (strlen($model) > $defaultMaxModel) {
-            $limited_model = substr($model, 0, $defaultMaxModel-3);
+          $model_trim = trim($model);
+          $length = strlen($model_trim);
+          if (strlen($model_trim) > $defaultMaxModel) {
+            $limited_model = substr($model_trim, 0, $defaultMaxModel-3);
             $limited_model .= "...";
             $col_value = $limited_model;
           }
@@ -304,13 +328,15 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     }
     echo "\t</tr>\n";
 }
-echo "\t</tbody>\n";
-echo "</table>\n";    
-echo "</section>\n";
+echo "  </tbody>\n";
+echo "  </table>\n";
+echo "</div>\n";
+
 if ($round==0) {
-    echo "<section id=\"search_error\">\n";
-    echo "<p>Lo sentimos. No se encontraron resultados para su b&uacute;squeda.</p>\n";
-    echo "</section>\n";
+  echo "    <!-- Jumbotron -->\n";
+  echo "    <div class=\"jumbotron\">\n";
+  echo "      <p>Lo sentimos, no se encontr&oacute; ning&uacute;n resultado</p>\n";
+  echo "    </div>\n";
 }
 
 if ($num_results > 0) {
@@ -364,17 +390,25 @@ if ($num_results > 0) {
         if (($num_pages) > 1) {
           echo "<label> - Entradas por p&aacute;gina :</label>\n";
           echo "<select name=\"entryPerPage\" id=\"entryPerPage\" onSelect=\"form.submit()\" onChange=\"form.submit()\">\n";
+          if ($resultsPerPage == 5) 
+            echo "  <option value=\"5\" selected=\"selected\">5</option>\n";
+       	  else 
+            echo "  <option value=\"5\">5</option>\n";
           if ($resultsPerPage == 10) 
             echo "  <option value=\"10\" selected=\"selected\">10</option>\n";
-	  else 
+       	  else 
             echo "  <option value=\"10\">10</option>\n";
+          if ($resultsPerPage == 12) 
+            echo "  <option value=\"12\" selected=\"selected\">12</option>\n";
+       	  else 
+            echo "  <option value=\"12\">12</option>\n";
           if ($resultsPerPage == 15) 
             echo "  <option value=\"15\" selected=\"selected\">15</option>\n";
-	  else 
+      	   else 
             echo "  <option value=\"15\">15</option>\n";
           if ($resultsPerPage == 20) 
             echo "  <option value=\"20\" selected=\"selected\">20</option>\n";
-	  else 
+       	  else 
             echo "  <option value=\"20\">20</option>\n";
           if ($resultsPerPage == 25) 
             echo "  <option value=\"25\" selected=\"selected\">25</option>\n";
@@ -397,6 +431,17 @@ if ($num_results > 0) {
       echo "</form>\n";
     }
 }
+
+// echo "<div class=\"footer\">\n";
+// echo "  <p>S&iacute;guenos :&nbsp; \n";
+// echo "    <a href=\"http://www.facebook.com/buscobicidotcom\" target=\"_blank\">\n";
+// echo "      <img src=\"res/facebook00.jpg\" alt=\"Facebook\"/>\n";
+// echo "    </a>\n";
+// echo "    <a href=\"http://www.twitter.com/buscobici\" target=\"_blank\">\n";
+// echo "      <img src=\"res/twitter01.jpg\" alt=\"Twitter\"/> \n";
+// echo "    </a>\n";
+// echo "  </p>\n";
+// echo "</div>\n";
 
 echo "</body>\n";
 echo "</html>\n";
