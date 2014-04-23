@@ -34,7 +34,7 @@ NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
 MODEL_DOWN_SEARCH=10
 MAX_PRICE_SEARCH=20
-MAX_PRICE_SEARCH2=25
+MAX_PRICE_SEARCH2=50
 URL="www.bikester.es"
 ONLY_DOMAIN="bikester.es"
 
@@ -74,10 +74,10 @@ function print_price()
 {
   FILE="$1"
   MODEL="$2"
-  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep "wholeNumber" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,3},{0,1}[0-9]{0,}" | head -1)
+  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep "wholeNumber" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,3},{1}[0-9]{0,}" | head -1)
   if [ "${PRICE}" = "" ];
   then
-    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH2} | grep "wholeNumber" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,3},{0,1}[0-9]{0,}" | head -1) 
+    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH2} | grep "wholeNumber" -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,3},{1}[0-9]{0,}" | head -1) 
   fi
   PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ' ' | tr -d '.')
   echo ${PRICE_NO_SPACE}
