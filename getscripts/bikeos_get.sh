@@ -14,14 +14,13 @@
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
-# This script gets all the bicycles from
-# Bicimania store !
-# URL: www.bicimania.com
+# This script gets all the bicycles from BikeOS store
+# URL: www.bikeos.com
 URL="www.bikeos.com"
 ONLY_DOMAIN="bikeos.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
-MAX_TRIES=10
-MAX_TIMEOUT=10
+MAX_TRIES=30
+MAX_TIMEOUT=20
 
 function get_page()
 {
@@ -29,47 +28,47 @@ function get_page()
   PAGES="$2"
   if [ "${PAGES}" = "" ];
   then
-    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
+    wget  -w6 --random-wait -e robots=off -U 'mozilla' --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
   else
     for page in ${PAGES};
     do
-      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
+      wget  -w6 --random-wait -e robots=off -U 'mozilla' --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
     done 
   fi
 }
 
 
-ROAD_BIKES_BASE="${URL}/index.php/bicicletas/carretera.html?p="
+ROAD_BIKES_BASE="${URL}/bicicletas-carretera.html?p="
 ROAD_BIKES_PAGES="$(seq 1 20)"
 
-MTB_BIKES_BASE="${URL}/index.php/bicicletas/mountain-bike.html?p="
+MTB_BIKES_BASE="${URL}/bicicletas-mountain-bike.html?p="
 MTB_BIKES_PAGES="$(seq 1 35)"
 
-BMX_BIKES_BASE="${URL}/index.php/bicicletas/bmx-trial-freeride.html?p="
+BMX_BIKES_BASE="${URL}/bicicletas-bmx-trial-freeride.html?p="
 BMX_BIKES_PAGES="$(seq 1 10)"
 
-TREKKING_OUTLET_BIKES_BASE="${URL}/index.php/bicicletas/trekking-liquidacion.html?p="
+TREKKING_OUTLET_BIKES_BASE="${URL}/bicicletas-trekking-liquidacion.html?p="
 TREKKING_OUTLET_BIKES_PAGES="$(seq 1 5)"
 
-TREKKING_2012_BIKES_BASE="${URL}/index.php/bicicletas/trekking-2012.html?p="
+TREKKING_2012_BIKES_BASE="${URL}/bicicletas-trekking-2012.html?p="
 TREKKING_2012_BIKES_PAGES="$(seq 1 5)"
 
-TREKKING_2013_BIKES_BASE="${URL}/index.php/bicicletas/trekking-2013.html?p="
+TREKKING_2013_BIKES_BASE="${URL}/bicicletas-trekking-2013.html?p="
 TREKKING_2013_BIKES_PAGES="$(seq 1 10)"
 
-TREKKING_2014_BIKES_BASE="${URL}/index.php/bicicletas/trekking-2014.html?p="
+TREKKING_2014_BIKES_BASE="${URL}/bicicletas-trekking-2014.html?p="
 TREKKING_2014_BIKES_PAGES="$(seq 1 10)"
 
-FOLDING_BIKES_BASE="${URL}/index.php/bicicletas/plegables.html?p="
+FOLDING_BIKES_BASE="${URL}/bicicletas-plegables.html?p="
 FOLDING_BIKES_PAGES="$(seq 1 5)"
 
-ELECTRIC_BIKES_BASE="${URL}/index.php/bicicletas/electricas.html?p="
+ELECTRIC_BIKES_BASE="${URL}/bicicletas-electricas.html?p="
 ELECTRIC_BIKES_PAGES="$(seq 1 20)"
 
-KIDS_BIKES_BASE="${URL}/index.php/bicicletas/infantil.html?p="
+KIDS_BIKES_BASE="${URL}/bicicletas-infantil.html?p="
 KIDS_BIKES_PAGES="$(seq 1 10)"
 
-MTB_29_BIKES_BASE="${URL}/index.php/bicicletas/29.html?p="
+MTB_29_BIKES_BASE="${URL}/bicicletas-29.html?p="
 MTB_29_BIKES_PAGES="$(seq 1 10)"
 
 get_page "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}"
