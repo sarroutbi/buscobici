@@ -226,37 +226,37 @@ function process_pages()
 
 > ${OUTPUT_FILE}
 
-ROAD_BIKES_BASE="bicicletas-carretera.html?p="
+ROAD_BIKES_BASE="carretera.html?p="
 ROAD_BIKES_PAGES="$(seq 1 20)"
 
-MTB_BIKES_BASE="bicicletas-mountain-bike.html?p="
+MTB_BIKES_BASE="mountain-bike.html?p="
 MTB_BIKES_PAGES="$(seq 1 35)"
 
-BMX_BIKES_BASE="bicicletas-bmx-trial-freeride.html?p="
+BMX_BIKES_BASE="bmx-trial-freeride.html?p="
 BMX_BIKES_PAGES="$(seq 1 10)"
 
-TREKKING_OUTLET_BIKES_BASE="bicicletas-trekking-liquidacion.html?p="
+TREKKING_OUTLET_BIKES_BASE="trekking-liquidacion.html?p="
 TREKKING_OUTLET_BIKES_PAGES="$(seq 1 5)"
 
-TREKKING_2012_BIKES_BASE="bicicletas-trekking-2012.html?p="
+TREKKING_2012_BIKES_BASE="trekking-2012.html?p="
 TREKKING_2012_BIKES_PAGES="$(seq 1 5)"
 
-TREKKING_2013_BIKES_BASE="bicicletas-trekking-2013.html?p="
+TREKKING_2013_BIKES_BASE="trekking-2013.html?p="
 TREKKING_2013_BIKES_PAGES="$(seq 1 10)"
 
-TREKKING_2014_BIKES_BASE="bicicletas-trekking-2014.html?p="
+TREKKING_2014_BIKES_BASE="trekking-2014.html?p="
 TREKKING_2014_BIKES_PAGES="$(seq 1 10)"
 
-FOLDING_BIKES_BASE="bicicletas-plegables.html?p="
+FOLDING_BIKES_BASE="plegables.html?p="
 FOLDING_BIKES_PAGES="$(seq 1 5)"
 
-ELECTRIC_BIKES_BASE="bicicletas-electricas.html?p="
+ELECTRIC_BIKES_BASE="electricas.html?p="
 ELECTRIC_BIKES_PAGES="$(seq 1 20)"
 
-KIDS_BIKES_BASE="bicicletas-infantil.html?p="
+KIDS_BIKES_BASE="infantil.html?p="
 KIDS_BIKES_PAGES="$(seq 1 10)"
 
-MTB_29_BIKES_BASE="bicicletas-29.html?p="
+MTB_29_BIKES_BASE="29.html?p="
 MTB_29_BIKES_PAGES="$(seq 1 10)"
 
 process_pages "${MTB_BIKES_BASE}"  "${MTB_BIKES_PAGES}"  "BikeOS" "MTB" >> ${OUTPUT_FILE}

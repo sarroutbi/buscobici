@@ -38,37 +38,37 @@ function get_page()
 }
 
 
-ROAD_BIKES_BASE="${URL}/bicicletas-carretera.html?p="
+ROAD_BIKES_BASE="${URL}/bicicletas-1/carretera.html?p="
 ROAD_BIKES_PAGES="$(seq 1 20)"
 
-MTB_BIKES_BASE="${URL}/bicicletas-mountain-bike.html?p="
+MTB_BIKES_BASE="${URL}/bicicletas-1/mountain-bike.html?p="
 MTB_BIKES_PAGES="$(seq 1 35)"
 
-BMX_BIKES_BASE="${URL}/bicicletas-bmx-trial-freeride.html?p="
+BMX_BIKES_BASE="${URL}/bicicletas-1/bmx-trial-freeride.html?p="
 BMX_BIKES_PAGES="$(seq 1 10)"
 
-TREKKING_OUTLET_BIKES_BASE="${URL}/bicicletas-trekking-liquidacion.html?p="
+TREKKING_OUTLET_BIKES_BASE="${URL}/bicicletas-1/trekking-liquidacion.html?p="
 TREKKING_OUTLET_BIKES_PAGES="$(seq 1 5)"
 
-TREKKING_2012_BIKES_BASE="${URL}/bicicletas-trekking-2012.html?p="
+TREKKING_2012_BIKES_BASE="${URL}/bicicletas-1/trekking-2012.html?p="
 TREKKING_2012_BIKES_PAGES="$(seq 1 5)"
 
-TREKKING_2013_BIKES_BASE="${URL}/bicicletas-trekking-2013.html?p="
+TREKKING_2013_BIKES_BASE="${URL}/bicicletas-1/trekking-2013.html?p="
 TREKKING_2013_BIKES_PAGES="$(seq 1 10)"
 
-TREKKING_2014_BIKES_BASE="${URL}/bicicletas-trekking-2014.html?p="
+TREKKING_2014_BIKES_BASE="${URL}/bicicletas-1/trekking-2014.html?p="
 TREKKING_2014_BIKES_PAGES="$(seq 1 10)"
 
-FOLDING_BIKES_BASE="${URL}/bicicletas-plegables.html?p="
+FOLDING_BIKES_BASE="${URL}/bicicletas-1/plegables.html?p="
 FOLDING_BIKES_PAGES="$(seq 1 5)"
 
-ELECTRIC_BIKES_BASE="${URL}/bicicletas-electricas.html?p="
+ELECTRIC_BIKES_BASE="${URL}/bicicletas-1/electricas.html?p="
 ELECTRIC_BIKES_PAGES="$(seq 1 20)"
 
-KIDS_BIKES_BASE="${URL}/bicicletas-infantil.html?p="
+KIDS_BIKES_BASE="${URL}/bicicletas-1/infantil.html?p="
 KIDS_BIKES_PAGES="$(seq 1 10)"
 
-MTB_29_BIKES_BASE="${URL}/bicicletas-29.html?p="
+MTB_29_BIKES_BASE="${URL}/bicicletas-1/29.html?p="
 MTB_29_BIKES_PAGES="$(seq 1 10)"
 
 get_page "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}"
