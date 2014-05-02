@@ -25,12 +25,12 @@ function bubic_get_page_outfile()
   sleep 5
   if [ "${PAGES}" = "" ];
   then
-    wget -w5 --random-wait -e robots=off -U 'Mozilla/5.0' \
+    wget -w5 --random-wait -e robots=off -U 'Mozilla/5.0' --no-cookies\
       --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} -O${3} "${BASE_URL}" 
   else
     for page in ${PAGES};
     do
-      wget -w6 --random-wait -e robots=off -U 'Mozilla/5.0' \
+      wget -w6 --random-wait -e robots=off -U 'Mozilla/5.0' --no-cookies\
         --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} -O${3}-${page} "${BASE_URL}${page}"
     done
   fi
