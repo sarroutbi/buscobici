@@ -51,11 +51,11 @@ function process_file()
   TYPE="$3"
   cat "${BASE_FILE}" | grep '<h2 class="product_name">' | sed -e 's@<[^>]*>@@g' | while read model;
   do
-    TRADEMARK=$(echo ${model} | awk {'print $1'} | tr -d '\n' | tr -d '\r')
-    MODEL=$(echo ${model} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
+    TRADEMARK=$(echo ${model} | awk {'print $1'} | tr -d '\n' | tr -d '\r' | tr "'" '"')
+    MODEL=$(echo ${model} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr "'" '"')
     if [ "${TRADEMARK}" = "De" ]; then
       TRADEMARK="De Rosa"
-    MODEL=$(echo ${model} | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
+      MODEL=$(echo ${model} | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr "'" '"')
     fi
     PRICE=$(grep "${model}" ${BASE_FILE} -A${MAX_PRICE_SEARCH} | grep 'class="one_product_price">' | sed -e 's@<[^>]*>@@g' | egrep -o -E "[0-9]{2,5}.{0,1}[0-9]{0,2}" | tr "." ",")
     if [ "${PRICE}" = "" ];
