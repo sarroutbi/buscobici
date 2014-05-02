@@ -17,6 +17,25 @@ function bubic_get_page()
   fi
 }
 
+function bubic_get_page_outfile()
+{
+  BASE_URL="$1"
+  PAGES="$2"
+  OUTFILE="$3"
+  sleep 5
+  if [ "${PAGES}" = "" ];
+  then
+    wget -w5 --random-wait -e robots=off -U 'Mozilla/5.0' --no-cookies\
+      --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} -O${3} "${BASE_URL}" 
+  else
+    for page in ${PAGES};
+    do
+      wget -w6 --random-wait -e robots=off -U 'Mozilla/5.0' --no-cookies\
+        --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} -O${3}-${page} "${BASE_URL}${page}"
+    done
+  fi
+}
+
 function bubic_get_page_cookies()
 {
   BASE_URL="$1"

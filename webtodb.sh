@@ -195,12 +195,11 @@ test -f ${FILE} || error $0 "Unable to open file $FILE" 1
 
 # 1 - Is a Section ?
 > ${G_OUTPUT}
-cat ${FILE} | while read line;
+cat ${FILE} | egrep -E "\\[*\\]" | while read line;
 do
   let len=0;
-  echo $line | grep "\[*\]" > /dev/null && \
-     ( len=$(getSectionLength ${FILE} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)"); \
-      parseSectionContent ${FILE} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)" ${len} ) >> ${G_OUTPUT}
+  ( len=$(getSectionLength ${FILE} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)"); \
+    parseSectionContent ${FILE} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)" ${len} ) >> ${G_OUTPUT}
 done
 cat ${G_OUTPUT} | sort | uniq
 

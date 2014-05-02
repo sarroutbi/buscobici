@@ -134,7 +134,7 @@ function print_url()
 
 function print_trademark_url()
 {
-  wget -o /dev/null -O - "$1" | grep '<title>' | sed -e 's/<[^>]*>//g' | awk {'print $1'}
+  wget -o /dev/null -O - "$1" | grep '<title>' | sed -e 's/<[^>]*>//g' | awk {'print $1'} | grep -v "a href"
 }
 
 function print_price_url()
@@ -148,7 +148,7 @@ function process_page_url()
   STORE="$2"
   TYPE="$3"
   MODELS=$(cat "${BASE_FILE}" | egrep -E '<h3>' | awk -F "<a href=" {'print "<a href="$2'} | grep 'a href' | sed -e 's/<[^>]*>//g' | tr -d '\r' | grep -iv reserva | sed -e 's/^[ \t]//g')
-  echo "${MODELS}" | while read model;
+  echo "${MODELS}" | grep -v 'a href' | while read model;
   do
     URL=$(print_url "${model}" "${BASE_FILE}")
     TRADEMARK=$(print_trademark_url "${URL}")
