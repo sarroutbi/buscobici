@@ -111,17 +111,17 @@ process_pages_raw "${ROAD_BASE}" "${ROAD_PAGES}" "Evans Cycles" "ROAD" >> ${OUTP
 MTB_DOUBLE_BASE="mtb-double"
 MTB_DOUBLE_PAGES="$(seq 0 8)"
 
-process_pages_raw "${MTB_DOUBLE_BASE}" "${MTB_DOUBLE_PAGES}" "Evans Cycles" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_DOUBLE_BASE}" "${MTB_DOUBLE_PAGES}" "Evans Cycles" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 
 MTB_FIX_BASE="mtb-fix"
 MTB_FIX_PAGES="$(seq 0 10)"
 
-process_pages_raw "${MTB_FIX_BASE}" "${MTB_FIX_PAGES}" "Evans Cycles" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_FIX_BASE}" "${MTB_FIX_PAGES}" "Evans Cycles" "MTB-FIX" >> ${OUTPUT_FILE}
 
 MTB_FIX2_BASE="mtb-fix2"
 MTB_FIX2_PAGES=
 
-process_pages_raw "${MTB_FIX2_BASE}" "${MTB_FIX2_PAGES}"  "Evans Cycles" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_FIX2_BASE}" "${MTB_FIX2_PAGES}"  "Evans Cycles" "MTB-FIX" >> ${OUTPUT_FILE}
 
 #### URBAN ####
 HYBRID_BASE="hybrid"
