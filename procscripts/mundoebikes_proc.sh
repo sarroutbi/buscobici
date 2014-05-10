@@ -202,8 +202,8 @@ ROAD_TRIATLON_PAGES=""
 URBAN_ELECTRIC_BIKES_BASE="bicicletas-electricas-deportivas?limit=20&limitstart="
 URBAN_ELECTRIC_BIKES_PAGES="0 20"
 
-URBAN_FOLDING_BIKES_BASE="bicicletas-ciudad-paseo-urbanas-plegables"
-URBAN_FOLDING_BIKES_PAGES=""
+URBAN_FOLDING_BIKES_BASE="${URL}/bicicletas-ciudad-paseo-urbanas-plegables?limit=20"
+URBAN_FOLDING_BIKES_PAGES="0 20 40"
 
 URBAN_EFOLDING_BIKES_BASE="bicicletas-electricas-plegables"
 URBAN_EFOLDING_BIKES_PAGES=""
@@ -223,6 +223,9 @@ URBAN_TREKKING_PAGES="0 20 40"
 URBAN_CITY_BASE="bicicletas-ciudad-paseo-urbanas?limit=20&limitstart="
 URBAN_CITY_PAGES="0 20 40 60 80 100 120 140 160 180"
 
+URBAN_RETRO_BASE="${URL}/bicicletas-clasicas-retro?limit=20&limitstart="
+URBAN_RETRO_PAGES="0 20 40 60 80"
+
 MTB29_BIKES_BASE="bicicletas-mtb-29r?limit=20&limitstart="
 MTB29_BIKES_PAGES="0 20"
 
@@ -235,11 +238,14 @@ MTB_CAR_BIKES_PAGES=""
 MTB_DOUBLE_BIKES_BASE="bicicletas-mtb-doble-susp?limit=20&limitstart="
 MTB_DOUBLE_BIKES_PAGES=""
 
+MTB_BIKES_BASE="bicicletas-mtb?limit=20&limitstart="
+MTB_BIKES_PAGES="0 20 40 60 80 100 120 140 160 180"
+
 KIDS_BIKES_BASE="bicicletas-infantiles?limit=20&limitstart="
-KIDS_BIKES_PAGES="0 20 40 60"
+KIDS_BIKES_PAGES="0 20 40 60 80 100 120"
 
 KIDS_MTB_BIKES_BASE="bicicletas-mtb-junior?limit=20&limitstart="
-KIDS_MTB_BIKES_PAGES="0 20 40"
+KIDS_MTB_BIKES_PAGES="0 20 40 60"
 
 process_pages "${BMX_BIKES_BASE}"            "${BMX_BIKES_PAGES}"            "MundoEbikes" "BMX"   >> ${OUTPUT_FILE}
 process_pages "${ROAD_BIKES_BASE}"           "${ROAD_BIKES_PAGES}"           "MundoEbikes" "ROAD"  >> ${OUTPUT_FILE}
@@ -252,9 +258,11 @@ process_pages "${URBAN_FIXIE_BASE}"          "${URBAN_FIXIE_PAGES}"          "Mu
 process_pages "${URBAN_CRUISER_BASE}"        "${URBAN_CRUISER_PAGES}"        "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${URBAN_TREKKING_BASE}"       "${URBAN_TREKKING_PAGES=}"      "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${URBAN_CITY_BASE}"           "${URBAN_CITY_PAGES}"           "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_RETRO_BASE}"          "${URBAN_RETRO_PAGES}"          "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${MTB29_BIKES_BASE}"          "${MTB29_BIKES_PAGES}"          "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
 process_pages "${MTB_ALU_BIKES_BASE}"        "${MTB_ALU_BIKES_PAGES}"        "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
 process_pages "${MTB_CAR_BIKES_BASE}"        "${MTB_CAR_BIKES_PAGES}"        "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
-process_pages "${MTB_DOUBLE_BIKES_BASE}"     "${MTB_DOUBLE_BIKES_PAGES}"     "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_BIKES_BASE}"     "${MTB_DOUBLE_BIKES_PAGES}"     "MundoEbikes" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_BASE}"            "${MTB_BIKES_PAGES}"            "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
 process_pages "${KIDS_BIKES_BASE}"           "${KIDS_BIKES_PAGES}"           "MundoEbikes" "KIDS"  >> ${OUTPUT_FILE}
 process_pages "${KIDS_MTB_BIKES_BASE}"       "${KIDS_MTB_BIKES_PAGES}"       "MundoEbikes" "KIDS"  >> ${OUTPUT_FILE} 
