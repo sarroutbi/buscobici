@@ -52,8 +52,8 @@ ROAD_TRIATLON_PAGES=""
 URBAN_ELECTRIC_BIKES_BASE="${URL}/bicicletas-electricas-deportivas?limit=20&limitstart="
 URBAN_ELECTRIC_BIKES_PAGES="0 20"
 
-URBAN_FOLDING_BIKES_BASE="${URL}/bicicletas-ciudad-paseo-urbanas-plegables"
-URBAN_FOLDING_BIKES_PAGES=""
+URBAN_FOLDING_BIKES_BASE="${URL}/bicicletas-ciudad-paseo-urbanas-plegables?limit=20"
+URBAN_FOLDING_BIKES_PAGES="0 20 40"
 
 URBAN_EFOLDING_BIKES_BASE="${URL}/bicicletas-electricas-plegables"
 URBAN_EFOLDING_BIKES_PAGES=""
@@ -64,14 +64,17 @@ URBAN_EBIKES_PAGES="0 20 40"
 URBAN_FIXIE_BASE="${URL}/bicicletas-fixed-and-single-speed"
 URBAN_FIXIE_PAGES=""
 
-URBAN_CRUISER_BASE="${URL}/bicicletas-cruisers"
-URBAN_CRUISER_PAGES=""
+URBAN_CRUISER_BASE="${URL}/bicicletas-cruisers?limit=20&limitstart="
+URBAN_CRUISER_PAGES="0 20 40"
 
 URBAN_TREKKING_BASE="${URL}/bicicletas-trekking?limit=20&limitstart="
 URBAN_TREKKING_PAGES="0 20 40"
 
 URBAN_CITY_BASE="${URL}/bicicletas-ciudad-paseo-urbanas?limit=20&limitstart="
 URBAN_CITY_PAGES="0 20 40 60 80 100 120 140 160 180"
+
+URBAN_RETRO_BASE="${URL}/bicicletas-clasicas-retro?limit=20&limitstart="
+URBAN_RETRO_PAGES="0 20 40 60 80"
 
 MTB29_BIKES_BASE="${URL}/bicicletas-mtb-29r?limit=20&limitstart="
 MTB29_BIKES_PAGES="0 20"
@@ -85,11 +88,14 @@ MTB_CAR_BIKES_PAGES=""
 MTB_DOUBLE_BIKES_BASE="${URL}/bicicletas-mtb-doble-susp?limit=20&limitstart="
 MTB_DOUBLE_BIKES_PAGES=""
 
+MTB_BIKES_BASE="${URL}/bicicletas-mtb?limit=20&limitstart="
+MTB_BIKES_PAGES="0 20 40 60 80 100 120 140 160 180"
+
 KIDS_BIKES_BASE="${URL}/bicicletas-infantiles?limit=20&limitstart="
-KIDS_BIKES_PAGES="0 20 40 60"
+KIDS_BIKES_PAGES="0 20 40 60 80 100 120"
 
 KIDS_MTB_BIKES_BASE="${URL}/bicicletas-mtb-junior?limit=20&limitstart="
-KIDS_MTB_BIKES_PAGES="0 20 40"
+KIDS_MTB_BIKES_PAGES="0 20 40 60"
 
 get_page "${BMX_BIKES_BASE}"                    "${BMX_BIKES_PAGES}"
 get_page "${ROAD_BIKES_BASE}"                   "${ROAD_BIKES_PAGES}"
@@ -102,10 +108,12 @@ get_page "${URBAN_FIXIE_BASE}"                  "${URBAN_FIXIE_PAGES}"
 get_page "${URBAN_CRUISER_BASE}"                "${URBAN_CRUISER_PAGES}"
 get_page "${URBAN_TREKKING_BASE}"               "${URBAN_TREKKING_PAGES}"
 get_page "${URBAN_CITY_BASE}"                   "${URBAN_CITY_PAGES}"
+get_page "${URBAN_RETRO_BASE}"                  "${URBAN_RETRO_PAGES}"
 get_page "${MTB29_BIKES_BASE}"                  "${MTB29_BIKES_PAGES}"
 get_page "${MTB_ALU_BIKES_BASE}"                "${MTB_ALU_BIKES_PAGES}"
 get_page "${MTB_CAR_BIKES_BASE}"                "${MTB_CAR_BIKES_PAGES}"
 get_page "${MTB_DOUBLE_BIKES_BASE}"             "${MTB_DOUBLE_BIKES_PAGES}"
+get_page "${MTB_BIKES_BASE}"                    "${MTB_BIKES_PAGES}"
 get_page "${KIDS_BIKES_BASE}"                   "${KIDS_BIKES_PAGES}"
 get_page "${KIDS_MTB_BIKES_BASE}"               "${KIDS_MTB_BIKES_PAGES}"
 
