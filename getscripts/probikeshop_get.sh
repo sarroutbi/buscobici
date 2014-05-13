@@ -40,7 +40,7 @@ function get_page()
   fi
 }
 
-URBAN_BIKES_BASE="${URL}/carretera/ciudad-bicicletas-urbanas-c1088.html"
+URBAN_BIKES_BASE="${URL}/carretera/ciudad-bicicletas-urbanas-c3656.html"
 
 MTB_BIKES_BASE="${URL}/mtb/bicicletas-c517.html?page="
 MTB_BIKES_PAGES="$(seq 1 7)"

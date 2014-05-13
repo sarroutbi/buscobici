@@ -210,7 +210,7 @@ function process_pages()
 MTB_BIKES_BASE="bicicletas-c517.html?page="
 MTB_BIKES_PAGES="$(seq 1 5)"
 
-URBAN_BIKES_BASE="ciudad-bicicletas-urbanas-c1088.html"
+URBAN_BIKES_BASE="ciudad-bicicletas-urbanas-c3656.html"
 
 MTB_WOMAN_BASE="bicicletas-c640.html"
 
