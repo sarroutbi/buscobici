@@ -141,7 +141,7 @@ function process_pages()
 
 > ${OUTPUT_FILE}
 
-MTB_BIKES_26_BASE="7-mtb-rigidas"
+MTB_BIKES_26_BASE="7-mtb-rígidas"
 MTB_BIKES_27_5_BASE="158-mtb-rígida-275"
 MTB_BIKES_27_5_PAGES="$(seq 1 3)"
 MTB_BIKES_29_BASE="10-mtb-rígida-29er"
