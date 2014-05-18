@@ -1,17 +1,17 @@
 #!/bin/bash
 #
 # Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
-# 
-# Permission to use, copy, modify, and/or distribute this software 
-# for any purpose with or without fee is hereby granted, provided that 
+#
+# Permission to use, copy, modify, and/or distribute this software
+# for any purpose with or without fee is hereby granted, provided that
 # the above copyright notice and this permission notice appear in all copies.
-# 
-# THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES 
-# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
-# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, 
-# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
-# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, 
-# NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+#
+# THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+# NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
 # Parse results to common file with structure:
@@ -58,7 +58,7 @@ function dump_bike()
     echo "${PRICE_KEY}=$4"
     echo "${STORE_KEY}=$5"
     echo "${KIND_KEY}=$6"
-    echo 
+    echo
   fi
 }
 
@@ -119,7 +119,7 @@ function camel()
     let counter2=${counter2}+1
     if [ ${len} -ge ${2} ]; then
       firstLetter=$(echo "${word:0:1}")
-      rest=$(echo ${word:1} | tr "[A-Z]" "[a-z]") 
+      rest=$(echo ${word:1} | tr "[A-Z]" "[a-z]")
       if [ ${counter2} -lt ${counter} ];
       then
         echo -n "${firstLetter}${rest} "
@@ -151,7 +151,7 @@ function dump_bike_from_file()
   TYPE="$3"
   TRADEMARK_MODELS=$(cat "${FILE}" | grep -A5 '<span class="wrap-img img-product">' | grep '<span class="title"' -A1 | sed -e 's/<[^>]*>//g' | egrep -E '[A-Z,a-z]')
   echo "${TRADEMARK_MODELS}" | while read trademark_model;
-  do 
+  do
     #echo "===== TRADEMARK MODEL ====="
     #echo "=>${trademark_model}<="
     #echo "===== /TRADEMARK MODEL ====="
@@ -199,7 +199,7 @@ function process_pages()
     dump_bike_from_file "${BASE_FILE}" "${STORE}" "${TYPE}"
   else
     for page in ${PAGES};
-    do 
+    do
       dump_bike_from_file "${BASE_FILE}${page}" "${STORE}" "${TYPE}"
     done
   fi
@@ -225,6 +225,11 @@ KIDS01_BIKES_BASE="bicicletas-ninos-c692.html"
 KIDS02_BIKES_BASE="bicicletas-ninos-bicis-sin-pedales-c693.html"
 KIDS03_BIKES_BASE="bicicletas-ninos-cuatriciclos-c696.html"
 KIDS04_BIKES_BASE="bicicletas-ninos-triciclos-c697.html"
+KIDS05_BIKES_BASE="bicicletas-ninos-bmx-ninos-c3489.html"
+KIDS06_BIKES_BASE="bicicletas-ninos-bicis-ninos-de-12-a-14-c739.html"
+KIDS07_BIKES_BASE="bicicletas-ninos-bicis-ninos-de-16-a-18-c3490.html"
+KIDS08_BIKES_BASE="bicicletas-ninos-bicis-ninos-de-20-c757.html"
+KIDS09_BIKES_BASE="bicicletas-ninos-bicis-ninos-de-24-c3491.html"
 
 process_pages "${URBAN_BIKES_BASE}"  "${URBAN_BIKES_PAGES}"  "ProbikeShop" "URBAN"     >> ${OUTPUT_FILE}
 process_pages "${MTB_BIKES_BASE}"    "${MTB_BIKES_PAGES}"    "ProbikeShop" "MTB"       >> ${OUTPUT_FILE}
@@ -235,7 +240,12 @@ process_pages "${KIDS00_BIKES_BASE}" "${KIDS00_BIKES_PAGES}" "ProbikeShop" "KIDS
 process_pages "${KIDS01_BIKES_BASE}" "${KIDS01_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
 process_pages "${KIDS02_BIKES_BASE}" "${KIDS02_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
 process_pages "${KIDS03_BIKES_BASE}" "${KIDS03_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
-process_pages "${KIDS04_BIKES_BASE}" "${KIDS04_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE} 
+process_pages "${KIDS04_BIKES_BASE}" "${KIDS04_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
+process_pages "${KIDS05_BIKES_BASE}" "${KIDS05_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
+process_pages "${KIDS06_BIKES_BASE}" "${KIDS06_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
+process_pages "${KIDS07_BIKES_BASE}" "${KIDS07_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
+process_pages "${KIDS08_BIKES_BASE}" "${KIDS08_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
+process_pages "${KIDS09_BIKES_BASE}" "${KIDS09_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
 
 #process_pages "${MTB_BIKES_BASE}"    "${MTB_BIKES_PAGES}"    "ProbikeShop" "MTB"
 #process_pages "${MTB_WOMAN_BASE}"    "${MTB_WOMAN_PAGES}"    "ProbikeShop" "MTB-WOMAN"
