@@ -20,22 +20,37 @@
 URL="http://www.probikeshop.es"
 ONLY_DOMAIN="probikeshop.es"
 EXCLUDE="-Rgif -Rpng -Rjpg"
-MAX_TRIES=10
-MAX_TIMEOUT=10
+MAX_TRIES=15
+MAX_TIMEOUT=15
+MAX_WGET_TRIES=10
 
 function get_page()
 {
+  let counter=0 
+  let result=1
   BASE_URL="$1"
   PAGES="$2"
   if [ "${PAGES}" = "" ];
   then
     echo "GETTING PAGE=>${BASE_URL}<="
-    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
+    while [ $counter -le ${MAX_WGET_TRIES} -a $result -ne 0 ]; do
+      wget --retry-connrefused -w5 --random-wait -e robots=off -U 'mozilla' --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
+      result=$?
+      echo "RESULT:${result},WGET_TRIES:${counter}<="
+      let counter=$counter+1
+    done
   else
     for page in ${PAGES};
     do
     echo "GETTING PAGE=>${BASE_URL}${page}<="
-      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
+      while [ $counter -le ${MAX_WGET_TRIES} -a $result -ne 0 ]; do
+        wget --retry-connrefused -w5 --random-wait -e robots=off -U 'mozilla' --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
+        result=$?
+        echo "RESULT:${result},WGET_TRIES:${counter}<="
+        let counter=$counter+1
+      done
+     let counter=0 
+     let result=1
     done 
   fi
 }
@@ -58,6 +73,11 @@ KIDS01_BIKES_BASE="${URL}/ninos/bicicletas-ninos-c692.html"
 KIDS02_BIKES_BASE="${URL}/ninos/bicicletas-ninos-bicis-sin-pedales-c693.html"
 KIDS03_BIKES_BASE="${URL}/ninos/bicicletas-ninos-cuatriciclos-c696.html"
 KIDS04_BIKES_BASE="${URL}/ninos/bicicletas-ninos-triciclos-c697.html"
+KIDS05_BIKES_BASE="${URL}/ninos/bicicletas-ninos-bmx-ninos-c3489.html"
+KIDS06_BIKES_BASE="${URL}/ninos/bicicletas-ninos-bicis-ninos-de-12-a-14-c739.html"
+KIDS07_BIKES_BASE="${URL}/ninos/bicicletas-ninos-bicis-ninos-de-16-a-18-c3490.html"
+KIDS08_BIKES_BASE="${URL}/ninos/bicicletas-ninos-bicis-ninos-de-20-c757.html"
+KIDS09_BIKES_BASE="${URL}/ninos/bicicletas-ninos-bicis-ninos-de-24-c3491.html"
 
 get_page "${URBAN_BIKES_BASE}"
 get_page "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}"
@@ -69,3 +89,8 @@ get_page "${KIDS01_BIKES_BASE}"
 get_page "${KIDS02_BIKES_BASE}"
 get_page "${KIDS03_BIKES_BASE}"
 get_page "${KIDS04_BIKES_BASE}"
+get_page "${KIDS05_BIKES_BASE}"
+get_page "${KIDS06_BIKES_BASE}"
+get_page "${KIDS07_BIKES_BASE}"
+get_page "${KIDS08_BIKES_BASE}"
+get_page "${KIDS09_BIKES_BASE}"
