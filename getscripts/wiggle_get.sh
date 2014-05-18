@@ -43,13 +43,13 @@ RACETRACK_BIKES_BASE="${URL}/ciclismo/bicis-de-pista/"
 RACETRACK_BIKES_PAGES=""
 
 FIXIE_BIKES_BASE="${URL}/ciclismo/bicis-sin-cambios/"
-FIXIE_BIKES_PAGES=""
+FIXIE_BIKES_PAGES=$(seq 1 2)
 
 BMX_BIKES_BASE="${URL}/ciclismo/bicis-bmx/"
-BMX_BIKES_PAGES="$(seq 1 3)"
+BMX_BIKES_PAGES=$(seq 1 3)
 
 ROAD_BIKES_BASE="${URL}/ciclismo/bicis-de-carretera-y-contrarreloj/"
-ROAD_BIKES_PAGES="$(seq 1 10)"
+ROAD_BIKES_PAGES=$(seq 1 10)
 
 CICLOCROSS_BIKES_BASE="${URL}/ciclismo/bicis-de-ciclocross/"
 CICLOCROSS_BIKES_PAGES=""
@@ -61,10 +61,10 @@ MTB_DOUBLE_BIKES_BASE="${URL}/ciclismo/bicis-mtb-doble-suspension/"
 MTB_DOUBLE_BIKES_PAGES=$(seq 1 5)
 
 KIDS_BIKES_BASE="${URL}/ciclismo/bicis-para-ninos/"
-KIDS_BIKES_PAGES=""
+KIDS_BIKES_PAGES=$(seq 1 2)
 
 URBAN_BIKES_BASE="${URL}/ciclismo/bicis-urbanas/"
-URBAN_BIKES_PAGES=$(seq 1 3)
+URBAN_BIKES_PAGES=$(seq 1 5)
 
 get_page "${RACETRACK_BIKES_BASE}"   "${RACETRACK_BIKES_PAGES}"         "racetrack.html"
 get_page "${FIXIE_BIKES_BASE}"       "${FIXIE_BIKES_PAGES}"             "fixies.html"

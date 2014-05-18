@@ -13,8 +13,9 @@ This file contains which stores have been reviewed and the date.
 - Sanferbike: 20131030
 - Wiggle    : 20131031
 - ChainReaction : 20131211
-- ProBikeShop: 20140103
-- TomasDomingo: 20140309
-- MundoEbikes : 20140510
-- ProBikeShop: 20140518
-- BicisPasaje: 20140518
+- ProBikeShop   : 20140103
+- TomasDomingo  : 20140309
+- MundoEbikes   : 20140510
+- ProBikeShop   : 20140518
+- BicisPasaje   : 20140518
+- Wiggle        : 20140518

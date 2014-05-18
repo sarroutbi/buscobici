@@ -36,6 +36,9 @@ STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
 
+#### LOAD COMMON FUNCTIONS
+. ./common_proc
+
 # Params:
 # 1 - The sentence
 # 2 - The min size to camelize
@@ -98,12 +101,6 @@ function dump_bike()
   fi
 }
 
-function clean()
-{
-    STRING="${1}"
-    echo "${STRING}" | sed -e 's/Bicicleta de carretera blanca y roja //g' | sed -e 's/sin pedales para ni&#241;os //g' | sed -e 's/"Bicicleta 29&quot; de MTB"//g' | sed -e 's/"Bicicleta de MTB 29&quot;"//g' | sed -e 's/"Bicicleta de 29&quot; "//g' | sed -e 's/Bicicleta profesional//g'| sed -e 's/(edici&#243;n limitada)//g' | sed -e 's/Bicicleta de ciclocr&#243;s //g' | sed -e 's/[Bb]icicleta h&#237;brida //g' | sed -e 's/[Bb]icicleta [Pp]legable //g' | sed -e 's/[Bb]icicleta urbana para mujer //g' | sed -e 's/[Bb]each [Cc]ruiser//g' | sed -e 's/[Bb]icicleta de [Cc]arrera negra//g' | sed -e 's/[Bb]icicleta de [Cc]arreras//g' | sed -e 's/[Bb]icicleta de [Cc]arrera//g' | sed -e 's/[Bb]icicleta Dirt-HI//g' | sed -e 's/Bici sin pedales//g' | sed -e 's/[Bb]icicletas para ni.os//g' | sed -e 's/[Mm]onopat.n para ni.os//g' | sed -e 's/[Cc]arretera //g' | sed -e 's/sin cambios//g' | sed -e 's/para hombre//g' | sed -e 's/para mujer//g' | sed -e 's/para nin.os//g' | sed -e 's/[Nn]in.os//g' | sed -e 's/[Cc]iclocross //g' | sed -e 's/[Mm]onta.a //g' | sed -e 's/[Tt]rial //g' | sed -e 's/[Tt]rekking//g' | sed -e 's/[Tt]riatl.n//g' | sed -e 's/[Dd]escenso //g' | sed -e 's-dirt/freeride--g' | sed -e 's-dirt/street--g' | sed -e 's/[Dd]oble //g' | sed -e 's/[Ff]reeride //g' | sed -e 's/[Pp]aseo//g' | sed -e 's/[Pp]legable//g' | sed -e 's/[Ii]nfantil //g' | sed -e 's/[Ee]l.ctrica //g' | sed -e 's/[Mm]inibike//g' | sed -e 's/[Ss]uspensi.on //g' | sed -e 's/[Tt]riciclo //g' | sed -e 's/[Ss]tick//g' | sed -e 's/[Ss]uspensi.n //g' | sed -e 's/de //g' | sed -e 's/BTT //g' | sed -e 's/BMX //g' | sed -e 's/TRAIL //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ee]l.ctrico //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ss]oporte //g' | sed -e 's/[Cc]erradura + llaves//g' | sed -e 's/[Dd]isplay //g' | sed -e 's/[Bb]mx//g' | sed -e 's/[Cc]arretera//g' | sed -e 's/[Dd]irt-hi//g'| sed -e 's/[Dd]irt//g' | sed -e 's/[Dd]oble//g' | sed -e 's/[Ee]l.ctrica//g' | sed -e 's![Ff]reeride/[Dd]ownhill!!g' | sed -e 's/[Hh]olandesa//g' | sed -e 's/[M]tb//g' | sed -e 's/[Mm]onopat.n//g' | sed -e 's/[Pp]legable//g' | sed -e 's/[Tt]riatl.n//g' | sed -e 's/[Uu]rbana//g' | sed -e 's/[Vv]eh.culos//g' | sed -e 's/[Cc]arreras//g' | sed -e 's/[Dd]irt//g' | sed -e 's/[Dd]ownhill//g' | sed -e 's/[Rr]ueda//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Bb]icileta //g' | sed -e 's/29&quot; //g' | sed -e 's/[Bb]ici //g'
-}
-
 # Params:
 # 1 - The FILE  of bike
 # 2 - The MODEL of bike
@@ -119,6 +116,12 @@ function print_url()
   BASE_FILE="$2"
   URL=$(grep "${model}" "${BASE_FILE}" | awk -F "a href=" {'print $2'} | awk {'print $1'} | head -1)
   echo "${URL}" | tr -d '"'
+}
+
+function clean()
+{
+    STRING="${1}"
+    echo "${STRING}" | sed -e 's/Bicicleta de carretera blanca y roja //g' | sed -e 's/sin pedales para ni&#241;os //g' | sed -e 's/"Bicicleta 29&quot; de MTB"//g' | sed -e 's/"Bicicleta de MTB 29&quot;"//g' | sed -e 's/"Bicicleta de 29&quot; "//g' | sed -e 's/Bicicleta profesional//g'| sed -e 's/(edici&#243;n limitada)//g' | sed -e 's/Bicicleta de ciclocr&#243;s //g' | sed -e 's/[Bb]icicleta h&#237;brida //g' | sed -e 's/[Bb]icicleta [Pp]legable //g' | sed -e 's/[Bb]icicleta urbana para mujer //g' | sed -e 's/[Bb]each [Cc]ruiser//g' | sed -e 's/[Bb]icicleta de [Cc]arrera negra//g' | sed -e 's/[Bb]icicleta de [Cc]arreras//g' | sed -e 's/[Bb]icicleta de [Cc]arrera//g' | sed -e 's/[Bb]icicleta Dirt-HI//g' | sed -e 's/Bici sin pedales//g' | sed -e 's/[Bb]icicletas para ni.os//g' | sed -e 's/[Mm]onopat.n para ni.os//g' | sed -e 's/[Cc]arretera //g' | sed -e 's/sin cambios//g' | sed -e 's/para hombre//g' | sed -e 's/para mujer//g' | sed -e 's/para nin.os//g' | sed -e 's/[Nn]in.os//g' | sed -e 's/[Cc]iclocross //g' | sed -e 's/[Mm]onta.a //g' | sed -e 's/[Tt]rial //g' | sed -e 's/[Tt]rekking//g' | sed -e 's/[Tt]riatl.n//g' | sed -e 's/[Dd]escenso //g' | sed -e 's-dirt/freeride--g' | sed -e 's-dirt/street--g' | sed -e 's/[Dd]oble //g' | sed -e 's/[Ff]reeride //g' | sed -e 's/[Pp]aseo//g' | sed -e 's/[Pp]legable//g' | sed -e 's/[Ii]nfantil //g' | sed -e 's/[Ee]l.ctrica //g' | sed -e 's/[Mm]inibike//g' | sed -e 's/[Ss]uspensi.on //g' | sed -e 's/[Tt]riciclo //g' | sed -e 's/[Ss]tick//g' | sed -e 's/[Ss]uspensi.n //g' | sed -e 's/de //g' | sed -e 's/BTT //g' | sed -e 's/BMX //g' | sed -e 's/TRAIL //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ee]l.ctrico //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ss]oporte //g' | sed -e 's/[Cc]erradura + llaves//g' | sed -e 's/[Dd]isplay //g' | sed -e 's/[Bb]mx//g' | sed -e 's/[Cc]arretera//g' | sed -e 's/[Dd]irt-hi//g'| sed -e 's/[Dd]irt//g' | sed -e 's/[Dd]oble//g' | sed -e 's/[Ee]l.ctrica//g' | sed -e 's![Ff]reeride/[Dd]ownhill!!g' | sed -e 's/[Hh]olandesa//g' | sed -e 's/[M]tb//g' | sed -e 's/[Mm]onopat.n//g' | sed -e 's/[Pp]legable//g' | sed -e 's/[Tt]riatl.n//g' | sed -e 's/[Uu]rbana//g' | sed -e 's/[Vv]eh.culos//g' | sed -e 's/[Cc]arreras//g' | sed -e 's/[Dd]irt//g' | sed -e 's/[Dd]ownhill//g' | sed -e 's/[Rr]ueda//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Bb]icileta //g' | sed -e 's/29&quot; //g' | sed -e 's/[Bb]ici //g'
 }
 
 function process_page_file()
@@ -140,9 +143,9 @@ function process_page_file()
     echo "${MODELS}" | while read model;
     do
       MODEL="$(echo ${model} | tr -d '\r')"
-      MODEL_CLEAN=$(clean "${MODEL}")
+      MODEL_CLEAN=$(bubic_clean "${MODEL}")
       TRADEMARK="$(echo "${MODEL_CLEAN}" | awk -F "-" {'print $1'} | sed -e 's/[ \t]$//g' | sed -e 's/^[ \t]*//g')"
-      TRADEMARK_CLEAN="$(clean "${TRADEMARK}")"
+      TRADEMARK_CLEAN="$(bubic_clean "${TRADEMARK}")"
       MODEL_NO_TRADEMARK="$(echo ${MODEL_CLEAN} | sed -e "s/${TRADEMARK}//g" | sed -e 's/^ - //g' )"
       MODEL_CAMEL=$(camel "${MODEL_NO_TRADEMARK}" "${NO_CAMEL_MIN}")
       TRADEMARK_CAMEL=$(camel "${TRADEMARK_CLEAN}" "${NO_CAMEL_MIN}")
@@ -193,7 +196,7 @@ RACETRACK_BIKES_BASE="racetrack.html"
 RACETRACK_BIKES_PAGES=
 
 FIXIE_BIKES_BASE="fixies.html"
-FIXIE_BIKES_PAGES=
+FIXIE_BIKES_PAGES="$(seq 1 2)"
 
 BMX_BIKES_BASE="bmx.html"
 BMX_BIKES_PAGES="$(seq 1 5)"
@@ -205,7 +208,7 @@ CICLOCROSS_BIKES_BASE="ciclocross.html"
 CICLOCROSS_BIKES_PAGES=""
 
 KIDS_BIKES_BASE="bicis-para-ninos.html"
-KIDS_BIKES_PAGES=""
+KIDS_BIKES_PAGES="$(seq 1 2)"
 
 MTB_BIKES_BASE="mtb.html"
 MTB_BIKES_PAGES="$(seq 1 5)"
@@ -214,7 +217,7 @@ MTB_DOUBLE_BIKES_BASE="mtb-double.html"
 MTB_DOUBLE_BIKES_PAGES="$(seq 1 5)"
 
 URBAN_BIKES_BASE="urban.html"
-URBAN_BIKES_PAGES="$(seq 1 3)"
+URBAN_BIKES_PAGES="$(seq 1 5)"
 
 > ${OUTPUT_FILE}
 
@@ -225,5 +228,5 @@ process_pages "${ROAD_BIKES_BASE}"  "${ROAD_BIKES_PAGES}"            "Wiggle" "R
 process_pages "${CICLOCROSS_BIKES_BASE}" "${CICLOCROSS_BIKES_PAGES}" "Wiggle" "URBAN"  >> ${OUTPUT_FILE}
 process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}"               "Wiggle" "MTB" >> ${OUTPUT_FILE}
 process_pages "${MTB_DOUBLE_BIKES_BASE}" "${MTB_DOUBLE_BIKES_PAGES}" "Wiggle" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${KIDS_BIKES_BASE}" ""                                "Wiggle" "KIDS"  >> ${OUTPUT_FILE}
+process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}"             "Wiggle" "KIDS"  >> ${OUTPUT_FILE}
 process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}"           "Wiggle" "URBAN"  >> ${OUTPUT_FILE}
