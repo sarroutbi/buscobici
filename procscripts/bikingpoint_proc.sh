@@ -49,7 +49,7 @@ function process_file()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${BASE_FILE}" | grep '<h2 class="product-name product-name-height">' | tr -d '\r' | while read model;
+  cat "${BASE_FILE}" | grep '<h3 class="product-name product-name-height">' | tr -d '\r' | while read model;
   do
     MODEL_TRADEMARK=$(echo ${model} | sed -e 's/<[^>]*>//g')
     MODEL_TRADEMARK_CLEAN=$(bubic_clean "${MODEL_TRADEMARK}" | sed -e 's/^ //g')
