@@ -20,7 +20,7 @@ URL="www.bikeos.com"
 ONLY_DOMAIN="bikeos.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
 MAX_TRIES=30
-MAX_TIMEOUT=20
+MAX_TIMEOUT=30
 
 function get_page()
 {

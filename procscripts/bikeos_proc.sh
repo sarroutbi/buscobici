@@ -33,6 +33,9 @@ URL="www.bikeos.com"
 ONLY_DOMAIN="bikeos.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
 
+#### COMMON proc 
+. ./common_proc
+
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
 SUBURL_KEY="SUBURL"
@@ -169,6 +172,7 @@ function dump_bike_from_urls()
   echo "${URLS}" | while read URL;
   do
     TRADEMARK_MODEL=$(print_model "${URL}" "${FILE}" | sed -e s/"+ Vale regalo [0-9]*"//g | sed -e s/"+ vale regalo [0-9]*"//g | sed -e s/"+Vale regalo [0-9]*"//g | sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g')
+    TRADEMARK_MODEL_CLEAN=$(bubic_clean ${TRADEMARK_MODEL})
     TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
 #    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g')
