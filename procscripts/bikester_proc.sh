@@ -241,7 +241,7 @@ process_pages "${MTB_FIX_BIKES_BASE}"       "${MTB_FIX_BIKES_PAGES}"       "Bike
 process_pages "${MTB_DOUBLE_BIKES_BASE}"    "${MTB_DOUBLE_BIKES_PAGES}"    "Bikester" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_29_BIKES_BASE}"        "${MTB_29_BIKES_PAGES}"        "Bikester" "MTB-29" >> ${OUTPUT_FILE}  
 process_pages "${KIDS_BIKES_BASE}"          "${KIDS_BIKES_PAGES}"          "Bikester" "KIDS"   >> ${OUTPUT_FILE} 
-process_pages "${BTT_KIDS_BIKES_BASE}"      "${BTT_KIDS_BIKES_PAGES}"      "Bikester" "KIDS"   >> ${OUTPUT_FILE}  
+process_pages "${BTT_KIDS_BIKES_BASE}"      "${BTT_KIDS_BIKES_PAGES}"      "Bikester" "KIDS"   >> ${OUTPUT_FILE}
 process_pages "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"           "Bikester" "BMX"    >> ${OUTPUT_FILE}
 process_pages "${ROAD_BIKES_BASE}"          "${ROAD_BIKES_PAGES}"          "Bikester" "ROAD"   >> ${OUTPUT_FILE}
 process_pages "${ROAD_CICLOCROSS_BASE}"     "${ROAD_CICLOCROSS_PAGES}"     "Bikester" "ROAD"   >> ${OUTPUT_FILE}
