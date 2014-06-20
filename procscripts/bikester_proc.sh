@@ -137,7 +137,7 @@ function dump_bike_from_file()
     TRADEMARK_MODEL="${trademark_model}"
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
-    TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+    TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     if [ "${TRADEMARK_CAMEL}" = "Solid" ];
     then
       TRADEMARK_CAMEL="Solid Bikes"
