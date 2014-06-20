@@ -52,7 +52,7 @@ ROAD_BIKES_BASE="${URL}/ciclismo/bicis-de-carretera-y-contrarreloj/"
 ROAD_BIKES_PAGES=$(seq 1 10)
 
 CICLOCROSS_BIKES_BASE="${URL}/ciclismo/bicis-de-ciclocross/"
-CICLOCROSS_BIKES_PAGES=""
+CICLOCROSS_BIKES_PAGES=$(seq 1 3)
 
 MTB_BIKES_BASE="${URL}/ciclismo/bicis-mtb-rigidas"
 MTB_BIKES_PAGES=$(seq 1 5)

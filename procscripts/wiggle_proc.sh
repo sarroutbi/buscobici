@@ -205,7 +205,7 @@ ROAD_BIKES_BASE="road.html"
 ROAD_BIKES_PAGES="$(seq 1 10)"
 
 CICLOCROSS_BIKES_BASE="ciclocross.html"
-CICLOCROSS_BIKES_PAGES=""
+CICLOCROSS_BIKES_PAGES="$(seq 1 3)"
 
 KIDS_BIKES_BASE="bicis-para-ninos.html"
 KIDS_BIKES_PAGES="$(seq 1 2)"
