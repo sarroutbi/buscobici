@@ -204,6 +204,9 @@ KIDS_BIKES_PAGES="$(seq 0 10)"
 BTT_KIDS_BIKES_BASE="bicicletas-juveniles-bicicletas-todo-terreno.html?page="
 BTT_KIDS_BIKES_PAGES="$(seq 0 1)"
 
+BTT_JUNIOR_BIKES_BASE="bicicletas-junior.html?page="
+BTT_JUNIOR_BIKES_PAGES="$(seq 0 3)"
+
 BMX_BIKES_BASE="bmx.html?page="
 BMX_BIKES_PAGES="$(seq 0 5)"
 
@@ -219,11 +222,14 @@ URBAN_XC_BIKES_PAGES="$(seq 0 3)"
 URBAN_SINGLE_BIKES_BASE="bicicletas-single-speed.html"
 URBAN_SINGLE_BIKES_PAGES=""
 
-URBAN_WALK_BIKES_BASE="bicicleta-de-paseo.html?page="
+URBAN_WALK_BIKES_BASE="bicicletas-de-paseo.html?page="
 URBAN_WALK_BIKES_PAGES="$(seq 0 5)"
 
 URBAN_FOLDING_BIKES_BASE="bicicletas-plegables-.html?page="
-URBAN_FOLDING_BIKES_PAGES="$(seq 0 2)"
+URBAN_FOLDING_BIKES_PAGES="$(seq 0 3)"
+
+URBAN_FOLDING2_BIKES_BASE="bicicletas-plegables.html?page="
+URBAN_FOLDING2_BIKES_PAGES="$(seq 0 3)"
 
 URBAN_RETRO_BIKES_BASE="cruiser.html?page="
 URBAN_RETRO_BIKES_PAGES="$(seq 0 2)"
@@ -231,17 +237,24 @@ URBAN_RETRO_BIKES_PAGES="$(seq 0 2)"
 URBAN_ELECT_BIKES_BASE="bicicletas-electricas-pedelec.html?page="
 URBAN_ELECT_BIKES_PAGES="$(seq 0 5)"
 
+URBAN_ELECT2_BIKES_BASE="bicicletas-electricas.html?page="
+URBAN_ELECT2_BIKES_PAGES="$(seq 0 5)"
+
 URBAN_RAW_BIKES_BASE="bicicletas-urbanas.html?page="
 URBAN_RAW_BIKES_PAGES="$(seq 0 2)"
 
-TREKKING_BIKES_BASE="bicicletas-trekking.html?page="
-TREKKING_BIKES_PAGES="$(seq 0 5)"
+URBAN_TREKKING_BIKES_BASE="bicicletas-trekking.html?page="
+URBAN_TREKKING_BIKES_PAGES="$(seq 0 5)"
+
+URBAN_HYBRID_BIKES_BASE="bicicletas-hibridas.html?page="
+URBAN_HYBRID_BIKES_PAGES="$(seq 0 5)"
 
 process_pages "${MTB_FIX_BIKES_BASE}"       "${MTB_FIX_BIKES_PAGES}"       "Bikester" "MTB"    >> ${OUTPUT_FILE}   
 process_pages "${MTB_DOUBLE_BIKES_BASE}"    "${MTB_DOUBLE_BIKES_PAGES}"    "Bikester" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_29_BIKES_BASE}"        "${MTB_29_BIKES_PAGES}"        "Bikester" "MTB-29" >> ${OUTPUT_FILE}  
 process_pages "${KIDS_BIKES_BASE}"          "${KIDS_BIKES_PAGES}"          "Bikester" "KIDS"   >> ${OUTPUT_FILE} 
 process_pages "${BTT_KIDS_BIKES_BASE}"      "${BTT_KIDS_BIKES_PAGES}"      "Bikester" "KIDS"   >> ${OUTPUT_FILE}
+process_pages "${BTT_JUNIOR_BIKES_BASE}"    "${BTT_JUNIOR_BIKES_PAGES}"    "Bikester" "KIDS"   >> ${OUTPUT_FILE}
 process_pages "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"           "Bikester" "BMX"    >> ${OUTPUT_FILE}
 process_pages "${ROAD_BIKES_BASE}"          "${ROAD_BIKES_PAGES}"          "Bikester" "ROAD"   >> ${OUTPUT_FILE}
 process_pages "${ROAD_CICLOCROSS_BASE}"     "${ROAD_CICLOCROSS_PAGES}"     "Bikester" "ROAD"   >> ${OUTPUT_FILE}
@@ -249,7 +262,10 @@ process_pages "${URBAN_XC_BIKES_BASE}"      "${URBAN_XC_BIKES_PAGES}"      "Bike
 process_pages "${URBAN_SINGLE_BIKES_BASE}"  "${URBAN_SINGLE_BIKES_PAGES}"  "Bikester" "URBAN"  >> ${OUTPUT_FILE}
 process_pages "${URBAN_WALK_BIKES_BASE}"    "${URBAN_WALK_BIKES_PAGES}"    "Bikester" "URBAN"  >> ${OUTPUT_FILE}
 process_pages "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_FOLDING2_BIKES_BASE}" "${URBAN_FOLDING2_BIKES_PAGES}" "Bikester" "URBAN"  >> ${OUTPUT_FILE}
 process_pages "${URBAN_RETRO_BIKES_BASE}"   "${URBAN_RETRO_BIKES_PAGES}"   "Bikester" "URBAN"  >> ${OUTPUT_FILE}
 process_pages "${URBAN_ELECT_BIKES_BASE}"   "${URBAN_ELECT_BIKES_PAGES}"   "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_ELECT2_BIKES_BASE}"  "${URBAN_ELECT2_BIKES_PAGES}"  "Bikester" "URBAN"  >> ${OUTPUT_FILE}
 process_pages "${URBAN_RAW_BIKES_BASE}"     "${URBAN_RAW_BIKES_PAGES}"     "Bikester" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${TREKKING_BIKES_BASE}"      "${TREKKING_BIKES_PAGES}"      "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_TREKKING_BIKES_BASE}" "${URBAN_TREKKING_BIKES_PAGES}" "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_HYBRID_BIKES_BASE}"   "${URBAN_HYBRID_BIKES_PAGES}" "Bikester" "URBAN"  >> ${OUTPUT_FILE}
