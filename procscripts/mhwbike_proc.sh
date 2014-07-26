@@ -49,7 +49,7 @@ function process_file()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${BASE_FILE}" | grep '<span class="mhwListingArticleName">' | sed -e 's@<[^>]*>@@g' | while read model;
+  cat "${BASE_FILE}" | grep '<span class="mhwListingArticleName ">' | sed -e 's@<[^>]*>@@g' | while read model;
   do
     TRADEMARK=$(echo ${model} | awk {'print $1'} | tr -d '\n' | tr -d '\r' | tr "'" '"')
     MODEL=$(echo ${model} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr "'" '"')
