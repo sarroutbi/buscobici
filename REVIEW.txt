@@ -19,3 +19,7 @@ This file contains which stores have been reviewed and the date.
 - ProBikeShop   : 20140518
 - BicisPasaje   : 20140518
 - Wiggle        : 20140518
+- Calmera       : 20140627
+- BikeSter      : 20140726
+- Mammoth       : 20140727
+- Sanferbike    : 20140727

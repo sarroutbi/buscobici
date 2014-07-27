@@ -194,7 +194,7 @@ function process_pages()
 > ${OUTPUT_FILE}
 
 MTB_BIKES_BASE="productos2.asp?id=25&p="
-MTB_BIKES_PAGES="$(seq 1 5)"
+MTB_BIKES_PAGES="$(seq 1 8)"
 
 MTB_DOUBLE_BASE="productos2.asp?id=1&p="
 MTB_DOUBLE_PAGES="$(seq 1 5)"
@@ -205,7 +205,7 @@ MTB_29_BIKES_PAGES="$(seq 1 10)"
 MTB_FREERIDE_BIKES_BASE="productos2.asp?id=4"
 
 ROAD_BIKES_BASE="productos2.asp?id=5&p="
-ROAD_BIKES_PAGES="$(seq 1 3)"
+ROAD_BIKES_PAGES="$(seq 1 4)"
 
 ROAD_CARBON_BIKES_BASE="productos2.asp?id=6&p="
 ROAD_CARBON_BIKES_PAGES="$(seq 1 10)"
@@ -228,7 +228,10 @@ ELECTRIC_BIKES_PAGES="$(seq 1 1)"
 KIDS00_BIKES_BASE="productos2.asp?id=17"
 KIDS01_BIKES_BASE="productos2.asp?id=18"
 KIDS02_BIKES_BASE="productos2.asp?id=19"
-KIDS03_BIKES_BASE="productos2.asp?id=20"
+
+KIDS03_BIKES_BASE="productos2.asp?id=20&p="
+KIDS03_BIKES_PAGES="$(seq 1 3)"
+
 KIDS04_BIKES_BASE="productos2.asp?id=21"
 KIDS05_BIKES_BASE="productos2.asp?id=30"
 
