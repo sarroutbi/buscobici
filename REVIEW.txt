@@ -22,3 +22,4 @@ This file contains which stores have been reviewed and the date.
 - Calmera       : 20140627
 - BikeSter      : 20140726
 - Mammoth       : 20140727
+- Sanferbike    : 20140727
