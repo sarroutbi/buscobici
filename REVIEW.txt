@@ -21,3 +21,4 @@ This file contains which stores have been reviewed and the date.
 - Wiggle        : 20140518
 - Calmera       : 20140627
 - BikeSter      : 20140726
+- Mammoth       : 20140727

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2014 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -188,11 +188,11 @@ function process_pages()
   fi
 }
 
-MTB_XC_BIKES_BASE="mtb_xc.html"
-MTB_XC_BIKES_PAGES="$(seq 1 5)"
-
 MTB_FIX_BIKES_BASE="mtb_fix.html"
 MTB_FIX_BIKES_PAGES="$(seq 0 5)"
+
+MTB_XC_BIKES_BASE="mtb_xc.html"
+MTB_XC_BIKES_PAGES="$(seq 0 5)"
 
 MTB_FREERIDE_BIKES_BASE="mtb_freeride.html"
 MTB_FREERIDE_BIKES_PAGES="$(seq 0 3)"
@@ -206,14 +206,14 @@ MTB_ENDURO_BIKES_PAGES="$(seq 0 3)"
 MTB_29_BIKES_BASE="mtb_29.html"
 MTB_29_BIKES_PAGES="$(seq 0 3)"
 
-BMX_BIKES_BASE="bmx.html"
-BMX_BIKES_PAGES="$(seq 0 1)"
+ROAD_BIKES_BASE="road.html"
+ROAD_BIKES_PAGES="$(seq 0 5)"
 
 URBAN_BIKES_BASE="urban.html"
 URBAN_BIKES_PAGES="$(seq 0 5)"
 
-ROAD_BIKES_BASE="road.html"
-ROAD_BIKES_PAGES="$(seq 0 5)"
+BMX_BIKES_BASE="bmx.html"
+BMX_BIKES_PAGES="$(seq 0 1)"
 
 CICLOCROSS_BIKES_BASE="ciclocross.html"
 CICLOCROSS_BIKES_PAGES="$(seq 0 3)"
@@ -222,30 +222,30 @@ WOMAN_BIKES_BASE="woman.html"
 WOMAN_BIKES_PAGES="$(seq 0 3)"
 
 KIDS_BIKES_BASE="kids.html"
-KIDS_BIKES_PAGES=""
+KIDS_BIKES_PAGES="$(seq 0 1)"
 
-ELECTRIC_BIKES_BASE="kids.html"
-ELECTRIC_BIKES_PAGES=""
+ELECTRIC_BIKES_BASE="electric.html"
+ELECTRIC_BIKES_PAGES="$(seq 0 1)"
 
 > ${OUTPUT_FILE}
 
-process_pages "${MTB_XC_BIKES_BASE}"     "${MTB_XC_BIKES_PAGES}"     "Mammoth" "MTB"      \
->> ${OUTPUT_FILE}
 process_pages "${MTB_FIX_BIKES_BASE}"    "${MTB_FIX_BIKES_PAGES}"    "Mammoth" "MTB-FIX"  \
+>> ${OUTPUT_FILE}
+process_pages "${MTB_XC_BIKES_BASE}"     "${MTB_XC_BIKES_PAGES}"     "Mammoth" "MTB"      \
 >> ${OUTPUT_FILE}
 process_pages "${MTB_FREERIDE_BIKES_BASE}"    "${MTB_FREERIDE_BIKES_PAGES}"    "Mammoth" "MTB-DOUBLE"  \
 >> ${OUTPUT_FILE}
-process_pages "${MTB_DOWNHILL_BIKES_BASE}"    "${MTB_DOWNHILL_BIKES_PAGES}"    "Mammoth" "MTB-DOWNHILL"  \
+process_pages "${MTB_DOWNHILL_BIKES_BASE}"    "${MTB_DOWNHILL_BIKES_PAGES}"    "Mammoth" "MTB-DOUBLE"  \
 >> ${OUTPUT_FILE}
-process_pages "${MTB_ENDURO_BIKES_BASE}"    "${MTB_ENDURO_BIKES_PAGES}"    "Mammoth" "MTB-DOWNHILL"  \
+process_pages "${MTB_ENDURO_BIKES_BASE}"    "${MTB_ENDURO_BIKES_PAGES}"    "Mammoth" "MTB-DOUBLE"  \
 >> ${OUTPUT_FILE}
 process_pages "${MTB_29_BIKES_BASE}"     "${MTB_29_BIKES_PAGES}"     "Mammoth" "MTB-29"   \
 >> ${OUTPUT_FILE}
-process_pages "${BMX_BIKES_BASE}"        "${BMX_BIKES_PAGES}"        "Mammoth" "BMX"      \
+process_pages "${ROAD_BIKES_BASE}"       "${ROAD_BIKES_PAGES}"       "Mammoth" "ROAD"     \
 >> ${OUTPUT_FILE}
 process_pages "${URBAN_BIKES_BASE}"      "${URBAN_BIKES_PAGES}"      "Mammoth" "URBAN"    \
 >> ${OUTPUT_FILE}
-process_pages "${ROAD_BIKES_BASE}"       "${ROAD_BIKES_PAGES}"       "Mammoth" "ROAD"     \
+process_pages "${BMX_BIKES_BASE}"        "${BMX_BIKES_PAGES}"        "Mammoth" "BMX"      \
 >> ${OUTPUT_FILE}
 process_pages "${CICLOCROSS_BIKES_BASE}" "${CICLOCROSS_BIKES_PAGES}" "Mammoth" "ROAD"     \
 >> ${OUTPUT_FILE}
@@ -254,4 +254,4 @@ process_pages "${WOMAN_BIKES_BASE}"      "${WOMAN_BIKES_PAGES}"      "Mammoth" "
 process_pages "${KIDS_BIKES_BASE}"       "${KIDS_BIKES_PAGES}"       "Mammoth" "KIDS"     \
 >> ${OUTPUT_FILE}
 process_pages "${ELECTRIC_BIKES_BASE}"       "${ELECTRIC_BIKES_PAGES}"       "Mammoth" "URBAN"     \
->> ${OUTPUT_FILE} 
+>> ${OUTPUT_FILE}
