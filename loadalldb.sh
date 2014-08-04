@@ -16,9 +16,11 @@
 #
 test -z ${1} && exit 1
 
-for file in truncscripts/*; 
-do 
-  ./${file}
+for file in truncscripts/*sh; 
+do
+  cd truncscripts > /dev/null
+  ./$(basename ${file})
+  cd - > /dev/null
 done
 
 for file in ${1}/psql*; 
@@ -31,5 +33,5 @@ do
   ./${file}
 done
 
-psql --username postgres -h 192.168.0.40 -c "DELETE FROM bikes where KIND = '-';" bikesearch;
-psql --username postgres -h 192.168.0.40 -c "INSERT INTO last VALUES('${1}', now())" bikesearch;
+psql --username postgres -h localhost -c "DELETE FROM bikes where KIND = '-';" bikesearch;
+psql --username postgres -h localhost -c "INSERT INTO last VALUES('${1}', now())" bikesearch;
