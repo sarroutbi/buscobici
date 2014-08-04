@@ -14,4 +14,4 @@
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
-pg_dump --username postgres --password -h 192.168.0.40 bikesearch;
+pg_dump --username postgres --password -h localhost bikesearch;
