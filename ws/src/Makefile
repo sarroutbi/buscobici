@@ -1,8 +1,12 @@
+WS_DIR=webservice
+LIB_DIR=libbike
+TEST_DIR=test
+
 all:
-	make -C libbike 
-	make -C test 
-	make -C webservice
+	make -C $(LIB_DIR)
+	make -C $(TEST_DIR)
+	make -C $(WS_DIR)
 clean:
-	make -C libbike clean
-	make -C test clean
-	make -C webservice clean
+	make -C $(LIB_DIR) clean
+	make -C $(TEST_DIR) clean
+	make -C $(WS_DIR) clean
