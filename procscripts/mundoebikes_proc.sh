@@ -142,7 +142,7 @@ function dump_bike_from_file()
     MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;i++){printf $i; if(i<NF) {printf " "}}'} | sed -e 's@\.\.\.@@g')
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
     URL=$(echo ${line} | awk -F "href=" {'print $2'} | awk {'print $1'})
-    PRICE=$(echo ${line} | awk -F 'class="price product-price">' {'print $2'} | awk -F "</span>" {'print $1'} | egrep -E "[0-9]{2,5},[0-9]{0,2}" -o)
+    PRICE=$(echo ${line} | awk -F 'class="price product-price">' {'print $2'} | awk -F "</span>" {'print $1'} | egrep -E "[0-9]{1,2}[ ]{0,1}[0-9]{2,5},[0-9]{0,2}" -o | tr -d ' ')
     #echo "========================================================================"
     #echo "FILE:${FILE}"
     #echo "LINE:${line}"
