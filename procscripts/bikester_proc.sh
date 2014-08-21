@@ -222,7 +222,7 @@ URBAN_XC_BIKES_PAGES="$(seq 0 3)"
 URBAN_SINGLE_BIKES_BASE="bicicletas-single-speed.html"
 URBAN_SINGLE_BIKES_PAGES=""
 
-URBAN_WALK_BIKES_BASE="bicicletas-de-paseo.html?page="
+URBAN_WALK_BIKES_BASE="bicicleta-de-paseo.html?page="
 URBAN_WALK_BIKES_PAGES="$(seq 0 5)"
 
 URBAN_FOLDING_BIKES_BASE="bicicletas-plegables-.html?page="

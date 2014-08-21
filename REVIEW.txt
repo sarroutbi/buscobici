@@ -24,3 +24,6 @@ This file contains which stores have been reviewed and the date.
 - Mammoth       : 20140727
 - Sanferbike    : 20140727
 - MundoEbikes   : 20140821
+- BiciEscapa    : 20140821
+- BikeSter      : 20140821
+- ProbikeShop   : 20140821

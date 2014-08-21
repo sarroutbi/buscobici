@@ -49,6 +49,9 @@ MTB_DOWN_BIKES_PAGES=""
 MTB_29_BIKES_BASE="${URL}/lang-es/55932222-29-pulgadas?p="
 MTB_29_BIKES_PAGES="$(seq 1 5)"
 
+MTB_ELECTRIC_BIKES_BASE="${URL}/lang-es/55932276-btt-electricas"
+MTB_ELECTRIC_BIKES_PAGES=""
+
 ROAD_BIKES_BASE="${URL}/lang-es/8-carretera?p="
 ROAD_BIKES_PAGES="$(seq 1 5)"
 
@@ -56,7 +59,7 @@ BMX_BIKES_BASE="${URL}/lang-es/9-bmx-freestyle"
 BMX_BIKES_PAGES=""
 
 URBAN_BIKES_BASE="${URL}/lang-es/10-bicicletas-paseo-electricas?p="
-URBAN_BIKES_PAGES="$(seq 1 5)"
+URBAN_BIKES_PAGES="$(seq 1 10)"
 
 FOLDING_BIKES_BASE="${URL}/lang-es/11-plegables?p="
 FOLDING_BIKES_PAGES="$(seq 1 2)"

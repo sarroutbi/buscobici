@@ -222,9 +222,11 @@ BMX_BIKES_PAGES="$(seq 1 10)"
 
 KIDS00_BIKES_BASE="bicicletas-ninos-bicis-ninos-de-12-a-18-c739.html"
 KIDS01_BIKES_BASE="bicicletas-ninos-c692.html"
-KIDS02_BIKES_BASE="bicicletas-ninos-bicis-sin-pedales-c693.html"
-KIDS03_BIKES_BASE="bicicletas-ninos-cuatriciclos-c696.html"
-KIDS04_BIKES_BASE="bicicletas-ninos-triciclos-c697.html"
+KIDS01B_BIKES_BASE="bicis-de-aprendizaje-patinetes-c698.html"
+KIDS02_BIKES_BASE="bicis-de-aprendizaje-sin-pedales-c693.html?page="
+KIDS02_BIKES_PAGES="$(seq 1 3)"
+KIDS03_BIKES_BASE="bicis-de-aprendizaje-cuatriciclos-c696.html"
+KIDS04_BIKES_BASE="bicis-de-aprendizaje-triciclos-c697.html"
 KIDS05_BIKES_BASE="bicicletas-ninos-bmx-ninos-c3489.html"
 KIDS06_BIKES_BASE="bicicletas-ninos-bicis-ninos-de-12-a-14-c739.html"
 KIDS07_BIKES_BASE="bicicletas-ninos-bicis-ninos-de-16-a-18-c3490.html"
@@ -238,6 +240,7 @@ process_pages "${ROAD_BIKES_BASE}"   "${ROAD_BIKES_PAGES}"   "ProbikeShop" "ROAD
 process_pages "${BMX_BIKES_BASE}"    "${BMX_BIKES_PAGES}"    "ProbikeShop" "BMX"       >> ${OUTPUT_FILE}
 process_pages "${KIDS00_BIKES_BASE}" "${KIDS00_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
 process_pages "${KIDS01_BIKES_BASE}" "${KIDS01_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
+process_pages "${KIDS01B_BIKES_BASE}" "${KIDS01B_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
 process_pages "${KIDS02_BIKES_BASE}" "${KIDS02_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
 process_pages "${KIDS03_BIKES_BASE}" "${KIDS03_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}
 process_pages "${KIDS04_BIKES_BASE}" "${KIDS04_BIKES_PAGES}" "ProbikeShop" "KIDS"      >> ${OUTPUT_FILE}

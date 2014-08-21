@@ -196,6 +196,9 @@ MTB_DOWN_BIKES_PAGES=""
 MTB_29_BIKES_BASE="55932222-29-pulgadas?p="
 MTB_29_BIKES_PAGES="$(seq 1 5)"
 
+MTB_ELECTRIC_BIKES_BASE="${URL}/lang-es/55932276-btt-electricas"
+MTB_ELECTRIC_BIKES_PAGES=""
+
 ROAD_BIKES_BASE="8-carretera?p="
 ROAD_BIKES_PAGES="$(seq 1 5)"
 
@@ -203,7 +206,7 @@ BMX_BIKES_BASE="9-bmx-freestyle"
 BMX_BIKES_PAGES=""
 
 URBAN_BIKES_BASE="10-bicicletas-paseo-electricas?p="
-URBAN_BIKES_PAGES="$(seq 1 5)"
+URBAN_BIKES_PAGES="$(seq 1 10)"
 
 FOLDING_BIKES_BASE="11-plegables?p="
 FOLDING_BIKES_PAGES="$(seq 1 2)"
@@ -217,6 +220,7 @@ process_pages "${MTB_FIX_BIKES_BASE}"    "${MTB_FIX_BIKES_PAGES}"    "Bici Escap
 process_pages "${MTB_DOUBLE_BIKES_BASE}" "${MTB_DOUBLE_BIKES_PAGES}" "Bici Escapa" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_DOWN_BIKES_BASE}"   "${MTB_DOWN_BIKES_PAGES}"   "Bici Escapa" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_29_BIKES_BASE}"     "${MTB_29_BIKES_PAGES}"     "Bici Escapa" "MTB-29" >> ${OUTPUT_FILE}
+process_pages "${MTB_ELECTRIC_BIKES_BASE}" "${MTB_ELECTRIC_BIKES_PAGES}"   "Bici Escapa" "MTB-ELECTRIC" >> ${OUTPUT_FILE}
 process_pages "${ROAD_BIKES_BASE}"       "${ROAD_BIKES_PAGES}"       "Bici Escapa" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${BMX_BIKES_BASE}"        "${BMX_BIKES_PAGES}"        "Bici Escapa" "BMX" >> ${OUTPUT_FILE}
 process_pages "${URBAN_BIKES_BASE}"      "${URBAN_BIKES_PAGES}"      "Bici Escapa" "URBAN" >> ${OUTPUT_FILE}
