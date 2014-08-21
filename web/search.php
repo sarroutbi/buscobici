@@ -150,7 +150,6 @@ if (   ((!$search)    || (strlen($search)==0))
   echo "    <ul class=\"nav nav-justified\">\n";
   echo "      <li><a href=\"index.html\">Búsqueda</a></li>\n";
   echo "      <li><a href=\"byprice.html\">Búsq.Avzda.</a></li>\n";
-  echo "      <li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
   echo "      <li><a href=\"http://buscobici.blogspot.com.es\" target=\"_blank\">Blog</a></li>\n";
   echo "      <li><a href=\"http://buscobici.com/bikesearch_php_raw/stats_fullscreen.html\">Estadísticas</a></li>\n";
   echo "      <li><a href=\"contact.html\">Contactar</a></li>\n";
@@ -258,7 +257,6 @@ echo "    </a>\n";
 echo "    <ul class=\"nav nav-justified\">\n";
 echo "      <li><a href=\"index.html\">Búsqueda</a></li>\n";
 echo "      <li><a href=\"byprice.html\">Búsq.Avzda.</a></li>\n";
-echo "      <li><a href=\"http://buscobici.com/forum\">Foros</a></li>\n";
 echo "      <li><a href=\"http://buscobici.blogspot.com.es\" target=\"_blank\">Blog</a></li>\n";
 echo "      <li><a href=\"http://buscobici.com/bikesearch_php_raw/stats_fullscreen.html\">Estadísticas</a></li>\n";
 echo "      <li><a href=\"contact.html\">Contactar</a></li>\n";
