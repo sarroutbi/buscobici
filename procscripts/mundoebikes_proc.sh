@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2014 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -41,6 +41,9 @@ SUBURL_KEY="SUBURL"
 STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
+
+#### LOAD COMMON COMPONENTS
+. ./common_proc
 
 # Params
 # 1 - Model:     [MODEL]
@@ -124,49 +127,37 @@ function camel()
   echo
 }
 
-function clean_model()
-{
-    MODEL="${1}"
-    echo "${MODEL}" | sed -e 's/[Tt]riciclo [Ii]nfantil//g' | sed -e 's/[Bb]icicleta [Ii]nfantil//g' | sed -e 's/[Bb]icicleta de [Tt]riathlon//g' | sed -e 's/[Bb]icicleta de [Cc]iudad//g' | sed -e 's/Bici sin pedales//g' | sed -e 's/[Bb]icicleta de [Mm]onta.a//g' | sed -e 's/[Bb]icicleta [Oo]utdoor//g' | sed -e 's/[Bb]icicleta [Tt]rekking//g' | sed -e 's/[Bb]icicleta BMX//g' | sed -e 's/[Bb]icicleta de [Pp]aseo//g' | sed -e 's/[Bb]icicleta [Uu]rbana [Ee]l.ctrica//g'   | sed -e 's/[Bb]icicleta [Uu]rbana [Pp]legable//g'  | sed -e 's/[Bb]icicleta [Uu]rbana//g' | sed -e 's/[Cc]uadro de [Cc]arretera//g' | sed -e 's/[Bb]icicleta de [Cc]arretera//g' | sed -e 's/[Bb]icicleta [Uu]rbana [Pp]legable//g' | sed -e 's/[Bb]icicleta [Ee]l.ctrica//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo//g' | sed -e 's/[Cc]uadro//g'
-}
-
 function dump_bike_from_file()
 {
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  TRADEMARK_MODELS=$(cat "${FILE}" | grep "<a href" | grep "browse-product-title" | sed -e 's/<[^>]*>//g')
-  echo "${TRADEMARK_MODELS}" | while read trademark_model;
+  cat "${FILE}" | sed -e 's@<span class="category-name">@\n<span class="category-name">@g' |grep ^'<span class="category-name">' | sed -e 's@<a class="product_img_link"@\n<a class="product_img_link"@g' | grep ^'<a class="product_img_link"' | while read line;
   do 
-    test -z "${trademark_model}" && continue;
-    TRADEMARK_MODEL="${trademark_model}"
-    TRADEMARK_MODEL_CLEAN=$(clean_model "${TRADEMARK_MODEL}")
-    TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
-    TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
-    if [ "${TRADEMARK_CAMEL}" = "Solid" ];
-    then
-      TRADEMARK_CAMEL="Solid Bikes"
-      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
-    else 
-      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
-    fi
-    MODEL_CAMEL=$(camel "${MODEL}" "${NO_CAMEL_MIN}")
-    URL=$(grep "${trademark_model}" "${FILE}" | grep "<a href" | awk -F "a href=" {'print $2'} | awk {'print $1'} | head -1 | tr -d '"' | tr -d '\n' | tr -d '\r')
-    FINAL_URL=$(echo "\"${BASE_URL}${URL}\"")
-    PRICE=$(print_price "${FILE}" "${TRADEMARK_MODEL}")
+#    TRADEMARK_MODEL=$(echo ${line} | awk -F '<h5 itemprop="name">' {'print $2'} | awk -F '</a></h5>' {'print $1'} | sed -e 's/<[^>]*>//g' | sed -e 's/^[ ]*//g')
+    TRADEMARK_MODEL=$(echo ${line} | awk -F 'title=' {'print $2'} | awk -F '"' {'print $2'} | tr -d '"' | sed -e 's/^[ ]*//g')
+    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}" | sed -e 's/^[ ]*//g')
+    TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
+    TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN} | sed -e 's/Q.er/Quer/g')
+    MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;i++){printf $i; if(i<NF) {printf " "}}'} | sed -e 's@\.\.\.@@g')
+    MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
+    URL=$(echo ${line} | awk -F "href=" {'print $2'} | awk {'print $1'})
+    PRICE=$(echo ${line} | awk -F 'class="price product-price">' {'print $2'} | awk -F "</span>" {'print $1'} | egrep -E "[0-9]{2,5},[0-9]{0,2}" -o)
     #echo "========================================================================"
+    #echo "FILE:${FILE}"
+    #echo "LINE:${line}"
     #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
     #echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
     #echo "TRADEMARK=${TRADEMARK}"
     #echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
     #echo "MODEL=${MODEL}"
-    #echo "URL=${FINAL_URL}"
+    #echo "MODEL_CAMEL=${MODEL_CAMEL}"
+    #echo "URL=${URL}"
     #echo "PRICE=${PRICE}"
     #echo "STORE=${STORE}"
     #echo "TYPE=${TYPE}"
-    #echo "FILE=${FILE}"
     #echo "========================================================================"
-    dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 
@@ -183,86 +174,90 @@ function process_pages()
   else
     for page in ${PAGES};
     do 
-      dump_bike_from_file "${BASE_FILE}${page}" "${STORE}" "${TYPE}"
+      #echo "dump_bike_from_file ${BASE_FILE}-${page} ${STORE} ${TYPE}"
+      dump_bike_from_file "${BASE_FILE}-${page}" "${STORE}" "${TYPE}"
     done
   fi
 }
 
 > ${OUTPUT_FILE}
 
-BMX_BIKES_BASE="bicicletas-bmx-freestyle"
-BMX_BIKES_PAGES=""
+### BMX ###
+BMX_BIKES_BASE="bmx"
+BMX_BIKES_PAGES="$(seq 1 2)"
 
-ROAD_BIKES_BASE="bicicletas-de-carretera?limit=20&limitstart="
-ROAD_BIKES_PAGES="0 20 40"
+### ROAD ###
+ROAD_BIKES_BASE="road"
+ROAD_BIKES_PAGES="$(seq 1 4)"
 
-ROAD_TRIATLON_BASE="bicicletas-triatlon-contrarreloj"
-ROAD_TRIATLON_PAGES=""
+ROAD_TRIATLON_BASE="road-triatlon"
+ROAD_TRIATLON_PAGES="$(seq 1 2)"
 
-URBAN_ELECTRIC_BIKES_BASE="bicicletas-electricas-deportivas?limit=20&limitstart="
-URBAN_ELECTRIC_BIKES_PAGES="0 20"
+### URBAN ###
+URBAN_RETRO_BASE="urban-retro"
+URBAN_RETRO_PAGES="$(seq 1 8)"
 
-URBAN_FOLDING_BIKES_BASE="${URL}/bicicletas-ciudad-paseo-urbanas-plegables?limit=20"
-URBAN_FOLDING_BIKES_PAGES="0 20 40"
+URBAN_CITY_BASE="urban-city"
+URBAN_CITY_PAGES="$(seq 1 8)"
 
-URBAN_EFOLDING_BIKES_BASE="bicicletas-electricas-plegables"
-URBAN_EFOLDING_BIKES_PAGES=""
+URBAN_CRUISER_BASE="urban-cruiser"
+URBAN_CRUISER_PAGES="$(seq 1 5)"
 
-URBAN_EBIKES_BASE="bicicletas-electricas-urbanas?limit=20&limitstart="
-URBAN_EBIKES_PAGES="0 20 40"
+URBAN_FOLDING_BIKES_BASE="urban-folding"
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 3)"
 
-URBAN_FIXIE_BASE="bicicletas-fixed-and-single-speed"
-URBAN_FIXIE_PAGES=""
+URBAN_FIXIE_BASE="urban-fixie"
+URBAN_FIXIE_PAGES="$(seq 1 2)"
 
-URBAN_CRUISER_BASE="bicicletas-cruisers"
-URBAN_CRUISER_PAGES=""
+URBAN_ELECTRIC_BIKES_BASE="urban-electric"
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
 
-URBAN_TREKKING_BASE="bicicletas-trekking?limit=20&limitstart="
-URBAN_TREKKING_PAGES="0 20 40"
+URBAN_EFOLDING_BIKES_BASE="urban-folding-electric"
+URBAN_EFOLDING_BIKES_PAGES="$(seq 1 2)"
 
-URBAN_CITY_BASE="bicicletas-ciudad-paseo-urbanas?limit=20&limitstart="
-URBAN_CITY_PAGES="0 20 40 60 80 100 120 140 160 180"
+URBAN_TREKKING_BASE="urban-trekking"
+URBAN_TREKKING_PAGES="$(seq 1 2)"
 
-URBAN_RETRO_BASE="${URL}/bicicletas-clasicas-retro?limit=20&limitstart="
-URBAN_RETRO_PAGES="0 20 40 60 80"
+URBAN_WORK_BASE="urban-work"
+URBAN_WORK_PAGES="$(seq 1 2)"
 
-MTB29_BIKES_BASE="bicicletas-mtb-29r?limit=20&limitstart="
-MTB29_BIKES_PAGES="0 20"
+### MTB ###
+MTB_BIKES_BASE="mtb"
+MTB_BIKES_PAGES="$(seq 1 15)"
 
-MTB_ALU_BIKES_BASE="bicicletas-mtb-aluminio?limit=20&limitstart="
-MTB_ALU_BIKES_PAGES="0 20 40 60 80 100"
+MTB_ELECTRIC_BIKES_BASE="mtb-electric"
+MTB_ELECTRIC_BIKES_PAGES="$(seq 1 2)"
 
-MTB_CAR_BIKES_BASE="bicicletas-mtb-carbono"
-MTB_CAR_BIKES_PAGES=""
+### KIDS ###
+KIDS_BIKES_BASE="kids"
+KIDS_BIKES_PAGES="$(seq 1 6)"
 
-MTB_DOUBLE_BIKES_BASE="bicicletas-mtb-doble-susp?limit=20&limitstart="
-MTB_DOUBLE_BIKES_PAGES=""
+KIDS_MTB_BIKES_BASE="kids-mtb"
+KIDS_MTB_BIKES_PAGES="$(seq 1 5)"
 
-MTB_BIKES_BASE="bicicletas-mtb?limit=20&limitstart="
-MTB_BIKES_PAGES="0 20 40 60 80 100 120 140 160 180"
+### BMX ###
+process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "MundoEbikes" "BMX" >> ${OUTPUT_FILE}
 
-KIDS_BIKES_BASE="bicicletas-infantiles?limit=20&limitstart="
-KIDS_BIKES_PAGES="0 20 40 60 80 100 120"
+### ROAD ###
+process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "MundoEbikes" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${ROAD_TRIATLON_BASE}" "${ROAD_TRIATLON_PAGES}" "MundoEbikes" "ROAD" >> ${OUTPUT_FILE}
 
-KIDS_MTB_BIKES_BASE="bicicletas-mtb-junior?limit=20&limitstart="
-KIDS_MTB_BIKES_PAGES="0 20 40 60"
+### URBAN ###
+process_pages "${URBAN_RETRO_BASE}" "${URBAN_RETRO_PAGES}" "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_CITY_BASE}" "${URBAN_CITY_PAGES}" "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_CRUISER_BASE}" "${URBAN_CRUISER_PAGES}" "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
 
-process_pages "${BMX_BIKES_BASE}"            "${BMX_BIKES_PAGES}"            "MundoEbikes" "BMX"   >> ${OUTPUT_FILE}
-process_pages "${ROAD_BIKES_BASE}"           "${ROAD_BIKES_PAGES}"           "MundoEbikes" "ROAD"  >> ${OUTPUT_FILE}
-process_pages "${ROAD_TRIATLON_BASE}"        "${ROAD_TRIATLON_PAGES}"        "MundoEbikes" "ROAD"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_FOLDING_BIKES_BASE}"  "${URBAN_FOLDING_BIKES_PAGES}"  "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_EFOLDING_BIKES_BASE}" "${URBAN_EFOLDING_BIKES_PAGES}" "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_EBIKES_BASE}"         "${URBAN_EBIKES_PAGES}"         "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_FIXIE_BASE}"          "${URBAN_FIXIE_PAGES}"          "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_CRUISER_BASE}"        "${URBAN_CRUISER_PAGES}"        "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_TREKKING_BASE}"       "${URBAN_TREKKING_PAGES=}"      "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_CITY_BASE}"           "${URBAN_CITY_PAGES}"           "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_RETRO_BASE}"          "${URBAN_RETRO_PAGES}"          "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${MTB29_BIKES_BASE}"          "${MTB29_BIKES_PAGES}"          "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
-process_pages "${MTB_ALU_BIKES_BASE}"        "${MTB_ALU_BIKES_PAGES}"        "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
-process_pages "${MTB_CAR_BIKES_BASE}"        "${MTB_CAR_BIKES_PAGES}"        "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
-process_pages "${MTB_DOUBLE_BIKES_BASE}"     "${MTB_DOUBLE_BIKES_PAGES}"     "MundoEbikes" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_BASE}"            "${MTB_BIKES_PAGES}"            "MundoEbikes" "MTB"   >> ${OUTPUT_FILE}
-process_pages "${KIDS_BIKES_BASE}"           "${KIDS_BIKES_PAGES}"           "MundoEbikes" "KIDS"  >> ${OUTPUT_FILE}
-process_pages "${KIDS_MTB_BIKES_BASE}"       "${KIDS_MTB_BIKES_PAGES}"       "MundoEbikes" "KIDS"  >> ${OUTPUT_FILE} 
+process_pages "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "MundoEbikes" "URBAN-FOLDING" >> ${OUTPUT_FILE}
+process_pages "${URBAN_FIXIE_BASE}" "${URBAN_FIXIE_PAGES}" "MundoEbikes" "URBAN-FIXIE" >> ${OUTPUT_FILE}
+process_pages "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "MundoEbikes" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
+process_pages "${URBAN_EFOLDING_BIKES_BASE}" "${URBAN_EFOLDING_BIKES_PAGES}" "MundoEbikes" "URBAN-FOLDING-ELECTRIC" >> ${OUTPUT_FILE}
+process_pages "${URBAN_TREKKING_BASE}" "${URBAN_TREKKING_PAGES}" "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_WORK_BASE}" "${URBAN_WORK_PAGES}" "MundoEbikes" "URBAN" >> ${OUTPUT_FILE}
+
+### MTB ###
+process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "MundoEbikes" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_ELECTRIC_BIKES_BASE}" "${MTB_ELECTRIC_BIKES_PAGES}" "MundoEbikes" "MTB-ELECTRIC" >> ${OUTPUT_FILE}
+
+### KIDS ###
+process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "MundoEbikes" "KIDS" >> ${OUTPUT_FILE}
+process_pages "${KIDS_MTB_BIKES_BASE}" "${KIDS_MTB_BIKES_PAGES}" "MundoEbikes" "KIDS-MTB" >> ${OUTPUT_FILE}

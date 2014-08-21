@@ -22,6 +22,8 @@ ONLY_DOMAIN="mundoebikes.es"
 MAX_TRIES=10
 MAX_TIMEOUT=10
 
+. ./common_get
+
 function get_page()
 {
   BASE_URL="$1"
@@ -40,80 +42,81 @@ function get_page()
   fi
 }
 
-BMX_BIKES_BASE="${URL}/bicicletas-bmx-freestyle"
-BMX_BIKES_PAGES=""
+### BMX ###
+BMX_BIKES_BASE="${URL}/10-bicicletas-bmx?p="
+BMX_BIKES_PAGES="$(seq 1 2)"
 
-ROAD_BIKES_BASE="${URL}/bicicletas-de-carretera?limit=20&limitstart="
-ROAD_BIKES_PAGES="0 20 40"
+### ROAD ###
+ROAD_BIKES_BASE="${URL}/21-bicicletas-ruta?p="
+ROAD_BIKES_PAGES="$(seq 1 4)"
 
-ROAD_TRIATLON_BASE="${URL}/bicicletas-triatlon-contrarreloj"
-ROAD_TRIATLON_PAGES=""
+ROAD_TRIATLON_BASE="${URL}/22-bicicletas-contrarreloj?p="
+ROAD_TRIATLON_PAGES="$(seq 1 2)"
 
-URBAN_ELECTRIC_BIKES_BASE="${URL}/bicicletas-electricas-deportivas?limit=20&limitstart="
-URBAN_ELECTRIC_BIKES_PAGES="0 20"
+### URBAN ###
+URBAN_RETRO_BASE="${URL}/31-bicicletas-clásicas?p="
+URBAN_RETRO_PAGES="$(seq 1 8)"
 
-URBAN_FOLDING_BIKES_BASE="${URL}/bicicletas-ciudad-paseo-urbanas-plegables?limit=20"
-URBAN_FOLDING_BIKES_PAGES="0 20 40"
+URBAN_CITY_BASE="${URL}/33-bicicletas-paseo?p="
+URBAN_CITY_PAGES="$(seq 1 8)"
 
-URBAN_EFOLDING_BIKES_BASE="${URL}/bicicletas-electricas-plegables"
-URBAN_EFOLDING_BIKES_PAGES=""
+URBAN_CRUISER_BASE="${URL}/34-bicicletas-playeras-cruisers?p="
+URBAN_CRUISER_PAGES="$(seq 1 5)"
 
-URBAN_EBIKES_BASE="${URL}/bicicletas-electricas-urbanas?limit=20&limitstart="
-URBAN_EBIKES_PAGES="0 20 40"
+URBAN_FOLDING_BIKES_BASE="${URL}/35-bicicletas-plegables?p="
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 3)"
 
-URBAN_FIXIE_BASE="${URL}/bicicletas-fixed-and-single-speed"
-URBAN_FIXIE_PAGES=""
+URBAN_FIXIE_BASE="${URL}/32-bicicletas-fixed?p="
+URBAN_FIXIE_PAGES="$(seq 1 2)"
 
-URBAN_CRUISER_BASE="${URL}/bicicletas-cruisers?limit=20&limitstart="
-URBAN_CRUISER_PAGES="0 20 40"
+URBAN_ELECTRIC_BIKES_BASE="${URL}/51-bicicletas-eléctricas-ciudad?p="
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
 
-URBAN_TREKKING_BASE="${URL}/bicicletas-trekking?limit=20&limitstart="
-URBAN_TREKKING_PAGES="0 20 40"
+URBAN_EFOLDING_BIKES_BASE="${URL}/53-bicicletas-eléctricas-plegables?p="
+URBAN_EFOLDING_BIKES_PAGES="$(seq 1 2)"
 
-URBAN_CITY_BASE="${URL}/bicicletas-ciudad-paseo-urbanas?limit=20&limitstart="
-URBAN_CITY_PAGES="0 20 40 60 80 100 120 140 160 180"
+URBAN_TREKKING_BASE="${URL}/100-bicicletas-trekking?p="
+URBAN_TREKKING_PAGES="$(seq 1 2)"
 
-URBAN_RETRO_BASE="${URL}/bicicletas-clasicas-retro?limit=20&limitstart="
-URBAN_RETRO_PAGES="0 20 40 60 80"
+URBAN_WORK_BASE="${URL}/110-bicicletas-de-carga?p="
+URBAN_WORK_PAGES="$(seq 1 2)"
 
-MTB29_BIKES_BASE="${URL}/bicicletas-mtb-29r?limit=20&limitstart="
-MTB29_BIKES_PAGES="0 20"
+### MTB ###
+MTB_BIKES_BASE="${URL}/81-bicicletas-montaña-adultos?p="
+MTB_BIKES_PAGES="$(seq 1 15)"
 
-MTB_ALU_BIKES_BASE="${URL}/bicicletas-mtb-aluminio?limit=20&limitstart="
-MTB_ALU_BIKES_PAGES="0 20 40 60 80 100"
+MTB_ELECTRIC_BIKES_BASE="${URL}/52-bicicletas-electricas-deportivas?p="
+MTB_ELECTRIC_BIKES_PAGES="$(seq 1 2)"
 
-MTB_CAR_BIKES_BASE="${URL}/bicicletas-mtb-carbono"
-MTB_CAR_BIKES_PAGES=""
+### KIDS ###
+KIDS_BIKES_BASE="${URL}/120-bicicletas-infantiles?p="
+KIDS_BIKES_PAGES="$(seq 1 6)"
 
-MTB_DOUBLE_BIKES_BASE="${URL}/bicicletas-mtb-doble-susp?limit=20&limitstart="
-MTB_DOUBLE_BIKES_PAGES=""
+KIDS_MTB_BIKES_BASE="${URL}/82-bicicletas-montaña-junior?p="
+KIDS_MTB_BIKES_PAGES="$(seq 1 5)"
 
-MTB_BIKES_BASE="${URL}/bicicletas-mtb?limit=20&limitstart="
-MTB_BIKES_PAGES="0 20 40 60 80 100 120 140 160 180"
+### BMX ###
+bubic_get_page_outfile "${BMX_BIKES_BASE}"     "${BMX_BIKES_PAGES}"     bmx
 
-KIDS_BIKES_BASE="${URL}/bicicletas-infantiles?limit=20&limitstart="
-KIDS_BIKES_PAGES="0 20 40 60 80 100 120"
+### ROAD ###
+bubic_get_page_outfile "${ROAD_BIKES_BASE}"    "${ROAD_BIKES_PAGES}"    road
+bubic_get_page_outfile "${ROAD_TRIATLON_BASE}" "${ROAD_TRIATLON_PAGES}" road-triatlon
 
-KIDS_MTB_BIKES_BASE="${URL}/bicicletas-mtb-junior?limit=20&limitstart="
-KIDS_MTB_BIKES_PAGES="0 20 40 60"
+### URBAN ###
+bubic_get_page_outfile "${URBAN_RETRO_BASE}"   "${URBAN_RETRO_PAGES}" urban-retro
+bubic_get_page_outfile "${URBAN_CITY_BASE}"    "${URBAN_CITY_PAGES}"  urban-city
+bubic_get_page_outfile "${URBAN_CRUISER_BASE}" "${URBAN_CRUISER_PAGES}" urban-cruiser
+bubic_get_page_outfile "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" urban-folding
+bubic_get_page_outfile "${URBAN_FIXIE_BASE}"   "${URBAN_FIXIE_PAGES}" urban-fixie
+bubic_get_page_outfile "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" urban-electric
+bubic_get_page_outfile "${URBAN_EFOLDING_BIKES_BASE}" "${URBAN_EFOLDING_BIKES_PAGES}" urban-folding-electric
+bubic_get_page_outfile "${URBAN_TREKKING_BASE}" "${URBAN_TREKKING_PAGES}" urban-trekking
+bubic_get_page_outfile "${URBAN_WORK_BASE}" "${URBAN_WORK_PAGES}" urban-work
 
-get_page "${BMX_BIKES_BASE}"                    "${BMX_BIKES_PAGES}"
-get_page "${ROAD_BIKES_BASE}"                   "${ROAD_BIKES_PAGES}"
-get_page "${ROAD_TRIATLON_BASE}"                "${ROAD_TRIATLON_PAGES}"
-get_page "${URBAN_ELECTRIC_BIKES_BASE}"         "${URBAN_ELECTRIC_BIKES_PAGES}"
-get_page "${URBAN_FOLDING_BIKES_BASE}"          "${URBAN_FOLDING_BIKES_PAGES}"
-get_page "${URBAN_EFOLDING_BIKES_BASE}"         "${URBAN_EFOLDING_BIKES_PAGES}"
-get_page "${URBAN_EBIKES_BASE}"                 "${URBAN_EBIKES_PAGES}"
-get_page "${URBAN_FIXIE_BASE}"                  "${URBAN_FIXIE_PAGES}"
-get_page "${URBAN_CRUISER_BASE}"                "${URBAN_CRUISER_PAGES}"
-get_page "${URBAN_TREKKING_BASE}"               "${URBAN_TREKKING_PAGES}"
-get_page "${URBAN_CITY_BASE}"                   "${URBAN_CITY_PAGES}"
-get_page "${URBAN_RETRO_BASE}"                  "${URBAN_RETRO_PAGES}"
-get_page "${MTB29_BIKES_BASE}"                  "${MTB29_BIKES_PAGES}"
-get_page "${MTB_ALU_BIKES_BASE}"                "${MTB_ALU_BIKES_PAGES}"
-get_page "${MTB_CAR_BIKES_BASE}"                "${MTB_CAR_BIKES_PAGES}"
-get_page "${MTB_DOUBLE_BIKES_BASE}"             "${MTB_DOUBLE_BIKES_PAGES}"
-get_page "${MTB_BIKES_BASE}"                    "${MTB_BIKES_PAGES}"
-get_page "${KIDS_BIKES_BASE}"                   "${KIDS_BIKES_PAGES}"
-get_page "${KIDS_MTB_BIKES_BASE}"               "${KIDS_MTB_BIKES_PAGES}"
+### MTB
+bubic_get_page_outfile "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" mtb
+bubic_get_page_outfile "${MTB_ELECTRIC_BIKES_BASE}" "${MTB_ELECTRIC_BIKES_PAGES}" mtb-electric
 
+### KIDS
+bubic_get_page_outfile "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" kids
+bubic_get_page_outfile "${KIDS_MTB_BIKES_BASE}" "${KIDS_MTB_BIKES_PAGES}" kids-mtb
