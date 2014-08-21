@@ -70,7 +70,7 @@ URBAN_XC_BIKES_PAGES="$(seq 0 3)"
 URBAN_SINGLE_BIKES_BASE="${URL}/bicicletas/bicicletas-single-speed.html"
 URBAN_SINGLE_BIKES_PAGES=""
 
-URBAN_WALK_BIKES_BASE="${URL}/bicicletas/bicicletas-de-paseo.html?page="
+URBAN_WALK_BIKES_BASE="${URL}/bicicletas/bicicleta-de-paseo.html?page="
 URBAN_WALK_BIKES_PAGES="$(seq 0 5)"
 
 URBAN_FOLDING_BIKES_BASE="${URL}/bicicletas/bicicletas-plegables-.html?page="
