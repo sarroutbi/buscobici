@@ -51,7 +51,8 @@ G_URL="-"
 G_TYPE="-"
 G_PRICE="0.00"
 G_OUTPUT=$(mktemp)
-
+G_OUTPUT_RAND=$(mktemp /tmp/tmp.rand.XXXXXXXX)
+G_SEP="<=====>"
 ########### ADDITIONAL FUNCTIONS:
 
 ###########
@@ -126,7 +127,7 @@ function parseSectionContent()
     fi
   fi
 
-  grep "${2}" "${1}" -A${LENGTH} | grep "${2}" | head -1 2>&1 > /dev/null && G_MODEL="$(echo ${2} | tail -1 | tr -d "\[" | tr -d "\]" | tr -d '\\')"
+  grep "${2}" "${1}" -A${LENGTH} | grep "${2}" | head -1 2>&1 > /dev/null && G_MODEL="$(echo ${2} | tail -1 | tr -d "\[" | tr -d "\]" | tr -d '\\' | awk -F "${G_SEP}" {'print $1'})"
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_TRADEMARK_KEY} 2>&1 >/dev/null && \
     G_TRADEMARK=$(grep "${2}" "${1}" -A${LENGTH} | grep ${G_TRADEMARK_KEY} | head -1 | awk -F "=" {'print $2'}); 
   grep "${2}" "${1}" -A${LENGTH} | grep ${G_STORE_KEY}       2>&1 > /dev/null && \
@@ -147,7 +148,7 @@ function parseSectionContent()
   #echo "TYPE      is:${G_STORE}"
   #echo "PRICE     is:${G_PRICE}"
   #echo "============================"
-  printf "${G_QUERY_STR}\n" "${G_MODEL}" "${G_TRADEMARK}" "${G_STORE}" "${G_URL}" "${G_TYPE}" "${G_PRICE}" | uniq
+  printf "${G_QUERY_STR}\n" "${G_MODEL}" "${G_TRADEMARK}" "${G_STORE}" "${G_URL}" "${G_TYPE}" "${G_PRICE}"
 }
 
 ###########
@@ -193,14 +194,22 @@ FILE=$1
 test -z ${FILE} && usage $0
 test -f ${FILE} || error $0 "Unable to open file $FILE" 1
 
-# 1 - Is a Section ?
-> ${G_OUTPUT}
-cat ${FILE} | egrep -E "\\[*\\]" | while read line;
+# 0 - Include in each section a random number to avoid duplicated sections
+RANDNUM=$(echo $((RANDOM * RANDOM)))
+cat ${FILE} | while read line;
 do
-  let len=0;
-  ( len=$(getSectionLength ${FILE} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)"); \
-    parseSectionContent ${FILE} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)" ${len} ) >> ${G_OUTPUT}
-done
+  echo ${line} | egrep -E "\\[*\\]" 1>/dev/null &&\
+  echo "${line}" | sed -e "s@\[\([^]]*\)\]@\[\1${G_SEP}$((RANDOM))\]@g" ||\
+  echo "${line}"
+done > ${G_OUTPUT_RAND}
+
+cat ${G_OUTPUT_RAND} | egrep -E "\\[*\\]" | while read line;
+do
+  length=$(getSectionLength ${G_OUTPUT_RAND} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)");
+  parseSectionContent ${G_OUTPUT_RAND} "$(echo ${line} | sed s-\\[-\\\\[-g | sed s-\\]-\\\\]-g)" ${len} 
+done > ${G_OUTPUT}
+
 cat ${G_OUTPUT} | sort | uniq
 
 rm ${G_OUTPUT}
+rm ${G_OUTPUT_RAND}
