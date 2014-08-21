@@ -210,7 +210,7 @@ function process_pages_raw()
     echo "${MODELS}" | while read MODEL_PRICE;
     do
       PRICE=$(echo "${MODEL_PRICE}" | awk -F '<span class="preu">' '{print $2}' | sed -e 's/<[^>]*>//g' | tr -d '€' | tr -d '.')
-      MODEL=$(echo "${MODEL_PRICE}" | awk -F '<span class="preu">' '{print $1}' | sed -e 's/<[^>]*>//g')
+      MODEL=$(echo "${MODEL_PRICE}" | awk -F '<span class="preu">' '{print $1}' | sed -e 's/<[^>]*>//g' | tr "'" '"')
       URL=$(grep "${MODEL}" "${BASE_FILE}" -B5 | grep href | awk -F "<a href=" {'print $2'} | awk {'print $1'} | tr -d '"')
       FINAL_URL="\"${BASE_URL}/${URL}\""
       MODEL_CAMEL_UNCLEANED=$(camel "${MODEL}" ${NO_CAMEL_TRADEMARK_MIN})
