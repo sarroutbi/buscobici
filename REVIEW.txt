@@ -27,3 +27,4 @@ This file contains which stores have been reviewed and the date.
 - BiciEscapa    : 20140821
 - BikeSter      : 20140821
 - ProbikeShop   : 20140821
+- BikeDiscount  : 20140821
