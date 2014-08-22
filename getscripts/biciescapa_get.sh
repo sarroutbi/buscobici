@@ -41,13 +41,10 @@ MTB_FIX_BIKES_BASE="${URL}/lang-es/12-bicicletas-rigidas?p="
 MTB_FIX_BIKES_PAGES="$(seq 1 10)"
 
 MTB_DOUBLE_BIKES_BASE="${URL}/lang-es/14-doble-suspensio?p="
-MTB_DOUBLE_BIKES_PAGES="$(seq 1 10)"
+MTB_DOUBLE_BIKES_PAGES="$(seq 1 5)"
 
 MTB_DOWN_BIKES_BASE="${URL}/lang-es/13-descenso"
 MTB_DOWN_BIKES_PAGES=""
-
-MTB_29_BIKES_BASE="${URL}/lang-es/55932222-29-pulgadas?p="
-MTB_29_BIKES_PAGES="$(seq 1 5)"
 
 MTB_ELECTRIC_BIKES_BASE="${URL}/lang-es/55932276-btt-electricas"
 MTB_ELECTRIC_BIKES_PAGES=""
@@ -59,7 +56,7 @@ BMX_BIKES_BASE="${URL}/lang-es/9-bmx-freestyle"
 BMX_BIKES_PAGES=""
 
 URBAN_BIKES_BASE="${URL}/lang-es/10-bicicletas-paseo-electricas?p="
-URBAN_BIKES_PAGES="$(seq 1 10)"
+URBAN_BIKES_PAGES="$(seq 1 8)"
 
 FOLDING_BIKES_BASE="${URL}/lang-es/11-plegables?p="
 FOLDING_BIKES_PAGES="$(seq 1 2)"
@@ -70,7 +67,7 @@ KIDS_BIKES_PAGES="$(seq 1 5)"
 get_page "${MTB_FIX_BIKES_BASE}"    "${MTB_FIX_BIKES_PAGES}"   
 get_page "${MTB_DOUBLE_BIKES_BASE}" "${MTB_DOUBLE_BIKES_PAGES}"
 get_page "${MTB_DOWN_BIKES_BASE}"   "${MTB_DOWN_BIKES_PAGES}"  
-get_page "${MTB_29_BIKES_BASE}"     "${MTB_29_BIKES_PAGES}"    
+get_page "${MTB_ELECTRIC_BIKES_BASE}" "${MTB_ELECTRIC_BIKES_PAGES}"  
 get_page "${ROAD_BIKES_BASE}"       "${ROAD_BIKES_PAGES}"      
 get_page "${BMX_BIKES_BASE}"        "${BMX_BIKES_PAGES}"       
 get_page "${URBAN_BIKES_BASE}"      "${URBAN_BIKES_PAGES}"     
