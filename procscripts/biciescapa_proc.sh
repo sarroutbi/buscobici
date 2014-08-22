@@ -25,7 +25,7 @@
 #
 URL_BASE="http://www.biciescapa.com"
 MAX_PRICE=15
-NO_CAMEL_MIN=6
+NO_CAMEL_MODEL_MIN=0
 NO_CAMEL_TRADEMARK_MIN=0
 OUTPUT_FILE=./output
 #OUTPUT_FILE=/dev/stdout
@@ -36,6 +36,9 @@ SUBURL_KEY="SUBURL"
 STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
+
+### INCLUDE COMMON PROC
+. ./common_proc
 
 # Params:
 # 1 - The sentence
@@ -127,18 +130,18 @@ function print_url()
   model="$1"
   BASE_FILE="$2"
   echo "${model}" | grep '"' > /dev/null
-  URL=$(grep "${model}" "${BASE_FILE}" | grep '<h3>' | awk -F "href=" {'print $2'} | awk {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g')
+  URL=$(grep "${model}" "${BASE_FILE}" | grep '<h3>' | awk -F "href=" {'print $2'} | awk {'print $1'} | head -1 | tr -d '"' | sed -e 's/[ \t]$//g' | sed -e 's/Comprar//g')
   URL_COMPLETE="${URL}"
   echo "${URL_COMPLETE}"
 }
 
 function print_trademark_url()
 {
-  wget -o /dev/null -O - "$1" | grep '<title>' | sed -e 's/<[^>]*>//g' | awk {'print $1'} | grep -v "a href"
+  wget -o /dev/null -O - "$1" | grep '<title>' | sed -e 's/<[^>]*>//g' | awk {'print $1'} | grep -v "a href" | sed -e 's/Comprar//g'
 }
 
 function print_price_url()
-{
+{  
   wget -o /dev/null -O - "$1" | grep our_price_display | sed -e 's/<[^>]*>//g' | tr -d "." | sed -e 's/^[ \t]//g' | egrep -E  "[0-9]{0,}\.{0,}[0-9]{1,}[0-9]{1,},[0-9]{1,}" -o
 }
 
@@ -147,23 +150,28 @@ function process_page_url()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  MODELS=$(cat "${BASE_FILE}" | egrep -E '<h3>' | awk -F "<a href=" {'print "<a href="$2'} | grep 'a href' | sed -e 's/<[^>]*>//g' | tr -d '\r' | grep -iv reserva | sed -e 's/^[ \t]//g')
-  echo "${MODELS}" | grep -v 'a href' | while read model;
+  cat "${BASE_FILE}" | egrep -E '<h3>' | grep '<a href=' | tr -d '\r' | while read model_url_line;
   do
-    URL=$(print_url "${model}" "${BASE_FILE}")
-    TRADEMARK=$(print_trademark_url "${URL}")
-    PRICE=$(print_price_url "${URL}")
-    MODEL_NO_TRADEMARK=$(echo "${model}" | sed s/"${TRADEMARK} "//g)
+    TRADEMARK_MODEL=$(echo "${model_url_line}" | sed -e 's/<[^>]*>//g')
+    URL=$(echo "${model_url_line}" | awk -F '<a href=' {'print $2'} | awk {'print $1'})
+    URL_NO_QUOTES=$(echo ${URL} | tr -d '"')
+    TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
+    TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
+    MODEL_CLEAN=$(bubic_clean "${MODEL}")
+    MODEL_CAMEL=$(bubic_camel "${MODEL_CLEAN}" ${NO_CAMEL_MODEL_MIN})
+    PRICE=$(print_price_url ${URL_NO_QUOTES})
     #echo "========================================================================"
-    #echo "TRADEMARK=${TRADEMARK}"
-    #echo "MODEL=${MODEL_NO_TRADEMARK}"
+    #echo "LINE=${model_url_line}"
+    #echo "TRADEMARK=${TRADEMARK_CAMEL}"
+    #echo "MODEL=${MODEL_CAMEL}"
     #echo "URL=${URL}"
     #echo "PRICE=${PRICE}"
     #echo "STORE=${STORE}"
     #echo "TYPE=${TYPE}"
     #echo "FILE=${BASE_FILE}"
     #echo "========================================================================"
-    dump_bike "${MODEL_NO_TRADEMARK}" "${URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
+    bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 
@@ -193,10 +201,7 @@ MTB_DOUBLE_BIKES_PAGES="$(seq 1 10)"
 MTB_DOWN_BIKES_BASE="13-descenso"
 MTB_DOWN_BIKES_PAGES=""
 
-MTB_29_BIKES_BASE="55932222-29-pulgadas?p="
-MTB_29_BIKES_PAGES="$(seq 1 5)"
-
-MTB_ELECTRIC_BIKES_BASE="${URL}/lang-es/55932276-btt-electricas"
+MTB_ELECTRIC_BIKES_BASE="55932276-btt-electricas"
 MTB_ELECTRIC_BIKES_PAGES=""
 
 ROAD_BIKES_BASE="8-carretera?p="
@@ -206,7 +211,7 @@ BMX_BIKES_BASE="9-bmx-freestyle"
 BMX_BIKES_PAGES=""
 
 URBAN_BIKES_BASE="10-bicicletas-paseo-electricas?p="
-URBAN_BIKES_PAGES="$(seq 1 10)"
+URBAN_BIKES_PAGES="$(seq 1 8)"
 
 FOLDING_BIKES_BASE="11-plegables?p="
 FOLDING_BIKES_PAGES="$(seq 1 2)"
@@ -224,5 +229,5 @@ process_pages "${MTB_ELECTRIC_BIKES_BASE}" "${MTB_ELECTRIC_BIKES_PAGES}"   "Bici
 process_pages "${ROAD_BIKES_BASE}"       "${ROAD_BIKES_PAGES}"       "Bici Escapa" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${BMX_BIKES_BASE}"        "${BMX_BIKES_PAGES}"        "Bici Escapa" "BMX" >> ${OUTPUT_FILE}
 process_pages "${URBAN_BIKES_BASE}"      "${URBAN_BIKES_PAGES}"      "Bici Escapa" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${FOLDING_BIKES_BASE}"    "${FOLDING_BIKES_PAGES}"    "Bici Escapa" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${FOLDING_BIKES_BASE}"    "${FOLDING_BIKES_PAGES}"    "Bici Escapa" "URBAN-FOLDING" >> ${OUTPUT_FILE}
 process_pages "${KIDS_BIKES_BASE}"       "${KIDS_BIKES_PAGES}"       "Bici Escapa" "KIDS" >> ${OUTPUT_FILE}
