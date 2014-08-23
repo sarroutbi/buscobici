@@ -24,22 +24,22 @@ MAX_TIMEOUT=10
 
 #### ROAD ####
 ROAD_BASE="${URL}/categories/bikes/road-bikes/f?page="
-ROAD_PAGES="$(seq 0 15)"
+ROAD_PAGES="$(seq 0 10)"
 
 bubic_get_page_outfile "${ROAD_BASE}" "${ROAD_PAGES}" road
 
 #### MTB ####
-MTB_DOUBLE_BASE="${URL}/categories/bikes/mountain-bikes/f/full-suspension#!!page="
-MTB_DOUBLE_PAGES="$(seq 0 8)"
+MTB_DOUBLE_BASE="${URL}/categories/bikes/mountain-bikes/f/full-suspension?page="
+MTB_DOUBLE_PAGES="$(seq 0 5)"
 
 bubic_get_page_outfile "${MTB_DOUBLE_BASE}" "${MTB_DOUBLE_PAGES}" mtb-double
 
-MTB_FIX_BASE="${URL}/categories/bikes/mountain-bikes/f/hardtail#!!page="
-MTB_FIX_PAGES="$(seq 0 10)"
+MTB_FIX_BASE="${URL}/categories/bikes/mountain-bikes/f/hardtail?page="
+MTB_FIX_PAGES="$(seq 0 8)"
 
 bubic_get_page_outfile "${MTB_FIX_BASE}" "${MTB_FIX_PAGES}" mtb-fix
 
-MTB_FIX2_BASE="${URL}/categories/bikes/mountain-bikes/f/rigid#!"
+MTB_FIX2_BASE="${URL}/categories/bikes/mountain-bikes/f/rigid"
 MTB_FIX2_PAGES=
 
 bubic_get_page_outfile "${MTB_FIX2_BASE}" "${MTB_FIX2_PAGES}" mtb-fix2
@@ -47,7 +47,7 @@ bubic_get_page_outfile "${MTB_FIX2_BASE}" "${MTB_FIX2_PAGES}" mtb-fix2
 #### URBAN ####
 
 HYBRID_BASE="${URL}/categories/bikes/hybrid-bikes/f?page="
-HYBRID_PAGES="$(seq 0 15)"
+HYBRID_PAGES="$(seq 0 10)"
 
 bubic_get_page_outfile "${HYBRID_BASE}" "${HYBRID_PAGES}" hybrid
 
