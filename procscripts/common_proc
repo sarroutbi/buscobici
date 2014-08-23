@@ -23,6 +23,8 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Cc]l.sica [Ii]nglesa//g' \
 | sed -e 's/[Bb]icicleta [Ee]l.ctrica [Pp]legable [Dd]e [Cc]iudad//g' \
 | sed -e 's/[Bb]icicleta [Dd]e [Cc]arga//g' \
+| sed -e 's/[Bb]icicleta [Ss]ingle-[Ss]peed//g' \
+| sed -e 's/[Bb]icicleta de [Aa]prendizaje//g' \
 | sed -e 's/[Cc]on [Bb]arra [Bb]aja//g' \
 | sed -e 's/[Cc]on [Bb]arra [Aa]lta//g' \
 | sed -e 's/[Bb]icicleta [Bb][Mm][Xx] [Ff]reestyle//g' \
@@ -34,6 +36,7 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Dd]e [Nn]i.[ao]//g' \
 | sed -e 's/[Bb]icicleta [Ee]l&eacute;ctrica//g' \
 | sed -e 's/[Bb]icicleta [Pp]ara [Nn]i.os//g' \
+| sed -e 's/[Bb]icicleta [Ss]in [Pp]edales//g' \
 | sed -e 's/Bicicleta Cross Kona/Kona/g' \
 | sed -e 's/[Bb]icicleta [Pp]ista//g' \
 | sed -e 's/Bicicleta Cross Cross/Cross/g' \
@@ -65,6 +68,7 @@ function bubic_clean()
 | sed -e 's/(edici&#243;n limitada)//g' \
 | sed -e 's/Bicicleta de ciclocr&#243;s //g' \
 | sed -e 's/[Bb]icicleta h&#237;brida //g' \
+| sed -e 's/[Bb]icicleta [Hh].brida //g' \
 | sed -e 's/[Bb]icicleta [Pp]legable //g' \
 | sed -e 's/[Bb]icicleta urbana para mujer //g' \
 | sed -e 's/[Bb]each [Cc]ruiser//g' \
@@ -73,9 +77,12 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta de [Cc]arrera//g' \
 | sed -e 's/[Bb]icicleta Dirt-HI//g' \
 | sed -e 's/Bici sin pedales//g' \
-| sed -e 's/[Bb]icicletas para ni.os//g' \
+| sed -e 's/[Bb]icicletas para [Nn]i.os//g' \
+| sed -e 's/[Bb]icicleta para [Nn]i.os//g' \
 | sed -e 's/[Mm]onopat.n para ni.os//g' \
-| sed -e 's/Bici Infantil //g' \
+| sed -e 's/[Bb]ici [Ii]nfantil//g' \
+| sed -e 's/[Bb]icicleta [Jj]unior//g' \
+| sed -e 's/[Bb]icicleta [Rr]etro//g' \
 | sed -e 's/Bici Mtb 29&quot; Mujer //g' \
 | sed -e 's/Bici Mtb 29&quot; Mujer //g' \
 | sed -e 's/Bici Mtb Doble 27.5&quot; Mujer //g' \
@@ -93,8 +100,8 @@ function bubic_clean()
 | sed -e 's/sin cambios//g' \
 | sed -e 's/para hombre//g' \
 | sed -e 's/para mujer//g' \
-| sed -e 's/para [Nn]i.os//g' \
-| sed -e 's/para [Nn]i.o//g' \
+| sed -e 's/[Pp]ara [Nn]i.os//g' \
+| sed -e 's/[Pp]ara [Nn]i.[oa]//g' \
 | sed -e 's/[Cc]erradura + llaves//g' \
 | sed -e 's/[Bb]each [Cc]ruiser//g' \
 | sed -e 's/[Bb]icicleta [Cc]ruiser//g' \
@@ -112,6 +119,7 @@ function bubic_clean()
 | sed -e 's/[Pp]ara [Mm]ujer//g' \
 | sed -e 's/para nin.os//g' \
 | sed -e 's/[Nn]in.os//g' \
+| sed -e 's/[Mm]onociclo//g' \
 | sed -e 's/[Cc]iclocross //g' \
 | sed -e 's/[Mm]onta.a //g' \
 | sed -e 's/[Tt]rial //g' \
