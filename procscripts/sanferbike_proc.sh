@@ -61,7 +61,8 @@ MAX_PRICE_DOWN=20
 #
 function get_price_from_url()
 {
-  wget "${1}" -O - 2>/dev/null | egrep -E -o "[0-9]{1,2} {0,1}[0-9]{1,3},{1,2}[0-9]{1,2} €" | tr -d '€' | tr -d ' ' | grep [0-9] | head -1
+  #wget "${1}" -O - 2>/dev/null | egrep -E -o "[0-9]{1,2} {0,1}[0-9]{1,3},{1,2}[0-9]{1,2} €" | tr -d '€' | tr -d ' ' | grep [0-9] | head -1
+  wget "${1}" -O - 2>/dev/null |  sed -e 's@<span id="our_price_display"@\n<span id="our_price_display"@g' | grep ^'<span id="our_price_display"' | egrep -E "[0-9]{1,2} {0,1}[0-9]{1,3},{1,2}[0-9]{1,2} €" -o | head -1 | tr -d ' '
 }
 
 #
@@ -236,7 +237,7 @@ function process_file2()
      MODEL=$(echo "${MODEL_TRADEMARK}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
      URL=$(echo "${model}" | awk -F '<a href=' {'print $2'} | awk {'print $1'})
      #PRICE=$(cat "${1}" | awk -F "${MODEL_TRADEMARK}" {'print $2'} | awk -F '<span class="price"' {'print $2'} | awk -F '</span>' {'print $1'} | sed -e 's/<[^>]*>//g')
-     PRICE=$(cat "${1}" | awk -F "${MODEL_TRADEMARK}" {'print $6'} | awk -F '<span class="price"' {'print $2'} | awk -F '</span>' {'print $1'} | awk -F ">" {'print $2'} | sed -e 's/<[^>]*>//g' | tr -d '€' | tr -d ' ' | grep [0-9])
+     #PRICE=$(cat "${1}" | awk -F "${MODEL_TRADEMARK}" {'print $6'} | awk -F '<span class="price"' {'print $2'} | awk -F '</span>' {'print $1'} | awk -F ">" {'print $2'} | sed -e 's/<[^>]*>//g' | tr -d '€' | tr -d ' ' | grep [0-9])
      if [ "${MODEL}" = "" ];
      then
        MODEL=$(echo "${model}" | awk -F "&nbsp;&nbsp;" {'print $2'})
@@ -245,11 +246,8 @@ function process_file2()
          MODEL="${model}"
        fi
      fi
-     if [ "${PRICE}" = "" ];
-     then
-       URL_NO_DASH=$(echo ${URL} | tr -d '"')
-       PRICE=$(get_price_from_url "${URL_NO_DASH}")
-     fi
+     URL_NO_DASH=$(echo ${URL} | tr -d '"')
+     PRICE=$(get_price_from_url "${URL_NO_DASH}")
      TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" 0)
      MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
      if [ "${TYPE}" != "" ];

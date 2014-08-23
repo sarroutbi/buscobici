@@ -57,7 +57,7 @@ function process_file()
       TRADEMARK="De Rosa"
       MODEL=$(echo ${model} | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr "'" '"')
     fi
-    PRICE=$(grep "${model}" ${BASE_FILE} -A${MAX_PRICE_SEARCH} | grep 'class="one_product_price">' | sed -e 's@<[^>]*>@@g' | egrep -o -E "[0-9]{2,5}.{0,1}[0-9]{0,2}" | tr "." ",")
+    PRICE=$(grep "${model}" ${BASE_FILE} -A${MAX_PRICE_SEARCH} | grep 'class="one_product_price">' | sed -e 's@<[^>]*>@@g' | egrep -o -E "[0-9]{2,5}.{0,1}[0-9]{0,2}" | tr "." "," | head -1)
     if [ "${PRICE}" = "" ];
     then
         PRICE=$(grep "${model}" ${BASE_FILE} -A${MAX_PRICE_SEARCH} | grep 'class="product_price">' | sed -e 's@<[^>]*>@@g' | egrep -o -E "[0-9]{2,5}.{0,1}[0-9]{0,2}" | tr "." ",")
@@ -103,18 +103,18 @@ function process_pages_raw()
 
 #### ROAD ####
 ROAD_BASE="road"
-ROAD_PAGES="$(seq 0 15)"
+ROAD_PAGES="$(seq 0 10)"
 
 process_pages_raw "${ROAD_BASE}" "${ROAD_PAGES}" "Evans Cycles" "ROAD" >> ${OUTPUT_FILE}
 
 #### MTB ####
 MTB_DOUBLE_BASE="mtb-double"
-MTB_DOUBLE_PAGES="$(seq 0 8)"
+MTB_DOUBLE_PAGES="$(seq 0 5)"
 
 process_pages_raw "${MTB_DOUBLE_BASE}" "${MTB_DOUBLE_PAGES}" "Evans Cycles" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 
 MTB_FIX_BASE="mtb-fix"
-MTB_FIX_PAGES="$(seq 0 10)"
+MTB_FIX_PAGES="$(seq 0 8)"
 
 process_pages_raw "${MTB_FIX_BASE}" "${MTB_FIX_PAGES}" "Evans Cycles" "MTB-FIX" >> ${OUTPUT_FILE}
 
@@ -125,7 +125,7 @@ process_pages_raw "${MTB_FIX2_BASE}" "${MTB_FIX2_PAGES}"  "Evans Cycles" "MTB-FI
 
 #### URBAN ####
 HYBRID_BASE="hybrid"
-HYBRID_PAGES="$(seq 0 15)"
+HYBRID_PAGES="$(seq 0 10)"
 
 process_pages_raw "${HYBRID_BASE}" "${HYBRID_PAGES}" "Evans Cycles" "URBAN" >> ${OUTPUT_FILE}
 
