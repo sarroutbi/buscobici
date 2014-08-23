@@ -146,11 +146,24 @@ function dump_bike_from_file()
     then
       TRADEMARK_CAMEL="Fixie Inc."
       MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    elif [ "${TRADEMARK_CAMEL}" = "Stereo" ];
+    then
+      TRADEMARK_CAMEL="Stereo Bikes"
+      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    elif [ "${TRADEMARK_CAMEL}" = "Ns Bikes" ];
+    then
+      TRADEMARK_CAMEL="NS Bikes"
+      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
     else 
       MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
     fi
     MODEL_CAMEL=$(camel "${MODEL}" "${NO_CAMEL_MIN}")
+    MODEL_CAMEL_CLEAN=$(bubic_clean "${MODEL_CAMEL}")
     URL=$(grep "${trademark_model}" "${FILE}" | grep "<a href" | awk -F "a href=" {'print $2'} | awk {'print $1'} | tr -d '"' | head -1)
+    if [ "${URL}" = "" ];
+    then
+      URL=$(cat "${FILE}" | grep '<div class="productName">' -A10 | grep -i "${TRADEMARK_MODEL}" -B2 | grep 'a href=' | awk -F 'a href=' {'print $2'} | awk {'print $1'} | tr -d '"')
+    fi
     FINAL_URL=$(echo "\"${URL}\"")
     PRICE=$(print_price "${FILE}" "${TRADEMARK_MODEL}")
     #echo "========================================================================"
@@ -165,7 +178,7 @@ function dump_bike_from_file()
     #echo "TYPE=${TYPE}"
     #echo "FILE=${FILE}"
     #echo "========================================================================"
-    bubic_dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    bubic_dump_bike "${MODEL_CAMEL_CLEAN}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 
