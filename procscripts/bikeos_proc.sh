@@ -72,8 +72,7 @@ function print_model()
   URL="$1"
   FILE="$2"
   #echo "================== MODEL ===================="
-  grep "${URL}" "${FILE}" | sed -e 's/<[^>]*>//g' \
-| sed -e 's/[Bb]icicleta [Cc]arretera //g' | sed -e 's/[Bb]icicleta [Cc]iclocross //g' | sed -e 's/[Bb]icicleta [Mm]onta.a //g' | sed -e 's/[Bb]icicleta [Tt]rial //g' | sed -e 's/[Bb]icicleta [Tt]rekking//g' | sed -e 's/[Bb]icicleta [Tt]riatl.n//g' | sed -e 's/[Bb]icicleta [Dd]escenso //g' | sed -e 's/[Bb]icicleta [Dd]irt //g' | sed -e 's-dirt/freeride--g' | sed -e 's-dirt/street--g' | sed -e 's/[Bb]icicleta [Dd]oble //g' | sed -e 's/[Bb]icicleta [Ff]reeride //g' | sed -e 's/[Bb]icicleta [Pp]aseo//g' | sed -e 's/[Bb]icicleta [Pp]legable//g' | sed -e 's/[Bb]icicleta [Ii]nfantil //g' | sed -e 's/[Bb]icicleta [Ee]l.ctrica //g' | sed -e 's/[Bb]icicleta [Mm]inibike//g' | sed -e 's/[Bb]icicleta [Ss]uspensi.on //g' | sed -e 's/[Tt]riciclo //g' | sed -e 's/[Ss]tick//g' | sed -e 's/[Ss]uspensi.n //g' | sed -e 's/BTT //g' | sed -e 's/BMX //g' | sed -e 's/TRAIL //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ee]l.ctrico //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ss]oporte //g' | sed -e 's/[Cc]erradura + llaves//g' | sed -e 's/[Dd]isplay //g' | sed -e 's/[Bb]icicleta //g' 
+  grep "${URL}" "${FILE}" | sed -e 's/<[^>]*>//g'
   #echo "================== MODEL ===================="
 }
 
@@ -173,15 +172,13 @@ function dump_bike_from_urls()
   echo "${URLS}" | while read URL;
   do
     TRADEMARK_MODEL=$(print_model "${URL}" "${FILE}" | sed -e s/"+ Vale regalo [0-9]*"//g | sed -e s/"+ vale regalo [0-9]*"//g | sed -e s/"+Vale regalo [0-9]*"//g | sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g')
-    TRADEMARK_MODEL_CLEAN=$(bubic_clean ${TRADEMARK_MODEL})
-    TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
-    TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
+    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
+    TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
+    TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" 0)
 #    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g')
-    ### echo "MODEL=echo \"${TRADEMARK_MODEL}\" | sed -e 's/${TRADEMARK}//g' | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g'"
-    MODEL=$(echo "${TRADEMARK_MODEL}" | tr -d '\r' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g')
-    MODEL_NO_TRADE=$(echo "${MODEL}" | awk -F "${TRADEMARK}" {'print $2'} | sed -e 's/^[ \t]*//g' | sed -e 's/[ \t]*$//g' | sed 's/[^0-9,A-Z,a-z,-,\,\.,\(,\)]*$//g')
-    MODEL_CAMEL=$(camel "${MODEL_NO_TRADE}" ${NO_CAMEL_MIN})
-    MODEL_CAMEL_NO_QUOTE=$(echo "${MODEL_CAMEL}" | tr "'" '"')
+    MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
+    MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
+    MODEL_CAMEL_CLEAN=$(bubic_clean "${MODEL_CAMEL}")
     PRICE=$(print_price "${FILE}" "${MODEL}")
     NOBASE_URL=$(echo ${URL} | awk -F "a href=" {'print $2'} | awk {'print $1'})
     FINAL_URL="${NOBASE_URL}"
@@ -195,13 +192,16 @@ function dump_bike_from_urls()
     fi 
     #echo "========================================================================"
     #echo "TRADEMARK_MODEL=>${TRADEMARK_MODEL}<="
-    #echo "TRADEMARK=${TRADEMARK}"
-    #echo "MODEL=>${MODEL_NO_TRADE}<="
+    #echo "TRADEMARK_MODEL_CLEAN=>${TRADEMARK_MODEL_CLEAN}<="
+    #echo "TRADEMARK=${TRADEMARK_CAMEL}"
+    #echo "MODEL=>${MODEL}<="
+    #echo "MODEL_CAMEL=>${MODEL_CAMEL}<="
+    #echo "MODEL_CAMEL_CLEAN=>${MODEL_CAMEL_CLEAN}<="
     #echo "URL=${FINAL_URL}"
     #echo "PRICE=${PRICE}"
     #echo "FILE=${FILE}"
     #echo "========================================================================"
-    dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    dump_bike "${MODEL_CAMEL_CLEAN}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 
