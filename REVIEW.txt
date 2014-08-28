@@ -30,3 +30,4 @@ This file contains which stores have been reviewed and the date.
 - BikeDiscount  : 20140821
 - Evans-Cycles  : 20140823
 - MHWBike       : 20140826
+- ChainReaction : 20140828
