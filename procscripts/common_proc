@@ -41,7 +41,12 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta de [Pp]aseo [Jj]unior//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Dd]e [Nn]i.[ao]//g' \
 | sed -e 's/[Bb]icicleta [Ee]l&eacute;ctrica//g' \
-| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i.os//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i.[oa]s//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i..[oa]s//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i...[oa]s//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i.[oa]//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i..[oa]//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i...[oa]//g' \
 | sed -e 's/[Bb]icicleta [Ss]in [Pp]edales//g' \
 | sed -e 's/Bicicleta Cross Kona/Kona/g' \
 | sed -e 's/[Bb]icicleta [Pp]ista//g' \
