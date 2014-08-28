@@ -131,6 +131,14 @@ function print_price2()
   echo "${PRICE}"
 }
 
+# Params:
+# 1 - The URL of bike
+function print_price3()
+{
+  PRICE=$(wget -o /dev/null -O - "$1" | grep '<span class="pixel_separator" id="crc_product_rp">'| sed -e 's/<[^>]*>//g' | tr '.' ',' | egrep -o -E "[0-9]{2,5},{0,1}[0-9]{0,2}" | head -1)
+  echo "${PRICE}"
+}
+
 function log_url()
 {
   model="$1"
@@ -192,9 +200,24 @@ function process_page_url()
     fi
     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+    if [ ${TRADEMARK_CAMEL} = "Casco" ];
+    then
+      continue;
+    fi
     #log_url "${MODEL_NO_FILTER}" "${BASE_FILE}"
     URL=$(print_url "${MODEL_NO_FILTER}" "${BASE_FILE}")
     PRICE=$(print_price "${BASE_FILE}" "${MODEL}")
+
+    # Avoid prices smaller than 100 euros, as many models (not only bikes) are being parsed
+    test -z "${PRICE}" && PRICE=$(print_price2 "${URL}" "${MODEL}")
+    PRICE_NO_DEC=$(echo ${PRICE} | awk -F "," {'print $1'})
+    test -z ${PRICE_NO_DEC}
+    if [ $? -ne 0 ];
+    then
+      if [ ${PRICE_NO_DEC} -lt 100 ]; then PRICE=; fi
+    fi
+    test -z "${PRICE}" && PRICE=$(print_price3 "${URL}")
+
     #echo "========================================================================"
     #echo "TRADEMARK=${TRADEMARK_CAMEL}"
     #echo "MODEL=${MODEL}"
@@ -206,15 +229,6 @@ function process_page_url()
     #echo "FILE=${BASE_FILE}"
     #echo "SEARCH_MODEL=>${MODEL}<="
     #echo "========================================================================"
-
-    # Avoid prices smaller than 100 euros, as many models (not only bikes) are being parsed
-    test -z "${PRICE}" && PRICE=$(print_price2 "${URL}" "${MODEL}")
-    PRICE_NO_DEC=$(echo ${PRICE} | awk -F "," {'print $1'})
-    test -z ${PRICE_NO_DEC}
-    if [ $? -ne 0 ];
-    then
-      if [ ${PRICE_NO_DEC} -lt 100 ]; then PRICE=; fi
-    fi
 
     dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
@@ -238,13 +252,16 @@ function process_pages()
 }
 
 MTB_BIKES_BASE="rigidos?page="
-MTB_BIKES_PAGES="$(seq 1 5)"
+MTB_BIKES_PAGES="$(seq 1 3)"
 
 MTB_DOUBLE_BIKES_BASE="suspension-total?page="
-MTB_DOUBLE_BIKES_PAGES="$(seq 1 5)"
+MTB_DOUBLE_BIKES_PAGES="$(seq 1 3)"
 
 ROAD_BIKES_BASE="bicis-de-carretera?page="
-ROAD_BIKES_PAGES="$(seq 1 5)"
+ROAD_BIKES_PAGES="$(seq 1 2)"
+
+ROAD_TIME_BIKES_BASE="bicis-de-contra-reloj?page="
+ROAD_TIME_BIKES_PAGES="1"
 
 ELECTRIC_BIKES_BASE=""
 ELECTRIC_BIKES_PAGES=""
@@ -253,19 +270,22 @@ FOLDING_BIKES_BASE=""
 FOLDING_BIKES_PAGES=""
 
 CRUISER_BIKES_BASE="bicis-cruiser?page="
-CRUISER_BIKES_PAGES=""
+CRUISER_BIKES_PAGES="1"
 
 BMX_BIKES_BASE="bicis-bmx?page="
 BMX_BIKES_PAGES="$(seq 1 3)"
 
 KIDS_BIKES_BASE="bicis-infantiles?page="
-KIDS_BIKES_PAGES="$(seq 1 3)"
+KIDS_BIKES_PAGES="$(seq 1 2)"
  
 URBAN_BIKES_BASE="bicis-urbanas?page="
 URBAN_BIKES_PAGES="$(seq 1 3)"
 
+URBAN_FOLDING_BIKES_BASE="bicis-plegables?page="
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 2)"
+
 CICLOCROSS_BIKES_BASE="bicis-ciclocross?page="
-CICLOCROSS_BIKES_PAGES=""
+CICLOCROSS_BIKES_PAGES="1"
 
 > ${OUTPUT_FILE}
 
@@ -276,6 +296,7 @@ process_pages "${CRUISER_BIKES_BASE}" "${CRUISER_BIKES_PAGES}" "Chain Reaction" 
 process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "Chain Reaction" "BMX"  >> ${OUTPUT_FILE}
 process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "Chain Reaction" "KIDS"  >> ${OUTPUT_FILE}
 process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "Chain Reaction" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "Chain Reaction" "URBAN-FOLDING"  >> ${OUTPUT_FILE}
 process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "Chain Reaction" "BMX"  >> ${OUTPUT_FILE}
 process_pages "${CICLOCROSS_BIKES_BASE}" "${CICLOCROSS_BIKES_PAGES}" "Chain Reaction" "URBAN"  >> ${OUTPUT_FILE}
 

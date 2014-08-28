@@ -41,7 +41,12 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta de [Pp]aseo [Jj]unior//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Dd]e [Nn]i.[ao]//g' \
 | sed -e 's/[Bb]icicleta [Ee]l&eacute;ctrica//g' \
-| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i.os//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i.[oa]s//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i..[oa]s//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i...[oa]s//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i.[oa]//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i..[oa]//g' \
+| sed -e 's/[Bb]icicleta [Pp]ara [Nn]i...[oa]//g' \
 | sed -e 's/[Bb]icicleta [Ss]in [Pp]edales//g' \
 | sed -e 's/Bicicleta Cross Kona/Kona/g' \
 | sed -e 's/[Bb]icicleta [Pp]ista//g' \
@@ -288,13 +293,16 @@ function bubic_dump_bike()
   if [[ "$1" != "" ]] && [[ "$2" != "" ]] && [[ "$3" != "" ]] \
     && [[ "$4" != "" ]]  && [[ "$5" != "" ]]  && [[ "$6" != "" ]];
   then
-    echo "[$1]"
-    echo "${SUBURL_KEY}=$2"
-    echo "${TRADEMARK_KEY}=$3"
-    echo "${PRICE_KEY}=$4"
-    echo "${STORE_KEY}=$5"
-    echo "${KIND_KEY}=$6"
-    echo
+    if [[ "${2}" != '""' ]] && [[ "${1}" != '?' ]]; 
+    then
+      echo "[$1]"
+      echo "${SUBURL_KEY}=$2"
+      echo "${TRADEMARK_KEY}=$3"
+      echo "${PRICE_KEY}=$4"
+      echo "${STORE_KEY}=$5"
+      echo "${KIND_KEY}=$6"
+      echo
+    fi
   fi
 }
 
