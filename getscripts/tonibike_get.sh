@@ -29,8 +29,8 @@ BMX_PAGES=""
 bubic_get_page_outfile "${BMX_BASE}" "${BMX_PAGES}" bmx
 
 #### ROAD ####
-ROAD_BASE="${URL}/bicicletas-de-carretera-7"
-ROAD_PAGES=""
+ROAD_BASE="${URL}/bicicletas-de-carretera-7?p="
+ROAD_PAGES="$(seq 1 3)"
 
 bubic_get_page_outfile "${ROAD_BASE}" "${ROAD_PAGES}" road
 
@@ -60,7 +60,7 @@ bubic_get_page_outfile "${KIDS_BASE}" "${KIDS_PAGES}" kids
 
 #### MTB ####
 MTB_BASE="${URL}/venta-mountain-bike-bicicletas-de-montana-6?p="
-MTB_PAGES="$(seq 1 5)"
+MTB_PAGES="$(seq 1 7)"
 
 echo "Getting:${MTB_BASE}"
 bubic_get_page_outfile "${MTB_BASE}" "${MTB_PAGES}" mtb
