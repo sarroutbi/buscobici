@@ -25,7 +25,16 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Dd]e [Cc]arga//g' \
 | sed -e 's/[Bb]icicleta [Dd]e [Cc]arretera//g' \
 | sed -e 's/[Bb]icicleta [Dd]e [Mm]onta.a//g' \
+| sed -e 's/[Bb]icicleta [Dd]e [Mm]onta..a//g' \
+| sed -e 's/[Bb]icicleta [Dd]e [Mm]onta...a//g' \
+| sed -e 's/[Bb]icicleta [Mm]onta.a//g' \
+| sed -e 's/[Bb]icicleta [Mm]onta..a//g' \
+| sed -e 's/[Bb]icicleta [Mm]onta...a//g' \
 | sed -e 's/[Bb]icicleta [Dd]e [Mm]ontaña//g'\
+| sed -e 's/[Bb]icicleta [Ee]léctrica//g' \
+| sed -e 's/[Bb]icicleta [Ee]l.ctrica//g' \
+| sed -e 's/[Bb]icicleta [Ee]l..ctrica//g' \
+| sed -e 's/[Bb]icicleta [Ee]l...ctrica//g' \
 | sed -e 's/[Bb]icicleta [Ss]ingle-[Ss]peed//g' \
 | sed -e 's/[Bb]icicleta de [Aa]prendizaje//g' \
 | sed -e 's/[Bb]olsa [Pp]ortabultos [Dd]elantera//g' \
