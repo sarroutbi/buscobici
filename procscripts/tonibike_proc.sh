@@ -49,17 +49,21 @@ function process_file()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${BASE_FILE}" | sed -e s@'<h3 class="s_title_block">'@'\n<h3 class="s_title_block">'@g | grep ^'<h3 class="s_title_block">' | grep -v ^Bicicletas | while read line;
+  cat "${BASE_FILE}" | sed -e s@'<a class="product-name"'@'\n<a class="product-name"'@g | grep ^'<a class="product-name"' | grep -v ^Bicicletas | while read line;
   do
+   
 #    TRADEMARK_MODEL=$(echo ${line} | awk -F '<div class="product_desc">' {'print $1'} | sed -e 's@<[^>]*>@@g')
-    TRADEMARK_MODEL=$(echo ${line} | awk -F '<div class="product_desc">' {'print $1'} | awk -F 'title="' {'print $2'} | awk -F '">' {'print $1'})
+#    TRADEMARK_MODEL=$(echo ${line} | awk -F '<div class="product_desc">' {'print $1'} | awk -F 'title="' {'print $2'} | awk -F '">' {'print $1'})
+    TRADEMARK_MODEL=$(echo ${line} | awk -F '</a></h5>' {'print $1'} | sed -e 's@<[^>]*>@@g')
+    
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
     MODEL=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
-    TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+    TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN} | sed -e 's@Qer@Quer@g')
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
-    URL=$(echo ${line} | awk -F '<a href=' {'print $2'} | awk {'print $1'})
-    PRICE=$(echo ${line} | awk -F '<div class="content_price">' {'print $2'} | awk -F '</span><br />' {'print $1'} | sed -e 's@<[^>]*>@@g' | tr -d ' ' | tr -d ',' | tr '.' ',' | egrep -E "[0-9]{2,5},[0-9]{0,2}" -o)
+    URL=$(echo ${line} | awk -F 'href=' {'print $2'} | awk {'print $1'})
+    PRICE=$(echo ${line} | awk -F '<span itemprop="price"' {'print $2'} | awk -F '</span>' {'print $1'} | tr '.' ',' | egrep -E "[0-9]{2,5},[0-9]{0,2}" -o)
+    #echo "LINE:${line}"
     #echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
     #echo "TRADEMARK:=>${TRADEMARK}<="
     #echo "TRADEMARK_CAMEL:=>${TRADEMARK_CAMEL}<="
@@ -96,7 +100,7 @@ function process_pages_raw()
 
 #### ROAD ####
 ROAD_BASE="road"
-ROAD_PAGES=""
+ROAD_PAGES="$(seq 1 3)"
 
 process_pages_raw "${ROAD_BASE}" "${ROAD_PAGES}" "ToniBike" "ROAD" >> ${OUTPUT_FILE}
 
@@ -132,7 +136,7 @@ process_pages_raw "${KIDS_BASE}" "${KIDS_PAGES}" "ToniBike" "KIDS" >> ${OUTPUT_F
 
 #### MTB ####
 MTB_BASE="mtb"
-MTB_PAGES="$(seq 1 5)"
+MTB_PAGES="$(seq 1 7)"
 
 process_pages_raw "${MTB_BASE}" "${MTB_PAGES}" "ToniBike" "MTB" >> ${OUTPUT_FILE}
 
