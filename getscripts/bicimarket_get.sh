@@ -38,12 +38,6 @@ function get_page()
   fi
 }
 
-MTB_27_5_BIKES_BASE="${URL}/Bicicletas-27-5-pulgadas-c20400.html"
-MTB_27_5_BIKES_PAGES=""
-
-MTB_29_BIKES_BASE="${URL}/Bicicletas-29-pulgadas-c20380.html"
-MTB_29_BIKES_PAGES=""
-
 ELECTRIC_BIKES_BASE="${URL}/Bicicletas-Bicicleta-Electrica-c20130.html"
 ELECTRIC_BIKES_PAGES=""
 
@@ -59,20 +53,26 @@ ROAD_BIKES_PAGES=""
 CICLOCROSS_BIKES_BASE="${URL}/Bicicletas-Ciclocross-c20270.html"
 CICLOCROSS_BIKES_PAGES=""
 
-MTB_XC_BIKES_BASE="${URL}/Bicicletas-Cross-country-c1010.html"
-MTB_XC_BIKES_PAGES=""
-
 CRUISERS_BIKES_BASE="${URL}/Bicicletas-Cruisers-c20397.html"
 CRUISERS_BIKES_PAGES=""
-
-DIRT_BIKES_BASE="${URL}/Bicicletas-Dirt-c20303.html"
-DIRT_BIKES_PAGES=$""
 
 DOUBLE_FREERIDE_BIKES_BASE="${URL}/Bicicletas-Doble-Freeride-DH-c20164.html"
 DOUBLE_FREERIDE_BIKES_PAGES=""
 
-MTB_DOUBLE_BIKES_BASE="${URL}/Bicicletas-Doble-XC-Enduro-c20075.html"
-MTB_DOUBLE_BIKES_PAGES=""
+DIRT_BIKES_BASE="${URL}/Bicicletas-Dirt-c20303.html"
+DIRT_BIKES_PAGES=$""
+
+#DOUBLE
+MTB_26_ENDURO_BASE="${URL}/Bicicletas-Enduro-AM-26-c200075.html"    
+MTB_26_ENDURO_PAGES=""
+
+#DOUBLE
+MTB_27_ENDURO_BASE="${URL}/Bicicletas-Enduro-AM-27-5-c20400.html"    
+MTB_27_ENDURO_PAGES=""
+
+#DOUBLE
+MTB_29_ENDURO_BASE="${URL}/Bicicletas-Enduro-AM-29-c20404.html"
+MTB_29_ENDURO_PAGES=""
 
 FIXIE_BIKES_BASE="${URL}/Bicicletas-Fixed-c20306.html"
 FIXIE_BIKES_PAGES=""
@@ -89,6 +89,18 @@ JUNIOR_BIKES_PAGES=""
 LADY_BIKES_BASE="${URL}/Bicicletas-Lady-c20253.html"
 LADY_BIKES_PAGES=""
 
+MTB_27_5_BIKES_BASE="${URL}/Bicicletas-27-5-pulgadas-c20400.html"
+MTB_27_5_BIKES_PAGES=""
+
+MTB_29_BIKES_BASE="${URL}/Bicicletas-29-pulgadas-c20380.html"
+MTB_29_BIKES_PAGES=""
+
+MTB_XC_BIKES_BASE="${URL}/Bicicletas-Cross-country-c1010.html"
+MTB_XC_BIKES_PAGES=""
+
+MTB_DOUBLE_BIKES_BASE="${URL}/Bicicletas-Doble-XC-Enduro-c20075.html"
+MTB_DOUBLE_BIKES_PAGES=""
+
 VELO_BIKES_BASE="${URL}/Bicicletas-Pista-c20396.html"
 VELO_BIKES_PAGES=""
 
@@ -101,17 +113,13 @@ TRIATLON_BIKES_PAGES=""
 URBAN_BIKES_BASE="${URL}/Bicicletas-Urbanas-c10030.html"
 URBAN_BIKES_PAGES=""
 
-#DOUBLE
-MTB_27_ENDURO_BASE="${URL}/Bicicletas-Enduro-AM-27-5-c20400.html"    
-MTB_27_ENDURO_PAGES=""
-
-#DOUBLE
-MTB_29_ENDURO_BASE="${URL}/Bicicletas-Enduro-AM-29-c20404.html"
-MTB_29_ENDURO_PAGES=""
-
 #FIX
 MTB_XC_26_BASE="${URL}/Bicicletas-MTB-XC-26-c1010.html"
 MTB_XC_26_PAGES=""
+
+#DOUBLE
+MTB_XC_27_5_DOUBLE_BASE="${URL}/Bicicletas-MTB-XC-Doble-27-5-c20405.html"
+MTB_XC_27_5_DOUBLE_PAGES=""
 
 #DOUBLE
 MTB_XC_29_DOUBLE_BASE="${URL}/Bicicletas-MTB-XC-Doble-29-c20403.html"
@@ -146,9 +154,11 @@ get_page "${VELO_BIKES_BASE}"
 get_page "${FOLDING_BIKES_BASE}"
 get_page "${TRIATLON_BIKES_BASE}"
 get_page "${URBAN_BIKES_BASE}"
+get_page "${MTB_26_ENDURO_BASE}"
 get_page "${MTB_27_ENDURO_BASE}"
 get_page "${MTB_29_ENDURO_BASE}"
 get_page "${MTB_XC_26_BASE}"
+get_page "${MTB_XC_27_5_DOUBLE_BASE}"
 get_page "${MTB_XC_29_DOUBLE_BASE}"
 get_page "${MTB_XC_27_5_FIX_BASE}"
 get_page "${MTB_XC_29_FIX_BASE}"

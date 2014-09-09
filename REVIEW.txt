@@ -32,3 +32,4 @@ This file contains which stores have been reviewed and the date.
 - MHWBike       : 20140826
 - ChainReaction : 20140828
 - ToniBike      : 20140908
+- BiciMarket    : 20140909
