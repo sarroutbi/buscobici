@@ -176,9 +176,11 @@ VELO_BIKES_BASE="Bicicletas-Pista-c20396.html"
 FOLDING_BIKES_BASE="Bicicletas-Plegable-c10070.html"
 TRIATLON_BIKES_BASE="Bicicletas-Triatlon-c20376.html"
 URBAN_BIKES_BASE="Bicicletas-Urbanas-c10030.html"
+MTB_26_ENDURO_BASE="Bicicletas-Enduro-AM-26-c20075.html"
 MTB_27_ENDURO_BASE="Bicicletas-Enduro-AM-27-5-c20400.html"
 MTB_29_ENDURO_BASE="Bicicletas-Enduro-AM-29-c20404.html"
 MTB_XC_26_BASE="Bicicletas-MTB-XC-26-c1010.html"
+MTB_XC_27_5_DOUBLE_BASE="Bicicletas-MTB-XC-Doble-27-5-c20405.html"
 MTB_XC_29_DOUBLE_BASE="Bicicletas-MTB-XC-Doble-29-c20403.html"
 MTB_XC_27_5_FIX_BASE="Bicicletas-MTB-XC-Rigida-27-5-c20402.html"
 MTB_XC_29_FIX_BASE="Bicicletas-MTB-XC-Rigida-29-c20380.html"
@@ -203,9 +205,11 @@ process_pages "${VELO_BIKES_BASE}" "Bicimarket" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${FOLDING_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
 process_pages "${TRIATLON_BIKES_BASE}" "Bicimarket" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${URBAN_BIKES_BASE}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${MTB_26_ENDURO_BASE}"    "Bicimarket" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_27_ENDURO_BASE}"    "Bicimarket" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_29_ENDURO_BASE}"    "Bicimarket" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_XC_26_BASE}"        "Bicimarket" "MTB-FIX"    >> ${OUTPUT_FILE}
+process_pages "${MTB_XC_27_5_DOUBLE_BASE}" "Bicimarket" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_XC_29_DOUBLE_BASE}" "Bicimarket" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${MTB_XC_27_5_FIX_BASE}"  "Bicimarket" "MTB-FIX"    >> ${OUTPUT_FILE}
 process_pages "${MTB_XC_29_FIX_BASE}"    "Bicimarket" "MTB-29"     >> ${OUTPUT_FILE}
