@@ -124,6 +124,7 @@ function checkout()
   if [ "${OPT_CHECKOUT}" == "1" ];
   then
     echo "Checking out configuration file: [${GET_CONFIG}] ..."
+    git checkout master
     git checkout ${GET_CONFIG}
   fi
 }
