@@ -54,7 +54,8 @@ function process_file()
    
 #    TRADEMARK_MODEL=$(echo ${line} | awk -F '<div class="product_desc">' {'print $1'} | sed -e 's@<[^>]*>@@g')
 #    TRADEMARK_MODEL=$(echo ${line} | awk -F '<div class="product_desc">' {'print $1'} | awk -F 'title="' {'print $2'} | awk -F '">' {'print $1'})
-    TRADEMARK_MODEL=$(echo ${line} | awk -F '</a></h5>' {'print $1'} | sed -e 's@<[^>]*>@@g')
+#    TRADEMARK_MODEL=$(echo ${line} | awk -F '</a></h5>' {'print $1'} | sed -e 's@<[^>]*>@@g')
+    TRADEMARK_MODEL=$(grep "${line}" -A5 "${BASE_FILE}" | sed -e 's@<[^>]*>@@g' | grep [A-Z,a-z] | head -1 | sed -e 's@^[ \t]*@@g')
     
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
@@ -62,7 +63,7 @@ function process_file()
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN} | sed -e 's@Qer@Quer@g')
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
     URL=$(echo ${line} | awk -F 'href=' {'print $2'} | awk {'print $1'})
-    PRICE=$(echo ${line} | awk -F '<span itemprop="price"' {'print $2'} | awk -F '</span>' {'print $1'} | tr '.' ',' | egrep -E "[0-9]{2,5},[0-9]{0,2}" -o)
+    PRICE=$(grep "${line}" -A50 "${BASE_FILE}" | grep '<span itemprop="price"' -A3 | egrep -E "[0-9]{1,2},{0,1}[0-9]{2,3}.[0-9]{0,2}" -o | tr -d ',' | tr '.' ',')
     #echo "LINE:${line}"
     #echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
     #echo "TRADEMARK:=>${TRADEMARK}<="
