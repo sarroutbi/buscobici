@@ -132,9 +132,9 @@ function dump_bike_from_file()
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${FILE}" | sed -e 's@<span class="category-name">@\n<span class="category-name">@g' |grep ^'<span class="category-name">' | sed -e 's@<a class="product_img_link"@\n<a class="product_img_link"@g' | grep ^'<a class="product_img_link"' | while read line;
+#  cat "${FILE}" | sed -e 's@<div class="product-meta">@\n<div class="product-meta">@g' | grep ^'<div class="product-meta">' | sed -e 's@<div class="image ">@\n<div class="image ">@g' | grep ^'<div class="product-meta"' | while read line;
+  cat "${FILE}" | sed -e 's@<div class="product-image-container">@\n<div class="product-image-container">@g' | sed -e 's@<div class="left-block">@\n<div class="left-block">@g' | grep ^'<div class="product-image-container">' | while read line;
   do 
-#    TRADEMARK_MODEL=$(echo ${line} | awk -F '<h5 itemprop="name">' {'print $2'} | awk -F '</a></h5>' {'print $1'} | sed -e 's/<[^>]*>//g' | sed -e 's/^[ ]*//g')
     TRADEMARK_MODEL=$(echo ${line} | awk -F 'title=' {'print $2'} | awk -F '"' {'print $2'} | tr -d '"' | sed -e 's/^[ ]*//g')
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}" | sed -e 's/^[ ]*//g')
     TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
