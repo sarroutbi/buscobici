@@ -183,6 +183,72 @@ function process_pages()
   fi
 }
 
+MTB_26_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-26&md=0&pagact="
+MTB_26_2015_BIKES_PAGES=$(seq 1 2)
+
+MTB_27_5_CARBON_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-27%2C5-carbono&md=0&pagact="
+MTB_27_5_CARBON_2015_BIKES_PAGES=$(seq 1 2)
+
+MTB_27_5_DOUBLE_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-27%2C5-dobles&md=0&pagact="
+MTB_27_5_DOUBLE_2015_BIKES_PAGES=$(seq 1 3)
+
+MTB_27_5_FRONT_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-27.5-rigidas&md=0&pagact="
+MTB_27_5_FRONT_2015_BIKES_PAGES=$(seq 1 6)
+
+MTB_29_CARBON_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-29-carbono&md=0&pagact="
+MTB_29_CARBON_2015_BIKES_PAGES=$(seq 1 2)
+
+MTB_29_DOUBLE_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-29-dobles&md=0&pagact="
+MTB_29_DOUBLE_2015_BIKES_PAGES=$(seq 1 3)
+
+MTB_29_FRONT_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-29-rigidas&md=0&pagact="
+MTB_29_FRONT_2015_BIKES_PAGES=$(seq 1 5)
+
+MTB_KIDS_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Junior2015&md=0&pagact="
+MTB_KIDS_2015_BIKES_PAGES=$(seq 1 2)
+
+MTB_26_FIX_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=rigidas201426&md=0&pagact="
+MTB_26_FIX_2014_BIKES_PAGES=$(seq 1 4)
+
+MTB_26_DOUBLE_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Doblesuspension201426&md=0&pagact="
+MTB_26_DOUBLE_2014_BIKES_PAGES=$(seq 1 3)
+
+MTB_27_5_FIX_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=rigidas201427%2C5&md=0&pagact="
+MTB_27_5_FIX_2014_BIKES_PAGES=$(seq 1 4)
+
+MTB_27_5_DOUBLE_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Doblesuspension201427%2C5&md=0&pagact="
+MTB_27_5_DOUBLE_2014_BIKES_PAGES=$(seq 1 2)
+
+MTB_29_FIX_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=rigidas201429&md=0&pagact="
+MTB_29_FIX_2014_BIKES_PAGES=$(seq 1 7)
+
+MTB_29_DOUBLE_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Doblesuspension201429&md=0&pagact="
+MTB_29_DOUBLE_2014_BIKES_PAGES=$(seq 1 3)
+
+MTB_KIDS_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Junior2014&md=0&pagact="
+MTB_KIDS_2014_BIKES_PAGES=$(seq 1 2)
+
+MTB_WOMAN_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=mujer2014&md=0&pagact="
+MTB_WOMAN_2014_BIKES_PAGES=$(seq 1 3)
+
+ROAD_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=carretera2015&pagact="
+ROAD_2015_BIKES_PAGES=$(seq 1 2)
+
+ROAD_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=carretera2014&pagact="
+ROAD_2014_BIKES_PAGES=$(seq 1 10)
+
+BMX_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=Trial%2FBMX%2FFreeride2014&pagact="
+BMX_2014_BIKES_PAGES=$(seq 1 4)
+
+CITY_2013_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=PASEO%2FCITY+2013&pagact="
+CITY_2013_BIKES_PAGES=$(seq 1 6)
+
+FOLDING_2013_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=PLEGABLES&pagact="
+FOLDING_2013_BIKES_PAGES=$(seq 1 5)
+
+JUNIOR_2013_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=Junior&pagact="
+JUNIOR_2013_BIKES_PAGES=$(seq 1 3)
+
 MTB_WOMAN_2013_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=527&pagact="
 MTB_WOMAN_2013_BIKES_PAGES=$(seq 1 5)
 
@@ -237,6 +303,28 @@ MTB_FIX_OUTLET_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Bicis-rig
 
 > ${OUTPUT_FILE}
 
+process_pages "${MTB_26_2015_BIKES_BASE}" "${MTB_26_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_27_5_CARBON_2015_BIKES_BASE}" "${MTB_27_5_CARBON_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_27_5_DOUBLE_2015_BIKES_BASE}" "${MTB_27_5_DOUBLE_2015_BIKES_PAGES}" "BikeStocks" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_27_5_FRONT_2015_BIKES_BASE}" "${MTB_27_5_FRONT_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_29_CARBON_2015_BIKES_BASE}" "${MTB_29_CARBON_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_29_DOUBLE_2015_BIKES_BASE}" "${MTB_29_DOUBLE_2015_BIKES_PAGES}" "BikeStocks" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_29_FRONT_2015_BIKES_BASE}" "${MTB_29_FRONT_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_KIDS_2015_BIKES_BASE}" "${MTB_KIDS_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_26_FIX_2014_BIKES_BASE}" "${MTB_26_FIX_2014_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_26_DOUBLE_2014_BIKES_BASE}" "${MTB_26_DOUBLE_2014_BIKES_PAGES}" "BikeStocks" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_27_5_FIX_2014_BIKES_BASE}" "${MTB_27_5_FIX_2014_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_27_5_DOUBLE_2014_BIKES_BASE}" "${MTB_27_5_DOUBLE_2014_BIKES_PAGES}" "BikeStocks" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_29_FIX_2014_BIKES_BASE}" "${MTB_29_FIX_2014_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_29_DOUBLE_2014_BIKES_BASE}" "${MTB_29_DOUBLE_2014_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_KIDS_2014_BIKES_BASE}" "${MTB_KIDS_2014_BIKES_PAGES}" "BikeStocks" "KIDS" >> ${OUTPUT_FILE}
+process_pages "${MTB_WOMAN_2014_BIKES_BASE}" "${MTB_WOMAN_2014_BIKES_PAGES}" "BikeStocks" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages "${ROAD_2015_BIKES_BASE}" "${ROAD_2015_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${ROAD_2014_BIKES_BASE}" "${ROAD_2014_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${BMX_2014_BIKES_BASE}" "${BMX_2014_BIKES_PAGES}" "BikeStocks" "BMX" >> ${OUTPUT_FILE}
+process_pages "${TREKKING_2014_BIKES_BASE}" "${TREKKING_2014_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${CITY_2013_BIKES_BASE}" "${CITY_2013_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${JUNIOR_2013_BIKES_BASE}" "${JUNIOR_2013_BIKES_PAGES}"  "BikeStocks" "KIDS" >> ${OUTPUT_FILE}
 process_pages "${MTB_WOMAN_2013_BIKES_BASE}" "${MTB_WOMAN_2013_BIKES_PAGES}"  "BikeStocks" "MTB-WOMAN" >> ${OUTPUT_FILE}
 process_pages "${MTB_KIDS_2013_BIKES_BASE}"  "${MTB_KIDS_2013_BIKES_PAGES}"  "BikeStocks" "KIDS" >> ${OUTPUT_FILE}
 process_pages "${MTB_2013_BIKES_BASE}"  "${MTB_2013_BIKES_PAGES}"  "BikeStocks" "MTB" >> ${OUTPUT_FILE}

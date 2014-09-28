@@ -18,7 +18,7 @@ URL="www.tomasdomingo.com"
 ONLY_DOMAIN="tomasdomingo.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
 MAX_TRIES=10
-MAX_TIMEOUT=10
+MAX_TIMEOUT=30
 
 function get_page()
 {
@@ -28,11 +28,13 @@ function get_page()
 
   if [ "${PAGES}" = "" ];
   then
-    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" -O"${FILE}"
+    wget -w5 --random-wait -e robots=off -U 'mozilla' \
+      --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" -O"${FILE}"
   else
     for page in ${PAGES};
     do
-      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" -O"${FILE}${page}"
+      wget -w5 --random-wait -e robots=off -U 'mozilla' \
+        --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" -O"${FILE}${page}"
     done
   fi
 }
