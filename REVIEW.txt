@@ -34,3 +34,4 @@ This file contains which stores have been reviewed and the date.
 - ToniBike      : 20140908
 - BiciMarket    : 20140909
 - BikeStocks    : 20140928
+- Sanferbike    : 20140928
