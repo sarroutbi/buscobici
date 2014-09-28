@@ -2,16 +2,16 @@ REVIEW.txt file
 ---------------
 This file contains which stores have been reviewed and the date.
 
-- BiciEscapa: 20130612
-- BiciMania : 20130612
-- BikeOS    : 20130612
-- BikeSter  : 20130701
-- BikeStocks: 20130704
-- Buhobike  : 20130705
-- Calmera   : 20130708
-- BiciMarket: 20131010
-- Sanferbike: 20131030
-- Wiggle    : 20131031
+- BiciEscapa    : 20130611
+- BiciMania     : 20130612
+- BikeOS        : 20130612
+- BikeSter      : 20130701
+- BikeStocks    : 20130704
+- Buhobike      : 20130705
+- Calmera       : 20130708
+- BiciMarket    : 20131010
+- Sanferbike    : 20131030
+- Wiggle        : 20131031
 - ChainReaction : 20131211
 - ProBikeShop   : 20140103
 - TomasDomingo  : 20140309
@@ -33,3 +33,4 @@ This file contains which stores have been reviewed and the date.
 - ChainReaction : 20140828
 - ToniBike      : 20140908
 - BiciMarket    : 20140909
+- BikeStocks    : 20140928
