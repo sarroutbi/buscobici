@@ -35,3 +35,5 @@ done
 
 psql --username postgres -h localhost -c "DELETE FROM bikes where KIND = '-';" bikesearch;
 psql --username postgres -h localhost -c "INSERT INTO last VALUES('${1}', now())" bikesearch;
+psql --username postgres -h localhost -c "DELETE FROM bikes where TRADEMARK = 'Bolsa';" bikesearch;
+psql --username postgres -h localhost -c "DELETE FROM bikes where TRADEMARK = 'Soporte';" bikesearch;
