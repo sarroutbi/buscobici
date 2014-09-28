@@ -60,7 +60,7 @@ DOUBLE_FREERIDE_BIKES_BASE="${URL}/Bicicletas-Doble-Freeride-DH-c20164.html"
 DOUBLE_FREERIDE_BIKES_PAGES=""
 
 DIRT_BIKES_BASE="${URL}/Bicicletas-Dirt-c20303.html"
-DIRT_BIKES_PAGES=$""
+DIRT_BIKES_PAGES=""
 
 #DOUBLE
 MTB_26_ENDURO_BASE="${URL}/Bicicletas-Enduro-AM-26-c200075.html"    
