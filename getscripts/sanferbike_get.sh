@@ -38,6 +38,11 @@ function get_page()
   fi
 }
 
+#2014 third review (LIV)
+get_page "${URL}/tiendaonline/20009-liv-montaa?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/20008-liv-carretera?n=${MAX_BIKES_PAGE}"
+get_page "${URL}/tiendaonline/20010-liv-paseourban?n=${MAX_BIKES_PAGE}"
+
 # 2014 second review
 # Cannondale 
 get_page "${URL}/tiendaonline/464-bicicletas-cannondale-montana?n=${MAX_BIKES_PAGE}"

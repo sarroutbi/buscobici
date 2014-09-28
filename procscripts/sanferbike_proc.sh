@@ -266,6 +266,12 @@ function process_file2()
 
 > ${OUTPUT_FILE}
 
+# 2014 third review
+# Liv
+process_file2 "20009-liv-montaa?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_file2 "20008-liv-carretera?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_file2 "20010-liv-paseourban?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+
 # 2014 second review
 # Cannondale
 process_file2 "464-bicicletas-cannondale-montana?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
