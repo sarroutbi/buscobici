@@ -20,8 +20,8 @@
 URL="www.bicimarket.com"
 ONLY_DOMAIN="bicimarket.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
-MAX_TRIES=10
-MAX_TIMEOUT=10
+MAX_TRIES=20
+MAX_TIMEOUT=30
 
 . ./common_get
 
