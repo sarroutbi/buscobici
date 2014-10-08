@@ -123,6 +123,8 @@ function bubic_clean()
 | sed -e 's/Bicicleta Cross Cross/Cross/g' \
 | sed -e 's/Cross Kona/Kona/g' \
 | sed -e 's/[Bb]icicleta [Mm]onta.a//g' \
+| sed -e 's/[Bb]icicleta [Cc]ontrareloj//g' \
+| sed -e 's/[Bb]icicleta [Cc]ontrarreloj//g' \
 | sed -e 's/[Dd]e [Mm]onta.a//g' \
 | sed -e 's/[Dd]e [Mm]onta..a//g' \
 | sed -e 's/Bicicleta Cross Corratec/Corratec/g' \
@@ -152,6 +154,8 @@ function bubic_clean()
 | sed -e 's/(edici&#243;n limitada)//g' \
 | sed -e 's/Bicicleta de ciclocr&#243;s //g' \
 | sed -e 's/[Bb]icicleta h&#237;brida //g' \
+| sed -e 's/[Bb]icicleta [Hh]...brida //g' \
+| sed -e 's/[Bb]icicleta [Hh]..brida //g' \
 | sed -e 's/[Bb]icicleta [Hh].brida //g' \
 | sed -e 's/[Bb]icicleta [Pp]legable //g' \
 | sed -e 's/[Bb]icicleta urbana para mujer //g' \
@@ -255,6 +259,7 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta[sS]//g' \
 | sed -e 's/[Tt]riciclo//g' \
 | sed -e 's/[Bb]icicleta//g' \
+| sed -e 's/BICICLETA//g' \
 | sed -e 's/[Bb]icileta //g' \
 | sed -e 's/29&quot; //g' \
 | sed -e 's/[Bb]ici //g' \
@@ -368,7 +373,7 @@ function bubic_dump_bike()
   if [[ "$1" != "" ]] && [[ "$2" != "" ]] && [[ "$3" != "" ]] \
     && [[ "$4" != "" ]]  && [[ "$5" != "" ]]  && [[ "$6" != "" ]];
   then
-    if [[ "${2}" != '""' ]] && [[ "${1}" != '?' ]]; 
+    if [[ "${2}" != '""' ]] && [[ "${1}" != '?' ]];
     then
       echo "[$1]"
       echo "${SUBURL_KEY}=$2"
