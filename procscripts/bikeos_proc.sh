@@ -128,6 +128,14 @@ function print_price2()
   echo ${PRICE}
 }
 
+function print_price3()
+{
+  FILE="$1"
+  URL="$2"
+  PRICE=$(grep "${URL}" "${FILE}" -A50 | grep price -A2 | grep '</span>' | egrep -o -E "[0-9]{0,}.{0,}[0-9]{2,},{0,}[0-9]{0,}" | tr -d ' ' | head -1 | tr -d '.')
+  echo "${PRICE}"
+}
+
 # Params:
 # 1 - The sentence
 # 2 - The min size to camelize
@@ -189,6 +197,11 @@ function dump_bike_from_urls()
       # echo "No PRICE!, printing price from =>${FINAL_URL_NO_QUOTED}<="
       # log_print_price2 ${FINAL_URL_NO_QUOTED}
       PRICE=$(print_price2 ${FINAL_URL_NO_QUOTED} | tr -d '.')
+    fi 
+    echo "${PRICE}" | grep "[0-9]" 2>&1 >/dev/null
+    if [ $? -ne 0 ];
+    then
+      PRICE=$(print_price3 "${FILE}" "${URL}")
     fi 
     #echo "========================================================================"
     #echo "TRADEMARK_MODEL=>${TRADEMARK_MODEL}<="
