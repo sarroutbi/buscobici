@@ -182,56 +182,56 @@ function process_pages()
 
 ### BMX ###
 BMX_BIKES_BASE="bmx"
-BMX_BIKES_PAGES="$(seq 1 2)"
+BMX_BIKES_PAGES="$(seq 1 3)"
 
 ### ROAD ###
 ROAD_BIKES_BASE="road"
-ROAD_BIKES_PAGES="$(seq 1 4)"
+ROAD_BIKES_PAGES="$(seq 1 5)"
 
 ROAD_TRIATLON_BASE="road-triatlon"
-ROAD_TRIATLON_PAGES="$(seq 1 2)"
+ROAD_TRIATLON_PAGES="$(seq 1 333)"
 
 ### URBAN ###
 URBAN_RETRO_BASE="urban-retro"
-URBAN_RETRO_PAGES="$(seq 1 8)"
+URBAN_RETRO_PAGES="$(seq 1 9)"
 
 URBAN_CITY_BASE="urban-city"
-URBAN_CITY_PAGES="$(seq 1 8)"
+URBAN_CITY_PAGES="$(seq 1 9)"
 
 URBAN_CRUISER_BASE="urban-cruiser"
-URBAN_CRUISER_PAGES="$(seq 1 5)"
+URBAN_CRUISER_PAGES="$(seq 1 6)"
 
 URBAN_FOLDING_BIKES_BASE="urban-folding"
-URBAN_FOLDING_BIKES_PAGES="$(seq 1 3)"
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 6)"
 
 URBAN_FIXIE_BASE="urban-fixie"
-URBAN_FIXIE_PAGES="$(seq 1 2)"
+URBAN_FIXIE_PAGES="$(seq 1 3)"
 
 URBAN_ELECTRIC_BIKES_BASE="urban-electric"
 URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
 
 URBAN_EFOLDING_BIKES_BASE="urban-folding-electric"
-URBAN_EFOLDING_BIKES_PAGES="$(seq 1 2)"
+URBAN_EFOLDING_BIKES_PAGES="$(seq 1 3)"
 
 URBAN_TREKKING_BASE="urban-trekking"
-URBAN_TREKKING_PAGES="$(seq 1 2)"
+URBAN_TREKKING_PAGES="$(seq 1 3)"
 
 URBAN_WORK_BASE="urban-work"
-URBAN_WORK_PAGES="$(seq 1 2)"
+URBAN_WORK_PAGES="$(seq 1 3)"
 
 ### MTB ###
 MTB_BIKES_BASE="mtb"
-MTB_BIKES_PAGES="$(seq 1 15)"
+MTB_BIKES_PAGES="$(seq 1 16)"
 
 MTB_ELECTRIC_BIKES_BASE="mtb-electric"
-MTB_ELECTRIC_BIKES_PAGES="$(seq 1 2)"
+MTB_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
 
 ### KIDS ###
 KIDS_BIKES_BASE="kids"
-KIDS_BIKES_PAGES="$(seq 1 6)"
+KIDS_BIKES_PAGES="$(seq 1 7)"
 
 KIDS_MTB_BIKES_BASE="kids-mtb"
-KIDS_MTB_BIKES_PAGES="$(seq 1 5)"
+KIDS_MTB_BIKES_PAGES="$(seq 1 7)"
 
 ### BMX ###
 process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "MundoEbikes" "BMX" >> ${OUTPUT_FILE}

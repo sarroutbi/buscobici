@@ -59,7 +59,7 @@ function process_file()
     URL="\"${SUBURL}\""
     MODEL_CAMEL=$(bubic_camel "${MODEL}")
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
-    PRICE=$(grep "${MODEL_TRADEMARK}" "${BASE_FILE}" -C30 | grep '€' | sed -e 's/^ //g' | tr -d '€' | tr -d '.' | tr -d ' ' | sed -e 's/<[^>]*>//g' | tail -1 | egrep -E -o "[0-9]{2,5},[0-9]{0,2}")
+    PRICE=$(grep "${MODEL_TRADEMARK}" "${BASE_FILE}" -A60 | grep '€' | sed -e 's/^ //g' | tr -d '€' | tr -d '.' | tr -d ' ' | sed -e 's/<[^>]*>//g' | tail -1 | egrep -E -o "[0-9]{2,5},[0-9]{0,2}")
     #echo "FILE:${BASE_FILE}"
     #echo "model:===>${model}<==="
     #echo "MODEL_TRADEMARK:=>${MODEL_TRADEMARK}<="

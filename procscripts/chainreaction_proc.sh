@@ -30,12 +30,13 @@ NO_CAMEL_TRADEMARK_MIN=0
 OUTPUT_FILE=./output
 #OUTPUT_FILE=/dev/stdout
 
-#### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
 SUBURL_KEY="SUBURL"
 STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
+
+. ./common_proc
 
 # Params:
 # 1 - The sentence
@@ -181,32 +182,31 @@ function process_page_url()
   STORE="$2"
   TYPE="$3"
   #MODELS=$(cat "${BASE_FILE}" | grep '<li class="description">' -A2 | sed -e 's/<[^>]*>//g' | grep -v ^'--' | grep  ^[A-Z,a-z,0-9] | grep -v "Pedals" | grep -v "Helmet")
-  MODELS=$(cat "${BASE_FILE}" | grep 'product_image' -A2  | grep img | grep title | awk -F 'title=' {'print $2'} | awk -F "'" {'print $2'} | grep -v "Pedals" | grep -v "Helmet")
+  MODELS=$(cat "${BASE_FILE}" | grep '<li class="description">' -A3 |  grep '</a>' | awk -F '</a>' {'print $1'} | grep -v "Pedals" | grep -v "Helmet" | grep -v "Casco" | grep -v "Pedales")
   echo "${MODELS}" | while read model;
   do
-    MODEL_FILTER=$(filter_model "${model}")
+    MODEL_FILTER=$(bubic_clean "${model}")
     MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     MODEL_NO_FILTER=$(echo "${model}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     TRADEMARK=$(echo "${MODEL_FILTER}" | awk {'print $1'})
-    TRADEMARK_SPECIAL=$(echo "${MODEL_FILTER}" | grep -i -o ^"De Rosa")
+    TRADEMARK_SPECIAL=$(echo "${MODEL_FILTER}" | grep -i ^"De Rosa\|Vitus Bikes")
     if [ $? -eq 0 ]; 
     then
       MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
       MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
-      TRADEMARK=${TRADEMARK_SPECIAL}
+      TRADEMARK=$(echo "${MODEL_FILTER}" | awk {'for(i=1;i<=2;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     else 
       MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
       TRADEMARK=$(echo "${MODEL_FILTER}" | awk {'print $1'})
     fi
     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
-    if [ ${TRADEMARK_CAMEL} = "Casco" ];
-    then
-      continue;
-    fi
+
     #log_url "${MODEL_NO_FILTER}" "${BASE_FILE}"
-    URL=$(print_url "${MODEL_NO_FILTER}" "${BASE_FILE}")
-    PRICE=$(print_price "${BASE_FILE}" "${MODEL}")
+    SUBURL=$(grep "${model}" "${BASE_FILE}" -B2 | grep 'a href' | awk -F "a href=" {'print $2'} \
+             | awk {'print $1'} | tr -d '"' | head -1)
+    URL="\"${URL_BASE}${SUBURL}\""
+    PRICE=$(grep "${model}" "${BASE_FILE}" -A30 | egrep -o -E "[0-9]{1,5}\.{1}[0-9]{2}" | head -1 | tr '.' ',')
 
     # Avoid prices smaller than 100 euros, as many models (not only bikes) are being parsed
     test -z "${PRICE}" && PRICE=$(print_price2 "${URL}" "${MODEL}")
@@ -219,6 +219,7 @@ function process_page_url()
     test -z "${PRICE}" && PRICE=$(print_price3 "${URL}")
 
     #echo "========================================================================"
+    #echo "TRADEMARK_MODEL=${model}"
     #echo "TRADEMARK=${TRADEMARK_CAMEL}"
     #echo "MODEL=${MODEL}"
     #echo "MODEL_CAMEL=${MODEL_CAMEL}"
@@ -229,8 +230,7 @@ function process_page_url()
     #echo "FILE=${BASE_FILE}"
     #echo "SEARCH_MODEL=>${MODEL}<="
     #echo "========================================================================"
-
-    dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 

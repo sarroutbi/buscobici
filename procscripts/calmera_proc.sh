@@ -180,7 +180,7 @@ function process_pages()
 
   if [ "${PAGES}" = "" ];
   then
-    URLS=$(cat "${BASE_FILE}" | grep '<a href="producto' | awk -F '<a href=' {'print $2'} | awk -F '"' {'print $1'})
+    URLS=$(cat "${BASE_FILE}" | grep '<a href="producto' | awk -F '<a href="' {'print $2'} | awk -F '"' {'print $1'})
     dump_bike_from_urls "${URLS}" "${BASE_FILE}" "${STORE}" "${TYPE}"
   else
     for page in ${PAGES};
@@ -241,8 +241,10 @@ BMX_BIKES_BASE="productos2.asp?id=22&p="
 BMX_BIKES_PAGES="$(seq 1 3)"
 
 BMX_FREESTYLE_BIKES_BASE="productos2.asp?id=31"
+BMX_FREESTYLE_BIKES_PAGES=""
 
 BMX_TRIAL_BIKES_BASE="productos2.asp?id=32"
+BMX_TRIAL_BIKES_PAGES=""
 
 process_pages "${MTB_BIKES_BASE}"           "${MTB_BIKES_PAGES}"           "Calmera" "MTB"    >> ${OUTPUT_FILE}
 process_pages "${MTB_DOUBLE_BASE}"          "${MTB_DOUBLE_PAGES}" "Calmera" "MTB-DOUBLE"      >> ${OUTPUT_FILE}

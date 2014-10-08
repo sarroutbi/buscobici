@@ -44,56 +44,56 @@ function get_page()
 
 ### BMX ###
 BMX_BIKES_BASE="${URL}/10-bicicletas-bmx?p="
-BMX_BIKES_PAGES="$(seq 1 2)"
+BMX_BIKES_PAGES="$(seq 1 3)"
 
 ### ROAD ###
 ROAD_BIKES_BASE="${URL}/21-bicicletas-ruta?p="
-ROAD_BIKES_PAGES="$(seq 1 4)"
+ROAD_BIKES_PAGES="$(seq 1 5)"
 
 ROAD_TRIATLON_BASE="${URL}/22-bicicletas-contrarreloj?p="
-ROAD_TRIATLON_PAGES="$(seq 1 2)"
+ROAD_TRIATLON_PAGES="$(seq 1 3)"
 
 ### URBAN ###
 URBAN_RETRO_BASE="${URL}/31-bicicletas-clásicas?p="
-URBAN_RETRO_PAGES="$(seq 1 8)"
+URBAN_RETRO_PAGES="$(seq 1 9)"
 
 URBAN_CITY_BASE="${URL}/33-bicicletas-paseo?p="
-URBAN_CITY_PAGES="$(seq 1 8)"
+URBAN_CITY_PAGES="$(seq 1 9)"
 
 URBAN_CRUISER_BASE="${URL}/34-bicicletas-playeras-cruisers?p="
-URBAN_CRUISER_PAGES="$(seq 1 5)"
+URBAN_CRUISER_PAGES="$(seq 1 6)"
 
 URBAN_FOLDING_BIKES_BASE="${URL}/35-bicicletas-plegables?p="
-URBAN_FOLDING_BIKES_PAGES="$(seq 1 3)"
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 4)"
 
 URBAN_FIXIE_BASE="${URL}/32-bicicletas-fixed?p="
-URBAN_FIXIE_PAGES="$(seq 1 2)"
+URBAN_FIXIE_PAGES="$(seq 1 3)"
 
 URBAN_ELECTRIC_BIKES_BASE="${URL}/51-bicicletas-eléctricas-ciudad?p="
-URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 4)"
 
 URBAN_EFOLDING_BIKES_BASE="${URL}/53-bicicletas-eléctricas-plegables?p="
-URBAN_EFOLDING_BIKES_PAGES="$(seq 1 2)"
+URBAN_EFOLDING_BIKES_PAGES="$(seq 1 4)"
 
 URBAN_TREKKING_BASE="${URL}/100-bicicletas-trekking?p="
-URBAN_TREKKING_PAGES="$(seq 1 2)"
+URBAN_TREKKING_PAGES="$(seq 1 3)"
 
 URBAN_WORK_BASE="${URL}/110-bicicletas-de-carga?p="
-URBAN_WORK_PAGES="$(seq 1 2)"
+URBAN_WORK_PAGES="$(seq 1 3)"
 
 ### MTB ###
 MTB_BIKES_BASE="${URL}/81-bicicletas-montaña-adultos?p="
-MTB_BIKES_PAGES="$(seq 1 15)"
+MTB_BIKES_PAGES="$(seq 1 16)"
 
 MTB_ELECTRIC_BIKES_BASE="${URL}/52-bicicletas-electricas-deportivas?p="
-MTB_ELECTRIC_BIKES_PAGES="$(seq 1 2)"
+MTB_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
 
 ### KIDS ###
 KIDS_BIKES_BASE="${URL}/120-bicicletas-infantiles?p="
-KIDS_BIKES_PAGES="$(seq 1 6)"
+KIDS_BIKES_PAGES="$(seq 1 7)"
 
 KIDS_MTB_BIKES_BASE="${URL}/82-bicicletas-montaña-junior?p="
-KIDS_MTB_BIKES_PAGES="$(seq 1 5)"
+KIDS_MTB_BIKES_PAGES="$(seq 1 6)"
 
 ### BMX ###
 bubic_get_page_outfile "${BMX_BIKES_BASE}"     "${BMX_BIKES_PAGES}"     bmx
