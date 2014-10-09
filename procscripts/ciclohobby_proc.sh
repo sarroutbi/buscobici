@@ -51,11 +51,8 @@ function process_file()
   TYPE="$3"
   cat "${BASE_FILE}" | sed -e 's@<a class="product_link"@\n<a class="product_link"@g' | sed -e 's@<p class="compare checkbox">@\n<p class="compare checkbox">@g' | grep '<a class="product_link"' | while read line;
   do
-    TRADEMARK_MODEL=$(echo "${line}" | awk -F '</a>' '{print $1}' | sed -e 's@<[^>]*>@@g'\
-| sed -e 's@\.\.\.@@g' | grep [A-Z,a-z] | head -1 | sed -e 's@^[ \t]*@@g'\
-| grep -vi "Biela"\ | grep -vi "Cambio"\ | grep -vi "Caja"\
-| grep -vi "Culot"\ | grep -vi "Cuentakil.metros"\
-| grep -vi "L.quido"\ | grep -vi "Sellador"\
+    TRADEMARK_MODEL=$(echo "${line}" | awk -F '</a>' '{print $1}' | sed -e 's@<[^>]*>@@g' | grep [A-Z,a-z] | head -1 | sed -e 's@^[ \t]*@@g'\
+| grep -vi "Biela"\ | grep -vi "Cambio"\
 | grep -vi "Cubierta" | grep -vi "Electroestimulador"\
 | grep -vi "Casco" | grep -vi "Chaleco"\
 | grep -vi "Chaqueta" | grep -vi "Chubasquero" \
@@ -72,12 +69,12 @@ function process_file()
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN} | sed -e 's@Qer@Quer@g')
     URL=$(echo ${line} | awk -F 'href=' {'print $2'} | awk {'print $1'})
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
-    PRICE=$(grep "${TRADEMARK_MODEL}" "${BASE_FILE}" -A5 | sed -e 's@<@\n<@g' | grep ">${TRADEMARK_MODEL}" -A50 | awk -F '<span class="price">' {'print $2'} | grep [0-9] | tr -d ' ' | head -1 | awk {'print $1'})
+    PRICE=$(grep "${TRADEMARK_MODEL}" "${BASE_FILE}" -A5 | sed -e 's@<@\n<@g' | grep ">${TRADEMARK_MODEL}" -A50 | awk -F '<span class="price">' {'print $2'} | grep [0-9] | tr -d ' ' | head -1)
 
     if [ "${PRICE}" = "" ];
     then
         URL_NO_QUOTE=$(echo ${URL} | tr -d '"')
-        PRICE=$(wget -o/dev/null -w5 --random-wait -e robots=off -U 'Mozilla/5.0' --no-cookies -O - "${URL_NO_QUOTE}" | sed -e 's@<@\n<@g' | grep ^'<' | grep price | egrep -E "[0-9]{2,3},{0,1}[0-9]{2}" | awk -F ">" {'print $2'} | head -1 | tr -d ' ' | awk {'print $1'})
+        PRICE=$(wget -o/dev/null -w5 --random-wait -e robots=off -U 'Mozilla/5.0' --no-cookies -O - "${URL_NO_QUOTE}" | sed -e 's@<@\n<@g' | grep ^'<' | grep price | egrep -E "[0-9]{2,3},{0,1}[0-9]{2}" | awk -F ">" {'print $2'} | head -1 | tr -d ' ')
     fi
     #echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
     #echo "LINE:${line}"
