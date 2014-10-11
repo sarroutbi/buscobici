@@ -120,7 +120,7 @@ process_pages_raw "${MTB_BASE}" "${MTB_PAGES}" "RoseBikes" "MTB" >> ${OUTPUT_FIL
 FITNESS_BASE="fitness"
 FITNESS_PAGES="$(seq 1 2)"
 
-process_pages_raw "${FITNESS_BASE}" "${FITNESS_PAGES}" "RoseBikes" "FITNESS" >> ${OUTPUT_FILE}
+process_pages_raw "${FITNESS_BASE}" "${FITNESS_PAGES}" "RoseBikes" "URBAN-FITNESS" >> ${OUTPUT_FILE}
 
 #### URBAN ####
 URBAN_BASE="urban"
