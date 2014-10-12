@@ -1,0 +1,4 @@
+RESULTS/*/output*
+RESULTS/*/psql*
+BACKUPS/*/*/.sql
+*~
