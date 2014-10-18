@@ -24,6 +24,7 @@
 # KIND=MTB-FIX
 
 MAX_PRICE=2
+#OUTPUT_FILE=/dev/stdout
 OUTPUT_FILE=./output
 BASE_URL="http://www.mundoebikes.es"
 NO_CAMEL_MIN=6
@@ -131,16 +132,17 @@ function dump_bike_from_file()
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${FILE}" | grep '<h5 itemprop="name">' -A5 | sed -e 's@\n@@g' | sed -e 's@<[^>]*>@@g' | grep [A-Z,a-z] | sed -e 's/^[ \t]*//g' | while read line;
+#  cat "${FILE}" | sed -e 's@<div class="product-meta">@\n<div class="product-meta">@g' | grep ^'<div class="product-meta">' | sed -e 's@<div class="image ">@\n<div class="image ">@g' | grep ^'<div class="product-meta"' | while read line;
+  cat "${FILE}" | sed -e 's@<div class="product-image-container">@\n<div class="product-image-container">@g' | sed -e 's@<div class="left-block">@\n<div class="left-block">@g' | grep ^'<div class="product-image-container">' | while read line;
   do 
-    TRADEMARK_MODEL=$(echo "${line}")
+    TRADEMARK_MODEL=$(echo ${line} | awk -F 'title=' {'print $2'} | awk -F '"' {'print $2'} | tr -d '"' | sed -e 's/^[ ]*//g')
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}" | sed -e 's/^[ ]*//g')
     TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN} | sed -e 's/Q.er/Quer/g')
     MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;i++){printf $i; if(i<NF) {printf " "}}'} | sed -e 's@\.\.\.@@g')
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
-    URL=$(grep "${TRADEMARK_MODEL}" "${FILE}" | grep href | awk -F "href=" {'print $2'} | awk {'print $1'} | tail -1)
-    PRICE=$(grep "${TRADEMARK_MODEL}" "${FILE}" -A30 | grep '<span itemprop="price"' -A3 | sed -e 's/^[ \t]*//g' | sed -e 's@<[^>]*>@@g' | grep [0-9] | tr -d ' ' | tail -1)
+    URL=$(echo ${line} | awk -F "href=" {'print $2'} | awk {'print $1'})
+    PRICE=$(echo ${line} | awk -F 'class="price product-price">' {'print $2'} | awk -F "</span>" {'print $1'} | egrep -E "[0-9]{1,2}[ ]{0,1}[0-9]{2,5},[0-9]{0,2}" -o | tr -d ' ')
     #echo "========================================================================"
     #echo "FILE:${FILE}"
     #echo "LINE:${line}"
@@ -182,56 +184,56 @@ function process_pages()
 
 ### BMX ###
 BMX_BIKES_BASE="bmx"
-BMX_BIKES_PAGES="$(seq 1 3)"
+BMX_BIKES_PAGES="$(seq 1 2)"
 
 ### ROAD ###
 ROAD_BIKES_BASE="road"
-ROAD_BIKES_PAGES="$(seq 1 5)"
+ROAD_BIKES_PAGES="$(seq 1 4)"
 
 ROAD_TRIATLON_BASE="road-triatlon"
-ROAD_TRIATLON_PAGES="$(seq 1 333)"
+ROAD_TRIATLON_PAGES="$(seq 1 2)"
 
 ### URBAN ###
 URBAN_RETRO_BASE="urban-retro"
-URBAN_RETRO_PAGES="$(seq 1 9)"
+URBAN_RETRO_PAGES="$(seq 1 8)"
 
 URBAN_CITY_BASE="urban-city"
-URBAN_CITY_PAGES="$(seq 1 9)"
+URBAN_CITY_PAGES="$(seq 1 8)"
 
 URBAN_CRUISER_BASE="urban-cruiser"
-URBAN_CRUISER_PAGES="$(seq 1 6)"
+URBAN_CRUISER_PAGES="$(seq 1 5)"
 
 URBAN_FOLDING_BIKES_BASE="urban-folding"
-URBAN_FOLDING_BIKES_PAGES="$(seq 1 6)"
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 3)"
 
 URBAN_FIXIE_BASE="urban-fixie"
-URBAN_FIXIE_PAGES="$(seq 1 3)"
+URBAN_FIXIE_PAGES="$(seq 1 2)"
 
 URBAN_ELECTRIC_BIKES_BASE="urban-electric"
 URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
 
 URBAN_EFOLDING_BIKES_BASE="urban-folding-electric"
-URBAN_EFOLDING_BIKES_PAGES="$(seq 1 3)"
+URBAN_EFOLDING_BIKES_PAGES="$(seq 1 2)"
 
 URBAN_TREKKING_BASE="urban-trekking"
-URBAN_TREKKING_PAGES="$(seq 1 3)"
+URBAN_TREKKING_PAGES="$(seq 1 2)"
 
 URBAN_WORK_BASE="urban-work"
-URBAN_WORK_PAGES="$(seq 1 3)"
+URBAN_WORK_PAGES="$(seq 1 2)"
 
 ### MTB ###
 MTB_BIKES_BASE="mtb"
-MTB_BIKES_PAGES="$(seq 1 16)"
+MTB_BIKES_PAGES="$(seq 1 15)"
 
 MTB_ELECTRIC_BIKES_BASE="mtb-electric"
-MTB_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
+MTB_ELECTRIC_BIKES_PAGES="$(seq 1 2)"
 
 ### KIDS ###
 KIDS_BIKES_BASE="kids"
-KIDS_BIKES_PAGES="$(seq 1 7)"
+KIDS_BIKES_PAGES="$(seq 1 6)"
 
 KIDS_MTB_BIKES_BASE="kids-mtb"
-KIDS_MTB_BIKES_PAGES="$(seq 1 7)"
+KIDS_MTB_BIKES_PAGES="$(seq 1 5)"
 
 ### BMX ###
 process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "MundoEbikes" "BMX" >> ${OUTPUT_FILE}
