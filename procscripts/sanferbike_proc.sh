@@ -229,6 +229,26 @@ function process_file()
   done
 } 
 
+function process_pages_raw()
+{
+  BASE_FILE="$1"
+  PAGES="$2"
+  STORE="$3"
+  TYPE="$4"
+
+  if [ "${PAGES}" = "" ];
+  then
+    FILE=${1}
+    process_file2 "${BASE_FILE}" "${STORE}" "${TYPE}"
+  else
+    for page in ${PAGES};
+    do
+      FILE="${1}-${page}"
+      process_file2 "${FILE}" "${STORE}" "${TYPE}"
+    done
+  fi
+}
+
 # 
 # 1 - URL of site 
 # 2 - The Store
@@ -272,50 +292,55 @@ function process_file2()
 
 > ${OUTPUT_FILE}
 
+PAGES="$(seq 1 6)"
+
 # 2014 third review
 # Liv
-process_file2 "20009-liv-montaa?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
-process_file2 "20008-liv-carretera?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "20010-liv-paseourban?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "20009-liv-montaa?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "20008-liv-carretera?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "20010-liv-paseourban?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
 
 # 2014 second review
 # Cannondale
-process_file2 "464-bicicletas-cannondale-montana?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
-process_file2 "465-montana-mujer-cannondale?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_file2 "462-carretera-hombre-cannondale?n=${MAX_BIKES_PAGE}"  "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "458-carretera-mujer?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
-process_file2 "478-urbanas-cannondale?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
-process_file2 "479-cannondale-para-ninos?n=${MAX_BIKES_PAGE}" "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
-process_file2 "527-electricas-cannondale?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "464-bicicletas-cannondale-montana?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "465-montana-mujer-cannondale?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "462-carretera-hombre-cannondale?n=${MAX_BIKES_PAGE}"  "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "458-carretera-mujer?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "478-urbanas-cannondale?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "479-cannondale-para-ninos?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
+process_pages_raw "527-electricas-cannondale?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
 
 # Orbea
-process_file2 "409-orbea-mtb?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
-process_file2 "482-montana-mujer?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_file2 "406-orbea-road?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "412-urban?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
-process_file2 "410-all-use?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
-process_file2 "405-nuevas-orbea-mx?n=${MAX_BIKES_PAGE}" "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
+process_pages_raw "409-orbea-mtb?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "482-montana-mujer?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "406-orbea-road?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "412-urban?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "410-all-use?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "405-nuevas-orbea-mx?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
 
 # Giant
-process_file2 "537-montaña-hombre-giant?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
-process_file2 "538-montaña-mujer-giant?n=${MAX_BIKES_PAGE}"  "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_file2 "539-carretera-hombre-giant?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "540-carretera-mujer-giant?n=${MAX_BIKES_PAGE}"  "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
-process_file2 "541-urbanas-giant?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
-process_file2 "550-h?n=${MAX_BIKES_PAGE}"             "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
-process_file2 "536-ninos-giant?n=${MAX_BIKES_PAGE}"   "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
+process_pages_raw "537-montaña-hombre-giant?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "538-montaña-mujer-giant?n=${MAX_BIKES_PAGE}"  "${PAGES}" "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "539-carretera-hombre-giant?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "540-carretera-mujer-giant?n=${MAX_BIKES_PAGE}"  "${PAGES}" "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "541-urbanas-giant?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "550-h?n=${MAX_BIKES_PAGE}"             "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "536-ninos-giant?n=${MAX_BIKES_PAGE}"   "${PAGES}" "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
 
 # Bmc
-process_file2 "365-nuevas-bmc-carretera?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "373-nuevas-bmc-montana?n=${MAX_BIKES_PAGE}"   "Sanferbike" "MTB" >> ${OUTPUT_FILE}
-process_file2 "376-urbanas-bmc?n=${MAX_BIKES_PAGE}"          "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "365-nuevas-bmc-carretera?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "373-nuevas-bmc-montana?n=${MAX_BIKES_PAGE}"   "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "376-urbanas-bmc?n=${MAX_BIKES_PAGE}"          "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
 
 # outlet
-process_file2 "20002-ofertas-road?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "20001-ofertas-mtb?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "20002-ofertas-road?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "20001-ofertas-mtb?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
 
 # folding
-process_file2 "528-bicis-plegables?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN-FOLDING" >> ${OUTPUT_FILE}
+process_pages_raw "528-bicis-plegables?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN-FOLDING" >> ${OUTPUT_FILE}
 
 # electric
-process_file2 "305-bicis-electricas?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
+process_pages_raw "305-bicis-electricas?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
+
+# 27.5
+process_pages_raw "483-bi?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
