@@ -1,7 +1,7 @@
 APP=bikeGet
 SRC=$(APP).h
 SOAPCC=soapcpp2
-CCFLAGS=-DWITH_GZIP
+CCFLAGS=-DWITH_GZIP -pthread
 CC=g++
 CLI=ws_client
 CLI_SRC=$(CLI).cpp

@@ -22,8 +22,8 @@
 
 #include "Bike.h"
 
-const uint32_t MAX_HTML_PIECE = 1023;
-const uint32_t MAX_HTML_PIECE_LINE = 255;
+const uint32_t MAX_HTML_PIECE = 1000000;
+const uint32_t MAX_HTML_PIECE_LINE = 65535;
 
 class HtmlParser
 {
