@@ -34,6 +34,12 @@ NO_CAMEL_MIN=6
 . ./common_proc
 
 #### The keys
+TRADEMARK_KEY="TRADEMARK"
+SUBURL_KEY="SUBURL"
+STORE_KEY="STORE"
+PRICE_KEY="PRICE"
+KIND_KEY="KIND"
+
 KEY_URL="SUBURL"
 KEY_TRADEMARK="TRADEMARK"
 KEY_PRICE="PRICE"
@@ -52,7 +58,6 @@ FILE_TRIATLON="triatlon.asp"
 
 MAX_REV_SEARCH=10000
 TRADEMARK_SEP="&nbsp;"
-PRICE_KEY="Precio"
 MAX_BIKES_PAGE=200
 MAX_PRICE_DOWN=20
 
@@ -229,15 +234,16 @@ function process_file()
 # 2 - The Store
 function process_file2()
 {
-  cat "$1" | sed -e 's@/div><@/div>\n<@g'| grep -i 'product_desc' | awk -F "<h3>" {'print $2'} | awk -F "</h3>" {'print $1'} | while read model
+  FILE=$1 
+  STORE=$2
+  TYPE=$3
+  cat "${FILE}" | sed -e s@'<a class="product-name"'@'\n<a class="product-name'@g | grep ^'<a class=' | while read HTML_LINE;
   do
-     TYPE=$3
-     MODEL_TRADEMARK=$(echo ${model} | sed -e 's/<[^>]*>//g')
+     MODEL_TRADEMARK_UNCLEAN=$(echo ${HTML_LINE} | awk -F "</a></h5>" {'print $1'} | sed -e 's/<[^>]*>//g' | tr -d '\n' | tr -d '\r')
+     MODEL_TRADEMARK=$(bubic_clean "${MODEL_TRADEMARK_UNCLEAN}")
      TRADEMARK=$(get_trademark "${MODEL_TRADEMARK}")
      MODEL=$(echo "${MODEL_TRADEMARK}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
-     URL=$(echo "${model}" | awk -F '<a href=' {'print $2'} | awk {'print $1'})
-     #PRICE=$(cat "${1}" | awk -F "${MODEL_TRADEMARK}" {'print $2'} | awk -F '<span class="price"' {'print $2'} | awk -F '</span>' {'print $1'} | sed -e 's/<[^>]*>//g')
-     #PRICE=$(cat "${1}" | awk -F "${MODEL_TRADEMARK}" {'print $6'} | awk -F '<span class="price"' {'print $2'} | awk -F '</span>' {'print $1'} | awk -F ">" {'print $2'} | sed -e 's/<[^>]*>//g' | tr -d '€' | tr -d ' ' | grep [0-9])
+     URL=$(echo "${HTML_LINE}" | awk -F 'href=' {'print $2'} | awk {'print $1'} | tr -d '\n' | tr -d '\r')
      if [ "${MODEL}" = "" ];
      then
        MODEL=$(echo "${model}" | awk -F "&nbsp;&nbsp;" {'print $2'})
@@ -247,20 +253,20 @@ function process_file2()
        fi
      fi
      URL_NO_DASH=$(echo ${URL} | tr -d '"')
-     PRICE=$(get_price_from_url "${URL_NO_DASH}")
+     PRICE=$(echo "${HTML_LINE}" | awk -F 'class="price product-price">' {'print $2'} | awk -F '</span>' '{print $1}' | egrep -o -E "[0-9]{0,2},{0,1}[0-9]{1,3}.{0,1}[0-9]{0,2}" | tr -d ',' | tr '.' ',' | tr -d '\n' | tr -d '\r')
      TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" 0)
      MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
-     if [ "${TYPE}" != "" ];
-     then 
-       echo "[${MODEL_CAMEL}]"
-       echo "${KEY_URL}=${URL}"
-       echo "${KEY_TRADEMARK}=${TRADEMARK_CAMEL}"
-       echo "${KEY_PRICE}=${PRICE}"
-       echo "${KEY_STORE}=${2}"
-       echo "${KEY_KIND}=${3}"
-       echo 
-       echo 
-     fi
+     #echo
+     #echo "=================================================="
+     #echo "MODEL_TRADEMARK_UNCLEAN=${MODEL_TRADEMARK_UNCLEAN}"
+     #echo "URL=${URL}"
+     #echo "MODEL=${MODEL}"
+     #echo "PRICE=${PRICE}"
+     #echo "STORE=${STORE}"
+     #echo "TYPE=${TYPE}"
+     #echo "=================================================="
+     #echo
+     bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 } 
 
