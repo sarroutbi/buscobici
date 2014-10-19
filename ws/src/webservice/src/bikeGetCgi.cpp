@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#include "soapH.h" 
+#include "soapH.h"
 #include "bikeGet.nsmap"
 
 // libbike include files
@@ -16,10 +16,69 @@ const uint32_t MAX_POST        = 1024;
 const uint32_t MAX_RESULTS     = 2000;
 const uint32_t MAX_SRV_RESULTS = 10000;
 
+#define BACKLOG (100)
+
 int main(int argc, char* argv[])
 {
-  // create soap context and serve one CGI-based request:
-  soap_serve(soap_new());
+   struct soap soap;
+   soap_init(&soap);
+   if (argc < 3) // no args: assume this is a CGI application
+   {
+      // create soap context and serve one CGI-based request:
+      soap_serve(&soap);
+      soap_destroy(&soap); // dealloc C++ data
+      soap_end(&soap); // dealloc data and clean up
+   }
+   else
+   {
+      soap.send_timeout = 60; // 60 seconds
+      soap.recv_timeout = 60; // 60 seconds
+      soap.accept_timeout = 3600; // server stops after 1 hour of inactivity
+      soap.max_keep_alive = 100; // max keep-alive sequence
+      void *process_request(void*);
+      struct soap *tsoap;
+      pthread_t tid;
+      int port = atoi(argv[2]); // first command-line arg is port
+      SOAP_SOCKET m, s;
+      m = soap_bind(&soap, argv[1], port, BACKLOG);
+      if (!soap_valid_socket(m)) {
+         fprintf(stderr, "Unable to bind socket\n");
+         soap_print_fault(&soap, stderr);
+         exit(1);
+      }
+      fprintf(stderr, "Socket connection successful %d\n", m);
+      for (;;)
+      {
+         s = soap_accept(&soap);
+         if (!soap_valid_socket(s))
+         {
+            if (soap.errnum)
+            {
+               soap_print_fault(&soap, stderr);
+               exit(1);
+            }
+            fprintf(stderr, "server timed out\n");
+            break;
+         }
+         fprintf(stderr, "Thread accepts socket %d connection from IP %d.%d.%d.%d\n", s, (soap.ip >> 24)&0xFF, (soap.ip >> 16)&0xFF, (soap.ip >> 8)&0xFF, soap.ip&0xFF);
+         tsoap = soap_copy(&soap); // make a safe copy
+         if (!tsoap)
+            break;
+         pthread_create(&tid, NULL, (void*(*)(void*))process_request, (void*)tsoap);
+      }
+   }
+   soap_done(&soap); // detach soap struct
+}
+
+void *process_request(void *soap)
+{
+   pthread_detach(pthread_self());
+   soap_serve((struct soap*)soap);
+   soap_destroy((struct soap*)soap); // dealloc C++ data
+   soap_end((struct soap*)soap); // dealloc data and clean up
+   soap_done((struct soap*)soap); // detach soap struct
+   free(soap);
+   return NULL;
 }
 
 void composePostInfo(const char* search, const char* type,

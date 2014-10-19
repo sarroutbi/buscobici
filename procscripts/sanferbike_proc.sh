@@ -34,6 +34,12 @@ NO_CAMEL_MIN=6
 . ./common_proc
 
 #### The keys
+TRADEMARK_KEY="TRADEMARK"
+SUBURL_KEY="SUBURL"
+STORE_KEY="STORE"
+PRICE_KEY="PRICE"
+KIND_KEY="KIND"
+
 KEY_URL="SUBURL"
 KEY_TRADEMARK="TRADEMARK"
 KEY_PRICE="PRICE"
@@ -52,7 +58,6 @@ FILE_TRIATLON="triatlon.asp"
 
 MAX_REV_SEARCH=10000
 TRADEMARK_SEP="&nbsp;"
-PRICE_KEY="Precio"
 MAX_BIKES_PAGE=200
 MAX_PRICE_DOWN=20
 
@@ -224,20 +229,41 @@ function process_file()
   done
 } 
 
+function process_pages_raw()
+{
+  BASE_FILE="$1"
+  PAGES="$2"
+  STORE="$3"
+  TYPE="$4"
+
+  if [ "${PAGES}" = "" ];
+  then
+    FILE=${1}
+    process_file2 "${BASE_FILE}" "${STORE}" "${TYPE}"
+  else
+    for page in ${PAGES};
+    do
+      FILE="${1}-${page}"
+      process_file2 "${FILE}" "${STORE}" "${TYPE}"
+    done
+  fi
+}
+
 # 
 # 1 - URL of site 
 # 2 - The Store
 function process_file2()
 {
-  cat "$1" | sed -e 's@/div><@/div>\n<@g'| grep -i 'product_desc' | awk -F "<h3>" {'print $2'} | awk -F "</h3>" {'print $1'} | while read model
+  FILE=$1 
+  STORE=$2
+  TYPE=$3
+  cat "${FILE}" | sed -e s@'<a class="product-name"'@'\n<a class="product-name'@g | grep ^'<a class=' | while read HTML_LINE;
   do
-     TYPE=$3
-     MODEL_TRADEMARK=$(echo ${model} | sed -e 's/<[^>]*>//g')
+     MODEL_TRADEMARK_UNCLEAN=$(echo ${HTML_LINE} | awk -F "</a></h5>" {'print $1'} | sed -e 's/<[^>]*>//g' | tr -d '\n' | tr -d '\r')
+     MODEL_TRADEMARK=$(bubic_clean "${MODEL_TRADEMARK_UNCLEAN}")
      TRADEMARK=$(get_trademark "${MODEL_TRADEMARK}")
      MODEL=$(echo "${MODEL_TRADEMARK}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
-     URL=$(echo "${model}" | awk -F '<a href=' {'print $2'} | awk {'print $1'})
-     #PRICE=$(cat "${1}" | awk -F "${MODEL_TRADEMARK}" {'print $2'} | awk -F '<span class="price"' {'print $2'} | awk -F '</span>' {'print $1'} | sed -e 's/<[^>]*>//g')
-     #PRICE=$(cat "${1}" | awk -F "${MODEL_TRADEMARK}" {'print $6'} | awk -F '<span class="price"' {'print $2'} | awk -F '</span>' {'print $1'} | awk -F ">" {'print $2'} | sed -e 's/<[^>]*>//g' | tr -d '€' | tr -d ' ' | grep [0-9])
+     URL=$(echo "${HTML_LINE}" | awk -F 'href=' {'print $2'} | awk {'print $1'} | tr -d '\n' | tr -d '\r')
      if [ "${MODEL}" = "" ];
      then
        MODEL=$(echo "${model}" | awk -F "&nbsp;&nbsp;" {'print $2'})
@@ -247,69 +273,74 @@ function process_file2()
        fi
      fi
      URL_NO_DASH=$(echo ${URL} | tr -d '"')
-     PRICE=$(get_price_from_url "${URL_NO_DASH}")
+     PRICE=$(echo "${HTML_LINE}" | awk -F 'class="price product-price">' {'print $2'} | awk -F '</span>' '{print $1}' | egrep -o -E "[0-9]{0,2},{0,1}[0-9]{1,3}.{0,1}[0-9]{0,2}" | tr -d ',' | tr '.' ',' | tr -d '\n' | tr -d '\r')
      TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" 0)
      MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
-     if [ "${TYPE}" != "" ];
-     then 
-       echo "[${MODEL_CAMEL}]"
-       echo "${KEY_URL}=${URL}"
-       echo "${KEY_TRADEMARK}=${TRADEMARK_CAMEL}"
-       echo "${KEY_PRICE}=${PRICE}"
-       echo "${KEY_STORE}=${2}"
-       echo "${KEY_KIND}=${3}"
-       echo 
-       echo 
-     fi
+     #echo
+     #echo "=================================================="
+     #echo "MODEL_TRADEMARK_UNCLEAN=${MODEL_TRADEMARK_UNCLEAN}"
+     #echo "URL=${URL}"
+     #echo "MODEL=${MODEL}"
+     #echo "PRICE=${PRICE}"
+     #echo "STORE=${STORE}"
+     #echo "TYPE=${TYPE}"
+     #echo "=================================================="
+     #echo
+     bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 } 
 
 > ${OUTPUT_FILE}
 
+PAGES="$(seq 1 6)"
+
 # 2014 third review
 # Liv
-process_file2 "20009-liv-montaa?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
-process_file2 "20008-liv-carretera?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "20010-liv-paseourban?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "20009-liv-montaa?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "20008-liv-carretera?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "20010-liv-paseourban?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
 
 # 2014 second review
 # Cannondale
-process_file2 "464-bicicletas-cannondale-montana?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
-process_file2 "465-montana-mujer-cannondale?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_file2 "462-carretera-hombre-cannondale?n=${MAX_BIKES_PAGE}"  "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "458-carretera-mujer?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
-process_file2 "478-urbanas-cannondale?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
-process_file2 "479-cannondale-para-ninos?n=${MAX_BIKES_PAGE}" "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
-process_file2 "527-electricas-cannondale?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "464-bicicletas-cannondale-montana?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "465-montana-mujer-cannondale?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "462-carretera-hombre-cannondale?n=${MAX_BIKES_PAGE}"  "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "458-carretera-mujer?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "478-urbanas-cannondale?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "479-cannondale-para-ninos?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
+process_pages_raw "527-electricas-cannondale?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
 
 # Orbea
-process_file2 "409-orbea-mtb?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
-process_file2 "482-montana-mujer?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_file2 "406-orbea-road?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "412-urban?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
-process_file2 "410-all-use?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
-process_file2 "405-nuevas-orbea-mx?n=${MAX_BIKES_PAGE}" "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
+process_pages_raw "409-orbea-mtb?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "482-montana-mujer?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "406-orbea-road?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "412-urban?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "410-all-use?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "405-nuevas-orbea-mx?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
 
 # Giant
-process_file2 "537-montaña-hombre-giant?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
-process_file2 "538-montaña-mujer-giant?n=${MAX_BIKES_PAGE}"  "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_file2 "539-carretera-hombre-giant?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "540-carretera-mujer-giant?n=${MAX_BIKES_PAGE}"  "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
-process_file2 "541-urbanas-giant?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
-process_file2 "550-h?n=${MAX_BIKES_PAGE}"             "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
-process_file2 "536-ninos-giant?n=${MAX_BIKES_PAGE}"   "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
+process_pages_raw "537-montaña-hombre-giant?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "538-montaña-mujer-giant?n=${MAX_BIKES_PAGE}"  "${PAGES}" "Sanferbike" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "539-carretera-hombre-giant?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "540-carretera-mujer-giant?n=${MAX_BIKES_PAGE}"  "${PAGES}" "Sanferbike" "ROAD-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "541-urbanas-giant?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "550-h?n=${MAX_BIKES_PAGE}"             "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "536-ninos-giant?n=${MAX_BIKES_PAGE}"   "${PAGES}" "Sanferbike" "KIDS" >> ${OUTPUT_FILE}
 
 # Bmc
-process_file2 "365-nuevas-bmc-carretera?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "373-nuevas-bmc-montana?n=${MAX_BIKES_PAGE}"   "Sanferbike" "MTB" >> ${OUTPUT_FILE}
-process_file2 "376-urbanas-bmc?n=${MAX_BIKES_PAGE}"          "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "365-nuevas-bmc-carretera?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "373-nuevas-bmc-montana?n=${MAX_BIKES_PAGE}"   "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "376-urbanas-bmc?n=${MAX_BIKES_PAGE}"          "${PAGES}" "Sanferbike" "URBAN" >> ${OUTPUT_FILE}
 
 # outlet
-process_file2 "20002-ofertas-road?n=${MAX_BIKES_PAGE}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
-process_file2 "20001-ofertas-mtb?n=${MAX_BIKES_PAGE}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
+process_pages_raw "20002-ofertas-road?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "ROAD" >> ${OUTPUT_FILE}
+process_pages_raw "20001-ofertas-mtb?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
 
 # folding
-process_file2 "528-bicis-plegables?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN-FOLDING" >> ${OUTPUT_FILE}
+process_pages_raw "528-bicis-plegables?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN-FOLDING" >> ${OUTPUT_FILE}
 
 # electric
-process_file2 "305-bicis-electricas?n=${MAX_BIKES_PAGE}" "Sanferbike" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
+process_pages_raw "305-bicis-electricas?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
+
+# 27.5
+process_pages_raw "483-bi?n=${MAX_BIKES_PAGE}" "${PAGES}" "Sanferbike" "MTB" >> ${OUTPUT_FILE}
