@@ -76,6 +76,7 @@ function process_file()
     fi
     PRICE_NO_SPACE=$(echo "${PRICE}" | sed -e 's@^[ \t]*@@g')
     PRICE="${PRICE_NO_SPACE}"
+    URL_DASHED="\"${URL}\""
     #echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
     #echo "LINE:${HTML_LINE}"
     #echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
@@ -87,7 +88,7 @@ function process_file()
     #echo "URL_NO_DASH:=>${URL_NO_DASH}<="
     #echo "PRICE:=>${PRICE}<="
     #echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-    bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    bubic_dump_bike "${MODEL_CAMEL}" "${URL_DASHED}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 
