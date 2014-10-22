@@ -81,6 +81,7 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Dd]e [Ss]uspensi.n//g' \
 | sed -e 's/[Bb]icicleta [Uu]rbana [Dd]e [Hh]ombre//g' \
 | sed -e 's/[Bb]icicleta [Uu]rbana [Dd]e [Mm]ujer//g' \
+| sed -e 's/[Bb]icicleta [Mm][Tt][Bb] 20[1-9][1-9] //g' \
 | sed -e 's/[Bb]icicleta [Mm]onta.a//g' \
 | sed -e 's/[Bb]icicleta [Mm]onta..a//g' \
 | sed -e 's/[Bb]icicleta [Mm]onta...a//g' \
@@ -92,6 +93,21 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Ee]l.ctrica//g' \
 | sed -e 's/[Bb]icicleta [Ee]l..ctrica//g' \
 | sed -e 's/[Bb]icicleta [Ee]l...ctrica//g' \
+| sed -e 's/[Bb]ici [Mm][Tt][Bb] [CcBb] //g' \
+| sed -e 's/[Bb]ici [Ee]léctrica//g' \
+| sed -e 's/[Bb]ici [Ee]l.ctrica//g' \
+| sed -e 's/[Bb]ici [Ee]l..ctrica//g' \
+| sed -e 's/[Bb]ici [Ee]l...ctrica//g' \
+| sed -e 's/[Bb]ici [Hh]íbrida//g' \
+| sed -e 's/[Bb]ici [Hh].brida//g' \
+| sed -e 's/[Bb]ici [Hh]..brida//g' \
+| sed -e 's/[Bb]ici [Hh]...brida//g' \
+| sed -e 's/[Bb]ici [Nn]i...[oa]//g' \
+| sed -e 's/[Bb]ici [Nn]i..[oa]//g' \
+| sed -e 's/[Bb]ici [Nn]i.[oa]//g' \
+| sed -e 's/[Bb]ici [Nn]iñ[oa]//g' \
+| sed -e 's/[Bb]ici [Uu]rban//g' \
+| sed -e 's/[Bb]ici [Tt]riathlon//g' \
 | sed -e 's/[Bb]icicleta [Rr]...gida//g' \
 | sed -e 's/[Bb]icicleta [Rr]..gida//g' \
 | sed -e 's/[Bb]icicleta [Rr].gida//g' \
@@ -298,6 +314,7 @@ function bubic_clean()
 | sed -e 's/[Dd]oble//g' \
 | sed -e 's/[Ee]l.ctrica//g' \
 | sed -e 's/El&eacute;ctrica //g' \
+| sed -e 's/REBAJADO!//g' \
 | sed -e 's/[Hh]olandesa//g' \
 | sed -e 's/[M]tb//g' \
 | sed -e 's/[Mm]onopat.n//g' \
@@ -313,6 +330,9 @@ function bubic_clean()
 | sed -e 's/[Tt]riciclo//g' \
 | sed -e 's/[Bb]icicletas//g' \
 | sed -e 's/[Bb]icicleta//g' \
+| sed -e 's/[Bb]iciicleta//g' \
+| sed -e 's/[Bb]cicleta//g' \
+| sed -e 's/[Bb]icicelta//g' \
 | sed -e 's/Downhill//g' \
 | sed -e 's/[Ff]ixie//g' \
 | sed -e 's/[Aa]luminio//g' \

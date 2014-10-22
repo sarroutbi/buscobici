@@ -58,7 +58,7 @@ function process_file()
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     URL=$(echo ${HTML_LINE} | awk -F 'href=' {'print $2'} | awk {'print $1'})
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
-    PRICE=$(grep "${TRADEMARK_MODEL}" "${BASE_FILE}" -A${MAX_PRICE_SEARCH} | grep '<p class="price">' | sed -e 's@<@\n<@g' | egrep -E -o "[0-9]{0,2}.{0,1}[0-9]{2,3},{0,1}[0-9]{2}" | tr -d '.' | head -1)
+    PRICE=$(grep "${TRADEMARK_MODEL}" "${BASE_FILE}" -A${MAX_PRICE_SEARCH} | grep '<p class="price">' | sed -e 's@<[^>]*>@@g' | egrep -E -o "[0-9]{0,2}.{0,1}[0-9]{2,3},{0,1}[0-9]{2}" | tr -d '.' | head -1)
     # Attempt to look for price with URL
     if [ "${PRICE}" = "" ];
     then
@@ -74,6 +74,9 @@ function process_file()
       URL_NO_DASH=$(echo "${URL}" | awk -F "´" {'print $1'})
       PRICE=$(grep "${URL_NO_DASH}" "${BASE_FILE}" -A${MAX_PRICE_SEARCH} | grep '<span class="xprecio' | sed -e 's@<[^>]*>@@g' | egrep -E -o "[0-9]{0,2}.{0,1}[0-9]{2,3},{0,1}[0-9]{2}" | tr -d '.' | tail -1);
     fi
+    PRICE_NO_SPACE=$(echo "${PRICE}" | sed -e 's@^[ \t]*@@g')
+    PRICE="${PRICE_NO_SPACE}"
+    URL_DASHED="\"${URL}\""
     #echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
     #echo "LINE:${HTML_LINE}"
     #echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
@@ -85,7 +88,7 @@ function process_file()
     #echo "URL_NO_DASH:=>${URL_NO_DASH}<="
     #echo "PRICE:=>${PRICE}<="
     #echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-    bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    bubic_dump_bike "${MODEL_CAMEL}" "${URL_DASHED}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 

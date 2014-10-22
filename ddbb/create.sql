@@ -82,3 +82,6 @@ bikesearch=# UPDATE pg_database set encoding=8 WHERE datname='bikesearch';
 --- 0 : SQL_ASCII
 --- 6 : UNICODE_UTF8
 --- 8 : LATIN1 (accepts accents, ñ, etc.)
+
+--- Set unique field url
+ALTER TABLE bikes ADD CONSTRAINT unique_url UNIQUE (url);
