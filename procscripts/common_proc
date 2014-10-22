@@ -314,6 +314,7 @@ function bubic_clean()
 | sed -e 's/[Dd]oble//g' \
 | sed -e 's/[Ee]l.ctrica//g' \
 | sed -e 's/El&eacute;ctrica //g' \
+| sed -e 's/REBAJADO!//g' \
 | sed -e 's/[Hh]olandesa//g' \
 | sed -e 's/[M]tb//g' \
 | sed -e 's/[Mm]onopat.n//g' \
