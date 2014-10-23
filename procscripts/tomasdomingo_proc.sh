@@ -185,7 +185,7 @@ function process_pages()
     URLS=$(cat "${BASE_FILE}")
     dump_bike_from_urls "${URLS}" "${BASE_FILE}" "${STORE}" "${TYPE}"
   else
-    for page in ${PAGES};
+    for page in "${PAGES}";
     do
       URLS=$(cat "${BASE_FILE}${page}" | grep -i "+ info" | awk -F "a href=" '{print $2}' | awk {'print $1'} | tr -d '"')
       dump_bike_from_urls "${URLS}" "${BASE_FILE}${page}" "${STORE}" "${TYPE}"
@@ -199,44 +199,64 @@ function process_pages_raw()
   PAGES="$2"
   STORE="$3"
   TYPE="$4"
+
   #echo "BASE_FILE=$1"
   #echo "PAGES=$2"
   #echo "STORE=$3"
   #echo "TYPE=$4"
-
   if [ "${PAGES}" = "" ];
   then
-    MODELS=$(cat "${BASE_FILE}"| grep 'span class="titol"')
-    echo "${MODELS}" | while read MODEL_PRICE;
+    process_one_page_raw "${BASE_FILE}" "${STORE}" "${TYPE}"    
+  else
+    for page in ${PAGES};
     do
-      PRICE=$(echo "${MODEL_PRICE}" | awk -F '<span class="preu">' '{print $2}' | sed -e 's/<[^>]*>//g' | tr -d '€' | tr -d '.')
-      MODEL=$(echo "${MODEL_PRICE}" | awk -F '<span class="preu">' '{print $1}' | sed -e 's/<[^>]*>//g' | tr "'" '"')
-      URL=$(grep "${MODEL}" "${BASE_FILE}" -B5 | grep href | awk -F "<a href=" {'print $2'} | awk {'print $1'} | tr -d '"')
-      FINAL_URL="\"${BASE_URL}/${URL}\""
-      MODEL_CAMEL_UNCLEANED=$(camel "${MODEL}" ${NO_CAMEL_TRADEMARK_MIN})
-      MODEL_CAMEL_CLEANED=$(bubic_clean "${MODEL_CAMEL_UNCLEANED}")
-      MODEL_CAMEL=$(echo ${MODEL_CAMEL_CLEANED} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
-      #MODEL_CAMEL=${MODEL_CAMEL_UNCLEANED}
-      TRADEMARK=$(echo ${MODEL_CAMEL_CLEANED} | awk {'print $1'})
-      TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
-      #echo "MODEL_PRICE:${MODEL_PRICE}"
-      #echo "MODEL:${MODEL}"
-      #echo "MODEL_CAMEL:${MODEL_CAMEL}"
-      #echo "PRICE:${PRICE}"
-      #echo "URL:${URL}"
-      #echo "FINAL_URL:${FINAL_URL}"
-      dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+      echo "PAGE:${page}"
+      process_one_page_raw "${BASE_FILE}-${page}" "${STORE}" "${TYPE}"
     done
   fi
+}
+
+function process_one_page_raw()
+{
+  ONE_FILE="$1"
+  STORE="$2"
+  TYPE="$3"
+  #echo "ONE_FILE=$1"
+  #echo "STORE=$2"
+  #echo "TYPE=$3"
+  MODELS=$(cat "${ONE_FILE}"| grep 'span class="titol"')
+  echo "${MODELS}" | while read MODEL_PRICE;
+  do
+    PRICE=$(echo "${MODEL_PRICE}" | awk -F '<span class="preu">' '{print $2}' | sed -e 's/<[^>]*>//g' | tr -d '€' | tr -d '.')
+    MODEL=$(echo "${MODEL_PRICE}" | awk -F '<span class="preu">' '{print $1}' | sed -e 's/<[^>]*>//g' | tr "'" '"')
+    URL=$(grep "${MODEL}" "${ONE_FILE}" -B5 | grep href | awk -F "<a href=" {'print $2'} | awk {'print $1'} | tr -d '"')
+    FINAL_URL="\"${BASE_URL}/${URL}\""
+    MODEL_CAMEL_UNCLEANED=$(camel "${MODEL}" ${NO_CAMEL_TRADEMARK_MIN})
+    MODEL_CAMEL_CLEANED=$(bubic_clean "${MODEL_CAMEL_UNCLEANED}")
+    MODEL_CAMEL=$(echo ${MODEL_CAMEL_CLEANED} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
+    #MODEL_CAMEL=${MODEL_CAMEL_UNCLEANED}
+    TRADEMARK=$(echo ${MODEL_CAMEL_CLEANED} | awk {'print $1'})
+    TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+    #echo "MODEL_PRICE:${MODEL_PRICE}"
+    #echo "MODEL:${MODEL}"
+    #echo "MODEL_CAMEL:${MODEL_CAMEL}"
+    #echo "PRICE:${PRICE}"
+    #echo "URL:${URL}"
+    #echo "FINAL_URL:${FINAL_URL}"
+    dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+  done
 }
 
 > ${OUTPUT_FILE}
 
 ROAD_BIKES_BASE=road
-ROAD_BIKES_PAGES=""
+ROAD_BIKES_PAGES="$(seq 1 5)"
 
 ROAD_WOMAN_BIKES_BASE=road-woman
 ROAD_WOMAN_BIKES_PAGES=""
+
+ROAD_CROSS_BIKES_BASE=road-cross
+ROAD_CROSS_BIKES_PAGES=""
 
 URBAN_CONFORT_BIKES_BASE=urban-confort
 URBAN_CONFORT_BIKES_PAGES=""
@@ -247,42 +267,58 @@ URBAN_CONFORTM_BIKES_PAGES=""
 URBAN_CONFORT_HYBRID_BASE=urban-confort-hybrid
 URBAN_CONFORT_HYBRID_PAGES=""
 
+URBAN_CONFORT_HYBRIDM_BASE=urban-confort-hybrid-m
+URBAN_CONFORT_HYBRIDM_PAGES=""
+
 URBAN_FOLDING_BIKES_BASE=urban-folding
-URBAN_FOLDING_BIKES_PAGES=""
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 2)"
+
+URBAN_ELECTRIC_BIKES_BASE=urban-electric
+URBAN_ELECTRIC_BIKES_PAGES=""
+
+URBAN_WALK_BIKES_BASE=urban-walk
+URBAN_WALK_BIKES_PAGES=""
 
 MTB_DOUBLE_27_BIKES_BASE=mtb-double-27
-MTB_DOUBLE_27_BIKES_PAGES=""
+MTB_DOUBLE_27_BIKES_PAGES="$(seq 1 3)"
 
 MTB_DOUBLE_29_BIKES_BASE=mtb-double-29
-MTB_DOUBLE_29_BIKES_PAGES=""
+MTB_DOUBLE_29_BIKES_PAGES="$(seq 1 3)"
+
+MTB_DOUBLE_29_WOMAN_BIKES_BASE=mtb-double-29-woman
+MTB_DOUBLE_29_WOMAN_BIKES_PAGES="$(seq 1 3)"
 
 MTB_FIX_26_BIKES_BASE=mtb-fix-26
 MTB_FIX_26_BIKES_PAGES=""
 
 MTB_FIX_27_BIKES_BASE=mtb-fix-27
-MTB_FIX_27_BIKES_PAGES=""
+MTB_FIX_27_BIKES_PAGES="$(seq 1 5)"
 
 MTB_FIX_29_BIKES_BASE=mtb-fix-29
-MTB_FIX_29_BIKES_PAGES=""
+MTB_FIX_29_BIKES_PAGES="$(seq 1 7)"
 
 MTB_FIX_26_WOMAN_BIKES_BASE=mtb-fix-woman-26
 MTB_FIX_26_WOMAN_BIKES_PAGES=""
 
 MTB_FIX_27_WOMAN_BIKES_BASE=mtb-fix-woman-27
-MTB_FIX_27_WOMAN_BIKES_PAGES=""
+MTB_FIX_27_WOMAN_BIKES_PAGES="$(seq 1 3)"
 
 MTB_FIX_29_WOMAN_BIKES_BASE=mtb-fix-woman-29
 MTB_FIX_29_WOMAN_BIKES_PAGES=""
 
 KIDS_BIKES_BASE=kids
-KIDS_BIKES_PAGES=""
+KIDS_BIKES_PAGES="$(seq 1 3)"
 
 process_pages_raw "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "TomasDomingo" "ROAD" >> ${OUTPUT_FILE}
 process_pages_raw "${ROAD_WOMAN_BIKES_BASE}" "${ROAD_WOMAN_BIKES_PAGES}" "TomasDomingo" "ROAD-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "${ROAD_CROSS_BIKES_BASE}" "${ROAD_CROSS_BIKES_PAGES}" "TomasDomingo" "ROAD-CROSS" >> ${OUTPUT_FILE}
 process_pages_raw "${URBAN_CONFORT_BIKES_BASE}" "${URBAN_CONFORT_BIKES_PAGES}" "TomasDomingo"   "URBAN" >> ${OUTPUT_FILE}
 process_pages_raw "${URBAN_CONFORTM_BIKES_BASE}" "${URBAN_CONFORTM_BIKES_PAGES}" "TomasDomingo" "URBAN" >> ${OUTPUT_FILE}
 process_pages_raw "${URBAN_CONFORT_HYBRID_BASE}" "${URBAN_CONFORT_HYBRID_PAGES}" "TomasDomingo" "URBAN" >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_CONFORT_HYBRIDM_BASE}" "${URBAN_CONFORT_HYBRIDM_PAGES}" "TomasDomingo" "URBAN" >> ${OUTPUT_FILE}
 process_pages_raw "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "TomasDomingo"   "URBAN"  >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "TomasDomingo"   "URBAN-ELECTRIC"  >> ${OUTPUT_FILE}
+process_pages_raw "${URBAN_WALK_BIKES_BASE}" "${URBAN_WALK_BIKES_PAGES}" "TomasDomingo"   "URBAN-ELECTRIC"  >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_DOUBLE_27_BIKES_BASE}" "${MTB_DOUBLE_27_BIKES_PAGES}" "TomasDomingo"   "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_DOUBLE_29_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" "TomasDomingo"   "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_FIX_26_BIKES_BASE}" "${MTB_FIX_26_BIKES_PAGES}" "TomasDomingo"         "MTB-FIX" >> ${OUTPUT_FILE}
