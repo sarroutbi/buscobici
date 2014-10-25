@@ -210,7 +210,6 @@ function process_pages_raw()
   else
     for page in ${PAGES};
     do
-      echo "PAGE:${page}"
       process_one_page_raw "${BASE_FILE}-${page}" "${STORE}" "${TYPE}"
     done
   fi
