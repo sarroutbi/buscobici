@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2014 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -25,8 +25,9 @@
 
 MAX_PRICE=2
 OUTPUT_FILE=./output
-URL_BASE="http://www.bikestocks.es/b2c"
-NO_CAMEL_MIN=6
+#OUTPUT_FILE=/dev/stdout
+URL_BASE="http://www.bikestocks.es"
+NO_CAMEL_MIN=3
 
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
@@ -34,6 +35,8 @@ SUBURL_KEY="SUBURL"
 STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
+
+. ./common_proc
 
 #
 # 1 - The sentence: THIS IS A SENTENCE => This Is A Sentence
@@ -158,188 +161,122 @@ function dump_bike_from_urls()
   done
 }
 
-function process_pages()
+function process_page()
 {
   BASE_FILE="$1"
-  PAGES="$2"
+  STORE="$2"
+  TYPE="$3"
+  #echo "BASE_FILE=${BASE_FILE}"
+  #echo "STORE=${STORE}"
+  #echo "TYPE=${TYPE}"
+
+  cat ${BASE_FILE} | grep '<h3><a href=' | grep -vi Bolsa |\
+grep -vi Casco | grep -vi Soporte | grep -vi Cubierta |\
+grep -vi Elevador | grep -vi Rodillo | grep -v Transporte |\
+while read HTML_LINE;
+  do
+    TRADEMARK_MODEL=$(echo ${HTML_LINE} | sed -e 's/<[^>]*>//g' | tr -d '\n' | tr -d '\r')
+    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
+    TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
+    MODEL=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
+    MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
+    TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_MIN})
+    URL=$(echo "${HTML_LINE}" | awk -F "a href=" {'print $2'} | awk {'print $1'} | tr -d ' ')
+    PRICE=$(grep "${HTML_LINE}" "${BASE_FILE}" -A10 | grep '<span class="price"' | sed -e 's/<[^>]*>//g' | sed -e 's/^[ \t]*//g' | tr -d ' ' | egrep -E -o "[0-9]{2,5},{0,1}[0-9]{0,2}")
+    #echo "========================================================================"
+    #echo "BASE_FILE=${BASE_FILE}"
+    #echo "HTML_LINE=${HTML_LINE}"
+    #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
+    #echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
+    #echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
+    #echo "MODEL_CAMEL=${MODEL_CAMEL}"
+    #echo "URL=${URL}"
+    #echo "PRICE=${PRICE}"
+    #echo "========================================================================"
+    bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+  done
+}
+
+function process_pages()
+{
+  IFILE="$1"
+  INPAGES="$2"
   STORE="$3"
   TYPE="$4"
+  #echo "**************************"
   #echo "BASE_FILE=$1"
   #echo "PAGES=$2"
   #echo "STORE=$3"
   #echo "TYPE=$4"
+  #echo "**************************"
 
-  if [ "${PAGES}" = "" ];
+  if [ "${INPAGES}" = "" ];
   then
-      #cat "${BASE_FILE}" | grep "tituloProdNombreListado"| grep -o "href=[^>]*>" | awk -F "href=" {'print $2'} | sed s/>//g
-      URLS=$(cat "${BASE_FILE}" | grep "tituloProdNombreListado"| grep -o "href=[^>]*> | awk -F "href=" {'print $2'} | sed s/>//g")
-      dump_bike_from_urls "${URLS}" 
+      process_page "${IFILE}" "${STORE}" "${TYPE}"
   else
-    for page in ${PAGES};
-    do 
-      URLS=$(cat "${BASE_FILE}${page}" | grep "tituloProdNombreListado"| grep -o "href=[^>]*>" | awk -F "href=" {'print $2'} | tr -d '>' | tr "'" '"')
-      dump_bike_from_urls "${URLS}" "${BASE_FILE}${page}"
+    for page in ${INPAGES};
+    do
+      FILE="${IFILE}-${page}"
+      process_page "${FILE}" "${STORE}" "${TYPE}"
     done
   fi
 }
 
-MTB_26_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-26&md=0&pagact="
-MTB_26_2015_BIKES_PAGES=$(seq 1 2)
-
-MTB_27_5_CARBON_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-27%2C5-carbono&md=0&pagact="
-MTB_27_5_CARBON_2015_BIKES_PAGES=$(seq 1 2)
-
-MTB_27_5_DOUBLE_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-27%2C5-dobles&md=0&pagact="
-MTB_27_5_DOUBLE_2015_BIKES_PAGES=$(seq 1 3)
-
-MTB_27_5_FRONT_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-27.5-rigidas&md=0&pagact="
-MTB_27_5_FRONT_2015_BIKES_PAGES=$(seq 1 6)
-
-MTB_29_CARBON_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-29-carbono&md=0&pagact="
-MTB_29_CARBON_2015_BIKES_PAGES=$(seq 1 2)
-
-MTB_29_DOUBLE_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-29-dobles&md=0&pagact="
-MTB_29_DOUBLE_2015_BIKES_PAGES=$(seq 1 3)
-
-MTB_29_FRONT_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=2015-29-rigidas&md=0&pagact="
-MTB_29_FRONT_2015_BIKES_PAGES=$(seq 1 5)
-
-MTB_KIDS_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Junior2015&md=0&pagact="
-MTB_KIDS_2015_BIKES_PAGES=$(seq 1 2)
-
-MTB_26_FIX_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=rigidas201426&md=0&pagact="
-MTB_26_FIX_2014_BIKES_PAGES=$(seq 1 4)
-
-MTB_26_DOUBLE_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Doblesuspension201426&md=0&pagact="
-MTB_26_DOUBLE_2014_BIKES_PAGES=$(seq 1 3)
-
-MTB_27_5_FIX_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=rigidas201427%2C5&md=0&pagact="
-MTB_27_5_FIX_2014_BIKES_PAGES=$(seq 1 4)
-
-MTB_27_5_DOUBLE_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Doblesuspension201427%2C5&md=0&pagact="
-MTB_27_5_DOUBLE_2014_BIKES_PAGES=$(seq 1 2)
-
-MTB_29_FIX_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=rigidas201429&md=0&pagact="
-MTB_29_FIX_2014_BIKES_PAGES=$(seq 1 7)
-
-MTB_29_DOUBLE_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Doblesuspension201429&md=0&pagact="
-MTB_29_DOUBLE_2014_BIKES_PAGES=$(seq 1 3)
-
-MTB_KIDS_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Junior2014&md=0&pagact="
-MTB_KIDS_2014_BIKES_PAGES=$(seq 1 2)
-
-MTB_WOMAN_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=mujer2014&md=0&pagact="
-MTB_WOMAN_2014_BIKES_PAGES=$(seq 1 3)
-
-ROAD_2015_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=carretera2015&pagact="
-ROAD_2015_BIKES_PAGES=$(seq 1 2)
-
-ROAD_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=carretera2014&pagact="
-ROAD_2014_BIKES_PAGES=$(seq 1 10)
-
-BMX_2014_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=Trial%2FBMX%2FFreeride2014&pagact="
-BMX_2014_BIKES_PAGES=$(seq 1 4)
-
-CITY_2013_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=PASEO%2FCITY+2013&pagact="
-CITY_2013_BIKES_PAGES=$(seq 1 6)
-
-FOLDING_2013_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=PLEGABLES&pagact="
-FOLDING_2013_BIKES_PAGES=$(seq 1 5)
-
-JUNIOR_2013_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&md=0&ref=Junior&pagact="
-JUNIOR_2013_BIKES_PAGES=$(seq 1 3)
-
-MTB_WOMAN_2013_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=527&pagact="
-MTB_WOMAN_2013_BIKES_PAGES=$(seq 1 5)
-
-MTB_KIDS_2013_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=528&pagact="
-MTB_KIDS_2013_BIKES_PAGES=$(seq 1 5)
-
-MTB_2013_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=499&pagact="
-MTB_2013_BIKES_PAGES=$(seq 1 20)
-
-MTB_2012_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=338&pagact="
-MTB_2012_BIKES_PAGES=$(seq 1 13)
-
-ROAD_2012_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=196&pagact="
-ROAD_2012_BIKES_PAGES=$(seq 1 10)
-
-ROAD_2013_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=533&pagact="
-ROAD_2013_BIKES_PAGES=$(seq 1 20)
-
-TREKKING_2012_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=370&pagact="
-TREKKING_2012_BIKES_PAGES=$(seq 1 2)
-
-TREKKING_2013_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=476&pagact="
-TREKKING_2013_BIKES_PAGES=$(seq 1 10)
-
-URBAN_2012_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=368&pagact="
-URBAN_2012_BIKES_PAGES=$(seq 1 10)
-
-URBAN_2013_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=155&pagact="
-URBAN_2013_BIKES_PAGES=$(seq 1 10)
-
-FOLDING_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=158&pagact="
-FOLDING_BIKES_PAGES=$(seq 1 5)
-
-ELECTRIC_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=71&pagact="
-ELECTRIC_BIKES_PAGES=$(seq 1 5)
-
-BMX_2012_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=281&pagact="
-BMX_2012_BIKES_PAGES=$(seq 1 5)
-
-BMX_2013_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=541&pagact="
-BMX_2013_BIKES_PAGES=$(seq 1 5)
-
-JUNIOR_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=352&pagact="
-JUNIOR_BIKES_PAGES=$(seq 1 5)
-
-TRIATLON_BIKES_BASE="index.php?page=pp_productos.php&md=1&tbusq=1&codf=415&pagact="
-TRIATLON_BIKES_PAGES=$(seq 1 5)
-
-MTB_DOUBLE_OUTLET_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Bicis-doble-suspension&md=1"
-MTB_FIX_OUTLET_BIKES_BASE="index.php?page=pp_productos.php&tbusq=1&ref=Bicis-rigidas&md=1"
-
-
 > ${OUTPUT_FILE}
 
-process_pages "${MTB_26_2015_BIKES_BASE}" "${MTB_26_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_27_5_CARBON_2015_BIKES_BASE}" "${MTB_27_5_CARBON_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_27_5_DOUBLE_2015_BIKES_BASE}" "${MTB_27_5_DOUBLE_2015_BIKES_PAGES}" "BikeStocks" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_27_5_FRONT_2015_BIKES_BASE}" "${MTB_27_5_FRONT_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_29_CARBON_2015_BIKES_BASE}" "${MTB_29_CARBON_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_29_DOUBLE_2015_BIKES_BASE}" "${MTB_29_DOUBLE_2015_BIKES_PAGES}" "BikeStocks" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_29_FRONT_2015_BIKES_BASE}" "${MTB_29_FRONT_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_KIDS_2015_BIKES_BASE}" "${MTB_KIDS_2015_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_26_FIX_2014_BIKES_BASE}" "${MTB_26_FIX_2014_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_26_DOUBLE_2014_BIKES_BASE}" "${MTB_26_DOUBLE_2014_BIKES_PAGES}" "BikeStocks" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_27_5_FIX_2014_BIKES_BASE}" "${MTB_27_5_FIX_2014_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_27_5_DOUBLE_2014_BIKES_BASE}" "${MTB_27_5_DOUBLE_2014_BIKES_PAGES}" "BikeStocks" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_29_FIX_2014_BIKES_BASE}" "${MTB_29_FIX_2014_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_29_DOUBLE_2014_BIKES_BASE}" "${MTB_29_DOUBLE_2014_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_KIDS_2014_BIKES_BASE}" "${MTB_KIDS_2014_BIKES_PAGES}" "BikeStocks" "KIDS" >> ${OUTPUT_FILE}
-process_pages "${MTB_WOMAN_2014_BIKES_BASE}" "${MTB_WOMAN_2014_BIKES_PAGES}" "BikeStocks" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_pages "${ROAD_2015_BIKES_BASE}" "${ROAD_2015_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${ROAD_2014_BIKES_BASE}" "${ROAD_2014_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${BMX_2014_BIKES_BASE}" "${BMX_2014_BIKES_PAGES}" "BikeStocks" "BMX" >> ${OUTPUT_FILE}
-process_pages "${TREKKING_2014_BIKES_BASE}" "${TREKKING_2014_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${CITY_2013_BIKES_BASE}" "${CITY_2013_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${JUNIOR_2013_BIKES_BASE}" "${JUNIOR_2013_BIKES_PAGES}"  "BikeStocks" "KIDS" >> ${OUTPUT_FILE}
-process_pages "${MTB_WOMAN_2013_BIKES_BASE}" "${MTB_WOMAN_2013_BIKES_PAGES}"  "BikeStocks" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_pages "${MTB_KIDS_2013_BIKES_BASE}"  "${MTB_KIDS_2013_BIKES_PAGES}"  "BikeStocks" "KIDS" >> ${OUTPUT_FILE}
-process_pages "${MTB_2013_BIKES_BASE}"  "${MTB_2013_BIKES_PAGES}"  "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_2012_BIKES_BASE}"  "${MTB_2012_BIKES_PAGES}"  "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${ROAD_2012_BIKES_BASE}" "${ROAD_2012_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${ROAD_2013_BIKES_BASE}" "${ROAD_2013_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${TREKKING_2012_BIKES_BASE}" "${TREKKING_2012_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${TREKKING_2013_BIKES_BASE}" "${TREKKING_2013_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_2012_BIKES_BASE}" "${URBAN_2012_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_2013_BIKES_BASE}" "${URBAN_2013_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${ELECTRIC_BIKES_BASE}" "${ELECTRIC_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${BMX_2012_BIKES_BASE}" "${BMX_2012_BIKES_PAGES}" "BikeStocks" "BMX" >> ${OUTPUT_FILE}
-process_pages "${BMX_2013_BIKES_BASE}" "${BMX_2013_BIKES_PAGES}" "BikeStocks" "BMX" >> ${OUTPUT_FILE}
-process_pages "${JUNIOR_BIKES_BASE}" "${JUNIOR_BIKES_PAGES}" "BikeStocks" "KIDS" >> ${OUTPUT_FILE}
-process_pages "${TRIATLON_BIKES_BASE}" "${TRIATLON_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${MTB_DOUBLE_OUTLET_BIKES_BASE}" "${MTB_DOUBLE_OUTLET_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_FIX_OUTLET_BIKES_BASE}" "${MTB_FIX_OUTLET_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+MTB_26_BIKES_BASE="mtb-26"
+MTB_26_BIKES_PAGES="$(seq 1 3)"
+process_pages "${MTB_26_BIKES_BASE}" "${MTB_26_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+
+MTB_27_BIKES_BASE="mtb-27"
+MTB_27_BIKES_PAGES="$(seq 1 7)"
+process_pages "${MTB_27_BIKES_BASE}" "${MTB_27_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
+
+MTB_29_BIKES_BASE="mtb-29"
+MTB_29_BIKES_PAGES="$(seq 1 7)"
+process_pages "${MTB_29_BIKES_BASE}" "${MTB_29_BIKES_PAGES}" "BikeStocks" "MTB-29" >> ${OUTPUT_FILE}
+
+ROAD_BIKES_BASE="road"
+ROAD_BIKES_PAGES="$(seq 1 6)"
+process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
+
+ROAD_TRIATLON_BIKES_BASE="road-triatlon"
+ROAD_TRIATLON_BIKES_PAGES="$(seq 1 2)"
+
+process_pages "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}" "BikeStocks" "ROAD-TRIATLON" >> ${OUTPUT_FILE}
+
+URBAN_ELECTRIC_BIKES_BASE="urban-electric"
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 2)"
+
+process_pages "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "BikeStocks" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
+
+BMX_BIKES_BASE="bmx"
+BMX_BIKES_PAGES="$(seq 1 2)"
+
+process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "BikeStocks" "BMX" >> ${OUTPUT_FILE}
+
+URBAN_WALK_BIKES_BASE="urban-walk"
+URBAN_WALK_BIKES_PAGES="$(seq 1 2)"
+
+process_pages "${URBAN_WALK_BIKES_BASE}" "${URBAN_WALK_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
+
+URBAN_TREKKING_BIKES_BASE="urban-trekking"
+URBAN_TREKKING_BIKES_PAGES="$(seq 1 2)"
+
+process_pages "${URBAN_TREKKING_BIKES_BASE}" "${URBAN_TREKKING_BIKES_PAGES}" "BikeStocks" "URBAN-TREKKING" >> ${OUTPUT_FILE}
+
+URBAN_FOLDING_BIKES_BASE="urban-folding"
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 3)"
+
+process_pages "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "BikeStocks" "URBAN-FOLDING" >> ${OUTPUT_FILE}
+
+MTB_WOMAN_BIKES_BASE="mtb-woman"
+MTB_WOMAN_BIKES_PAGES="$(seq 1 2)"
+
+process_pages "${MTB_WOMAN_BIKES_BASE}" "${MTB_WOMAN_BIKES_PAGES}" "BikeStocks" "MTB-WOMAN" >> ${OUTPUT_FILE}
+
+KIDS_BIKES_BASE="kids"
+KIDS_BIKES_PAGES="$(seq 1 3)"
+
+process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "BikeStocks" "KIDS" >> ${OUTPUT_FILE}
+
