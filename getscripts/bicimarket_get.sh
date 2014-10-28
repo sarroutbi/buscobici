@@ -122,37 +122,37 @@ MTB_XC_29_FIX_PAGES=""
 
 ####2014 Review
 ROAD_2014_BIKES_BASE="${URL}/Bicicletas-Carretera-c20433.html?page="
-ROAD_2014_BIKES_PAGES="$(seq 1 4)"
+ROAD_2014_BIKES_PAGES="$(seq 1 5)"
 
 ELECTRIC_2014_BIKES_BASE="${URL}/Bicicletas-Electricas-c20440.html?page="
-ELECTRIC_2014_BIKES_PAGES="$(seq 1 2)"
+ELECTRIC_2014_BIKES_PAGES="$(seq 1 3)"
 
 URBAN_2014_BIKES_BASE="${URL}/Bicicletas-Urbanas-c20435.html?page="
-URBAN_2014_BIKES_PAGES="$(seq 1 4)"
+URBAN_2014_BIKES_PAGES="$(seq 1 5)"
 
 ROAD_TRIATLON_2014_BIKES_BASE="${URL}/Bicicletas-Triatlon-c20439.html?page="
-ROAD_TRIATLON_2014_BIKES_PAGES="$(seq 1 2)"
+ROAD_TRIATLON_2014_BIKES_PAGES="$(seq 1 3)"
 
 ROAD_CICLOCROSS_2014_BIKES_BASE="${URL}/Bicicletas-Ciclocross-c20437.html?page="
-ROAD_CICLOCROSS_2014_BIKES_PAGES="$(seq 1 2)"
+ROAD_CICLOCROSS_2014_BIKES_PAGES="$(seq 1 3)"
 
 MTB_2014_BIKES_BASE="${URL}/Bicicletas-MTB-26-c20526.html?page="
-MTB_2014_BIKES_PAGES="$(seq 1 2)"
+MTB_2014_BIKES_PAGES="$(seq 1 3)"
 
 MTB_27_5_2014_BIKES_BASE="${URL}/Bicicletas-MTB-27-5-c20527.html?page="
-MTB_27_5_2014_BIKES_PAGES="$(seq 1 4)"
+MTB_27_5_2014_BIKES_PAGES="$(seq 1 5)"
 
 MTB_29_2014_BIKES_BASE="${URL}/Bicicletas-MTB-29-c20528.html?page="
-MTB_29_2014_BIKES_PAGES="$(seq 1 5)"
+MTB_29_2014_BIKES_PAGES="$(seq 1 6)"
 
 KIDS_2014_BIKES_BASE="${URL}/Bicicletas-Infantiles-Junior-c20434.html?page="
-KIDS_2014_BIKES_PAGES="$(seq 1 3)"
+KIDS_2014_BIKES_PAGES="$(seq 1 4)"
 
 BMX_2014_BIKES_BASE="${URL}/Bicicletas-BMX-c20436.html?page="
-BMX_2014_BIKES_PAGES="$(seq 1 2)"
+BMX_2014_BIKES_PAGES="$(seq 1 3)"
 
 FOLDING_2014_BIKES_BASE="${URL}/Bicicletas-Plegables-c20438.html?page="
-FOLDING_2014_BIKES_PAGES="$(seq 1 2)"
+FOLDING_2014_BIKES_PAGES="$(seq 1 3)"
 
 bubic_get_page_outfile "${ROAD_2014_BIKES_BASE}" "${ROAD_2014_BIKES_PAGES}" road
 bubic_get_page_outfile "${ELECTRIC_2014_BIKES_BASE}" "${ELECTRIC_2014_BIKES_PAGES}" electric
