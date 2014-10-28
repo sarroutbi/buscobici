@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2014 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -23,6 +23,8 @@ EXCLUDE="-Rgif -Rpng -Rjpg"
 MAX_TRIES=15
 MAX_TIMEOUT=15
 
+. ./common_get
+
 function get_page()
 {
   BASE_URL="$1"
@@ -38,178 +40,63 @@ function get_page()
   fi
 }
 
-# 2015 models
-MTB_26_2015_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=2015-26&md=0&pagact="
-MTB_26_2015_BIKES_PAGES=$(seq 1 2)
+# 2015 review
+MTB_26_BIKES_BASE="${URL}/bicicletas-26-pulgadas-mtb-573?p="
+MTB_26_BIKES_PAGES="$(seq 1 3)"
 
-MTB_27_5_CARBON_2015_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=2015-27%2C5-carbono&md=0&pagact="
-MTB_27_5_CARBON_2015_BIKES_PAGES=$(seq 1 2)
+bubic_get_page_outfile "${MTB_26_BIKES_BASE}" "${MTB_26_BIKES_PAGES}" mtb-26
 
-MTB_27_5_DOUBLE_2015_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=2015-27%2C5-dobles&md=0&pagact="
-MTB_27_5_DOUBLE_2015_BIKES_PAGES=$(seq 1 3)
+MTB_27_BIKES_BASE="${URL}/mountain-bike-27-5-574?p="
+MTB_27_BIKES_PAGES="$(seq 1 7)"
 
-MTB_27_5_FRONT_2015_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=2015-27.5-rigidas&md=0&pagact="
-MTB_27_5_FRONT_2015_BIKES_PAGES=$(seq 1 6)
+bubic_get_page_outfile "${MTB_27_BIKES_BASE}" "${MTB_27_BIKES_PAGES}" mtb-27
 
-MTB_29_CARBON_2015_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=2015-29-carbono&md=0&pagact="
-MTB_29_CARBON_2015_BIKES_PAGES=$(seq 1 2)
+MTB_29_BIKES_BASE="${URL}/bicicletas-29-pulgadas-mtb-575?p="
+MTB_29_BIKES_PAGES="$(seq 1 7)"
 
-MTB_29_DOUBLE_2015_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=2015-29-dobles&md=0&pagact="
-MTB_29_DOUBLE_2015_BIKES_PAGES=$(seq 1 3)
+bubic_get_page_outfile "${MTB_29_BIKES_BASE}" "${MTB_29_BIKES_PAGES}" mtb-29
 
-MTB_29_FRONT_2015_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=2015-29-rigidas&md=0&pagact="
-MTB_29_FRONT_2015_BIKES_PAGES=$(seq 1 5)
+ROAD_BIKES_BASE="${URL}/bicicletas-de-carretera-571?p="
+ROAD_BIKES_PAGES="$(seq 1 6)"
 
-#2015 mtb kids
-MTB_KIDS_2015_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=Junior2015&md=0&pagact="
-MTB_KIDS_2015_BIKES_PAGES=$(seq 1 2)
+bubic_get_page_outfile "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" road
 
-#2014 mtb
-MTB_26_FIX_2014_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=rigidas201426&md=0&pagact="
-MTB_26_FIX_2014_BIKES_PAGES=$(seq 1 4)
+ROAD_TRIATLON_BIKES_BASE="${URL}/bicicletas-de-triatlon-415?p="
+ROAD_TRIATLON_BIKES_PAGES="$(seq 1 2)"
 
-MTB_26_DOUBLE_2014_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=Doblesuspension201426&md=0&pagact="
-MTB_26_DOUBLE_2014_BIKES_PAGES=$(seq 1 3)
+bubic_get_page_outfile "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}" road-triatlon
 
-MTB_27_5_FIX_2014_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=rigidas201427%2C5&md=0&pagact="
-MTB_27_5_FIX_2014_BIKES_PAGES=$(seq 1 4)
+URBAN_ELECTRIC_BIKES_BASE="${URL}/bicicletas-electricas-71?p="
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 2)"
 
-MTB_27_5_DOUBLE_2014_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=Doblesuspension201427%2C5&md=0&pagact="
-MTB_27_5_DOUBLE_2014_BIKES_PAGES=$(seq 1 2)
+bubic_get_page_outfile "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" urban-electric
 
-MTB_29_FIX_2014_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=rigidas201429&md=0&pagact="
-MTB_29_FIX_2014_BIKES_PAGES=$(seq 1 7)
+BMX_BIKES_BASE="${URL}/bicicletas-bmx-trial-y-freeride-594?p="
+BMX_BIKES_PAGES="$(seq 1 2)"
 
-MTB_29_DOUBLE_2014_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=Doblesuspension201429&md=0&pagact="
-MTB_29_DOUBLE_2014_BIKES_PAGES=$(seq 1 3)
+bubic_get_page_outfile "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" bmx
 
-#2014 mtb kids
-MTB_KIDS_2014_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=Junior2014&md=0&pagact="
-MTB_KIDS_2014_BIKES_PAGES=$(seq 1 2)
+URBAN_WALK_BIKES_BASE="${URL}/bicicletas-de-paseo-155?p="
+URBAN_WALK_BIKES_PAGES="$(seq 1 2)"
 
-#2014 woman
-MTB_WOMAN_2014_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=mujer2014&md=0&pagact="
-MTB_WOMAN_2014_BIKES_PAGES=$(seq 1 3)
+bubic_get_page_outfile "${URBAN_WALK_BIKES_BASE}" "${URBAN_WALK_BIKES_PAGES}" urban-walk
 
-#2015 road
-ROAD_2015_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&md=0&ref=carretera2015&pagact="
-ROAD_2015_BIKES_PAGES=$(seq 1 2)
+URBAN_TREKKING_BIKES_BASE="${URL}/bicicletas-trekking-476?p="
+URBAN_TREKKING_BIKES_PAGES="$(seq 1 3)"
 
-#2014 road
-ROAD_2014_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&md=0&ref=carretera2014&pagact="
-ROAD_2014_BIKES_PAGES=$(seq 1 10)
+bubic_get_page_outfile "${URBAN_TREKKING_BIKES_BASE}" "${URBAN_TREKKING_BIKES_PAGES}" urban-trekking
 
-#2014 BMX
-BMX_2014_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&md=0&ref=Trial%2FBMX%2FFreeride2014&pagact="
-BMX_2014_BIKES_PAGES=$(seq 1 4)
+URBAN_FOLDING_BIKES_BASE="${URL}/bicicletas-plegables-158?p="
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 3)"
 
-#2014 Trekking
-TREKKING_2014_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&md=0&ref=Trekking+2014&pagact="
-TREKKING_2014_BIKES_PAGES=$(seq 1 6)
+bubic_get_page_outfile "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" urban-folding
 
-#2013 City
-CITY_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&md=0&ref=PASEO%2FCITY+2013&pagact="
-CITY_2013_BIKES_PAGES=$(seq 1 6)
+MTB_WOMAN_BIKES_BASE="${URL}/bicicletas-mujer-montana-576?p="
+MTB_WOMAN_BIKES_PAGES="$(seq 1 2)"
 
-#2013 FOLDING
-FOLDING_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&md=0&ref=PLEGABLES&pagact="
-FOLDING_2013_BIKES_PAGES=$(seq 1 5)
+bubic_get_page_outfile "${MTB_WOMAN_BIKES_BASE}" "${MTB_WOMAN_BIKES_PAGES}" mtb-woman
 
-#JUNIOR 2013
-JUNIOR_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&md=0&ref=Junior&pagact="
-JUNIOR_2013_BIKES_PAGES=$(seq 1 3)
+KIDS_BIKES_BASE="${URL}/bicicletas-para-ninos-352?p="
+KIDS_BIKES_PAGES="$(seq 1 3)"
 
-#2013 mtb
-MTB_WOMAN_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=527&pagact="
-MTB_WOMAN_2013_BIKES_PAGES=$(seq 1 5)
-
-MTB_KIDS_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=528&pagact="
-MTB_KIDS_2013_BIKES_PAGES=$(seq 1 5)
-
-MTB_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=499&pagact="
-MTB_2013_BIKES_PAGES=$(seq 1 20)
-
-MTB_2012_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=338&pagact="
-MTB_2012_BIKES_PAGES=$(seq 1 5)
-
-ROAD_2012_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=196&pagact="
-ROAD_2012_BIKES_PAGES=$(seq 1 10)
-
-ROAD_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=533&pagact="
-ROAD_2013_BIKES_PAGES=$(seq 1 20)
-
-TREKKING_2012_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=370&pagact="
-TREKKING_2012_BIKES_PAGES=$(seq 1 2)
-
-TREKKING_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=476&pagact="
-TREKKING_2013_BIKES_PAGES=$(seq 1 10)
-
-URBAN_2012_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=368&pagact="
-URBAN_2012_BIKES_PAGES=$(seq 1 5)
-
-URBAN_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=155&pagact="
-URBAN_2013_BIKES_PAGES=$(seq 1 10)
-
-FOLDING_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=158&pagact="
-FOLDING_BIKES_PAGES=$(seq 1 5)
-
-ELECTRIC_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=71&pagact="
-ELECTRIC_BIKES_PAGES=$(seq 1 5)
-
-BMX_2012_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=281&pagact="
-BMX_2012_BIKES_PAGES=$(seq 1 5)
-
-BMX_2013_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=541&pagact="
-BMX_2013_BIKES_PAGES=$(seq 1 5)
-
-JUNIOR_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=352&pagact="
-JUNIOR_BIKES_PAGES=$(seq 1 5)
-
-TRIATLON_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&md=1&tbusq=1&codf=415&pagact="
-TRIATLON_BIKES_PAGES=$(seq 1 5)
-
-MTB_DOUBLE_OUTLET_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=Bicis-doble-suspension&md=1"
-MTB_FIX_OUTLET_BIKES_BASE="http://www.bikestocks.es/b2c/index.php?page=pp_productos.php&tbusq=1&ref=Bicis-rigidas&md=1"
-
-get_page "${MTB_26_2015_BIKES_BASE}" "${MTB_26_2015_BIKES_PAGES}"
-get_page "${MTB_27_5_CARBON_2015_BIKES_BASE}" "${MTB_27_5_CARBON_2015_BIKES_PAGES}"
-get_page "${MTB_27_5_DOUBLE_2015_BIKES_BASE}" "${MTB_27_5_DOUBLE_2015_BIKES_PAGES}"
-get_page "${MTB_27_5_FRONT_2015_BIKES_BASE}" "${MTB_27_5_FRONT_2015_BIKES_PAGES}"
-get_page "${MTB_29_CARBON_2015_BIKES_BASE}" "${MTB_29_CARBON_2015_BIKES_PAGES}"
-get_page "${MTB_29_DOUBLE_2015_BIKES_BASE}" "${MTB_29_DOUBLE_2015_BIKES_PAGES}"
-get_page "${MTB_29_FRONT_2015_BIKES_BASE}" "${MTB_29_FRONT_2015_BIKES_PAGES}"
-get_page "${MTB_KIDS_2015_BIKES_BASE}" "${MTB_KIDS_2015_BIKES_PAGES}"
-get_page "${MTB_26_FIX_2014_BIKES_BASE}" "${MTB_26_FIX_2014_BIKES_PAGES}"
-get_page "${MTB_26_DOUBLE_2014_BIKES_BASE}" "${MTB_26_DOUBLE_2014_BIKES_PAGES}"
-get_page "${MTB_27_5_FIX_2014_BIKES_BASE}" "${MTB_27_5_FIX_2014_BIKES_PAGES}"
-get_page "${MTB_27_5_DOUBLE_2014_BIKES_BASE}" "${MTB_27_5_DOUBLE_2014_BIKES_PAGES}"
-get_page "${MTB_29_FIX_2014_BIKES_BASE}" "${MTB_29_FIX_2014_BIKES_PAGES}"
-get_page "${MTB_29_DOUBLE_2014_BIKES_BASE}" "${MTB_29_DOUBLE_2014_BIKES_PAGES}"
-get_page "${MTB_KIDS_2014_BIKES_BASE}" "${MTB_KIDS_2014_BIKES_PAGES}"
-get_page "${MTB_WOMAN_2014_BIKES_BASE}" "${MTB_WOMAN_2014_BIKES_PAGES}"
-get_page "${ROAD_2015_BIKES_BASE}" "${ROAD_2015_BIKES_PAGES}"
-get_page "${ROAD_2014_BIKES_BASE}" "${ROAD_2014_BIKES_PAGES}"
-get_page "${BMX_2014_BIKES_BASE}" "${BMX_2014_BIKES_PAGES}"
-get_page "${TREKKING_2014_BIKES_BASE}" "${TREKKING_2014_BIKES_PAGES}"
-get_page "${CITY_2013_BIKES_BASE}" "${CITY_2013_BIKES_PAGES}"
-get_page "${FOLDING_2013_BIKES_BASE}" "${FOLDING_2013_BIKES_PAGES}"
-get_page "${JUNIOR_2013_BIKES_BASE}" "${JUNIOR_2013_BIKES_PAGES}"
-get_page "${MTB_WOMAN_2013_BIKES_BASE}" "${MTB_WOMAN_2013_BIKES_PAGES}"
-get_page "${MTB_KIDS_2013_BIKES_BASE}" "${MTB_KIDS_2013_BIKES_PAGES}"
-get_page "${MTB_2013_BIKES_BASE}" "${MTB_2013_BIKES_PAGES}"
-get_page "${MTB_2012_BIKES_BASE}" "${MTB_2012_BIKES_PAGES}"
-get_page "${ROAD_2013_BIKES_BASE}" "${ROAD_2013_BIKES_PAGES}"
-get_page "${ROAD_2012_BIKES_BASE}" "${ROAD_2012_BIKES_PAGES}"
-get_page "${TREKKING_2013_BIKES_BASE}" "${TREKKING_2013_BIKES_PAGES}"
-get_page "${TREKKING_2012_BIKES_BASE}" "${TREKKING_2012_BIKES_PAGES}"
-get_page "${URBAN_2012_BIKES_BASE}" "${URBAN_2012_BIKES_PAGES}"
-get_page "${URBAN_2013_BIKES_BASE}" "${URBAN_2013_BIKES_PAGES}"
-get_page "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}"
-get_page "${ELECTRIC_BIKES_BASE}" "${ELECTRIC_BIKES_PAGES}"
-get_page "${BMX_2012_BIKES_BASE}" "${BMX_2012_BIKES_PAGES}"
-get_page "${BMX_2013_BIKES_BASE}" "${BMX_2013_BIKES_PAGES}"
-get_page "${JUNIOR_BIKES_BASE}" "${JUNIOR_BIKES_PAGES}"
-get_page "${TRIATLON_BIKES_BASE}" "${TRIATLON_BIKES_PAGES}"
-get_page "${MTB_DOUBLE_OUTLET_BIKES_BASE}" ""
-get_page "${MTB_FIX_OUTLET_BIKES_BASE}" ""
-
+bubic_get_page_outfile "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" kids
