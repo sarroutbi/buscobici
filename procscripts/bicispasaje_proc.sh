@@ -99,7 +99,7 @@ function process_one_page()
   TRADEMARK_MODELS=$(cat ${BASE_FILE} | awk -F "<h3>" {'print $2'} | awk -F "</h3>" {'print $1'} | sed -e 's/<[^>]*>//g' | egrep -E ^[A-Z,a-z,0-9])
   echo "${TRADEMARK_MODELS}" | while read line;
   do
-    PRICE=$(grep "${line}" "${BASE_FILE}" | awk -F '<span class="price">' {'print $2'} | awk -F '</span>' {'print $1'} | tr -d " " | tr -d "€" | tail -1)
+    PRICE=$(grep "${line}" "${BASE_FILE}" -A10 | awk -F '<span class="price">' {'print $2'} | awk -F '</span>' {'print $1'} | grep [0-9] | tr -d " " | tr -d "€" | tail -1)
     URL=$(grep "${line}" "${BASE_FILE}" | sed -e 's/href=/\nhref=/g' | awk -F "href=" {'print $2'} | awk {'print $1'} | grep http | tail -1)
     TRADEMARK_MODEL=$(echo ${line} | awk -F '</h3>' {'print $1'} | sed -e 's/<[^>]*>//g' )
     TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
