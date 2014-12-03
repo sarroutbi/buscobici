@@ -127,25 +127,45 @@ function camel()
   echo
 }
 
+function get_price_with_url()
+{
+  URL=$(echo "${URL}" | tr -d '"')
+  wget "${URL}" -o /dev/null -O - | grep '<span id="our_price_display"' | grep "[0-9]" | sed -e 's@<[^>]*>@@g' | egrep -o -E "[0-9]{0,2} {0,1}[0-9]{2,3},[0-9]{2}" | tail -1
+}
+
 function dump_bike_from_file()
 {
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-#  cat "${FILE}" | sed -e 's@<div class="product-meta">@\n<div class="product-meta">@g' | grep ^'<div class="product-meta">' | sed -e 's@<div class="image ">@\n<div class="image ">@g' | grep ^'<div class="product-meta"' | while read line;
-  cat "${FILE}" | sed -e 's@<div class="product-image-container">@\n<div class="product-image-container">@g' | sed -e 's@<div class="left-block">@\n<div class="left-block">@g' | grep ^'<div class="product-image-container">' | while read line;
+#  cat "${FILE}" | grep '<div class="product-meta">' -A7 | sed -e 's@<div class="product-meta">\n@<div class="product-meta">@g' | while read line;
+  cat "${FILE}" | grep '<h5 itemprop="name">' -A5 | sed -e 's@<[^>]*>@@g' | grep [A-Z,a-z] | while read model;
   do 
-    TRADEMARK_MODEL=$(echo ${line} | awk -F 'title=' {'print $2'} | awk -F '"' {'print $2'} | tr -d '"' | sed -e 's/^[ ]*//g')
-    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}" | sed -e 's/^[ ]*//g')
-    TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
+    TRADEMARK_MODEL=$(echo ${model} | tr -d '\n' | sed -e 's/^[ ]*//g')
+    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}" | sed -e 's/^[ ]*//g' | tr -d '\n' | tr -d '\r')
+    TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'} | tr -d '\n')
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN} | sed -e 's/Q.er/Quer/g')
     MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;i++){printf $i; if(i<NF) {printf " "}}'} | sed -e 's@\.\.\.@@g')
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
-    URL=$(echo ${line} | awk -F "href=" {'print $2'} | awk {'print $1'})
-    PRICE=$(echo ${line} | awk -F 'class="price product-price">' {'print $2'} | awk -F "</span>" {'print $1'} | egrep -E "[0-9]{1,2}[ ]{0,1}[0-9]{2,5},[0-9]{0,2}" -o | tr -d ' ')
+    URL=$(grep "${model}" "${FILE}" -B2 | grep href | awk -F "href=" {'print $2'} | awk {'print $1'} | tail -1)
+    PRICE=$(grep "${model}" "${FILE}" -C10 | grep "[0-9]" | egrep -o -E "[0-9]{0,2} {0,1}[0-9]{2,3},[0-9]{2}" | tail -1)
+    if [ "${PRICE}" = "" ];
+    then
+      PRICE=$(grep "${URL}" "${FILE}" -C10 | grep "[0-9]" | egrep -o -E "[0-9]{0,2} {0,1}[0-9]{2,3},[0-9]{2}" | tail -1)
+    fi
+    if [ "${PRICE}" = "" ];
+    then
+      PRICE=$(grep "${TRADEMARK_MODEL_CLEAN}" "${FILE}" -C10 | grep "[0-9]" | egrep -o -E "[0-9]{0,2} {0,1}[0-9]{2,3},[0-9]{2}" | tail -1)
+    fi
+    if [ "${PRICE}" = "" ];
+    then
+      PRICE=$(get_price_with_url "${URL}")
+    fi
+
+    PRICE=$(echo "${PRICE}" | tr -d ' ')
     #echo "========================================================================"
     #echo "FILE:${FILE}"
-    #echo "LINE:${line}"
+    #echo "ORIG MODEL:${model}"
     #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
     #echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
     #echo "TRADEMARK=${TRADEMARK}"

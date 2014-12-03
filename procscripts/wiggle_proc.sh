@@ -106,7 +106,7 @@ function dump_bike()
 # 2 - The MODEL of bike
 function print_price()
 {
-  PRICE="$(grep -A50 "$2" "$1"  | grep Pagas | grep '&euro' | head -1 | sed -e 's/<[^>]*>//g' | awk -F '&euro;' {'print $1'} | egrep -o -E " [0-9]{1,}.{0,1}[0-9]{1,3},{1,2}[0-9]{1,2}" | tr -d '.' | sed -e 's/^[ \t]*//g')"
+  PRICE="$(grep -A50 "$2" "$1" | grep '<span class="price">' | head -1 | sed -e 's/<[^>]*>//g' | awk -F '&euro;' {'print $1'} | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,3},{1,2}[0-9]{1,2}" | tr -d '.' | sed -e 's/^[ \t]*//g')"
   echo "${PRICE}"
 }
 
@@ -114,7 +114,7 @@ function print_url()
 {
   model="$1"
   BASE_FILE="$2"
-  URL=$(grep "${model}" "${BASE_FILE}" | awk -F "a href=" {'print $2'} | awk {'print $1'} | head -1)
+  URL=$(grep "${model}" "${BASE_FILE}" | grep href | awk -F "a href=" {'print $2'} | awk {'print $1'} | head -1)
   echo "${URL}" | tr -d '"'
 }
 
@@ -140,20 +140,22 @@ function process_page_file()
     #echo "========================================================================"
     MODELS="$(cat ${FILE_BASE} | grep "productlink" | sed -e 's/<[^>]*>//g')"
     
-    echo "${MODELS}" | while read model;
+    echo "${MODELS}" | tr -d '\r' | while read model;
     do
-      MODEL="$(echo ${model} | tr -d '\r')"
-      MODEL_CLEAN=$(bubic_clean "${MODEL}")
-      TRADEMARK="$(echo "${MODEL_CLEAN}" | awk -F "-" {'print $1'} | sed -e 's/[ \t]$//g' | sed -e 's/^[ \t]*//g')"
-      TRADEMARK_CLEAN="$(bubic_clean "${TRADEMARK}")"
+      TRADEMARK_MODEL="$(echo ${model} | tr -d '\r' | tr -d '\n')"
+      TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
+#      TRADEMARK="$(echo "${MODEL_CLEAN}" | awk -F "-" {'print $1'} | sed -e 's/[ \t]$//g' | sed -e 's/^[ \t]*//g')"
+      TRADEMARK="$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'} | tr -d '\n' | tr -d '\r')"
+      MODEL_CLEAN=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;i++){printf $i; if(i<NF){printf " "}}'} | sed -e 's/^- //g')
       MODEL_NO_TRADEMARK="$(echo ${MODEL_CLEAN} | sed -e "s/${TRADEMARK}//g" | sed -e 's/^ - //g' )"
       MODEL_CAMEL=$(camel "${MODEL_NO_TRADEMARK}" "${NO_CAMEL_MIN}")
-      TRADEMARK_CAMEL=$(camel "${TRADEMARK_CLEAN}" "${NO_CAMEL_MIN}")
-      URL=$(print_url "${MODEL}" "${FILE_BASE}")
-      PRICE=$(print_price "${FILE_BASE}" "${MODEL}" | tr -d '\n')
+      TRADEMARK_CAMEL=$(camel "${TRADEMARK}" "${NO_CAMEL_MIN}")
+      URL=$(print_url "${model}" "${FILE_BASE}")
+      PRICE=$(print_price "${FILE_BASE}" "${URL}" | tr -d '\n')
       #echo "========================================================================"
-      #echo "MODEL=>${MODEL}<="
-      #echo "MODEL_CLEAN=>${MODEL_CLEAN}<="
+      #echo "model=>${model}<="
+      #echo "TRADEMARK_MODEL=>${TRADEMARK_MODEL}<="
+      #echo "TRADEMARK_MODEL_CLEAN=>${TRADEMARK_MODEL_CLEAN}<="
       #echo "TRADEMARK=>${TRADEMARK}<="
       #echo "MODEL_NO_TRADEMARK=>${MODEL_NO_TRADEMARK}<="
       #echo "TRADEMARK_CAMEL=>${TRADEMARK_CAMEL}<="

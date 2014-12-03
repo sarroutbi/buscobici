@@ -122,6 +122,8 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Rr].gida//g' \
 | sed -e 's/[Bb]icicleta [Ss]ingle-[Ss]peed//g' \
 | sed -e 's/[Bb]icicleta de [Aa]prendizaje//g' \
+| sed -e 's/[Bb]icicleta de 650b//g' \
+| sed -e 's/[Bb]icicleta [Aa]zul//g' \
 | sed -e 's/[Bb]olsa [Pp]ortabultos [Dd]elantera//g' \
 | sed -e 's/[Bb]olsa [Pp]ortabicicletas//g' \
 | sed -e 's/[Cc]on [Bb]arra [Bb]aja//g' \
