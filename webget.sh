@@ -22,6 +22,7 @@ TMP_CONFIGS_FILE=/tmp/configs
 TEMP=
 COMMON_PROC=procscripts/common_proc
 COMMON_GET=getscripts/common_get
+COMMON_GET_PERL=getscripts/CommonGet.pl
 TMP_DIR_FILE=$(mktemp)
 TMP_SCRIPT_FILE=$(mktemp)
 TMP_PSCRIPT_FILE=$(mktemp)
@@ -210,6 +211,7 @@ do
             cp ${COOKIES_FILE} ${SCRIPT_DIR}
             cp ${COMMON_PROC} ${SCRIPT_DIR}
             cp ${COMMON_GET} ${SCRIPT_DIR}
+            cp ${COMMON_GET_PERL} ${SCRIPT_DIR}
             pushd ${SCRIPT_DIR} > /dev/null 
             ./$(basename ${SCRIPT_FILE})
             ./$(basename ${PSCRIPT_FILE})
