@@ -38,3 +38,4 @@ This file contains which stores have been reviewed and the date.
 - Calmera       : 20141008
 - TomasDomingo  : 20141024
 - BikeStocks    : 20141028
+- BicisPasaje   : 20141207
