@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2014 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -21,6 +21,8 @@ ONLY_DOMAIN="preciosbicicletas.es"
 MAX_TRIES=15
 MAX_TIMEOUT=15
 
+. ./common_get
+
 function get_pages()
 {
   BASE_URL="$1"
@@ -39,42 +41,42 @@ function get_pages()
 MTB_BIKES_26_BASE="${URL}/es/7-mtb-rígidas"
 MTB_BIKES_CUBE_26_BASE="${URL}/es/160-cube-rígidas-26-2014"
 MTB_BIKES_MMR_26_BASE="${URL}/es/181-mmr-rígidas-26-2014"
-MTB_BIKES_27_5_BASE="${URL}/es/158-mtb-rígida-275"
+MTB_BIKES_27_5_BASE="${URL}/es/158-mtb-rígida-275?p="
 MTB_BIKES_27_5_PAGES="$(seq 1 5)"
-MTB_BIKES_29_BASE="${URL}/es/10-mtb-rígida-29er"
+MTB_BIKES_29_BASE="${URL}/es/10-mtb-rígida-29er?p="
 MTB_BIKES_29_PAGES="$(seq 1 6)"
 MTB_BIKES_DOUBLE_26_BASE="${URL}/es/17-doble-susp-26"
-MTB_BIKES_DOUBLE_27_5_BASE="${URL}/es/164-doble-susp-275-"
+MTB_BIKES_DOUBLE_27_5_BASE="${URL}/es/164-doble-susp-275-?p="
 MTB_BIKES_DOUBLE_27_5_PAGES="$(seq 1 3)"
-MTB_BIKES_DOUBLE_29_BASE="${URL}/es/21-doble-susp-29er"
+MTB_BIKES_DOUBLE_29_BASE="${URL}/es/21-doble-susp-29er?p="
 MTB_BIKES_DOUBLE_29_PAGES="$(seq 1 3)"
 MTB_2013_BIKES_BASE="${URL}/es/64-bicis-mtb-2013"
-ROAD_BIKES_BASE="${URL}/es/31-carretera"
+ROAD_BIKES_BASE="${URL}/es/31-carretera?p="
 ROAD_BIKES_PAGES="$(seq 1 4)"
 ROAD_2013_BIKES_BASE="${URL}/es/63-bicis-carretera-2013"
 ROAD_TRIATLON_BIKES_BASE="${URL}/es/142-triatlón"
-KIDS_BIKES_BASE="${URL}/es/34-infantiles"
+KIDS_BIKES_BASE="${URL}/es/34-infantiles?p="
 KIDS_BIKES_PAGES="$(seq 1 3)"
-WOMAN_BIKES_BASE="${URL}/es/122-dama"
+WOMAN_BIKES_BASE="${URL}/es/122-dama?p="
 WOMAN_BIKES_PAGES="$(seq 1 3)"
-URBAN_BIKES_BASE="${URL}/es/153-trekking-ciudad"
+URBAN_BIKES_BASE="${URL}/es/153-trekking-ciudad?p="
 URBAN_BIKES_PAGES="$(seq 1 3)"
-URBAN_2013_BIKES_BASE="${URL}/es/178-trekking-ciudad"
+URBAN_2013_BIKES_BASE="${URL}/es/178-trekking-ciudad?p="
 URBAN_2013_BIKES_PAGES="$(seq 1 3)"
 
-get_pages "${MTB_BIKES_26_BASE}" "${MTB_BIKES_26_PAGES}"
-get_pages "${MTB_BIKES_CUBE_26_BASE}" "${MTB_BIKES_CUBE_26_PAGES}"
-get_pages "${MTB_BIKES_MMR_26_BASE}" "${MTB_BIKES_MMR_26_PAGES}"
-get_pages "${MTB_BIKES_27_5_BASE}" "${MTB_BIKES_27_5_PAGES}"
-get_pages "${MTB_BIKES_29_BASE}" "${MTB_BIKES_29_PAGES}"
-get_pages "${MTB_BIKES_DOUBLE_26_BASE}" "${MTB_BIKES_DOUBLE_26_PAGES}"
-get_pages "${MTB_BIKES_DOUBLE_27_5_BASE}" "${MTB_BIKES_DOUBLE_27_5_PAGES}"
-get_pages "${MTB_BIKES_DOUBLE_29_BASE}" "${MTB_BIKES_DOUBLE_29_PAGES}"
-get_pages "${MTB_2013_BIKES_BASE}" "${MTB_2013_BIKES_PAGES}"
-get_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}"
-get_pages "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}"
-get_pages "${ROAD_2013_BIKES_BASE}" "${ROAD_2013_BIKES_PAGES}"
-get_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}"
-get_pages "${WOMAN_BIKES_BASE}" "${WOMAN_BIKES_PAGES}"
-get_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}"
-get_pages "${URBAN_2013_BIKES_BASE}" "${URBAN_2013_BIKES_PAGES}"
+bubic_get_page_outfile "${MTB_BIKES_26_BASE}" "${MTB_BIKES_26_PAGES}" mtb-26
+bubic_get_page_outfile "${MTB_BIKES_CUBE_26_BASE}" "${MTB_BIKES_CUBE_26_PAGES}" mtb-26-cube
+bubic_get_page_outfile "${MTB_BIKES_MMR_26_BASE}" "${MTB_BIKES_MMR_26_PAGES}" mtb-26-mmr
+bubic_get_page_outfile "${MTB_BIKES_27_5_BASE}" "${MTB_BIKES_27_5_PAGES}" mtb-27-5
+bubic_get_page_outfile "${MTB_BIKES_29_BASE}" "${MTB_BIKES_29_PAGES}" mtb-29
+bubic_get_page_outfile "${MTB_BIKES_DOUBLE_26_BASE}" "${MTB_BIKES_DOUBLE_26_PAGES}" mtb-double-26
+bubic_get_page_outfile "${MTB_BIKES_DOUBLE_27_5_BASE}" "${MTB_BIKES_DOUBLE_27_5_PAGES}" mtb-double-27-5
+bubic_get_page_outfile "${MTB_BIKES_DOUBLE_29_BASE}" "${MTB_BIKES_DOUBLE_29_PAGES}" mtb-double-29
+bubic_get_page_outfile "${MTB_2013_BIKES_BASE}" "${MTB_2013_BIKES_PAGES}" mtb-2013
+bubic_get_page_outfile "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" road
+bubic_get_page_outfile "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}" road-triatlon
+bubic_get_page_outfile "${ROAD_2013_BIKES_BASE}" "${ROAD_2013_BIKES_PAGES}" road-2013
+bubic_get_page_outfile "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" kids
+bubic_get_page_outfile "${WOMAN_BIKES_BASE}" "${WOMAN_BIKES_PAGES}" woman
+bubic_get_page_outfile "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" urban
+bubic_get_page_outfile "${URBAN_2013_BIKES_BASE}" "${URBAN_2013_BIKES_PAGES}" urban-2013
