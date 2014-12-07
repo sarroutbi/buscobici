@@ -80,6 +80,7 @@ sub dump_model {
   my $price = $price_html;
   $price =~ s/\.//sg;
   chomp($price);
+  $price =~ s/[^0-9,\,]//sg;
 
   # TRADEMARK/MODEL processing
   my $clean_trademark = `bash -c 'source ./common_proc; bubic_clean "$trademark"'`;
