@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2014 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -134,36 +134,50 @@ function process_pages()
   else
     for page in ${PAGES}
     do
-      process_one_page "${THE_FILE}?p=${page}" "${STORE}" "${TYPE}"
+      process_one_page "${THE_FILE}-${page}" "${STORE}" "${TYPE}"
     done
   fi
 }
 
 > ${OUTPUT_FILE}
 
-MTB_BIKES_26_BASE="7-mtb-rígidas"
-MTB_BIKES_27_5_BASE="158-mtb-rígida-275"
-MTB_BIKES_27_5_PAGES="$(seq 1 3)"
-MTB_BIKES_29_BASE="10-mtb-rígida-29er"
-MTB_BIKES_29_PAGES="$(seq 1 3)"
-MTB_BIKES_DOUBLE_26_BASE="17-doble-susp-26"
-MTB_BIKES_DOUBLE_27_5_BASE="164-doble-susp-275-"
-MTB_BIKES_DOUBLE_29_BASE="21-doble-susp-29er"
-ROAD_BIKES_BASE="31-carretera"
+MTB_BIKES_26_BASE="mtb-26"
+MTB_BIKES_CUBE_26_BASE="mtb-26-cube"
+MTB_BIKES_MMR_26_BASE="mtb-26-mmr"
+MTB_BIKES_27_5_BASE="mtb-27-5"
+MTB_BIKES_27_5_PAGES="$(seq 1 5)"
+MTB_BIKES_29_BASE="mtb-29"
+MTB_BIKES_29_PAGES="$(seq 1 6)"
+MTB_BIKES_DOUBLE_26_BASE="mtb-double-26"
+MTB_BIKES_DOUBLE_27_5_BASE="mtb-double-27-5"
+MTB_BIKES_DOUBLE_27_5_PAGES="$(seq 1 3)"
+MTB_BIKES_DOUBLE_29_BASE="mtb-double-29"
+MTB_BIKES_DOUBLE_29_PAGES="$(seq 1 3)"
+ROAD_BIKES_BASE="road"
 ROAD_BIKES_PAGES="$(seq 1 4)"
-ROAD_TRIATLON_BIKES_BASE="142-triatlón"
-KIDS_BIKES_BASE="34-infantiles"
-WOMAN_BIKES_BASE="122-dama"
-URBAN_BIKES_BASE="153-trekking-ciudad"
+ROAD_TRIATLON_BIKES_BASE="road-triatlon"
+ROAD_2013_BIKES_BASE="road-2013"
+KIDS_BIKES_BASE="kids"
+KIDS_BIKES_PAGES="$(seq 1 3)"
+WOMAN_BIKES_BASE="woman"
+WOMAN_BIKES_PAGES="$(seq 1 3)"
+URBAN_BIKES_BASE="urban"
+URBAN_BIKES_PAGES="$(seq 1 3)"
+URBAN_2013_BIKES_BASE="urban-2013"
+URBAN_2013_BIKES_PAGES="$(seq 1 3)"
 
-process_pages "${MTB_BIKES_26_BASE}" "" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_26_BASE}" "${MTB_BIKES_26_PAGES}" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_CUBE_26_BASE}" "${MTB_BIKES_CUBE_26_PAGES}" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_MMR_26_BASE}" "${MTB_BIKES_MMR_26_PAGES}" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
 process_pages "${MTB_BIKES_27_5_BASE}" "${MTB_BIKES_27_5_PAGES}" "Bicicletas Pasaje" "MTB" >> ${OUTPUT_FILE}
 process_pages "${MTB_BIKES_29_BASE}" "${MTB_BIKES_29_PAGES}" "Bicicletas Pasaje" "MTB-29" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_DOUBLE_26_BASE}" "" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_DOUBLE_27_5_BASE}" "" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_BIKES_DOUBLE_29_BASE}" "" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_DOUBLE_26_BASE}" "${MTB_BIKES_DOUBLE_26_PAGES}" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_DOUBLE_27_5_BASE}" "${MTB_BIKES_DOUBLE_27_5_PAGES}" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE}
+process_pages "${MTB_BIKES_DOUBLE_29_BASE}" "${MTB_BIKES_DOUBLE_29_PAGES}" "Bicicletas Pasaje" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Bicicletas Pasaje" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${ROAD_TRIATLON_BIKES_BASE}" "" "Bicicletas Pasaje" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${KIDS_BIKES_BASE}" "" "Bicicletas Pasaje" "KIDS" >> ${OUTPUT_FILE}
-process_pages "${WOMAN_BIKES_BASE}" "" "Bicicletas Pasaje" "MTB-WOMAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_BIKES_BASE}" "" "Bicicletas Pasaje" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}" "Bicicletas Pasaje" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${ROAD_2013_BIKES_BASE}" "${ROAD_2013_BIKES_PAGES}" "Bicicletas Pasaje" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${KIDS_BIKES_BASE}"  "${KIDS_BIKES_PAGES}" "Bicicletas Pasaje" "KIDS" >> ${OUTPUT_FILE}
+process_pages "${WOMAN_BIKES_BASE}" "${WOMAN_BIKES_PAGES}" "Bicicletas Pasaje" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "Bicicletas Pasaje" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_2013_BIKES_BASE}" "${URBAN_2013_BIKES_PAGES}" "Bicicletas Pasaje" "URBAN" >> ${OUTPUT_FILE}

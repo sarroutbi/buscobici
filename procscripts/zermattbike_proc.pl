@@ -14,7 +14,7 @@
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
-require "CommonGet.pl";
+require "CommonProc.pl";
 use constant STORE => "Zermatt";
 use constant URL => "http://www.zermattbike.es";
 use constant ONLY_DOMAIN => "zermattbike.es";
@@ -80,6 +80,7 @@ sub dump_model {
   my $price = $price_html;
   $price =~ s/\.//sg;
   chomp($price);
+  $price =~ s/[^0-9,\,]//sg;
 
   # TRADEMARK/MODEL processing
   my $clean_trademark = `bash -c 'source ./common_proc; bubic_clean "$trademark"'`;
@@ -110,30 +111,15 @@ sub dump_model {
   dump_bash_bubic ($camel_model, $url, $camel_trademark, $price, $store, $type);
 }
 
-sub dump_bash_bubic {
-  my $camel_model = $_[0];
-  my $url = $_[1];
-  my $camel_trademark = $_[2];
-  my $price = $_[3];
-  my $store = $_[4];
-  my $type  = $_[5];
-
-  my $dump_command = sprintf("bash -c 'source ./common_proc; " .
-"SUBURL_KEY=$SUBURL_KEY " .
-"TRADEMARK_KEY=$TRADEMARK_KEY " .
-"PRICE_KEY=$PRICE_KEY " .
-"STORE_KEY=$STORE_KEY " .
-"KIND_KEY=$KIND_KEY " .
-"bubic_dump_bike \"$camel_model\" \"$url\" \"$camel_trademark\" $price " .
-"$store $type' >> %s",
-      OUTPUT_FILE);
-  #print "Executing command:=>$dump_command<=\n";
-  `$dump_command`;
-}
-
 sub process_file {
   my $file = $_[0];
   my $type = $_[1];
+  if ($file eq "") {
+    return 1;
+  }
+  elsif ($type eq "") {
+    return 1;
+  }
   my @models = `cat $file | grep '<h5>' | sed -e 's/<[^>]*>//g'`;
   foreach my $trade_model (@models) {
     chomp($trade_model);
@@ -195,18 +181,18 @@ my $FOLDING_FILE = "urban-folding";
 
 chomp @FOLDING_PAGES;
 
-process_file_pages($ELECTRIC_FILE, \@ELECTRIC_PAGES, "URBAN-ELECTRIC");
+process_file_pages($FOLDING_FILE, \@FOLDING_PAGES, "URBAN-FOLDING");
 
 #### CICLOCROSS ####
-my $CICLOCROSS_BASE = URL . "/productos/46-ciclocross.html?pag=";
-my $CICLOCROSS_FILE = "road-ciclocross";
+my @ROAD_CICLOCROSS_PAGES = `seq 1 3`;
+my $ROAD_CICLOCROSS_FILE = "road-ciclocross";
 
-chomp @CICLOCROSS_PAGES;
+chomp @ROAD_CICLOCROSS_PAGES;
 
-process_file_pages($ROAD-CICLOCROSS_FILE, \@ROAD-CICLOCROSS_PAGES, "ROAD-CICLOCROSS");
+process_file_pages($ROAD_CICLOCROSS_FILE, \@ROAD_CICLOCROSS_PAGES, "ROAD-CICLOCROSS");
 
 #### MTB-DOWNHILL ####
-my $MTB_DOWNHILL_BASE = URL . "/productos/47-descenso.html";
+my $MTB_DOWNHILL_PAGES;
 my $MTB_DOWNHILL_FILE = "mtb-downhill";
 
 process_file_pages($MTB_DOWNHILL_FILE, \@MTB_DOWNHILL_PAGES, "MTB-DOWNHILL");
