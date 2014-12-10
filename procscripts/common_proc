@@ -175,6 +175,10 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Cc]arretera [Cc]arbono //g' \
 | sed -e 's/sin pedales para ni&#241;os //g' \
 | sed -e 's/"Bicicleta 29&quot; de MTB"//g' \
+| sed -e 's/Bicicleta 29&quot; para MTB//g' \
+| sed -e 's/Bicicleta 29\" para MTB//g' \
+| sed -e 's/"Bicicleta 29&quot; para MTB"//g' \
+| sed -e 's/"Bicicleta 29\" para MTB"//g' \
 | sed -e 's/"Bicicleta de MTB 29&quot;"//g' \
 | sed -e 's/"Bicicleta de 29&quot; "//g' \
 | sed -e 's/Bicicleta profesional//g'\
@@ -185,6 +189,7 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Hh]..brida //g' \
 | sed -e 's/[Bb]icicleta [Hh].brida //g' \
 | sed -e 's/[Bb]icicleta [Pp]legable //g' \
+| sed -e 's/[Bb]icicleta [Nn]egra//g' \
 | sed -e 's/[Bb]icicleta urbana para mujer //g' \
 | sed -e 's/[Bb]each [Cc]ruiser//g' \
 | sed -e 's/[Bb]icicleta de [Cc]arrera negra//g' \
