@@ -15,7 +15,7 @@
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
 require "CommonProc.pl";
-use constant STORE => "Ciclos CurrÃ¡";
+use constant STORE => "Ciclos Currá";
 use constant URL => "http://www.cicloscurra.com";
 use constant ONLY_DOMAIN => "cicloscurra.com";
 use constant EXCLUDE => "-Rgif -Rpng -Rjpg";
