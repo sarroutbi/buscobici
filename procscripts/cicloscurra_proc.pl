@@ -15,7 +15,7 @@
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
 require "CommonProc.pl";
-use constant STORE => "Ciclos Currá";
+use constant STORE => "Ciclos CurrÃ¡";
 use constant URL => "http://www.cicloscurra.com";
 use constant ONLY_DOMAIN => "cicloscurra.com";
 use constant EXCLUDE => "-Rgif -Rpng -Rjpg";
@@ -73,6 +73,7 @@ bubic_clean "$trimmed_trademark_model"'`;
   $price =~ s/\./\,/sg;
   $price =~ s/^\s+|\s+$//g;
   chomp($price);
+  $price =~ s/[^0-9,\,]//sg;
 
   # TRADEMARK/MODEL processing
   my $clean_trademark = `bash -c 'source ./common_proc; bubic_clean "$trademark"'`;
