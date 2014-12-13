@@ -15,7 +15,7 @@
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
 require "CommonProc.pl";
-use constant STORE => "Ciclos CurrÃ¡";
+use constant STORE => "Ciclos Curra";
 use constant URL => "http://www.cicloscurra.com";
 use constant ONLY_DOMAIN => "cicloscurra.com";
 use constant EXCLUDE => "-Rgif -Rpng -Rjpg";
@@ -173,3 +173,50 @@ chomp @URBAN_PAGES;
 
 process_file_pages($URBAN_FILE, \@URBAN_PAGES, "URBAN");
 
+#### URBAN_FIXIE ####
+my @URBAN_FIXIE_PAGES;
+my $URBAN_FIXIE_FILE = "urban-fixie";
+
+chomp @URBAN_FIXIE_PAGES;
+
+process_file_pages($URBAN_FIXIE_FILE, \@URBAN_FIXIE_PAGES, "URBAN-FIXIE");
+
+#### URBAN_ELECTRIC ####
+my @URBAN_ELECTRIC_PAGES = `seq 1 3`;
+my $URBAN_ELECTRIC_FILE = "urban-electric";
+
+chomp @URBAN_ELECTRIC_PAGES;
+
+process_file_pages($URBAN_ELECTRIC_FILE, \@URBAN_ELECTRIC_PAGES, "URBAN-ELECTRIC");
+
+#### URBAN_FOLDING ####
+my @URBAN_FOLDING_PAGES;
+my $URBAN_FOLDING_FILE = "urban-folding";
+
+chomp @URBAN_FOLDING_PAGES;
+
+process_file_pages($URBAN_FOLDING_FILE, \@URBAN_FOLDING_PAGES, "URBAN-FOLDING");
+
+#### URBAN_TRICYCLE ####
+my @URBAN_TRICYCLE_PAGES;
+my $URBAN_TRICYCLE_FILE = "urban-tricycle";
+
+chomp @URBAN_TRICYCLE_PAGES;
+
+process_file_pages($URBAN_TRICYCLE_FILE, \@URBAN_TRICYCLE_PAGES, "URBAN-TRICYCLE");
+
+#### BMX ####
+my @BMX_PAGES = `seq 1 3`;
+my $BMX_FILE = "bmx";
+
+chomp @BMX_PAGES;
+
+process_file_pages($BMX_FILE, \@BMX_PAGES, "BMX");
+
+#### KIDS ####
+my @KIDS_PAGES = `seq 1 7`;
+my $KIDS_FILE = "kids";
+
+chomp @KIDS_PAGES;
+
+process_file_pages($KIDS_FILE, \@KIDS_PAGES, "KIDS");
