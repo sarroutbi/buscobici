@@ -28,6 +28,18 @@ sub dump_bash_bubic {
   my $store = $_[4];
   my $type  = $_[5];
 
+  if ($camel_model eq "" || $url eq "" || $camel_trademark eq "" ||
+      $price eq "" || $store eq "" || $type eq "") {
+    return 0;
+  }
+
+  #printf "\nCAMEL_MODEL:$camel_model\n" ;
+  #printf "CAMEL_TRADEMARK:$camel_trademark\n" ;
+  #printf "URL:$url\n" ;
+  #printf "PRICE:$price\n" ;
+  #printf "STORE:$store\n" ;
+  #printf "TYPE:$type\n" ;
+
   my $dump_command = sprintf("bash -c 'source ./common_proc; " .
 "SUBURL_KEY=$SUBURL_KEY " .
 "TRADEMARK_KEY=$TRADEMARK_KEY " .
@@ -35,8 +47,9 @@ sub dump_bash_bubic {
 "STORE_KEY=$STORE_KEY " .
 "KIND_KEY=$KIND_KEY " .
 "bubic_dump_bike \"$camel_model\" \"$url\" \"$camel_trademark\" $price " .
-"$store $type' >> %s",
+"\"$store\" \"$type\"' >> %s",
       OUTPUT_FILE);
   #print "Executing command:=>$dump_command<=\n";
   `$dump_command`;
+  return 0;
 }
