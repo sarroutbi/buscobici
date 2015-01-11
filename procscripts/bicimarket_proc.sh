@@ -85,7 +85,7 @@ function print_price()
   MODEL="$2"
 #  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | egrep -E '<p>[0-9]{1,}' | head -1 |egrep "[0-9]{1,}.{0,1}" | sed -e 's/<[^>]*>//g' | tr -d '\r' | tr -d '.' | egrep -o "[0-9]{1,}.{0,1},{1,}[0-9]{0,}" | tr -d '\n')
   #PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep "<p>" | grep "</p>" | tr -d '\r')
-  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep '<span class="precio">' | tail -1 | sed -e 's/<[^>]*>//g' | tr -d '.')
+  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep '<span class="precio">' | tail -1 | sed -e 's/<[^>]*>//g' | tr -d '.' | egrep -E -o "[0-9,\,]" | tr -d '\n')
   echo ${PRICE}
 }
 
@@ -157,37 +157,6 @@ function process_pages()
 
 > ${OUTPUT_FILE}
 
-MTB_29_BIKES_BASE="Bicicletas-29-pulgadas-c20380.html"
-MTB_27_5_BIKES_BASE="Bicicletas-27-5-pulgadas-c20400.html"
-ELECTRIC_BIKES_BASE="Bicicletas-Bicicleta-Electrica-c20130.html"
-TRIAL_BIKES_BASE="Bicicletas-BikeTrial-c20131.html"
-BMX_BIKES_BASE="Bicicletas-BMX-c20249.html"
-ROAD_BIKES_BASE="Bicicletas-Carretera-c10020.html"
-CICLOCROSS_BIKES_BASE="Bicicletas-Ciclocross-c20270.html"
-MTB_XC_BIKES_BASE="Bicicletas-Cross-country-c1010.html"
-CRUISERS_BIKES_BASE="Bicicletas-Cruisers-c20397.html"
-DIRT_BIKES_BASE="Bicicletas-Dirt-c20303.html"
-DOUBLE_FREERIDE_BIKES_BASE="Bicicletas-Doble-Freeride-DH-c20164.html"
-MTB_DOUBLE_BIKES_BASE="Bicicletas-Doble-XC-Enduro-c20075.html"
-FIXIE_BIKES_BASE="Bicicletas-Fixed-c20306.html"
-HYBRID_BIKES_BASE="Bicicletas-Hibrida-c10050.html"
-JUNIOR_BIKES_BASE="Bicicletas-Infantil-c20177.html"
-LADY_BIKES_BASE="Bicicletas-Lady-c20253.html"
-VELO_BIKES_BASE="Bicicletas-Pista-c20396.html"
-FOLDING_BIKES_BASE="Bicicletas-Plegable-c10070.html"
-TRIATLON_BIKES_BASE="Bicicletas-Triatlon-c20376.html"
-URBAN_BIKES_BASE="Bicicletas-Urbanas-c10030.html"
-MTB_26_ENDURO_BASE="Bicicletas-Enduro-AM-26-c20075.html"
-MTB_27_ENDURO_BASE="Bicicletas-Enduro-AM-27-5-c20400.html"
-MTB_29_ENDURO_BASE="Bicicletas-Enduro-AM-29-c20404.html"
-MTB_XC_26_BASE="Bicicletas-MTB-XC-26-c1010.html"
-MTB_XC_27_5_DOUBLE_BASE="Bicicletas-MTB-XC-Doble-27-5-c20405.html"
-MTB_XC_29_DOUBLE_BASE="Bicicletas-MTB-XC-Doble-29-c20403.html"
-MTB_XC_27_5_FIX_BASE="Bicicletas-MTB-XC-Rigida-27-5-c20402.html"
-MTB_XC_29_FIX_BASE="Bicicletas-MTB-XC-Rigida-29-c20380.html"
-
-#2014 review
-
 function process_all_pages() {
     FILE="$1"
     PAGES="$2"
@@ -200,47 +169,55 @@ function process_all_pages() {
 }
 
 
-ROAD_2014_BIKES_BASE="road"
-ROAD_2014_BIKES_PAGES="$(seq 1 5)"
+MTB_26_BIKES_BASE="mtb-26"
+MTB_26_BIKES_PAGES="$(seq 1 3)"
 
-ELECTRIC_2014_BIKES_BASE="electric"
-ELECTRIC_2014_BIKES_PAGES="$(seq 1 3)"
+MTB_27_5_BIKES_BASE="mtb-27-5"
+MTB_27_5_BIKES_PAGES="$(seq 1 7)"
 
-URBAN_2014_BIKES_BASE="urban"
-URBAN_2014_BIKES_PAGES="$(seq 1 5)"
+MTB_29_BIKES_BASE="mtb-29"
+MTB_29_BIKES_PAGES="$(seq 1 6)"
 
-ROAD_TRIATLON_2014_BIKES_BASE="road-triatlon"
-ROAD_TRIATLON_2014_BIKES_PAGES="$(seq 1 3)"
+MTB_WOMAN_BIKES_BASE="mtb-woman"
+MTB_WOMAN_BIKES_PAGES=""
 
-ROAD_CICLOCROSS_2014_BIKES_BASE="road-ciclocross"
-ROAD_CICLOCROSS_2014_BIKES_PAGES="$(seq 1 3)"
+ROAD_BIKES_BASE="road"
+ROAD_BIKES_PAGES="$(seq 1 5)"
 
-MTB_2014_BIKES_BASE="mtb"
-MTB_2014_BIKES_PAGES="$(seq 1 3)"
+KIDS_BIKES_BASE="kids"
+KIDS_BIKES_PAGES="$(seq 1 4)"
 
-MTB_27_5_2014_BIKES_BASE="mtb-27-5"
-MTB_27_5_2014_BIKES_PAGES="$(seq 1 5)"
+URBAN_BIKES_BASE="urban"
+URBAN_BIKES_PAGES="$(seq 1 3)"
 
-MTB_29_2014_BIKES_BASE="mtb-29"
-MTB_29_2014_BIKES_PAGES="$(seq 1 6)"
+URBAN_TREKKING_BIKES_BASE="urban-trekking"
+URBAN_TREKKING_BIKES_PAGES=""
 
-KIDS_2014_BIKES_BASE="kids"
-KIDS_2014_BIKES_PAGES="$(seq 1 4)"
+URBAN_FOLDING_BIKES_BASE="urban-folding"
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 3)"
 
-BMX_2014_BIKES_BASE="bmx"
-BMX_2014_BIKES_PAGES="$(seq 1 3)"
+URBAN_ELECTRIC_BIKES_BASE="urban-electric"
+URBAN_ELECTRIC_BIKES_PAGES=""
 
-FOLDING_2014_BIKES_BASE="urban-folding"
-FOLDING_2014_BIKES_PAGES="$(seq 1 3)"
+ROAD_TRIATLON_BIKES_BASE="road-triatlon"
+ROAD_TRIATLON_BIKES_PAGES=""
 
-process_all_pages "${ROAD_2014_BIKES_BASE}" "${ROAD_2014_BIKES_PAGES}" "Bicimarket" "ROAD" >> ${OUTPUT_FILE}
-process_all_pages "${ELECTRIC_2014_BIKES_BASE}" "${ELECTRIC_2014_BIKES_PAGES}" "Bicimarket" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
-process_all_pages "${URBAN_2014_BIKES_BASE}" "${URBAN_2014_BIKES_PAGES}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
-process_all_pages "${ROAD_TRIATLON_2014_BIKES_BASE}" "${ROAD_TRIATLON_2014_BIKES_PAGES}" "Bicimarket" "ROAD-TRIATLON" >> ${OUTPUT_FILE}
-process_all_pages "${ELECTRIC_2014_BIKES_BASE}" "${ELECTRIC_2014_BIKES_PAGES}" "Bicimarket" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
-process_all_pages "${MTB_2014_BIKES_BASE}" "${MTB_2014_BIKES_PAGES}" "Bicimarket" "MTB" >> ${OUTPUT_FILE}
-process_all_pages "${MTB_27_5_2014_BIKES_BASE}" "${MTB_27_5_2014_BIKES_PAGES}" "Bicimarket" "MTB" >> ${OUTPUT_FILE}
-process_all_pages "${MTB_29_2014_BIKES_BASE}" "${MTB_29_2014_BIKES_PAGES}" "Bicimarket" "MTB-29" >> ${OUTPUT_FILE}
-process_all_pages "${KIDS_2014_BIKES_BASE}" "${KIDS_2014_BIKES_PAGES}" "Bicimarket" "KIDS" >> ${OUTPUT_FILE}
-process_all_pages "${BMX_2014_BIKES_BASE}" "${BMX_2014_BIKES_PAGES}" "Bicimarket" "BMX" >> ${OUTPUT_FILE}
-process_all_pages "${FOLDING_2014_BIKES_BASE}" "${FOLDING_2014_BIKES_PAGES}" "Bicimarket" "URBAN-FOLDING" >> ${OUTPUT_FILE}
+BMX_BIKES_BASE="bmx"
+BMX_BIKES_PAGES=""
+
+CICLOCROSS_BIKES_BASE="road-ciclocross"
+CICLOCROSS_BIKES_PAGES=""
+
+process_all_pages "${MTB_26_BIKES_BASE}" "${MTB_26_BIKES_PAGES}" "Bicimarket" "MTB" >> ${OUTPUT_FILE}
+process_all_pages "${MTB_27_5_BIKES_BASE}" "${MTB_27_5_BIKES_PAGES}" "Bicimarket" "MTB" >> ${OUTPUT_FILE}
+process_all_pages "${MTB_29_BIKES_BASE}" "${MTB_29_BIKES_PAGES}" "Bicimarket" "MTB-29" >> ${OUTPUT_FILE}
+process_all_pages "${MTB_WOMAN_BIKES_BASE}" "${MTB_WOMAN_BIKES_PAGES}" "Bicimarket" "MTB-WOMAN" >> ${OUTPUT_FILE}
+process_all_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Bicimarket" "ROAD" >> ${OUTPUT_FILE}
+process_all_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "Bicimarket" "KIDS" >> ${OUTPUT_FILE}
+process_all_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
+process_all_pages "${URBAN_TREKKING_BIKES_BASE}" "${URBAN_TREKKING_BIKES_PAGES}" "Bicimarket" "URBAN" >> ${OUTPUT_FILE}
+process_all_pages "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "Bicimarket" "URBAN-FOLDING" >> ${OUTPUT_FILE}
+process_all_pages "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "Bicimarket" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
+process_all_pages "${ROAD_TRIATLON_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}" "Bicimarket" "ROAD-TRIATLON" >> ${OUTPUT_FILE}
+process_all_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "Bicimarket" "BMX" >> ${OUTPUT_FILE}
+process_all_pages "${CICLOCROSS_BIKES_BASE}" "${CICLOCROSS_BIKES_PAGES}" "Bicimarket" "ROAD-CICLOCROSS" >> ${OUTPUT_FILE}
