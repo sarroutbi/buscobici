@@ -38,19 +38,19 @@ function get_page()
 }
 
 MTB_FIX_BIKES_BASE="${URL}/lang-es/12-bicicletas-rigidas?p="
-MTB_FIX_BIKES_PAGES="$(seq 1 10)"
+MTB_FIX_BIKES_PAGES="$(seq 1 13)"
 
 MTB_DOUBLE_BIKES_BASE="${URL}/lang-es/14-doble-suspensio?p="
-MTB_DOUBLE_BIKES_PAGES="$(seq 1 5)"
+MTB_DOUBLE_BIKES_PAGES="$(seq 1 10)"
 
-MTB_DOWN_BIKES_BASE="${URL}/lang-es/13-descenso"
-MTB_DOWN_BIKES_PAGES=""
+MTB_DOWN_BIKES_BASE="${URL}/lang-es/13-descenso?p="
+MTB_DOWN_BIKES_PAGES="$(seq 1 3)"
 
 MTB_ELECTRIC_BIKES_BASE="${URL}/lang-es/55932276-btt-electricas"
 MTB_ELECTRIC_BIKES_PAGES=""
 
 ROAD_BIKES_BASE="${URL}/lang-es/8-carretera?p="
-ROAD_BIKES_PAGES="$(seq 1 5)"
+ROAD_BIKES_PAGES="$(seq 1 8)"
 
 BMX_BIKES_BASE="${URL}/lang-es/9-bmx-freestyle"
 BMX_BIKES_PAGES=""
