@@ -21,6 +21,7 @@ use constant MAX_TRIES => 10;
 use constant MAX_TIMEOUT => 10;
 use constant OUTPUT_FILE => "output";
 use constant MAX_PRICE => 30;
+use constant STORE => "Depor Village";
 
 my $TRADEMARK_KEY="TRADEMARK";
 my $SUBURL_KEY="SUBURL";
