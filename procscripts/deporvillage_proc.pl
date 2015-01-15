@@ -63,7 +63,13 @@ bubic_clean "$trimmed_trademark_model"'`;
   ($url_no_greater, $url_later) = split('>', $url_no_dash, -1);
   my $sub_url = $url_no_greater;
   $sub_url =~ s/"//g;
-  my $sub_url2 = URL . $sub_url;
+  my $sub_url2;
+  if ($sub_url =~ m/\//) {
+   $sub_url2 = URL . $sub_url;
+  }
+  else {
+   $sub_url2 = URL . "/" . $sub_url;
+  }
   $url = "\\\"" . $sub_url2 . "\\\"";
 
   # PRICE PARSING

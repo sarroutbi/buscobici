@@ -220,6 +220,7 @@ function bubic_clean()
 | sed -e 's/[Cc]ompacta //g' \
 | sed -e 's/sin cambios//g' \
 | sed -e 's/para hombre//g' \
+| sed -e 's/[Mm]y [Ff]irst//g' \
 | sed -e 's/para mujer//g' \
 | sed -e 's/[Dd]e [Mm]ujer//g' \
 | sed -e 's/[Pp]ara [Nn]i.os//g' \
