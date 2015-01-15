@@ -39,7 +39,7 @@ function urltest()
 
 # Parse input
 # TO BE DONE
-wget --post-data "search=\*&entryPerPage=10000" "${GLOBAL_URL}/${SEARCH_PHP}" -o /dev/null 2>&1 > /dev/null
+wget --post-data "search=\*&entryPerPage=20000" "${GLOBAL_URL}/${SEARCH_PHP}" -o /dev/null 2>&1 > /dev/null
 
 #cat ${SEARCH_PHP} | egrep -E -o '<a href="[^>]*>' | sed -e 's/<a href="//g' | sed -e 's/">//g' | while read URL;
 #do 
