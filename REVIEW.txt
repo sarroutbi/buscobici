@@ -43,3 +43,4 @@ This file contains which stores have been reviewed and the date.
 - DevporVillage : 20150111
 - BiciEscapa    : 20150111
 - BiciMarket    : 20150111
+- CiclosCurra   : 20150124
