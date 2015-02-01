@@ -2,3 +2,5 @@ RESULTS/*/output*
 RESULTS/*/psql*
 BACKUPS/*/*/.sql
 *~
+RESULTS
+BACKUPS
