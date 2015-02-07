@@ -22,7 +22,7 @@ use constant MAX_TRIES => 10;
 use constant MAX_TIMEOUT => 10;
 
 #### MTB ####
-my $MTB_FIX_BASE = URL . "/bicicletas-montana-mtb-susp-del/?p=";
+my $MTB_FIX_BASE = URL . "/bicicletas-montana-mtb-suspension-delantera/?p=";
 my @MTB_FIX_PAGES = `seq 1 17`;
 my $MTB_FIX_FILE = "mtb";
 
@@ -31,7 +31,7 @@ chomp @MTB_FIX_PAGES;
 bubicpl_get_page($MTB_FIX_BASE, \@MTB_FIX_PAGES, $MTB_FIX_FILE);
 
 #### MTB DOUBLE ####
-my $MTB_DOUBLE_BASE = URL . "/bicicletas-montana-mtb-doble-susp/?p=";
+my $MTB_DOUBLE_BASE = URL . "/bicicletas-montana-mtb-doble-suspension/?p=";
 my @MTB_DOUBLE_PAGES = `seq 1 10`;
 my $MTB_DOUBLE_FILE = "mtb-double";
 
