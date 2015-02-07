@@ -48,6 +48,14 @@ chomp @GIANT_URBAN_PAGES;
 
 bubicpl_get_page($GIANT_URBAN_BASE, \@GIANT_URBAN_PAGES, $GIANT_URBAN_FILE);
 
+#### GIANT_KIDS ####
+my $GIANT_KIDS_BASE = URL . "/70ninosas?p=";
+my @GIANT_KIDS_PAGES = `seq 1 2`;
+my $GIANT_KIDS_FILE = "kids-giant";
+
+chomp @GIANT_KIDS_PAGES;
+
+bubicpl_get_page($GIANT_KIDS_BASE, \@GIANT_KIDS_PAGES, $GIANT_KIDS_FILE);
 
 #### LIV_MTB ####
 my $LIV_MTB_BASE = URL . "/249-montana?p=";

@@ -189,6 +189,14 @@ chomp @GIANT_URBAN_PAGES;
 
 process_file_pages($GIANT_URBAN_FILE, \@GIANT_URBAN_PAGES, "URBAN");
 
+#### GIANT_KIDS ####
+my @GIANT_KIDS_PAGES = `seq 1 2`;
+my $GIANT_KIDS_FILE = "kids-giant";
+
+chomp @GIANT_KIDS_PAGES;
+
+process_file_pages($GIANT_KIDS_FILE, \@GIANT_KIDS_PAGES, "KIDS");
+
 #### LIV_MTB ####
 my @LIV_MTB_PAGES = `seq 1 2`;
 my $LIV_MTB_FILE = "mtb-liv";
