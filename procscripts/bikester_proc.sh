@@ -74,12 +74,8 @@ function print_price()
 {
   FILE="$1"
   MODEL="$2"
-  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep '<div class="currentPrice' -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,3},{1}[0-9]{0,}" | head -1)
-  if [ "${PRICE}" = "" ];
-  then
-    PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH2} | grep '<div class="currentPrice' -A2 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,3},{1}[0-9]{0,}" | head -1) 
-  fi
-  PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ' ' | tr -d '.')
+  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep '<span class="productItemCurrentPriceText">' | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,1}.{0,1}[0-9]{1,3},{0,1}[0-9]{0,2} €" | tail -1)
+  PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ' ' | tr -d '.' | tr -d '€')
   echo ${PRICE_NO_SPACE}
 }
 
@@ -130,7 +126,7 @@ function dump_bike_from_file()
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  TRADEMARK_MODELS=$(cat "${FILE}" | grep '<div class="productName">' -A10 | sed -e 's/<[^>]*>//g' | grep [A-Z,a-z] | sed -e 's/^[ \t]*//g')
+  TRADEMARK_MODELS=$(cat "${FILE}" | grep '<div class="col-sm-12 productItemName">' -A10 | grep 'title=' | sed -e 's/^[ \t]*//g'  | grep ^title | awk -F 'title="' {'print $2'} | awk -F '"' {'print $1'})
   echo "${TRADEMARK_MODELS}" | while read trademark_model;
   do 
     test -z "${trademark_model}" && continue;
@@ -150,9 +146,13 @@ function dump_bike_from_file()
     then
       TRADEMARK_CAMEL="Stereo Bikes"
       MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
-    elif [ "${TRADEMARK_CAMEL}" = "Ns Bikes" ];
+    elif [ "${TRADEMARK_CAMEL}" = "Ns" ];
     then
       TRADEMARK_CAMEL="NS Bikes"
+      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    elif [ "${TRADEMARK_CAMEL}" = "Gt" ];
+    then
+      TRADEMARK_CAMEL="Gt Bicycles"
       MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
     else 
       MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
