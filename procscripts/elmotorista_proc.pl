@@ -52,13 +52,16 @@ bubic_clean "$trademark_model"'`;
   chomp($clean_trademark_model);
 
   # URL PARSING
-  my $url_cmd = "cat $file | grep '$trademark_model_orig' | grep href | awk -F 'href=' {'print $1'} | awk -F '>' {'print $1'} | awk -F '>' {'print $1'}";
+  my $url_cmd = "cat $file | grep '$trademark_model_orig' -C5 | grep href";
   $url_all = `$url_cmd`;
   ($url_first, $url_no_html) = split('href=', $url_all, -1);
   ($url_no_dash, $url_later) = split('>', $url_no_html, -1);
   chomp($url_no_dash);
   $url_no_dash =~ s/\"//g;
-  my $final_url = "\\\"" . URL . "$url_no_dash" . "\\\"";
+  my $final_url; 
+  if ($url_no_dash ne "") {
+      $final_url = "\\\"" . URL . "$url_no_dash" . "\\\"";
+  }
 
   # MODEL PARSING
   $trademark = get_trademark($clean_trademark_model);
@@ -93,18 +96,18 @@ bubic_clean "$trademark_model"'`;
   chomp($price);
   $price =~ s/[^0-9,\,]//sg;
 
-  print "================================\n";
-  print "FILE:$file\n";
-  print "TRADEMARK_MODEL:$trademark_model\n";
-  print "TRADEMARK_MODEL_CLEAN:$clean_trademark_model\n";
-  print "TRADEMARK:$trademark\n";
-  print "MODEL:$model\n";
-  print "URL:$final_url\n";
-  print "PRICE:=>$price<=\n";
-  print "price_cmd:$price_cmd\n";
-  print "STORE:$store\n";
-  print "TYPE:$type\n";
-  print "================================\n";
+  #print "================================\n";
+  #print "FILE:$file\n";
+  #print "TRADEMARK_MODEL:$trademark_model\n";
+  #print "TRADEMARK_MODEL_CLEAN:$clean_trademark_model\n";
+  #print "TRADEMARK:$trademark\n";
+  #print "MODEL:$model\n";
+  #print "URL:$final_url\n";
+  #print "PRICE:=>$price<=\n";
+  #print "price_cmd:$price_cmd\n";
+  #print "STORE:$store\n";
+  #print "TYPE:$type\n";
+  #print "================================\n";
   dump_bash_bubic ($model, $final_url, $trademark, $price, $store, $type);
 }
 
