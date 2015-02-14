@@ -53,4 +53,54 @@ sub bubicpl_get_page
     }
   }
 }
+
+sub bubicpl_get_url_phantomjs
+{
+  my $base_url = $_[0];
+  my $outfile = $_[1];
+  my $phantom_js_file = `mktemp`;
+  chomp($phantom_js_file);
+  my $phantom_js_string = <<"END";
+var url = '$base_url';
+var page = require('webpage').create();
+
+page.onLoadStarted = function () {
+};
+
+page.onLoadFinished = function (status) {
+    console.log(page.content);
+    phantom.exit();
+};
+
+page.open(url);
+END
+  #printf "JS STRING:=>$phantom_js_string<=\n";
+  #printf "JS FILE:=>$phantom_js_file<=\n";
+  #printf "OUTFILE:=>$outfile<=\n";
+  open(my $fh, '>', $phantom_js_file);
+  print $fh $phantom_js_string;
+  close $fh;
+  `phantomjs $phantom_js_file > $outfile`;
+  unlink $phantom_js_file;
+}
+
+sub bubicpl_get_page_js
+{
+  my $base_url = $_[0];
+  my @pages = @{$_[1]};
+  my $outfile = $_[2];
+  my $cmd = "";
+
+  if (scalar(@pages) eq 0) {
+    bubicpl_get_url_phantomjs ($base_url, $outfile);
+  }
+  else {
+    foreach my $page (@pages) {
+      my $urlpage = $base_url . "$page";
+      my $outfilepage = $outfile . "-" . "$page";
+      bubicpl_get_url_phantomjs ($urlpage, $outfilepage);
+    }
+  }
+}
+
 1;
