@@ -79,6 +79,39 @@ function print_price()
   echo ${PRICE_NO_SPACE}
 }
 
+
+# Params:
+# 1 - The Url of the bike type
+function get_type_with_url_type() {
+ URL_TYPE="$1"
+ TYPE="URBAN"
+ echo "$1" | grep "bicicletas-de-montana.html" >/dev/null && TYPE="MTB"
+ echo "$1" | grep "bicicletas-doble-suspension.html" >/dev/null && TYPE="MTB-DOUBLE"
+ echo "$1" | grep "bicicletas-de-carretera.html" >/dev/null && TYPE="ROAD"
+ echo "$1" | grep "bicicletas-juveniles-bicicletas-todo-terreno.html" >/dev/null && TYPE="KIDS"
+ echo "$1" | grep "bicicletas-para-ninos.html" >/dev/null && TYPE="KIDS"
+ echo "$1" | grep "monopatines-y-otros.html" >/dev/null && TYPE="KIDS"
+ echo "$1" | grep "bmx.html" >/dev/null && TYPE="BMX"
+ echo $TYPE
+}
+
+# Params:
+# 1 - The Url of bike
+function print_type_url()
+{
+  TYPE_URL=$(wget $1 -o /dev/null -O - | grep '<span class="icon-right-open-mini">' -A5 | grep href= | grep '/bicicletas/' | head -1 | awk -F 'href="' {'print $2'} | awk -F '"' {'print $1'})
+  TYPE=$(get_type_with_url_type ${TYPE_URL})
+  echo ${TYPE}
+}
+
+# Params:
+# 1 - The Url of bike
+function print_price_url()
+{
+  PRICE=$(wget $1 -o /dev/null -O - | grep priceInfo -A4 | egrep -E -o '[0-9]{0,1}\.{0,1}[0-9]{3},{0,1}[0-9]{0,2}' | tr -d '.')
+  echo ${PRICE}
+}
+
 # Params:
 # 1 - The sentence
 # 2 - The min size to camelize
@@ -182,6 +215,61 @@ function dump_bike_from_file()
   done
 }
 
+function process_page_url()
+{
+  FILE=$1
+  PAGES=$2
+  STORE=$3
+  cat $FILE | sed -e 's@<p@\n<p@g' | grep '<p class="l4">' -A3 | while read TRADEMARK_MODEL_URL;
+  do
+    TRADEMARK_MODEL=$(echo ${TRADEMARK_MODEL_URL} | sed -e 's/<[^>]*>//g' | sed -e 's@\&raquo;@@g')
+    SUBURL=$(echo ${TRADEMARK_MODEL_URL} | awk -F 'href="' {'print $2'} | awk -F '"' {'print $1'})
+    FINAL_URL_NO_DOT=${BASE_URL}/${SUBURL}
+    FINAL_URL=\"${FINAL_URL_NO_DOT}\"
+    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
+    TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
+    TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+    if [ "${TRADEMARK_CAMEL}" = "Solid" ];
+    then
+      TRADEMARK_CAMEL="Solid Bikes"
+      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    elif [ "${TRADEMARK_CAMEL}" = "Fixie" ];
+    then
+      TRADEMARK_CAMEL="Fixie Inc."
+      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    elif [ "${TRADEMARK_CAMEL}" = "Stereo" ];
+    then
+      TRADEMARK_CAMEL="Stereo Bikes"
+      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    elif [ "${TRADEMARK_CAMEL}" = "Ns" ];
+    then
+      TRADEMARK_CAMEL="NS Bikes"
+      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    elif [ "${TRADEMARK_CAMEL}" = "Gt" ];
+    then
+      TRADEMARK_CAMEL="Gt Bicycles"
+      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    else
+      MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
+    fi
+    MODEL_CAMEL=$(camel "${MODEL}" "${NO_CAMEL_MIN}")
+    MODEL_CAMEL_CLEAN=$(bubic_clean "${MODEL_CAMEL}")
+    PRICE=$(print_price_url ${FINAL_URL_NO_DOT})
+    TYPE=$(print_type_url ${FINAL_URL_NO_DOT})
+    #echo "========================================================================"
+    #echo "TRADEMARK_MODEL_URL=${TRADEMARK_MODEL_URL}"
+    #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
+    #echo "TRADEMARK=${TRADEMARK}"
+    #echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
+    #echo "MODEL_CAMEL=${MODEL_CAMEL}"
+    #echo "FINAL_URL=${FINAL_URL}"
+    #echo "PRICE=${PRICE}"
+    #echo "TYPE=${TYPE}"
+    #echo "========================================================================"
+    bubic_dump_bike "${MODEL_CAMEL_CLEAN}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+  done
+}
+
 function process_pages()
 {
   BASE_FILE="$1"
@@ -262,23 +350,7 @@ URBAN_TREKKING_BIKES_PAGES="$(seq 0 5)"
 URBAN_HYBRID_BIKES_BASE="bicicletas-hibridas.html?page="
 URBAN_HYBRID_BIKES_PAGES="$(seq 0 5)"
 
-process_pages "${MTB_FIX_BIKES_BASE}"       "${MTB_FIX_BIKES_PAGES}"       "Bikester" "MTB"    >> ${OUTPUT_FILE}   
-process_pages "${MTB_DOUBLE_BIKES_BASE}"    "${MTB_DOUBLE_BIKES_PAGES}"    "Bikester" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_29_BIKES_BASE}"        "${MTB_29_BIKES_PAGES}"        "Bikester" "MTB-29" >> ${OUTPUT_FILE}  
-process_pages "${KIDS_BIKES_BASE}"          "${KIDS_BIKES_PAGES}"          "Bikester" "KIDS"   >> ${OUTPUT_FILE} 
-process_pages "${BTT_KIDS_BIKES_BASE}"      "${BTT_KIDS_BIKES_PAGES}"      "Bikester" "KIDS"   >> ${OUTPUT_FILE}
-process_pages "${BTT_JUNIOR_BIKES_BASE}"    "${BTT_JUNIOR_BIKES_PAGES}"    "Bikester" "KIDS"   >> ${OUTPUT_FILE}
-process_pages "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"           "Bikester" "BMX"    >> ${OUTPUT_FILE}
-process_pages "${ROAD_BIKES_BASE}"          "${ROAD_BIKES_PAGES}"          "Bikester" "ROAD"   >> ${OUTPUT_FILE}
-process_pages "${ROAD_CICLOCROSS_BASE}"     "${ROAD_CICLOCROSS_PAGES}"     "Bikester" "ROAD"   >> ${OUTPUT_FILE}
-process_pages "${URBAN_XC_BIKES_BASE}"      "${URBAN_XC_BIKES_PAGES}"      "Bikester" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_SINGLE_BIKES_BASE}"  "${URBAN_SINGLE_BIKES_PAGES}"  "Bikester" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_WALK_BIKES_BASE}"    "${URBAN_WALK_BIKES_PAGES}"    "Bikester" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "Bikester" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_FOLDING2_BIKES_BASE}" "${URBAN_FOLDING2_BIKES_PAGES}" "Bikester" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_RETRO_BIKES_BASE}"   "${URBAN_RETRO_BIKES_PAGES}"   "Bikester" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_ELECT_BIKES_BASE}"   "${URBAN_ELECT_BIKES_PAGES}"   "Bikester" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_ELECT2_BIKES_BASE}"  "${URBAN_ELECT2_BIKES_PAGES}"  "Bikester" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_RAW_BIKES_BASE}"     "${URBAN_RAW_BIKES_PAGES}"     "Bikester" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_TREKKING_BIKES_BASE}" "${URBAN_TREKKING_BIKES_PAGES}" "Bikester" "URBAN"  >> ${OUTPUT_FILE}
-process_pages "${URBAN_HYBRID_BIKES_BASE}"   "${URBAN_HYBRID_BIKES_PAGES}" "Bikester" "URBAN"  >> ${OUTPUT_FILE}
+MAP_BIKES_BASE="mapa-del-sitio-bicicletas.html"
+MAP_BIKES_PAGES=""
+
+process_page_url "${MAP_BIKES_BASE}" "${MAP_BIKES_PAGES}" "Bikester" ""  >> ${OUTPUT_FILE}
