@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2014 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2015 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 #
 # Permission to use, copy, modify, and/or distribute this software
 # for any purpose with or without fee is hereby granted, provided that
@@ -44,31 +44,38 @@ KIND_KEY="KIND"
 #### LOAD COMMON FUNCTIONS
 . ./common_proc
 
+function print_price_url()
+{
+  PRICE=$(wget -o /dev/null -O - $1 | grep our_price_display | sed -e 's@<[^>]*>@@g' | egrep -E "[0-9]{0,2},{0,1}[0-9]{2,3}.[0-9]{0,2}" -o | tr -d ',' | tr '.' ',')
+  echo ${PRICE}
+}
+
 function process_file()
 {
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-#  cat "${BASE_FILE}" | sed -e s@'<a class="product-name"'@'\n<a class="product-name"'@g | sed -e s@'</div>'@'\n</div>'@g | grep ^'<a class="product-name"' | grep -v ^Bicicletas | while read line;
-  cat "${BASE_FILE}" | sed -e s@'<a class="product-name"'@'\n<a class="product-name"'@g | grep ^'<a class="product-name"' | sed -e s@'</div>'@'\n</div>'@g | grep ^'<a class="' | grep -v ^Bicicletas | while read line;
+  cat "${BASE_FILE}" | grep '<a class="product-name"' -A1 | sed -e 's@\n@@g' | sed -e 's@<[^>]*>@@g' | grep -v ^Bicicletas | egrep -E "[A-Z,a-z]" | while read line;
   do
-    TRADEMARK_MODEL=$(echo ${line} | awk -F '</a></h5>' {'print $1'} | sed -e 's@<[^>]*>@@g')
+    TRADEMARK_MODEL="${line}"
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
     MODEL=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN} | sed -e 's@Qer@Quer@g')
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
-    URL=$(echo ${line} | awk -F 'href=' {'print $2'} | awk {'print $1'})
-    PRICE=$(echo ${line} | awk -F '<span itemprop="price"' {'print $2'} | sed -e 's@<[^>]*>@@g'  | egrep -E "[0-9]{1,2},{0,1}[0-9]{2,3}.[0-9]{0,2}" -o | tr -d ',' | tr '.' ',')
-    #echo "=>LINE:${line}<="
-    #echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
-    #echo "TRADEMARK:=>${TRADEMARK}<="
-    #echo "TRADEMARK_CAMEL:=>${TRADEMARK_CAMEL}<="
-    #echo "MODEL:=>${MODEL}<="
-    #echo "MODEL_CAMEL:=>${MODEL_CAMEL}<="
-    #echo "URL:=>${URL}<="
-    #echo "PRICE:=>${PRICE}<="
-    #echo
+    URL=$(grep "${line}" ${BASE_FILE} -B1 | awk -F 'href="' {'print $2'} | awk -F '"' {'print $1'} | egrep -e "[A-Z,a-z]" | head -1)
+#    PRICE=$(grep "${line}" -B42 ${BASE_FILE} | grep 'price' -A4 | grep -v '%' | egrep -E "[0-9]{0,2},{0,1}[0-9]{2,3}.[0-9]{0,2}" -o | head -1 | tr -d ',' | tr '.' ',')
+    PRICE=$(print_price_url "${URL}")
+    echo "=>LINE:${line}<="
+    echo "BASE_FILE:${BASE_FILE}"
+    echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
+    echo "TRADEMARK:=>${TRADEMARK}<="
+    echo "TRADEMARK_CAMEL:=>${TRADEMARK_CAMEL}<="
+    echo "MODEL:=>${MODEL}<="
+    echo "MODEL_CAMEL:=>${MODEL_CAMEL}<="
+    echo "URL:=>${URL}<="
+    echo "PRICE:=>${PRICE}<="
+    echo
     bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
