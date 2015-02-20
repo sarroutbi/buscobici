@@ -148,10 +148,10 @@ if (   ((!$search)    || (strlen($search)==0))
   echo "      <img src=\"res/logo.png\" class=\"img-responsive\" alt=\"Responsive image\">\n";
   echo "    </a>\n";
   echo "    <ul class=\"nav nav-justified\">\n";
-  echo "      <li><a href=\"index.html\">Búsqueda</a></li>\n";
-  echo "      <li><a href=\"byprice.html\">Búsq.Avzda.</a></li>\n";
+  echo "      <li><a href=\"index.html\">B&uacute;squeda</a></li>\n";
+  echo "      <li><a href=\"byprice.html\">B&uacute;sq.Avzda.</a></li>\n";
   echo "      <li><a href=\"http://buscobici.blogspot.com.es\" target=\"_blank\">Blog</a></li>\n";
-  echo "      <li><a href=\"http://buscobici.com/bikesearch_php_raw/stats_fullscreen.html\">Estadísticas</a></li>\n";
+  echo "      <li><a href=\"http://buscobici.com/bikesearch_php_raw/stats_fullscreen.html\">Estad&icacute;sticas</a></li>\n";
   echo "      <li><a href=\"contact.html\">Contactar</a></li>\n";
   echo "    </ul>\n";
 
@@ -255,10 +255,10 @@ echo "    <a href=\"index.html\">\n";
 echo "      <img src=\"res/logo.png\" class=\"img-responsive\" alt=\"Responsive image\">\n";
 echo "    </a>\n";
 echo "    <ul class=\"nav nav-justified\">\n";
-echo "      <li><a href=\"index.html\">Búsqueda</a></li>\n";
-echo "      <li><a href=\"byprice.html\">Búsq.Avzda.</a></li>\n";
+echo "      <li><a href=\"index.html\">B&uacute;squeda</a></li>\n";
+echo "      <li><a href=\"byprice.html\">B&uacute;sq.Avzda.</a></li>\n";
 echo "      <li><a href=\"http://buscobici.blogspot.com.es\" target=\"_blank\">Blog</a></li>\n";
-echo "      <li><a href=\"http://buscobici.com/bikesearch_php_raw/stats_fullscreen.html\">Estadísticas</a></li>\n";
+echo "      <li><a href=\"http://buscobici.com/bikesearch_php_raw/stats_fullscreen.html\">Estad&iacute;sticas</a></li>\n";
 echo "      <li><a href=\"contact.html\">Contactar</a></li>\n";
 echo "    </ul>\n";
 echo "\n";
