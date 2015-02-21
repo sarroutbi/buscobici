@@ -22,6 +22,8 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Ee]l..ctrica [Pp]legable [Dd]e [Cc]iudad//g' \
 | sed -e 's/[Bb]icicleta [Ee]l...ctrica [Pp]legable [Dd]e [Cc]iudad//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Mm]onta.a MTB//g' \
+| sed -e 's/[Bb]icicleta [Ii]nfantil [Cc]on [Rr]uedas de 12"//gÂ'\ 
+| sed -e 's/[Bb]icicleta [Ii]nfantil [Cc]on [Rr]uedas de 12\"//g'\ 
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Mm]onta..a MTB//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Mm]onta...a MTB//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Dd]e [Nn]i.[ao]//g' \
