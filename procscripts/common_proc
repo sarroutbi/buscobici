@@ -214,6 +214,10 @@ function bubic_clean()
 | sed -e 's/Bici Mtb 26&quot; //g' \
 | sed -e 's/Bici Mtb 27.5&quot; //g' \
 | sed -e 's/Bici Mtb 29&quot; //g' \
+| sed -e 's/BICI MTB M.29" //g' \
+| sed -e 's/BICI MTB M.29&quot; //g' \
+| sed -e 's/Bici Mtb M.29" //g' \
+| sed -e 's/Bici Mtb M.29&quot; //g' \
 | sed -e 's/Bici Plegable //g' \
 | sed -e 's/Bici Confort //g' \
 | sed -e 's/[Cc]arretera //g' \
