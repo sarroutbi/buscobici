@@ -51,22 +51,33 @@ function process_file()
   TYPE="$3"
   cat "${BASE_FILE}" | grep 'class="product-box"' | while read model;
   do
+
+    # TRADEMARK PARSING
     TRADEMARK=$(echo ${model} | awk -F 'span class="manufacturer ' {'print $2'} | awk -F '</span>' {'print $1'} | awk -F ">" {'print $2'} | tr -d '\n' | tr -d '\r' | sed -e 's@- @ @g' | sed -e 's/&acute;/ /g')
+    # MODEL PARSING
     MODEL=$(echo ${model} | awk -F 'span class="manufacturer ' {'print $2'} | awk -F '</span>' {'print $2'} | awk -F ">" {'print $2'} | tr -d '\n' | tr -d '\r' | sed -e 's@- @ @g' | sed -e 's/&acute;/ /g')
-    #PRICE=$(grep "<span>${MODEL}</span>" "${BASE_FILE}" -A50 | awk -F 'class="figure-awards"' {'print $2'} | sed -e 's/<[^>]*>//g' | awk -F ">" {'print $2'} | grep [0-9] | tr -d "€" | tr -d " "| sed -e 's@-@00@g' | tr -d '.' | tr -d '\n' | tr -d '\r')
-    OTHER_PRICE=$(grep "<span>${MODEL}</span>" "${BASE_FILE}" -A50 | awk -F 'class="figure-awards"' {'print $2'} | awk -F '<div class="price" itemprop="price">' {'print $2'} | awk -F "</div>" {'print $1'} | grep [0-9] | head -1 | tr -d "€" | tr -d " "| sed -e 's@-@00@g' | tr -d '.' | tr -d '\n' | tr -d '\r' | sed -e 's/&euro;//g')
-    PRICE=$(echo ${model} | awk -F '<div class="price" itemprop="price">' {'print $2'} | awk -F '</div>' {'print $1'} | grep [0-9] | head -1 | tr -d "?" | tr -d " "| sed -e 's@-@00@g' | tr -d '.' | tr -d '\n' | tr -d '\r' | egrep -E -o "[0-9]{1,4}[,]{1}[0-9]{0,2}" | sed -e 's/&euro;//g')
-    test -z "${PRICE}" && PRICE=${OTHER_PRICE}
+
+    # URL PARSING
     SUBURL=$(echo ${model} | awk -F "<a href=" {'print $2'} | awk {'print $1'} | tr -d '"' | tr -d '\n' | tr -d '\r')
     URL="\"${BASE_URL}${SUBURL}\""
-    MODEL_CAMEL=$(bubic_camel "${MODEL}")
+    # PRICE PARSING
+    OTHER_PRICE=$(grep "<span>${MODEL}</span>" "${BASE_FILE}" -A50 | awk -F 'class="figure-awards"' {'print $2'} | awk -F '<div class="price" itemprop="price">' {'print $2'} | awk -F "</div>" {'print $1'} | grep [0-9] | head -1 | tr -d "€" | tr -d " "| sed -e 's@-@00@g' | tr -d '.' | tr -d '\n' | tr -d '\r' | sed -e 's/&euro;//g')
+    PRICE=$(echo ${model} | awk -F '<div class="price" itemprop="price">' {'print $2'} | awk -F '</div>' {'print $1'} | grep [0-9] | head -1 | tr -d "?" | tr -d " "| sed -e 's@-@00@g' | tr -d '.' | tr -d '\n' | tr -d '\r' | egrep -E -o "[0-9]{1,4}[,]{1}[0-9]{0,2}" | sed -e 's/&euro;//g')
+    OTHER_PRICE2=$(grep "${SUBURL}" "${BASE_FILE}" | awk -F '<div class="price" itemprop="price">' {'print $2'} | awk -F '</div>' {'print $1'} | grep [0-9] | head -1 | tr -d "?" | tr -d " "| sed -e 's@-@00@g' | tr -d '.' | tr -d '\n' | tr -d '\r' | egrep -E -o "[0-9]{1,4}[,]{1}[0-9]{0,2}" | sed -e 's/&euro;//g')
+    test -z "${PRICE}" && PRICE=${OTHER_PRICE}
+    test -z "${PRICE}" && PRICE=${OTHER_PRICE2}
+
+    # TRADEMARK/MODEL ADJUSTMENTS
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
+    MODEL_CAMEL=$(bubic_camel "${MODEL}")
+
     #echo "FILE:${BASE_FILE}"
     #echo "model:===>${model}<==="
     #echo "MODEL:=>${MODEL}<="
     #echo "TRADEMARK:=>${TRADEMARK}<="
     #echo "PRICE:=>${PRICE}<="
     #echo "OTHER_PRICE:=>${OTHER_PRICE}<="
+    #echo "OTHER_PRICE2:=>${OTHER_PRICE2}<="
     #echo "SUBURL:=>${SUBURL}<="
     #echo "URL:=>${URL}<="
     #echo
@@ -98,10 +109,10 @@ function process_pages_raw()
 
 #### ROAD ####
 ROAD_BIKES_ALUM_BASE="road-alum"
-ROAD_BIKES_ALUM_PAGES="$(seq 0 5)"
+ROAD_BIKES_ALUM_PAGES="$(seq 0 2)"
 
 ROAD_BIKES_CARBON_BASE="road-carbon"
-ROAD_BIKES_CARBON_PAGES="$(seq 0 5)"
+ROAD_BIKES_CARBON_PAGES="$(seq 0 3)"
 
 ROAD_BIKES_WOMAN_BASE="road-woman"
 ROAD_BIKES_WOMAN_PAGES="$(seq 0 1)"
@@ -143,6 +154,9 @@ MTB_DOUBLE_29_BIKES_PAGES="$(seq 0 5)"
 MTB_DOUBLE_WOMAN_BIKES_BASE="mtb-double-woman"
 MTB_DOUBLE_WOMAN_BIKES_PAGES="$(seq 0 2)"
 
+MTB_DOUBLE_FAT_BIKES_BASE="mtb-fat"
+MTB_DOUBLE_FAT_BIKES_PAGES="$(seq 0 2)"
+
 MTB_DOUBLE_DIRT_BIKES_BASE="mtb-double-dirt"
 MTB_DOUBLE_DIRT_BIKES_PAGES="$(seq 0 2)"
 
@@ -160,7 +174,8 @@ process_pages_raw "${MTB_WOMAN_BIKES_BASE}" "${MTB_WOMAN_BIKES_PAGES}" "BikeDisc
 process_pages_raw "${MTB_DOUBLE_26_BIKES_BASE}" "${MTB_DOUBLE_26_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_DOUBLE_275_BIKES_BASE}" "${MTB_DOUBLE_275_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_DOUBLE_29_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages_raw "${MTB_DOUBLE_WOMAN_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_DOUBLE_WOMAN_BIKES_BASE}" "${MTB_DOUBLE_WOMAN_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE-WOMAN" >> ${OUTPUT_FILE}
+process_pages_raw "${MTB_FAT_BIKES_BASE}" "${MTB_FAT_BIKES_PAGES}" "BikeDiscount" "MTB" >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_DOUBLE_DIRT_BIKES_BASE}" "${MTB_DOUBLE_DIRT_BIKES_PAGES}" "BikeDiscount" "MTB-DIRT" >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_ELECTRIC_BIKES_BASE}" "${MTB_ELECTRIC_BIKES_PAGES}" "BikeDiscount" "MTB-ELECTRIC" >> ${OUTPUT_FILE}
 process_pages_raw "${MTB_DOUBLE_ELECTRIC_BIKES_BASE}" "${MTB_DOUBLE_ELECTRIC_BIKES_PAGES}" "BikeDiscount" "MTB-DOUBLE-ELECTRIC" >> ${OUTPUT_FILE}
