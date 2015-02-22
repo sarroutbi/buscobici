@@ -48,3 +48,6 @@ psql --username postgres -h localhost -c "DELETE FROM bikes where MODEL LIKE 'Bo
 psql --username postgres -h localhost -c "DELETE FROM bikes where MODEL LIKE 'Tija%';" bikesearch;
 psql --username postgres -h localhost -c "DELETE FROM bikes where MODEL LIKE 'Adaptador%';" bikesearch;
 psql --username postgres -h localhost -c "DELETE FROM bikes where MODEL LIKE 'Portabultos%';" bikesearch;
+psql --username postgres -h localhost -c "DELETE FROM bikes where MODEL LIKE 'Cubierta%';" bikesearch;
+psql --username postgres -h localhost -c "DELETE FROM bikes where MODEL LIKE 'Set s%';" bikesearch;
+psql --username postgres -h localhost -c "DELETE FROM bikes where MODEL LIKE 'Game Bag%';" bikesearch;
