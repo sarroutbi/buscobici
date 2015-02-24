@@ -210,6 +210,38 @@ function bubic_clean()
 | sed -e 's/Bici Mtb Doble 27.5&quot; Mujer //g' \
 | sed -e 's/Bici Mtb Doble 27.5&quot; //g' \
 | sed -e 's/Bici Mtb Doble 29&quot; Mujer //g' \
+| sed -e 's/Bicicleta Mtb Xc 27.5&quot; //g' \
+| sed -e 's/BICICLETA MTB XC 27.5&quot; //g' \
+| sed -e 's/Bicicleta Enduro 27.5&quot; //g' \
+| sed -e 's/BICICLETA ENDURO 27.5&quot; //g' \
+| sed -e 's/Bicicleta Mtb Xc 26&quot; //g' \
+| sed -e 's/BICICLETA MTB XC 26&quot; //g' \
+| sed -e 's/Bicicleta Mtb 26&quot; Women //g' \
+| sed -e 's/BICICLETA MTB 26&quot; WOMEN //g' \
+| sed -e 's/Bicicleta Mtb 27,5&quot; Women //g' \
+| sed -e 's/BICICLETA MTB 27,5&quot; WOMEN //g' \
+| sed -e 's/Bicicleta Mtb Xc 29&quot; //g' \
+| sed -e 's/BICICLETA MTB XC 29&quot; //g' \
+| sed -e 's/Bicicleta Dirt-street 26&quot; //g' \
+| sed -e 's/BICICLETA DIRT-STREET 26&quot; //g' \
+| sed -e 's/Bicicleta Mtb 27.5&quot; //g' \
+| sed -e 's/BICICLETA MTB 27.5&quot; //g' \
+| sed -e 's/Bicicleta Infantil 12&quot; //g' \
+| sed -e 's/BICICLETA INFANTIL 12&quot; //g' \
+| sed -e 's/Bicicleta Infantil 16&quot; //g' \
+| sed -e 's/BICICLETA INFANTIL 16&quot; //g' \
+| sed -e 's/Bicicleta Infantil 20&quot; //g' \
+| sed -e 's/BICICLETA INFANTIL 20&quot; //g' \
+| sed -e 's/Bicicleta Junior 24&quot; //g' \
+| sed -e 's/BICICLETA JUNIOR 24&quot; //g' \
+| sed -e 's/Bicicleta Fitness 26&quot; //g' \
+| sed -e 's/BICICLETA FITNESS 26&quot; //g' \
+| sed -e 's/Bicicleta Fitness 28&quot; //g' \
+| sed -e 's/BICICLETA FITNESS 28&quot; //g' \
+| sed -e 's/Bicicleta Enduro 26&quot; //g' \
+| sed -e 's/BICICLETA ENDURO 26&quot; //g' \
+| sed -e 's/Bicicleta Mtb 26&quot; //g' \
+| sed -e 's/BICICLETA MTB 26&quot; //g' \
 | sed -e 's/Bici Mtb Doble 26&quot; Mujer //g' \
 | sed -e 's/Bici Mtb Doble 26&quot; //g' \
 | sed -e 's/Bici Mtb Doble 29&quot; //g' \
@@ -220,6 +252,18 @@ function bubic_clean()
 | sed -e 's/BICI MTB M.29&quot; //g' \
 | sed -e 's/Bici Mtb M.29" //g' \
 | sed -e 's/Bici Mtb M.29&quot; //g' \
+| sed -e 's/Bicicleta Dirt-street //g' \
+| sed -e 's/BICICLETA DIRT-STREET //g' \
+| sed -e 's/Bicicleta Trekking //g' \
+| sed -e 's/BICICLETA TREKKING //g' \
+| sed -e 's/Bicicleta Enduro //g' \
+| sed -e 's/BICICLETA ENDURO //g' \
+| sed -e 's/Bicicleta Carbono //g' \
+| sed -e 's/BICICLETA CARBONO //g' \
+| sed -e 's/Bicicleta Infantil //g' \
+| sed -e 's/BICICLETA INFANTIL //g' \
+| sed -e 's/Bicicleta Fitness //g' \
+| sed -e 's/BICICLETA FITNESS //g' \
 | sed -e 's/Bici Plegable //g' \
 | sed -e 's/Bici Confort //g' \
 | sed -e 's/[Cc]arretera //g' \
