@@ -45,3 +45,4 @@ This file contains which stores have been reviewed and the date.
 - BiciMarket    : 20150111
 - CiclosCurra   : 20150124
 - BikeDiscount  : 20150222
+- BikeStocks    : 20150225
