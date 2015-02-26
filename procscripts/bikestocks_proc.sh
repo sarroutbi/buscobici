@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2014 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2015 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -170,8 +170,9 @@ function process_page()
   #echo "STORE=${STORE}"
   #echo "TYPE=${TYPE}"
 
-  cat ${BASE_FILE} | grep '<h3><a href=' | grep -vi Bolsa |\
-grep -vi Casco | grep -vi Soporte | grep -vi Cubierta |\
+  cat ${BASE_FILE} | sed -e 's/<h3/\n<h3/g' | sed -e 's@/h3>@/h3>\n@g' |\
+grep '<h3>' | grep 'a href'|\
+grep -vi Bolsa | grep -vi Casco | grep -vi Soporte | grep -vi Cubierta |\
 grep -vi Elevador | grep -vi Rodillo | grep -v Transporte |\
 while read HTML_LINE;
   do
@@ -182,7 +183,10 @@ while read HTML_LINE;
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_MIN})
     URL=$(echo "${HTML_LINE}" | awk -F "a href=" {'print $2'} | awk {'print $1'} | tr -d ' ')
-    PRICE=$(grep "${HTML_LINE}" "${BASE_FILE}" -A10 | grep '<span class="price"' | sed -e 's/<[^>]*>//g' | sed -e 's/^[ \t]*//g' | tr -d ' ' | egrep -E -o "[0-9]{2,5},{0,1}[0-9]{0,2}")
+    PRICE=$(cat "${BASE_FILE}" | sed -e 's/<h3/\n<h3/g' | sed -e 's@/h3>@/h3>\n@g' |grep '<h3>' -A1 | sed -e 's@<span class="price"@\n<span class="price"@g' |\
+sed -e 's@</span>@</span>\n@' | grep ">$TRADEMARK_MODEL<" -A3 |\
+grep '<span class="price"' | sed -e 's/<[^>]*>//g' |\
+sed -e 's/^[ \t]*//g' | tr -d ' ' | egrep -E -o "[0-9]{2,5},{1}[0-9]{0,2}" | head -1)
     #echo "========================================================================"
     #echo "BASE_FILE=${BASE_FILE}"
     #echo "HTML_LINE=${HTML_LINE}"
@@ -229,24 +233,24 @@ MTB_26_BIKES_PAGES="$(seq 1 3)"
 process_pages "${MTB_26_BIKES_BASE}" "${MTB_26_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
 
 MTB_27_BIKES_BASE="mtb-27"
-MTB_27_BIKES_PAGES="$(seq 1 7)"
+MTB_27_BIKES_PAGES="$(seq 1 9)"
 process_pages "${MTB_27_BIKES_BASE}" "${MTB_27_BIKES_PAGES}" "BikeStocks" "MTB" >> ${OUTPUT_FILE}
 
 MTB_29_BIKES_BASE="mtb-29"
 MTB_29_BIKES_PAGES="$(seq 1 7)"
 process_pages "${MTB_29_BIKES_BASE}" "${MTB_29_BIKES_PAGES}" "BikeStocks" "MTB-29" >> ${OUTPUT_FILE}
 
-ROAD_BIKES_BASE="road"
-ROAD_BIKES_PAGES="$(seq 1 6)"
-process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
-
 ROAD_TRIATLON_BIKES_BASE="road-triatlon"
 ROAD_TRIATLON_BIKES_PAGES="$(seq 1 2)"
 
 process_pages "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}" "BikeStocks" "ROAD-TRIATLON" >> ${OUTPUT_FILE}
 
+ROAD_BIKES_BASE="road"
+ROAD_BIKES_PAGES="$(seq 1 6)"
+process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "BikeStocks" "ROAD" >> ${OUTPUT_FILE}
+
 URBAN_ELECTRIC_BIKES_BASE="urban-electric"
-URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 2)"
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
 
 process_pages "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "BikeStocks" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
 
@@ -256,12 +260,12 @@ BMX_BIKES_PAGES="$(seq 1 2)"
 process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "BikeStocks" "BMX" >> ${OUTPUT_FILE}
 
 URBAN_WALK_BIKES_BASE="urban-walk"
-URBAN_WALK_BIKES_PAGES="$(seq 1 2)"
+URBAN_WALK_BIKES_PAGES="$(seq 1 4)"
 
 process_pages "${URBAN_WALK_BIKES_BASE}" "${URBAN_WALK_BIKES_PAGES}" "BikeStocks" "URBAN" >> ${OUTPUT_FILE}
 
 URBAN_TREKKING_BIKES_BASE="urban-trekking"
-URBAN_TREKKING_BIKES_PAGES="$(seq 1 2)"
+URBAN_TREKKING_BIKES_PAGES="$(seq 1 3)"
 
 process_pages "${URBAN_TREKKING_BIKES_BASE}" "${URBAN_TREKKING_BIKES_PAGES}" "BikeStocks" "URBAN-TREKKING" >> ${OUTPUT_FILE}
 

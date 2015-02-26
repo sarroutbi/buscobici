@@ -47,7 +47,7 @@ MTB_26_BIKES_PAGES="$(seq 1 3)"
 bubic_get_page_outfile "${MTB_26_BIKES_BASE}" "${MTB_26_BIKES_PAGES}" mtb-26
 
 MTB_27_BIKES_BASE="${URL}/mountain-bike-27-5-574?p="
-MTB_27_BIKES_PAGES="$(seq 1 7)"
+MTB_27_BIKES_PAGES="$(seq 1 9)"
 
 bubic_get_page_outfile "${MTB_27_BIKES_BASE}" "${MTB_27_BIKES_PAGES}" mtb-27
 
@@ -56,18 +56,18 @@ MTB_29_BIKES_PAGES="$(seq 1 7)"
 
 bubic_get_page_outfile "${MTB_29_BIKES_BASE}" "${MTB_29_BIKES_PAGES}" mtb-29
 
-ROAD_BIKES_BASE="${URL}/bicicletas-de-carretera-571?p="
-ROAD_BIKES_PAGES="$(seq 1 6)"
-
-bubic_get_page_outfile "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" road
-
 ROAD_TRIATLON_BIKES_BASE="${URL}/bicicletas-de-triatlon-415?p="
 ROAD_TRIATLON_BIKES_PAGES="$(seq 1 2)"
 
 bubic_get_page_outfile "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}" road-triatlon
 
+ROAD_BIKES_BASE="${URL}/bicicletas-de-carretera-571?p="
+ROAD_BIKES_PAGES="$(seq 1 6)"
+
+bubic_get_page_outfile "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" road
+
 URBAN_ELECTRIC_BIKES_BASE="${URL}/bicicletas-electricas-71?p="
-URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 2)"
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
 
 bubic_get_page_outfile "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" urban-electric
 
@@ -77,7 +77,7 @@ BMX_BIKES_PAGES="$(seq 1 2)"
 bubic_get_page_outfile "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" bmx
 
 URBAN_WALK_BIKES_BASE="${URL}/bicicletas-de-paseo-155?p="
-URBAN_WALK_BIKES_PAGES="$(seq 1 2)"
+URBAN_WALK_BIKES_PAGES="$(seq 1 4)"
 
 bubic_get_page_outfile "${URBAN_WALK_BIKES_BASE}" "${URBAN_WALK_BIKES_PAGES}" urban-walk
 
