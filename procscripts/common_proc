@@ -250,6 +250,7 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta de [Cc]arrera//g' \
 | sed -e 's/[Bb]icicleta Dirt-HI//g' \
 | sed -e 's/Bici sin pedales//g' \
+| sed -e 's/[Bb]icicleta [Dd]oble [Ss]uspensi.n//g' \
 | sed -e 's/[Bb]icicletas [Pp]ara [Nn]i.os//g' \
 | sed -e 's/[Bb]icicleta [Pp]ara [Nn]i.os//g' \
 | sed -e 's/[Mm]onopat.n [Pp]ara [Nn]i.os//g' \
