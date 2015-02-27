@@ -34,6 +34,9 @@ PRICE_SEARCH=10
 URL="www.probikeshop.es"
 ONLY_DOMAIN="probikeshop.es"
 
+#### LOAD COMMON FUNCTIONS
+. ./common_proc
+
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
 SUBURL_KEY="SUBURL"
@@ -157,11 +160,11 @@ function dump_bike_from_file()
     #echo "===== /TRADEMARK MODEL ====="
     test -z "${trademark_model}" && continue;
     TRADEMARK_MODEL="${trademark_model}"
-    TRADEMARK_MODEL_CLEAN=$(clean_model "${TRADEMARK_MODEL}")
+    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
-    TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+    TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
-    MODEL_CAMEL=$(camel "${MODEL}" "${NO_CAMEL_MIN}")
+    MODEL_CAMEL=$(bubic_camel "${MODEL}" "${NO_CAMEL_MIN}")
     URL=$(grep "${trademark_model}" "${FILE}" -B5 | grep "<a href" | awk -F "a href=" {'print $2'} | awk -F ">" {'print $1'} | tr -d '"' | tr -d ' ')
     FINAL_URL=$(echo "\"${BASE_URL}${URL}\"")
 #    PRICE=$(grep "${trademark_model}" "${FILE}" -A${DOWN_SEARCH} | grep '<span class="title"' -A${PRICE_SEARCH} | egrep -E "[0-9]{0,1}.{0,1}[0-9]{2,},{0,1}[0-9]{0,}" -o | head -1 | tr -d '.' | sed -e 's/^[ /t]*//g' | tr -d ' ' | tr -d '\r' | tr -d '\n' | tr -d '\302' | tr -d '\240')
