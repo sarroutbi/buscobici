@@ -351,6 +351,7 @@ function bubic_clean()
 | sed -e 's/[Nn]in.os//g' \
 | sed -e 's/[Mm]onociclo//g' \
 | sed -e 's/[Pp]atinete //g' \
+| sed -e 's/[Pp]at.n //g' \
 | sed -e 's/[Cc]iclocross //g' \
 | sed -e 's/[Mm]onta.a //g' \
 | sed -e 's/[Tt]rial //g' \
@@ -367,6 +368,7 @@ function bubic_clean()
 | sed -e 's/[Ee]l.ctrica //g' \
 | sed -e 's/[Mm]inibike//g' \
 | sed -e 's/[Ss]uspensi.on //g' \
+| sed -e 's/[Cc]uatriciclo //g' \
 | sed -e 's/[Tt]riciclo //g' \
 | sed -e 's/[Ss]tick//g' \
 | sed -e 's/[Ss]uspensi.n //g' \
