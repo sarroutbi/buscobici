@@ -144,9 +144,13 @@ function process_page_file()
     do
       TRADEMARK_MODEL="$(echo ${model} | tr -d '\r' | tr -d '\n')"
       TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
-#      TRADEMARK="$(echo "${MODEL_CLEAN}" | awk -F "-" {'print $1'} | sed -e 's/[ \t]$//g' | sed -e 's/^[ \t]*//g')"
       TRADEMARK="$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'} | tr -d '\n' | tr -d '\r')"
       MODEL_CLEAN=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;i++){printf $i; if(i<NF){printf " "}}'} | sed -e 's/^- //g')
+      if [ "${TRADEMARK}" = "De" ];
+      then
+	TRADEMARK="De Rosa"
+        MODEL_CLEAN=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=3;i<=NF;i++){printf $i; if(i<NF){printf " "}}'} | sed -e 's/^- //g')
+      fi
       MODEL_NO_TRADEMARK="$(echo ${MODEL_CLEAN} | sed -e "s/${TRADEMARK}//g" | sed -e 's/^ - //g' )"
       MODEL_CAMEL=$(camel "${MODEL_NO_TRADEMARK}" "${NO_CAMEL_MIN}")
       TRADEMARK_CAMEL=$(camel "${TRADEMARK}" "${NO_CAMEL_MIN}")
