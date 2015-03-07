@@ -95,7 +95,7 @@ bubic_clean "$trimmed_model"'`;
   #print "STORE:$store\n";
   #print "TYPE:$type\n";
   #print "================================\n";
-  dump_bash_bubic ($camel_model, $url, $camel_trademark, $price, $store, $type);
+  dump_bash_bubic ($camel_model, $url_bs, $camel_trademark, $price, $store, $type);
 }
 
 sub process_file {
