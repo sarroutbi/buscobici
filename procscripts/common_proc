@@ -65,6 +65,9 @@ function bubic_clean()
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Rr]...gida//g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Rr]..gida//g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Rr].gida//g' \
+| sed -e 's/[Bb]ici [Mm][Tt][Bb] [Mm]ujer 27.5"//g' \
+| sed -e 's/[Bb]ici [Mm][Tt][Bb] [Mm]ujer 27.5\"//g' \
+| sed -e 's/[Bb]ici [Mm][Tt][Bb] [Mm]ujer 27.5.//g' \
 | sed -e 's/[Bb]icicleta [Dd]e [Pp]ista//g' \
 | sed -e 's/[Bb]icicleta [Pp]ara [Nn]i..[oa]s//g' \
 | sed -e 's/[Bb]icicleta [Pp]ara [Nn]i..[oa]//g' \
@@ -118,6 +121,8 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Cc]l.sica [Ii]nglesa//g' \
 | sed -e 's/[Bb]icicleta [Cc]l..sica [Ii]nglesa//g' \
 | sed -e 's/[Bb]icicleta [Cc]l...sica [Ii]nglesa//g' \
+| sed -e 's/[Bb]icicleta [Mm][Tt][Bb] [Mm]ujer//g' \
+| sed -e 's/[Bb]ici [Mm][Tt][Bb] [Mm]ujer//g' \
 | sed -e 's/[Bb]icicleta [Dd]e [Hh]ombre//g' \
 | sed -e 's/[Bb]icicleta [Dd]e [Cc]arga//g' \
 | sed -e 's/[Bb]icicleta [Dd]e [Cc]arretera//g' \
@@ -243,6 +248,8 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Nn]i.[oa]//g' \
 | sed -e 's/[Bb]icicleta [Pp]legable //g' \
 | sed -e 's/[Bb]icicleta [Nn]egra//g' \
+| sed -e 's/[Bb]icicleta [Bb][Tt][Tt]//g' \
+| sed -e 's/[Bb]ici [Bb][Tt][Tt]//g' \
 | sed -e 's/[Bb]icicleta urbana para mujer //g' \
 | sed -e 's/[Bb]each [Cc]ruiser//g' \
 | sed -e 's/[Bb]icicleta de [Cc]arrera negra//g' \
@@ -374,7 +381,6 @@ function bubic_clean()
 | sed -e 's/[Ss]tick//g' \
 | sed -e 's/[Ss]uspensi.n //g' \
 | sed -e 's/ de //g' \
-| sed -e 's/BTT //g' \
 | sed -e 's/BMX //g' \
 | sed -e 's/TRAIL //g' \
 | sed -e 's/[Ss]ill.n //g' \
