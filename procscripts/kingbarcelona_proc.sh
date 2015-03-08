@@ -42,6 +42,8 @@ STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
 
+. ./common_proc
+
 # Params
 # 1 - Model:     [MODEL]
 # 2 - Url:       SUBURL="www.whatever.es"
@@ -127,7 +129,7 @@ function camel()
 function clean_model()
 {
     MODEL="${1}"
-    MODEL_CLEAN=$(echo "${MODEL}" | sed -e 's/[Bb]ici [Ff]reeride//g' |sed -e 's/Bici KTM [Bb][Mm][Xx]/KTM/g' | sed -e 's/Bici ni*os//g' | sed -e 's/[Bb]ici [Nn]ios//g' |sed -e 's/[Bb]ici [Dd][Hh]//g' | sed -e 's/[Bb]ici [Nn]i?os//g' | sed -e 's/[Bb]ici de [Tt]riathlon//g' | sed -e 's/[Bb]ici [Bb][Mm][Xx]//g' | sed -e 's/[Bb]ici [Mm]tb//g' | sed -e 's/[Bb]ici [Nn]i.os//g' | sed -e 's/[Bb]ici electrica//g' | sed -e 's/[Bb]ici de [Cc]iclismo//g'  | sed -e 's/[Bb]ici de [Cc]iudad//g' | sed -e 's/[Bb]icicleta de [Tt]riathlon//g' | sed -e 's/[Bb]icicleta de [Cc]iudad//g' | sed -e 's/Bici sin pedales//g' | sed -e 's/[Bb]icicleta de [Mm]onta.a//g' | sed -e 's/[Bb]icicleta [Oo]utdoor//g' | sed -e 's/[Bb]icicleta [Tt]rekking//g' | sed -e 's/[Bb]icicleta BMX//g' | sed -e 's/[Bb]icicleta de [Pp]aseo//g' | sed -e 's/[Bb]icicleta [Uu]rbana [Ee]l.ctrica//g'   | sed -e 's/[Bb]icicleta [Uu]rbana [Pp]legable//g'  | sed -e 's/[Bb]icicleta [Uu]rbana//g' | sed -e 's/[Cc]uadro de [Cc]arretera//g' | sed -e 's/[Bb]icicleta de [Cc]arretera//g' | sed -e 's/[Bb]icicleta [Uu]rbana [Pp]legable//g' | sed -e 's/[Bb]icicleta [Ee]l.ctrica//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo//g' | sed -e 's/[Cc]uadro//g' | sed -e 's/[Pp]atinete//g' | sed -e 's/Bici KTM ni.os//g')
+    MODEL_CLEAN=($bubic_clean "${MODEL}")
     echo "${MODEL_CLEAN}" | grep ^"Bici ni" 2>&1 >/dev/null
     if [ $? -eq 0 ];
     then
@@ -153,7 +155,7 @@ function dump_bike_from_file()
   do 
     test -z "${trademark_model}" && continue;
     TRADEMARK_MODEL="${trademark_model}"
-    TRADEMARK_MODEL_CLEAN=$(clean_model "${TRADEMARK_MODEL}")
+    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     if [ "${TRADEMARK_CAMEL}" = "Solid" ];

@@ -59,6 +59,9 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Rr].gida [Dd]e [Mm]onta..a [Dd]e [Mm]ujer//g' \
 | sed -e 's/[Bb]icicleta [Rr].gida [Dd]e [Mm]onta..a//g' \
 | sed -e 's/[Bb]icicleta [Dd]e [Cc]ross [Dd]e [Cc]hic[oa]//g' \
+| sed -e 's/[Bb]icicleta [Bb][Tt][Tt] [Dd]oble [Ss]uspensi√.n//g' \
+| sed -e 's/[Bb]ici [Bb][Tt][Tt] [Dd]oble [Ss]uspensi√.n//g' \
+| sed -e 's/[Bb]ici [Mm][Tt][Bb] [Dd]oble 29&quot;//g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Rr].gida [Mm]ujer 27.5&quot;//g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Rr].gida [Mm]ujer 27.5"//g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Rr].gida [Mm]ujer 27.5\"//g' \
@@ -199,6 +202,8 @@ function bubic_clean()
 | sed -e 's/[Bb]ici [Nn]i√±[oa]//g' \
 | sed -e 's/[Bb]ici [Uu]rban//g' \
 | sed -e 's/[Bb]ici [Tt]riathlon//g' \
+| sed -e 's/[Bb]icicleta [Mm][Tt][Bb]//g' \
+| sed -e 's/[Bb]ici [Mm][Tt][Bb]//g' \
 | sed -e 's/[Bb]icicleta [Rr]...gida//g' \
 | sed -e 's/[Bb]icicleta [Rr]..gida//g' \
 | sed -e 's/[Bb]icicleta [Rr].gida//g' \
@@ -287,6 +292,8 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta de [Cc]arrera//g' \
 | sed -e 's/[Bb]icicleta Dirt-HI//g' \
 | sed -e 's/Bici sin pedales//g' \
+| sed -e 's/[Bb]icicleta [Dd]oble [Ss]uspensi...n//g' \
+| sed -e 's/[Bb]icicleta [Dd]oble [Ss]uspensi..n//g' \
 | sed -e 's/[Bb]icicleta [Dd]oble [Ss]uspensi.n//g' \
 | sed -e 's/[Bb]icicletas [Pp]ara [Nn]i.os//g' \
 | sed -e 's/[Bb]icicleta [Pp]ara [Nn]i.os//g' \
