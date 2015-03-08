@@ -35,6 +35,9 @@ STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
 
+# INCLUDE COMMON
+. ./common_proc
+
 # Params
 # 1 - Model:     [MODEL]
 # 2 - Url:       SUBURL="www.whatever.es"
@@ -152,13 +155,15 @@ function process_pages()
         # ORBEA<br>AQUA T23 2013<br><b>717 &euro;</b>
         # echo "BIKE:=>${bike}<="
         TRADEMARK=$(echo ${bike} | awk -F "<br>" {'print $1'} | sed -e 's/<[^>]*>//g')
+        TRADEMARK_CLEAN=$(bubic_clean "${TRADEMARK}")
         MODEL=$(echo ${bike} | awk -F "<br>" {'print $2'} | sed -e 's/<[^>]*>//g' | tr "'" '"')
+        MODEL_CLEAN=$(bubic_clean "${MODEL}")
         PRICE=$(echo ${bike} | awk -F "<br>" {'print $3'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o | tail -1)
         # echo "=========>${bike}<==========="
         URL=$(echo "${bike}" | awk -F "<a href='" {'print $2'} | awk -F ">" {'print $1'} | tr -d "'")
         FINAL_URL="${BASE_URL}${URL}"
-        TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
-        MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+        TRADEMARK_CAMEL=$(camel "${TRADEMARK_CLEAN}" 0)
+        MODEL_CAMEL=$(camel "${MODEL_CLEAN}" ${NO_CAMEL_MIN})
         dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
       done
   else
@@ -170,13 +175,15 @@ function process_pages()
         # <a href=""...>ORBEA<br>AQUA T23 2013<br><b>717 &euro;</b>
         # echo "BIKE:=>${bike}<="
         TRADEMARK=$(echo ${bike} | awk -F "<br>" {'print $1'} | sed -e 's/<[^>]*>//g')
+        TRADEMARK_CLEAN=$(bubic_clean "${TRADEMARK}")
         MODEL=$(echo ${bike} | awk -F "<br>" {'print $2'} | sed -e 's/<[^>]*>//g' | tr "'" '"')
+        MODEL_CLEAN=$(bubic_clean "${MODEL}")
         PRICE=$(echo ${bike} | awk -F "<br>" {'print $3'} | sed -e 's/<[^>]*>//g' | egrep "[0-9]{1,}.?[0-9]{0,},?[0-9]{0,}" -o | tail -1)
         # echo "=========>${bike}<==========="
         URL=$(echo "${bike}" | awk -F "<a href='" {'print $2'} | awk -F ">" {'print $1'} | tr -d "'")
         FINAL_URL="${BASE_URL}${URL}"
-        TRADEMARK_CAMEL=$(camel "${TRADEMARK}" 0)
-        MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+        TRADEMARK_CAMEL=$(camel "${TRADEMARK_CLEAN}" 0)
+        MODEL_CAMEL=$(camel "${MODEL_CLEAN}" ${NO_CAMEL_MIN})
         dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
       done
     done

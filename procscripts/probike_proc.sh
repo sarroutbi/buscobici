@@ -35,6 +35,8 @@ STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
 
+. ./common_proc
+
 # Params:
 # 1 - The sentence
 # 2 - The min size to camelize
@@ -145,12 +147,12 @@ function process_page_url()
   MODELS=$(cat "${BASE_FILE}" | grep "product-name" -A2 |  grep -v "path_listado" | sed -e 's/<[^>]*>//g' | grep [A-Z,a-z])
   echo "${MODELS}" | while read model;
   do
-    MODEL_FILTER=$(filter_model "${model}")
+    MODEL_FILTER=$(bubic_clean "${model}")
     TRADEMARK_SPECIAL=$(echo "${MODEL_FILTER}" | grep -i -o ^"Like A Bike\|Like to Bike")
     if [ $? -eq 0 ]; 
     then
       MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=4;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-      MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
+      MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
       TRADEMARK=${TRADEMARK_SPECIAL}
     else 
       MODEL=$(echo "${MODEL_FILTER}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
