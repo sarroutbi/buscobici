@@ -1,4 +1,5 @@
 #!/bin/bash
+#
 # Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
@@ -13,7 +14,7 @@
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
-export LANGUAGE=C
-export LC_ALL=C
-export LANG=C
-sloccount --personcost 45000 --addlang html --addlangall $(for i in $(ls -d * | grep -v BACKUPS); do echo $i; done);
+# Remember: This can be done becahse a .pgpass must exist on 
+# HOME dir, with permission 0600, containing the password
+. ./common_trunc
+psql --user postgres -h ${DDBB_IP} bikesearch -c "DELETE FROM bikes WHERE store LIKE 'RedBlue';"

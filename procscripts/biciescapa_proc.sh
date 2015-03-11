@@ -153,12 +153,13 @@ function process_page_url()
   cat "${BASE_FILE}" | egrep -E '<h3>' | grep '<a href=' | tr -d '\r' | while read model_url_line;
   do
     TRADEMARK_MODEL=$(echo "${model_url_line}" | sed -e 's/<[^>]*>//g')
+    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     URL=$(echo "${model_url_line}" | awk -F '<a href=' {'print $2'} | awk {'print $1'})
     URL_NO_QUOTES=$(echo ${URL} | tr -d '"')
-    TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
+    TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
     TRADEMARK_CLEAN=$(bubic_clean "${TRADEMARK}")
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK_CLEAN}" ${NO_CAMEL_TRADEMARK_MIN})
-    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
+    MODEL=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
     MODEL_CLEAN=$(bubic_clean "${MODEL}")
     MODEL_CAMEL=$(bubic_camel "${MODEL_CLEAN}" ${NO_CAMEL_MODEL_MIN})
     PRICE=$(print_price_url ${URL_NO_QUOTES})
@@ -206,7 +207,7 @@ MTB_ELECTRIC_BIKES_BASE="55932276-btt-electricas?p"
 MTB_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
 
 ROAD_BIKES_BASE="8-carretera?p="
-ROAD_BIKES_PAGES="$(seq 1 8)"
+ROAD_BIKES_PAGES="$(seq 1 10)"
 
 BMX_BIKES_BASE="9-bmx-freestyle"
 BMX_BIKES_PAGES=""
@@ -215,7 +216,7 @@ URBAN_BIKES_BASE="10-bicicletas-paseo-electricas?p="
 URBAN_BIKES_PAGES="$(seq 1 8)"
 
 FOLDING_BIKES_BASE="11-plegables?p="
-FOLDING_BIKES_PAGES="$(seq 1 2)"
+FOLDING_BIKES_PAGES="$(seq 1 3)"
 
 KIDS_BIKES_BASE="61-junior?p="
 KIDS_BIKES_PAGES="$(seq 1 5)"
