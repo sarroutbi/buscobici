@@ -13,7 +13,7 @@
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
-export LANGUAGE=
-export LC_ALL=
-export LANG=
+export LANGUAGE=C
+export LC_ALL=C
+export LANG=C
 sloccount --personcost 45000 --addlang html --addlangall $(for i in $(ls -d * | grep -v BACKUPS); do echo $i; done);
