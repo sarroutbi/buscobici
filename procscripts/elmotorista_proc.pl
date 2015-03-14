@@ -120,7 +120,7 @@ sub process_file {
   elsif ($type eq "") {
     return 1;
   }
-  my $models_cmd = "cat $file | grep '<h2 class=\"ItemShopDesc\" title=\"' | sed -e 's/<[^>]*>//g'";
+  my $models_cmd = "cat $file | grep '<span class=\"ItemShopDesc\" itemprop=\"name\" title=\"' | sed -e 's/<[^>]*>//g'";
   my @models = `$models_cmd`;
   foreach my $trade_model (@models) {
     chomp($trade_model);
