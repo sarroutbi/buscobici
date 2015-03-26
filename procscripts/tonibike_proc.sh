@@ -46,8 +46,7 @@ KIND_KEY="KIND"
 
 function print_price_url()
 {
-  URL_NO_DASH=$(echo "$1" | tr -d '"')
-  PRICE=$(wget -o /dev/null -O - ${URL_NO_DASH} | sed -e 's@<span id="our_price_display"@\n<span id="our_price_display"@g' | sed -e 's@</span>@</span>\n@g' | grep ^'<span id="our_price_display"' | sed -e 's@<[^>]*>@@g' | egrep -E "[0-9]{0,2},{0,1}[0-9]{2,3}.[0-9]{0,2}" -o | tr -d ',' | tr '.' ',')
+  PRICE=$(wget -o /dev/null -O - $1 | grep our_price_display | sed -e 's@<[^>]*>@@g' | egrep -E "[0-9]{0,2},{0,1}[0-9]{2,3}.[0-9]{0,2}" -o | tr -d ',' | tr '.' ',')
   echo ${PRICE}
 }
 
@@ -56,17 +55,18 @@ function process_file()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${BASE_FILE}" | sed -e 's@<a class="product-name@\n<a class="product-name@g' | sed -e 's@<p class="product-desc@\n<p class="product-desc@g' | grep '<a class="product-name"' | sed -e 's@<[^>]*>@@g' | grep -v ^Bicicletas | egrep -E "[A-Z,a-z]" | while read model;
+  cat "${BASE_FILE}" | grep '<a class="product-name"' -A1 | sed -e 's@\n@@g' | sed -e 's@<[^>]*>@@g' | grep -v ^Bicicletas | egrep -E "[A-Z,a-z]" | while read line;
   do
-    TRADEMARK_MODEL="${model}"
+    TRADEMARK_MODEL="${line}"
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
     MODEL=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN} | sed -e 's@Qer@Quer@g')
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
-    URL=$(cat "${BASE_FILE}" | sed -e 's@<a class="product-name@\n<a class="product-name@g' | sed -e 's@<p class="product-desc@\n<p class="product-desc@g' | grep '<a class="product-name"' | grep "${model}" | grep -v ^Bicicletas | egrep -E "[A-Z,a-z]" | awk -F "href=" {'print $2'} | awk {'print $1'})
+    URL=$(grep "${line}" ${BASE_FILE} -B1 | awk -F 'href="' {'print $2'} | awk -F '"' {'print $1'} | egrep -e "[A-Z,a-z]" | head -1)
+#    PRICE=$(grep "${line}" -B42 ${BASE_FILE} | grep 'price' -A4 | grep -v '%' | egrep -E "[0-9]{0,2},{0,1}[0-9]{2,3}.[0-9]{0,2}" -o | head -1 | tr -d ',' | tr '.' ',')
     PRICE=$(print_price_url "${URL}")
-    #echo "=>LINE:${model}<="
+    #echo "=>LINE:${line}<="
     #echo "BASE_FILE:${BASE_FILE}"
     #echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
     #echo "TRADEMARK:=>${TRADEMARK}<="
