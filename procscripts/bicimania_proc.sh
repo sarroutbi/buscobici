@@ -35,6 +35,8 @@ STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
 
+. ./common_proc
+
 # Params
 # 1 - Model:     [MODEL]
 # 2 - Url:       SUBURL="www.whatever.es"
@@ -127,7 +129,9 @@ function process_pages2()
       do
         TRADEMARK_MODEL=$(echo "${line}" | awk -F "</h5>" {'print $1'} | sed -e 's@<[^>]*>@@g')
         TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
+        TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
         MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+        MODEL_CAMEL=$(bubic_camel "${MODEL}")
         PRICE=$(echo "${line}" | egrep -E -o "[0-9]{0,1} {0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d ' ')
         FINAL_URL=$(echo "${line}" | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
         #echo "========================"
@@ -137,7 +141,7 @@ function process_pages2()
         #echo "URL:$FINAL_URL"
         #echo "PRICE:$PRICE"
         #echo "========================"
-        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
+        dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
       done
   else
     for page in ${PAGES};
@@ -147,7 +151,9 @@ function process_pages2()
       do
         TRADEMARK_MODEL=$(echo "${line}" | awk -F "</h5>" {'print $1'} | sed -e 's@<[^>]*>@@g')
         TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
+        TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
         MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+        MODEL_CAMEL=$(bubic_camel "${MODEL}")
         PRICE=$(echo "${line}" | egrep -E -o "[0-9]{0,1} {0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d ' ')
         FINAL_URL=$(echo "${line}" | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
         #echo "========================"
@@ -157,7 +163,7 @@ function process_pages2()
         #echo "URL:$FINAL_URL"
         #echo "PRICE:$PRICE"
         #echo "========================"
-        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
+        dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
       done
     done
   fi
