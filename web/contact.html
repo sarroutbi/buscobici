@@ -40,6 +40,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
+    <script src='https://www.google.com/recaptcha/api.js?hl=es'></script> 
   </head>
 
   <body>
@@ -77,6 +78,7 @@
         <span class="input-group-addon">Comentarios:</span>
         <textarea name="comments" rows="1" placeholder="Por favor, incluya aquí sus comentarios" required></textarea>
       </div>
+      <div class="g-recaptcha" data-sitekey="YOUR_KEY"></div>
       <div class="control-group">
         <button class="btn btn-lg btn-primary btn-purple" type="submit">Enviar comentario</button>
       </div>
