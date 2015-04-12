@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2015 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -23,8 +23,6 @@ ONLY_DOMAIN="bicimania.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
 MAX_TRIES=20
 MAX_TIMEOUT=10
-#EXCLUDE="-Ahtml"
-#HOST_ONLY="-D${ONLY_DOMAIN}"
 
 function get_page()
 {
@@ -41,29 +39,35 @@ function get_page()
   fi
 }
 
-FIX_BIKES_BASE="http://bicimania.com/mtb-rigida-c-21_28.html?page="
-FIX_BIKES_PAGES=$(seq 1 10)
+FIX_BIKES_BASE="http://bicimania.com/es/4-montana-rigidas?p="
+FIX_BIKES_PAGES=$(seq 1 5)
 
-DOUBLE_BIKES_BASE="http://bicimania.com/doble-suspension-c-21_30.html?page="
-DOUBLE_BIKES_PAGES=$(seq 1 10)
+DOUBLE_BIKES_BASE="http://bicimania.com/es/169-montana-doble-suspension-todas?p="
+DOUBLE_BIKES_PAGES=$(seq 1 5)
 
-ROAD_BIKES_BASE="http://bicimania.com/carretera-c-21_32.html?page="
-ROAD_BIKES_PAGES=$(seq 1 10)
+MTB_WOMAN_BIKES_BASE="http://bicimania.com/es/170-montana-de-mujer?p="
+MTB_WOMAN_BIKES_PAGES=$(seq 1 3)
 
-BMX_BIKES_BASE="http://bicimania.com/bmx-y-freestyle-c-21_31.html"
+ROAD_BIKES_BASE="http://bicimania.com/es/26-carretera?p="
+ROAD_BIKES_PAGES=$(seq 1 6)
 
-CONFORT_BIKES_BASE="http://bicimania.com/confort-c-21_107.html?page="
-CONFORT_BIKES_PAGES=$(seq 1 3)
+BMX_BIKES_BASE="http://bicimania.com/es/11-bmx-campillo"
 
-FOLDING_BIKES_BASE="http://bicimania.com/plegables-c-21_133.html?page="
-FOLDING_BIKES_PAGES=$(seq 1 3)
+CHILDREN_BIKES_BASE="http://bicimania.com/es/16-ninos?p="
+CHILDREN_BIKES_PAGES=$(seq 1 3)
 
-CHILDREN_BIKES_BASE="http://bicimania.com/bicis-nino-c-21_98.html"
+URBAN_BIKES_BASE="http://bicimania.com/es/7-urbanas?p="
+URBAN_BIKES_PAGES=$(seq 1 4)
+
+URBAN_ELECTRIC_BIKES_BASE="http://bicimania.com/es/23-urbanas"
+
+MTB_ELECTRIC_BIKES_BASE="http://bicimania.com/es/38-montana"
 
 get_page "${FIX_BIKES_BASE}" "${FIX_BIKES_PAGES}"
 get_page "${DOUBLE_BIKES_BASE}" "${DOUBLE_BIKES_PAGES}"
 get_page "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}"
 get_page "${BMX_BIKES_BASE}" ""
-get_page "${CONFORT_BIKES_BASE}" "${CONFORT_BIKES_PAGES}"
-get_page "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}"
-get_page "${CHILDREN_BIKES_BASE}" ""
+get_page "${CHILDREN_BIKES_BASE}" "${CHILDREN_BIKES_PAGES}"
+get_page "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}"
+get_page "${URBAN_ELECTRIC_BIKES_BASE}" ""
+get_page "${MTB_ELECTRIC_BIKES_BASE}" ""

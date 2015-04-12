@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2015 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -34,6 +34,8 @@ SUBURL_KEY="SUBURL"
 STORE_KEY="STORE"
 PRICE_KEY="PRICE"
 KIND_KEY="KIND"
+
+. ./common_proc
 
 # Params
 # 1 - Model:     [MODEL]
@@ -122,81 +124,84 @@ function process_pages2()
   TYPE="$4"
   if [ "${PAGES}" = "" ];
   then
-      URLS=$(cat ${BASE_FILE} | grep "productListing-data"| grep -o "<a href=[^>]*>" | sed -e 's/<a href=//g' | tr -d '>'| tr -d '"' | uniq)
-      echo "${URLS}" | while read URL;
+      LINES=$(cat ${BASE_FILE} | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</div>@</div>\n@g' | grep ^'<a class')
+      echo "${LINES}" | while read line;
       do
-        TRADEMARK_MODEL=$(print_model ${URL})
-        TRADEMARK_MODEL=${TRADEMARK_MODEL}
+        TRADEMARK_MODEL=$(echo "${line}" | awk -F "</h5>" {'print $1'} | sed -e 's@<[^>]*>@@g')
         TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
+        TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
         MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-        PRICE=$(print_price "${URL}" "${MODEL}")
-        FINAL_URL=$(echo "${URL}" | awk -F "?" {'print $1'})
-        ##echo "========================================================================"
-        ##echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
-        ##echo "TRADEMARK=${TRADEMARK}"
-        ##echo "MODEL=${MODEL}"
-        ##echo "URL=${FINAL_URL}"
-        ##echo "PRICE=${PRICE}"
-        ##echo "========================================================================"
-        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
+        MODEL_CAMEL=$(bubic_camel "${MODEL}")
+        PRICE=$(echo "${line}" | egrep -E -o "[0-9]{0,1} {0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d ' ')
+        FINAL_URL=$(echo "${line}" | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
+        #echo "========================"
+        #echo "LINE:$line"
+        #echo "TRADEMARK:$TRADEMARK"
+        #echo "MODEL:$MODEL"
+        #echo "URL:$FINAL_URL"
+        #echo "PRICE:$PRICE"
+        #echo "========================"
+        dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
       done
   else
     for page in ${PAGES};
     do 
-      URLS=$(cat ${BASE_FILE}${page} | grep "productListing-data"| grep -o "<a href=[^>]*>" | sed -e 's/<a href=//g' | tr -d '>'| tr -d '"' | uniq)
-      echo "${URLS}" | while read URL;
+      LINES=$(cat ${BASE_FILE}${page} | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</div>@</div>\n@g' | grep ^'<a class')
+      echo "${LINES}" | while read line;
       do
-        TRADEMARK_MODEL=$(print_model ${URL})
+        TRADEMARK_MODEL=$(echo "${line}" | awk -F "</h5>" {'print $1'} | sed -e 's@<[^>]*>@@g')
         TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
+        TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
         MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-        PRICE=$(print_price "${URL}" "${MODEL}")
-        FINAL_URL=$(echo ${URL} | awk -F "?" {'print $1'})
-        ##echo "========================================================================"
-        ##echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
-        ##echo "TRADEMARK=${TRADEMARK}"
-        ##echo "MODEL=${MODEL}"
-        ##echo "URL=${FINAL_URL}"
-        ##echo "PRICE=${PRICE}"
-        ##echo "========================================================================"
-        dump_bike "${MODEL}" "${FINAL_URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
+        MODEL_CAMEL=$(bubic_camel "${MODEL}")
+        PRICE=$(echo "${line}" | egrep -E -o "[0-9]{0,1} {0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d ' ')
+        FINAL_URL=$(echo "${line}" | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
+        #echo "========================"
+        #echo "LINE:$line"
+        #echo "TRADEMARK:$TRADEMARK"
+        #echo "MODEL:$MODEL"
+        #echo "URL:$FINAL_URL"
+        #echo "PRICE:$PRICE"
+        #echo "========================"
+        dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
       done
     done
   fi
 }
 
-FIX_BIKES_BASE="mtb-rigida-c-21_28.html?page="
-FIX_BIKES_PAGES=$(seq 1 10)
+FIX_BIKES_BASE="4-montana-rigidas?p="
+FIX_BIKES_PAGES=$(seq 1 5)
 
-DOUBLE_BIKES_BASE="doble-suspension-c-21_30.html?page="
-DOUBLE_BIKES_PAGES=$(seq 1 10)
+DOUBLE_BIKES_BASE="169-montana-doble-suspension-todas?p="
+DOUBLE_BIKES_PAGES=$(seq 1 5)
 
-ROAD_BIKES_BASE="carretera-c-21_32.html?page="
-ROAD_BIKES_PAGES=$(seq 1 10)
+MTB_WOMAN_BIKES_BASE="170-montana-de-mujer?p="
+MTB_WOMAN_BIKES_PAGES=$(seq 1 3)
 
-BMX_BIKES_BASE="bmx-y-freestyle-c-21_31.html"
+ROAD_BIKES_BASE="26-carretera?p="
+ROAD_BIKES_PAGES=$(seq 1 6)
 
-CONFORT_BIKES_BASE="confort-c-21_107.html?page="
-CONFORT_BIKES_PAGES=$(seq 1 3)
+BMX_BIKES_BASE="11-bmx-campillo"
 
-FOLDING_BIKES_BASE="plegables-c-21_133.html?page="
-FOLDING_BIKES_PAGES=$(seq 1 3)
+CHILDREN_BIKES_BASE="16-ninos?p="
+CHILDREN_BIKES_PAGES=$(seq 1 3)
 
-CHILDREN_BIKES_BASE="bicis-nino-c-21_98.html"
+URBAN_BIKES_BASE="7-urbanas?p="
+URBAN_BIKES_PAGES=$(seq 1 4)
+
+URBAN_ELECTRIC_BIKES_BASE="23-urbanas"
+URBAN_ELECTRIC_BIKES_PAGES=""
+
+MTB_ELECTRIC_BIKES_BASE="38-montana"
+MTB_ELECTRIC_BIKES_PAGES=""
 
 > ${OUTPUT_FILE}
-
-######process_pages "${FIX_BIKES_BASE}" "${FIX_BIKES_PAGES}" "Bicimania" "MTB-FIX" >> ${OUTPUT_FILE}
-######process_pages "${DOUBLE_BIKES_BASE}" "${DOUBLE_BIKES_PAGES}" "Bicimania" "MTB-Double" >> ${OUTPUT_FILE}
-######process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Bicimania" "ROAD" >> ${OUTPUT_FILE}
-######process_pages "${BMX_BIKES_BASE}" "" "Bicimania" "BMX" >> ${OUTPUT_FILE}
-######process_pages "${CONFORT_BIKES_BASE}" "${CONFORT_BIKES_PAGES}" "Bicimania" "CONFORT" >> ${OUTPUT_FILE}
-######process_pages "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}" "Bicimania" "FOLDING" >> ${OUTPUT_FILE}
-######process_pages "${CHILDREN_BIKES_BASE}" "" "Bicimania" "KIDS" >> ${OUTPUT_FILE}
 
 process_pages2 "${FIX_BIKES_BASE}" "${FIX_BIKES_PAGES}" "Bicimania" "MTB-FIX" >> ${OUTPUT_FILE}
 process_pages2 "${DOUBLE_BIKES_BASE}" "${DOUBLE_BIKES_PAGES}" "Bicimania" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages2 "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "Bicimania" "ROAD"  >> ${OUTPUT_FILE}
 process_pages2 "${BMX_BIKES_BASE}" "" "Bicimania" "BMX"  >> ${OUTPUT_FILE}
-process_pages2 "${CONFORT_BIKES_BASE}" "${CONFORT_BIKES_PAGES}" "Bicimania" "URBAN-CONFORT-FOLDING"  >> ${OUTPUT_FILE}
-process_pages2 "${FOLDING_BIKES_BASE}" "${FOLDING_BIKES_PAGES}" "Bicimania" "URBAN-CONFORT-FOLDING" >> ${OUTPUT_FILE}
-process_pages2 "${CHILDREN_BIKES_BASE}" "" "Bicimania" "KIDS"  >> ${OUTPUT_FILE}
+process_pages2 "${CHILDREN_BIKES_BASE}" "${CHILDREN_BIKES_PAGES}" "Bicimania" "KIDS"  >> ${OUTPUT_FILE}
+process_pages2 "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "Bicimania" "URBAN"  >> ${OUTPUT_FILE}
+process_pages2 "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "Bicimania" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
+process_pages2 "${MTB_ELECTRIC_BIKES_BASE}" "${MTB_ELECTRIC_BIKES_PAGES}" "Bicimania" "MTB-ELECTRIC" >> ${OUTPUT_FILE}

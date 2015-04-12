@@ -150,8 +150,16 @@ function bubic_clean()
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Mm]ujer//g' \
 | sed -e 's/[Bb]icicleta [Mm][Tt][Bb] [A-Z] //g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [A-Z] //g' \
+| sed -e 's/[Bb]icicleta [Mm][Tt][Bb] 29&quot; //g' \
+| sed -e 's/[Bb]ici [Mm][Tt][Bb] 29&quot; //g' \
+| sed -e 's/[Bb]icicleta [Mm][Tt][Bb] 29\" //g' \
+| sed -e 's/[Bb]ici [Mm][Tt][Bb] 29\" //g' \
 | sed -e 's/[Bb]icicleta [Mm][Tt][Bb] 29 //g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] 29 //g' \
+| sed -e 's/[Bb]icicleta [Mm][Tt][Bb] 27.5\" //g' \
+| sed -e 's/[Bb]ici [Mm][Tt][Bb] 27.5\" //g' \
+| sed -e 's/[Bb]icicleta [Mm][Tt][Bb] 27.5&quot; //g' \
+| sed -e 's/[Bb]ici [Mm][Tt][Bb] 27.5&quot; //g' \
 | sed -e 's/[Bb]icicleta [Mm][Tt][Bb] 27.5 //g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] 27.5 //g' \
 | sed -e 's/[Bb]icicleta [Mm][Tt][Bb] 26 //g' \

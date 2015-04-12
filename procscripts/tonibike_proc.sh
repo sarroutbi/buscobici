@@ -66,16 +66,16 @@ function process_file()
     URL=$(grep "${line}" ${BASE_FILE} -B1 | awk -F 'href="' {'print $2'} | awk -F '"' {'print $1'} | egrep -e "[A-Z,a-z]" | head -1)
 #    PRICE=$(grep "${line}" -B42 ${BASE_FILE} | grep 'price' -A4 | grep -v '%' | egrep -E "[0-9]{0,2},{0,1}[0-9]{2,3}.[0-9]{0,2}" -o | head -1 | tr -d ',' | tr '.' ',')
     PRICE=$(print_price_url "${URL}")
-    echo "=>LINE:${line}<="
-    echo "BASE_FILE:${BASE_FILE}"
-    echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
-    echo "TRADEMARK:=>${TRADEMARK}<="
-    echo "TRADEMARK_CAMEL:=>${TRADEMARK_CAMEL}<="
-    echo "MODEL:=>${MODEL}<="
-    echo "MODEL_CAMEL:=>${MODEL_CAMEL}<="
-    echo "URL:=>${URL}<="
-    echo "PRICE:=>${PRICE}<="
-    echo
+    #echo "=>LINE:${line}<="
+    #echo "BASE_FILE:${BASE_FILE}"
+    #echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
+    #echo "TRADEMARK:=>${TRADEMARK}<="
+    #echo "TRADEMARK_CAMEL:=>${TRADEMARK_CAMEL}<="
+    #echo "MODEL:=>${MODEL}<="
+    #echo "MODEL_CAMEL:=>${MODEL_CAMEL}<="
+    #echo "URL:=>${URL}<="
+    #echo "PRICE:=>${PRICE}<="
+    #echo
     bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
