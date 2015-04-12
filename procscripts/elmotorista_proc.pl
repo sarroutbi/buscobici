@@ -52,15 +52,15 @@ bubic_clean "$trademark_model"'`;
   chomp($clean_trademark_model);
 
   # URL PARSING
-  my $url_cmd = "cat $file | grep '$trademark_model_orig' -C5 | grep href";
+  my $url_cmd = "cat $file | grep '$trademark_model_orig' -A5 | grep href";
   $url_all = `$url_cmd`;
   ($url_first, $url_no_html) = split('href=', $url_all, -1);
-  ($url_no_dash, $url_later) = split('>', $url_no_html, -1);
+  ($url_no_dash, $url_later) = split(' ', $url_no_html, -1);
   chomp($url_no_dash);
   $url_no_dash =~ s/\"//g;
   my $final_url; 
   if ($url_no_dash ne "") {
-      $final_url = "\\\"" . URL . "$url_no_dash" . "\\\"";
+      $final_url = "\\\"$url_no_dash\\\"";
   }
 
   # MODEL PARSING
