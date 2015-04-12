@@ -32,7 +32,7 @@ function get_page()
   else
     for page in ${PAGES};
     do
-      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}/?p=${page}" -O"${FILE}?p=${page}"
+      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}?p=${page}" -O"${FILE}?p=${page}"
     done
   fi
 }
