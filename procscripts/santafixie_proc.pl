@@ -16,7 +16,7 @@
 #
 require "CommonProc.pl";
 use constant STORE => "Santa Fixie";
-use constant URL => "http://www.santafixie.com";
+use constant URL => "https://www.santafixie.com";
 use constant ONLY_DOMAIN => "santafixie.com";
 use constant EXCLUDE => "-Rgif -Rpng -Rjpg";
 use constant MAX_TRIES => 10;

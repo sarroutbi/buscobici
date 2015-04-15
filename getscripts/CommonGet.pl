@@ -35,7 +35,7 @@ sub bubicpl_get_page
 
   system("sleep 1");
   if (scalar(@pages) eq 0) {
-    $cmd = "wget -w5 --random-wait -e robots=off -U 'mozilla'" .
+    $cmd = "wget --no-check-certificate -w5 --random-wait -e robots=off -U 'mozilla'" .
       "--tries=$max_tries --timeout=$max_timeout \"$base_url\"";
     if(defined $outfile and $outfile ne "") {
       $cmd .= " -O $outfile";
@@ -44,7 +44,7 @@ sub bubicpl_get_page
   }
   else {
     foreach my $page (@pages) {
-      $cmd = "wget -w5 --random-wait -e robots=off -U 'mozilla'" .
+      $cmd = "wget --no-check-certificate -w5 --random-wait -e robots=off -U 'mozilla'" .
         "--tries=$max_tries --timeout=$max_timeout \"$base_url$page\"";
       if(defined $outfile and $outfile ne "") {
         $cmd .= " -O $outfile-$page";

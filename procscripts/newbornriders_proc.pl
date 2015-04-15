@@ -16,7 +16,7 @@
 #
 require "CommonProc.pl";
 use constant STORE => "New Born Riders";
-use constant URL => "http://www.newbornriders.com";
+use constant URL => "https://www.newbornriders.com";
 use constant ONLY_DOMAIN => "newbornriders.com";
 use constant EXCLUDE => "-Rgif -Rpng -Rjpg";
 use constant MAX_TRIES => 10;
@@ -32,7 +32,7 @@ my $KIND_KEY="KIND";
 
 sub get_trademark_with_url {
   my $url = $_[0];
-  my $cmd = "wget -o /dev/null -O - $url | grep 'Fabricante:' | awk -F 'Fabricante: ' {'print \$2'} | awk -F '.' {'print \$1'}";
+  my $cmd = "wget --no-check-certificate -o /dev/null -O - $url | grep 'Fabricante:' | awk -F 'Fabricante: ' {'print \$2'} | awk -F '.' {'print \$1'}";
   my $trademark = `$cmd`;
   return $trademark;
 } 
