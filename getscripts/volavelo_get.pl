@@ -15,7 +15,7 @@
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
 require "CommonGet.pl";
-use constant URL => "http://www.volavelo.com";
+use constant URL => "https://www.volavelo.com";
 use constant ONLY_DOMAIN => "volavelo.com";
 use constant EXCLUDE => "-Rgif -Rpng -Rjpg";
 use constant MAX_TRIES => 10;
