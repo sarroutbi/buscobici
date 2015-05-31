@@ -22,12 +22,7 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>http://buscobici.com/forum/</loc>
-  <lastmod>2013-11-01T16:33:05+00:00</lastmod>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://buscobici.com/bikesearch_php_raw/stats_fullscreen.html</loc>
+  <loc>http://buscobici.com/stats/statsfs.html</loc>
   <lastmod>2013-11-01T16:33:05+00:00</lastmod>
   <changefreq>weekly</changefreq>
 </url>
