@@ -24,6 +24,8 @@ sub bubicpl_get_page
   my $outfile = $_[2];
   my $max_tries = $_[3];
   my $max_timeout = $_[4];
+  my $torify = $_[5];
+  my $torify_cmd = "";
   my $cmd = "";
   if (not defined $max_tries or $max_tries eq "") {
     $max_tries = DEF_MAX_TRIES;
@@ -31,11 +33,14 @@ sub bubicpl_get_page
   if (not defined $max_timeout or $max_timeout eq "") {
     $max_timeout = DEF_MAX_TIMEOUT;
   }
+  if ($torify == 1) {
+    $torify_cmd = "torify"
+  }
   my $num = scalar(@_);
 
   system("sleep 1");
   if (scalar(@pages) eq 0) {
-    $cmd = "wget --no-check-certificate -w5 --random-wait -e robots=off -U 'mozilla'" .
+    $cmd = "$torify_cmd wget --no-check-certificate -w5 --random-wait -e robots=off -U 'mozilla'" .
       "--tries=$max_tries --timeout=$max_timeout \"$base_url\"";
     if(defined $outfile and $outfile ne "") {
       $cmd .= " -O $outfile";
@@ -44,7 +49,7 @@ sub bubicpl_get_page
   }
   else {
     foreach my $page (@pages) {
-      $cmd = "wget --no-check-certificate -w5 --random-wait -e robots=off -U 'mozilla'" .
+      $cmd = "$torify_cmd wget --no-check-certificate -w5 --random-wait -e robots=off -U 'mozilla'" .
         "--tries=$max_tries --timeout=$max_timeout \"$base_url$page\"";
       if(defined $outfile and $outfile ne "") {
         $cmd .= " -O $outfile-$page";

@@ -21,105 +21,75 @@ use constant EXCLUDE => "-Rgif -Rpng -Rjpg";
 use constant MAX_TRIES => 10;
 use constant MAX_TIMEOUT => 10;
 
-#### ELECTRIC ####
-my $ELECTRIC_BASE = URL . "/productos/39-electricas.html?pag=";
-my @ELECTRIC_PAGES = `seq 1 4`;
-my $ELECTRIC_FILE = "electric";
+#### BMX ####
+my $BMX_BASE = URL . "/categoria-producto/bicicletas/bmxcampillo/page/";
+my @BMX_PAGES = `seq 1 2`;
+my $BMX_FILE = "bmx";
 
-chomp @ELECTRIC_PAGES;
-
-bubicpl_get_page($ELECTRIC_BASE, \@ELECTRIC_PAGES, $ELECTRIC_FILE);
+bubicpl_get_page($BMX_BASE, \@BMX_PAGES, $BMX_FILE, 10, 10, 1);
 
 #### ROAD ####
-my $ROAD_BASE = URL . "/productos/41-bicicletas-carretera.html?pag=";
-my @ROAD_PAGES = `seq 1 10`;
+my $ROAD_BASE = URL . "/categoria-producto/bicicletas/carretera/page/";
+my @ROAD_PAGES = `seq 1 2`;
 my $ROAD_FILE = "road";
 
 chomp @ROAD_PAGES;
 
-bubicpl_get_page($ROAD_BASE, \@ROAD_PAGES, $ROAD_FILE);
-
-#### TREKKING ####
-my $TREKKING_BASE = URL . "/productos/42-bicicletas-caminos.html";
-my @TREKKING_PAGES;
-my $TREKKING_FILE = "trekking";
-
-bubicpl_get_page($TREKKING_BASE, \@TREKKING_PAGES, $TREKKING_FILE);
-
-#### MTB ####
-my $MTB_BASE = URL . "/productos/43-bicicletas-mtb.html?pag=";
-my @MTB_PAGES = `seq 1 17`;
-my $MTB_FILE = "mtb";
-
-chomp @MTB_PAGES;
-
-bubicpl_get_page($MTB_BASE, \@MTB_PAGES, $MTB_FILE);
-
-#### FOLDING ####
-my $FOLDING_BASE = URL . "/productos/44-bicicletas-plegables.html?pag=";
-my @FOLDING_PAGES = `seq 1 4`;
-my $FOLDING_FILE = "urban-folding";
-
-chomp @FOLDING_PAGES;
-
-bubicpl_get_page($FOLDING_BASE, \@FOLDING_PAGES, $FOLDING_FILE);
+bubicpl_get_page($ROAD_BASE, \@ROAD_PAGES, $ROAD_FILE, 10, 10, 1);
 
 #### CICLOCROSS ####
-my $CICLOCROSS_BASE = URL . "/productos/46-ciclocross.html?pag=";
-my @CICLOCROSS_PAGES = `seq 1 3`;
+my $CICLOCROSS_BASE = URL . "/categoria-producto/bicicletas/ciclocross/page/";
+my @CICLOCROSS_PAGES = `seq 1 2`;
 my $CICLOCROSS_FILE = "road-ciclocross";
 
 chomp @CICLOCROSS_PAGES;
 
-bubicpl_get_page($CICLOCROSS_BASE, \@CICLOCROSS_PAGES, $CICLOCROSS_FILE);
+bubicpl_get_page($CICLOCROSS_BASE, \@CICLOCROSS_PAGES, $CICLOCROSS_FILE, 10, 10, 1);
+
+#### ELECTRIC ####
+my $ELECTRIC_BASE = URL . "/categoria-producto/bicicletas/electricas/page/";
+my @ELECTRIC_PAGES = `seq 1 2`;
+my $ELECTRIC_FILE = "electric";
+
+chomp @ELECTRIC_PAGES;
+
+bubicpl_get_page($ELECTRIC_BASE, \@ELECTRIC_PAGES, $ELECTRIC_FILE, 10, 10, 1);
+
+#### TREKKING ####
+my $TREKKING_BASE = URL . "/categoria-producto/bicicletas/electricas/page/";
+my @TREKKING_PAGES = `seq 1 2`;
+my $TREKKING_FILE = "trekking";
+
+bubicpl_get_page($TREKKING_BASE, \@TREKKING_PAGES, $TREKKING_FILE, 10, 10, 1);
+
+#### MTB ####
+my $MTB_BASE = URL . "/categoria-producto/bicicletas/montana/page/";
+my @MTB_PAGES = `seq 1 2`;
+my $MTB_FILE = "mtb";
+
+chomp @MTB_PAGES;
+
+bubicpl_get_page($MTB_BASE, \@MTB_PAGES, $MTB_FILE, 10, 10, 1);
+
+#### FOLDING ####
+my $FOLDING_BASE = URL . "/categoria-producto/bicicletas/plegables/page/";
+my @FOLDING_PAGES = `seq 1 2`;
+my $FOLDING_FILE = "urban-folding";
+
+chomp @FOLDING_PAGES;
+
+bubicpl_get_page($FOLDING_BASE, \@FOLDING_PAGES, $FOLDING_FILE, 10, 10, 1);
 
 #### MTB-DOWNHILL ####
-my $MTB_DOWNHILL_BASE = URL . "/productos/47-descenso.html";
-my @MTB_DOWNHILL_PAGES;
+my $MTB_DOWNHILL_BASE = URL . "/categoria-producto/bicicletas/montana/descenso/page/";
+my @MTB_DOWNHILL_PAGES = `seq 1 2`;
 my $MTB_DOWNHILL_FILE = "mtb-downhill";
 
-bubicpl_get_page($MTB_DOWNHILL_BASE, \@MTB_DOWNHILL_PAGES, $MTB_DOWNHILL_FILE);
-
-#### URBAN-FATBOY ####
-my $URBAN_FATBOY_BASE = URL . "/productos/48-fatboy.html";
-my @URBAN_FATBOY_PAGES;
-my $URBAN_FATBOY_FILE = "urban-fatboy";
-
-bubicpl_get_page($URBAN_FATBOY_BASE, \@URBAN_FATBOY_PAGES, $URBAN_FATBOY_FILE);
-
-#### BMX ####
-my $BMX_BASE = URL . "/productos/49-four-cross.html";
-my @BMX_PAGES;
-my $BMX_FILE = "bmx";
-
-bubicpl_get_page($BMX_BASE, \@BMX_PAGES, $BMX_FILE);
+bubicpl_get_page($MTB_DOWNHILL_BASE, \@MTB_DOWNHILL_PAGES, $MTB_DOWNHILL_FILE, 10, 10, 1);
 
 #### KIDS ####
-my $KIDS_BASE = URL . "/productos/50-ninos.html";
-my @KIDS_PAGES;
+my $KIDS_BASE = URL . "/categoria-producto/bicicletas/montana/descenso/page/";
+my @KIDS_PAGES = `seq 1 2`;
 my $KIDS_FILE = "kids";
 
-bubicpl_get_page($KIDS_BASE, \@KIDS_PAGES, $KIDS_FILE);
-
-#### ROAD-CLAY ####
-my $ROAD_CLAY_BASE = URL . "/productos/51-pista.html";
-my @ROAD_CLAY_PAGES;
-my $ROAD_CLAY_FILE = "road-clay";
-
-bubicpl_get_page($ROAD_CLAY_BASE, \@ROAD_CLAY_PAGES, $ROAD_CLAY_FILE);
-
-#### ROAD-TRIATLON ####
-my $ROAD_TRIATLON_BASE = URL . "/productos/52-triatlon.html";
-my @ROAD_TRIATLON_PAGES;
-my $ROAD_TRIATLON_FILE = "road-triatlon";
-
-bubicpl_get_page($ROAD_TRIATLON_BASE, \@ROAD_TRIATLON_PAGES, $ROAD_TRIATLON_FILE);
-
-#### URBAN ####
-my $URBAN_BASE = URL . "/productos/53-urbana.html?pag=";
-my @URBAN_PAGES = `seq 1 3`;
-my $URBAN_FILE = "urban";
-
-chomp @URBAN_PAGES;
-
-bubicpl_get_page($URBAN_BASE, \@URBAN_PAGES, $URBAN_FILE);
+bubicpl_get_page($KIDS_BASE, \@KIDS_PAGES, $KIDS_FILE, 10, 10, 1);
