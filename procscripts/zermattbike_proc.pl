@@ -32,55 +32,34 @@ my $KIND_KEY="KIND";
 
 sub dump_model {
   my $file = $_[0];
-  my $trademark_model = $_[1];
+  my $search_model = $_[1];
   my $type = $_[2];
   my $store = $_[3];
-  my $trimmed_trademark_model = $trademark_model;
-  $trimmed_trademark_model =~ s/^\s+|\s+$//g;
-  my @trade_model = split(/\s+/, $trimmed_trademark_model);
-  my $model_search_trademark = sprintf('>%s<', $trimmed_trademark_model);
-  my $search_trademark_cmd = "grep \"$model_search_trademark\" $file -A10 | grep alt";
-  my $search_trademark = `$search_trademark_cmd`;
-  ($search_first, $search_sec) = split('alt=', $search_trademark, -1);
-  my @trademark_all = split(' ', $search_sec);
-  my $trademark = $trademark_all[0];
-  $trademark =~ s/"//g;
-  my $model;
-  my $url;
 
-  foreach my $elem (@trade_model) {
-    if ($elem ne $trademark) {
-      $model .= "$elem ";
-    }
-  }
-  if ($model eq "") {
-    $model = $trademark;
-  }
+  chomp($type);
+  chomp($store);
+
+  # MODEL PARSING
+  my $model_parsing_cmd = "echo '$search_model' | sed -e 's!<h3>!\\n<h3>!g'" .
+"| sed -e 's!</h3>!</h3>\\n!g' | grep h3 | sed -e 's!<[^>]*>!!g'";
+  my $model = `$model_parsing_cmd`;
+  chomp($model);
+  my $trademark_cmd = "echo '$model' | awk {'print \$1'}";
+  my $trademark = `$trademark_cmd`;
+  chomp($trademark);
 
   # URL PARSING
-  my $url_cmd = "grep \"$trimmed_trademark_model\" $file | grep href";
-  $url_all = `$url_cmd`;
-  ($url_first, $url_no_html) = split('href=', $url_all, -1);
-  ($url_no_dash, $url_later) = split(' ', $url_no_html, -1);
-  chomp($url_no_dash);
-  my $url = $url_no_dash;
-  $url =~ s/"/\\"/g;
-
+  my $url_parsing_cmd = "echo '$search_model' | sed -e 's!<a href!\\n<a href!g'" .
+"| sed -e 's!</a>!</a>\\n!g' | grep '<a href' | awk -F '=' {'print \$2'} | awk -F '>' {'print \$1'}";
+  my $url = `$url_parsing_cmd`;
+  $url =~ s/"/\\"/g; 
+  chomp($url);
+  
   # PRICE PARSING
-  my $price_cmd = sprintf("grep -A%d \"$trimmed_trademark_model\" $file " .
-"| grep 'itemprop=\"price\"' | tail -1", MAX_PRICE);
-  my $price_html = `$price_cmd`;
-  if ($price_html eq "") {
-    $price_cmd = sprintf("grep -A%d \"$trimmed_trademark_model\" $file " .
-"| grep '<strike>' | tail -1", MAX_PRICE);
-    $price_html = `$price_cmd`;
-  }
-  $price_html =~ s/<.+?>//sg;
-  $price_html =~ s/\s+//sg;
-  my $price = $price_html;
-  $price =~ s/\.//sg;
+  my $price_parsing_cmd = "echo '$search_model' | sed -e 's!<span class!\\n<span class!g'" .
+"| sed -e 's!</span>!</span>\\n!g' | egrep -E -o \"[0-9]{1,2}.{0,1}[0-9]{2,3},{1}[0-9]{0,2}\" | tail -1 | tr -d '.'";
+  my $price = `$price_parsing_cmd`;
   chomp($price);
-  $price =~ s/[^0-9,\,]//sg;
 
   # TRADEMARK/MODEL processing
   my $clean_trademark = `bash -c 'source ./common_proc; bubic_clean "$trademark"'`;
@@ -93,10 +72,11 @@ sub dump_model {
   chomp($camel_model);
   #print "================================";
   #print "\nTRADEMARK:$trademark\n";
-  #print "MODEL_SEARCH_TRADEMARK:$model_search_trademark\n";
-  #print "MODEL_SEARCH_CMD:$search_trademark_cmd\n";
-  #print "SEARCH FIRST:$search_first\n";
-  #print "SEARCH SEC:$search_sec\n";
+  #print "TRADEMARK_CMD:$trademark_cmd\n";
+  #print "MODEL_SEARCH_CMD:$search_model\n";
+  #print "MODEL_PARSING_CMD:$model_parsing_cmd\n";
+  #print "URL_PARSING_CMD:$url_parsing_cmd\n";
+  #print "PRICE_PARSING_CMD:$price_parsing_cmd\n";
   #print "MODEL:$model\n";
   #print "TYPE:$type\n";
   #print "CLEAN_TRADEMARK:$clean_trademark\n";
@@ -113,14 +93,18 @@ sub dump_model {
 
 sub process_file {
   my $file = $_[0];
+  chomp ($file);
   my $type = $_[1];
+  chomp ($type);
   if ($file eq "") {
     return 1;
   }
   elsif ($type eq "") {
     return 1;
   }
-  my @models = `cat $file | grep '<h5>' | sed -e 's/<[^>]*>//g'`;
+  my $models_cmd = "cat $file | sed -e 's!<li!\\n<li!g' | grep '^<li' | grep h3";
+  my @models = `$models_cmd`;
+
   foreach my $trade_model (@models) {
     chomp($trade_model);
     dump_model($file, $trade_model, $type, STORE);
@@ -145,30 +129,44 @@ sub process_file_pages {
 my $del_cmd = sprintf(">%s", OUTPUT_FILE);
 `$del_cmd`;
 
-#### ELECTRIC ####
-my @ELECTRIC_PAGES = `seq 1 4`;
-my $ELECTRIC_FILE = "electric";
+#### BMX ####
+my @BMX_PAGES = `seq 1 2`;
+my $BMX_FILE = "bmx";
 
-chomp @ELECTRIC_PAGES;
-
-process_file_pages($ELECTRIC_FILE, \@ELECTRIC_PAGES, "URBAN-ELECTRIC");
+process_file_pages($BMX_FILE, \@BMX_PAGES, "BMX");
 
 #### ROAD ####
-my @ROAD_PAGES = `seq 1 10`;
+my @ROAD_PAGES = `seq 1 2`;
 my $ROAD_FILE = "road";
 
 chomp @ROAD_PAGES;
 
 process_file_pages($ROAD_FILE, \@ROAD_PAGES, "ROAD");
 
+#### CICLOCROSS ####
+my @ROAD_CICLOCROSS_PAGES = `seq 1 2`;
+my $ROAD_CICLOCROSS_FILE = "road-ciclocross";
+
+chomp @ROAD_CICLOCROSS_PAGES;
+
+process_file_pages($ROAD_CICLOCROSS_FILE, \@ROAD_CICLOCROSS_PAGES, "ROAD-CICLOCROSS");
+
+#### ELECTRIC ####
+my @ELECTRIC_PAGES = `seq 1 2`;
+my $ELECTRIC_FILE = "electric";
+
+chomp @ELECTRIC_PAGES;
+
+process_file_pages($ELECTRIC_FILE, \@ELECTRIC_PAGES, "URBAN-ELECTRIC");
+
 #### TREKKING ####
-my @TREKKING_PAGES;
+my @TREKKING_PAGES = `seq 1 2`;
 my $TREKKING_FILE = "trekking";
 
 process_file_pages($TREKKING_FILE, \@TREKKING_PAGES, "ROAD-TREKKING");
 
 #### MTB ####
-my @MTB_PAGES = `seq 1 17`;
+my @MTB_PAGES = `seq 1 2`;
 my $MTB_FILE = "mtb";
 
 chomp @MTB_PAGES;
@@ -176,61 +174,21 @@ chomp @MTB_PAGES;
 process_file_pages($MTB_FILE, \@MTB_PAGES, "MTB");
 
 #### FOLDING ####
-my @FOLDING_PAGES = `seq 1 4`;
+my @FOLDING_PAGES = `seq 1 2`;
 my $FOLDING_FILE = "urban-folding";
 
 chomp @FOLDING_PAGES;
 
 process_file_pages($FOLDING_FILE, \@FOLDING_PAGES, "URBAN-FOLDING");
 
-#### CICLOCROSS ####
-my @ROAD_CICLOCROSS_PAGES = `seq 1 3`;
-my $ROAD_CICLOCROSS_FILE = "road-ciclocross";
-
-chomp @ROAD_CICLOCROSS_PAGES;
-
-process_file_pages($ROAD_CICLOCROSS_FILE, \@ROAD_CICLOCROSS_PAGES, "ROAD-CICLOCROSS");
-
 #### MTB-DOWNHILL ####
-my $MTB_DOWNHILL_PAGES;
+my $MTB_DOWNHILL_PAGES = `seq 1 2`;
 my $MTB_DOWNHILL_FILE = "mtb-downhill";
 
 process_file_pages($MTB_DOWNHILL_FILE, \@MTB_DOWNHILL_PAGES, "MTB-DOWNHILL");
 
-#### URBAN-FATBOY ####
-my @URBAN_FATBOY_PAGES;
-my $URBAN_FATBOY_FILE = "urban-fatboy";
-
-process_file_pages($FATBOY_FILE, \@FATBOY_PAGES, "URBAN-FATBOY");
-
-#### BMX ####
-my @BMX_PAGES;
-my $BMX_FILE = "bmx";
-
-process_file_pages($BMX_FILE, \@BMX_PAGES, "BMX");
-
 #### KIDS ####
-my @KIDS_PAGES;
+my @KIDS_PAGES = `seq 1 2`;
 my $KIDS_FILE = "kids";
 
 process_file_pages($KIDS_FILE, \@KIDS_PAGES, "KIDS");
-
-#### ROAD-CLAY ####
-my @ROAD_CLAY_PAGES;
-my $ROAD_CLAY_FILE = "road-clay";
-
-process_file_pages($ROAD_CLAY_FILE, \@ROAD_CLAY_PAGES, "ROAD-PISTA");
-
-#### ROAD-TRIATLON ####
-my @ROAD_TRIATLON_PAGES;
-my $ROAD_TRIATLON_FILE = "road-triatlon";
-
-process_file_pages($ROAD_TRIATLON_FILE, \@ROAD_TRIATLON_PAGES, "ROAD_TRIATLON");
-
-#### URBAN ####
-my @URBAN_PAGES = `seq 1 3`;
-my $URBAN_FILE = "urban";
-
-chomp @URBAN_PAGES;
-
-process_file_pages($URBAN_FILE, \@URBAN_PAGES, "URBAN");

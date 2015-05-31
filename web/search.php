@@ -17,6 +17,7 @@
 
 // Global variables
 $http_line = "http://" ;
+$https_line = "https://" ;
 
 // Connecting and setting values
 $dbconn = pg_connect("host=localhost dbname=bikesearch user=postgres password=postgres123")
@@ -296,6 +297,8 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
     foreach ($line as $col_value) {
         $compare_len = strlen($http_line);
         $islink = substr($col_value, 0, $compare_len);
+        $comparesec_len = strlen($https_line);
+        $isseclink = substr($col_value, 0, $comparesec_len);
         if($round == 0) {
           $trademark = $col_value;
           $trademark_trim = trim($trademark);
@@ -312,6 +315,9 @@ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
           }
         }
         if ( strcmp($islink, $http_line) == 0 ) {
+          echo "\t\t<td><a href=\"$col_value\" target=\"_blank\">$trademark_trim - $limited_model</a></td>\n";
+        }
+        else if ( strcmp($isseclink, $https_line) == 0 ) {
           echo "\t\t<td><a href=\"$col_value\" target=\"_blank\">$trademark_trim - $limited_model</a></td>\n";
         }
         else {

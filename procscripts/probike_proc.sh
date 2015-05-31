@@ -117,7 +117,7 @@ function filter_model()
 # 2 - The MODEL of bike
 function print_price()
 {
-  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | egrep -E -o '[0-9]{0,}.{0,}[0-9]{2,},{0,}[0-9]{0,}' | sed -e 's/<[^>]*>//g' | grep -v "[A-Za-z]" | tr -d '.')
+  PRICE=$(grep "$2" "$1" -A${MAX_PRICE} | egrep -E -o '[0-9]{0,}.{0,}[0-9]{2,},{0,}[0-9]{0,}' | sed -e 's/<[^>]*>//g' | grep -v "[A-Za-z]" | tr -d '.' | head -1 | tr -d ' ')
   for price in $(echo "${PRICE}");
   do
     echo "${price}"
@@ -164,14 +164,14 @@ function process_page_url()
     #URL=$(grep "${model}" "${BASE_FILE}" | grep -o "<a href=[^>]*>" | awk -F "title" {'print $1'} | tail -1 | tr -d '"' | awk -F '<a href=' {'print $2'} | tr -d ' ')
     PRICE=$(print_price "${BASE_FILE}" "${model}")
     #echo "========================================================================"
+    #echo "FILE=${BASE_FILE}"
+    #echo "SEARCH_MODEL=>${model}<="
     #echo "TRADEMARK=${TRADEMARK_CAMEL}"
     #echo "MODEL=>${MODEL_CAMEL}<="
     #echo "URL=${URL}"
     #echo "PRICE=${PRICE}"
     #echo "STORE=${STORE}"
     #echo "TYPE=${TYPE}"
-    #echo "FILE=${BASE_FILE}"
-    #echo "SEARCH_MODEL=>${model}<="
     #echo "========================================================================"
     dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
