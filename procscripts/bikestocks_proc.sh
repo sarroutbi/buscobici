@@ -183,8 +183,7 @@ while read HTML_LINE;
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_MIN})
     URL=$(echo "${HTML_LINE}" | awk -F "a href=" {'print $2'} | awk {'print $1'} | tr -d ' ')
-    PRICE=$(cat "${BASE_FILE}" | sed -e 's/<h3/\n<h3/g' | sed -e 's@/h3>@/h3>\n@g' |grep '<h3>' -A1 | sed -e 's@<span class="price"@\n<span class="price"@g' |\
-sed -e 's@</span>@</span>\n@' | grep ">$TRADEMARK_MODEL<" -A3 |\
+    PRICE=$(cat "${BASE_FILE}" | grep ">$TRADEMARK_MODEL<" -A10 |\
 grep '<span class="price"' | sed -e 's/<[^>]*>//g' |\
 sed -e 's/^[ \t]*//g' | tr -d ' ' | egrep -E -o "[0-9]{2,5},{1}[0-9]{0,2}" | head -1)
     #echo "========================================================================"
