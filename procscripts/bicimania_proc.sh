@@ -116,6 +116,32 @@ function process_pages()
   fi
 }
 
+function process_file()
+{
+  FILE="$1"
+  STORE="$2"
+  TYPE="$3"
+  LINES=$(cat ${FILE} | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</div>@</div>\n@g' | grep ^'<a class')
+  echo "${LINES}" | while read line;
+  do
+    TRADEMARK_MODEL=$(echo "${line}" | awk -F "</h5>" {'print $1'} | sed -e 's@<[^>]*>@@g')
+    TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
+    TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
+    MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
+    MODEL_CAMEL=$(bubic_camel "${MODEL}")
+    PRICE=$(echo "${line}" | sed -e 's@<span itemprop="price"@\n<span itemprop="price"@g' | grep '<span itemprop="price"' | egrep -E -o "[0-9]{0,1} {0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d ' ' | head -1)
+    FINAL_URL=$(echo "${line}" | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
+    #echo "========================"
+    #echo "LINE:$line"
+    #echo "TRADEMARK:$TRADEMARK"
+    #echo "MODEL:$MODEL"
+    #echo "URL:$FINAL_URL"
+    #echo "PRICE:$PRICE"
+    #echo "========================"
+    dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+  done
+}
+
 function process_pages2()
 {
   BASE_FILE="$1"
@@ -124,47 +150,11 @@ function process_pages2()
   TYPE="$4"
   if [ "${PAGES}" = "" ];
   then
-      LINES=$(cat ${BASE_FILE} | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</div>@</div>\n@g' | grep ^'<a class')
-      echo "${LINES}" | while read line;
-      do
-        TRADEMARK_MODEL=$(echo "${line}" | awk -F "</h5>" {'print $1'} | sed -e 's@<[^>]*>@@g')
-        TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
-        TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
-        MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-        MODEL_CAMEL=$(bubic_camel "${MODEL}")
-        PRICE=$(echo "${line}" | egrep -E -o "[0-9]{0,1} {0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d ' ')
-        FINAL_URL=$(echo "${line}" | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
-        #echo "========================"
-        #echo "LINE:$line"
-        #echo "TRADEMARK:$TRADEMARK"
-        #echo "MODEL:$MODEL"
-        #echo "URL:$FINAL_URL"
-        #echo "PRICE:$PRICE"
-        #echo "========================"
-        dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
-      done
+      process_file "${BASE_FILE}" "${STORE}" "${TYPE}"
   else
     for page in ${PAGES};
     do 
-      LINES=$(cat ${BASE_FILE}${page} | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</div>@</div>\n@g' | grep ^'<a class')
-      echo "${LINES}" | while read line;
-      do
-        TRADEMARK_MODEL=$(echo "${line}" | awk -F "</h5>" {'print $1'} | sed -e 's@<[^>]*>@@g')
-        TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
-        TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
-        MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
-        MODEL_CAMEL=$(bubic_camel "${MODEL}")
-        PRICE=$(echo "${line}" | egrep -E -o "[0-9]{0,1} {0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d ' ')
-        FINAL_URL=$(echo "${line}" | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
-        #echo "========================"
-        #echo "LINE:$line"
-        #echo "TRADEMARK:$TRADEMARK"
-        #echo "MODEL:$MODEL"
-        #echo "URL:$FINAL_URL"
-        #echo "PRICE:$PRICE"
-        #echo "========================"
-        dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
-      done
+      process_file "${BASE_FILE}${page}" "${STORE}" "${TYPE}"
     done
   fi
 }
