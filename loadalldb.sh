@@ -47,6 +47,8 @@ psql --username postgres -h localhost -c "DELETE FROM bikes where TRADEMARK = 'C
 psql --username postgres -h localhost -c "DELETE FROM bikes where TRADEMARK = 'Ayuda';" bikesearch;
 psql --username postgres -h localhost -c "DELETE FROM bikes where TRADEMARK = 'Puño';" bikesearch;
 psql --username postgres -h localhost -c "DELETE FROM bikes where TRADEMARK = 'Estabiciclos';" bikesearch;
+psql --username postgres -h localhost -c "DELETE FROM bikes where TRADEMARK = 'Ciclocomputador';" bikesearch;
+psql --username postgres -h localhost -c "DELETE FROM bikes where TRADEMARK = 'Traje';" bikesearch;
 psql --username postgres -h localhost -c "DELETE FROM bikes where TRADEMARK LIKE 'Gorra%';" bikesearch;
 psql --username postgres -h localhost -c "DELETE FROM bikes where TRADEMARK LIKE 'Pedal%';" bikesearch;
 psql --username postgres -h localhost -c "DELETE FROM bikes where TRADEMARK LIKE 'Aceite%';" bikesearch;
