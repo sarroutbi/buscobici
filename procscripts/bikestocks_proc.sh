@@ -25,7 +25,6 @@
 
 MAX_PRICE=2
 OUTPUT_FILE=./output
-#OUTPUT_FILE=/dev/stdout
 URL_BASE="http://www.bikestocks.es"
 NO_CAMEL_MIN=3
 
@@ -185,7 +184,7 @@ while read HTML_LINE;
     URL=$(echo "${HTML_LINE}" | awk -F "a href=" {'print $2'} | awk {'print $1'} | tr -d ' ')
     PRICE=$(cat "${BASE_FILE}" | grep ">$TRADEMARK_MODEL<" -A10 |\
 grep '<span class="price"' | sed -e 's/<[^>]*>//g' |\
-sed -e 's/^[ \t]*//g' | tr -d ' ' | egrep -E -o "[0-9]{2,5},{1}[0-9]{0,2}" | head -1)
+sed -e 's/^[ \t]*//g' | tr -d ' ' | egrep -E -o "[0-9]{2,5},{1}[0-9]{2}" | head -1)
     #echo "========================================================================"
     #echo "BASE_FILE=${BASE_FILE}"
     #echo "HTML_LINE=${HTML_LINE}"

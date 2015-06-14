@@ -535,6 +535,24 @@ function bubic_clean()
 | sed -e 's/[Mm][Tt][Bb]//g' | tr "'" '"' | tr "´" '"'
 }
 
+function minor_price()
+{
+  PRICES="$1"
+  let now_price=100000
+  for price in ${PRICES}
+  do
+    #echo "PRICE:$price"
+    #echo "NOW_PRICE:$now_price"
+    let int_price="$(echo $price | awk -F ',' {'print $1'})"
+    let int_now_price="$(echo $now_price | awk -F ',' {'print $1'})"
+    if [ $int_price -lt $int_now_price ];
+    then
+      now_price=${price}
+    fi
+  done
+  echo "${now_price}"
+}
+
 function bubic_camel()
 {
   MAX_CAMEL=$2
