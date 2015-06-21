@@ -22,8 +22,7 @@
 # PRICE=249,00
 # STORE=Biciletas Gil
 # KIND=MTB-FIX
-
-MAX_PRICE=20
+MAX_PRICE=50
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
 OUTPUT_FILE=./output
@@ -106,7 +105,7 @@ function dump_bike()
 # 2 - The MODEL of bike
 function print_price()
 {
-  PRICE="$(grep -A50 "$2" "$1" | grep '<span class="price">' | head -1 | sed -e 's/<[^>]*>//g' | awk -F '&euro;' {'print $1'} | egrep -o -E "[0-9]{1,}.{0,1}[0-9]{1,3},{1,2}[0-9]{1,2}" | tr -d '.' | sed -e 's/^[ \t]*//g')"
+  PRICE="$(grep -A${MAX_PRICE} "$2" "$1" | grep '<span class="bem-product_price__unit--grid">' | head -1 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,2}.{0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d '.' | sed -e 's/^[ \t]*//g')"
   echo "${PRICE}"
 }
 
@@ -114,14 +113,8 @@ function print_url()
 {
   model="$1"
   BASE_FILE="$2"
-  URL=$(grep "${model}" "${BASE_FILE}" | grep href | awk -F "a href=" {'print $2'} | awk {'print $1'} | head -1)
+  URL=$(grep "${model}" "${BASE_FILE}" | grep '<a class="bem-product-thumb__name--grid"'| awk -F "href=" {'print $2'} | awk {'print $1'} | head -1)
   echo "${URL}" | tr -d '"'
-}
-
-function clean()
-{
-    STRING="${1}"
-    echo "${STRING}" | sed -e 's/Bicicleta de carretera blanca y roja //g' | sed -e 's/sin pedales para ni&#241;os //g' | sed -e 's/"Bicicleta 29&quot; de MTB"//g' | sed -e 's/"Bicicleta de MTB 29&quot;"//g' | sed -e 's/"Bicicleta de 29&quot; "//g' | sed -e 's/Bicicleta profesional//g'| sed -e 's/(edici&#243;n limitada)//g' | sed -e 's/Bicicleta de ciclocr&#243;s //g' | sed -e 's/[Bb]icicleta h&#237;brida //g' | sed -e 's/[Bb]icicleta [Pp]legable //g' | sed -e 's/[Bb]icicleta urbana para mujer //g' | sed -e 's/[Bb]each [Cc]ruiser//g' | sed -e 's/[Bb]icicleta de [Cc]arrera negra//g' | sed -e 's/[Bb]icicleta de [Cc]arreras//g' | sed -e 's/[Bb]icicleta de [Cc]arrera//g' | sed -e 's/[Bb]icicleta Dirt-HI//g' | sed -e 's/Bici sin pedales//g' | sed -e 's/[Bb]icicletas para ni.os//g' | sed -e 's/[Mm]onopat.n para ni.os//g' | sed -e 's/[Cc]arretera //g' | sed -e 's/sin cambios//g' | sed -e 's/para hombre//g' | sed -e 's/para mujer//g' | sed -e 's/para nin.os//g' | sed -e 's/[Nn]in.os//g' | sed -e 's/[Cc]iclocross //g' | sed -e 's/[Mm]onta.a //g' | sed -e 's/[Tt]rial //g' | sed -e 's/[Tt]rekking//g' | sed -e 's/[Tt]riatl.n//g' | sed -e 's/[Dd]escenso //g' | sed -e 's-dirt/freeride--g' | sed -e 's-dirt/street--g' | sed -e 's/[Dd]oble //g' | sed -e 's/[Ff]reeride //g' | sed -e 's/[Pp]aseo//g' | sed -e 's/[Pp]legable//g' | sed -e 's/[Ii]nfantil //g' | sed -e 's/[Ee]l.ctrica //g' | sed -e 's/[Mm]inibike//g' | sed -e 's/[Ss]uspensi.on //g' | sed -e 's/[Tt]riciclo //g' | sed -e 's/[Ss]tick//g' | sed -e 's/[Ss]uspensi.n //g' | sed -e 's/de //g' | sed -e 's/BTT //g' | sed -e 's/BMX //g' | sed -e 's/TRAIL //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ee]l.ctrico //g' | sed -e 's/[Ss]ill.n //g' | sed -e 's/[Ss]oporte //g' | sed -e 's/[Cc]erradura + llaves//g' | sed -e 's/[Dd]isplay //g' | sed -e 's/[Bb]mx//g' | sed -e 's/[Cc]arretera//g' | sed -e 's/[Dd]irt-hi//g'| sed -e 's/[Dd]irt//g' | sed -e 's/[Dd]oble//g' | sed -e 's/[Ee]l.ctrica//g' | sed -e 's![Ff]reeride/[Dd]ownhill!!g' | sed -e 's/[Hh]olandesa//g' | sed -e 's/[M]tb//g' | sed -e 's/[Mm]onopat.n//g' | sed -e 's/[Pp]legable//g' | sed -e 's/[Tt]riatl.n//g' | sed -e 's/[Uu]rbana//g' | sed -e 's/[Vv]eh.culos//g' | sed -e 's/[Cc]arreras//g' | sed -e 's/[Dd]irt//g' | sed -e 's/[Dd]ownhill//g' | sed -e 's/[Rr]ueda//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Tt]riciclo//g' | sed -e 's/[Bb]icicleta//g' | sed -e 's/[Bb]icileta //g' | sed -e 's/29&quot; //g' | sed -e 's/[Bb]ici //g'
 }
 
 function process_page_file()
@@ -138,7 +131,7 @@ function process_page_file()
     #echo "STORE=${STORE}"
     #echo "TYPE=${TYPE}"
     #echo "========================================================================"
-    MODELS="$(cat ${FILE_BASE} | grep "productlink" | sed -e 's/<[^>]*>//g')"
+    MODELS="$(cat ${FILE_BASE} | grep '<a class="bem-product-thumb__name--grid"' | sed -e 's/<[^>]*>//g')"
     
     echo "${MODELS}" | tr -d '\r' | while read model;
     do
@@ -169,7 +162,7 @@ function process_page_file()
       #echo "TYPE=>${TYPE}<="
       #echo "PRICE=>${PRICE}<="
       #echo "========================================================================"
-      dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+      bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
     done
   fi
 }
