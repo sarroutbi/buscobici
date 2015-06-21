@@ -52,7 +52,7 @@ bubic_clean "$trademark_model"'`;
   chomp($clean_trademark_model);
 
   # URL PARSING
-  my $url_cmd = "cat $file | grep '$trademark_model_orig' -A5 | grep href";
+  my $url_cmd = "cat $file | grep '>$trademark_model_orig<' | grep href | awk -F 'a href=' {'print $2'} | awk {'print $1'} | head -1";
   $url_all = `$url_cmd`;
   ($url_first, $url_no_html) = split('href=', $url_all, -1);
   ($url_no_dash, $url_later) = split(' ', $url_no_html, -1);
@@ -84,12 +84,7 @@ bubic_clean "$trademark_model"'`;
   my $price = `$price_cmd`;
 
   if ($price eq "") {
-    $price_cmd = sprintf("cat $file | grep '$trademark_model' -A%s | grep '<div class=\"ItemShopPagar\"' | sed -e 's/<[^>]*>//g' | egrep -E -o \"[0-9]{0,2}.{0,1}[0-9]{3},{0,1}[0-9]{0,2}\" | head -1", MAX_PRICE);
-    $price = `$price_cmd`;
-  }
-
-  if ($price eq "") {
-    $price_cmd = sprintf("cat $file | grep '$trademark_model' -A%s | grep '<span class=\"ItemShopPagar' | sed -e 's/<[^>]*>//g' | egrep -E -o \"[0-9]{0,2}.{0,1}[0-9]{3},{0,1}[0-9]{0,2}\" | head -1", MAX_PRICE);
+    $price_cmd = sprintf("cat $file | grep '$trademark_model' -A%s | grep '<span class=\"ItemDestacadosPagarNum\"' | sed -e 's/<[^>]*>//g' | egrep -E -o \"[0-9]{0,2}.{0,1}[0-9]{3},{0,1}[0-9]{0,2}\" | head -1", MAX_PRICE);
     $price = `$price_cmd`;
   }
 
@@ -97,6 +92,7 @@ bubic_clean "$trademark_model"'`;
   $price =~ s/[^0-9,\,]//sg;
 
   #print "================================\n";
+  #print "ORIG_MODEL:$trademark_model_orig\n";
   #print "FILE:$file\n";
   #print "TRADEMARK_MODEL:$trademark_model\n";
   #print "TRADEMARK_MODEL_CLEAN:$clean_trademark_model\n";
@@ -120,8 +116,9 @@ sub process_file {
   elsif ($type eq "") {
     return 1;
   }
-  my $models_cmd = "cat $file | grep '<span class=\"ItemShopDesc\" itemprop=\"name\" title=\"' | sed -e 's/<[^>]*>//g'";
+  my $models_cmd = "cat $file | sed -e 's/<h2 class=\"ItemDestacadosDesc\"/\\n<h2 class=\"ItemDestacadosDesc\"/g' | sed -e 's|</h2>|</h2>\\n|g' | grep '<h2 class=\"ItemDestacadosDesc\"' | sed -e 's/<[^>]*>//g'";
   my @models = `$models_cmd`;
+  printf "MODELS cmd:$models_cmd";
   foreach my $trade_model (@models) {
     chomp($trade_model);
     $trade_model =~ s/^\s+|\s+$//g;
