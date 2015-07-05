@@ -55,7 +55,7 @@ function process_file()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${BASE_FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a></h5>@</a></h5>\n@g' | grep ^'<a class' | sed -e 's@<[^>]*>@@g' | grep -v ^Bicicletas | egrep -E "[A-Z,a-z]" | while read line;
+  cat "${BASE_FILE}" |  sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a></h5>@</a></h5>\n@g'  | grep '<a class="product-name"' -A3 | sed -e 's@>\n@>@g' | grep Bicicleta | grep -v 'a class'| while read line;
   do
     TRADEMARK_MODEL="${line}"
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
@@ -64,7 +64,8 @@ function process_file()
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN} | sed -e 's@Qer@Quer@g')
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
     URL="\"$(cat ${BASE_FILE} | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a></h5>@</a></h5>\n@g' | grep ^'<a class' | grep "${line}" | awk -F 'href="' {'print $2'} | awk -F '"' {'print $1'} | egrep -e "[A-Z,a-z]" | head -1)\""
-    PRICE=$(cat "${BASE_FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a></h5>@</a></h5>\n@g' | grep 'product-desc' | grep "${line}" -A1 | sed -e 's@<span itemprop="price"@\n<span itemprop="price"@g' | sed -e 's@</span>@</span>\n@g' | grep ^'<span itemprop="price"' | tail -1 | sed -e 's@<[^>]*>@@g' | egrep -E "[0-9]{0,2},{0,1}[0-9]{2,3}.[0-9]{0,2}" -o | head -1 | tr -d ',' | tr '.' ',')
+    #PRICE=$(cat "${BASE_FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a></h5>@</a></h5>\n@g' | grep 'product-desc' -A5 | grep "${line}" -C10 | sed -e 's@<span itemprop="price"@\n<span itemprop="price"@g' | sed -e 's@</span>@</span>\n@g' | grep ^'<span itemprop="price"' | tail -1 | sed -e 's@<[^>]*>@@g' | egrep -E "[0-9]{0,2},{0,1}[0-9]{2,3}.[0-9]{0,2}" -o | head -1 | tr -d ',' | tr '.' ',')
+    PRICE=$(cat "${BASE_FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a></h5>@</a></h5>\n@g' | grep "${line}" -C100 | sed -e 's@<span itemprop="price"@\n<span itemprop="price"@g' | sed -e 's@</span>@</span>\n@g' | grep '<span itemprop="price"' -A2 | sed -e 's@<[^>]*>@@g' | egrep -E "[0-9]{0,2},{0,1}[0-9]{2,3}.[0-9]{0,2}" -o | tail -1 | tr -d ',' | tr '.' ',')
     #echo "=>LINE:${line}<="
     #echo "BASE_FILE:${BASE_FILE}"
     #echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
