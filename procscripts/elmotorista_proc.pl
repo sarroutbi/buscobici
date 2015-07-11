@@ -118,7 +118,7 @@ sub process_file {
   }
   my $models_cmd = "cat $file | sed -e 's/<h2 class=\"ItemDestacadosDesc\"/\\n<h2 class=\"ItemDestacadosDesc\"/g' | sed -e 's|</h2>|</h2>\\n|g' | grep '<h2 class=\"ItemDestacadosDesc\"' | sed -e 's/<[^>]*>//g'";
   my @models = `$models_cmd`;
-  printf "MODELS cmd:$models_cmd";
+  #printf "MODELS cmd:$models_cmd";
   foreach my $trade_model (@models) {
     chomp($trade_model);
     $trade_model =~ s/^\s+|\s+$//g;

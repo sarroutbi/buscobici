@@ -1,17 +1,17 @@
 #!/bin/bash
 #
-# Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
-# 
-# Permission to use, copy, modify, and/or distribute this software 
-# for any purpose with or without fee is hereby granted, provided that 
+# Copyright © 2012-2015 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+#
+# Permission to use, copy, modify, and/or distribute this software
+# for any purpose with or without fee is hereby granted, provided that
 # the above copyright notice and this permission notice appear in all copies.
-# 
-# THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES 
-# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
-# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, 
-# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
-# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, 
-# NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+#
+# THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+# NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
 # This script gets all the bicycles from
@@ -28,48 +28,48 @@ function get_page()
   PAGES="$2"
   if [ "${PAGES}" = "" ];
   then
-    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
+    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}"
   else
     for page in ${PAGES};
     do
-      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
-    done 
+      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}"
+    done
   fi
 }
 
-MTB_FIX_BIKES_BASE="${URL}/lang-es/12-bicicletas-rigidas?p="
-MTB_FIX_BIKES_PAGES="$(seq 1 13)"
+MTB_FIX_BIKES_BASE="${URL}/es/12-btt-rigidas?p="
+MTB_FIX_BIKES_PAGES="$(seq 1 30)"
 
-MTB_DOUBLE_BIKES_BASE="${URL}/lang-es/14-doble-suspensio?p="
-MTB_DOUBLE_BIKES_PAGES="$(seq 1 10)"
+MTB_DOUBLE_BIKES_BASE="${URL}/es/14-btt-doble-suspension?p="
+MTB_DOUBLE_BIKES_PAGES="$(seq 1 20)"
 
-MTB_DOWN_BIKES_BASE="${URL}/lang-es/13-descenso?p="
-MTB_DOWN_BIKES_PAGES="$(seq 1 3)"
+MTB_DOWN_BIKES_BASE="${URL}/es/13-btt-descenso?p="
+MTB_DOWN_BIKES_PAGES="$(seq 1)"
 
-MTB_ELECTRIC_BIKES_BASE="${URL}/lang-es/55932276-btt-electricas"
-MTB_ELECTRIC_BIKES_PAGES=""
+MTB_ELECTRIC_BIKES_BASE="${URL}/es/55932276-btt-electricas?p="
+MTB_ELECTRIC_BIKES_PAGES="$(seq 1 5)"
 
-ROAD_BIKES_BASE="${URL}/lang-es/8-carretera?p="
-ROAD_BIKES_PAGES="$(seq 1 10)"
+ROAD_BIKES_BASE="${URL}/es/8-carretera?p="
+ROAD_BIKES_PAGES="$(seq 1 21)"
 
-BMX_BIKES_BASE="${URL}/lang-es/9-bmx-freestyle"
+BMX_BIKES_BASE="${URL}/es/2-bicicletas"
 BMX_BIKES_PAGES=""
 
-URBAN_BIKES_BASE="${URL}/lang-es/10-bicicletas-paseo-electricas?p="
-URBAN_BIKES_PAGES="$(seq 1 8)"
+FOLDING_BIKES_BASE="${URL}/es/11-plegables?p="
+FOLDING_BIKES_PAGES="$(seq 1 5)"
 
-FOLDING_BIKES_BASE="${URL}/lang-es/11-plegables?p="
-FOLDING_BIKES_PAGES="$(seq 1 3)"
+URBAN_BIKES_BASE="${URL}/es/10-bicicletas-paseo-electricas?p="
+URBAN_BIKES_PAGES="$(seq 1 15)"
 
-KIDS_BIKES_BASE="${URL}/lang-es/61-junior?p="
-KIDS_BIKES_PAGES="$(seq 1 5)"
+KIDS_BIKES_BASE="${URL}/es/61-junior?p="
+KIDS_BIKES_PAGES="$(seq 1 8)"
 
-get_page "${MTB_FIX_BIKES_BASE}"    "${MTB_FIX_BIKES_PAGES}"   
+get_page "${MTB_FIX_BIKES_BASE}"    "${MTB_FIX_BIKES_PAGES}"
 get_page "${MTB_DOUBLE_BIKES_BASE}" "${MTB_DOUBLE_BIKES_PAGES}"
-get_page "${MTB_DOWN_BIKES_BASE}"   "${MTB_DOWN_BIKES_PAGES}"  
-get_page "${MTB_ELECTRIC_BIKES_BASE}" "${MTB_ELECTRIC_BIKES_PAGES}"  
-get_page "${ROAD_BIKES_BASE}"       "${ROAD_BIKES_PAGES}"      
-get_page "${BMX_BIKES_BASE}"        "${BMX_BIKES_PAGES}"       
-get_page "${URBAN_BIKES_BASE}"      "${URBAN_BIKES_PAGES}"     
-get_page "${FOLDING_BIKES_BASE}"    "${FOLDING_BIKES_PAGES}"   
-get_page "${KIDS_BIKES_BASE}"       "${KIDS_BIKES_PAGES}"      
+get_page "${MTB_DOWN_BIKES_BASE}"   "${MTB_DOWN_BIKES_PAGES}"
+get_page "${MTB_ELECTRIC_BIKES_BASE}" "${MTB_ELECTRIC_BIKES_PAGES}"
+get_page "${ROAD_BIKES_BASE}"       "${ROAD_BIKES_PAGES}"
+get_page "${BMX_BIKES_BASE}"        "${BMX_BIKES_PAGES}"
+get_page "${URBAN_BIKES_BASE}"      "${URBAN_BIKES_PAGES}"
+get_page "${FOLDING_BIKES_BASE}"    "${FOLDING_BIKES_PAGES}"
+get_page "${KIDS_BIKES_BASE}"       "${KIDS_BIKES_PAGES}"

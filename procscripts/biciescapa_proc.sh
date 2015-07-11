@@ -150,11 +150,11 @@ function process_page_url()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${BASE_FILE}" | egrep -E '<h3>' | grep '<a href=' | tr -d '\r' | while read model_url_line;
+  cat "${BASE_FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</span></div>@</span></div>\n@g' | grep ^'<a class="product-name"' | while read model_url_line;
   do
-    TRADEMARK_MODEL=$(echo "${model_url_line}" | sed -e 's/<[^>]*>//g')
+    TRADEMARK_MODEL=$(echo "${model_url_line}" | sed -e 's@</a></h5>@</a></h5>\n@g' | grep ^"<a class" | sed -e 's/<[^>]*>//g')
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
-    URL=$(echo "${model_url_line}" | awk -F '<a href=' {'print $2'} | awk {'print $1'})
+    URL=$(echo "${model_url_line}" | awk -F 'href=' {'print $2'} | awk {'print $1'})
     URL_NO_QUOTES=$(echo ${URL} | tr -d '"')
     TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
     TRADEMARK_CLEAN=$(bubic_clean "${TRADEMARK}")
@@ -162,7 +162,7 @@ function process_page_url()
     MODEL=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
     MODEL_CLEAN=$(bubic_clean "${MODEL}")
     MODEL_CAMEL=$(bubic_camel "${MODEL_CLEAN}" ${NO_CAMEL_MODEL_MIN})
-    PRICE=$(print_price_url ${URL_NO_QUOTES})
+    PRICE=$(echo "${model_url_line}" | sed -e 's@<span itemprop="price"@\n<span itemprop="price"@g' | sed -e 's@<\span>@<\span>\n@g' | sed -e 's@<span class="old-price product-price">@\n<span class="old-price product-price">@g' | grep ^'<span itemprop="price' | sed -e 's@<[^>]*>@@g' | tr -d ' ' | egrep -E -o "[0-9]{2,5},[0-9]{2}")
     #echo "========================================================================"
     #echo "LINE=${model_url_line}"
     #echo "TRADEMARK=${TRADEMARK_CAMEL}"
@@ -194,32 +194,32 @@ function process_pages()
   fi
 }
 
-MTB_FIX_BIKES_BASE="12-bicicletas-rigidas?p="
-MTB_FIX_BIKES_PAGES="$(seq 1 13)"
+MTB_FIX_BIKES_BASE="12-btt-rigidas?p="
+MTB_FIX_BIKES_PAGES="$(seq 1 30)"
 
-MTB_DOUBLE_BIKES_BASE="14-doble-suspensio?p="
-MTB_DOUBLE_BIKES_PAGES="$(seq 1 10)"
+MTB_DOUBLE_BIKES_BASE="14-btt-doble-suspension?p="
+MTB_DOUBLE_BIKES_PAGES="$(seq 1 20)"
 
-MTB_DOWN_BIKES_BASE="13-descenso"
-MTB_DOWN_BIKES_PAGES=""
+MTB_DOWN_BIKES_BASE="13-btt-descenso"
+MTB_DOWN_BIKES_PAGES="$(seq 1)"
 
-MTB_ELECTRIC_BIKES_BASE="55932276-btt-electricas?p"
-MTB_ELECTRIC_BIKES_PAGES="$(seq 1 3)"
+MTB_ELECTRIC_BIKES_BASE="55932276-btt-electricas?p="
+MTB_ELECTRIC_BIKES_PAGES="$(seq 1 5)"
 
 ROAD_BIKES_BASE="8-carretera?p="
-ROAD_BIKES_PAGES="$(seq 1 10)"
+ROAD_BIKES_PAGES="$(seq 1 21)"
 
-BMX_BIKES_BASE="9-bmx-freestyle"
+BMX_BIKES_BASE="2-bicicletas"
 BMX_BIKES_PAGES=""
 
-URBAN_BIKES_BASE="10-bicicletas-paseo-electricas?p="
-URBAN_BIKES_PAGES="$(seq 1 8)"
-
 FOLDING_BIKES_BASE="11-plegables?p="
-FOLDING_BIKES_PAGES="$(seq 1 3)"
+FOLDING_BIKES_PAGES="$(seq 1 5)"
+
+URBAN_BIKES_BASE="10-bicicletas-paseo-electricas?p="
+URBAN_BIKES_PAGES="$(seq 1 15)"
 
 KIDS_BIKES_BASE="61-junior?p="
-KIDS_BIKES_PAGES="$(seq 1 5)"
+KIDS_BIKES_PAGES="$(seq 1 8)"
 
 > ${OUTPUT_FILE}
 
