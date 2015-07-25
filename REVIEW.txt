@@ -47,3 +47,5 @@ This file contains which stores have been reviewed and the date.
 - BikeDiscount  : 20150222
 - BikeStocks    : 20150225
 - Bicimania     : 20150326
+- Wiggle        : 20150725
+- BikeOS        : 20150725
