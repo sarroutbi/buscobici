@@ -49,11 +49,11 @@ function process_file()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${BASE_FILE}" | sed -e s@'<div class="product-top">'@'\n<div class="product-top">'@g | grep ^'<div class="product-top">' | while read line;
+  cat "${BASE_FILE}" | sed -e s@'<div class="product-top">'@'\n<div class="product-top">'@g | grep '<h2 class="product-name">' | while read line;
   do
     # MODEL LINE AND URL LIKE:
     # <h2><a href="/productos-bicicletas/bicicletas/mtb/cannondale-scalpel-29-3-14-detail.html" >CANNONDALE SCALPEL 29 3 '14</a></h2>
-    TRADEMARK_MODEL=$(echo ${line} | awk -F '<h2>' {'print $2'} | awk -F '</h2>' {'print $1'} | sed -e 's@<[^>]*>@@g' | tr "'" '"' | tr "´" '"' | tr "\`" '"' | tr -d "\`" | tr -d "´" | sed -e 's@""@"@g')
+    TRADEMARK_MODEL=$(echo ${line} | sed -e 's@<[^>]*>@@g' | tr "'" '"' | tr "´" '"' | tr "\`" '"' | tr -d "\`" | tr -d "´" | sed -e 's@""@"@g' | tr -d '\n' | tr -d '\r')
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
     MODEL=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
@@ -137,12 +137,18 @@ function process_file()
 
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
-    SUBURL=$(echo ${line} | awk -F '<h2>' {'print $2'} | awk -F '</h2>' {'print $1'} | awk -F '<a href=' {'print $2'} | awk {'print $1'} | tr -d '"')
-    URL="\"${BASE_URL}${SUBURL}\""
+    SUBURL=$(echo ${line} | awk -F '<a href=' {'print $2'} | awk {'print $1'} | tr -d '"')
+    URL="\"${SUBURL}\""
     # PRICE LIKE:
     # <span class="PricebasePriceWithTax" >6999,00 €</span>
-    PRICE=$(echo ${line} | awk -F '<span class="PricebasePriceWithTax" >' {'print $2'} | awk -F '</span>' {'print $1'} | sed -e 's@<[^>]*>@@g' | tr -d ' ' | tr '.' ',' | egrep -E "[0-9]{2,5},[0-9]{0,2}" -o)
+    PRICE=$(grep "${SUBURL}" ${BASE_FILE} -A20 | awk -F '<span class="price"' {'print $2'} | awk -F '</span>' {'print $1'} | sed -e 's@<[^>]*>@@g' | egrep -E "[0-9]{0,2}[.]{0,1}[0-9]{2,3},[0-9]{0,2}" -o | tr -d '.')
+    if [ -z "${PRICE}" ];
+    then
+      PRICE=$(grep "${SUBURL}" ${BASE_FILE} -A35 | grep '<span class="price"' -A2 | egrep -E "[0-9]{0,2}[.]{0,1}[0-9]{2,3},[0-9]{0,2}" -o | tail -1 | tr -d '.')
+    fi
+    #echo "======================================"
     #echo "LINE:=>${line}<="
+    #echo "BASE_FILE:=>${BASE_FILE}<="
     #echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
     #echo "TRADEMARK:=>${TRADEMARK}<="
     #echo "TRADEMARK_CAMEL:=>${TRADEMARK_CAMEL}<="
@@ -150,6 +156,7 @@ function process_file()
     #echo "MODEL_CAMEL:=>${MODEL_CAMEL}<="
     #echo "URL:=>${URL}<="
     #echo "PRICE:=>${PRICE}<="
+    #echo "======================================"
     #echo
     bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
@@ -179,25 +186,25 @@ function process_pages_raw()
 
 #### MTB ####
 MTB_BASE="mtb"
-MTB_PAGES=""
+MTB_PAGES="$(seq 1 10)"
 
 process_pages_raw "${MTB_BASE}" "${MTB_PAGES}" "La Bicicleta" "MTB" >> ${OUTPUT_FILE}
 
 #### ROAD ####
 ROAD_BASE="road"
-ROAD_PAGES=""
+ROAD_PAGES="$(seq 1 3)"
 
 process_pages_raw "${ROAD_BASE}" "${ROAD_PAGES}" "La Bicicleta" "ROAD" >> ${OUTPUT_FILE}
 
 #### BMX ####
 BMX_BASE="bmx"
-BMX_PAGES=""
+BMX_PAGES="$(seq 1 3)"
 
 process_pages_raw "${ROAD_BASE}" "${ROAD_PAGES}" "La Bicicleta" "ROAD" >> ${OUTPUT_FILE}
 
 #### KIDS ####
 KIDS_BASE="kids"
-KIDS_PAGES=""
+KIDS_PAGES="$(seq 1 3)"
 
 process_pages_raw "${KIDS_BASE}" "${KIDS_PAGES}" "La Bicicleta" "KIDS" >> ${OUTPUT_FILE}
 
