@@ -105,7 +105,7 @@ function dump_bike()
 # 2 - The MODEL of bike
 function print_price()
 {
-  PRICE="$(grep -A${MAX_PRICE} "$2" "$1" | grep '<span class="bem-product_price__unit--grid">' | head -1 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,2}.{0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d '.' | sed -e 's/^[ \t]*//g')"
+  PRICE="$(grep -A${MAX_PRICE} "$2" "$1" | grep '<span class="bem-product-price__unit--grid"' | head -1 | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{0,2}.{0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d '.' | sed -e 's/^[ \t]*//g')"
   echo "${PRICE}"
 }
 
