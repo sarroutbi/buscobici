@@ -31,7 +31,7 @@ use constant URL2_URBAN_FOLDING => "#loadshop.php?cc=BIC&c1=38&c2=&o=IM&r=24&d=u
 use constant URL2_URBAN_ELECTRIC => "#loadshop.php?cc=BIC&c1=37&c2=&o=IM&r=24&d=undefined&h=undefined&s=S&c=undefined&t1=undefined&t2=undefined&f=&t=undefined&b=&m=undefined&p=";
 
 #### ROAD ####
-my $ROAD_BASE = URL . "/shop/bicicletas-carretera" . URL2_ROAD;
+my $ROAD_BASE = URL . "/bicicletas/bicicletas-carretera?p=";
 my @ROAD_PAGES = `seq 1 4`;
 my $ROAD_FILE = "road";
 
@@ -40,7 +40,7 @@ chomp @ROAD_PAGES;
 bubicpl_get_page_js($ROAD_BASE, \@ROAD_PAGES, $ROAD_FILE);
 
 #### ROAD-TRIATHLON ####
-my $ROAD_TRIATHLON_BASE = URL . "/shop/bicicletas-triatlon" . URL2_TRIATHLON;
+my $ROAD_TRIATHLON_BASE = URL . "/bicicletas/bicicletas-triatlon?p=";
 my @ROAD_TRIATHLON_PAGES = `seq 1 2`;
 my $ROAD_TRIATHLON_FILE = "road-triathlon";
 
@@ -49,7 +49,7 @@ chomp @ROAD_TRIATHLON_PAGES;
 bubicpl_get_page_js($ROAD_TRIATHLON_BASE, \@ROAD_TRIATHLON_PAGES, $ROAD_TRIATHLON_FILE);
 
 #### BMX ####
-my $BMX_BASE = URL . "/shop/bmx" . URL2_BMX;
+my $BMX_BASE = URL . "/bicicletas/bmx?p=";
 my @BMX_PAGES = `seq 1 2`;
 my $BMX_FILE = "bmx";
 
@@ -58,7 +58,7 @@ chomp @BMX_PAGES;
 bubicpl_get_page_js($BMX_BASE, \@BMX_PAGES, $BMX_FILE);
 
 #### MTB ####
-my $MTB_BASE = URL . "/shop/mountain-bike" . URL2_MTB;
+my $MTB_BASE = URL . "/bicicletas/bicicletas-montana?p=";
 my @MTB_PAGES = `seq 1 5`;
 my $MTB_FILE = "mtb";
 
@@ -67,7 +67,7 @@ chomp @MTB_PAGES;
 bubicpl_get_page_js($MTB_BASE, \@MTB_PAGES, $MTB_FILE);
 
 #### URBAN_HYBRID ####
-my $URBAN_HYBRID_BASE = URL . "/shop/bicicletas-hibridas" . URL2_URBAN_HYBRID;
+my $URBAN_HYBRID_BASE = URL . "/bicicletas/bicicletas-hibridas?p=";
 my @URBAN_HYBRID_PAGES = `seq 1 2`;
 my $URBAN_HYBRID_FILE = "urban-hybrid";
 
@@ -76,7 +76,7 @@ chomp @URBAN_HYBRID_PAGES;
 bubicpl_get_page_js($URBAN_HYBRID_BASE, \@URBAN_HYBRID_PAGES, $URBAN_HYBRID_FILE);
 
 #### URBAN_WALK ####
-my $URBAN_WALK_BASE = URL . "/shop/bicicletas-paseo" . URL2_URBAN_WALK;
+my $URBAN_WALK_BASE = URL . "/bicicletas/bicicletas-paseo?p=";
 my @URBAN_WALK_PAGES = `seq 1 3`;
 my $URBAN_WALK_FILE = "urban-walk";
 
@@ -85,7 +85,7 @@ chomp @URBAN_WALK_PAGES;
 bubicpl_get_page_js($URBAN_WALK_BASE, \@URBAN_WALK_PAGES, $URBAN_WALK_FILE);
 
 #### KIDS ####
-my $KIDS_BASE = URL . "/shop/bicicletas-infantiles" . URL2_KIDS;
+my $KIDS_BASE = URL . "/bicicletas/bicicletas-infantiles?p=";
 my @KIDS_PAGES = `seq 1 3`;
 my $KIDS_FILE = "kids";
 
@@ -94,7 +94,7 @@ chomp @KIDS_PAGES;
 bubicpl_get_page_js($KIDS_BASE, \@KIDS_PAGES, $KIDS_FILE);
 
 #### URBAN_FOLDING ####
-my $URBAN_FOLDING_BASE = URL . "/shop/bicicleta-plegable" . URL2_URBAN_FOLDING;
+my $URBAN_FOLDING_BASE = URL . "/bicicletas/bicicleta-plegable?p=";
 my @URBAN_FOLDING_PAGES = `seq 1 2`;
 my $URBAN_FOLDING_FILE = "urban-folding";
 
@@ -103,7 +103,7 @@ chomp @URBAN_FOLDING_PAGES;
 bubicpl_get_page_js($URBAN_FOLDING_BASE, \@URBAN_FOLDING_PAGES, $URBAN_FOLDING_FILE);
 
 #### URBAN_ELECTRIC ####
-my $URBAN_ELECTRIC_BASE = URL . "/shop/bicicletas-electricas" . URL2_URBAN_ELECTRIC;
+my $URBAN_ELECTRIC_BASE = URL . "/bicicletas/bicicletas-electricas?p=";
 my @URBAN_ELECTRIC_PAGES = `seq 1 2`;
 my $URBAN_ELECTRIC_FILE = "urban-electric";
 
