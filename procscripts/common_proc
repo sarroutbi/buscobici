@@ -222,6 +222,7 @@ function bubic_clean()
 | sed -e 's/[Bb]ici [Tt]riatl...n//g' \
 | sed -e 's/[Bb]ici [Tt]riatl..n//g' \
 | sed -e 's/[Bb]ici [Tt]riatl.n//g' \
+| sed -e 's/[Bb]icicleta [Aa]prendizaje [Cc]orrepasillos//g' \
 | sed -e 's/[Bb]icicleta [Ss]ingle-[Ss]peed//g' \
 | sed -e 's/[Bb]icicleta de [Aa]prendizaje//g' \
 | sed -e 's/[Bb]icicleta de 650b//g' \
