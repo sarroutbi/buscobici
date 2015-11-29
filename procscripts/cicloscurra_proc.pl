@@ -22,7 +22,7 @@ use constant EXCLUDE => "-Rgif -Rpng -Rjpg";
 use constant MAX_TRIES => 10;
 use constant MAX_TIMEOUT => 10;
 use constant OUTPUT_FILE => "output";
-use constant MAX_PRICE => 10;
+use constant MAX_PRICE => 30;
 
 my $TRADEMARK_KEY="TRADEMARK";
 my $SUBURL_KEY="SUBURL";
@@ -54,7 +54,7 @@ bubic_clean "$trimmed_trademark_model"'`;
   chomp($model);
 
   # URL PARSING
-  my $url_cmd = "cat $file | sed -e 's!<h5>!\\n<h5>!g' | sed -e 's!</h5>!</h5>\\n!g' | grep '<h5>' | grep \"$trademark_model\" | grep href";
+  my $url_cmd = "cat $file | grep \"$trademark_model\" -C2 | grep href";
   $url_all = `$url_cmd`;
   ($url_first, $url_no_html) = split('href=', $url_all, -1);
   ($url_no_dash, $url_later) = split(' ', $url_no_html, -1);
@@ -63,14 +63,9 @@ bubic_clean "$trimmed_trademark_model"'`;
   $url =~ s/"/\\"/g;
 
   # PRICE PARSING
-  my $price_cmd = sprintf("cat $file | sed -e 's!<h5>!\\n<h5>!g' " .
-"| sed -e 's!</h5>!</h5>\\n!g' | " .
-" sed -e 's/<span class=\"price\">/\\n<span class=\"price\">/g' | " .
-" sed -e 's!</span>!</span>\\n!g' | grep -A%d \"$trademark_model\" " .
-"| grep '<span class=\"price\">' | head -1 | sed -e 's/<[^>]*>//g'", MAX_PRICE);
+  my $price_cmd = sprintf("cat $file | grep -C%d \"$trademark_model\" " .
+"| grep '<span itemprop=\"price\"' -A1 | sed -e 's/<[^>]*>//g' | egrep -E \"[0-9]\" | head -1", MAX_PRICE);
   my $price = `$price_cmd`;
-  $price =~ s/\,//sg;
-  $price =~ s/\./\,/sg;
   $price =~ s/^\s+|\s+$//g;
   chomp($price);
   $price =~ s/[^0-9,\,]//sg;
@@ -107,7 +102,7 @@ sub process_file {
   elsif ($type eq "") {
     return 1;
   }
-  my $models_cmd = "cat $file | sed -e 's!<h5>!\\n<h5>!g' | sed -e 's!</h5>!</h5>\\n!g' | grep '<h5>' | sed -e 's/<[^>]*>//g' | grep -i bicicleta";
+  my $models_cmd = "cat $file | grep -v span | grep -i product-name -A2 | sed -e 's/<[^>]*>//g' | grep -i bicicleta";
   my @models = `$models_cmd`;
   foreach my $trade_model (@models) {
     chomp($trade_model);
@@ -134,7 +129,7 @@ my $del_cmd = sprintf(">%s", OUTPUT_FILE);
 `$del_cmd`;
 
 #### MTB ####
-my @MTB_FIX_PAGES = `seq 1 17`;
+my @MTB_FIX_PAGES = `seq 1 3`;
 my $MTB_FIX_FILE = "mtb";
 
 chomp @MTB_FIX_PAGES;
@@ -142,7 +137,7 @@ chomp @MTB_FIX_PAGES;
 process_file_pages($MTB_FIX_FILE, \@MTB_FIX_PAGES, "MTB-FIX");
 
 #### MTB-DOUBLE ####
-my @MTB_DOUBLE_PAGES = `seq 1 10`;
+my @MTB_DOUBLE_PAGES = `seq 1 3`;
 my $MTB_DOUBLE_FILE = "mtb-double";
 
 chomp @MTB_DOUBLE_PAGES;
@@ -150,7 +145,7 @@ chomp @MTB_DOUBLE_PAGES;
 process_file_pages($MTB_DOUBLE_FILE, \@MTB_DOUBLE_PAGES, "MTB-DOUBLE");
 
 #### ROAD ####
-my @ROAD_PAGES = `seq 1 8`;
+my @ROAD_PAGES = `seq 1 2`;
 my $ROAD_FILE = "road";
 
 chomp @ROAD_PAGES;
@@ -158,7 +153,7 @@ chomp @ROAD_PAGES;
 process_file_pages($ROAD_FILE, \@ROAD_PAGES, "ROAD");
 
 #### ROAD-TRIATLON ####
-my @ROAD_TRIATLON_PAGES;
+my @ROAD_TRIATLON_PAGES = `seq 1 2`;
 my $ROAD_TRIATLON_FILE = "road-triatlon";
 
 chomp @ROAD_TRIATLON_PAGES;
@@ -166,23 +161,15 @@ chomp @ROAD_TRIATLON_PAGES;
 process_file_pages($ROAD_TRIATLON_FILE, \@ROAD_TRIATLON_PAGES, "ROAD-TRIATLON");
 
 #### URBAN ####
-my @URBAN_PAGES = `seq 1 5`;
+my @URBAN_PAGES = `seq 1 2`;
 my $URBAN_FILE = "urban";
 
 chomp @URBAN_PAGES;
 
 process_file_pages($URBAN_FILE, \@URBAN_PAGES, "URBAN");
 
-#### URBAN_FIXIE ####
-my @URBAN_FIXIE_PAGES;
-my $URBAN_FIXIE_FILE = "urban-fixie";
-
-chomp @URBAN_FIXIE_PAGES;
-
-process_file_pages($URBAN_FIXIE_FILE, \@URBAN_FIXIE_PAGES, "URBAN-FIXIE");
-
 #### URBAN_ELECTRIC ####
-my @URBAN_ELECTRIC_PAGES = `seq 1 3`;
+my @URBAN_ELECTRIC_PAGES = `seq 1 2`;
 my $URBAN_ELECTRIC_FILE = "urban-electric";
 
 chomp @URBAN_ELECTRIC_PAGES;
@@ -197,16 +184,8 @@ chomp @URBAN_FOLDING_PAGES;
 
 process_file_pages($URBAN_FOLDING_FILE, \@URBAN_FOLDING_PAGES, "URBAN-FOLDING");
 
-#### URBAN_TRICYCLE ####
-my @URBAN_TRICYCLE_PAGES;
-my $URBAN_TRICYCLE_FILE = "urban-tricycle";
-
-chomp @URBAN_TRICYCLE_PAGES;
-
-process_file_pages($URBAN_TRICYCLE_FILE, \@URBAN_TRICYCLE_PAGES, "URBAN-TRICYCLE");
-
 #### BMX ####
-my @BMX_PAGES = `seq 1 3`;
+my @BMX_PAGES = `seq 1 2`;
 my $BMX_FILE = "bmx";
 
 chomp @BMX_PAGES;
@@ -214,7 +193,7 @@ chomp @BMX_PAGES;
 process_file_pages($BMX_FILE, \@BMX_PAGES, "BMX");
 
 #### KIDS ####
-my @KIDS_PAGES = `seq 1 7`;
+my @KIDS_PAGES = `seq 1 2`;
 my $KIDS_FILE = "kids";
 
 chomp @KIDS_PAGES;
