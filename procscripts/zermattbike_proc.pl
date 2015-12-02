@@ -174,7 +174,7 @@ my $TREKKING_FILE = "trekking";
 process_file_pages($TREKKING_FILE, \@TREKKING_PAGES, "ROAD-TREKKING");
 
 #### MTB ####
-my @MTB_PAGES = `seq 1 2`;
+my @MTB_PAGES = `seq 1 7`;
 my $MTB_FILE = "mtb";
 
 chomp @MTB_PAGES;
