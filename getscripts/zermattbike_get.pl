@@ -122,7 +122,7 @@ my $MTB_DOWNHILL_FILE = "mtb-downhill";
 bubicpl_get_page($MTB_DOWNHILL_BASE, \@MTB_DOWNHILL_PAGES, $MTB_DOWNHILL_FILE, 10, 10, 1);
 
 #### KIDS ####
-my $KIDS_BASE = URL . "/categoria-producto/bicicletas/montana/nino-nina/page/";
+my $KIDS_BASE = URL . "/categoria-producto/bicicletas/nino-nina/page/";
 my @KIDS_PAGES = `seq 1 2`;
 my $KIDS_FILE = "kids";
 
