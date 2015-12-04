@@ -49,7 +49,7 @@ function process_file()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${BASE_FILE}" | sed -e 's@<a class="product_link"@\n<a class="product_link"@g' | sed -e 's@<p class="compare checkbox">@\n<p class="compare checkbox">@g' | grep '<a class="product_link"' | while read line;
+  cat "${BASE_FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | grep '<a class="product-name"' | while read line;
   do
     TRADEMARK_MODEL=$(echo "${line}" | awk -F '</a>' '{print $1}' | sed -e 's@<[^>]*>@@g'\
 | sed -e 's@\.\.\.@@g' | grep [A-Z,a-z] | head -1 | sed -e 's@^[ \t]*@@g'\
@@ -66,31 +66,25 @@ function process_file()
 | grep -vi "Mallas" | grep -vi "Paraviento"\
 | grep -vi "Pulsometro" | grep -vi "Rueda"\
 | grep -vi "Plataforma" | grep -vi "Zapatillas")
-    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
+    TRADEMARK_MODEL_CAMEL=$(bubic_camel "${TRADEMARK_MODEL}" ${NO_CAMEL_TRADEMARK_MIN} | sed -e 's@Qer@Quer@g')
+    TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL_CAMEL}")
     TRADEMARK=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'print $1'})
     MODEL=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
-    TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN} | sed -e 's@Qer@Quer@g')
     URL=$(echo ${line} | awk -F 'href=' {'print $2'} | awk {'print $1'})
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MODEL_MIN})
-    PRICE=$(grep "${TRADEMARK_MODEL}" "${BASE_FILE}" -A5 | sed -e 's@<@\n<@g' | grep ">${TRADEMARK_MODEL}" -A50 | awk -F '<span class="price">' {'print $2'} | grep [0-9] | tr -d ' ' | head -1 | awk {'print $1'})
-
-    if [ "${PRICE}" = "" ];
-    then
-        URL_NO_QUOTE=$(echo ${URL} | tr -d '"')
-        PRICE=$(wget -o/dev/null -w5 --random-wait -e robots=off -U 'Mozilla/5.0' --no-cookies -O - "${URL_NO_QUOTE}" | sed -e 's@<@\n<@g' | grep ^'<' | grep price | egrep -E "[0-9]{2,3},{0,1}[0-9]{2}" | awk -F ">" {'print $2'} | head -1 | tr -d ' ' | awk {'print $1'})
-    fi
-    #echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    PRICE=$(grep "${TRADEMARK_MODEL}" "${BASE_FILE}" -A5 | sed -e 's@<@\n<@g' | grep "${TRADEMARK_MODEL}" -A10 | grep '<span class="price' | egrep -E -o "[0-9]{0,2} {1,2}[0-9]{3},{1}[0-9]{2} | tr -d ' ' | head")
+    PRICE_NO_DASH=$(echo "${PRICE}" | tr -d ' ')
+    #echo "##############################################################"
     #echo "LINE:${line}"
     #echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
+    #echo "TRADEMARK_MODEL_CLEAN:${TRADEMARK_MODEL_CLEAN}"
     #echo "TRADEMARK:=>${TRADEMARK}<="
-    #echo "TRADEMARK_CAMEL:=>${TRADEMARK_CAMEL}<="
     #echo "MODEL:=>${MODEL}<="
-    #echo "MODEL_CAMEL:=>${MODEL_CAMEL}<="
-    #echo "URL:=>${URL}<="
     #echo "URL:=>${URL}<="
     #echo "PRICE:=>${PRICE}<="
-    #echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-    bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    #echo "PRICE_NO_DASH:=>${PRICE_NO_DASH}<="
+    #echo "##############################################################"
+    bubic_dump_bike "${MODEL}" "${URL}" "${TRADEMARK}" "${PRICE_NO_DASH}" "${STORE}" "${TYPE}"
   done
 }
 
@@ -118,20 +112,25 @@ function process_pages_raw()
 
 #### ROAD ####
 ROAD_BASE="road"
-ROAD_PAGES="$(seq 1 12)"
+ROAD_PAGES="$(seq 1 9)"
 
 process_pages_raw "${ROAD_BASE}" "${ROAD_PAGES}" "CicloHobby" "ROAD" >> ${OUTPUT_FILE}
 
+#### ROAD_TRIATLON ####
+ROAD_TRIATLON_BASE="road-triatlon"
+ROAD_TRIATLON_PAGES="$(seq 1 1)"
+
+process_pages_raw "${ROAD_TRIATLON_BASE}" "${ROAD_TRIATLON_PAGES}" "CicloHobby" "ROAD_TRIATLON" >> ${OUTPUT_FILE}
+
 #### MTB ####
 MTB_BASE="mtb"
-MTB_PAGES="$(seq 1 20)"
+MTB_PAGES="$(seq 1 10)"
 process_pages_raw "${MTB_BASE}" "${MTB_PAGES}" "CicloHobby" "MTB" >> ${OUTPUT_FILE}
 
 #### ROAD CICLOCROSS ####
 ROAD_CICLOCROSS_BASE="road-ciclocross"
-ROAD_CICLOCROSS_PAGES="1"
+ROAD_CICLOCROSS_PAGES=""
 process_pages_raw "${ROAD_CICLOCROSS_BASE}" "${ROAD_CICLOCROSS_PAGES}" "CicloHobby" "ROAD-CICLOCROSS" >> ${OUTPUT_FILE}
-
 
 #### URBAN ####
 URBAN_BASE="urban"
@@ -152,7 +151,7 @@ process_pages_raw "${URBAN_FITNESS_BASE}" "${URBAN_FITNESS_PAGES}" "CicloHobby" 
 
 #### URBAN ELECTRIC ####
 URBAN_ELECTRIC_BASE="urban-electric"
-URBAN_ELECTRIC_PAGES="$(seq 1 4)"
+URBAN_ELECTRIC_PAGES="$(seq 1 2)"
 
 process_pages_raw "${URBAN_ELECTRIC_BASE}" "${URBAN_ELECTRIC_PAGES}" "CicloHobby" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
 
