@@ -23,8 +23,7 @@
 # STORE=Biciletas Gil
 # KIND=MTB-FIX
 
-MAX_PRICE=2
-#OUTPUT_FILE=/dev/stdout
+MAX_PRICE=5
 OUTPUT_FILE=./output
 BASE_URL="http://www.kingbarcelona.com"
 NO_CAMEL_MIN=6
@@ -150,7 +149,7 @@ function dump_bike_from_file()
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  TRADEMARK_MODELS=$(cat "${FILE}" | grep '<td class="productListing-data">' | sed -e 's!&nbsp;!!g' | sed -e 's/<[^>]*>//g')
+  TRADEMARK_MODELS=$(cat "${FILE}" | grep '<td class="productListing-data">' | sed -e 's!&nbsp;!!g' | grep "a href=" | sed -e 's/<[^>]*>//g')
   echo "${TRADEMARK_MODELS}" | while read trademark_model;
   do 
     test -z "${trademark_model}" && continue;
@@ -198,77 +197,79 @@ function process_pages()
   else
     for page in ${PAGES};
     do 
-      dump_bike_from_file "${BASE_FILE}${page}" "${STORE}" "${TYPE}"
+      dump_bike_from_file "${BASE_FILE}-${page}" "${STORE}" "${TYPE}"
     done
   fi
 }
 
 > ${OUTPUT_FILE}
 
-ROAD_BIKES_BASE="ciclismo-c-225_239.html?page="
-ROAD_BIKES_PAGES="$(seq 1 2)"
+MTB_FIX_29_BIKES_BASE="mtb-fix-29"
+MTB_FIX_29_BIKES_PAGES="$(seq 1 4)"
 
-ROAD_TRIATLON_BASE="triathlon-c-225_460.html"
-ROAD_TRIATLON_PAGES=""
+MTB_FIX_29_CARBON_BIKES_BASE="mtb-fix-29-carbon"
+MTB_FIX_29_CARBON_BIKES_PAGES="$(seq 1 4)"
 
-URBAN_ELECTRIC_BIKES_BASE="bicicletas-electricas-c-225_443.html?page="
-URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 2)"
+MTB_FIX_275_BIKES_BASE="mtb-fix-275"
+MTB_FIX_275_BIKES_PAGES="$(seq 1 5)"
 
-URBAN_BIKES_BASE="ciudad-c-225_375.html?page="
-URBAN_BIKES_PAGES="$(seq 1 5)"
+MTB_FIX_275_CARBON_BIKES_BASE="mtb-fix-275-carbon"
+MTB_FIX_275_CARBON_BIKES_PAGES="$(seq 1 2)"
 
-KIDS_BIKES_BASE="ninos-c-225_241.html?page="
-KIDS_BIKES_PAGES="$(seq 1 2)"
+MTB_DOUBLE_29_BIKES_BASE="mtb-double-29"
+MTB_DOUBLE_29_BIKES_PAGES="$(seq 1 2)"
 
-KIDS_BTT_BIKES_BASE="99-349-euros-c-405_406.html"
+MTB_DOUBLE_29_CARBON_BIKES_BASE="mtb-double-29-carbon"
+MTB_DOUBLE_29_CARBON_BIKES_PAGES="$(seq 1 2)"
+
+MTB_DOUBLE_275_BIKES_BASE="mtb-double-275"
+MTB_DOUBLE_275_BIKES_PAGES="$(seq 1 3)"
+
+MTB_DOUBLE_275_CARBON_BIKES_BASE="mtb-double-275-carbon"
+MTB_DOUBLE_275_CARBON_BIKES_PAGES="$(seq 1 3)"
+
+ROAD_BIKES_BASE="road"
+ROAD_BIKES_PAGES="$(seq 1 3)"
+
+ROAD_DISC_BIKES_BASE="road-disc"
+ROAD_DISC_BIKES_PAGES="$(seq 1 2)"
+
+ROAD_CICLOCROSS_BIKES_BASE="road-ciclocross"
+ROAD_CICLOCROSS_BIKES_PAGES="$(seq 1 2)"
+
+URBAN_ELECTRIC_BIKES_BASE="urban-electric"
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 4)"
+
+URBAN_BIKES_BASE="urban"
+URBAN_BIKES_PAGES="$(seq 1 6)"
+
+URBAN_FOLDING_BIKES_BASE="urban-folding"
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 3)"
+
+URBAN_FAT_BIKES_BASE="urban-fat"
+URBAN_FAT_BIKES_PAGES="$(seq 1 2)"
+
+KIDS_BIKES_BASE="kids"
+KIDS_BIKES_PAGES="$(seq 1 5)"
+
+KIDS_BTT_BIKES_BASE="kids-btt"
 KIDS_BTT_BIKES_PAGES=""
 
-BMX_BIKES_BASE="bmx-c-225_502.html"
-BMX_BIKES_PAGES=""
-
-MTB_DOUBLE_BIKES_BASE="ciclocross-c-225_532.html"
-MTB_DOUBLE_BIKES_PAGES=""
-
-MTB_DOWNHILL_BIKES_BASE="dh-c-225_503.html"
-MTB_DOWNHILL_BIKES_PAGES=""
-
-MTB_GEN1_BIKES_BASE="3500-8999-euros-c-405_414.html?page="
-MTB_GEN1_BIKES_PAGES="$(seq 1 2)"
-
-MTB_GEN2_BIKES_BASE="3000-3499-euros-c-405_413.html"
-MTB_GEN2_BIKES_PAGES=""
-
-MTB_GEN3_BIKES_BASE="2500-2999-euros-c-405_412.html"
-MTB_GEN3_BIKES_PAGES=""
-
-MTB_GEN4_BIKES_BASE="2000-2499-euros-c-405_411.html?page="
-MTB_GEN4_BIKES_PAGES="$(seq 1 2)"
-
-MTB_GEN5_BIKES_BASE="1500-1999-euros-c-405_410.html?page="
-MTB_GEN5_BIKES_PAGES="$(seq 1 2)"
-
-MTB_GEN6_BIKES_BASE="1000-1499-euros-c-405_409.html"
-MTB_GEN6_BIKES_PAGES=""
-
-MTB_GEN7_BIKES_BASE="600-999-euros-c-405_408.html?page="
-MTB_GEN7_BIKES_PAGES="$(seq 1 3)"
-
-MTB_GEN7_BIKES_BASE="350-599-euros-c-405_407.html?page="
-MTB_GEN7_BIKES_PAGES="$(seq 1 2)"
-
-process_pages "${ROAD_BIKES_BASE}"           "${ROAD_BIKES_PAGES}"           "King Barcelona" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${ROAD_TRIATLON_BASE}"        "${ROAD_TRIATLON_PAGES}"        "King Barcelona" "ROAD" >> ${OUTPUT_FILE}
-process_pages "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "King Barcelona" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${URBAN_BIKES_BASE}"          "${URBAN_BIKES_PAGES}"          "King Barcelona" "URBAN" >> ${OUTPUT_FILE}
-process_pages "${KIDS_BIKES_BASE}"           "${KIDS_BIKES_PAGES}"           "King Barcelona" "KIDS" >> ${OUTPUT_FILE}
-process_pages "${KIDS_BTT_BIKES_BASE}"       "${KIDS_BTT_BIKES_PAGES}"       "King Barcelona" "KIDS" >> ${OUTPUT_FILE}
-process_pages "${BMX_BIKES_BASE}"            "${BMX_BIKES_PAGES}"            "King Barcelona" "BMX" >> ${OUTPUT_FILE}
-process_pages "${MTB_DOUBLE_BIKES_BASE}"     "${MTB_DOUBLE_BIKES_PAGES}"     "King Barcelona" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_DOWNHILL_BIKES_BASE}"   "${MTB_DOWNHILL_BIKES_PAGES}"   "King Barcelona" "MTB-DOUBLE" >> ${OUTPUT_FILE}
-process_pages "${MTB_GEN1_BIKES_BASE}"       "${MTB_GEN1_BIKES_PAGES}"       "King Barcelona" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_GEN2_BIKES_BASE}"       "${MTB_GEN2_BIKES_PAGES}"       "King Barcelona" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_GEN3_BIKES_BASE}"       "${MTB_GEN3_BIKES_PAGES}"       "King Barcelona" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_GEN4_BIKES_BASE}"       "${MTB_GEN4_BIKES_PAGES}"       "King Barcelona" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_GEN5_BIKES_BASE}"       "${MTB_GEN5_BIKES_PAGES}"       "King Barcelona" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_GEN6_BIKES_BASE}"       "${MTB_GEN6_BIKES_PAGES}"       "King Barcelona" "MTB" >> ${OUTPUT_FILE}
-process_pages "${MTB_GEN7_BIKES_BASE}"       "${MTB_GEN7_BIKES_PAGES}"       "King Barcelona" "MTB" >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "King Barcelona" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${MTB_FIX_29_BIKES_BASE}" "${MTB_FIX_29_BIKES_PAGES}" "King Barcelona" "MTB-FIX-29" >> ${OUTPUT_FILE}
+process_pages "${MTB_FIX_29_CARBON_BIKES_BASE}" "${MTB_FIX_29_CARBON_BIKES_PAGES}" "King Barcelona" "MTB-FIX-29" >> ${OUTPUT_FILE}
+process_pages "${MTB_FIX_275_BIKES_BASE}" "${MTB_FIX_275_BIKES_PAGES}" "King Barcelona" "MTB-FIX-275" >> ${OUTPUT_FILE}
+process_pages "${MTB_FIX_275_CARBON_BIKES_BASE}" "${MTB_FIX_275_CARBON_BIKES_PAGES}" "King Barcelona" "MTB-FIX-275" >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_29_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" "King Barcelona" "MTB-DOUBLE-29" >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_29_CARBON_BIKES_BASE}" "${MTB_DOUBLE_29_CARBON_BIKES_PAGES}" "King Barcelona" "MTB-DOUBLE-29" >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_275_BIKES_BASE}" "${MTB_DOUBLE_275_BIKES_PAGES}" "King Barcelona" "MTB-DOUBLE-275" >> ${OUTPUT_FILE}
+process_pages "${MTB_DOUBLE_275_CARBON_BIKES_BASE}" "${MTB_DOUBLE_275_CARBON_BIKES_PAGES}" "King Barcelona" "MTB-DOUBLE-275" >> ${OUTPUT_FILE}
+process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "King Barcelona" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${ROAD_DISC_BIKES_BASE}" "${ROAD_DISC_BIKES_PAGES}" "King Barcelona" "ROAD" >> ${OUTPUT_FILE}
+process_pages "${ROAD_CICLOCROSS_BIKES_BASE}" "${ROAD_CICLOCROSS_BIKES_PAGES}" "King Barcelona" "ROAD-CICLOCROSS" >> ${OUTPUT_FILE}
+process_pages "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "King Barcelona" "URBAN-ELECTRIC" >> ${OUTPUT_FILE}
+process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "King Barcelona" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" "King Barcelona" "URBAN-FOLDING" >> ${OUTPUT_FILE}
+process_pages "${URBAN_FAT_BIKES_BASE}" "${URBAN_FAT_BIKES_PAGES}" "King Barcelona" "URBAN" >> ${OUTPUT_FILE}
+process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "King Barcelona" "KIDS" >> ${OUTPUT_FILE}
+process_pages "${KIDS_BTT_BIKES_BASE}" "${KIDS_BTT_BIKES_PAGES}" "King Barcelona" "KIDS" >> ${OUTPUT_FILE}
