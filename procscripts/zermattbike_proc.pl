@@ -40,24 +40,20 @@ sub dump_model {
   chomp($store);
 
   # MODEL PARSING
-  my $model_parsing_cmd = "echo '$search_model' | sed -e 's!<h3>!\\n<h3>!g'" .
-"| sed -e 's!</h3>!</h3>\\n!g' | grep h3 | sed -e 's!<[^>]*>!!g'";
-  my $model = `$model_parsing_cmd`;
-  chomp($model);
-  my $trademark_cmd = "echo '$model' | awk {'print \$1'}";
+  my $trademark_cmd = "echo '$search_model' | awk {'print \$1'}";
   my $trademark = `$trademark_cmd`;
   chomp($trademark);
+  my $model = $search_model;
+  $model =~ s/$trademark//g;
 
   # URL PARSING
-  my $url_parsing_cmd = "echo '$search_model' | sed -e 's!<a href!\\n<a href!g'" .
-"| sed -e 's!</a>!</a>\\n!g' | grep '<a href' | awk -F '=' {'print \$2'} | awk -F '>' {'print \$1'}";
+  my $url_parsing_cmd = "grep '$search_model' $file -B10 | grep producto | egrep -E -o \"\\\"http://[^ ]* \" -A10 ";
   my $url = `$url_parsing_cmd`;
   $url =~ s/"/\\"/g; 
   chomp($url);
   
   # PRICE PARSING
-  my $price_parsing_cmd = "echo '$search_model' | sed -e 's!<span class!\\n<span class!g'" .
-"| sed -e 's!</span>!</span>\\n!g' | egrep -E -o \"[0-9]{1,2}.{0,1}[0-9]{2,3},{1}[0-9]{0,2}\" | tail -1 | tr -d '.'";
+  my $price_parsing_cmd = "grep '$search_model' $file -A10 | grep 'class=\"amount\"' | egrep -E \"[0-9]{0,2}\.{0,1}[0-9]{3},{0,1}[0-9]{0,2}\" -o | head -1 | tr -d '.'";
   my $price = `$price_parsing_cmd`;
   chomp($price);
 
@@ -73,7 +69,7 @@ sub dump_model {
   #print "================================";
   #print "\nTRADEMARK:$trademark\n";
   #print "TRADEMARK_CMD:$trademark_cmd\n";
-  #print "MODEL_SEARCH_CMD:$search_model\n";
+  #print "MODEL_SEARCH:$search_model\n";
   #print "MODEL_PARSING_CMD:$model_parsing_cmd\n";
   #print "URL_PARSING_CMD:$url_parsing_cmd\n";
   #print "PRICE_PARSING_CMD:$price_parsing_cmd\n";
@@ -102,10 +98,14 @@ sub process_file {
   elsif ($type eq "") {
     return 1;
   }
-  my $models_cmd = "cat $file | sed -e 's!<li!\\n<li!g' | grep '^<li' | grep h3";
+  my $models_cmd = "cat $file | grep '<h3 itemprop=\"name\"'";
   my @models = `$models_cmd`;
 
   foreach my $trade_model (@models) {
+    chomp($trade_model);
+    my $html_trade_model = "<" . $trade_model . ">";
+    my $trade_model_cmd = "echo \"$html_trade_model\" | sed -e 's!<[^>]*>!!g'";
+    $trade_model = `$trade_model_cmd`;
     chomp($trade_model);
     dump_model($file, $trade_model, $type, STORE);
   }
@@ -136,12 +136,20 @@ my $BMX_FILE = "bmx";
 process_file_pages($BMX_FILE, \@BMX_PAGES, "BMX");
 
 #### ROAD ####
-my @ROAD_PAGES = `seq 1 2`;
+my @ROAD_PAGES = `seq 1 7`;
 my $ROAD_FILE = "road";
 
 chomp @ROAD_PAGES;
 
 process_file_pages($ROAD_FILE, \@ROAD_PAGES, "ROAD");
+
+#### ROAD_TRIATLON ####
+my @ROAD_TRIATLON_PAGES = `seq 1 2`;
+my $ROAD_TRIATLON_FILE = "road-triatlon";
+
+chomp @ROAD_TRIATLON_PAGES;
+
+process_file_pages($ROAD_TRIATLON_FILE, \@ROAD_TRIATLON_PAGES, "ROAD-TRIATLON");
 
 #### CICLOCROSS ####
 my @ROAD_CICLOCROSS_PAGES = `seq 1 2`;
@@ -166,7 +174,7 @@ my $TREKKING_FILE = "trekking";
 process_file_pages($TREKKING_FILE, \@TREKKING_PAGES, "ROAD-TREKKING");
 
 #### MTB ####
-my @MTB_PAGES = `seq 1 2`;
+my @MTB_PAGES = `seq 1 7`;
 my $MTB_FILE = "mtb";
 
 chomp @MTB_PAGES;
@@ -180,6 +188,22 @@ my $FOLDING_FILE = "urban-folding";
 chomp @FOLDING_PAGES;
 
 process_file_pages($FOLDING_FILE, \@FOLDING_PAGES, "URBAN-FOLDING");
+
+#### URBAN ####
+my @URBAN_PAGES = `seq 1 2`;
+my $URBAN_FILE = "urban";
+
+chomp @URBAN_PAGES;
+
+process_file_pages($URBAN_FILE, \@URBAN_PAGES, "URBAN");
+
+#### URBAN_WALK ####
+my @URBAN_WALK_PAGES = `seq 1 2`;
+my $URBAN_WALK_FILE = "urban-walk";
+
+chomp @URBAN_WALK_PAGES;
+
+process_file_pages($URBAN_WALK_FILE, \@URBAN_WALK_PAGES, "URBAN");
 
 #### MTB-DOWNHILL ####
 my $MTB_DOWNHILL_PAGES = `seq 1 2`;

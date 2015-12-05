@@ -75,6 +75,7 @@ function bubic_clean()
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Dd]oble 29\"//g' \
 | sed -e 's/[Bb]icicleta [Mm][Tt][Bb] [Dd]oble 29//g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Dd]oble 29//g' \
+| sed -e 's/[Bb]ici [Dd][Ee] [Cc]iclismo//g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Mm]ujer 27.5&quot;//g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Mm]ujer 27.5&quot;//g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Mm]ujer 27.5"//g' \
@@ -222,6 +223,7 @@ function bubic_clean()
 | sed -e 's/[Bb]ici [Tt]riatl...n//g' \
 | sed -e 's/[Bb]ici [Tt]riatl..n//g' \
 | sed -e 's/[Bb]ici [Tt]riatl.n//g' \
+| sed -e 's/[Bb]icicleta [Aa]prendizaje [Cc]orrepasillos//g' \
 | sed -e 's/[Bb]icicleta [Ss]ingle-[Ss]peed//g' \
 | sed -e 's/[Bb]icicleta de [Aa]prendizaje//g' \
 | sed -e 's/[Bb]icicleta de 650b//g' \

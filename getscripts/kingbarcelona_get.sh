@@ -22,85 +22,73 @@ ONLY_DOMAIN="kingbarcelona.com"
 MAX_TRIES=10
 MAX_TIMEOUT=10
 
-function get_page()
-{
-  BASE_URL="$1"
-  PAGES="$2"
-  if [ "${PAGES}" = "" ];
-  then
-    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
-  else
-    for page in ${PAGES};
-    do
-      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
-    done 
-  fi
-}
+. ./common_get
 
-ROAD_BIKES_BASE="${URL}/es/ciclismo-c-225_239.html?page="
-ROAD_BIKES_PAGES="$(seq 1 2)"
+MTB_FIX_29_BIKES_BASE="${URL}/es/rigida-29-aluminio-c-644_646.html?page="
+MTB_FIX_29_BIKES_PAGES="$(seq 1 4)"
 
-ROAD_TRIATLON_BASE="${URL}/es/triathlon-c-225_460.html"
-ROAD_TRIATLON_PAGES=""
+MTB_FIX_29_CARBON_BIKES_BASE="${URL}/es/rigida-29-carbono-c-644_645.html?page="
+MTB_FIX_29_CARBON_BIKES_PAGES="$(seq 1 4)"
 
-URBAN_ELECTRIC_BIKES_BASE="${URL}/es/bicicletas-electricas-c-225_443.html?page="
-URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 2)"
+MTB_FIX_275_BIKES_BASE="${URL}/es/rigida-275-aluminio-c-644_648.html?page="
+MTB_FIX_275_BIKES_PAGES="$(seq 1 5)"
 
-URBAN_BIKES_BASE="${URL}/es/ciudad-c-225_375.html?page="
-URBAN_BIKES_PAGES="$(seq 1 5)"
+MTB_FIX_275_CARBON_BIKES_BASE="${URL}/es/rigida-275-carbono-c-644_647.html?page="
+MTB_FIX_275_CARBON_BIKES_PAGES="$(seq 1 2)"
 
-KIDS_BIKES_BASE="${URL}/es/ninos-c-225_241.html?page="
-KIDS_BIKES_PAGES="$(seq 1 2)"
+URBAN_ELECTRIC_BIKES_BASE="${URL}/es/ebikes-c-644_656.html?page="
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 4)"
 
-KIDS_BTT_BIKES_BASE="${URL}/es/99-349-euros-c-405_406.html"
+MTB_DOUBLE_29_BIKES_BASE="${URL}/es/doble-suspension-29-aluminio-c-644_650.html?page="
+MTB_DOUBLE_29_BIKES_PAGES="$(seq 1 2)"
+
+MTB_DOUBLE_29_CARBON_BIKES_BASE="${URL}/es/doble-suspension-29-carbono-c-644_649.html?page="
+MTB_DOUBLE_29_CARBON_BIKES_PAGES="$(seq 1 2)"
+
+MTB_DOUBLE_275_BIKES_BASE="${URL}/es/doble-suspension-275-aluminio-c-644_652.html?page="
+MTB_DOUBLE_275_BIKES_PAGES="$(seq 1 3)"
+
+MTB_DOUBLE_275_CARBON_BIKES_BASE="${URL}/es/doble-suspension-275-carbono-c-644_651.html?page="
+MTB_DOUBLE_275_CARBON_BIKES_PAGES="$(seq 1 3)"
+
+ROAD_BIKES_BASE="${URL}/es/carretera-c-644_653.html?page="
+ROAD_BIKES_PAGES="$(seq 1 3)"
+
+ROAD_DISC_BIKES_BASE="${URL}/es/carretera-disco-c-644_654.html?page="
+ROAD_DISC_BIKES_PAGES="$(seq 1 2)"
+
+ROAD_CICLOCROSS_BIKES_BASE="${URL}/es/ciclo-cross-c-644_658.html?page="
+ROAD_CICLOCROSS_BIKES_PAGES="$(seq 1 2)"
+
+URBAN_BIKES_BASE="${URL}/es/trekking-touring-c-644_673.html?page="
+URBAN_BIKES_PAGES="$(seq 1 6)"
+
+URBAN_FOLDING_BIKES_BASE="${URL}/es/plegable-c-644_678.html?page="
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 3)"
+
+URBAN_FAT_BIKES_BASE="${URL}/es/fatbike-c-644_659.html?page="
+URBAN_FAT_BIKES_PAGES="$(seq 1 2)"
+
+KIDS_BIKES_BASE="${URL}/es/bicicletas-infantiles-c-644_655.html?page="
+KIDS_BIKES_PAGES="$(seq 1 5)"
+
+KIDS_BTT_BIKES_BASE="${URL}/es/bicicletas-26-c-644_675.html"
 KIDS_BTT_BIKES_PAGES=""
 
-BMX_BIKES_BASE="${URL}/es/bmx-c-225_502.html"
-BMX_BIKES_PAGES=""
-
-MTB_DOUBLE_BIKES_BASE="${URL}/es/ciclocross-c-225_532.html"
-MTB_DOUBLE_BIKES_PAGES=""
-
-MTB_DOWNHILL_BIKES_BASE="${URL}/es/dh-c-225_503.html"
-MTB_DOWNHILL_BIKES_PAGES=""
-
-MTB_GEN1_BIKES_BASE="${URL}/es/3500-8999-euros-c-405_414.html?page="
-MTB_GEN1_BIKES_PAGES="$(seq 1 2)"
-
-MTB_GEN2_BIKES_BASE="${URL}/es/3000-3499-euros-c-405_413.html"
-MTB_GEN2_BIKES_PAGES=""
-
-MTB_GEN3_BIKES_BASE="${URL}/es/2500-2999-euros-c-405_412.html"
-MTB_GEN3_BIKES_PAGES=""
-
-MTB_GEN4_BIKES_BASE="${URL}/es/2000-2499-euros-c-405_411.html?page="
-MTB_GEN4_BIKES_PAGES="$(seq 1 2)"
-
-MTB_GEN5_BIKES_BASE="${URL}/es/1500-1999-euros-c-405_410.html?page="
-MTB_GEN5_BIKES_PAGES="$(seq 1 2)"
-
-MTB_GEN6_BIKES_BASE="${URL}/es/1000-1499-euros-c-405_409.html"
-MTB_GEN6_BIKES_PAGES=""
-
-MTB_GEN7_BIKES_BASE="${URL}/es/600-999-euros-c-405_408.html?page="
-MTB_GEN7_BIKES_PAGES="$(seq 1 3)"
-
-MTB_GEN7_BIKES_BASE="${URL}/es/350-599-euros-c-405_407.html?page="
-MTB_GEN7_BIKES_PAGES="$(seq 1 2)"
-
-get_page "${ROAD_BIKES_BASE}"                   "${ROAD_BIKES_PAGES}"
-get_page "${ROAD_TRIATLON_BASE}"                "${ROAD_TRIATLON_PAGES}"
-get_page "${URBAN_ELECTRIC_BIKES_BASE}"         "${URBAN_ELECTRIC_BIKES_PAGES}"
-get_page "${URBAN_BIKES_BASE}"                  "${URBAN_BIKES_PAGES}"
-get_page "${KIDS_BIKES_BASE}"                   "${KIDS_BIKES_PAGES}"
-get_page "${KIDS_BTT_BIKES_BASE}"               "${KIDS_BTT_BIKES_PAGES}"
-get_page "${BMX_BIKES_BASE}"                    "${BMX_BIKES_PAGES}"
-get_page "${MTB_DOUBLE_BIKES_BASE}"             "${MTB_DOUBLE_BIKES_PAGES}"
-get_page "${MTB_DOWNHILL_BIKES_BASE}"           "${MTB_DOWNHILL_BIKES_PAGES}"
-get_page "${MTB_GEN1_BIKES_BASE}"               "${MTB_GEN1_BIKES_PAGES}"
-get_page "${MTB_GEN2_BIKES_BASE}"               "${MTB_GEN2_BIKES_PAGES}"
-get_page "${MTB_GEN3_BIKES_BASE}"               "${MTB_GEN3_BIKES_PAGES}"
-get_page "${MTB_GEN4_BIKES_BASE}"               "${MTB_GEN4_BIKES_PAGES}"
-get_page "${MTB_GEN5_BIKES_BASE}"               "${MTB_GEN5_BIKES_PAGES}"
-get_page "${MTB_GEN6_BIKES_BASE}"               "${MTB_GEN6_BIKES_PAGES}"
-get_page "${MTB_GEN7_BIKES_BASE}"               "${MTB_GEN7_BIKES_PAGES}"
+bubic_get_page_outfile "${MTB_FIX_29_BIKES_BASE}" "${MTB_FIX_29_BIKES_PAGES}" mtb-fix-29
+bubic_get_page_outfile "${MTB_FIX_29_CARBON_BIKES_BASE}" "${MTB_FIX_29_CARBON_BIKES_PAGES}" mtb-fix-29-carbon
+bubic_get_page_outfile "${MTB_FIX_275_BIKES_BASE}" "${MTB_FIX_275_BIKES_PAGES}" mtb-fix-275
+bubic_get_page_outfile "${MTB_FIX_275_CARBON_BIKES_BASE}" "${MTB_FIX_275_CARBON_BIKES_PAGES}" mtb-fix-275-carbon
+bubic_get_page_outfile "${MTB_DOUBLE_29_BIKES_BASE}" "${MTB_DOUBLE_29_BIKES_PAGES}" mtb-double-29
+bubic_get_page_outfile "${MTB_DOUBLE_29_CARBON_BIKES_BASE}" "${MTB_DOUBLE_29_CARBON_BIKES_PAGES}" mtb-double-29-carbon
+bubic_get_page_outfile "${MTB_DOUBLE_275_BIKES_BASE}" "${MTB_DOUBLE_275_BIKES_PAGES}" mtb-double-275
+bubic_get_page_outfile "${MTB_DOUBLE_275_CARBON_BIKES_BASE}" "${MTB_DOUBLE_275_CARBON_BIKES_PAGES}" mtb-double-275-carbon
+bubic_get_page_outfile "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" road
+bubic_get_page_outfile "${ROAD_DISC_BIKES_BASE}" "${ROAD_DISC_BIKES_PAGES}" road-disc
+bubic_get_page_outfile "${ROAD_CICLOCROSS_BIKES_BASE}" "${ROAD_CICLOCROSS_BIKES_PAGES}" road-ciclocross
+bubic_get_page_outfile "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" urban-electric
+bubic_get_page_outfile "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" urban
+bubic_get_page_outfile "${URBAN_FOLDING_BIKES_BASE}" "${URBAN_FOLDING_BIKES_PAGES}" urban-folding
+bubic_get_page_outfile "${URBAN_FAT_BIKES_BASE}" "${URBAN_FAT_BIKES_PAGES}" urban-fat
+bubic_get_page_outfile "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" kids
+bubic_get_page_outfile "${KIDS_BTT_BIKES_BASE}" "${KIDS_BTT_BIKES_PAGES}" kids-btt
