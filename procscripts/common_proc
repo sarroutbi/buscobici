@@ -540,7 +540,7 @@ function bubic_clean()
 | sed -e 's/[Mm][Tt][Bb]//g' | tr "'" '"' | tr "´" '"'
 }
 
-function minor_price()
+function bubic_minor_price()
 {
   PRICES="$1"
   let now_price=100000
