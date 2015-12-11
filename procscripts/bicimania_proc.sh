@@ -78,7 +78,7 @@ function print_model()
 # 1 - The URL of bike
 function print_price()
 {
-  PRICE=$(wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "$1" -O - 2>&1 | grep -i "$2" -A25 | grep IVA | grep -o "[0-9,\.]*[0-9],[0-9]*" | tr -d '.' | tail -1)
+  PRICE=$(wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "$1" -O - 2>&1 | grep -i "$2" -A25 | grep IVA | egrep -o -E "[0-9]{0,2} [0-9]{2,3},[0-9]*" | tr -d '.' | tail -1)
   echo ${PRICE}
 }
 
@@ -129,7 +129,7 @@ function process_file()
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
     MODEL=$(echo ${TRADEMARK_MODEL} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     MODEL_CAMEL=$(bubic_camel "${MODEL}")
-    PRICE=$(echo "${line}" | sed -e 's@<span itemprop="price"@\n<span itemprop="price"@g' | grep '<span itemprop="price"' | egrep -E -o "[0-9]{0,1} {0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d ' ' | head -1)
+    PRICE=$(echo "${line}" | sed -e 's@<span itemprop="price"@\n<span itemprop="price"@g' | grep '<span itemprop="price"' | egrep -E -o "[0-9]{0,2} {0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d ' ' | head -1)
     FINAL_URL=$(echo "${line}" | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
     #echo "========================"
     #echo "LINE:$line"
