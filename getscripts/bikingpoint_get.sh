@@ -28,11 +28,11 @@ function get_page()
 
   if [ "${PAGES}" = "" ];
   then
-    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" -O"${FILE}"
+    wget --no-check-certificate --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" -O"${FILE}"
   else
     for page in ${PAGES};
     do
-      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}?p=${page}" -O"${FILE}?p=${page}"
+      wget --no-check-certificate --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}?p=${page}" -O"${FILE}?p=${page}"
     done
   fi
 }
