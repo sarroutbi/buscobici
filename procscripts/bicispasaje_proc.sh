@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright © 2012-2014 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
+# Copyright © 2012-2016 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
 # 
 # Permission to use, copy, modify, and/or distribute this software 
 # for any purpose with or without fee is hereby granted, provided that 
@@ -85,16 +85,17 @@ function process_one_page()
   STORE="$2"
   TYPE="$3"
 
-  TRADEMARK_MODELS=$(cat ${BASE_FILE} | awk -F "<h3>" {'print $2'} | awk -F "</h3>" {'print $1'} | sed -e 's/<[^>]*>//g' | egrep -E ^[A-Z,a-z,0-9])
-  echo "${TRADEMARK_MODELS}" | while read line;
+  all_lines=$(cat ${BASE_FILE} | sed -e 's@<h5 itemprop="name"@\n<h5 itemprop="name"@g' | grep '<h5 itemprop="name"')
+  echo "${all_lines}" | while read line;
   do
-    PRICE=$(grep "${line}" "${BASE_FILE}" -A10 | awk -F '<span class="price">' {'print $2'} | awk -F '</span>' {'print $1'} | grep [0-9] | tr -d " " | tr -d "€" | head -1)
-    URL=$(grep "${line}" "${BASE_FILE}" | sed -e 's/href=/\nhref=/g' | awk -F "href=" {'print $2'} | awk {'print $1'} | grep http | tail -1)
-    TRADEMARK_MODEL=$(echo ${line} | awk -F '</h3>' {'print $1'} | sed -e 's/<[^>]*>//g' )
+    TRADEMARK_MODEL=$(echo ${line} | sed -e 's@<span class="grid-name@\n<span class="grid-name@g' |  sed -e 's@</span>@</span>\n@g' | grep 'grid-name' | sed -e 's/<[^>]*>//g' )
+    URL=$(echo "${line}" | sed -e 's@<a class="product-name" href=@\n<a class="product-name" href=@g' |  awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '\n' | tr -d '\r')
     TRADEMARK=$(echo ${TRADEMARK_MODEL} | awk {'print $1'})
     MODEL=$(echo "${TRADEMARK_MODEL}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r')
     MODEL_CAMEL=$(camel "${MODEL}" ${NO_CAMEL_MIN})
     TRADEMARK_CAMEL=$(camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
+#    PRICE=$(echo "${line}" | sed -e 's@<span itemprop="price"@\n<span itemprop="price"@g' | sed -e 's@</span>@</span>\n@g' | egrep -E -o "[0-9]{1,2} {0,1}[0-9]{2,3},{0-1}[0-9]{0,2}")
+    PRICE=$(echo "${line}" | sed -e 's@<span itemprop="price"@\n<span itemprop="price"@g' | sed -e 's@</span>@</span>\n@g' | grep 'span itemprop="price"'| egrep -E -o "[0-9]{1,2} {0,1}[0-9]{2,3},{0,1}[0-9]{0,2}" | tr -d ' ')
     #echo "============================================================"
     #echo "LINE=${line}"
     #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
@@ -134,16 +135,16 @@ MTB_BIKES_26_BASE="mtb-26"
 MTB_BIKES_CUBE_26_BASE="mtb-26-cube"
 MTB_BIKES_MMR_26_BASE="mtb-26-mmr"
 MTB_BIKES_27_5_BASE="mtb-27-5"
-MTB_BIKES_27_5_PAGES="$(seq 1 5)"
+MTB_BIKES_27_5_PAGES="$(seq 1 7)"
 MTB_BIKES_29_BASE="mtb-29"
-MTB_BIKES_29_PAGES="$(seq 1 6)"
+MTB_BIKES_29_PAGES="$(seq 1 9)"
 MTB_BIKES_DOUBLE_26_BASE="mtb-double-26"
 MTB_BIKES_DOUBLE_27_5_BASE="mtb-double-27-5"
 MTB_BIKES_DOUBLE_27_5_PAGES="$(seq 1 3)"
 MTB_BIKES_DOUBLE_29_BASE="mtb-double-29"
 MTB_BIKES_DOUBLE_29_PAGES="$(seq 1 3)"
 ROAD_BIKES_BASE="road"
-ROAD_BIKES_PAGES="$(seq 1 4)"
+ROAD_BIKES_PAGES="$(seq 1 7)"
 ROAD_TRIATLON_BIKES_BASE="road-triatlon"
 ROAD_2013_BIKES_BASE="road-2013"
 KIDS_BIKES_BASE="kids"
