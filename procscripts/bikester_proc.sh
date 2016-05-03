@@ -193,18 +193,18 @@ function dump_bike_from_file()
     fi
     FINAL_URL=$(echo "\"${URL}\"")
     PRICE=$(print_price "${FILE}" "${TRADEMARK_MODEL}")
-    echo "========================================================================"
-    echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
-    echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
-    echo "TRADEMARK=${TRADEMARK}"
-    echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
-    echo "MODEL=${MODEL}"
-    echo "URL=${FINAL_URL}"
-    echo "PRICE=${PRICE}"
-    echo "STORE=${STORE}"
-    echo "TYPE=${TYPE}"
-    echo "FILE=${FILE}"
-    echo "========================================================================"
+    #echo "========================================================================"
+    #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
+    #echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
+    #echo "TRADEMARK=${TRADEMARK}"
+    #echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"
+    #echo "MODEL=${MODEL}"
+    #echo "URL=${FINAL_URL}"
+    #echo "PRICE=${PRICE}"
+    #echo "STORE=${STORE}"
+    #echo "TYPE=${TYPE}"
+    #echo "FILE=${FILE}"
+    #echo "========================================================================"
     bubic_dump_bike "${MODEL_CAMEL_CLEAN}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }

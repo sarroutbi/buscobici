@@ -100,7 +100,6 @@ URBAN_TREKKING_BIKES_PAGES="$(seq 0 5)"
 URBAN_HYBRID_BIKES_BASE="${URL}/bicicletas/bicicletas-hibridas.html?page="
 URBAN_HYBRID_BIKES_PAGES="$(seq 0 5)"
 
-#MAP_BIKES_BASE="${URL}/mapa-del-sitio/mapa-del-sitio-bicicletas.html"
 MAP_BIKES_BASE="${URL}/sitemap/category/81208"
 MAP_BIKES_PAGES=""
 
