@@ -26,7 +26,7 @@
 MAX_PRICE=2
 OUTPUT_FILE=./output
 BASE_URL="http://www.buhobike.com"
-NO_CAMEL_MIN=6
+NO_CAMEL_MIN=3
 
 #### KEYS GENERATED
 TRADEMARK_KEY="TRADEMARK"
@@ -127,20 +127,32 @@ function process_file()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat ${BASE_FILE} | grep "resumenproducto" | awk -F "<div class='resumenproducto'>" {'for(i=1;i<=NF;++i){printf $i"\n";}'} | while read bike;
+  cat ${BASE_FILE} | sed -e 's@<h5@\n<h5@g' | grep '<a class="product-name"' | while read bike;
   do
     # NOTE: each bike should be more or less like:
     # ORBEA<br>AQUA T23 2013<br><b>717 &euro;</b>
-    # echo "BIKE:=>${bike}<="
-    TRADEMARK=$(echo ${bike} | awk -F "<br>" {'print $1'} | sed -e 's/<[^>]*>//g')
-    TRADEMARK_CLEAN=$(bubic_clean "${TRADEMARK}")
-    MODEL=$(echo ${bike} | awk -F "<br>" {'print $2'} | sed -e 's/<[^>]*>//g' | tr "'" '"')
+    MODEL=$(echo ${bike} | sed -e 's/<[^>]*>//g')
     MODEL_CLEAN=$(bubic_clean "${MODEL}")
-    PRICE=$(echo ${bike} | awk -F "<br>" {'print $3'} | sed -e 's/<[^>]*>//g' | egrep -E -o "[0-9]{3,5}" -o | tail -1)
-    URL=$(echo "${bike}" | awk -F "<a href='" {'print $2'} | awk -F ">" {'print $1'} | tr -d "'")
-    FINAL_URL="${BASE_URL}${URL}"
+    TRADEMARK=$(grep -A10 ">${MODEL}<" "${BASE_FILE}" | grep '<p class="pro_list_manufacturer">' | sed -e 's/<[^>]*>//g')
+    TRADEMARK_CLEAN=${TRADEMARK}
+    FINAL_URL=$(echo "${bike}" | awk -F 'href=' {'print $2'} | awk {'print $1'} | tr -d '"')
+    PRICE=$( grep -A10 ">${MODEL}<" "${BASE_FILE}" | grep '<span itemprop="price"' | sed -e 's/<[^>]*>//g' | egrep -E -o "[0-9]{0,2} {0,1}[0-9]{3},{1}[0-9]{0,2}" | tr -d ' ')
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK_CLEAN}" 0)
     MODEL_CAMEL=$(bubic_camel "${MODEL_CLEAN}" ${NO_CAMEL_MIN})
+    MODEL_CAMEL_DEF=$(echo "${MODEL_CAMEL}" | sed -e "s@${TRADEMARK_CAMEL}@@g")
+    MODEL_CAMEL=$(bubic_camel "${MODEL_CAMEL_DEF}" ${NO_CAMEL_MIN})
+    #echo "======================"
+    #echo "BIKE:=>${bike}<="
+    #echo "MODEL:=>${MODEL}<="
+    #echo "TRADEMARK:=>${TRADEMARK}<="
+    #echo "TRADEMARK_CLEAN:=>${TRADEMARK_CLEAN}<="
+    #echo "MODEL_CLEAN:=>${MODEL_CLEAN}<="
+    #echo "TRADEMARK_CAMEL:=>${TRADEMARK_CAMEL}<="
+    #echo "MODEL_CAMEL:=>${MODEL_CAMEL}<="
+    #echo "MODEL_CAMEL_DEF:=>${MODEL_CAMEL_DEF}<="
+    #echo "PRICE:=>${PRICE}<="
+    #echo "URL:=>${FINAL_URL}<="
+    #echo "======================"
     dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
@@ -166,26 +178,34 @@ function process_pages()
 > ${OUTPUT_FILE}
 
 MTB_BIKES_BASE="mtb"
-MTB_BIKES_PAGES=$(seq 1 55)
+MTB_BIKES_PAGES=$(seq 1 25)
 
 ROAD_BIKES_BASE="road"
-ROAD_BIKES_PAGES=$(seq 1 25)
+ROAD_BIKES_PAGES=$(seq 1 10)
+
+URBAN_ELECTRIC_BIKES_BASE="urban-electric"
+URBAN_ELECTRIC_BIKES_PAGES=$(seq 1 12)
+
+URBAN_BIKES_BASE="urban"
+URBAN_BIKES_PAGES=$(seq 1 7)
 
 TREKKING_BIKES_BASE="trekking"
-TREKKING_BIKES_PAGES=$(seq 1 9)
+TREKKING_BIKES_PAGES=$(seq 1 4)
 
 BMX_BIKES_BASE="bmx"
 BMX_BIKES_PAGES=$(seq 1 2)
 
-URBAN_BIKES_BASE="urban"
-URBAN_BIKES_PAGES=$(seq 1 18)
+ROAD_CICLOCROSS_BIKES_BASE="road-ciclocross"
+ROAD_CICLOCROSS_BIKES_PAGES=$(seq 1 2)
 
 KIDS_BIKES_BASE="kids"
-KIDS_BIKES_PAGES=$(seq 1 7)
+KIDS_BIKES_PAGES=$(seq 1 4)
 
 process_pages "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" "BuhoBike" "MTB" >> ${OUTPUT_FILE}
 process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "BuhoBike" "ROAD"  >> ${OUTPUT_FILE}
-process_pages "${TREKKING_BIKES_BASE}" "${TREKKING_BIKES_PAGES}" "BuhoBike" "URBAN-TREKKING"  >> ${OUTPUT_FILE}
 process_pages "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" "BuhoBike" "URBAN"  >> ${OUTPUT_FILE}
+process_pages "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" "BuhoBike" "URBAN-ELECTRIC"  >> ${OUTPUT_FILE}
+process_pages "${TREKKING_BIKES_BASE}" "${TREKKING_BIKES_PAGES}" "BuhoBike" "URBAN-TREKKING"  >> ${OUTPUT_FILE}
 process_pages "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" "BuhoBike" "BMX" >> ${OUTPUT_FILE}
+process_pages "${ROAD_CICLOCROSS_BIKES_BASE}" "${ROAD_CICLOCROSS_BIKES_PAGES}" "BuhoBike" "ROAD-CICLOCROSS"  >> ${OUTPUT_FILE}
 process_pages "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" "BuhoBike" "KIDS"  >> ${OUTPUT_FILE}

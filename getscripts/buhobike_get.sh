@@ -40,27 +40,35 @@ function get_page()
   fi
 }
 
-MTB_BIKES_BASE="${URL}/estandar.php/montana?_pagi_pg="
-MTB_BIKES_PAGES=$(seq 1 55)
+MTB_BIKES_BASE="${URL}/bicicletas/montana?p="
+MTB_BIKES_PAGES=$(seq 1 25)
 
-ROAD_BIKES_BASE="${URL}/estandar.php/carretera-y-variantes?_pagi_pg="
-ROAD_BIKES_PAGES=$(seq 1 25)
+ROAD_BIKES_BASE="${URL}/bicicletas/carretera?p="
+ROAD_BIKES_PAGES=$(seq 1 10)
 
-TREKKING_BIKES_BASE="${URL}/estandar.php/trekking?_pagi_pg="
-TREKKING_BIKES_PAGES=$(seq 1 9)
+URBAN_ELECTRIC_BIKES_BASE="${URL}/bicicletas/electricas?p="
+URBAN_ELECTRIC_BIKES_PAGES=$(seq 1 12)
 
-BMX_BIKES_BASE="${URL}/estandar.php?mp=1&opc=bmx&pagi_pg="
+URBAN_BIKES_BASE="${URL}/bicicletas/urbanas?p="
+URBAN_BIKES_PAGES=$(seq 1 7)
+
+TREKKING_BIKES_BASE="${URL}/bicicletas/trekking?p="
+TREKKING_BIKES_PAGES=$(seq 1 4)
+
+BMX_BIKES_BASE="${URL}/bicicletas/bmx?p="
 BMX_BIKES_PAGES=$(seq 1 2)
 
-URBAN_BIKES_BASE="${URL}/estandar.php/ciudad-plegables-y-electricas?_pagi_pg="
-URBAN_BIKES_PAGES=$(seq 1 18)
+ROAD_CICLOCROSS_BIKES_BASE="${URL}/bicicletas/ciclocross?p="
+ROAD_CICLOCROSS_BIKES_PAGES=$(seq 1 2)
 
-KIDS_BIKES_BASE="${URL}/estandar.php/infantiles?_pagi_pg="
-KIDS_BIKES_PAGES=$(seq 1 7)
+KIDS_BIKES_BASE="${URL}/bicicletas/infantiles?p="
+KIDS_BIKES_PAGES=$(seq 1 4)
 
 bubic_get_page_outfile "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" mtb
 bubic_get_page_outfile "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" road
-bubic_get_page_outfile "${TREKKING_BIKES_BASE}" "${TREKKING_BIKES_PAGES}" trekking
+bubic_get_page_outfile "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" urban-electric
 bubic_get_page_outfile "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" urban
+bubic_get_page_outfile "${TREKKING_BIKES_BASE}" "${TREKKING_BIKES_PAGES}" trekking
 bubic_get_page_outfile "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" bmx
+bubic_get_page_outfile "${ROAD_CICLOCROSS_BIKES_BASE}" "${ROAD_CICLOCROSS_BIKES_PAGES}" road-ciclocross
 bubic_get_page_outfile "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" kids
