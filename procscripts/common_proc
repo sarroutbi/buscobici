@@ -110,11 +110,13 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Ee]l...ctrica [Cc]iudad//g' \
 | sed -e 's/[Bb]icicleta [Ee]l&eacute;ctrica [Cc]iudad//g' \
 | sed -e 's/[Bb]icicleta [Ee]léctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]icicleta [Ee]l\xe9ctrica [Cc]iudad//g' \
 | sed -e 's/[Bb]ici [Ee]l.ctrica [Cc]iudad//g' \
 | sed -e 's/[Bb]ici [Ee]l..ctrica [Cc]iudad//g' \
 | sed -e 's/[Bb]ici [Ee]l...ctrica [Cc]iudad//g' \
-| sed -e 's/[Bb]ica [Ee]l&eacute;ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Ee]l&eacute;ctrica [Cc]iudad//g' \
 | sed -e 's/[Bb]ici [Ee]léctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Ee]l\xe9ctrica [Cc]iudad//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil 24&quot;//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil 24"//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil 24\"//g' \
