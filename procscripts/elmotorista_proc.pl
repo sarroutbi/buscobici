@@ -60,7 +60,8 @@ bubic_clean "$trademark_model"'`;
   $url_no_dash =~ s/\"//g;
   my $final_url; 
   if ($url_no_dash ne "") {
-      $final_url = "\\\"$url_no_dash\\\"";
+      my $complete_url = URL . $url_no_dash;
+      $final_url = "\\\"$complete_url\\\"";
   }
 
   # MODEL PARSING
