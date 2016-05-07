@@ -323,6 +323,7 @@ function bubic_clean()
 | sed -e 's/"Bicicleta de MTB 29&quot;"//g' \
 | sed -e 's/"Bicicleta de 29&quot; "//g' \
 | sed -e 's/[Bb]ici [Nn]i&ntilde;os//g' \
+| sed -e 's/[Bb]ici [Nn]i\xf1os//g' \
 | sed -e 's/[Bb]ici [Nn]i...os//g' \
 | sed -e 's/[Bb]ici [Nn]i..os//g' \
 | sed -e 's/[Bb]ici [Nn]i.os//g' \
