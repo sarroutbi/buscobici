@@ -21,6 +21,14 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Ee]l.ctrica [Pp]legable [Dd]e [Cc]iudad//g' \
 | sed -e 's/[Bb]icicleta [Ee]l..ctrica [Pp]legable [Dd]e [Cc]iudad//g' \
 | sed -e 's/[Bb]icicleta [Ee]l...ctrica [Pp]legable [Dd]e [Cc]iudad//g' \
+| sed -e 's/[Bb]icicleta [Pp]legable [Ee]l.ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]icicleta [Pp]legable [Ee]l..ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]icicleta [Pp]legable [Ee]l...ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]icicleta [Pp]legable [Ee]l&eacute;ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Pp]legable [Ee]l.ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Pp]legable [Ee]l..ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Pp]legable [Ee]l...ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Pp]legable [Ee]l&eacute;ctrica [Cc]iudad//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Mm]onta.a MTB//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Cc]on [Rr]uedas [Dd]e 1[0-9]&quot; //g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Cc]on [Rr]uedas [Dd]e 1[0-9].//g' \
@@ -87,6 +95,21 @@ function bubic_clean()
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Rr]...gida//g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Rr]..gida//g' \
 | sed -e 's/[Bb]ici [Mm][Tt][Bb] [Rr].gida//g' \
+| sed -e 's/[Bb]icicleta [Ee]l.ctrica [Mm][Tt][Bb]//g' \
+| sed -e 's/[Bb]icicleta [Ee]l..ctrica [Mm][Tt][Bb]//g' \
+| sed -e 's/[Bb]icicleta [Ee]l...ctrica [Mm][Tt][Bb]//g' \
+| sed -e 's/[Bb]icicleta [Ee]l&eacute;ctrica [Mm][Tt][Bb]//g' \
+| sed -e 's/[Bb]icicleta [Ee]léctrica [Mm][Tt][Bb]//g' \
+| sed -e 's/[Bb]icicleta [Ee]l.ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]icicleta [Ee]l..ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]icicleta [Ee]l...ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]icicleta [Ee]l&eacute;ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]icicleta [Ee]léctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Ee]l.ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Ee]l..ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Ee]l...ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]ica [Ee]l&eacute;ctrica [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Ee]léctrica [Cc]iudad//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil 24&quot;//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil 24"//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil 24\"//g' \
@@ -175,6 +198,10 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Dd]e [Ss]uspensi...n//g' \
 | sed -e 's/[Bb]icicleta [Dd]e [Ss]uspensi..n//g' \
 | sed -e 's/[Bb]icicleta [Dd]e [Ss]uspensi.n//g' \
+| sed -e 's/[Bb]icicleta [Dd]e [Cc]iudad//g' \
+| sed -e 's/[Bb]icicleta [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Dd]e [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Cc]iudad//g' \
 | sed -e 's/[Pp]atinete [Cc]on [Ff]reno//g' \
 | sed -e 's/[Bb]icicleta [Uu]rbana [Dd]e [Hh]ombre//g' \
 | sed -e 's/[Bb]icicleta [Uu]rbana [Dd]e [Mm]ujer//g' \
@@ -235,6 +262,8 @@ function bubic_clean()
 | sed -e 's/[Bb]icicleta [Bb][Mm][Xx] [Ff]reestyle//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Jj]unior//g' \
 | sed -e 's/[Bb]icicleta [Ee]l.ctrica [Pp]legable //g' \
+| sed -e 's/[Bb]icicleta [Pp]legable [Cc]iudad//g' \
+| sed -e 's/[Bb]ici [Pp]legable [Cc]iudad//g' \
 | sed -e 's/[Bb]icicleta de [Pp]aseo [Jj]unior//g' \
 | sed -e 's/[Bb]icicleta [Ii]nfantil [Dd]e [Nn]i.[ao]//g' \
 | sed -e 's/[Bb]icicleta [Ee]l&eacute;ctrica//g' \
@@ -288,6 +317,7 @@ function bubic_clean()
 | sed -e 's/"Bicicleta 29\" para MTB"//g' \
 | sed -e 's/"Bicicleta de MTB 29&quot;"//g' \
 | sed -e 's/"Bicicleta de 29&quot; "//g' \
+| sed -e 's/[Bb]ici [Nn]i&ntilde;os//g' \
 | sed -e 's/Bicicleta profesional//g'\
 | sed -e 's/(edici&#243;n limitada)//g' \
 | sed -e 's/Bicicleta de ciclocr&#243;s //g' \
