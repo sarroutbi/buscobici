@@ -39,6 +39,9 @@ sub dump_model {
   chomp($type);
   chomp($store);
 
+  $search_model =~ s/<//;
+  $search_model =~ s/>//;
+
   # MODEL PARSING
   my $trademark_cmd = "echo '$search_model' | awk {'print \$1'}";
   my $trademark = `$trademark_cmd`;

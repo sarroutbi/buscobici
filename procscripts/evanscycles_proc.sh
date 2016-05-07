@@ -29,7 +29,7 @@ OUTPUT_FILE=./output
 BASE_URL="http://www.evanscycles.com"
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
-MAX_PRICE_SEARCH=35
+MAX_PRICE_SEARCH=80
 URL="www.evanscycles.com"
 ONLY_DOMAIN="evanscycles.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
@@ -49,7 +49,7 @@ function process_file()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${BASE_FILE}" | grep '<h2 class="product_name">' | sed -e 's@<[^>]*>@@g' | while read model;
+  cat "${BASE_FILE}" | grep product-info -A4 | sed -e 's@<[^>]*>@@g' | egrep -E "[A-Z,a-z]" | while read model;
   do
     TRADEMARK=$(echo ${model} | awk {'print $1'} | tr -d '\n' | tr -d '\r' | tr "'" '"')
     MODEL=$(echo ${model} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr "'" '"')
@@ -57,24 +57,21 @@ function process_file()
       TRADEMARK="De Rosa"
       MODEL=$(echo ${model} | awk {'for(i=3;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr "'" '"')
     fi
-    PRICE=$(grep "${model}" ${BASE_FILE} -A${MAX_PRICE_SEARCH} | grep 'class="one_product_price">' | sed -e 's@<[^>]*>@@g' | egrep -o -E "[0-9]{2,5}.{0,1}[0-9]{0,2}" | tr "." "," | head -1)
-    if [ "${PRICE}" = "" ];
-    then
-        PRICE=$(grep "${model}" ${BASE_FILE} -A${MAX_PRICE_SEARCH} | grep 'class="product_price">' | sed -e 's@<[^>]*>@@g' | egrep -o -E "[0-9]{2,5}.{0,1}[0-9]{0,2}" | tr "." ",")
-    fi
-    SUBURL=$(grep "${model}" ${BASE_FILE} | grep '<h2 class="product_name">' | awk -F "<a href=" {'print $2'} | awk -F ">" {'print $1'} | tr -d '"' | tr -d '\n' | tr -d '\r')
-    URL="\"${SUBURL}\""
+    PRICE=$(grep "${model}" ${BASE_FILE} -A${MAX_PRICE_SEARCH} | grep 'amount' | sed -e 's@<[^>]*>@@g' | egrep -o -E "[0-9]{0,2},{0,1}[0-9]{2,3}.{0,1}[0-9]{0,2}" | tr -d "," | tr "." "," | tr -d '"' | head -1)
+    SUBURL=$(grep "${model}" ${BASE_FILE}  | grep 'a href=' | awk -F "=" {'print $2'} | awk -F ">" {'print $1'} | tr -d '"' | head -1 | tr -d '"' | tr -d '\n' | tr -d '\r' | tr -d '/')
+    URL="\"${BASE_URL}/${SUBURL}\""
     MODEL_CAMEL=$(bubic_camel "${MODEL}")
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
     #echo "FILE:${BASE_FILE}"
-    #echo "model:===>${model}<==="
+    #echo "model:==============>${model}<================="
     #echo "MODEL:=>${MODEL}<="
     #echo "TRADEMARK:=>${TRADEMARK}<="
     #echo "PRICE:=>${PRICE}<="
     #echo "OTHER_PRICE:=>${OTHER_PRICE}<="
     #echo "SUBURL:=>${SUBURL}<="
     #echo "URL:=>${URL}<="
-    #echo
+    #echo "model:========================================="
+    echo
     bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }

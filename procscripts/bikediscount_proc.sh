@@ -49,39 +49,35 @@ function process_file()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${BASE_FILE}" | grep 'class="product-box"' | while read model;
+  cat "${BASE_FILE}" | grep "product-description" -A30 | tr -d '\n'| sed -e 's@<div class="product-description">@\n<div class="product-description">@g'| while read all_info;
   do
-
     # TRADEMARK PARSING
-    TRADEMARK=$(echo ${model} | awk -F 'span class="manufacturer ' {'print $2'} | awk -F '</span>' {'print $1'} | awk -F ">" {'print $2'} | tr -d '\n' | tr -d '\r' | sed -e 's@- @ @g' | sed -e 's/&acute;/ /g')
-    # MODEL PARSING
-    MODEL=$(echo ${model} | awk -F 'span class="manufacturer ' {'print $2'} | awk -F '</span>' {'print $2'} | awk -F ">" {'print $2'} | tr -d '\n' | tr -d '\r' | sed -e 's@- @ @g' | sed -e 's/&acute;/ /g')
-
-    # URL PARSING
-    SUBURL=$(echo ${model} | awk -F "<a href=" {'print $2'} | awk {'print $1'} | tr -d '"' | tr -d '\n' | tr -d '\r')
-    URL="\"${BASE_URL}${SUBURL}\""
-    # PRICE PARSING
-    OTHER_PRICE=$(grep "<span>${MODEL}</span>" "${BASE_FILE}" -A50 | awk -F 'class="figure-awards"' {'print $2'} | awk -F '<div class="price" itemprop="price">' {'print $2'} | awk -F "</div>" {'print $1'} | grep [0-9] | head -1 | tr -d "€" | tr -d " "| sed -e 's@-@00@g' | tr -d '.' | tr -d '\n' | tr -d '\r' | sed -e 's/&euro;//g')
-    PRICE=$(echo ${model} | awk -F '<div class="price" itemprop="price">' {'print $2'} | awk -F '</div>' {'print $1'} | grep [0-9] | head -1 | tr -d "?" | tr -d " "| sed -e 's@-@00@g' | tr -d '.' | tr -d '\n' | tr -d '\r' | egrep -E -o "[0-9]{1,4}[,]{1}[0-9]{0,2}" | sed -e 's/&euro;//g')
-    OTHER_PRICE2=$(grep "${SUBURL}" "${BASE_FILE}" | awk -F '<div class="price" itemprop="price">' {'print $2'} | awk -F '</div>' {'print $1'} | grep [0-9] | head -1 | tr -d "?" | tr -d " "| sed -e 's@-@00@g' | tr -d '.' | tr -d '\n' | tr -d '\r' | egrep -E -o "[0-9]{1,4}[,]{1}[0-9]{0,2}" | sed -e 's/&euro;//g')
-    test -z "${PRICE}" && PRICE=${OTHER_PRICE}
-    test -z "${PRICE}" && PRICE=${OTHER_PRICE2}
-
-    # TRADEMARK/MODEL ADJUSTMENTS
+    TRADEMARK_MODEL_TAGGED=$(echo "${all_info}" | egrep -E -o "<h3><span class=\"manufacturer\">[-,A-Z,a-z,0-9,<,>,/,\.,\,,\`,\',\´,&,;,#, ]{0,}</h3>")
+    TRADEMARK=$(echo "${TRADEMARK_MODEL_TAGGED}" | egrep -E -o "<span class=\"manufacturer\">[-,A-Z,a-z,0-9,<,>,/,\.,\,\`,\',\´,&,;,#, ]{0,}</span>" | sed -e 's@<[^>]*>@@g')
+    MODEL=$(echo "${TRADEMARK_MODEL_TAGGED}" | egrep -E -o "</span>[-,A-Z,a-z,0-9,<,>,/,\.,\,,\`,\',\´,&,;,#, ]{0,}</h3>" | sed -e 's@<[^>]*>@@g')
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
     MODEL_CAMEL=$(bubic_camel "${MODEL}")
-
+    SUBURL=$(echo "${all_info}" | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
+    FINAL_URL=$(echo "${BASE_URL}${SUBURL}")
+    PRICE_TAGGED=$(echo "${all_info}" | egrep -E -o "<span class=\"price-value\">[0-9,.,\,-]{1,} &euro;</span>")
+    PRICE=$(echo "${PRICE_TAGGED}" | egrep -E -o "[0-9]{0,}\.{0,}[0-9]{3},{1}[0-9,-]{1,2}" | tr -d '.' | sed -e 's@-@00@g')
+    if [ "{$PRICE}" == "" ];
+    then
+      PRICE_TAGGED=$(echo "${all_info}" | egrep -E -o "<span class=\"retail-value\">[0-9,.,\,-]{1,} &euro;</span>")
+      PRICE=$(echo "${PRICE_TAGGED}" | egrep -E -o "[0-9]{0,}\.{0,}[0-9]{3},{1}[0-9,-]{1,2}" | tr -d '.' | sed -e 's@-@00@g')
+    fi
     #echo "FILE:${BASE_FILE}"
-    #echo "model:===>${model}<==="
-    #echo "MODEL:=>${MODEL}<="
-    #echo "TRADEMARK:=>${TRADEMARK}<="
+    #echo "ALL INFO:=>${all_info}<="
+    #echo "TRADEMARK MODEL_TAGGED:${TRADEMARK_MODEL_TAGGED}"
+    #echo "TRADEMARK:${TRADEMARK}"
+    #echo "MODEL:${MODEL}"
+    #echo "SUBURL:${SUBURL}"
+    #echo "URL:${FINAL_URL}"
+    #echo "PRICE_TAGGED:=>${PRICE_TAGGED}<="
     #echo "PRICE:=>${PRICE}<="
-    #echo "OTHER_PRICE:=>${OTHER_PRICE}<="
-    #echo "OTHER_PRICE2:=>${OTHER_PRICE2}<="
-    #echo "SUBURL:=>${SUBURL}<="
     #echo "URL:=>${URL}<="
     #echo
-    bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    bubic_dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 

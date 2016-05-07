@@ -29,8 +29,8 @@ BASE_URL="http://www.kingbarcelona.com"
 NO_CAMEL_MIN=6
 NO_CAMEL_TRADEMARK_MIN=0
 MODEL_DOWN_SEARCH=10
-MAX_PRICE_SEARCH=20
-MAX_PRICE_SEARCH2=25
+MAX_PRICE_SEARCH=1
+MAX_PRICE_SEARCH2=1
 URL="www.kingbarcelona.com"
 ONLY_DOMAIN="kingbarcelona.com"
 
@@ -84,8 +84,8 @@ function print_price()
 {
   FILE="$1"
   MODEL="$2"
-  PRICE=$(grep "${MODEL}" "${FILE}" -A${MAX_PRICE_SEARCH} | grep '<span class="price">' | sed -e 's/<[^>]*>//g' | egrep -o -E "[0-9]{1,},{0,1}[0-9]{1,3}.{0,1}[0-9]{0,}" | head -1)
-  PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ',' | tr '.' ',')
+  PRICE=$(grep "${MODEL}" "${FILE}" | grep 'Precio:' | awk -F ">Precio" {'print $2'} | awk -F "</span>" {'print $1'} | head -1 | egrep -E -o "[0-9]{1,2},{0,1}[0-9]{2,3}.{1}[0-9]{2}")
+  PRICE_NO_SPACE=$(echo ${PRICE} | tr -d ',' | tr '.' ',' | tr -d ' ')
   echo ${PRICE_NO_SPACE}
 }
 
@@ -149,7 +149,8 @@ function dump_bike_from_file()
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  TRADEMARK_MODELS=$(cat "${FILE}" | grep '<td class="productListing-data">' | sed -e 's!&nbsp;!!g' | grep "a href=" | sed -e 's/<[^>]*>//g')
+  TRADEMARK_MODELS=$(cat "${FILE}" | grep '<td class="productListing-data">' | sed -e 's!&nbsp;!!g' | grep "a href=" | awk -F "</a>" {'print $1'} | sed -e 's/<[^>]*>//g')
+  TRADEMARK_MODELS_HTML=$(cat "${FILE}" | grep '<td class="productListing-data">')
   echo "${TRADEMARK_MODELS}" | while read trademark_model;
   do 
     test -z "${trademark_model}" && continue;
@@ -165,10 +166,11 @@ function dump_bike_from_file()
       MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
     fi
     MODEL_CAMEL=$(camel "${MODEL}" "${NO_CAMEL_MIN}")
-    URL=$(grep "${trademark_model}" "${FILE}" | grep '<td class="productListing-data">' | grep "<a href" | awk -F "a href=" {'print $2'} | awk -F ">" {'print $1'} | head -1 | tr -d '"')
+    URL=$(grep "${trademark_model}" "${FILE}" | grep '<td class="productListing-data">' | grep "<a href" | awk -F "a href=" {'print $2'} | awk {'print $1'} | head -1 | tr -d '"')
     FINAL_URL=$(echo "\"${URL}\"")
     PRICE=$(print_price "${FILE}" "${TRADEMARK_MODEL}")
     #echo "========================================================================"
+    #echo "FILE=${FILE}"
     #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
     #echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
     #echo "TRADEMARK=${TRADEMARK}"
@@ -178,7 +180,6 @@ function dump_bike_from_file()
     #echo "PRICE=${PRICE}"
     #echo "STORE=${STORE}"
     #echo "TYPE=${TYPE}"
-    #echo "FILE=${FILE}"
     #echo "========================================================================"
     dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
@@ -205,55 +206,55 @@ function process_pages()
 > ${OUTPUT_FILE}
 
 MTB_FIX_29_BIKES_BASE="mtb-fix-29"
-MTB_FIX_29_BIKES_PAGES="$(seq 1 4)"
+MTB_FIX_29_BIKES_PAGES="$(seq 1 1)"
 
 MTB_FIX_29_CARBON_BIKES_BASE="mtb-fix-29-carbon"
-MTB_FIX_29_CARBON_BIKES_PAGES="$(seq 1 4)"
+MTB_FIX_29_CARBON_BIKES_PAGES="$(seq 1 2)"
 
 MTB_FIX_275_BIKES_BASE="mtb-fix-275"
-MTB_FIX_275_BIKES_PAGES="$(seq 1 5)"
+MTB_FIX_275_BIKES_PAGES="$(seq 1 1)"
 
 MTB_FIX_275_CARBON_BIKES_BASE="mtb-fix-275-carbon"
-MTB_FIX_275_CARBON_BIKES_PAGES="$(seq 1 2)"
+MTB_FIX_275_CARBON_BIKES_PAGES="$(seq 1 1)"
 
 MTB_DOUBLE_29_BIKES_BASE="mtb-double-29"
-MTB_DOUBLE_29_BIKES_PAGES="$(seq 1 2)"
+MTB_DOUBLE_29_BIKES_PAGES="$(seq 1 1)"
 
 MTB_DOUBLE_29_CARBON_BIKES_BASE="mtb-double-29-carbon"
-MTB_DOUBLE_29_CARBON_BIKES_PAGES="$(seq 1 2)"
+MTB_DOUBLE_29_CARBON_BIKES_PAGES="$(seq 1 1)"
 
 MTB_DOUBLE_275_BIKES_BASE="mtb-double-275"
-MTB_DOUBLE_275_BIKES_PAGES="$(seq 1 3)"
+MTB_DOUBLE_275_BIKES_PAGES="$(seq 1 1)"
 
 MTB_DOUBLE_275_CARBON_BIKES_BASE="mtb-double-275-carbon"
-MTB_DOUBLE_275_CARBON_BIKES_PAGES="$(seq 1 3)"
+MTB_DOUBLE_275_CARBON_BIKES_PAGES="$(seq 1 1)"
 
 ROAD_BIKES_BASE="road"
-ROAD_BIKES_PAGES="$(seq 1 3)"
+ROAD_BIKES_PAGES="$(seq 1 2)"
 
 ROAD_DISC_BIKES_BASE="road-disc"
-ROAD_DISC_BIKES_PAGES="$(seq 1 2)"
+ROAD_DISC_BIKES_PAGES="$(seq 1 1)"
 
 ROAD_CICLOCROSS_BIKES_BASE="road-ciclocross"
-ROAD_CICLOCROSS_BIKES_PAGES="$(seq 1 2)"
+ROAD_CICLOCROSS_BIKES_PAGES="$(seq 1 1)"
 
 URBAN_ELECTRIC_BIKES_BASE="urban-electric"
-URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 4)"
+URBAN_ELECTRIC_BIKES_PAGES="$(seq 1 1)"
 
 URBAN_BIKES_BASE="urban"
-URBAN_BIKES_PAGES="$(seq 1 6)"
+URBAN_BIKES_PAGES="$(seq 1 1)"
 
 URBAN_FOLDING_BIKES_BASE="urban-folding"
-URBAN_FOLDING_BIKES_PAGES="$(seq 1 3)"
+URBAN_FOLDING_BIKES_PAGES="$(seq 1 1)"
 
 URBAN_FAT_BIKES_BASE="urban-fat"
-URBAN_FAT_BIKES_PAGES="$(seq 1 2)"
+URBAN_FAT_BIKES_PAGES="$(seq 1 1)"
 
 KIDS_BIKES_BASE="kids"
-KIDS_BIKES_PAGES="$(seq 1 5)"
+KIDS_BIKES_PAGES="$(seq 1 1)"
 
 KIDS_BTT_BIKES_BASE="kids-btt"
-KIDS_BTT_BIKES_PAGES=""
+KIDS_BTT_BIKES_PAGES="$(seq 1 1)"
 
 process_pages "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" "King Barcelona" "ROAD" >> ${OUTPUT_FILE}
 process_pages "${MTB_FIX_29_BIKES_BASE}" "${MTB_FIX_29_BIKES_PAGES}" "King Barcelona" "MTB-FIX-29" >> ${OUTPUT_FILE}

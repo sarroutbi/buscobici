@@ -169,25 +169,28 @@ function process_page()
   #echo "STORE=${STORE}"
   #echo "TYPE=${TYPE}"
 
-  cat ${BASE_FILE} | sed -e 's/<h3/\n<h3/g' | sed -e 's@/h3>@/h3>\n@g' |\
-grep '<h3>' | grep 'a href'|\
+  cat ${BASE_FILE} | sed -e 's/<h5/\n<h5/g' | sed -e 's@/h5>@/h5>\n@g' | grep '<h5 itemprop="name"' |\
 grep -vi Bolsa | grep -vi Casco | grep -vi Soporte | grep -vi Cubierta |\
 grep -vi Elevador | grep -vi Rodillo | grep -v Transporte |\
 while read HTML_LINE;
   do
-    TRADEMARK_MODEL=$(echo ${HTML_LINE} | sed -e 's/<[^>]*>//g' | tr -d '\n' | tr -d '\r')
+    TRADEMARK_MODEL_CHOMP=$(echo ${HTML_LINE} | sed -e 's/<[^>]*>//g' | tr -d '\n' | tr -d '\r')
+    TRADEMARK_MODEL=$(echo "${TRADEMARK_MODEL_CHOMP}" | sed -e 's@^  @@g' | sed -e 's@^ @@g')
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
     MODEL=$(echo ${TRADEMARK_MODEL_CLEAN} | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
     MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_MIN})
-    URL=$(echo "${HTML_LINE}" | awk -F "a href=" {'print $2'} | awk {'print $1'} | tr -d ' ')
-    PRICE=$(cat "${BASE_FILE}" | grep ">$TRADEMARK_MODEL<" -A10 |\
-grep '<span class="price"' | sed -e 's/<[^>]*>//g' |\
-sed -e 's/^[ \t]*//g' | tr -d ' ' | egrep -E -o "[0-9]{2,5},{1}[0-9]{2}" | head -1)
+    URL=$(echo "${HTML_LINE}" | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d ' ')
+    PRICE=$(cat ${BASE_FILE} | sed -e 's/<h5/\n<h5/g' | sed -e 's@/h5>@/h5>\n@g'| sed -e 's@</span>@</span>\n@g' |\
+            sed -e 's/<div class="content_price"/\n<div class="content_price"/g' |\
+            grep "<div class=\"content_price\"\|<h5 itemprop=\"name\""|\
+            grep "${TRADEMARK_MODEL}" -A2 | grep '<div class="content_price"'|\
+            sed -e 's/<[^>]*>//g' | egrep -E -o "[0-9]{0,2} {0,1}[0-9]{2,3},{1}[0-9]{2}" | tr -d ' ' | head -1)
     #echo "========================================================================"
     #echo "BASE_FILE=${BASE_FILE}"
     #echo "HTML_LINE=${HTML_LINE}"
+    #echo "TRADEMARK_MODEL_CHOMP=${TRADEMARK_MODEL_CHOMP}"
     #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
     #echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
     #echo "TRADEMARK_CAMEL=${TRADEMARK_CAMEL}"

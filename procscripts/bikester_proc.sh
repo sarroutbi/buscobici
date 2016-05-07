@@ -153,7 +153,7 @@ function dump_bike_from_file()
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  TRADEMARK_MODELS=$(cat "${FILE}" | grep '<div class="col-sm-12 productItemName">' -A10 | grep 'title=' | sed -e 's/^[ \t]*//g'  | grep ^title | awk -F 'title="' {'print $2'} | awk -F '"' {'print $1'})
+  TRADEMARK_MODELS=$(cat "${FILE}" | grep '<li class="sitemap-item">' -A10 | sed -e 's/^[ \t]*//g' | sed -e 's@^..@@g')
   echo "${TRADEMARK_MODELS}" | while read trademark_model;
   do 
     test -z "${trademark_model}" && continue;
@@ -214,11 +214,11 @@ function process_page_url()
   FILE=$1
   PAGES=$2
   STORE=$3
-  cat $FILE | sed -e 's@<p@\n<p@g' | grep '<p class="l4">' -A3 | while read TRADEMARK_MODEL_URL;
+  cat $FILE | sed -e 's@<p@\n<p@g' | grep '<li class="sitemap-item">' -A3 | sed -e 's@^..@@g' | while read TRADEMARK_MODEL_URL;
   do
-    TRADEMARK_MODEL=$(echo ${TRADEMARK_MODEL_URL} | sed -e 's/<[^>]*>//g' | sed -e 's@\&raquo;@@g')
+    TRADEMARK_MODEL=$(echo ${TRADEMARK_MODEL_URL} | sed -e 's/<[^>]*>//g' | sed -e 's@\&raquo;@@g' | sed -e 's@^..@@g')
     SUBURL=$(echo ${TRADEMARK_MODEL_URL} | awk -F 'href="' {'print $2'} | awk -F '"' {'print $1'})
-    FINAL_URL_NO_DOT=${BASE_URL}/${SUBURL}
+    FINAL_URL_NO_DOT=${SUBURL}
     FINAL_URL=\"${FINAL_URL_NO_DOT}\"
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
     TRADEMARK=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'print $1'})
@@ -344,7 +344,7 @@ URBAN_TREKKING_BIKES_PAGES="$(seq 0 5)"
 URBAN_HYBRID_BIKES_BASE="bicicletas-hibridas.html?page="
 URBAN_HYBRID_BIKES_PAGES="$(seq 0 5)"
 
-MAP_BIKES_BASE="mapa-del-sitio-bicicletas.html"
+MAP_BIKES_BASE="81208"
 MAP_BIKES_PAGES=""
 
 process_page_url "${MAP_BIKES_BASE}" "${MAP_BIKES_PAGES}" "Bikester" ""  >> ${OUTPUT_FILE}

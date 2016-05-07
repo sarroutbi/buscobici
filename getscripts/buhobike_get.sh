@@ -17,11 +17,13 @@
 # This script gets all the bicycles from
 # Bicimania store !
 # URL: www.bicimania.com
-URL="www.buhobike.com"
+URL="http://www.buhobike.com"
 ONLY_DOMAIN="buhobike.com"
 EXCLUDE="-Rgif -Rpng -Rjpg"
 MAX_TRIES=10
 MAX_TIMEOUT=10
+
+. ./common_get
 
 function get_page()
 {
@@ -38,27 +40,35 @@ function get_page()
   fi
 }
 
-MTB_BIKES_BASE="http://www.buhobike.com/bicicletas/rapida?op=188&_pagi_pg="
-MTB_BIKES_PAGES=$(seq 1 35)
+MTB_BIKES_BASE="${URL}/bicicletas/montana?p="
+MTB_BIKES_PAGES=$(seq 1 25)
 
-ROAD_BIKES_BASE="http://www.buhobike.com/bicicletas/rapida?op=288&_pagi_pg="
-ROAD_BIKES_PAGES=$(seq 1 25)
+ROAD_BIKES_BASE="${URL}/bicicletas/carretera?p="
+ROAD_BIKES_PAGES=$(seq 1 10)
 
-TREKKING_BIKES_BASE="http://www.buhobike.com/bicicletas/rapida?op=388&_pagi_pg="
-TREKKING_BIKES_PAGES=$(seq 1 15)
+URBAN_ELECTRIC_BIKES_BASE="${URL}/bicicletas/electricas?p="
+URBAN_ELECTRIC_BIKES_PAGES=$(seq 1 12)
 
-URBAN_BIKES_BASE="http://www.buhobike.com/bicicletas/rapida?op=488&_pagi_pg="
-URBAN_BIKES_PAGES=$(seq 1 15)
+URBAN_BIKES_BASE="${URL}/bicicletas/urbanas?p="
+URBAN_BIKES_PAGES=$(seq 1 7)
 
-BMX_BIKES_BASE="http://www.buhobike.com/bicicletas/rapida?op=588&_pagi_pg="
-BMX_BIKES_PAGES=$(seq 1 15)
+TREKKING_BIKES_BASE="${URL}/bicicletas/trekking?p="
+TREKKING_BIKES_PAGES=$(seq 1 4)
 
-KIDS_BIKES_BASE="http://www.buhobike.com/bicicletas/rapida?op=688&_pagi_pg="
-KIDS_BIKES_PAGES=$(seq 1 10)
+BMX_BIKES_BASE="${URL}/bicicletas/bmx?p="
+BMX_BIKES_PAGES=$(seq 1 2)
 
-get_page "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}"
-get_page "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}"
-get_page "${TREKKING_BIKES_BASE}" "${TREKKING_BIKES_PAGES}"
-get_page "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}"
-get_page "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}"
-get_page "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}"
+ROAD_CICLOCROSS_BIKES_BASE="${URL}/bicicletas/ciclocross?p="
+ROAD_CICLOCROSS_BIKES_PAGES=$(seq 1 2)
+
+KIDS_BIKES_BASE="${URL}/bicicletas/infantiles?p="
+KIDS_BIKES_PAGES=$(seq 1 4)
+
+bubic_get_page_outfile "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" mtb
+bubic_get_page_outfile "${ROAD_BIKES_BASE}" "${ROAD_BIKES_PAGES}" road
+bubic_get_page_outfile "${URBAN_ELECTRIC_BIKES_BASE}" "${URBAN_ELECTRIC_BIKES_PAGES}" urban-electric
+bubic_get_page_outfile "${URBAN_BIKES_BASE}" "${URBAN_BIKES_PAGES}" urban
+bubic_get_page_outfile "${TREKKING_BIKES_BASE}" "${TREKKING_BIKES_PAGES}" trekking
+bubic_get_page_outfile "${BMX_BIKES_BASE}" "${BMX_BIKES_PAGES}" bmx
+bubic_get_page_outfile "${ROAD_CICLOCROSS_BIKES_BASE}" "${ROAD_CICLOCROSS_BIKES_PAGES}" road-ciclocross
+bubic_get_page_outfile "${KIDS_BIKES_BASE}" "${KIDS_BIKES_PAGES}" kids

@@ -60,7 +60,7 @@ function process_file()
     MODEL_CAMEL=$(bubic_camel "${MODEL}")
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}")
     PRICES=$(grep "${MODEL_TRADEMARK}" "${BASE_FILE}" -A60 | egrep -E "itemprop=\"price\"" -A2 | egrep -E -o '[0-9]{0,2} {0,1}[0-9]{2,3},[0-9]{0,2}' | tr -d ' ' | tr -d '>' | head -1 | tr -d '<')
-    PRICE=$(minor_price "${PRICES}")
+    PRICE=$(bubic_minor_price "${PRICES}")
     #echo "==================================================="
     #echo "FILE:${BASE_FILE}"
     #echo "model:===>${model}<==="
@@ -68,6 +68,7 @@ function process_file()
     #echo "MODEL_TRADEMARK_CLEAN:=>${MODEL_TRADEMARK_CLEAN}<="
     #echo "MODEL:=>${MODEL}<="
     #echo "TRADEMARK:=>${TRADEMARK}<="
+    #echo "PRICES:=>${PRICES}<="
     #echo "PRICE:=>${PRICE}<="
     #echo "URL:=>${URL}<="
     #echo "==================================================="
