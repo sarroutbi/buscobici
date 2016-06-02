@@ -17,4 +17,4 @@
 # Remember: This can be done becahse a .pgpass must exist on 
 # HOME dir, with permission 0600, containing the password
 . ./common_trunc
-psql --user postgres -h ${DDBB_IP} bikesearch -c "DELETE FROM bikes WHERE store LIKE 'RedBlue';"
+psql --user postgres -h ${DDBB_IP} bikesearch -c "DELETE FROM bikes WHERE store LIKE 'Red Blue';"
