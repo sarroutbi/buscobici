@@ -50,7 +50,7 @@ sub dump_model {
   $model =~ s/$trademark//g;
 
   # URL PARSING
-  my $url_parsing_cmd = "grep '$search_model' $file -B10 | grep producto | egrep -E -o \"\\\"http://[^ ]* \" -A10 ";
+  my $url_parsing_cmd = "grep '$search_model' $file -B10 | grep producto | tail -1 | egrep -E -o \"\\\"http://[^ ]* \" -A10 ";
   my $url = `$url_parsing_cmd`;
   $url =~ s/"/\\"/g; 
   chomp($url);
