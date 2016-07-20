@@ -47,7 +47,7 @@ KIND_KEY="KIND"
 function print_price_with_url()
 {
   URL=$(echo "${1}" | tr -d '"')
-  wget "${URL}" -O - 2>/dev/null | grep 'div id="product_price"' | sed -e 's/<[^>]*>//g' | egrep -E -o "[0-9]{0,2}.{0,1}[0-9]{2,3},{0,1}[0-9]{0,2}" | tr -d '.' | tr -d " " | tr -d ' '
+  wget --no-check-certificate "${URL}" -O - 2>/dev/null | grep 'div id="product_price"' | sed -e 's/<[^>]*>//g' | egrep -E -o "[0-9]{0,2}.{0,1}[0-9]{2,3},{0,1}[0-9]{0,2}" | tr -d '.' | tr -d " " | tr -d ' '
 }
 
 function process_file()
@@ -67,6 +67,7 @@ function process_file()
     SUBURL=$(grep -i "${MODEL_GREP}" "${BASE_FILE}" -B5 | grep 'a href' | awk -F '<a href=' {'print $2'} | awk {'print $1'} | tail -1 | tr -d '"' | tr -d '\n' | tr -d '\r' | tr -d '>')
     URL="\"${BASE_URL}${SUBURL}\""
     PRICE=$(print_price_with_url "${URL}" | tr -d ' ' | egrep -E -o "[0-9]{2,5},{0,1}[0-9]{0,2}")
+    #echo "=================================================="
     #echo "LINE:${line}"
     #echo "TRADEMARK_MODEL:${TRADEMARK_MODEL}"
     #echo "TRADEMARK:=>${TRADEMARK}<="
@@ -77,7 +78,7 @@ function process_file()
     #echo "SUBURL:=>${SUBURL}<="
     #echo "URL:=>${URL}<="
     #echo "PRICE:=>${PRICE}<="
-    #echo
+    #echo "=================================================="
     bubic_dump_bike "${MODEL_CAMEL}" "${URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
