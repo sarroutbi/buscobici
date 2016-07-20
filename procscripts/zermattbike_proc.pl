@@ -56,7 +56,7 @@ sub dump_model {
   chomp($url);
   
   # PRICE PARSING
-  my $price_parsing_cmd = "grep '$search_model' $file -A10 | grep 'class=\"amount\"' | egrep -E \"[0-9]{0,2}\.{0,1}[0-9]{3},{0,1}[0-9]{0,2}\" -o | head -1 | tr -d '.'";
+  my $price_parsing_cmd = "grep '$search_model' $file -A10 | sed -e 's!<[^>]*>!!g' | sed -e 's!euro;!euro\\n!g' | egrep -E \"[0-9]{0,2}\.{0,1}[0-9]{3},{0,1}[0-9]{0,2}\" -o | tail -1 | tr -d '.' | tr -d ' '";
   my $price = `$price_parsing_cmd`;
   chomp($price);
 
