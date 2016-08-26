@@ -273,12 +273,13 @@ function process_file2()
        fi
      fi
      URL_NO_DASH=$(echo ${URL} | tr -d '"')
-     PRICE=$(echo "${HTML_LINE}" | awk -F 'class="price product-price">' {'print $2'} | awk -F '</span>' '{print $1}' | egrep -o -E "[0-9]{0,2},{0,1}[0-9]{1,3}.{0,1}[0-9]{0,2}" | tr -d ',' | tr '.' ',' | tr -d '\n' | tr -d '\r')
+     PRICE=$(echo "${HTML_LINE}" | awk -F 'class="price product-price">' {'print $2'} | awk -F '</span>' '{print $1}' | egrep -o -E "[0-9]{0,2} {0,1}[0-9]{1,3},{0,1}[0-9]{0,2}" | tr -d ' ' | tr -d '\n' | tr -d '\r')
      TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" 0)
      MODEL_CAMEL=$(bubic_camel "${MODEL}" ${NO_CAMEL_MIN})
      #echo
      #echo "=================================================="
      #echo "MODEL_TRADEMARK_UNCLEAN=${MODEL_TRADEMARK_UNCLEAN}"
+     #echo "HTML_LINE=${URL}"
      #echo "URL=${URL}"
      #echo "MODEL=${MODEL}"
      #echo "PRICE=${PRICE}"
