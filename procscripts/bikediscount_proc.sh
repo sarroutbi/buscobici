@@ -59,7 +59,7 @@ function process_file()
     MODEL_CAMEL=$(bubic_camel "${MODEL}")
     SUBURL=$(echo "${all_info}" | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
     FINAL_URL=$(echo "${BASE_URL}${SUBURL}")
-    PRICE_TAGGED=$(echo "${all_info}" | egrep -E -o "<span class=\"price-value\">[0-9,.,\,-]{1,} &euro;</span>")
+    PRICE_TAGGED=$(grep "${SUBURL}" ${FILE} -A80 | grep price | egrep -E -o "<span class=\"price-value\">[0-9,.,\,-]{1,} &euro;</span>" | head -1)
     PRICE=$(echo "${PRICE_TAGGED}" | egrep -E -o "[0-9]{0,}\.{0,}[0-9]{3},{1}[0-9,-]{1,2}" | tr -d '.' | sed -e 's@-@00@g')
     if [ "{$PRICE}" == "" ];
     then

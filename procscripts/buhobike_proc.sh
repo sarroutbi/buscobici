@@ -131,17 +131,18 @@ function process_file()
   do
     # NOTE: each bike should be more or less like:
     # ORBEA<br>AQUA T23 2013<br><b>717 &euro;</b>
-    MODEL=$(echo ${bike} | sed -e 's/<[^>]*>//g')
+    MODEL=$(echo "${bike}" | awk -F "</h5>" {'print $1'} | sed -e 's/<[^>]*>//g')
     MODEL_CLEAN=$(bubic_clean "${MODEL}")
-    TRADEMARK=$(grep -A10 ">${MODEL}<" "${BASE_FILE}" | grep '<p class="pro_list_manufacturer">' | sed -e 's/<[^>]*>//g')
+    TRADEMARK=$(echo "${bike}" | grep ">${MODEL}<" | awk -F '<p class="pro_list_manufacturer">' {'print $2'} | awk -F "</p>" {'print $1'}| sed -e 's@<[^>]*>@@g')
     TRADEMARK_CLEAN=${TRADEMARK}
     FINAL_URL=$(echo "${bike}" | awk -F 'href=' {'print $2'} | awk {'print $1'} | tr -d '"')
-    PRICE=$( grep -A10 ">${MODEL}<" "${BASE_FILE}" | grep '<span itemprop="price"' | sed -e 's/<[^>]*>//g' | egrep -E -o "[0-9]{0,2} {0,1}[0-9]{3},{1}[0-9]{0,2}" | tr -d ' ' | head -1)
+    PRICE=$(echo "${bike}" | awk -F '<span itemprop="price"' {'print "<span itemprop=\"price\"" $2'} | awk -F "</span>" {'print $1'} | sed -e 's/<[^>]*>//g' | egrep -E -o "[0-9]{0,2} {0,1}[0-9]{3},{1}[0-9]{0,2}" | tr -d ' ' | head -1)
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK_CLEAN}" 0)
     MODEL_CAMEL=$(bubic_camel "${MODEL_CLEAN}" ${NO_CAMEL_MIN})
     MODEL_CAMEL_DEF=$(echo "${MODEL_CAMEL}" | sed -e "s@${TRADEMARK_CAMEL}@@g")
     MODEL_CAMEL=$(bubic_camel "${MODEL_CAMEL_DEF}" ${NO_CAMEL_MIN})
     #echo "======================"
+    #echo "FILE:=>${BASE_FILE}<="
     #echo "BIKE:=>${bike}<="
     #echo "MODEL:=>${MODEL}<="
     #echo "TRADEMARK:=>${TRADEMARK}<="

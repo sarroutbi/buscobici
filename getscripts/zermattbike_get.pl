@@ -26,14 +26,14 @@ my $ADVENTURE_BASE = URL . "/producto-categoria/bicicletas/aventura/page/";
 my @ADVENTURE_PAGES = `seq 1 2`;
 my $ADVENTURE_FILE = "road-trekking";
 
-bubicpl_get_page($ADVENTURE_BASE, \@ADVENTURE_PAGES, $ADVENTURE_FILE, 10, 10, 0);
+bubicpl_get_page($ADVENTURE_BASE, \@ADVENTURE_PAGES, $ADVENTURE_FILE, 10, 10, 1);
 
 #### BMX ####
 my $BMX_BASE = URL . "/producto-categoria/bicicletas/bmxcampillo/page/";
 my @BMX_PAGES = `seq 1 2`;
 my $BMX_FILE = "bmx";
 
-bubicpl_get_page($BMX_BASE, \@BMX_PAGES, $BMX_FILE, 10, 10, 0);
+bubicpl_get_page($BMX_BASE, \@BMX_PAGES, $BMX_FILE, 10, 10, 1);
 
 #### ROAD_TRIATLON ####
 my $ROAD_TRIATLON_BASE = URL . "/producto-categoria/bicicletas/triatlon-carretera/page/";
@@ -42,7 +42,7 @@ my $ROAD_TRIATLON_FILE = "road-triatlon";
 
 chomp @ROAD_TRIATLON_PAGES;
 
-bubicpl_get_page($ROAD_TRIATLON_BASE, \@ROAD_TRIATLON_PAGES, $ROAD_TRIATLON_FILE, 10, 10, 0);
+bubicpl_get_page($ROAD_TRIATLON_BASE, \@ROAD_TRIATLON_PAGES, $ROAD_TRIATLON_FILE, 10, 10, 1);
 
 #### ROAD ####
 my $ROAD_BASE = URL . "/producto-categoria/bicicletas/carretera/page/";
@@ -51,7 +51,7 @@ my $ROAD_FILE = "road";
 
 chomp @ROAD_PAGES;
 
-bubicpl_get_page($ROAD_BASE, \@ROAD_PAGES, $ROAD_FILE, 10, 10, 0);
+bubicpl_get_page($ROAD_BASE, \@ROAD_PAGES, $ROAD_FILE, 10, 10, 1);
 
 #### CICLOCROSS ####
 my $CICLOCROSS_BASE = URL . "/producto-categoria/bicicletas/ciclocross/page/";
@@ -60,7 +60,7 @@ my $CICLOCROSS_FILE = "road-ciclocross";
 
 chomp @CICLOCROSS_PAGES;
 
-bubicpl_get_page($CICLOCROSS_BASE, \@CICLOCROSS_PAGES, $CICLOCROSS_FILE, 10, 10, 0);
+bubicpl_get_page($CICLOCROSS_BASE, \@CICLOCROSS_PAGES, $CICLOCROSS_FILE, 10, 10, 1);
 
 #### ELECTRIC ####
 my $ELECTRIC_BASE = URL . "/producto-categoria/bicicletas/electricas/page/";
@@ -69,14 +69,14 @@ my $ELECTRIC_FILE = "electric";
 
 chomp @ELECTRIC_PAGES;
 
-bubicpl_get_page($ELECTRIC_BASE, \@ELECTRIC_PAGES, $ELECTRIC_FILE, 10, 10, 0);
+bubicpl_get_page($ELECTRIC_BASE, \@ELECTRIC_PAGES, $ELECTRIC_FILE, 10, 10, 1);
 
 #### TREKKING ####
 my $TREKKING_BASE = URL . "/producto-categoria/bicicletas/electricas/page/";
 my @TREKKING_PAGES = `seq 1 2`;
 my $TREKKING_FILE = "trekking";
 
-bubicpl_get_page($TREKKING_BASE, \@TREKKING_PAGES, $TREKKING_FILE, 10, 10, 0);
+bubicpl_get_page($TREKKING_BASE, \@TREKKING_PAGES, $TREKKING_FILE, 10, 10, 1);
 
 #### MTB ####
 my $MTB_BASE = URL . "/producto-categoria/bicicletas/montana/page/";
@@ -85,7 +85,7 @@ my $MTB_FILE = "mtb";
 
 chomp @MTB_PAGES;
 
-bubicpl_get_page($MTB_BASE, \@MTB_PAGES, $MTB_FILE, 10, 10, 0);
+bubicpl_get_page($MTB_BASE, \@MTB_PAGES, $MTB_FILE, 10, 10, 1);
 
 #### FOLDING ####
 my $FOLDING_BASE = URL . "/producto-categoria/bicicletas/plegables/page/";
@@ -94,7 +94,7 @@ my $FOLDING_FILE = "urban-folding";
 
 chomp @FOLDING_PAGES;
 
-bubicpl_get_page($FOLDING_BASE, \@FOLDING_PAGES, $FOLDING_FILE, 10, 10, 0);
+bubicpl_get_page($FOLDING_BASE, \@FOLDING_PAGES, $FOLDING_FILE, 10, 10, 1);
 
 #### URBAN ####
 my $URBAN_BASE = URL . "/producto-categoria/bicicletas/urbana/page/";
@@ -103,7 +103,7 @@ my $URBAN_FILE = "urban";
 
 chomp @URBAN_PAGES;
 
-bubicpl_get_page($URBAN_BASE, \@URBAN_PAGES, $URBAN_FILE, 10, 10, 0);
+bubicpl_get_page($URBAN_BASE, \@URBAN_PAGES, $URBAN_FILE, 10, 10, 1);
 
 #### URBAN_WALK ####
 my $URBAN_WALK_BASE = URL . "/producto-categoria/bicicletas/multi-uso/page/";
@@ -112,18 +112,18 @@ my $URBAN_WALK_FILE = "urban-walk";
 
 chomp @URBAN_WALK_PAGES;
 
-bubicpl_get_page($URBAN_WALK_BASE, \@URBAN_WALK_PAGES, $URBAN_WALK_FILE, 10, 10, 0);
+bubicpl_get_page($URBAN_WALK_BASE, \@URBAN_WALK_PAGES, $URBAN_WALK_FILE, 10, 10, 1);
 
 #### MTB-DOWNHILL ####
 my $MTB_DOWNHILL_BASE = URL . "/producto-categoria/bicicletas/montana/descenso/page/";
 my @MTB_DOWNHILL_PAGES = `seq 1 2`;
 my $MTB_DOWNHILL_FILE = "mtb-downhill";
 
-bubicpl_get_page($MTB_DOWNHILL_BASE, \@MTB_DOWNHILL_PAGES, $MTB_DOWNHILL_FILE, 10, 10, 0);
+bubicpl_get_page($MTB_DOWNHILL_BASE, \@MTB_DOWNHILL_PAGES, $MTB_DOWNHILL_FILE, 10, 10, 1);
 
 #### KIDS ####
 my $KIDS_BASE = URL . "/producto-categoria/bicicletas/nino-nina/page/";
 my @KIDS_PAGES = `seq 1 2`;
 my $KIDS_FILE = "kids";
 
-bubicpl_get_page($KIDS_BASE, \@KIDS_PAGES, $KIDS_FILE, 10, 10, 0);
+bubicpl_get_page($KIDS_BASE, \@KIDS_PAGES, $KIDS_FILE, 10, 10, 1);
