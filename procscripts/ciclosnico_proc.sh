@@ -54,7 +54,7 @@ function print_price_from_model()
 {
   MODEL="$1"
   BASE_FILE="$2"
-  PRICE=$(grep "${MODEL}" "${BASE_FILE}" -A${MAX_PRICE} | grep '<span class="price' | head -1 | sed -e 's-<[^>]*>--g' | egrep -E -o "[0-9]{0,2}.{0,1}[0-9]{3},{1}[0-9]{2}" | tr -d ' ')
+  PRICE=$(grep "${MODEL}" "${BASE_FILE}" -A${MAX_PRICE} | grep '<span class="price' -A2 | sed -e 's-<[^>]*>--g' | egrep -E -o "[0-9]{0,2}.{0,1}[0-9]{3},{1}[0-9]{2}" | tr -d ' ')
   echo ${PRICE}
 }
 
@@ -62,8 +62,7 @@ function print_url()
 {
   model="$1"
   BASE_FILE="$2"
-  URL_LINE=$(egrep -E -o "<[^>]*>${model}" ${BASE_FILE})
-  URL=$(echo ${URL_LINE} | awk -F "href=" {'print $2'} | awk {'print $1'} | tr -d '"')
+  URL=$(egrep -E "${model}" -B1 "${BASE_FILE}" | grep '<a class="product-name"' | awk -F "href=" {'print $2'} | awk {'print $1'})
   echo "${URL}"
 }
 
@@ -72,7 +71,7 @@ function process_page_file()
   BASE_FILE="$1"
   STORE="$2"
   TYPE="$3"
-  MODEL_LINES=$(cat "${BASE_FILE}" | grep '<h3 class="title"' | sed -e 's-<[^>]*>--g')
+  MODEL_LINES=$(cat "${BASE_FILE}" | grep '<h5 itemprop="name">' -A5 | sed -e 's-<[^>]*>--g' | egrep -E "[A-Z,a-z]")
   echo "${MODEL_LINES}" | while read model_line;
   do
     model=$(echo ${model_line} | awk -F "</h3>" {'print $1'} | sed -e 's-<[^>]*>--g' | egrep -E "[A-Z]{2,}"  | tr -d '\n' | tr -d '\r')
