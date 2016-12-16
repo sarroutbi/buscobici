@@ -152,7 +152,7 @@ function dump_bike_from_file()
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  TRADEMARK_MODELS=$(cat "${FILE}" | grep -A2 '<span class="product_title show-for-large">' | sed -e 's/<[^>]*>//g' | egrep -E '[A-Z,a-z]')
+  TRADEMARK_MODELS=$(cat "${FILE}" | grep -A2 '<span class="product_title"' | sed -e 's/<[^>]*>//g' | egrep -E '[A-Z,a-z]')
   echo "${TRADEMARK_MODELS}" | while read trademark_model;
   do
     test -z "${trademark_model}" && continue;
