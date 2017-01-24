@@ -37,47 +37,47 @@ function get_page()
   fi
 }
 
-MTB_BIKES_BASE="${URL}/18-montana?p="
+MTB_BIKES_BASE="${URL}/montana-18?p="
 MTB_BIKES_PAGES="$(seq 1 16)"
 
-MTB_DOUBLE_BASE="${URL}/27-doble-suspension?p="
+MTB_DOUBLE_BASE="${URL}/doble-suspension-27?p="
 MTB_DOUBLE_PAGES="$(seq 1 9)"
 
-ROAD_BIKES_BASE="${URL}/17-carretera?p="
+ROAD_BIKES_BASE="${URL}/carretera-17?p="
 ROAD_BIKES_PAGES="$(seq 1 16)"
 
-ROAD_CARBON_BIKES_BASE="${URL}/24-carbono?p="
+ROAD_CARBON_BIKES_BASE="${URL}/carbono-24?p="
 ROAD_CARBON_BIKES_PAGES="$(seq 1 10)"
 
-ROAD_TRIATLON_BIKES_BASE="${URL}/25-triathlon?p="
+ROAD_TRIATLON_BIKES_BASE="${URL}/triathlon-25?p="
 ROAD_TRIATLON_BIKES_PAGES="$(seq 1 3)"
 
-ROAD_CICLOCROSS_BIKES_BASE="${URL}/132-ciclocross-y-cicloturismo?p="
+ROAD_CICLOCROSS_BIKES_BASE="${URL}/ciclocross-y-cicloturismo-132?p="
 ROAD_CICLOCROSS_BIKES_PAGES="$(seq 1 3)"
 
-ROAD_FIXIES_BIKES_BASE="${URL}/133-fixies?p="
+ROAD_FIXIES_BIKES_BASE="${URL}/fixies-133?p="
 ROAD_FIXIES_BIKES_PAGES="$(seq 1 2)"
 
-URBAN_BIKES_BASE="${URL}/19-urbanas-y-mixtastrekking?p="
+URBAN_BIKES_BASE="${URL}/urbanas-y-mixtastrekking-19?p="
 URBAN_BIKES_PAGES="$(seq 1 13)"
 
-KIDS_BIKES_BASE="${URL}/20-infantiles?p="
+KIDS_BIKES_BASE="${URL}/infantiles-20?p="
 KIDS_BIKES_PAGES="$(seq 1 7)"
 
-TRICYCLE_BIKES_BASE="${URL}/21-triciclos-y-tandems?p="
+TRICYCLE_BIKES_BASE="${URL}/triciclos-y-tandems-21?p="
 TRICYCLE_BIKES_PAGES="$(seq 1 3)"
 
-BMX_BIKES_BASE="${URL}/22-bmxfreestyletrial?p="
+BMX_BIKES_BASE="${URL}/bmxfreestyletrial-22?p="
 BMX_BIKES_PAGES="$(seq 1 2)"
 
-get_page "${MTB_BIKES_BASE}"           "${MTB_BIKES_PAGES}"
-get_page "${MTB_DOUBLE_BASE}"          "${MTB_DOUBLE_PAGES}"
-get_page "${ROAD_BIKES_BASE}"          "${ROAD_BIKES_PAGES}"
-get_page "${ROAD_CARBON_BIKES_BASE}"   "${ROAD_CARBON_BIKES_PAGES}"
-get_page "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}"
-get_page "${ROAD_FIXIES_BASE}"         "${ROAD_FIXIES_PAGES}"
-get_page "${ROAD_CICLOCROSS_BASE}"     "${ROAD_CICLOCROSS_PAGES}"
-get_page "${URBAN_BIKES_BASE}"         "${URBAN_BIKES_PAGES}"
-get_page "${KIDS_BIKES_BASE}"          "${KIDS_BIKES_PAGES}"
-get_page "${TRICYCLE_BIKES_BASE}"      "${TRICYCLE_BIKES_PAGES}"
-get_page "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"
+get_page "${MTB_BIKES_BASE}"             "${MTB_BIKES_PAGES}"
+get_page "${MTB_DOUBLE_BASE}"            "${MTB_DOUBLE_PAGES}"
+get_page "${ROAD_BIKES_BASE}"            "${ROAD_BIKES_PAGES}"
+get_page "${ROAD_CARBON_BIKES_BASE}"     "${ROAD_CARBON_BIKES_PAGES}"
+get_page "${ROAD_TRIATLON_BIKES_BASE}"   "${ROAD_TRIATLON_BIKES_PAGES}"
+get_page "${ROAD_FIXIES_BIKES_BASE}"     "${ROAD_FIXIES_BIKES_PAGES}"
+get_page "${ROAD_CICLOCROSS_BIKES_BASE}" "${ROAD_CICLOCROSS_BIKES_PAGES}"
+get_page "${URBAN_BIKES_BASE}"           "${URBAN_BIKES_PAGES}"
+get_page "${KIDS_BIKES_BASE}"            "${KIDS_BIKES_PAGES}"
+get_page "${TRICYCLE_BIKES_BASE}"        "${TRICYCLE_BIKES_PAGES}"
+get_page "${BMX_BIKES_BASE}"             "${BMX_BIKES_PAGES}"

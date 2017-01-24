@@ -144,21 +144,26 @@ function dump_bike_from_file()
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  cat "${1}" | grep '<a class="product-name"' -A2 | sed -e 's@<[^>]*>@@g' | egrep -e [A-Z,a-z] | sed -e 's@^[ ,\t]*@@g' | while read model;
+  cat "${1}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a>@</a>\n@g' | grep ^'<a class="product-name"' | egrep -e [A-Z,a-z] | sort | uniq | while read model;
   do
-      CLEAN_MODEL=$(bubic_clean "${model}" | tr -d '\r')
+      MODEL_NO_HTML=$(echo "${model}" | sed -e 's@<[^>]*>@@g')
+      CLEAN_MODEL=$(bubic_clean "${MODEL_NO_HTML}" | tr -d '\r')
       CAMEL_MODEL=$(bubic_camel "${CLEAN_MODEL}" ${NO_CAMEL_MIN})
       TRADEMARK=$(echo "${CAMEL_MODEL}" | awk {'print $1'})
       FINAL_MODEL=$(echo "${CAMEL_MODEL}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
-      URL=$(grep "${model}" "${FILE}" -B1 | awk -F 'href=' {'print $2'} | awk {'print $1'} | egrep -E "[a-z]" | head -1)
-      PRICE=$(grep "${model}" "${FILE}" -C10 | grep '<span class="price' -A2 | egrep -E -o '[0-9]{0,2} {0,1}[0-9]{3},[0-9]{0,2}' | tr -d ' ')
+      URL=$(echo "${model}" | awk -F 'href=' {'print $2'} | awk {'print $1'} | egrep -E "[a-z]" | head -1)
+      PRICE=$(cat "${FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a>@</a>\n@g' | grep "${MODEL_NO_HTML}" -A1 | egrep -E "[0-9]{0,2} [0-9]{2,3},[0-9]{2}" -o | head -1 | tr -d ' ')
       # COMMENT THIS:
-      #echo "FILE=${FILE}"
-      #echo "MODEL=${FINAL_MODEL}"
-      #echo "URL=${URL}"
-      #echo "PRICE=${PRICE}"
-      #echo "STORE=${STORE}"
-      #echo "TYPE=${TYPE}"
+      # echo "========================================================"
+      # echo "FILE=${FILE}"
+      # echo "MODEL_LINE=${model}"
+      # echo "TRADEMARK=${TRADEMARK}"
+      # echo "FINAL_MODEL=${FINAL_MODEL}"
+      # echo "URL=${URL}"
+      # echo "PRICE=${PRICE}"
+      # echo "STORE=${STORE}"
+      # echo "TYPE=${TYPE}"
+      # echo "========================================================"
       # end COMMENT
       bubic_dump_bike "${FINAL_MODEL}" "${URL}" "${TRADEMARK}" "${PRICE}" "${STORE}" "${TYPE}"
 
@@ -243,37 +248,37 @@ function process_pages()
 
 > ${OUTPUT_FILE}
 
-MTB_BIKES_BASE="18-montana?p="
+MTB_BIKES_BASE="montana-18?p="
 MTB_BIKES_PAGES="$(seq 1 16)"
 
-MTB_DOUBLE_BASE="27-doble-suspension?p="
+MTB_DOUBLE_BASE="doble-suspension-27?p="
 MTB_DOUBLE_PAGES="$(seq 1 9)"
 
-ROAD_BIKES_BASE="17-carretera?p="
+ROAD_BIKES_BASE="carretera-17?p="
 ROAD_BIKES_PAGES="$(seq 1 16)"
 
-ROAD_CARBON_BIKES_BASE="24-carbono?p="
+ROAD_CARBON_BIKES_BASE="carbono-24?p="
 ROAD_CARBON_BIKES_PAGES="$(seq 1 10)"
 
-ROAD_TRIATLON_BIKES_BASE="25-triathlon?p="
+ROAD_TRIATLON_BIKES_BASE="triathlon-25?p="
 ROAD_TRIATLON_BIKES_PAGES="$(seq 1 3)"
 
-ROAD_CICLOCROSS_BIKES_BASE="132-ciclocross-y-cicloturismo?p="
+ROAD_CICLOCROSS_BIKES_BASE="ciclocross-y-cicloturismo-132?p="
 ROAD_CICLOCROSS_BIKES_PAGES="$(seq 1 3)"
 
-ROAD_FIXIES_BIKES_BASE="133-fixies?p="
+ROAD_FIXIES_BIKES_BASE="fixies-133?p="
 ROAD_FIXIES_BIKES_PAGES="$(seq 1 2)"
 
-URBAN_BIKES_BASE="19-urbanas-y-mixtastrekking?p="
+URBAN_BIKES_BASE="urbanas-y-mixtastrekking-19?p="
 URBAN_BIKES_PAGES="$(seq 1 13)"
 
-KIDS_BIKES_BASE="20-infantiles?p="
+KIDS_BIKES_BASE="infantiles-20?p="
 KIDS_BIKES_PAGES="$(seq 1 7)"
 
-TRICYCLE_BIKES_BASE="21-triciclos-y-tandems?p="
+TRICYCLE_BIKES_BASE="triciclos-y-tandems-21?p="
 TRICYCLE_BIKES_PAGES="$(seq 1 3)"
 
-BMX_BIKES_BASE="22-bmxfreestyletrial?p="
+BMX_BIKES_BASE="bmxfreestyletrial-22?p="
 BMX_BIKES_PAGES="$(seq 1 2)"
 
 process_pages "${MTB_BIKES_BASE}"             "${MTB_BIKES_PAGES}"             "Calmera" "MTB"    >> ${OUTPUT_FILE}
