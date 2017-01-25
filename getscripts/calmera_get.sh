@@ -1,22 +1,22 @@
 #!/bin/bash
 #
 # Copyright © 2012-2013 Sergio Arroutbi Braojos <sarroutbi@gmail.com>
-# 
-# Permission to use, copy, modify, and/or distribute this software 
-# for any purpose with or without fee is hereby granted, provided that 
+#
+# Permission to use, copy, modify, and/or distribute this software
+# for any purpose with or without fee is hereby granted, provided that
 # the above copyright notice and this permission notice appear in all copies.
-# 
-# THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES 
-# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
-# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, 
-# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
-# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, 
-# NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+#
+# THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+# NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
 # This script gets all the bicycles from
 # Calmera store !
-URL="www.calmera.es"
+URL="www.calmera.es/tienda2016/es"
 ONLY_DOMAIN="calmera.es"
 EXCLUDE="-Rgif -Rpng -Rjpg"
 MAX_TRIES=10
@@ -28,85 +28,56 @@ function get_page()
   PAGES="$2"
   if [ "${PAGES}" = "" ];
   then
-    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}" 
+    wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}"
   else
     for page in ${PAGES};
     do
-      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}" 
-    done 
+      wget --tries=${MAX_TRIES} --timeout=${MAX_TIMEOUT} "${BASE_URL}${page}"
+    done
   fi
 }
 
-MTB_BIKES_BASE="${URL}/productos2.asp?id=25&p="
-MTB_BIKES_PAGES="$(seq 1 8)"
+MTB_BIKES_BASE="${URL}/montana-18?p="
+MTB_BIKES_PAGES="$(seq 1 16)"
 
-MTB_DOUBLE_BASE="${URL}/productos2.asp?id=1&p="
-MTB_DOUBLE_PAGES="$(seq 1 5)"
+MTB_DOUBLE_BASE="${URL}/doble-suspension-27?p="
+MTB_DOUBLE_PAGES="$(seq 1 9)"
 
-MTB_29_BIKES_BASE="${URL}/productos2.asp?id=60&p="
-MTB_29_BIKES_PAGES="$(seq 1 10)"
+ROAD_BIKES_BASE="${URL}/carretera-17?p="
+ROAD_BIKES_PAGES="$(seq 1 16)"
 
-MTB_FREERIDE_BIKES_BASE="${URL}/productos2.asp?id=4"
-
-ROAD_BIKES_BASE="${URL}/productos2.asp?id=5&p="
-ROAD_BIKES_PAGES="$(seq 1 4)"
-
-ROAD_CARBON_BIKES_BASE="${URL}/productos2.asp?id=6&p="
+ROAD_CARBON_BIKES_BASE="${URL}/carbono-24?p="
 ROAD_CARBON_BIKES_PAGES="$(seq 1 10)"
 
-ROAD_TRIATLON_BIKES_BASE="${URL}/productos2.asp?id=7&p="
-ROAD_TRIATLON_BIKES_PAGES="$(seq 1 10)"
+ROAD_TRIATLON_BIKES_BASE="${URL}/triathlon-25?p="
+ROAD_TRIATLON_BIKES_PAGES="$(seq 1 3)"
 
-URBAN_BIKES_BASE="${URL}/productos2.asp?id=29&p="
-URBAN_BIKES_PAGES="$(seq 1 10)"
+ROAD_CICLOCROSS_BIKES_BASE="${URL}/ciclocross-y-cicloturismo-132?p="
+ROAD_CICLOCROSS_BIKES_PAGES="$(seq 1 3)"
 
-TREKKING_BIKES_BASE="${URL}/productos2.asp?id=27&p="
-TREKKING_BIKES_PAGES="$(seq 1 5)"
+ROAD_FIXIES_BIKES_BASE="${URL}/fixies-133?p="
+ROAD_FIXIES_BIKES_PAGES="$(seq 1 2)"
 
-FOLDING_BIKES_BASE="${URL}/productos2.asp?id=13&p="
-FOLDING_BIKES_PAGES="$(seq 1 5)"
+URBAN_BIKES_BASE="${URL}/urbanas-y-mixtastrekking-19?p="
+URBAN_BIKES_PAGES="$(seq 1 13)"
 
-ELECTRIC_BIKES_BASE="${URL}/productos2.asp?id=57&p="
-ELECTRIC_BIKES_PAGES="$(seq 1 1)"
+KIDS_BIKES_BASE="${URL}/infantiles-20?p="
+KIDS_BIKES_PAGES="$(seq 1 7)"
 
-KIDS00_BIKES_BASE="${URL}/productos2.asp?id=17"
-KIDS01_BIKES_BASE="${URL}/productos2.asp?id=18"
-KIDS02_BIKES_BASE="${URL}/productos2.asp?id=19"
+TRICYCLE_BIKES_BASE="${URL}/triciclos-y-tandems-21?p="
+TRICYCLE_BIKES_PAGES="$(seq 1 3)"
 
-KIDS03_BIKES_BASE="${URL}/productos2.asp?id=20&p="
-KIDS03_BIKES_PAGES="$(seq 1 3)"
+BMX_BIKES_BASE="${URL}/bmxfreestyletrial-22?p="
+BMX_BIKES_PAGES="$(seq 1 2)"
 
-KIDS04_BIKES_BASE="${URL}/productos2.asp?id=21"
-KIDS05_BIKES_BASE="${URL}/productos2.asp?id=30"
-
-TRICYCLE_BIKES_BASE="${URL}/productos2.asp?id=15"
-
-BMX_BIKES_BASE="${URL}/productos2.asp?id=22&p="
-BMX_BIKES_PAGES="$(seq 1 3)"
-
-BMX_FREESTYLE_BIKES_BASE="${URL}/productos2.asp?id=31"
-
-BMX_TRIAL_BIKES_BASE="${URL}/productos2.asp?id=32"
-
-get_page "${MTB_DOWNBIKES_BASE}"       "${MTB_DOWNBIKES_PAGES}"
-get_page "${MTB_BIKES_BASE}"           "${MTB_BIKES_PAGES}"            
-get_page "${MTB_DOUBLE_BASE}"          "${MTB_DOUBLE_PAGES}"          
-get_page "${MTB_29_BIKES_BASE}"        "${MTB_29_BIKES_PAGES}"        
-get_page "${MTB_FREERIDE_BIKES_BASE}"  "${MTB_FREERIDE_BIKES_PAGES}"
-get_page "${ROAD_BIKES_BASE}"          "${ROAD_BIKES_PAGES}"          
-get_page "${ROAD_CARBON_BIKES_BASE}"   "${ROAD_CARBON_BIKES_PAGES}"   
-get_page "${ROAD_TRIATLON_BIKES_BASE}" "${ROAD_TRIATLON_BIKES_PAGES}" 
-get_page "${URBAN_BIKES_BASE}"         "${URBAN_BIKES_PAGES}"         
-get_page "${TREKKING_BIKES_BASE}"      "${TREKKING_BIKES_PAGES}"      
-get_page "${FOLDING_BIKES_BASE}"       "${FOLDING_BIKES_PAGES}"       
-get_page "${ELECTRIC_BIKES_BASE}"      "${ELECTRIC_BIKES_PAGES}"      
-get_page "${KIDS00_BIKES_BASE}"        "${KIDS00_BIKES_PAGES}"        
-get_page "${KIDS01_BIKES_BASE}"        "${KIDS01_BIKES_PAGES}"        
-get_page "${KIDS02_BIKES_BASE}"        "${KIDS02_BIKES_PAGES}"        
-get_page "${KIDS03_BIKES_BASE}"        "${KIDS03_BIKES_PAGES}"        
-get_page "${KIDS04_BIKES_BASE}"        "${KIDS04_BIKES_PAGES}"        
-get_page "${KIDS05_BIKES_BASE}"        "${KIDS05_BIKES_PAGES}"        
-get_page "${TRICYCLE_BIKES_BASE}"      "${TRICYCLE_BIKES_PAGES}"      
-get_page "${BMX_BIKES_BASE}"           "${BMX_BIKES_PAGES}"           
-get_page "${BMX_FREESTYLE_BIKES_BASE}" "${BMX_FREESTYLE_BIKES_PAGES}" 
-get_page "${BMX_TRIAL_BIKES_BASE}"     "${BMX_TRIAL_BIKES_PAGES}"
+get_page "${MTB_BIKES_BASE}"             "${MTB_BIKES_PAGES}"
+get_page "${MTB_DOUBLE_BASE}"            "${MTB_DOUBLE_PAGES}"
+get_page "${ROAD_BIKES_BASE}"            "${ROAD_BIKES_PAGES}"
+get_page "${ROAD_CARBON_BIKES_BASE}"     "${ROAD_CARBON_BIKES_PAGES}"
+get_page "${ROAD_TRIATLON_BIKES_BASE}"   "${ROAD_TRIATLON_BIKES_PAGES}"
+get_page "${ROAD_FIXIES_BIKES_BASE}"     "${ROAD_FIXIES_BIKES_PAGES}"
+get_page "${ROAD_CICLOCROSS_BIKES_BASE}" "${ROAD_CICLOCROSS_BIKES_PAGES}"
+get_page "${URBAN_BIKES_BASE}"           "${URBAN_BIKES_PAGES}"
+get_page "${KIDS_BIKES_BASE}"            "${KIDS_BIKES_PAGES}"
+get_page "${TRICYCLE_BIKES_BASE}"        "${TRICYCLE_BIKES_PAGES}"
+get_page "${BMX_BIKES_BASE}"             "${BMX_BIKES_PAGES}"

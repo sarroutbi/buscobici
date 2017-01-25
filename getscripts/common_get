@@ -54,3 +54,39 @@ function bubic_get_page_cookies()
   fi
 }
 
+function bubic_get_pages_js()
+{
+  BASE_URL="$1"
+  OUTFILE="$2"
+  PAGES="$3"
+
+  for page in ${PAGES};
+  do
+    bubic_get_page_js "${BASE_URL}${page}" "${OUTFILE}${page}"
+  done
+}
+
+function bubic_get_page_js()
+{
+  BASE_URL="$1"
+  OUTFILE_NO_PAGE="$2"   
+  TMP_FILE=$(mktemp)
+
+cat<<EOF>${TMP_FILE}
+var url = "${BASE_URL}";
+var page = require('webpage').create();
+
+page.onLoadStarted = function () {
+};
+
+page.onLoadFinished = function (status) {
+    console.log(page.content);
+    phantom.exit();
+};
+
+page.open(url);
+EOF
+
+  phantomjs ${TMP_FILE} > ${OUTFILE_NO_PAGE}
+  rm ${TMP_FILE}
+}

@@ -24,16 +24,16 @@ MAX_TIMEOUT=10
 
 . ./common_get
 
-MTB_FIX_29_BIKES_BASE="${URL}/es/rigida-29-aluminio-c-644_646.html?page="
+MTB_FIX_29_BIKES_BASE="${URL}/es/rigida-aluminio-c-644_646.html?page="
 MTB_FIX_29_BIKES_PAGES="$(seq 1 1)"
 
-MTB_FIX_29_CARBON_BIKES_BASE="${URL}/es/rigida-29-carbono-c-644_645.html?page="
+MTB_FIX_29_CARBON_BIKES_BASE="${URL}/es/rigida-carbono-c-644_645.html?page="
 MTB_FIX_29_CARBON_BIKES_PAGES="$(seq 1 2)"
 
-MTB_FIX_275_BIKES_BASE="${URL}/es/rigida-275-aluminio-c-644_648.html?page="
+MTB_FIX_275_BIKES_BASE="${URL}/es/rigida-aluminio-c-644_648.html?page="
 MTB_FIX_275_BIKES_PAGES="$(seq 1 1)"
 
-MTB_FIX_275_CARBON_BIKES_BASE="${URL}/es/rigida-275-carbono-c-644_647.html?page="
+MTB_FIX_275_CARBON_BIKES_BASE="${URL}/es/rigida-carbono-c-644_647.html?page="
 MTB_FIX_275_CARBON_BIKES_PAGES="$(seq 1 1)"
 
 URBAN_ELECTRIC_BIKES_BASE="${URL}/es/ebikes-c-644_656.html?page="

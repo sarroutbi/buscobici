@@ -29,8 +29,8 @@ OUTPUT_FILE=./output
 BASE_URL="http://www.probikeshop.es"
 NO_CAMEL_MIN=1
 NO_CAMEL_TRADEMARK_MIN=0
-DOWN_SEARCH=10
-PRICE_SEARCH=10
+DOWN_SEARCH=100
+PRICE_SEARCH=2
 URL="www.probikeshop.es"
 ONLY_DOMAIN="probikeshop.es"
 
@@ -152,12 +152,9 @@ function dump_bike_from_file()
   FILE="$1"
   STORE="$2"
   TYPE="$3"
-  TRADEMARK_MODELS=$(cat "${FILE}" | grep -A5 '<span class="wrap-img img-product">' | grep '<span class="title"' -A1 | sed -e 's/<[^>]*>//g' | egrep -E '[A-Z,a-z]')
+  TRADEMARK_MODELS=$(cat "${FILE}" | grep -A2 '<span class="product_title"' | sed -e 's/<[^>]*>//g' | egrep -E '[A-Z,a-z]')
   echo "${TRADEMARK_MODELS}" | while read trademark_model;
   do
-    #echo "===== TRADEMARK MODEL ====="
-    #echo "=>${trademark_model}<="
-    #echo "===== /TRADEMARK MODEL ====="
     test -z "${trademark_model}" && continue;
     TRADEMARK_MODEL="${trademark_model}"
     TRADEMARK_MODEL_CLEAN=$(bubic_clean "${TRADEMARK_MODEL}")
@@ -165,11 +162,12 @@ function dump_bike_from_file()
     TRADEMARK_CAMEL=$(bubic_camel "${TRADEMARK}" ${NO_CAMEL_TRADEMARK_MIN})
     MODEL=$(echo "${TRADEMARK_MODEL_CLEAN}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'} | tr -d '\r' | tr "'" '"')
     MODEL_CAMEL=$(bubic_camel "${MODEL}" "${NO_CAMEL_MIN}")
-    URL=$(grep "${trademark_model}" "${FILE}" -B5 | grep "<a href" | awk -F "a href=" {'print $2'} | awk -F ">" {'print $1'} | tr -d '"' | tr -d ' ')
+    URL=$(grep "${trademark_model}" "${FILE}" -B10 | grep "<a class=\"product_link\" href" | awk -F "href=" {'print $2'} | awk -F ">" {'print $1'} | tr -d '"' | tr -d ' ')
     FINAL_URL=$(echo "\"${BASE_URL}${URL}\"")
 #    PRICE=$(grep "${trademark_model}" "${FILE}" -A${DOWN_SEARCH} | grep '<span class="title"' -A${PRICE_SEARCH} | egrep -E "[0-9]{0,1}.{0,1}[0-9]{2,},{0,1}[0-9]{0,}" -o | head -1 | tr -d '.' | sed -e 's/^[ /t]*//g' | tr -d ' ' | tr -d '\r' | tr -d '\n' | tr -d '\302' | tr -d '\240')
-    PRICE=$(grep "${trademark_model}" "${FILE}" -A${DOWN_SEARCH} | grep '<span class="price"' -A${PRICE_SEARCH} | sed -e 's/<[^>]*>//g' | egrep -E "[0-9]{0,1}.{0,1}[0-9]{2,},{0,1}[0-9]{0,}" | head -1 | sed -e 's/^[ /t]*//g' | tr -d ' ' | tr -d '\r' | tr -d '\n' | tr -d '\302' | tr -d '\240' | tr -d '.' | sed -e 's/^[ /t]*//g' | egrep -E "[0-9]{2,},{0,1}[0-9]{0,}" -o)
+    PRICE=$(grep "${trademark_model}" "${FILE}" -A${DOWN_SEARCH} | grep '<span class="product_price"' -A${PRICE_SEARCH} | sed -e 's/<[^>]*>//g' | egrep -E "[0-9]{0,1}.{0,1}[0-9]{2,},{0,1}[0-9]{0,}" | head -1 | sed -e 's/^[ /t]*//g' | tr -d ' ' | tr -d '\r' | tr -d '\n' | tr -d '\302' | tr -d '\240' | tr -d '.' | sed -e 's/^[ /t]*//g' | egrep -E "[0-9]{2,},{0,1}[0-9]{0,}" -o)
     #echo "========================================================================"
+    #echo "FILE=${FILE}"
     #echo "TRADEMARK_MODEL=${TRADEMARK_MODEL}"
     #echo "TRADEMARK_MODEL_CLEAN=${TRADEMARK_MODEL_CLEAN}"
     #echo "TRADEMARK=${TRADEMARK}"
@@ -182,7 +180,7 @@ function dump_bike_from_file()
     #echo "TYPE=${TYPE}"
     #echo "FILE=${FILE}"
     #echo "========================================================================"
-    dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
+    bubic_dump_bike "${MODEL_CAMEL}" "${FINAL_URL}" "${TRADEMARK_CAMEL}" "${PRICE}" "${STORE}" "${TYPE}"
   done
 }
 
