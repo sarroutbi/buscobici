@@ -16,7 +16,7 @@
 #
 # This script gets all the bicycles from
 # Calmera store !
-URL="www.calmera.es/tienda2016/es"
+URL="www.calmera.es/tienda2016"
 ONLY_DOMAIN="calmera.es"
 EXCLUDE="-Rgif -Rpng -Rjpg"
 MAX_TRIES=10
