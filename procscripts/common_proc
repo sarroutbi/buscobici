@@ -580,6 +580,7 @@ function bubic_clean()
 | sed -e 's/[Cc]l...sica//g' \
 | sed -e 's/[Nn]uevo//g' \
 | sed -e 's/[Cc]ommen.al/Commencal/g' \
+| sed -e 's/^s+|s+$//g' \
 | sed -e 's/[Mm][Tt][Bb]//g' | tr "'" '"' | tr "´" '"'
 }
 
