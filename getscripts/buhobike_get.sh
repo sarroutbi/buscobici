@@ -40,28 +40,28 @@ function get_page()
   fi
 }
 
-MTB_BIKES_BASE="${URL}/bicicletas/montana?p="
+MTB_BIKES_BASE="${URL}/bicicletas/bicicletas-montana?p="
 MTB_BIKES_PAGES=$(seq 1 25)
 
-ROAD_BIKES_BASE="${URL}/bicicletas/carretera?p="
+ROAD_BIKES_BASE="${URL}/bicicletas/bicicletas-carretera?p="
 ROAD_BIKES_PAGES=$(seq 1 10)
 
-URBAN_ELECTRIC_BIKES_BASE="${URL}/bicicletas/electricas?p="
+URBAN_ELECTRIC_BIKES_BASE="${URL}/bicicletas/bicicletas-electricas?p="
 URBAN_ELECTRIC_BIKES_PAGES=$(seq 1 12)
 
-URBAN_BIKES_BASE="${URL}/bicicletas/urbanas?p="
+URBAN_BIKES_BASE="${URL}/bicicletas/bicicletas-urbanas?p="
 URBAN_BIKES_PAGES=$(seq 1 7)
 
-TREKKING_BIKES_BASE="${URL}/bicicletas/trekking?p="
+TREKKING_BIKES_BASE="${URL}/bicicletas/bicicletas-trekking?p="
 TREKKING_BIKES_PAGES=$(seq 1 4)
 
-BMX_BIKES_BASE="${URL}/bicicletas/bmx?p="
+BMX_BIKES_BASE="${URL}/bicicletas/bicicletas-bmx?p="
 BMX_BIKES_PAGES=$(seq 1 2)
 
-ROAD_CICLOCROSS_BIKES_BASE="${URL}/bicicletas/ciclocross?p="
+ROAD_CICLOCROSS_BIKES_BASE="${URL}/bicicletas/bicicletas-ciclocross?p="
 ROAD_CICLOCROSS_BIKES_PAGES=$(seq 1 2)
 
-KIDS_BIKES_BASE="${URL}/bicicletas/infantiles?p="
+KIDS_BIKES_BASE="${URL}/bicicletas/bicicletas-infantiles?p="
 KIDS_BIKES_PAGES=$(seq 1 4)
 
 bubic_get_page_outfile "${MTB_BIKES_BASE}" "${MTB_BIKES_PAGES}" mtb
