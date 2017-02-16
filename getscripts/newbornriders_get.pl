@@ -23,7 +23,7 @@ use constant MAX_TIMEOUT => 10;
 
 #### KIDS ####
 my $KIDS_BASE = URL . "/comprar-bicicleta-para-ninos.html?p=";
-my @KIDS_PAGES = `seq 1 4`;
+my @KIDS_PAGES = `seq 1 7`;
 my $KIDS_FILE = "kids";
 
 chomp @KIDS_PAGES;
