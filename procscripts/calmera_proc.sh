@@ -152,11 +152,16 @@ function dump_bike_from_file()
       TRADEMARK=$(echo "${CAMEL_MODEL}" | awk {'print $1'})
       FINAL_MODEL=$(echo "${CAMEL_MODEL}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
       URL=$(echo "${model}" | awk -F 'href=' {'print $2'} | awk {'print $1'} | egrep -E "[a-z]" | head -1)
-      PRICE=$(cat "${FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a>@</a>\n@g' | grep "${MODEL_NO_HTML}" -A1 | egrep -E "[0-9]{0,2} [0-9]{2,3},[0-9]{2}" -o | head -1 | tr -d ' ')
+      PRICE=$(cat "${FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a>@</a>\n@g' | grep "${MODEL_NO_HTML}" -A1 | sed -e 's@<span class="price@\n<span class="price@g' | grep '<span class="price' | egrep -E "[0-9]{0,2} [0-9]{2,3},{0,1}[0-9]{0,2}" -o | head -1 | tr -d ' ')
+      if [ "${PRICE}" == "" ];
+      then
+        PRICE=$(cat "${FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a>@</a>\n@g' | grep "${MODEL_NO_HTML}" -A1 | egrep -E "[0-9]{0,2} [0-9]{2,3},[0-9]{2}" -o | head -1 | tr -d ' ')
+      fi
       # COMMENT THIS:
       # echo "========================================================"
       # echo "FILE=${FILE}"
       # echo "MODEL_LINE=${model}"
+      # echo "MODEL_NO_HTML=${MODEL_NO_HTML}"
       # echo "TRADEMARK=${TRADEMARK}"
       # echo "FINAL_MODEL=${FINAL_MODEL}"
       # echo "URL=${URL}"
