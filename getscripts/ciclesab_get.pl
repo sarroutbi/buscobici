@@ -16,7 +16,7 @@
 #
 require "CommonGet.pl";
 use constant ONLY_DOMAIN => "ciclesab.com";
-use constant URL => "http://www." . ONLY_DOMAIN . "/";
+use constant URL => "http://" . ONLY_DOMAIN . "/";
 use constant EXCLUDE => "-Rgif -Rpng -Rjpg";
 use constant MAX_TRIES => 10;
 use constant MAX_TIMEOUT => 10;
