@@ -59,7 +59,7 @@ bubic_clean "$model_trademark"'`;
 
   # PRICE PARSING
   my $price;
-  $price=`grep -A10 \"$model_trademark\" \"$file\" | grep '<span class=\"price\"' | sed -e 's|^[ \t]*||g'`;
+  $price=`grep -A10 \"$model_trademark\" \"$file\" | grep '<span class=\"price\"' | sed -e 's|^[ \t]*||g' | head -1`;
   $price =~ s|<.+?>||g;
   $price =~ s/^\s+|\s+$//g;
   chomp($price);
