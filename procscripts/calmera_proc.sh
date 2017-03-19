@@ -152,11 +152,16 @@ function dump_bike_from_file()
       TRADEMARK=$(echo "${CAMEL_MODEL}" | awk {'print $1'})
       FINAL_MODEL=$(echo "${CAMEL_MODEL}" | awk {'for(i=2;i<=NF;++i){printf $i; if(i<NF){printf " "}}'})
       URL=$(echo "${model}" | awk -F 'href=' {'print $2'} | awk {'print $1'} | egrep -E "[a-z]" | head -1)
-      PRICE=$(cat "${FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a>@</a>\n@g' | grep "${MODEL_NO_HTML}" -A1 | egrep -E "[0-9]{0,2} [0-9]{2,3},[0-9]{2}" -o | head -1 | tr -d ' ')
+      PRICE=$(cat "${FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a>@</a>\n@g' | grep "${MODEL_NO_HTML}" -A1 | sed -e 's@<span class="price@\n<span class="price@g' | grep '<span class="price' | egrep -E "[0-9]{0,2} [0-9]{2,3},{0,1}[0-9]{0,2}" -o | head -1 | tr -d ' ')
+      if [ "${PRICE}" == "" ];
+      then
+        PRICE=$(cat "${FILE}" | sed -e 's@<a class="product-name"@\n<a class="product-name"@g' | sed -e 's@</a>@</a>\n@g' | grep "${MODEL_NO_HTML}" -A1 | egrep -E "[0-9]{0,2} [0-9]{2,3},[0-9]{2}" -o | head -1 | tr -d ' ')
+      fi
       # COMMENT THIS:
       # echo "========================================================"
       # echo "FILE=${FILE}"
       # echo "MODEL_LINE=${model}"
+      # echo "MODEL_NO_HTML=${MODEL_NO_HTML}"
       # echo "TRADEMARK=${TRADEMARK}"
       # echo "FINAL_MODEL=${FINAL_MODEL}"
       # echo "URL=${URL}"
@@ -249,43 +254,43 @@ function process_pages()
 > ${OUTPUT_FILE}
 
 MTB_BIKES_BASE="montana-18?p="
-MTB_BIKES_PAGES="$(seq 1 16)"
+MTB_BIKES_PAGES="$(seq 1 48)"
 
 MTB_DOUBLE_BASE="doble-suspension-27?p="
-MTB_DOUBLE_PAGES="$(seq 1 9)"
+MTB_DOUBLE_PAGES="$(seq 1 27)"
 
 ROAD_BIKES_BASE="carretera-17?p="
-ROAD_BIKES_PAGES="$(seq 1 16)"
+ROAD_BIKES_PAGES="$(seq 1 30)"
 
 ROAD_CARBON_BIKES_BASE="carbono-24?p="
-ROAD_CARBON_BIKES_PAGES="$(seq 1 10)"
+ROAD_CARBON_BIKES_PAGES="$(seq 1 30)"
 
 ROAD_TRIATLON_BIKES_BASE="triathlon-25?p="
-ROAD_TRIATLON_BIKES_PAGES="$(seq 1 3)"
+ROAD_TRIATLON_BIKES_PAGES="$(seq 1 9)"
 
 ROAD_CICLOCROSS_BIKES_BASE="ciclocross-y-cicloturismo-132?p="
-ROAD_CICLOCROSS_BIKES_PAGES="$(seq 1 3)"
+ROAD_CICLOCROSS_BIKES_PAGES="$(seq 1 9)"
 
 ROAD_FIXIES_BIKES_BASE="fixies-133?p="
-ROAD_FIXIES_BIKES_PAGES="$(seq 1 2)"
+ROAD_FIXIES_BIKES_PAGES="$(seq 1 6)"
 
 URBAN_BIKES_BASE="urbanas-y-mixtastrekking-19?p="
-URBAN_BIKES_PAGES="$(seq 1 13)"
+URBAN_BIKES_PAGES="$(seq 1 39)"
 
 KIDS_BIKES_BASE="infantiles-20?p="
-KIDS_BIKES_PAGES="$(seq 1 7)"
+KIDS_BIKES_PAGES="$(seq 1 21)"
 
 TRICYCLE_BIKES_BASE="triciclos-y-tandems-21?p="
-TRICYCLE_BIKES_PAGES="$(seq 1 3)"
+TRICYCLE_BIKES_PAGES="$(seq 1 9)"
 
 BMX_BIKES_BASE="bmxfreestyletrial-22?p="
-BMX_BIKES_PAGES="$(seq 1 2)"
+BMX_BIKES_PAGES="$(seq 1 6)"
 
 process_pages "${MTB_BIKES_BASE}"             "${MTB_BIKES_PAGES}"             "Calmera" "MTB"    >> ${OUTPUT_FILE}
 process_pages "${MTB_DOUBLE_BASE}"            "${MTB_DOUBLE_PAGES}"            "Calmera" "MTB-DOUBLE" >> ${OUTPUT_FILE}
 process_pages "${ROAD_BIKES_BASE}"            "${ROAD_BIKES_PAGES}"            "Calmera" "ROAD"   >> ${OUTPUT_FILE}
 process_pages "${ROAD_CARBON_BIKES_BASE}"     "${ROAD_CARBON_BIKES_PAGES}"     "Calmera" "ROAD"   >> ${OUTPUT_FILE}
-process_pages "${ROAD_TRIATLON_BIKES_BASE}"   "${ROAD_TRIATLON_BIKES_PAGES}"   "Calmera" "ROAD"   >> ${OUTPUT_FILE}
+process_pages "${ROAD_TRIATLON_BIKES_BASE}"   "${ROAD_TRIATLON_BIKES_PAGES}"   "Calmera" "ROAD-TRIATLON"   >> ${OUTPUT_FILE}
 process_pages "${ROAD_CICLOCROSS_BIKES_BASE}" "${ROAD_CICLOCROSS_BIKES_PAGES}" "Calmera" "ROAD-CICLOCROSS" >> ${OUTPUT_FILE}
 process_pages "${ROAD_FIXIES_BIKES_BASE}"     "${ROAD_FIXIES_BIKES_PAGES}"     "Calmera" "URBAN-FIXIE" >> ${OUTPUT_FILE}
 process_pages "${URBAN_BIKES_BASE}"           "${URBAN_BIKES_PAGES}"           "Calmera" "URBAN"  >> ${OUTPUT_FILE}

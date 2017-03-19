@@ -37,18 +37,13 @@ sub dump_model {
   my $type = $_[2];
   my $store = $_[3];
   my $trimmed_model_html = $model_html;
-  $trimmed_model_html =~ s/^\s+|\s+$//g;
-  my $model_html_cmd = "echo '$trimmed_model_html' | sed -e 's!<span class=\"new\">Nuevo</span>!!g'";
-  $trimmed_model_html = `$model_html_cmd`;
-  chomp($trimmed_model_html);
-  my $trimmed_model_noh3;
-  my $trimmed_model_noa;
-  ($trimmed_model_noh3) = split('</a>', $trimmed_model_html, -1);
-  ($nothing, $trimmed_model_noh3) = split('<h3>', $trimmed_model_noh3, -1);
-  my $trimmed_model;
   my $discard;
-  ($discard, $trimmed_model) = split('>', $trimmed_model_noh3, -1);
+  my $trimmed_model;
+  ($discard, $trimmed_model) = split('>', $model_html, -1);
+  ($trimmed_model, $discard) = split('<', $trimmed_model, -1);
+  chomp($trimmed_model);
   my $trademark;
+  ($trademark, $trimmed_model) = split(' ', $trimmed_model, 2);
   my $url;
   my $clean_model = `bash -c 'source ./common_proc; \
 bubic_clean "$trimmed_model"'`;
@@ -67,32 +62,11 @@ bubic_clean "$trimmed_model"'`;
   $url_no_bs = $url;
   $url_no_bs =~ s/\\"/"/g;
 
-  # TRADEMARK_PARSING
-  my $trademark_cmd = "grep $url_no_bs $file -A10 | grep '<img src=' | grep '</p>' | egrep -E -o \"[A-Z,a-z]*.png\" | sed -e 's/.png//g' | head -1 | sed -e 's/PEQ//g'";
-  my $trademark = `$trademark_cmd`;
-  chomp($trademark);
-
-  if ($trademark eq "") {
-      $trademark_cmd = "grep $url_no_bs $file -A10 | grep '<img style=\"font-size: 20px;\" src=' | grep '</p>' | egrep -E -o \"[A-Z,a-z]*.png\" | sed -e 's/.png//g' | head -1 | sed -e 's/PEQ//g'";
-      $trademark = `$trademark_cmd`;
-      chomp($trademark);
-  }
-
-  if ($trademark eq "") {
-      $trademark_cmd = "grep $url_no_bs $file -A10 | grep '<img src=' | grep '</p>' | egrep -E -o \"[A-Z,a-z,%%,0-9]*.png\" | sed -e 's/.png//g' | sed -e 's/[0-9]//g' | tr -d '%' | head -1 | sed -e 's/PEQ//g'";
-      $trademark = `$trademark_cmd`;
-      chomp($trademark);
-  }
-
-  if ($trademark eq "") {
-      $trademark_cmd = "grep $url_no_bs $file -A10 | grep '<img src=' | grep '</p>' | awk -F '.png' {'print \$1'} | awk -F '/cms/' {'print \$2'}";
-      $trademark = `$trademark_cmd`;
-      chomp($trademark);
-  }
-
   # PRICE PARSING
-  my $price_cmd = sprintf("grep $url_no_bs -A%s $file | grep '<span class=\"price\"' | head -1 | sed -e 's/<[^>]*>//g'", MAX_PRICE);
-  my $price = `$price_cmd`;
+  my $price;
+  ($discard, $price) = split('product-price">', $model_html, 2);
+  ($price, $discard) = split('<', $price, 2);
+
   $price =~ s/^\s+|\s+$//g;
   chomp($price);
   $price =~ s/[^0-9,\,]//sg;
@@ -132,7 +106,7 @@ sub process_file {
   elsif ($type eq "") {
     return 1;
   }
-  my $models_cmd = "cat $file | grep '<div class=\"center_block\">' -A10 | grep '<h3>'";
+  my $models_cmd = "cat $file | sed -e 's\@<a class=\"product-name\"@\\n<a class=\"product-name\"\@g' | grep '<div class=\"button-container\">' | sed -e 's\@<div class=\"button-container\">\@\\n<div class=\"button-container\">\@g'| grep '<a class=\"product-name\"'";
   my @models = `$models_cmd`;
   foreach my $model_html (@models) {
     chomp($model_html);
@@ -174,6 +148,30 @@ chomp @BMX_DIRT_FIX_PAGES;
 
 process_file_pages($BMX_DIRT_FIX_FILE, \@BMX_DIRT_FIX_PAGES, "BMX-DIRT");
 
+#### MTB_26_FIX ####
+my @MTB_26_FIX_PAGES = `seq 1 2`;
+my $MTB_26_FIX_FILE = "mtb-26-fix";
+
+chomp @MTB_26_FIX_PAGES;
+
+process_file_pages($MTB_26_FIX_FILE, \@MTB_26_FIX_PAGES, "MTB-26");
+
+#### MTB_27_5_FIX ####
+my @MTB_27_5_FIX_PAGES = `seq 1 2`;
+my $MTB_27_5_FIX_FILE = "mtb-27_5-fix";
+
+chomp @MTB_27_5_FIX_PAGES;
+
+process_file_pages($MTB_27_5_FIX_FILE, \@MTB_27_5_FIX_PAGES, "MTB-27-5");
+
+#### MTB_27_5_PLUS_FIX ####
+my @MTB_27_5_PLUS_FIX_PAGES = `seq 1 2`;
+my $MTB_27_5_PLUS_FIX_FILE = "mtb-27_5_PLUS-fix";
+
+chomp @MTB_27_5_PLUS_FIX_PAGES;
+
+process_file_pages($MTB_27_5_PLUS_FIX_FILE, \@MTB_27_5_PLUS_FIX_PAGES, "MTB-27-5");
+
 #### MTB_29_FIX ####
 my @MTB_29_FIX_PAGES = `seq 1 3`;
 my $MTB_29_FIX_FILE = "mtb-29-fix";
@@ -182,16 +180,8 @@ chomp @MTB_29_FIX_PAGES;
 
 process_file_pages($MTB_29_FIX_FILE, \@MTB_29_FIX_PAGES, "MTB-29");
 
-#### MTB_27_5_FIX ####
-my @MTB_27_5_FIX_PAGES = `seq 1 4`;
-my $MTB_27_5_FIX_FILE = "mtb-27_5-fix";
-
-chomp @MTB_27_5_FIX_PAGES;
-
-process_file_pages($MTB_27_5_FIX_FILE, \@MTB_27_5_FIX_PAGES, "MTB-27-5");
-
 #### MTB_WOMAN_FIX ####
-my @MTB_WOMAN_FIX_PAGES = `seq 1 4`;
+my @MTB_WOMAN_FIX_PAGES = `seq 1 2`;
 my $MTB_WOMAN_FIX_FILE = "mtb-woman-fix";
 
 chomp @MTB_WOMAN_FIX_PAGES;
@@ -215,7 +205,7 @@ chomp @URBAN_FITNESS_FIX_PAGES;
 process_file_pages($URBAN_FITNESS_FIX_FILE, \@URBAN_FITNESS_FIX_PAGES, "URBAN");
 
 #### MTB_TRAIL_FIX ####
-my @MTB_TRAIL_FIX_PAGES = `seq 1 3`;
+my @MTB_TRAIL_FIX_PAGES = `seq 1 2`;
 my $MTB_TRAIL_FIX_FILE = "mtb-trail-fix";
 
 chomp @MTB_TRAIL_FIX_PAGES;
@@ -223,23 +213,15 @@ chomp @MTB_TRAIL_FIX_PAGES;
 process_file_pages($MTB_TRAIL_FIX_FILE, \@MTB_TRAIL_FIX_PAGES, "MTB");
 
 #### MTB_HARD_TRAIL_FIX ####
-my @MTB_HARD_TRAIL_FIX_PAGES = `seq 1 3`;
+my @MTB_HARD_TRAIL_FIX_PAGES = `seq 1 2`;
 my $MTB_HARD_TRAIL_FIX_FILE = "mtb-hard-trail-fix";
 
 chomp @MTB_HARD_TRAIL_FIX_PAGES;
 
 process_file_pages($MTB_HARD_TRAIL_FIX_FILE, \@MTB_HARD_TRAIL_FIX_PAGES, "MTB");
 
-#### MTB_PRO_FIX ####
-my @MTB_PRO_FIX_PAGES = `seq 1 3`;
-my $MTB_PRO_FIX_FILE = "mtb-pro-fix";
-
-chomp @MTB_PRO_FIX_PAGES;
-
-process_file_pages($MTB_PRO_FIX_FILE, \@MTB_PRO_FIX_PAGES, "MTB");
-
 #### MTB_DOUBLE ####
-my @MTB_DOUBLE_PAGES = `seq 1 7`;
+my @MTB_DOUBLE_PAGES = `seq 1 4`;
 my $MTB_DOUBLE_FILE = "mtb-double";
 
 chomp @MTB_DOUBLE_PAGES;
@@ -247,7 +229,7 @@ chomp @MTB_DOUBLE_PAGES;
 process_file_pages($MTB_DOUBLE_FILE, \@MTB_DOUBLE_PAGES, "MTB-DOUBLE");
 
 #### ROAD ####
-my @ROAD_PAGES = `seq 1 4`;
+my @ROAD_PAGES = `seq 1 2`;
 my $ROAD_FILE = "road";
 
 chomp @ROAD_PAGES;
@@ -262,13 +244,13 @@ chomp @ROAD_CICLOCROSS_PAGES;
 
 process_file_pages($ROAD_CICLOCROSS_FILE, \@ROAD_CICLOCROSS_PAGES, "ROAD-CICLOCROSS");
 
-#### BMX ####
-my @BMX_PAGES = `seq 1 2`;
-my $BMX_FILE = "bmx";
+#### MTB_ELECTRIC ####
+my @MTB_ELECTRIC_PAGES = `seq 1 2`;
+my $MTB_ELECTRIC_FILE = "mtb-woman";
 
-chomp @BMX_PAGES;
+chomp @MTB_ELECTRIC_PAGES;
 
-process_file_pages($BMX_FILE, \@BMX_PAGES, "BMX");
+process_file_pages($MTB_ELECTRIC_FILE, \@MTB_ELECTRIC_PAGES, "MTB-ELECTRIC");
 
 #### MTB_WOMAN ####
 my @MTB_WOMAN_PAGES = `seq 1 2`;

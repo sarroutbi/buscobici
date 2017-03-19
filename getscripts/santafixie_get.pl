@@ -23,7 +23,7 @@ use constant MAX_TIMEOUT => 10;
 
 #### URBAN_FIXIE ####
 my $URBAN_FIXIE_BASE = URL . "/comprar-bicicleta-fixie.html?p=";
-my @URBAN_FIXIE_PAGES = `seq 1 6`;
+my @URBAN_FIXIE_PAGES = `seq 1 8`;
 my $URBAN_FIXIE_FILE = "urban-fixie";
 
 chomp @URBAN_FIXIE_PAGES;

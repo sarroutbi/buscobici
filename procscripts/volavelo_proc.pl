@@ -23,6 +23,7 @@ use constant MAX_TRIES => 10;
 use constant MAX_TIMEOUT => 10;
 use constant OUTPUT_FILE => "output";
 use constant MAX_PRICE => 20;
+use constant MAX_PRICE2 => 15;
 
 my $TRADEMARK_KEY="TRADEMARK";
 my $SUBURL_KEY="SUBURL";
@@ -75,19 +76,18 @@ bubic_clean "$trimmed_trademark_model"'`;
   my $price_cmd = sprintf("cat $file | grep -C%d \"$trademark_model\" " .
 "| grep '<span class=\"price\">' | head -1 | sed -e 's/<[^>]*>//g'", MAX_PRICE);
   my $price = `$price_cmd`;
+  chomp($price);
 
   if ($price eq "") {
-      $price_cmd = sprintf("cat $file | grep -C%d \"$trademark_model\" " .
-                           "| grep '<span class=\"price\" >' -A2 | sed -e 's/<[^>]*>//g'" .
-                           "| egrep -E -o \"[0-9]{2,4},{0,1}[0-9]{0,2}\" | head -1",
-                           MAX_PRICE);
+      $price_cmd = sprintf("cat $file | grep -A%d \"$trademark_model\" " .
+                           "| grep '<span class=\"price\"' -A2 | sed -e 's/<[^>]*>//g'" .
+                           "| egrep -E -o \"[0-9]{2,4},{0,1}[0-9]{0,2}\" | tail -1",
+                           MAX_PRICE2);
       $price = `$price_cmd`;
+      chomp($price);
   }
-  chomp($price);
   $price =~ s/[^0-9,\,]//sg;
-
   chomp($price);
-  $price =~ s/[^0-9,\,]//sg;
 
   # TRADEMARK/MODEL processing
   my $clean_trademark = $trademark;
@@ -98,8 +98,9 @@ bubic_clean "$trimmed_trademark_model"'`;
   my $camel_model = `bash -c 'source ./common_proc; bubic_camel "$clean_model"'`;
   chomp($camel_trademark);
   chomp($camel_model);
-  #print "================================";
-  #print "\nTRADEMARK_MODEL:$trademark_model\n";
+  #print "================================\n";
+  #print "FILE:$file\n";
+  #print "TRADEMARK_MODEL:$trademark_model\n";
   #print "TRADEMARK:$trademark\n";
   #print "MODEL:$model\n";
   #print "CAMEL_MODEL:$camel_model\n";
