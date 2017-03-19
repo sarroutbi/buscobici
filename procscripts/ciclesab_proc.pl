@@ -15,7 +15,7 @@
 # OR PERFORMANCE OF THIS SOFTWARE.
 #
 require "CommonProc.pl";
-use constant STORE => "Mejor Bike";
+use constant STORE => "Cicles AB";
 use constant ONLY_DOMAIN => "ciclesab.com";
 use constant URL => "http://" . ONLY_DOMAIN;
 use constant EXCLUDE => "-Rgif -Rpng -Rjpg";
