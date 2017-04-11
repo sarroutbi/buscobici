@@ -60,7 +60,7 @@ bubic_clean "$trademark_model"'`;
   $url_no_dash =~ s/\"//g;
   my $final_url; 
   if ($url_no_dash ne "") {
-      my $complete_url = URL . $url_no_dash;
+      my $complete_url = $url_no_dash;
       $final_url = "\\\"$complete_url\\\"";
   }
 
@@ -117,7 +117,7 @@ sub process_file {
   elsif ($type eq "") {
     return 1;
   }
-  my $models_cmd = "cat $file | sed -e 's/<h2 class=\"ItemDestacadosDesc\"/\\n<h2 class=\"ItemDestacadosDesc\"/g' | sed -e 's|</h2>|</h2>\\n|g' | grep '<h2 class=\"ItemDestacadosDesc\"' | sed -e 's/<[^>]*>//g'";
+  my $models_cmd = "cat $file | sed -e 's/<h3 class=\"ItemDestacadosDesc\"/\\n<h3 class=\"ItemDestacadosDesc\"/g' | sed -e 's|</h3>|</h3>\\n|g' | grep '<h3 class=\"ItemDestacadosDesc\"' | sed -e 's/<[^>]*>//g'";
   my @models = `$models_cmd`;
   #printf "MODELS cmd:$models_cmd";
   foreach my $trade_model (@models) {
