@@ -2,3 +2,4 @@ RESULTS/*/output*
 RESULTS/*/psql*
 BACKUPS/*/*/.sql
 *~
+test/*.error
